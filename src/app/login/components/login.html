@@ -1,0 +1,11 @@
+<div>
+	<div>
+		<input placeholder="USERNAME" [(ngModel)]="userId" />
+	</div>
+	<div>
+		<input placeholder="PASSWORD" type="password" [(ngModel)]="password" />
+	</div>
+	<div class="button">
+        <a (click)="login($event)">Log In</a>
+    </div>
+</div>
