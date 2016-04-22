@@ -17,4 +17,27 @@ export class FooterMenuComponent{
 		private _matchMediaService: MatchMediaService,
 		private _pageNavigationService: PageNavigationService) {
 	}
+	
+	gotoStartDay()
+	{
+		console.log("Start Day");
+		this._router.navigate(['StartDay']);
+	}
+		gotoBasicCallProcedure()
+	{
+		console.log("Basic");
+		this._router.navigate(['BasicCallProcedure']);
+	}
+
+	gotoCloseDay()
+	{
+		console.log("Close Day");
+		this._router.navigate(['CloseDay']);
+	}
+
+	gotoSettings()
+	{
+		console.log("Settings");
+		this._router.navigate(['Settings']);
+	}
 }

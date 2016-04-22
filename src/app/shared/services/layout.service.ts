@@ -1,5 +1,4 @@
 import {Injectable} from 'angular2/core';
-import {Http, Request, RequestOptions, RequestMethod, RequestOptionsArgs, Headers} from 'angular2/http';
 import {PageNavigationService} from './page-navigation.service';
 import {MatchMediaService} from './match-media.service';
 
@@ -7,6 +6,7 @@ import {MatchMediaService} from './match-media.service';
 export class LayoutService {
 
 	currentPage: string;
+    numberSelection = false;
 
 	layoutState = {
 		appHeader: false,
@@ -20,20 +20,9 @@ export class LayoutService {
         setting: false
     };
 	
-	constructor (private _http: Http,
-    private _pageNavigationService: PageNavigationService,
+	constructor (private _pageNavigationService: PageNavigationService,
     private _matchMediaService: MatchMediaService) {     
-        const url = 'config/layout.json';        
-        this._http.get(
-            url,        
-            <RequestOptionsArgs>{        
-                headers: new Headers({        
-                    'Content-Type': 'application/x-www-form-urlencoded',        
-                })        
-            }).subscribe(file => {        
-                let layout = file.json();
-                console.log(layout);  
-            });  
+        
     }
 	
 	getCurrentPage(){
@@ -51,4 +40,13 @@ export class LayoutService {
 	getLayout(){
 		return this.layoutState;
 	}
+    
+    setNumberSelectionState(){
+        this.numberSelection = !this.numberSelection;
+    }
+    
+    getNumberSelectionState(){
+        return this.numberSelection;
+    }
+
 }

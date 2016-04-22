@@ -1,0 +1,214 @@
+/* Master Styles */
+
+    button {
+      margin-top: 20px;
+      font-family: Arial;
+      background-color: #eee;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer; cursor: hand;
+    }
+    button:hover {
+      background-color: #cfd8dc;
+    }
+    button:disabled {
+      background-color: #eee;
+      color: #ccc; 
+      cursor: auto;
+    }
+ 
+ /*div#header-fixed {position:fixed; top:0px; margin:auto; z-index:100000; width:100%;} 
+div#my-menus {background:#FFDAB9; height:55px; opacity:0.8}
+    Copyright 2016 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license
+    */
+
+.footerMenu {
+width: 100%;
+height: 50px;
+display: block;
+background-color: #F5f5f5;
+z-index: 90;
+position: fixed;
+bottom: -1px;
+border-top: 1px solid #bcbac1;
+}
+
+.footerMenu .column {
+        width: 20%;
+        float: left;
+        margin: auto;
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	}
+
+.footerMenu .column .home {
+		display: block;
+		height: 30px;
+		width: 100%;
+		margin-top: 2px;
+		cursor: pointer;
+		background: 
+		url("/app/img/icon/house.png")
+		no-repeat;
+		background-position-x: center;
+		background-position-y: center;
+		background-size: 25px;
+	}
+
+  .footerMenu .column .basicp {
+    display: block;
+    height: 30px;
+    width: 100%;
+    margin-top: 2px;
+    cursor: pointer;
+    background: 
+    url("/app/img/icon/piggy_bank.png")
+    no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 25px;
+  }
+
+  .footerMenu .column .closeday {
+    display: block;
+    height: 30px;
+    width: 100%;
+    margin-top: 2px;
+    cursor: pointer;
+    background: 
+    url("/app/img/icon/safe.png")
+    no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 25px;
+  }
+
+  .footerMenu .column .setting {
+    display: block;
+    height: 30px;
+    width: 100%;
+    margin-top: 2px;
+    cursor: pointer;
+    background: 
+    url("/app/img/icon/cog_01.png")
+    no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 25px;
+  }
+	
+.footerMenu .column .home .active {
+			background: #808080  
+			url("/app/img/icon/house.png") no-repeat;
+			background-position-x: center;
+			background-position-y: center;
+			background-size: 25px;
+		}
+		
+.footerMenu .column .basicp .active {
+      background: #808080  
+      url("/app/img/icon/piggy_bank.png") no-repeat;
+      background-position-x: center;
+      background-position-y: center;
+      background-size: 25px;
+    }
+
+.footerMenu .column .closeday .active {
+      background: #808080  
+      url("/app/img/icon/safe.png") no-repeat;
+      background-position-x: center;
+      background-position-y: center;
+      background-size: 25px;
+    }
+
+.footerMenu .column .setting .active {
+      background: #808080  
+      url("/app/img/icon/cog_01.png") no-repeat;
+      background-position-x: center;
+      background-position-y: center;
+      background-size: 25px;
+    }
+
+.footerMenu .column .text {
+	font-size: 10px;
+	color: #808080;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.footerMenu .column .text .active {
+		color: #00FF00;
+	}
+
+.headerSmall{
+  width: 100%;
+    height: 48px;
+     }
+
+.headerSmall .openSearch{
+    height: 96px;
+   }
+
+.headerSmall .mainBox{
+  background-color: #808080;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  position: fixed;
+}
+
+.headerSmall .mainBox .defaultBox{
+    height: 48px;
+    border-bottom: 1px solid #FFF;
+}
+
+ .headerSmall .mainBox .defaultBox .title{
+ position: fixed;
+    z-index: 1000;
+    width:48px;
+    height:48px;
+    /*background: url("/app/img/icon/arrow_left.png") no-repeat;*/
+    background-size: 30px;
+    background-position: center center;
+    cursor: pointer;
+    padding-top: 2%;            
+ }
+
+ .headerSmall .mainBox .defaultBox .back{
+    position: fixed;
+    z-index: 1000;
+    width:48px;
+    height:48px;
+    background: url("/app/img/icon/arrow_left.png") no-repeat;
+    background-size: 30px;
+    background-position: center center;
+    cursor: pointer;
+
+}
+
+.headerContainer{
+
+  width: 100%;
+  height: 48px;
+  z-index: 500;
+  position: fixed;
+  top: 10px;
+}
+
+.headerContainer  .backArrow{
+      height: 46px;
+      width: 46px;
+      margin-bottom: 60px;
+      margin-left: -10px;
+      background: url("")no-repeat;
+      background-size: 40px;
+      background-position: 0 0px;
+      cursor: pointer;
+
+  }
+/* 
+ * See https://github.com/angular/angular.io/blob/master/public/docs/_examples/styles.css
+ * for the full set of master styles used by the documentation samples
+ */

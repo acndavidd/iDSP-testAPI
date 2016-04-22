@@ -8,6 +8,10 @@ import {PageNavigationService} from './shared/services/page-navigation.service';
 import {LoginComponent} from './login/components/login.component';
 import {HeaderComponent} from './shared/components/header.component';
 import {FooterMenuComponent} from './shared/components/footer-menu.component';
+import {StartDayComponent} from '../app/start-day/components/start-day.component';
+import {BasicCallProcedureComponent} from '../app/basic-call-procedure/components/basic-call-pro.component';
+import {CloseDayComponent} from '../app/close-day/components/close-day.component';
+import {SettingsComponent} from '../app/settings/components/settings.component';
 declare var FastClick: FastClickStatic;
 declare var configChannel: any;
 
@@ -40,8 +44,27 @@ declare var configChannel: any;
         name: 'Starter',
         component: LoginComponent,
         useAsDefault: true
+    },
+    {
+        path: '/startday',
+        name: 'StartDay',
+        component: StartDayComponent
+    },
+    {
+        path: '/basiccallprocedure',
+        name: 'BasicCallProcedure',
+        component: BasicCallProcedureComponent
+    },
+    {
+        path: '/closeday',
+        name: 'CloseDay',
+        component: CloseDayComponent
+    },
+     {
+        path: '/settings',
+        name: 'Settings',
+        component: SettingsComponent
     }
-	
 ])
 export class IDSPComponent implements OnInit {
 

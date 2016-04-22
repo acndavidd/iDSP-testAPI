@@ -172,7 +172,7 @@ module.exports = function(grunt) {
             js: {
                 files: [
                     {
-                        src:['app/config/**/*.json'],
+                        src:['services/**/*.json'],
                         dest:'../debug/',
                         expand: true,
                     },
@@ -243,7 +243,7 @@ module.exports = function(grunt) {
 // ---------------------         
         watch: {
             js: {
-                files: ['js/**/*.js', 'js/**/*.js.map', 'Gruntfile.js', 'tsconfig.json','init.js' , 'app/config/**/*.json'],
+                files: ['js/**/*.js', 'js/**/*.js.map', 'Gruntfile.js', 'tsconfig.json','init.js'],
                 tasks: ['copy:js', 'jshint'],
             },
             ts: {

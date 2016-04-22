@@ -1,7 +1,7 @@
 {
-  "name": "idsp_app",
+  "name": "stc_app",
   "version": "1.0.0",
-  "description": "idsp_app package",
+  "description": "stc_app package",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

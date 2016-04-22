@@ -1,0 +1,116 @@
+.footerMenu {
+width: 100%;
+height: 50px;
+display: block;
+background-color: #F5f5f5;
+z-index: 90;
+position: fixed;
+bottom: -1px;
+border-top: 1px solid #bcbac1;
+}
+
+.footerMenu .column {
+        width: 25%;
+        float: left;
+        margin: auto;
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	}
+
+.footerMenu .column .home {
+		display: block;
+		height: 30px;
+		width: 100%;
+		margin-top: 1px;
+		cursor: pointer;
+		background: 
+		url("../img/icon-idsp/startday-grey.png")
+		no-repeat;
+		background-position-x: center;
+		background-position-y: center;
+		background-size: 25px;
+	}
+
+  .footerMenu .column .basicp {
+    display: block;
+    height: 30px;
+    width: 100%;
+    margin-top: 1px;
+    cursor: pointer;
+    background: 
+    url("../img/icon-idsp/bcp-grey.png")
+    no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 33px;
+  }
+
+  .footerMenu .column .closeday {
+    display: block;
+    height: 30px;
+    width: 100%;
+    margin-top: 1px;
+    cursor: pointer;
+    background: 
+    url("../img/icon-idsp/closeday-grey.png")
+    no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 22px;
+  }
+
+  .footerMenu .column .setting {
+    display: block;
+    height: 30px;
+    width: 100%;
+    margin-top: 1px;
+    cursor: pointer;
+    background: 
+    url("../img/icon-idsp/setting-grey.png")
+    no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 28px;
+  }
+	
+.footerMenu .column .home .active {
+			background: #808080  
+			url("../img/icon-idsp/startday-grey.png") no-repeat;
+			background-position-x: center;
+			background-position-y: center;
+			background-size: 25px;
+		}
+		
+.footerMenu .column .basicp .active {
+      background: #808080  
+      url("../img/icon-idsp/bcp-grey.png") no-repeat;
+      background-position-x: center;
+      background-position-y: center;
+      background-size: 33px;
+    }
+
+.footerMenu .column .closeday .active {
+      background: #808080  
+      url("../img/icon-idsp/closeday-grey.png") no-repeat;
+      background-position-x: center;
+      background-position-y: center;
+      background-size: 22px;
+    }
+
+.footerMenu .column .setting .active {
+      background: #808080  
+      url("../img/icon-idsp/setting-grey.png") no-repeat;
+      background-position-x: center;
+      background-position-y: center;
+      background-size: 28px;
+    }
+
+.footerMenu .column .text {
+	font-size: 10px;
+	color: #808080;
+	text-align: center;
+	margin-bottom: 3px;
+}
+
+.footerMenu .column .text .active {
+		color: #00FF00;
+	}
