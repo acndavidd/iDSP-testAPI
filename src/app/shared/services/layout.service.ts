@@ -20,10 +20,10 @@ export class LayoutService {
         setting: false
     };
 	
-	constructor (private _http: Http,
+	constructor (//private _http: Http,
     private _pageNavigationService: PageNavigationService,
     private _matchMediaService: MatchMediaService) {     
-        const url = 'config/layout.json';        
+        /*const url = 'config/layout.json';        
         this._http.get(
             url,        
             <RequestOptionsArgs>{        
@@ -33,10 +33,22 @@ export class LayoutService {
             }).subscribe(file => {        
                 let layout = file.json();
                 console.log(layout);  
-            });  
+            });*/
     }
 	
 	getCurrentPage(){
+        if(currentPage != 'login'){
+            this.layoutState = {
+                appHeader: true,
+                appFooter: true
+            };
+            this.footerItem = {
+                start: true,
+                call: true,
+                end: true,
+                setting: true
+            };
+        }
 		return this.currentPage;
 	}
     
