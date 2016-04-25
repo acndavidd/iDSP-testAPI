@@ -1,3 +1,21 @@
-<div class='appFooter' *ngIf="getLayout().appFooter">
+<div class="footerMenu">
+	 <div class="column" (click)="gotoStartDay()">
+		<div class="text">Start Day</div>
+        <div class="home"></div>
+    </div>
 
+   	<div class="column" (click)="gotoBasicCallProcedure()">
+   		<div class="text" >Basic Procedure</div>	
+        <div class="basicp" ></div>
+    </div>
+
+   <div class="column" (click)="gotoCloseDay()">
+   		<div class="text">Close Day</div>	
+        <div class="closeday" ></div>
+    </div>
+
+    <div class="column" (click)="gotoSettings()">
+   		<div class="text">Settings</div>	
+        <div class="setting" ></div>
+    </div>
 </div>

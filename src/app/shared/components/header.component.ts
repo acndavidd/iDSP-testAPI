@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import { Router } from 'angular2/router';
 import {LayoutService} from '../services/layout.service';
 import {MatchMediaService} from '../../shared/services/match-media.service';
@@ -10,7 +10,7 @@ declare var ga:any;
     templateUrl: 'app/shared/components/header.component.html'
 })
 
-export class HeaderComponent{
+export class HeaderComponent implements OnInit {
 	constructor (
 		private _layoutService : LayoutService, 
         private _router: Router,
@@ -18,7 +18,10 @@ export class HeaderComponent{
 		private _pageNavigationService: PageNavigationService) {
 	}
 
-	getLayout(){
-		return this._layoutService.getLayout();
+	title :string;
+
+	ngOnInit() 
+	{
+		this.title;
 	}
 }
