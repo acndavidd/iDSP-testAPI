@@ -5,8 +5,7 @@ import {UserDAO} from '../daos/user.dao';
 import {User} from '../../models/user.model';
 
 export class LoginController{
-	constructor(){
-	}
+	
 	private _userDAO:UserDAO;
 	constructor(){}
 	
