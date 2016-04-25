@@ -1,14 +1,18 @@
 'use strict';
 
 import {MySql} from '../services/mysql.service';
+import {UserDAO} from '../daos/user.dao';
+import {User} from '../../models/user.model';
 
 export class LoginController{
 	constructor(){
 	}
+	private _userDAO:UserDAO;
+	constructor(){}
 	
 	async postLogin(req:string,res:string){
-		const _mysql:MySql = new MySql();
-		var resp:string =  await _mysql.executeQuery('select * from vr_config');
-		res.json(resp);
+		let _userDAO = new UserDAO();
+		let user:User = await _userDAO.login(req.username,req.password);
+		res.json(user);
 	}
 }

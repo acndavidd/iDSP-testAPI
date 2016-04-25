@@ -9,15 +9,15 @@ export class LayoutService {
     numberSelection = false;
 
 	layoutState = {
-		appHeader: false,
-        appFooter: false
+		appHeader: true,
+        appFooter: true
 	};
     
     footerItem = {
-        start: false,
-        call: false,
-        end: false,
-        setting: false
+        start: true,
+        call: true,
+        end: true,
+        setting: true
     };
 	/*
 	constructor (private _http: Http,

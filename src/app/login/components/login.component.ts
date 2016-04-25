@@ -3,6 +3,7 @@
 import {Component} from 'angular2/core';
 import { Router } from 'angular2/router';
 import {NgModel} from 'angular2/common';
+import {AuthenticationService} from '../shared/services/authentication.service';
 
 declare var ga:any;
 
@@ -17,12 +18,14 @@ declare var ga:any;
 export class LoginComponent {
     userId: string;
     password: string;
-    constructor (private _router: Router) {
+    constructor (private _router: Router,
+        private _authenticationService:AuthenticationService) {
         
 	}
 
 	login(event) {
         event.preventDefault();
+        
         console.log(this.userId + "  " + this.password);
     }
 
