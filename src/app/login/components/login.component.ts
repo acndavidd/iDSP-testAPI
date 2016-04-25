@@ -3,7 +3,7 @@
 import {Component} from 'angular2/core';
 import { Router } from 'angular2/router';
 import {NgModel} from 'angular2/common';
-import {AuthenticationService} from '../shared/services/authentication.service';
+import {AuthenticationService} from '../../shared/services/authentication.service';
 
 declare var ga:any;
 
@@ -12,7 +12,7 @@ declare var ga:any;
     templateUrl: './app/login/components/login.html',
     directives: [
         NgModel
-    ]
+    ],
 })
 
 export class LoginComponent {
@@ -25,8 +25,8 @@ export class LoginComponent {
 
 	login(event) {
         event.preventDefault();
-        
-        console.log(this.userId + "  " + this.password);
+        console.log(this.userId + " aaaa " + this.password);
+        this._authenticationService.login(this.userId,this.password);
     }
 
     getErrorMsgText(){

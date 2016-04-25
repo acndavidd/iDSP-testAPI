@@ -44,4 +44,3 @@ export class UserDAO implements DAO.DAO<User>{
         return false;
     }
 }
-\ No newline at end of file
