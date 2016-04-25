@@ -19,6 +19,6 @@ export class HeaderComponent{
 	}
 
 	getLayout(){
-		return _layoutService.getLayout();
+		return this._layoutService.getLayout();
 	}
 }

@@ -20,7 +20,7 @@ export class AuthenticationService{
 		}
 	}
 
-	loginValidatation(username:string,password:string):boolean{
+	loginValidation(username:string,password:string):boolean{
 		if(username == null || username == "")return false;
 		if(password == null || password  == "")return false;
 		return true;
@@ -40,5 +40,6 @@ export class AuthenticationService{
             		console.log(error);
             	}
             );
+       	return false;
 	}
 }

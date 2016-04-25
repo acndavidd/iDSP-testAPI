@@ -19,15 +19,10 @@ export class LayoutService {
         end: false,
         setting: false
     };
-	
-<<<<<<< HEAD
-<<<<<<< HEAD
-	constructor (//private _http: Http,
-=======
+	/*
 	constructor (private _http: Http,
->>>>>>> parent of 3328e71... Test
     private _pageNavigationService: PageNavigationService,
-    private _matchMediaService: MatchMediaService) {     
+    private _matchMediaService: MatchMediaService) { 
         const url = 'config/layout.json';        
         this._http.get(
             url,        
@@ -38,18 +33,9 @@ export class LayoutService {
             }).subscribe(file => {        
                 let layout = file.json();
                 console.log(layout);  
-<<<<<<< HEAD
-            });*/
-=======
-	constructor (private _pageNavigationService: PageNavigationService,
-    private _matchMediaService: MatchMediaService) {     
-        
->>>>>>> ba06e36873abb8f2716d0dd87f4cb82f3690fafb
-=======
-            });  
->>>>>>> parent of 3328e71... Test
-    }
-	
+            });
+        }
+	*/
 	getCurrentPage(){
 		return this.currentPage;
 	}
