@@ -11,7 +11,7 @@ export class LoginController{
 	
 	async postLogin(req:string,res:string){
 		let _userDAO = new UserDAO();
-		let user:User = await _userDAO.login(req.username,req.password);
+		let user:User = await _userDAO.login('aaa','bbb');
 		res.json(user);
 	}
 }

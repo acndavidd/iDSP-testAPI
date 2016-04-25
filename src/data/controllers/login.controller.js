@@ -14,7 +14,7 @@ class LoginController {
     postLogin(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             let _userDAO = new user_dao_1.UserDAO();
-            let user = yield _userDAO.login(req.username, req.password);
+            let user = yield _userDAO.login('aaa', 'bbb');
             res.json(user);
         });
     }

@@ -20,8 +20,11 @@ export class UserDAO implements DAO.DAO<User>{
     async login(username:string,password:string):Promise<User>{
     	this._mysql = new MySql();
     	const query:string = "select * from " + this.table_name + " where username = '"+username+"' and password = '"+password+"'";
-    	var resp:string = await this._mysql.executeQuery(query);
+    	//console.log(query);
+        var resp:string = await this._mysql.executeQuery(query);
+        console.log(resp);
     	let user:User = JSON.parse(JSON.stringify(resp));
+        console.log(user);
     	return user;
     }
 

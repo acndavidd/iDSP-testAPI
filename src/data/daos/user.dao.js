@@ -25,8 +25,11 @@ class UserDAO {
         return __awaiter(this, void 0, Promise, function* () {
             this._mysql = new mysql_service_1.MySql();
             const query = "select * from " + this.table_name + " where username = '" + username + "' and password = '" + password + "'";
+            //console.log(query);
             var resp = yield this._mysql.executeQuery(query);
+            console.log(resp);
             let user = JSON.parse(JSON.stringify(resp));
+            console.log(user);
             return user;
         });
     }
