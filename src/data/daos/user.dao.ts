@@ -1,4 +1,3 @@
-@@ -0,0 +1,46 @@
 /// <reference path="idsp.dao.ts" />
 
 import {MySql} from '../services/mysql.service';
