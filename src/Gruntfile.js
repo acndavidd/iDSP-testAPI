@@ -61,7 +61,7 @@ module.exports = function(grunt) {
 
         concat: {
             js: {
-                src: ['config/**/*.js'],
+                src: ['app/**/*.js'],
                 dest: '../debug/js/app.js',
             },
         },
@@ -173,10 +173,14 @@ module.exports = function(grunt) {
                 files: [
                     {
 <<<<<<< HEAD
+<<<<<<< HEAD
                         src:['config/**/*.json'],
 =======
                         src:['services/**/*.json'],
 >>>>>>> ba06e36873abb8f2716d0dd87f4cb82f3690fafb
+=======
+                        src:['app/config/**/*.json'],
+>>>>>>> parent of 3328e71... Test
                         dest:'../debug/',
                         expand: true,
                     },
@@ -248,10 +252,14 @@ module.exports = function(grunt) {
         watch: {
             js: {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 files: ['js/**/*.js', 'js/**/*.js.map', 'Gruntfile.js', 'tsconfig.json','init.js' , 'config/**/*.json'],
 =======
                 files: ['js/**/*.js', 'js/**/*.js.map', 'Gruntfile.js', 'tsconfig.json','init.js'],
 >>>>>>> ba06e36873abb8f2716d0dd87f4cb82f3690fafb
+=======
+                files: ['js/**/*.js', 'js/**/*.js.map', 'Gruntfile.js', 'tsconfig.json','init.js' , 'app/config/**/*.json'],
+>>>>>>> parent of 3328e71... Test
                 tasks: ['copy:js', 'jshint'],
             },
             ts: {

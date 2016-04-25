@@ -2,11 +2,10 @@
 var config = require('../conf/config.js');
 
 export class MySql{
-	
+	 
 	constructor(){
 		
 	}
-
 	executeQuery(query:string){
 		return new Promise<string>(function(resolve,reject){
 			let mysql_con : any;

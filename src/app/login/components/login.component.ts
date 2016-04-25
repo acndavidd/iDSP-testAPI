@@ -17,7 +17,7 @@ declare var ga:any;
 export class LoginComponent {
     userId: string;
     password: string;
-    constructor () {
+    constructor (private _router: Router) {
         
 	}
 

@@ -11,13 +11,14 @@ declare var ga:any;
 })
 
 export class HeaderComponent{
-	constructor (private _matchMediaService: MatchMediaService,
-            private _router: Router,
-            private _layoutService: LayoutService,
-            private _pageNavigationService: PageNavigationService) {
+	constructor (
+		private _layoutService : LayoutService, 
+        private _router: Router,
+		private _matchMediaService: MatchMediaService,
+		private _pageNavigationService: PageNavigationService) {
 	}
 
 	getLayout(){
-		return this._layoutService.getLayout();
+		return _layoutService.getLayout();
 	}
 }

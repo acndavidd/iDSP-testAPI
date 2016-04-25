@@ -7,15 +7,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
 };
-const user_dao_1 = require('../daos/user.dao');
+const mysql_service_1 = require('../services/mysql.service');
 class LoginController {
     constructor() {
     }
     postLogin(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            let _userDAO = new user_dao_1.UserDAO();
-            let user = yield _userDAO.login(req.username, req.password);
-            res.json(user);
+            const _mysql = new mysql_service_1.MySql();
+            var resp = yield _mysql.executeQuery('select * from vr_config');
+            res.json(resp);
         });
     }
 }

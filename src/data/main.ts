@@ -3,19 +3,15 @@
 'use strict';
 
 import {LoginController} from './controllers/login.controller';
-
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser');
 
 const port:number = process.env.PORT || 8080;
 const router = express.Router();
 
-const loginCtrl:LoginController = new LoginController();
+const _login:LoginController = new LoginController();
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-router.get('/login',loginCtrl.postLogin);
+router.get('/login',_login.postLogin);
 
 app.use('/api',router);
 

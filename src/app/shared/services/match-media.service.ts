@@ -29,7 +29,7 @@ export class MatchMediaService {
             mediumUp : false
         };
 
-    onResize() {
+    OnResize() {
         // get media query
         for (this.key in this.rules) {
             if (this.rules.hasOwnProperty(this.key)) {
