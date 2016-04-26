@@ -41,7 +41,7 @@ export class FooterMenuComponent{
 		console.log("Settings");
 		this._router.navigate(['Settings']);
 	}
-
+	
 	getfooterItem(){
 		console.log("footer item");
         return this._layoutService.getfooterItem();

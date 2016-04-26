@@ -7,7 +7,9 @@ z-index: 90;
 position: fixed;
 bottom: -1px;
 border-top: 1px solid #bcbac1;
+}
 
+<<<<<<< HEAD
   .column {
     width: 25%;
     float: left;
@@ -109,4 +111,46 @@ border-top: 1px solid #bcbac1;
     color: #00FF00;
    }
   }
+	
+.footerMenu .column .home .active {
+			background: #808080  
+			url("../img/icon-idsp/startday-grey.png") no-repeat;
+			background-position-x: center;
+			background-position-y: center;
+			background-size: 25px;
+		}
+		
+.footerMenu .column .basicp .active {
+      background: #808080  
+      url("../img/icon-idsp/bcp-grey.png") no-repeat;
+      background-position-x: center;
+      background-position-y: center;
+      background-size: 33px;
+    }
+
+.footerMenu .column .closeday .active {
+      background: #808080  
+      url("../img/icon-idsp/closeday-grey.png") no-repeat;
+      background-position-x: center;
+      background-position-y: center;
+      background-size: 22px;
+    }
+
+.footerMenu .column .setting .active {
+      background: #808080  
+      url("../img/icon-idsp/setting-grey.png") no-repeat;
+      background-position-x: center;
+      background-position-y: center;
+      background-size: 28px;
+    }
+
+.footerMenu .column .text {
+	font-size: 10px;
+	color: #808080;
+	text-align: center;
+	margin-bottom: 3px;
 }
+
+.footerMenu .column .text .active {
+		color: #00FF00;
+	}

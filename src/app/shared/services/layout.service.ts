@@ -6,9 +6,6 @@ import {Layout} from '../../models/layout';
 @Injectable()
 export class LayoutService {
 
-    constructor (private _pageNavigationService: PageNavigationService,
-    private _matchMediaService: MatchMediaService) {}
-
 	currentPage: string;
     numberSelection = false;
 
@@ -18,12 +15,28 @@ export class LayoutService {
 	};
     
     footerItem = {
-        start: false,
-        call: false,
-        end: false,
-        setting: false
+        start: true,
+        call: true,
+        end: true,
+        setting: true
     };
-	
+	/*
+	constructor (private _http: Http,
+    private _pageNavigationService: PageNavigationService,
+    private _matchMediaService: MatchMediaService) { 
+        const url = 'config/layout.json';        
+        this._http.get(
+            url,        
+            <RequestOptionsArgs>{        
+                headers: new Headers({        
+                    'Content-Type': 'application/x-www-form-urlencoded',        
+                })        
+            }).subscribe(file => {        
+                let layout = file.json();
+                console.log(layout);  
+            });
+        }
+	*/
 	getCurrentPage(){
 		return this.currentPage;
 	}
@@ -31,7 +44,7 @@ export class LayoutService {
     getFooterLayout(){
         return this.footerItem;
     }
-    
+	
 	getLayout(){
 		return this.layoutState;
 	}
@@ -43,7 +56,6 @@ export class LayoutService {
     getNumberSelectionState(){
         return this.numberSelection;
     }
-
 
     getfooterItem(){
         return this.footerItem;
@@ -70,5 +82,4 @@ export class LayoutService {
             };
         }
     }
-      
 }

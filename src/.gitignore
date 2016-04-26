@@ -3,5 +3,3 @@ typings
 js
 .tscache
 *.tmp.txt
-*.js
-*.js.map
