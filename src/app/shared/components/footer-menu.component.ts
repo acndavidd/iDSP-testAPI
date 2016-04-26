@@ -19,10 +19,10 @@ export class FooterMenuComponent{
 		private _pageNavigationService: PageNavigationService) {
 	}
 	
-	gotoStartDay()
+	gotoMyTransaction()
 	{
-		console.log("Start Day");
-		this._router.navigate(['StartDay']);
+		console.log("My Transaction");
+		this._router.navigate(['MyTransaction']);
 	}
 		gotoBasicCallProcedure()
 	{

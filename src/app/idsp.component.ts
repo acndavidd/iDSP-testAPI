@@ -9,7 +9,7 @@ import {AuthenticationService} from './shared/services/authentication.service';
 import {LoginComponent} from './login/components/login.component';
 import {HeaderComponent} from './shared/components/header.component';
 import {FooterMenuComponent} from './shared/components/footer-menu.component';
-import {StartDayComponent} from './start-day/components/start-day.component';
+import {MyTransactionComponent} from './my-transaction/components/my-transaction.component';
 import {BasicCallProcedureComponent} from './basic-call-procedure/components/basic-call-pro.component';
 import {CloseDayComponent} from './close-day/components/close-day.component';
 import {SettingsComponent} from './settings/components/settings.component';
@@ -48,9 +48,9 @@ declare var configChannel: any;
         useAsDefault: true
     },
     {
-        path: '/startday',
-        name: 'StartDay',
-        component: StartDayComponent
+        path: '/mytransaction',
+        name: 'MyTransaction',
+        component: MyTransactionComponent
     },
     {
         path: '/basiccallprocedure',

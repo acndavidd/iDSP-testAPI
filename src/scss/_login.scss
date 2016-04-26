@@ -84,7 +84,7 @@ $containerLogin-height: 100%;
 				line-height: 50px - 20px;
 				font-size: medium;
 				margin-bottom: 5px;
-				background-color: #01BABF;
+				background-color: #63DFDC;
 				outline: 0;
 				color : #000;
 				text-align: center;
@@ -104,10 +104,12 @@ $containerLogin-height: 100%;
 		.loginButton
 		{
 			height: 35px;
-			background-color: #01BABF;
+			background-color: #00C2BA;
 			text-align: center;
 			vertical-align: center;
-			font-color : #FFF;
+			font-size: 15pt;
+    		padding-top: 7px;
+    		color : #FFF;
 		}
 
 		.loginSeparator
@@ -120,5 +122,22 @@ $containerLogin-height: 100%;
 
 	.after-box {
 		margin-top: 20px;
+	}
+
+	.smartLogo
+	{
+		display: block;
+        height: 30px;
+        width: 100%;
+        margin-top: 2px;
+        background: 
+        url("../img/smart-logo.png")
+        no-repeat;
+        background-position-x: center;
+        background-position-y: center;
+        background-size: 100px;
+        z-index: 90;
+		position: fixed;
+		bottom: 20px;
 	}
 }

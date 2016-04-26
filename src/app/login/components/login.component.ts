@@ -21,8 +21,12 @@ declare var ga:any;
 export class LoginComponent {
     userId: string;
     password: string;
-    constructor (private _router: Router,private _layoutService: LayoutService,
-        private _authenticationService:AuthenticationService) {
+    constructor (
+        private _router: Router,
+        private _layoutService: LayoutService,
+        private _authenticationService:AuthenticationService
+        ) {
+        
         this._layoutService.setCurrentPage('Login');
 	}
 
@@ -30,7 +34,7 @@ export class LoginComponent {
         event.preventDefault();
         console.log(this.userId + " aaaa " + this.password);
         this._authenticationService.login(this.userId,this.password);
-        this._router.navigate(['StartDay']);
+        this._router.navigate(['MyTransaction']);
     }
 
     getErrorMessageText(){
