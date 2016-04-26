@@ -1,5 +1,6 @@
 'use strict';
 
+import {TokenService} from '../services/token.service';
 import {MySql} from '../services/mysql.service';
 import {UserDAO} from '../daos/user.dao';
 import {User} from '../../models/user.model';
@@ -11,7 +12,17 @@ export class LoginController{
 	
 	async postLogin(req:string,res:string){
 		let _userDAO = new UserDAO();
-		let user:User = await _userDAO.login('aaa','bbb');
+		console.log(req.body);
+		let user:User = await _userDAO.login(req.body.username,req.body.password);
+		let _tokensvc = new TokenService();
+		let token:string = _tokensvc.generateToken(user);
+		res.cookie('accessToken',token,{httpOnly:true});
+		console.log(token);
+		if(_tokensvc.verifyToken('kuciao')){
+			console.log('valid');
+		}else{
+			console.log('invalid');
+		}
 		res.json(user);
 	}
 }

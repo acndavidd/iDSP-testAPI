@@ -25,7 +25,6 @@ export class LoginComponent {
 
 	login(event) {
         event.preventDefault();
-        console.log(this.userId + " aaaa " + this.password);
         this._authenticationService.login(this.userId,this.password);
     }
 

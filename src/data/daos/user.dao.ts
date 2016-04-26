@@ -10,40 +10,11 @@ export class UserDAO implements DAO.DAO<User>{
 	constructor(){
 	}
 
-	async create(user:User):Promise<User>{
-		this._mysql = new MySql();
-		const query:string = "insert into "+this.table_name+" (username,password) values('"+user.username+"','"+user.password+"')";
-		var resp:string =  await this._mysql.executeQuery(query);
-		return user;
-    }
-
-    async login(username:string,password:string):Promise<User>{
+    async login(username:string,password:string){
     	this._mysql = new MySql();
     	const query:string = "select * from " + this.table_name + " where username = '"+username+"' and password = '"+password+"'";
-    	//console.log(query);
-        var resp:string = await this._mysql.executeQuery(query);
-        console.log(resp);
+        var resp = await this._mysql.executeQuery(query);
     	let user:User = JSON.parse(JSON.stringify(resp));
-        console.log(user);
     	return user;
-    }
-
-	/*async create(user:User):Promise<User> {
-		const query:string = "insert into "+this.table_name+" values('"+user.username+"','"+user.password+"')";
-		console.log(query);
-		//var resp:string =  await this._mysql.executeQuery(query);
-        return user;
-    }*/
-
-    async read(id:number):Promise<User> {
-       	
-    }
-
-    async update(user:User):Promise<boolean> {
-        return false;
-    }
-
-    async delete(id:number):Promise<boolean> {
-        return false;
     }
 }
