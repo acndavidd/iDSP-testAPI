@@ -1,7 +1,6 @@
-
 .headerSmall{
   width: 100%;
-    height: 48px;
+    height: 50px;
      }
 
 .headerSmall .openSearch{
@@ -9,7 +8,7 @@
    }
 
 .headerSmall .mainBox{
-  background-color: #0397D5;
+  background-color: #007879;
   top: 0;
   z-index: 100;
   width: 100%;
@@ -18,7 +17,6 @@
 
 .headerSmall .mainBox .defaultBox{
     height: 48px;
-    border-bottom: 1px solid #FFF;
 }
 
  .headerSmall .mainBox .defaultBox .title{

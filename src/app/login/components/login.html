@@ -1,12 +1,14 @@
-        <div class="smartLogo"></div>
-		<div class="header">Enter your My Smart details to continue</div>
+<div class="containerLoginSmall">
+	<div class="outer-box">
+		<div class="header">DSP Mobile App</div>
 		<div class="inner-box">
-			<input placeholder="Smart number or email address" [(ngModel)]="userId" />
-			<input placeholder="Password" type="password" [(ngModel)]="password" />
-			<div class="button">
-                <a>Log In</a>
-            </div>
-            <div class="errorAlert">{{getErrorMessageText()}}</div>
+			<div class="loginSeparator"></div>
+			<div><input placeholder="Username"  /></div>
+			<div><input placeholder="Password" type="password"	/></div>
+			<div class="loginSeparator"></div>
+			<div class="errorAlert">{{getErrorMessageText()}}</div>
+			<a (click)="login($event)"><div class="loginButton">SIGN IN</div></a>
 			<p><a (click)="gotoForgotPassword()">Forgot your password?</a></p>
-			<p><a (click)="gotoRegister()">I don't have a My Smart Account yet</a></p>
 		</div>
+	</div>
+</div>

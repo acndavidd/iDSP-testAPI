@@ -1,6 +1,7 @@
 import {Injectable} from 'angular2/core';
 import {PageNavigationService} from './page-navigation.service';
 import {MatchMediaService} from './match-media.service';
+import {Layout} from '../../models/layout';
 
 @Injectable()
 export class LayoutService {
@@ -12,8 +13,8 @@ export class LayoutService {
     numberSelection = false;
 
 	layoutState = {
-		appHeader: true,
-        appFooter: true
+		appHeader: false,
+        appFooter: false
 	};
     
     footerItem = {
@@ -52,8 +53,22 @@ export class LayoutService {
     {
         this.currentPage = current;
         
-        if(current == 'StartDay')
-            this.footerItem.start = true
+      if(current == 'GetStarted' ||
+        current == 'Verification' ||
+        current == 'Login'){
+        
+            this.layoutState = {
+                appHeader: false,
+                appFooter: false
+            };
+        }
+        
+        else {
+            this.layoutState = {
+                appHeader: true,
+                appFooter: true
+            };
+        }
     }
       
 }

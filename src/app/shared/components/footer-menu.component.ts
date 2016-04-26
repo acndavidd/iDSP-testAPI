@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import { Router } from 'angular2/router';
 import {LayoutService} from '../services/layout.service';
+import {Layout} from '../../models/layout';
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
 declare var ga:any;
@@ -45,4 +46,8 @@ export class FooterMenuComponent{
 		console.log("footer item");
         return this._layoutService.getfooterItem();
     }
+
+    getLayout(){
+		return this._layoutService.getLayout();
+	}
 }

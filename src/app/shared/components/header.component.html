@@ -1,4 +1,4 @@
-<div class="headerSmall">
+<div class="headerSmall"  *ngIf="getLayout().appHeader">
 	<div class="mainBox">
         <div class="defaultBox">
             <!--<div class="back"></div>-->
@@ -10,10 +10,3 @@
         </div>
     </div>
 </div>
-<!--
-<div class="headerContainer">
-	<div class="headerLogin">
-		<div class="backArrow" (click)="goToPreviousPage()"></div>
-	</div>
-</div>
--->
