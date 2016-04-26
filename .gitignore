@@ -1,1 +1,4 @@
 debug
+*.tmp.txt
+*.js
+*.js.map

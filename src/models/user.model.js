@@ -1,5 +1,6 @@
+"use strict";
 /// <reference path="idsp.model.ts" />
-export class User {
+class User {
     constructor(_username, _password, _role) {
         this._username = _username;
         this._password = _password;
@@ -15,4 +16,5 @@ export class User {
         return this._role;
     }
 }
+exports.User = User;
 //# sourceMappingURL=user.model.js.map

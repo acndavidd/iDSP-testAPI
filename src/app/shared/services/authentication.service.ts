@@ -13,9 +13,11 @@ export class AuthenticationService{
 	}
 
 	login(username:string,password:string){
+		console.log(username + '   ' + password);
 		if(!this.loginValidation(username,password)){
 			this.error_msg = 'Invalid username or password';
 		}else{
+			console.log('call login service');
 			this.loginService(username,password);
 		}
 	}
@@ -27,9 +29,8 @@ export class AuthenticationService{
 	}
 
 	loginService(username:string,password:string):boolean{
-		this.service_url += '/login';
 		let data:string = 'username='+username+'&password=';
-		this._http.post(this.service_url,data,
+		this._http.post(this.service_url + '/login',data,
 			<RequestOptionsArgs> {headers: new Headers(
                 {'Content-Type': 'application/x-www-form-urlencoded'})
             }).subscribe(

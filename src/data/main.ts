@@ -10,9 +10,23 @@ const port:number = process.env.PORT || 8080;
 const router = express.Router();
 
 const _login:LoginController = new LoginController();
-
+/*
+app.use(function(req, res, next) {
+	let allow: string;
+    let origin: string = req.get('origin');
+    if (origin == 'http://localhost:3000') {
+        allow = 'http://localhost:3000';
+    } 
+    else if (origin == 'http://smart-web.s3-website-ap-southeast-1.amazonaws.com') {
+        allow = 'http://smart-web.s3-website-ap-southeast-1.amazonaws.com';
+    }
+    if (allow) {
+    	console.log('allow : ' + allow);
+        res.header("Access-Control-Allow-Origin", allow);
+    }
+});
+*/
 router.get('/login',_login.postLogin);
-
 app.use('/api',router);
 
 var server = app.listen(port);

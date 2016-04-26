@@ -61,7 +61,7 @@ module.exports = function(grunt) {
 
         concat: {
             js: {
-                src: ['app/**/*.js'],
+                src: ['js/**/*.js'],
                 dest: '../debug/js/app.js',
             },
         },
@@ -172,13 +172,6 @@ module.exports = function(grunt) {
             js: {
                 files: [
                     {
-                        src:['config/**/*.json'],
-                        src:['services/**/*.json'],
-                        src:['app/config/**/*.json'],
-                        dest:'../debug/',
-                        expand: true,
-                    },
-                    {
                         src:['init.js', 'tsconfig.json'],
                         dest:'../debug/',
                         expand: true,
@@ -245,9 +238,7 @@ module.exports = function(grunt) {
 // ---------------------         
         watch: {
             js: {
-                files: ['js/**/*.js', 'js/**/*.js.map', 'Gruntfile.js', 'tsconfig.json','init.js' , 'config/**/*.json'],
                 files: ['js/**/*.js', 'js/**/*.js.map', 'Gruntfile.js', 'tsconfig.json','init.js'],
-                files: ['js/**/*.js', 'js/**/*.js.map', 'Gruntfile.js', 'tsconfig.json','init.js' , 'app/config/**/*.json'],
                 tasks: ['copy:js', 'jshint'],
             },
             ts: {
@@ -259,7 +250,7 @@ module.exports = function(grunt) {
                 tasks: ['sass'],
             },
             cssmin: {
-                files: '../debug/css/app.css',
+                files: '../../debug/css/app.css',
                 tasks: ['cssmin'],
             },
             html: {

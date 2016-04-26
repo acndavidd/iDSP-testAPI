@@ -8,12 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require('angular2/core');
 var common_1 = require('angular2/common');
 var LoginComponent = (function () {
-    function LoginComponent(_router) {
+    function LoginComponent(_router, _authenticationService) {
         this._router = _router;
+        this._authenticationService = _authenticationService;
     }
     LoginComponent.prototype.login = function (event) {
         event.preventDefault();
-        console.log(this.userId + "  " + this.password);
+        console.log(this.userId + " aaaa " + this.password);
+        this._authenticationService.login(this.userId, this.password);
     };
     LoginComponent.prototype.getErrorMsgText = function () {
         return "Error Bro";
