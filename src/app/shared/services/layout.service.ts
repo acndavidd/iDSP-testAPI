@@ -5,6 +5,9 @@ import {MatchMediaService} from './match-media.service';
 @Injectable()
 export class LayoutService {
 
+    constructor (private _pageNavigationService: PageNavigationService,
+    private _matchMediaService: MatchMediaService) {}
+
 	currentPage: string;
     numberSelection = false;
 
@@ -14,28 +17,12 @@ export class LayoutService {
 	};
     
     footerItem = {
-        start: true,
-        call: true,
-        end: true,
-        setting: true
+        start: false,
+        call: false,
+        end: false,
+        setting: false
     };
-	/*
-	constructor (private _http: Http,
-    private _pageNavigationService: PageNavigationService,
-    private _matchMediaService: MatchMediaService) { 
-        const url = 'config/layout.json';        
-        this._http.get(
-            url,        
-            <RequestOptionsArgs>{        
-                headers: new Headers({        
-                    'Content-Type': 'application/x-www-form-urlencoded',        
-                })        
-            }).subscribe(file => {        
-                let layout = file.json();
-                console.log(layout);  
-            });
-        }
-	*/
+	
 	getCurrentPage(){
 		return this.currentPage;
 	}
@@ -43,10 +30,6 @@ export class LayoutService {
     getFooterLayout(){
         return this.footerItem;
     }
-	
-	setCurrentPage(current : string){
-		this.currentPage = current;
-	}
     
 	getLayout(){
 		return this.layoutState;
@@ -60,4 +43,17 @@ export class LayoutService {
         return this.numberSelection;
     }
 
+
+    getfooterItem(){
+        return this.footerItem;
+    }
+
+    setCurrentPage(current : string)
+    {
+        this.currentPage = current;
+        
+        if(current == 'StartDay')
+            this.footerItem.start = true
+    }
+      
 }

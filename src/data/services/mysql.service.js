@@ -1,6 +1,5 @@
-"use strict";
 var config = require('../conf/config.js');
-class MySql {
+export class MySql {
     constructor() {
     }
     executeQuery(query) {
@@ -29,5 +28,4 @@ class MySql {
         });
     }
 }
-exports.MySql = MySql;
 //# sourceMappingURL=mysql.service.js.map

@@ -6,6 +6,9 @@ import {Http, HTTP_PROVIDERS, BaseRequestOptions, RequestOptions, BrowserXhr} fr
 import {Headers, XHRBackend} from "angular2/http";
 import {ROUTER_PROVIDERS, APP_BASE_HREF, LocationStrategy, Router, HashLocationStrategy} from 'angular2/router';
 import {MyHttp} from './shared/services/my-http.service';
+
+
+import {retailerController} from './controllers/retailer.controller';
 import 'rxjs/Rx';
 
 declare var configChannel: any;

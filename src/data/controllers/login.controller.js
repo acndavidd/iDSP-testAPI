@@ -1,23 +1,13 @@
 'use strict';
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments)).next());
-    });
-};
-const mysql_service_1 = require('../services/mysql.service');
-class LoginController {
+import { UserDAO } from '../daos/user.dao';
+export class LoginController {
     constructor() {
-    }
-    postLogin(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const _mysql = new mysql_service_1.MySql();
-            var resp = yield _mysql.executeQuery('select * from vr_config');
-            res.json(resp);
-        });
+        this.async = postLogin(req, string, res, string);
     }
 }
-exports.LoginController = LoginController;
+{
+    let _userDAO = new UserDAO();
+    let user = await, _userDAO, login = (req.username, req.password);
+    res.json(user);
+}
 //# sourceMappingURL=login.controller.js.map

@@ -8,6 +8,6 @@ config.mysql.servername = 'localhost';
 config.mysql.port = '3306';//default
 config.mysql.username = 'root';
 config.mysql.password = '';
-config.mysql.dbname = 'visitordb';
+config.mysql.dbname = 'mysql';
 
 module.exports = config;
