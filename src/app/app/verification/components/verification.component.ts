@@ -11,15 +11,15 @@ import {LayoutService} from '../../shared/services/layout.service';
 declare var ga:any;
 
 @Component({
-    selector: 'login',
-    templateUrl: './app/login/components/login.html',
+    selector: 'verification',
+    templateUrl: './app/verification/components/verification.component.html',
     directives: [
         NgModel
     ],
 })
 
-export class LoginComponent {
-    username: string;
+export class VerificationComponent {
+    userId: string;
     password: string;
     constructor (
         private _router: Router,
@@ -27,25 +27,16 @@ export class LoginComponent {
         private _authenticationService:AuthenticationService
         ) {
         
-        this._layoutService.setCurrentPage('Login');
+        this._layoutService.setCurrentPage('AuthLogin');
 	}
 
 	login(event) {
         event.preventDefault();
-<<<<<<< HEAD
-        this._authenticationService.login(this.username,this.password);
-        //this._router.navigate(['MyTransaction']);
-=======
         this._authenticationService.login(this.userId,this.password);
-        this._router.navigate(['Verification']);
->>>>>>> origin/master
+        this._router.navigate(['MyTransaction']);
     }
 
     getErrorMessageText(){
-    	return this._authenticationService.getError();
-    }
-
-    gotoForgotPassword(){
-        this._authenticationService.checkToken();
+    	return "Error Bro";
     }
 }
