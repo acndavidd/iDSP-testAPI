@@ -1,0 +1,14 @@
+<div class="containerLoginSmall">
+	<div class="outer-box">
+		<div class="header">DSP Mobile App</div>
+		<div class="inner-box">
+			<div class="loginSeparator"></div>
+			<div class="errorAlert">{{getErrorMessageText()}}</div>
+			<div><input placeholder="Username"  /></div>
+			<div><input placeholder="Password" type="password"	/></div>
+			<a (click)="login($event)"><div class="loginButton">SIGN IN</div></a>
+			<p><a (click)="gotoForgotPassword()">Forgot your password?</a></p>
+		</div>
+	</div>
+	<div class="smartLogo"></div>
+</div>
