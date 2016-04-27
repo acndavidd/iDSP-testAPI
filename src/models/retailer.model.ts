@@ -1,4 +1,5 @@
 /// <reference path="idsp.model.ts" />
+"use strict";
 export class Retailer implements Model.IDSPModel{
 	private _storename:string;
 	private _owername:string;

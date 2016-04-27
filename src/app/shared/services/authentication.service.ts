@@ -13,7 +13,6 @@ export class AuthenticationService{
 	}
 
 	login(username:string,password:string){
-		console.log(username + '   ' + password);
 		if(!this.loginValidation(username,password)){
 			this.error_msg = 'Invalid username or password';
 		}else{

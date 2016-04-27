@@ -12,17 +12,11 @@ export class LoginController{
 	
 	async postLogin(req:string,res:string){
 		let _userDAO = new UserDAO();
-		console.log(req.body);
 		let user:User = await _userDAO.login(req.body.username,req.body.password);
 		let _tokensvc = new TokenService();
 		let token:string = _tokensvc.generateToken(user);
 		res.cookie('accessToken',token,{httpOnly:true});
-		console.log(token);
-		if(_tokensvc.verifyToken('kuciao')){
-			console.log('valid');
-		}else{
-			console.log('invalid');
-		}
+		//console.log(token);
 		res.json(user);
 	}
 }

@@ -1,5 +1,6 @@
 /// <reference path="idsp.model.ts" />
-export class Retailer {
+"use strict";
+class Retailer {
     constructor() {
     }
     get storename() {
@@ -15,4 +16,5 @@ export class Retailer {
         return this._storeaddress;
     }
 }
+exports.Retailer = Retailer;
 //# sourceMappingURL=retailer.model.js.map

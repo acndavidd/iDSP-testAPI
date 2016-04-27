@@ -5,6 +5,7 @@
         "sourceMap": true,
         "declaration": false,
         "experimentalDecorators": true,
+        "noImplicitAny": false,
         "watch": true
     },
     "exclude": [
