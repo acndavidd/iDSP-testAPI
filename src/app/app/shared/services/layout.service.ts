@@ -1,7 +1,6 @@
 import {Injectable} from 'angular2/core';
 import {PageNavigationService} from './page-navigation.service';
 import {MatchMediaService} from './match-media.service';
-import {Layout} from '../../models/layout';
 
 @Injectable()
 export class LayoutService {

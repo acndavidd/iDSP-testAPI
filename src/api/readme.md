@@ -19,6 +19,3 @@ run: node-debug src/rest/main.js
 
 Run 
 
-    
-
-on top level folder

@@ -62,7 +62,7 @@ module.exports = function(grunt) {
         concat: {
             js: {
                 src: ['js/**/*.js'],
-                dest: '../debug/js/app.js',
+                dest: '../../debug/js/app.js',
             },
         },
 
@@ -87,7 +87,7 @@ module.exports = function(grunt) {
         sass: {
             debug: {
                 files: {
-                    '../debug/css/app.css': 'scss/app.scss',
+                    '../../debug/css/app.css': 'scss/app.scss',
                 },
             },
         },
@@ -98,8 +98,8 @@ module.exports = function(grunt) {
 
         uglify: {
             js: {
-                src: ['../debug/js/app.js'],
-                dest: '../debug/js/app.min.js',
+                src: ['../../debug/js/app.js'],
+                dest: '../../debug/js/app.min.js',
             },
             options: {
                 mangle: false
@@ -108,8 +108,8 @@ module.exports = function(grunt) {
 
         cssmin: {
             css: {
-                src: ['../debug/css/app.css', '../../debug/css/nouislider.css'],
-                dest: '../debug/css/app.min.css',
+                src: ['../../debug/css/app.css', '../../debug/css/nouislider.css'],
+                dest: '../../debug/css/app.min.css',
             },
         },        
 
@@ -152,7 +152,7 @@ module.exports = function(grunt) {
                             'node_modules/nouislider/distribute/nouislider.js',
                             'node_modules/angular2/es6/dev/src/testing/shims_for_IE.js'
                         ],
-                        dest:'../debug/scripts',
+                        dest:'../../debug/scripts',
                         expand: true, 
                         flatten: true,
                     }
@@ -163,7 +163,7 @@ module.exports = function(grunt) {
                 files: [              
                     {
                         src:['img/**/*.*'],
-                        dest:'../debug/',
+                        dest:'../../debug/',
                         expand: true,
                     },
                 ]
@@ -173,19 +173,19 @@ module.exports = function(grunt) {
                 files: [
                     {
                         src:['init.js', 'tsconfig.json'],
-                        dest:'../debug/',
+                        dest:'../../debug/',
                         expand: true,
                     },
                     {
                         cwd:'js',
                         src:['**/*.js', '**/*.js.map', '.baseDir.js' , '.baseDir.js.map'],
-                        dest:'../debug/app/',
+                        dest:'../../debug/app/',
                         expand: true,
                     },
                     {
                         cwd:'app',
                         src:['**/*.ts'],
-                        dest:'../debug/app/',
+                        dest:'../../debug/app/',
                         expand: true,
                     }
                 ]
@@ -195,7 +195,7 @@ module.exports = function(grunt) {
                 files: [              
                     {
                         src:['node_modules/nouislider/src/nouislider.css'],
-                        dest:'../debug/css/nouislider.css',
+                        dest:'../../debug/css/nouislider.css',
                         expand: false,
                         flatten: true,
                     },
@@ -205,7 +205,7 @@ module.exports = function(grunt) {
                 files: [              
                     {
                         src:['app/**/*.html', 'index.html'],
-                        dest:'../debug/',
+                        dest:'../../debug/',
                         expand: true,
                     },
                 ] } ,
@@ -228,8 +228,8 @@ module.exports = function(grunt) {
 // ---------------------  
         clean:{
             options: { force: true },
-            debug: ["../debug/", "!../debug/node_modules/"],
-            cordova: ["../cordova/www/**"],
+            debug: ["../../debug/", "!../../debug/node_modules/"],
+            cordova: ["../../cordova/www/**"],
             sasscache: [".sass-cache/"]  
         },
 

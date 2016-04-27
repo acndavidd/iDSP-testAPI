@@ -4,7 +4,7 @@ import {IDSPComponent} from './idsp.component';
 import {enableProdMode, provide, Injectable} from 'angular2/core';
 import {Http, HTTP_PROVIDERS, BaseRequestOptions, RequestOptions, BrowserXhr} from 'angular2/http';
 import {Headers, XHRBackend} from "angular2/http";
-import {ROUTER_PROVIDERS, APP_BASE_HREF, LocationStrategy, Router, HashLocationStrategy} from 'angular2/router';
+import {ROUTER_PROVIDERS, Router, APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 import {MyHttp} from './shared/services/my-http.service';
 import 'rxjs/Rx';
 

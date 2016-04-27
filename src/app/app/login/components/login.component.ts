@@ -4,7 +4,6 @@ import {Component} from 'angular2/core';
 import { Router } from 'angular2/router';
 import {NgModel} from 'angular2/common';
 import {AuthenticationService} from '../../shared/services/authentication.service';
-import {Layout} from '../../models/layout';
 import {LayoutService} from '../../shared/services/layout.service';
 
 

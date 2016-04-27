@@ -3,7 +3,6 @@ import { Router } from 'angular2/router';
 import {LayoutService} from '../services/layout.service';
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
-import {Layout} from '../../models/layout';
 declare var ga:any;
 
 @Component({
