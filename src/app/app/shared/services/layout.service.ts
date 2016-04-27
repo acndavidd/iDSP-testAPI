@@ -1,6 +1,7 @@
 import {Injectable} from 'angular2/core';
 import {PageNavigationService} from './page-navigation.service';
 import {MatchMediaService} from './match-media.service';
+import {Layout} from '../../../models/layout';
 
 @Injectable()
 export class LayoutService {
@@ -19,27 +20,22 @@ export class LayoutService {
         end: true,
         setting: true
     };
-	/*
-	constructor (private _http: Http,
-    private _pageNavigationService: PageNavigationService,
-    private _matchMediaService: MatchMediaService) { 
-        const url = 'config/layout.json';        
-        this._http.get(
-            url,        
-            <RequestOptionsArgs>{        
-                headers: new Headers({        
-                    'Content-Type': 'application/x-www-form-urlencoded',        
-                })        
-            }).subscribe(file => {        
-                let layout = file.json();
-                console.log(layout);  
-            });
-        }
-	*/
+
+     footerState = {
+        mytransaction: false,
+        basicp :false,
+        closeday : false,
+        settings :false
+    }
+    
 	getCurrentPage(){
 		return this.currentPage;
 	}
     
+    getfooterState(){
+        return this.footerState;
+    }
+
     getFooterLayout(){
         return this.footerItem;
     }
@@ -60,6 +56,7 @@ export class LayoutService {
         return this.footerItem;
     }
 
+
     setCurrentPage(current : string)
     {
         this.currentPage = current;
@@ -73,12 +70,61 @@ export class LayoutService {
                 appFooter: false
             };
         }
-        
-        else {
+        else if(current=='MyTransaction')
+        {
             this.layoutState = {
                 appHeader: true,
                 appFooter: true
             };
+             this.footerState = 
+             {
+                 mytransaction : true,
+                 basicp : false,
+                 closeday : false,
+                 settings : false
+             };    
+         }
+        else if(current=='BasicCallProcedure')
+        {
+            this.layoutState = {
+                appHeader: true,
+                appFooter: true
+            };
+             this.footerState = 
+             {
+                 mytransaction : false,
+                 basicp : true,
+                 closeday : false,
+                 settings : false
+             };    
+        }
+         else if(current=='CloseDay')
+        {
+            this.layoutState = {
+                appHeader: true,
+                appFooter: true
+            };
+             this.footerState = 
+             {
+                 mytransaction : false,
+                 basicp : false,
+                 closeday : true,
+                 settings : false
+             };    
+        }
+         else if(current=='Settings')
+        {
+            this.layoutState = {
+                appHeader: true,
+                appFooter: true
+            };
+             this.footerState = 
+             {
+                 mytransaction : false,
+                 basicp : false,
+                 closeday : false,
+                 settings : true
+             };    
         }
     }
 }

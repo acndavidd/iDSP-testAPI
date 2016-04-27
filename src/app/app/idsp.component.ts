@@ -13,6 +13,7 @@ import {MyTransactionComponent} from './my-transaction/components/my-transaction
 import {BasicCallProcedureComponent} from './basic-call-procedure/components/basic-call-pro.component';
 import {CloseDayComponent} from './close-day/components/close-day.component';
 import {SettingsComponent} from './settings/components/settings.component';
+import {VerificationComponent} from './verification/components/verification.component';
 declare var FastClick: FastClickStatic;
 declare var configChannel: any;
 
@@ -47,6 +48,11 @@ declare var configChannel: any;
         component: LoginComponent,
         useAsDefault: true
     },
+     {
+        path: '/verification',
+        name: 'Verification',
+        component: VerificationComponent
+    },
     {
         path: '/mytransaction',
         name: 'MyTransaction',
@@ -62,7 +68,7 @@ declare var configChannel: any;
         name: 'CloseDay',
         component: CloseDayComponent
     },
-     {
+    {
         path: '/settings',
         name: 'Settings',
         component: SettingsComponent

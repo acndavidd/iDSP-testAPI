@@ -1,5 +1,5 @@
 $containerLogin-height: 100%;
-.containerLoginSmall {
+.verification {
 	z-index: 50;
 	position: fixed;
     left: 0;
@@ -60,8 +60,9 @@ $containerLogin-height: 100%;
                 color:#FFF;
                 font-size:14px;
             }
+
 			input {
-				width: 100%;
+				width: 12%;
 				margin: 2px auto;
 				display: block;
 				height: 35px;
@@ -75,6 +76,7 @@ $containerLogin-height: 100%;
 				text-align: center;
 				font-style: italic;
                 border-bottom: 1px solid #000;
+                float: left;
 			}
 			p {
 				a {
@@ -118,5 +120,24 @@ $containerLogin-height: 100%;
         z-index: 90;
 		position: fixed;
 		bottom: 20px;
+	}
+	.message
+	{
+		display: block;
+		color : #fff;
+		font-weight: lighter;
+    	font-size: small;
+    	text-align: center;
+    	font-style: italic;
+    	padding: 12px;
+	}
+	.mpinBox
+	{
+		display: block;
+		align-content: center;
+		.separatorBox
+		{
+			padding-right: 5px;
+		}
 	}
 }
