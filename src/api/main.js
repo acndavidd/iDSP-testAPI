@@ -39,6 +39,7 @@ app.use(function (req, res, next) {
         try {
             var jwt = tokenSvc.verifyToken(token);
             res.locals.jwt = jwt;
+            console.log(jwt);
         }
         catch (err) {
             console.log("error : " + err);
@@ -47,7 +48,7 @@ app.use(function (req, res, next) {
     }
     next();
 });
-router.get('/login', loginCtrl.doLogin);
+router.post('/login', loginCtrl.doLogin);
 router.get('/check', loginCtrl.checkToken);
 app.use('/service', router);
 app.listen(port);

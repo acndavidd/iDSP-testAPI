@@ -53,6 +53,7 @@ export class AuthenticationService{
             		console.log(error);
             	}
             );
+        return false;
 	}
 
 	getError():string{

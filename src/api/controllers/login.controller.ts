@@ -20,6 +20,6 @@ export class LoginController{
 	}
 
 	checkToken(req:string,res:string){
-		res.json('calling checkToken ' + req.body.token);
+		res.json('calling checkToken ' + req.get('Authorization'));
 	}
 }

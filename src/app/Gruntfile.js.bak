@@ -170,7 +170,7 @@ module.exports = function(grunt) {
             },
             
             js: {
-                files: [    
+                files: [
                     {
                         src:['config/**/*.json'],
                         dest:'../../debug/',
@@ -183,13 +183,13 @@ module.exports = function(grunt) {
                     },
                     {
                         cwd:'js',
-                        src:['*.js', '*.js.map', '*.baseDir.js' , '*.baseDir.js.map'],
-                        dest:'../../debug/app/',
+                        src:['**/*.js', '**/*.js.map', '.baseDir.js' , '.baseDir.js.map'],
+                        dest:'../../../debug/app/',
                         expand: true,
                     },
                     {
-                        cwd:'js/app',
-                        src:['**/*.js' , '**/*.js.map'],
+                        cwd:'app',
+                        src:['**/*.ts'],
                         dest:'../../debug/app/',
                         expand: true,
                     }
@@ -285,19 +285,19 @@ module.exports = function(grunt) {
 //Debug
     grunt.registerTask('debug',[      
         'clean:debug',
-        'copy:dependencies',
-        'copy:resources',
-        'copy:html',
-        'copy:css',
-        'ts',
+        //'copy:dependencies',
+        //'copy:resources',
+        //'copy:html',
+        //'copy:css',
+        //'ts',
         'copy:js',
-        'concat',
-        'sass',
-        'clean:sasscache',
-        'jshint',
-        'cssmin',
-        'uglify',
-        'watch'
+        //'concat',
+        //'sass',
+        //'clean:sasscache',
+        //'jshint',
+        //'cssmin',
+        //'uglify',
+        //'watch'
         ]); 
 
     grunt.registerTask('cordova',[      
