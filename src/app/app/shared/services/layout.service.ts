@@ -19,6 +19,14 @@ export class LayoutService {
         end: true,
         setting: true
     };
+
+    footerState = {
+        mytransaction: false,
+        basicp :false,
+        closeday : false,
+        settings :false
+    }
+
 	/*
 	constructor (private _http: Http,
     private _pageNavigationService: PageNavigationService,
@@ -40,6 +48,10 @@ export class LayoutService {
 		return this.currentPage;
 	}
     
+    getFooterState(){
+        return this.footerState;
+    }
+
     getFooterLayout(){
         return this.footerItem;
     }
@@ -73,12 +85,61 @@ export class LayoutService {
                 appFooter: false
             };
         }
-        
-        else {
+       else if(current=='MyTransaction')
+        {
             this.layoutState = {
-                appHeader: true,
-                appFooter: true
+              appHeader: true,
+              appFooter: true
             };
+            this.footerState = 
+            {
+               mytransaction : true,
+               basicp : false,
+               closeday : false,
+               settings : false
+            };    
         }
+          else if(current=='BasicCallProcedure')
+          {
+              this.layoutState = {
+                  appHeader: true,
+                  appFooter: true
+              };
+               this.footerState = 
+               {
+                   mytransaction : false,
+                   basicp : true,
+                   closeday : false,
+                   settings : false
+               };    
+          }
+           else if(current=='CloseDay')
+          {
+              this.layoutState = {
+                  appHeader: true,
+                  appFooter: true
+              };
+               this.footerState = 
+               {
+                   mytransaction : false,
+                   basicp : false,
+                   closeday : true,
+                   settings : false
+               };    
+          }
+           else if(current=='Settings')
+          {
+               this.layoutState = {
+                   appHeader: true,
+                   appFooter: true
+               };
+              this.footerState = 
+              {
+                  mytransaction : false,
+                  basicp : false,
+                  closeday : false,
+                  settings : true
+              };        
+           }
     }
 }

@@ -41,6 +41,11 @@ export class LoginComponent {
 >>>>>>> origin/master
     }
 
+    gotoForgetPassword()
+    {
+        this._router.navigate(['ForgetPassword']);
+    }
+
     getErrorMessageText(){
     	return this._authenticationService.getError();
     }

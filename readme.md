@@ -14,8 +14,10 @@
 (reserved for further instructions)
 
 ## Debug
-To run the project on debug mode, run `grunt debug` on `src/`,
+To run the project on debug mode, run `grunt debug` on `src/`, 
 
 This will build the project and copy the files to base project directory under `debug/`.
 
 Run `lite-server` in the `debug/` directory.
+
+test

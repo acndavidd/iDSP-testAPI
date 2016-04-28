@@ -1,7 +1,6 @@
 $containerLogin-height: 100%;
 
 .containerLoginSmall {
-
 	z-index: 50;
 	position: fixed;
     left: 0;
@@ -22,12 +21,9 @@ $containerLogin-height: 100%;
 	:-ms-input-placeholder {
 		color:    #FFF;
 	}
-
 	.outer-box {
-		
 		max-width : 320px;
 		margin: 70px auto 0px;
-		
 		.header {
 			color: #FFF;
 			font-size: 28px;
@@ -37,9 +33,7 @@ $containerLogin-height: 100%;
 			text-align: center;
 			font-weight: lighter;
 		}
-		
 		.inner-box {
-			
 			background-color: rgba(0, 0, 0, 0);
 			border: 0;
 			text-align: center;
@@ -53,28 +47,25 @@ $containerLogin-height: 100%;
 				border: 1px solid #FFF;
 				padding-right: 0;
 				padding-left: 0;
-				
                 .spinner{
                     margin-top: 0px;
                     margin-bottom: 0px;
                     margin-left: auto;
                     margin-right: auto;
-                    
                     .item{
                         background-color: #FFF;
                         width: 10px;
                         height: 10px;
                     }
-                    
                 }
-                
 			}
-            
+			.message{
+				color: #FFF;
+			}
             .errorAlert{
                 color:#FFF;
                 font-size:14px;
             }
-
 			input {
 				width: 100%;
 				margin: 2px auto;
@@ -91,7 +82,6 @@ $containerLogin-height: 100%;
 				font-style: italic;
                 border-bottom: 1px solid #000;
 			}
-			
 			p {
 				a {
 					color: #FFF;
@@ -100,7 +90,6 @@ $containerLogin-height: 100%;
 				}
 			}
 		}
-
 		.loginButton
 		{
 			height: 35px;
@@ -111,19 +100,15 @@ $containerLogin-height: 100%;
     		padding-top: 7px;
     		color : #FFF;
 		}
-
 		.loginSeparator
 		{
 			border: 5px solid #005A5B;
 			margin-bottom: 50px;
 		}
-
 	}
-
 	.after-box {
 		margin-top: 20px;
 	}
-
 	.smartLogo
 	{
 		display: block;
