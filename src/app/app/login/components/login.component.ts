@@ -8,6 +8,7 @@ import {Layout} from '../../../models/layout';
 import {LayoutService} from '../../shared/services/layout.service';
 
 
+
 declare var ga:any;
 
 @Component({
@@ -19,7 +20,7 @@ declare var ga:any;
 })
 
 export class LoginComponent {
-    username: string;
+    userId: string;
     password: string;
     constructor (
         private _router: Router,
@@ -32,18 +33,8 @@ export class LoginComponent {
 
 	login(event) {
         event.preventDefault();
-<<<<<<< HEAD
-        this._authenticationService.login(this.username,this.password);
-        //this._router.navigate(['MyTransaction']);
-=======
         this._authenticationService.login(this.userId,this.password);
         this._router.navigate(['Verification']);
->>>>>>> origin/master
-    }
-
-    gotoForgetPassword()
-    {
-        this._router.navigate(['ForgetPassword']);
     }
 
     getErrorMessageText(){
@@ -51,6 +42,7 @@ export class LoginComponent {
     }
 
     gotoForgotPassword(){
-        this._authenticationService.checkToken();
+        //this._authenticationService.checkToken();
+        this._router.navigate(['ForgotPassword']);
     }
 }

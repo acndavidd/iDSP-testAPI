@@ -1,0 +1,6 @@
+<div class="ModalOuterBox" *ngIf='getMainModalStatus()'>
+        <div class="ModalInternal">
+                <info-modal *ngIf='getModalStatus().info'></info-modal>
+                <verificationcode-modal *ngIf='getModalStatus().verificationcode'></verificationcode-modal>
+        </div>
+</div>
