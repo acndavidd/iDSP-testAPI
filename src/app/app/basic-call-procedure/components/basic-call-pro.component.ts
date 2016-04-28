@@ -8,13 +8,12 @@ import {NgModel} from 'angular2/common';
 @Component({
     templateUrl: './app/basic-call-procedure/components/basic-call-pro.component.html',
 	directives: [
-		NgModel,
 		ROUTER_DIRECTIVES
     ]
 })
 
 export class BasicCallProcedureComponent {
-	title = "BASIC CALL PROCEDURE";
+	
 
 	constructor (
 		private _layoutService: LayoutService,
@@ -22,7 +21,6 @@ export class BasicCallProcedureComponent {
 		private _headerService: HeaderService
 		) 
 	{
-
 		this._layoutService.setCurrentPage('BasicCallProcedure');
 		this._headerService.setTitle("BCP");
     }

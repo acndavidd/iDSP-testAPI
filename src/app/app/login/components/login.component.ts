@@ -19,7 +19,7 @@ declare var ga:any;
 })
 
 export class LoginComponent {
-    userId: string;
+    username: string;
     password: string;
     constructor (
         private _router: Router,
@@ -32,11 +32,20 @@ export class LoginComponent {
 
 	login(event) {
         event.preventDefault();
-        this._authenticationService.login(this.userId,this.password);
-        this._router.navigate(['Verification']);
+        this._authenticationService.login(this.username,this.password);
     }
 
-    getErrorMessageText(){
-    	return "Error Bro";
+    getLoadingState(){
+        return this._authenticationService.getLoadingState();
+    }
+
+    getErrorMessageText()
+    {
+    	return this._authenticationService.getError();
+    }
+
+    gotoForgotPassword(){
+        //this._authenticationService.checkToken();
+        this._router.navigate(['ForgotPassword']);
     }
 }

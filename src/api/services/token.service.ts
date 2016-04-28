@@ -1,23 +1,29 @@
-var config = require('../conf/config.js');
-var jwt = require('jsonwebtoken');
+var config = require('../config/config.json');
+var path = require("path");
+var env = process.env.NODE_ENV || "development";
+var config = require(path.join(__dirname, '..', 'config', 'config.json'))[env];
+var uuid = require('uuid');
+var nJwt = require('njwt');
 
 import {User} from '../../models/user.model';
 
 export class TokenService{
-	generateToken(user:User):string{
-		return jwt.sign(user,config.key,{expiresIn: 1440});
+
+	generateToken(obj?:any):string{
+		var signingkey = config.service.key;
+		var claims = [];
+		claims.push(obj);
+		var jwt = nJwt.create(obj,signingkey);
+		console.log(jwt);
+		var token = jwt.compact();
+		return token;
 	}
 
-	verifyToken(token:string):boolean{
-		jwt.verify(token,config.key,function(err,decoded){
-			if(err){
-				console.log(err);
-				return false;
-			}else{
-				console.log(decoded);
-				return true;
-			}
-		});
-		return true;
+	verifyToken(token:string){
+		try{
+			return nJwt.verify(token,config.service.key);
+		}catch(err){
+			throw err;
+		}
 	}
 }

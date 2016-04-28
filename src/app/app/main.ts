@@ -11,6 +11,7 @@ import 'rxjs/Rx';
 declare var configChannel: any;
 declare var configAppType: any;
 
+
 class MyOptions extends BaseRequestOptions {
 	headers = new Headers({
 				'Content-Type': 'application/json',
@@ -38,14 +39,14 @@ bootstrap(IDSPComponent,[
     ROUTER_PROVIDERS,
     provide(APP_BASE_HREF, { useValue: getPath() }),
 	HTTP_PROVIDERS, 
-    /*provide(Http, {
+    provide(Http, {
         useFactory: (xhrBackend: XHRBackend, requestOptions: RequestOptions, _router: Router) => {
             let originalHttp = new Http(xhrBackend, requestOptions);
             return new MyHttp(originalHttp, _router);
         },
         deps: [XHRBackend, RequestOptions, Router]
     }),
-    provide(BrowserXhr, { useClass: CustomBrowserXhr })*/
+    provide(BrowserXhr, { useClass: CustomBrowserXhr })
 ]);
 
 

@@ -17,6 +17,9 @@ import {VerificationComponent} from './verification/components/verification.comp
 import {RetailerRouteComponent} from './my-transaction/components/retailer-route.component';
 import {HeaderService} from './shared/services/header.service';
 import {MainPageComponent} from './shared/components/main-page.component';
+import {ForgotPasswordComponent} from './login/components/forgot-password.component';
+import {ModalComponent} from './shared/components/modal.component';
+import {ModalService} from './shared/services/modal.service';
 declare var FastClick: FastClickStatic;
 declare var configChannel: any;
 
@@ -26,6 +29,7 @@ declare var configChannel: any;
     	<div id="content"
             (window:resize)="OnResize()">
             <idsp-header></idsp-header>
+            <my-modal></my-modal>
     		<router-outlet></router-outlet>
             <idsp-footer-menu></idsp-footer-menu>
     	</div>
@@ -33,6 +37,7 @@ declare var configChannel: any;
     directives: [
         HeaderComponent,
         FooterMenuComponent,
+        ModalComponent,
         ROUTER_DIRECTIVES
     ],
     providers: [
@@ -41,7 +46,8 @@ declare var configChannel: any;
         LayoutService,
         PageNavigationService,
         AuthenticationService,
-        HeaderService
+        HeaderService,
+        ModalService
     ]
 })
 
@@ -61,6 +67,11 @@ declare var configChannel: any;
         path: '/main/...',
         name: 'MainPage',
         component: MainPageComponent
+    },
+    {
+        path: '/forgotpassword',
+        name: 'ForgotPassword',
+        component: ForgotPasswordComponent
     }
 ])
 export class IDSPComponent implements OnInit {

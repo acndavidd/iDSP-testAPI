@@ -1,7 +1,6 @@
 import {Injectable} from 'angular2/core';
 import {PageNavigationService} from './page-navigation.service';
 import {MatchMediaService} from './match-media.service';
-import {Layout} from '../../../models/layout';
 
 @Injectable()
 export class LayoutService {
@@ -26,7 +25,7 @@ export class LayoutService {
         setting: true
     };
 
-     footerState = {
+    footerState = {
         mytransaction: false,
         basicp :false,
         closeday : false,
@@ -38,12 +37,30 @@ export class LayoutService {
         filter: false,
         edit: false
     };
-    
+
+	/*
+	constructor (private _http: Http,
+    private _pageNavigationService: PageNavigationService,
+    private _matchMediaService: MatchMediaService) { 
+        const url = 'config/layout.json';        
+        this._http.get(
+            url,        
+            <RequestOptionsArgs>{        
+                headers: new Headers({        
+                    'Content-Type': 'application/x-www-form-urlencoded',        
+                })        
+            }).subscribe(file => {        
+                let layout = file.json();
+                console.log(layout);  
+            });
+        }
+	*/
+
 	getCurrentPage(){
 		return this.currentPage;
 	}
     
-    getfooterState(){
+    getFooterState(){
         return this.footerState;
     }
 
@@ -84,6 +101,7 @@ export class LayoutService {
                 appFooter: false
             };
         }
+
         else if(current=='MyTransaction')
         {
             this.layoutState = {
@@ -191,8 +209,8 @@ export class LayoutService {
             this._pageNavigationService.setPreviousPage('Settings');
             
             this.layoutState = {
-                appHeader: true,
-                appFooter: true
+              appHeader: true,
+              appFooter: true
             };
             this.footerState = 
             {

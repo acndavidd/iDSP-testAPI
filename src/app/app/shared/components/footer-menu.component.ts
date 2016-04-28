@@ -24,7 +24,8 @@ export class FooterMenuComponent{
 		console.log("My Transaction");
 		this._router.navigate(['MainPage','MyTransaction']);
 	}
-		gotoBasicCallProcedure()
+
+	gotoBasicCallProcedure()
 	{
 		console.log("Basic");
 		this._router.navigate(['MainPage','BasicCallProcedure']);
@@ -48,7 +49,7 @@ export class FooterMenuComponent{
     }
 
   	getFooterState(){
-        return this._layoutService.getfooterState();
+        return this._layoutService.getFooterState();
     }
 
     getLayout(){

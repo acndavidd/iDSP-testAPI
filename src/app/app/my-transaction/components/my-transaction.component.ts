@@ -4,29 +4,44 @@ import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
+import {Response,RequestOptionsArgs,Headers,Http,Connection,RequestOptions} from 'angular2/http';
 
 @Component({
     templateUrl: './app/my-transaction/components/my-transaction.component.html',
 	directives: [
-		NgModel,
-		ROUTER_DIRECTIVES
+		NgModel,ROUTER_DIRECTIVES
     ]
 })
 
 
 export class MyTransactionComponent {
 	
+	is_loading:boolean;	
+	error_msg:string;
 
 	constructor (
+		private _http: Http,
 		private _layoutService: LayoutService,
     	private _matchMediaService: MatchMediaService,
 		private _headerService: HeaderService,
 		private _router: Router
     	) 
 	{
-
 		this._layoutService.setCurrentPage('MyTransaction');
 		this._headerService.setTitle("MY TRANSACTION");
+    }
+
+    test(){
+    	this._http.get('/check').subscribe(
+            	response => {
+            		this.is_loading = false;
+            		console.log(response.json());
+            	},
+            	error => {
+            		console.log(error);
+            		this.error_msg = 'failed connecting to login service';
+            	}
+            );
     }
 	
 	getResize(){
@@ -56,5 +71,9 @@ export class MyTransactionComponent {
 	goToDSPAlerts(){
 		console.log('PEGI KE DSP');
 		this._router.navigate(['DSPAlerts']);
+	}
+
+    getLayout(){
+		return this._layoutService.getLayout();
 	}
 }

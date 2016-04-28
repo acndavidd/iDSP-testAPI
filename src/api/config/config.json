@@ -1,0 +1,15 @@
+{
+  "development": {
+  	"db" : {
+  		"username" : "root",
+	  	"password" : "",
+	    "dialect"  : "postgres",
+	    "name" 	   : "idsp",
+	    "port"     : 5432
+  	},
+    "service" : {
+      "key" : "J@karta",
+      "serviceURL" : "http://127:0:0:1/service/"
+    }
+  }
+}
