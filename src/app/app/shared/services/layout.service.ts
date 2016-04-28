@@ -203,6 +203,32 @@ export class LayoutService {
                 filter: false,
                 edit: false
             }
+        }
+        else if(
+            current=='TargetActual' ||
+            current=='VisiteRetail' ||
+            current=='Collection' ||
+            current=='StockReturn' ||
+            current=='Sync')
+        {
+            this._pageNavigationService.setPreviousPage('CloseDay');
+            
+            this.layoutState = {
+                appHeader: true,
+                appFooter: true
+            };
+            this.footerState = 
+            {
+                mytransaction : false,
+                basicp : false,
+                closeday : true,
+                settings : false
+            };    
+            this.headerItem = {
+                back: true,
+                filter: false,
+                edit: false
+            }
         } 
         else if(current=='ResetPassword')
         {
