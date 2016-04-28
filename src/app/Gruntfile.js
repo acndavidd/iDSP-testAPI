@@ -36,7 +36,7 @@ module.exports = function(grunt) {
         webpack: {
             default: {
                 entry: {
-                    a: ['./app/main', './app/app.component']
+                    a: ['./app/main', './app/idsp.component']
                 },
                 devtool: 'source-map',
                 output: {
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
 
         concat: {
             js: {
-                src: ['js/**/*.js'],
+                src: ['app/**/*.js'],
                 dest: '../../debug/js/app.js',
             },
         },
@@ -170,7 +170,7 @@ module.exports = function(grunt) {
             },
             
             js: {
-                files: [
+                files: [    
                     {
                         src:['config/**/*.json'],
                         dest:'../../debug/',
@@ -183,13 +183,13 @@ module.exports = function(grunt) {
                     },
                     {
                         cwd:'js',
-                        src:['**/*.js', '**/*.js.map', '.baseDir.js' , '.baseDir.js.map'],
+                        src:['*.js', '*.js.map', '*.baseDir.js' , '*.baseDir.js.map'],
                         dest:'../../debug/app/',
                         expand: true,
                     },
                     {
-                        cwd:'app',
-                        src:['**/*.ts'],
+                        cwd:'js/app',
+                        src:['**/*.js' , '**/*.js.map'],
                         dest:'../../debug/app/',
                         expand: true,
                     }

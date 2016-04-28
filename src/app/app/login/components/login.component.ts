@@ -32,13 +32,9 @@ export class LoginComponent {
 
 	login(event) {
         event.preventDefault();
-<<<<<<< HEAD
         this._authenticationService.login(this.username,this.password);
         //this._router.navigate(['MyTransaction']);
-=======
-        this._authenticationService.login(this.userId,this.password);
-        this._router.navigate(['Verification']);
->>>>>>> origin/master
+        //this._router.navigate(['Verification']);
     }
 
     gotoForgetPassword()
