@@ -7,24 +7,23 @@ declare var configChannel: any;
 
 @Injectable()
 export class MyHttp {
-    serviceBase: string;
-    timeout: number;		 
+    private serviceBaseUrl: string;
+    private timeout: number;		 
 
     constructor(private _http: Http,		
-                private _router: Router) {		
-
-                    const url = 'services/api.json';		
-                    this._http.get(url,		
-                                   <RequestOptionsArgs> {		
-                                       headers: new Headers({		
-                                           'Content-Type': 'application/x-www-form-urlencoded',		
-                                       })		
-                                   })		
-                                   .subscribe(file => {		
-                                       let config = file.json().config;		
-                                       this.serviceBase = config.baseUrl;	
-                                       this.timeout = Number(config.timeout);	
-                                   });		
+                private _router: Router) {
+        const url = 'config/service.json';        
+        this._http.get(url,        
+                    <RequestOptionsArgs> {        
+                        headers: new Headers({        
+                            'Content-Type': 'application/x-www-form-urlencoded',        
+                        })        
+                    })        
+                   .subscribe(file => {        
+                       let config = file.json();        
+                       this.serviceBaseUrl = config.baseUrl;    
+                       this.timeout = Number(config.timeout);    
+                   });        
     }
 
 
@@ -61,9 +60,10 @@ export class MyHttp {
     private _request(method: RequestMethod, url: string, body?: string, options?: RequestOptionsArgs): Observable<any> {
         let requestOptions = new RequestOptions({
             method: method,
-            url: url,
+            url: this.serviceBaseUrl + url,
             body: body
         });
+        //using custom options
         if (options) {
             for (let attrname in options) {
                 requestOptions[attrname] = options[attrname];
@@ -83,46 +83,44 @@ export class MyHttp {
                     switch (err.status) {
                         case 403:
                             console.log('forbidden');
-
-                        const refreshToken: string = localStorage.getItem('refreshToken');
-                        const url: string = this.serviceBase + '/token/renew';
-                        if (refreshToken) {
-                            let data = {
-                                "refreshToken": refreshToken
-                            };
-                            this._http.post(url, JSON.stringify(data))
-                            .timeout(this.timeout,{status:408})
-                            .subscribe(
-                                response => {
-                                    localStorage.setItem('accessToken', response.json().accessToken);
-                                    // do original call
-                                    return Observable.create((observer) => {
-                                        this._http.request(new Request(requestOptions))
-                                        .timeout(this.timeout,{status:408})
-                                        .subscribe(
-                                            (res) => {
-                                                console.log('retry success');
-                                                observer.next(res);		
-                                                observer.complete();		
-                                            },		
-                                            (err) => {		
-                                                console.log('retry failed');		
-                                                observer.error(err);		
-                                            })		
-                                    });		
-                                },		
-                                error => {		
-                                    localStorage.removeItem('accessToken');		
-                                    localStorage.removeItem('refreshToken');		
-                                    this._router.navigate(['Starter','Login']); // router might not work, need more tests		
-                                }		
-                            );		
-                        }
-                        observer.error(err);
-                        break;
+                            const refreshToken: string = localStorage.getItem('refreshToken');
+                            const url: string = this.serviceBaseUrl + '/token/renew';
+                            if (refreshToken) {
+                                let data = {
+                                    "refreshToken": refreshToken
+                                };
+                                this._http.post(url, JSON.stringify(data))
+                                .timeout(this.timeout,{status:408})
+                                .subscribe(
+                                    response => {
+                                        localStorage.setItem('accessToken', response.json().accessToken);
+                                        // do original call
+                                        return Observable.create((observer) => {
+                                            this._http.request(new Request(requestOptions)).timeout(this.timeout,{status:408})
+                                            .subscribe(
+                                                (res) => {
+                                                    console.log('retry success');
+                                                    observer.next(res);		
+                                                    observer.complete();		
+                                                },		
+                                                (err) => {		
+                                                    console.log('retry failed');		
+                                                    observer.error(err);		
+                                                })		
+                                            });		
+                                        },		
+                                    error => {		
+                                        localStorage.removeItem('accessToken');		
+                                        localStorage.removeItem('refreshToken');		
+                                        this._router.navigate(['Starter','Login']); // router might not work, need more tests		
+                                    }		
+                                );		
+                            }
+                            observer.error(err);
+                            break;
                         default:
                             observer.error(err);
-                        break;
+                            break;
                     }
                 })
         });

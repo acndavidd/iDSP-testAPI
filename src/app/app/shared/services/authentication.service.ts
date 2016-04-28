@@ -1,6 +1,7 @@
 import {Injectable} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {Response,RequestOptionsArgs,Headers,Http,Connection,RequestOptions} from 'angular2/http';
+import {MyHttp} from './my-http.service'
 
 @Injectable()
 
@@ -9,14 +10,13 @@ export class AuthenticationService{
 	private error_msg:string;
 
 	constructor(private _http: Http){
-		this.service_url = 'http://127.0.0.1:8080/api';
+		
 	}
 
 	login(username:string,password:string){
 		if(!this.loginValidation(username,password)){
 			this.error_msg = 'Invalid username or password';
 		}else{
-			console.log('call login service');
 			this.loginService(username,password);
 		}
 	}
@@ -29,10 +29,23 @@ export class AuthenticationService{
 
 	loginService(username:string,password:string):boolean{
 		let data:string = 'username='+username+'&password='+password;
-		this._http.post(this.service_url + '/login',data,
+		this._http.get('/login',data,
 			<RequestOptionsArgs> {headers: new Headers(
                 {'Content-Type': 'application/x-www-form-urlencoded'})
             }).subscribe(
+            	response => {
+            		localStorage.setItem('accessToken', response.json().token);
+            	},
+            	error => {
+            		console.log(error);
+            	}
+            );
+       	return false;
+	}
+
+	checkToken():boolean{
+		this._http.get('/check')
+            .subscribe(
             	response => {
             		console.log(response);
             	},
@@ -40,6 +53,9 @@ export class AuthenticationService{
             		console.log(error);
             	}
             );
-       	return false;
+	}
+
+	getError():string{
+		return this.error_msg;
 	}
 }

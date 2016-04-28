@@ -1,18 +1,20 @@
-$footerBackground:#F5f5f5;
 .footerMenu {
 width: 100%;
 height: 50px;
 display: block;
-background-color: $footerBackground;
+background-color: #F5f5f5;
 z-index: 90;
 position: fixed;
 bottom: -1px;
 border-top: 1px solid #bcbac1;
+}
+
   .column {
     width: 25%;
     float: left;
     margin: auto;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
       .mytransaction {
         display: block;
         height: 30px;
@@ -25,13 +27,16 @@ border-top: 1px solid #bcbac1;
         background-position-x: center;
         background-position-y: center;
         background-size: 25px;
-          &.active {
-            background: url("../img/icon-idsp/startday-green.png") no-repeat;
+              
+          .active {
+            background: #808080  
+            url("../img/icon-idsp/startday-green.png") no-repeat;
             background-position-x: center;
             background-position-y: center;
             background-size: 25px;
           } 
       }
+
       .basicp {
         display: block;
         height: 30px;
@@ -44,13 +49,15 @@ border-top: 1px solid #bcbac1;
         background-position-x: center;
         background-position-y: center;
         background-size: 33px;
-          &.active {
-            background: url("../img/icon-idsp/bcp-green.png") no-repeat;
-            background-position-x: center;
-            background-position-y: center;
-            background-size: 33px;
-          }
+              .active {
+          background: #808080  
+          url("../img/icon-idsp/bcp-grey.png") no-repeat;
+          background-position-x: center;
+          background-position-y: center;
+          background-size: 33px;
+        }
       }
+
       .closeday {
         display: block;
         height: 30px;
@@ -63,14 +70,16 @@ border-top: 1px solid #bcbac1;
         background-position-x: center;
         background-position-y: center;
         background-size: 22px;
-          &.active {
-            background: url("../img/icon-idsp/closeday-green.png") no-repeat;
-            background-position-x: center;
-            background-position-y: center;
-            background-size: 22px;
+        .active {
+          background: #808080  
+          url("../img/icon-idsp/closeday-grey.png") no-repeat;
+          background-position-x: center;
+          background-position-y: center;
+          background-size: 22px;
           }
        }
-      .settings {
+
+      .setting {
         display: block;
         height: 30px;
         width: 100%;
@@ -82,8 +91,9 @@ border-top: 1px solid #bcbac1;
         background-position-x: center;
         background-position-y: center;
         background-size: 28px;
-          &.active {
-            background: url("../img/icon-idsp/setting-green.png") no-repeat;
+          .active {
+            background: #808080  
+            url("../img/icon-idsp/setting-grey.png") no-repeat;
             background-position-x: center;
             background-position-y: center;
             background-size: 28px;
@@ -96,8 +106,50 @@ border-top: 1px solid #bcbac1;
       text-align: center;
       margin-bottom: 1px;
       padding-top: 2px;
-      &.active {
-        color: #00FF00;
-     }
+  .active {
+    color: #00FF00;
+   }
   }
+	
+.footerMenu .column .home .active {
+			background: #808080  
+			url("../img/icon-idsp/startday-grey.png") no-repeat;
+			background-position-x: center;
+			background-position-y: center;
+			background-size: 25px;
+		}
+		
+.footerMenu .column .basicp .active {
+      background: #808080  
+      url("../img/icon-idsp/bcp-grey.png") no-repeat;
+      background-position-x: center;
+      background-position-y: center;
+      background-size: 33px;
+    }
+
+.footerMenu .column .closeday .active {
+      background: #808080  
+      url("../img/icon-idsp/closeday-grey.png") no-repeat;
+      background-position-x: center;
+      background-position-y: center;
+      background-size: 22px;
+    }
+
+.footerMenu .column .setting .active {
+      background: #808080  
+      url("../img/icon-idsp/setting-grey.png") no-repeat;
+      background-position-x: center;
+      background-position-y: center;
+      background-size: 28px;
+    }
+
+.footerMenu .column .text {
+	font-size: 10px;
+	color: #808080;
+	text-align: center;
+	margin-bottom: 3px;
+}
+
+.footerMenu .column .text .active {
+		color: #00FF00;
 }

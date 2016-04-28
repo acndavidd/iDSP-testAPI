@@ -172,6 +172,11 @@ module.exports = function(grunt) {
             js: {
                 files: [
                     {
+                        src:['config/**/*.json'],
+                        dest:'../../debug/',
+                        expand: true,
+                    },
+                    {
                         src:['init.js', 'tsconfig.json'],
                         dest:'../../debug/',
                         expand: true,

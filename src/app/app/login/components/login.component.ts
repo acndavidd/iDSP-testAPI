@@ -19,7 +19,7 @@ declare var ga:any;
 })
 
 export class LoginComponent {
-    userId: string;
+    username: string;
     password: string;
     constructor (
         private _router: Router,
@@ -32,8 +32,13 @@ export class LoginComponent {
 
 	login(event) {
         event.preventDefault();
+<<<<<<< HEAD
+        this._authenticationService.login(this.username,this.password);
+        //this._router.navigate(['MyTransaction']);
+=======
         this._authenticationService.login(this.userId,this.password);
         this._router.navigate(['Verification']);
+>>>>>>> origin/master
     }
 
     gotoForgetPassword()
@@ -42,6 +47,10 @@ export class LoginComponent {
     }
 
     getErrorMessageText(){
-    	return "Error Bro";
+    	return this._authenticationService.getError();
+    }
+
+    gotoForgotPassword(){
+        this._authenticationService.checkToken();
     }
 }

@@ -7,19 +7,15 @@ import {NgModel} from 'angular2/common';
 @Component({
     templateUrl: './app/my-transaction/components/my-transaction.component.html',
 	directives: [
-		NgModel,
-		ROUTER_DIRECTIVES
+		NgModel,ROUTER_DIRECTIVES
     ]
 })
 
 export class MyTransactionComponent {
 	title = "MY TRANSACTION";
 
-	constructor (
-		private _layoutService: LayoutService,
-    	private _matchMediaService: MatchMediaService
-    	) 
-	{
+	constructor (private _layoutService: LayoutService,
+    private _matchMediaService: MatchMediaService) {
 
 		this._layoutService.setCurrentPage('MyTransaction');
     }
@@ -27,5 +23,9 @@ export class MyTransactionComponent {
 	getResize(){
         return this._matchMediaService.getmm();  
     }
+
+    getLayout(){
+		return this._layoutService.getLayout();
+	}
 
 }
