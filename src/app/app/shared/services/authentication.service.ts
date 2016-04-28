@@ -29,7 +29,7 @@ export class AuthenticationService{
 
 	loginService(username:string,password:string):boolean{
 		let data:string = 'username='+username+'&password='+password;
-		this._http.get('/login',data,
+		this._http.post('/login',data,
 			<RequestOptionsArgs> {headers: new Headers(
                 {'Content-Type': 'application/x-www-form-urlencoded'})
             }).subscribe(

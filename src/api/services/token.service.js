@@ -14,26 +14,17 @@ var config = require(path.join(__dirname, '..', 'config', 'config.json'))[env];
 var uuid = require('uuid');
 var nJwt = require('njwt');
 class TokenService {
-    generateToken() {
+    generateToken(obj) {
         var signingkey = config.service.key;
-        var claims = {
-            role: 'admin'
-        };
+        var claims = [];
+        claims.push(obj);
+        console.log(claims);
         var jwt = nJwt.create(claims, signingkey);
         var token = jwt.compact();
         return token;
     }
     verifyToken(token) {
         return __awaiter(this, void 0, Promise, function* () {
-            /*return new Promise(function(resolve,reject){
-                nJwt.verify(token,config.service.key,function(err,verifiedJwt){
-                    if(err){
-                        reject(err); // Token has expired, has been tampered with, etc
-                    }else{
-                        resolve(verifiedJwt);// Will contain the header and body
-                    }
-                });
-            });*/
             try {
                 return nJwt.verify(token, config.service.key);
             }
