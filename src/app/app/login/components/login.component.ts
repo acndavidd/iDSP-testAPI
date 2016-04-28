@@ -36,6 +36,11 @@ export class LoginComponent {
         this._router.navigate(['Verification']);
     }
 
+    gotoForgetPassword()
+    {
+        this._router.navigate(['ForgetPassword']);
+    }
+
     getErrorMessageText(){
     	return "Error Bro";
     }

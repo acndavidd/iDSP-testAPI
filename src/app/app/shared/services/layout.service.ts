@@ -32,7 +32,7 @@ export class LayoutService {
 		return this.currentPage;
 	}
     
-    getfooterState(){
+    getFooterState(){
         return this.footerState;
     }
 

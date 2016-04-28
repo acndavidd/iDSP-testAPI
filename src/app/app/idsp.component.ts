@@ -14,6 +14,7 @@ import {BasicCallProcedureComponent} from './basic-call-procedure/components/bas
 import {CloseDayComponent} from './close-day/components/close-day.component';
 import {SettingsComponent} from './settings/components/settings.component';
 import {VerificationComponent} from './verification/components/verification.component';
+import {ForgetPasswordComponent} from './login/components/forget-password.component';
 declare var FastClick: FastClickStatic;
 declare var configChannel: any;
 
@@ -72,6 +73,11 @@ declare var configChannel: any;
         path: '/settings',
         name: 'Settings',
         component: SettingsComponent
+    },
+    {
+        path: '/forgetpassword',
+        name: 'ForgetPassword',
+        component: ForgetPasswordComponent
     }
 ])
 export class IDSPComponent implements OnInit {
