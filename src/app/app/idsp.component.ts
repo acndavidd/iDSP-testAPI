@@ -14,7 +14,9 @@ import {BasicCallProcedureComponent} from './basic-call-procedure/components/bas
 import {CloseDayComponent} from './close-day/components/close-day.component';
 import {SettingsComponent} from './settings/components/settings.component';
 import {VerificationComponent} from './verification/components/verification.component';
-import {ForgetPasswordComponent} from './login/components/forget-password.component';
+import {ForgotPasswordComponent} from './login/components/forgot-password.component';
+import {ModalComponent} from './shared/components/modal.component';
+import {ModalService} from './shared/services/modal.service';
 declare var FastClick: FastClickStatic;
 declare var configChannel: any;
 
@@ -24,6 +26,7 @@ declare var configChannel: any;
     	<div id="content"
             (window:resize)="OnResize()">
             <idsp-header></idsp-header>
+            <my-modal></my-modal>
     		<router-outlet></router-outlet>
             <idsp-footer-menu></idsp-footer-menu>
     	</div>
@@ -31,6 +34,7 @@ declare var configChannel: any;
     directives: [
         HeaderComponent,
         FooterMenuComponent,
+        ModalComponent,
         ROUTER_DIRECTIVES
     ],
     providers: [
@@ -38,7 +42,8 @@ declare var configChannel: any;
         MatchMediaService,
         LayoutService,
         PageNavigationService,
-        AuthenticationService
+        AuthenticationService,
+        ModalService
     ]
 })
 
@@ -75,9 +80,9 @@ declare var configChannel: any;
         component: SettingsComponent
     },
     {
-        path: '/forgetpassword',
-        name: 'ForgetPassword',
-        component: ForgetPasswordComponent
+        path: '/forgotpassword',
+        name: 'ForgeotPassword',
+        component: ForgotPasswordComponent
     }
 ])
 export class IDSPComponent implements OnInit {
