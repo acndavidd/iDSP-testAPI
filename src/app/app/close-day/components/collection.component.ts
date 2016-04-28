@@ -5,13 +5,14 @@ import {LayoutService} from '../../shared/services/layout.service';
 import {ModalService} from '../../shared/services/modal.service';
 
 @Component({
-    templateUrl: './app/close-day/components/close-day.component.html',
-	directives: [
-		ROUTER_DIRECTIVES
+    selector: 'collection',
+    templateUrl: './app/close-day/components/collection.component.html',
+    directives: [
+        ROUTER_DIRECTIVES
     ]
 })
 
-export class CloseDayComponent {
+export class CollectionComponent {
 
 	constructor (
 	private _router: Router,
@@ -20,14 +21,10 @@ export class CloseDayComponent {
 	private _modalService: ModalService
     ) {
 
-		this._layoutService.setCurrentPage('CloseDay');
+		this._layoutService.setCurrentPage('Collection');
     }
 	
 	getResize(){
         return this._matchMediaService.getmm();  
-    }
-
-    toggleCollection(){
-        this._router.navigate(['Collection']);
     }
 }

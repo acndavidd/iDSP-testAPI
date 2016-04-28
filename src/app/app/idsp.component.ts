@@ -12,6 +12,7 @@ import {FooterMenuComponent} from './shared/components/footer-menu.component';
 import {MyTransactionComponent} from './my-transaction/components/my-transaction.component';
 import {BasicCallProcedureComponent} from './basic-call-procedure/components/basic-call-pro.component';
 import {CloseDayComponent} from './close-day/components/close-day.component';
+import {CollectionComponent} from './close-day/components/collection.component';
 import {SettingsComponent} from './settings/components/settings.component';
 import {VerificationComponent} from './verification/components/verification.component';
 import {ForgotPasswordComponent} from './login/components/forgot-password.component';
@@ -73,6 +74,11 @@ declare var configChannel: any;
         path: '/closeday',
         name: 'CloseDay',
         component: CloseDayComponent
+    },
+    {
+        path: '/collection',
+        name: 'Collection',
+        component: CollectionComponent
     },
     {
         path: '/settings',
