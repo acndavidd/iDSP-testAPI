@@ -8,7 +8,6 @@ import {Layout} from '../../../models/layout';
 import {LayoutService} from '../../shared/services/layout.service';
 
 
-
 declare var ga:any;
 
 @Component({
@@ -34,16 +33,23 @@ export class LoginComponent {
 	login(event) {
         event.preventDefault();
         this._authenticationService.login(this.username,this.password);
-        //this._router.navigate(['MyTransaction']);
-        //this._router.navigate(['Verification']);
     }
 
-    getErrorMessageText(){
+    getLoadingState(){
+        return this._authenticationService.getLoadingState();
+    }
+
+    gotoForgetPassword()
+    {
+        this._router.navigate(['ForgetPassword']);
+    }
+
+    getErrorMessageText()
+    {
     	return this._authenticationService.getError();
     }
 
     gotoForgotPassword(){
-        //this._authenticationService.checkToken();
-        this._router.navigate(['ForgotPassword']);
+        this._authenticationService.checkToken();
     }
 }

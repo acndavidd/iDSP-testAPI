@@ -46,7 +46,8 @@ app.use(function(req, res, next) {
         try{
             var jwt = tokenSvc.verifyToken(token);
             res.locals.jwt = jwt;
-            console.log(jwt);
+            console.log(jwt.body.user);
+            //console.log(jwt);
         }catch(err){
             console.log("error : " + err);
             res.sendStatus(403);

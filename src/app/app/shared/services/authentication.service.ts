@@ -1,22 +1,26 @@
 import {Injectable} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {Response,RequestOptionsArgs,Headers,Http,Connection,RequestOptions} from 'angular2/http';
-import {MyHttp} from './my-http.service'
 
 @Injectable()
 
 export class AuthenticationService{
 	private service_url:string;
 	private error_msg:string;
+	private is_loading:boolean;
 
-	constructor(private _http: Http){
-		
+	constructor(
+		private _http: Http,
+		private _router: Router){
+
+		this.is_loading = false;
 	}
 
 	login(username:string,password:string){
 		if(!this.loginValidation(username,password)){
 			this.error_msg = 'Invalid username or password';
 		}else{
+			this.is_loading = true;
 			this.loginService(username,password);
 		}
 	}
@@ -34,10 +38,18 @@ export class AuthenticationService{
                 {'Content-Type': 'application/x-www-form-urlencoded'})
             }).subscribe(
             	response => {
-            		localStorage.setItem('accessToken', response.json().token);
+            		this.is_loading = false;
+            		if(response.json().success == 1){//success login
+            			//set token to local storage(mobile)
+            			localStorage.setItem('accessToken', response.json().token);
+            			this._router.navigate(['MyTransaction']);
+            		}else{//failed login
+            			this.error_msg = response.json().error;
+            		}
             	},
             	error => {
             		console.log(error);
+            		this.error_msg = 'failed connecting to login service';
             	}
             );
        	return false;
@@ -58,5 +70,9 @@ export class AuthenticationService{
 
 	getError():string{
 		return this.error_msg;
+	}
+
+	getLoadingState():boolean{
+		return this.is_loading;
 	}
 }

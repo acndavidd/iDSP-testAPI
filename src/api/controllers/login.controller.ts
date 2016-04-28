@@ -14,12 +14,13 @@ export class LoginController{
 		tokenobj.user = {};
 		tokenobj.user.name = req.body.username;
 		tokenobj.user.password = req.body.password;
+		result.success = 1;
 		result.token = tokenSvc.generateToken(tokenobj);
 		res.cookie('accessToken',result.token,{httpOnly:true});
 		res.json(result);
 	}
 
 	checkToken(req:string,res:string){
-		res.json('calling checkToken ' + req.get('Authorization'));
+		res.json('calling checkToken ' + res.locals.jwt);
 	}
 }
