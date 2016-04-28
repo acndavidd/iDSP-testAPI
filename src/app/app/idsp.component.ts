@@ -15,6 +15,9 @@ import {CloseDayComponent} from './close-day/components/close-day.component';
 import {CollectionComponent} from './close-day/components/collection.component';
 import {SettingsComponent} from './settings/components/settings.component';
 import {VerificationComponent} from './verification/components/verification.component';
+import {RetailerRouteComponent} from './my-transaction/components/retailer-route.component';
+import {HeaderService} from './shared/services/header.service';
+import {MainPageComponent} from './shared/components/main-page.component';
 import {ForgotPasswordComponent} from './login/components/forgot-password.component';
 import {ModalComponent} from './shared/components/modal.component';
 import {ModalService} from './shared/services/modal.service';
@@ -44,6 +47,7 @@ declare var configChannel: any;
         LayoutService,
         PageNavigationService,
         AuthenticationService,
+        HeaderService,
         ModalService
     ]
 })
@@ -55,7 +59,7 @@ declare var configChannel: any;
         component: LoginComponent,
         useAsDefault: true
     },
-     {
+    {
         path: '/verification',
         name: 'Verification',
         component: VerificationComponent
@@ -86,8 +90,13 @@ declare var configChannel: any;
         component: SettingsComponent
     },
     {
+        path: '/main/...',
+        name: 'MainPage',
+        component: MainPageComponent
+    },
+    {
         path: '/forgotpassword',
-        name: 'ForgeotPassword',
+        name: 'ForgotPassword',
         component: ForgotPasswordComponent
     }
 ])

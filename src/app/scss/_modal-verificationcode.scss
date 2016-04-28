@@ -1,10 +1,10 @@
 .modalVerificationCode {
-    background-color: #FFF;
+    background-color: #E6E7E9;
     margin-left: auto;
     margin-right: auto;
     width: 300px;
     padding: 5px;
-    border: 1px solid #E6E7E9;
+    border: 1px solid #FFF;
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.4);
     border-radius: 15px;
     .modalBody {
@@ -15,7 +15,7 @@
             font-size: 24px;
             margin-bottom: 30px;
             text-align: center;
-            color: #E6E7E9;
+            color: #000;
         }
         .itemTitle {
             font-size: 15px;
@@ -24,7 +24,7 @@
         }
         .itemSubTitle {
             font-size: 20px;
-            color: #E6E7E9;
+            color: #000;
             margin: 0px 0px 10px 30px;
         }
         .itemRow {
@@ -58,7 +58,7 @@
                     width: 100%;
                     text-align: right;
                     font-size: 20px;
-                    color: #E6E7E9;
+                    color: #000;
                     margin: 10px 0 10px 0px;
                 }
                 &:after {
@@ -79,9 +79,10 @@
             display: inline-block;
             color: #FFF;
             cursor: pointer;
+            text-align: center;
         }
         .red {
-            background-color: #E6E7E9;
+            background-color: #FF0000;
             margin-left: 10px;
         }
     }

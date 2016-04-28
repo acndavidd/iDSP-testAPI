@@ -6,23 +6,26 @@ import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
-    templateUrl: './app/basic-call-procedure/components/basic-call-pro.component.html',
+	selector: 'retailer-route',
+    templateUrl: './app/my-transaction/components/retailer-route.component.html',
 	directives: [
+		NgModel,
 		ROUTER_DIRECTIVES
     ]
 })
 
-export class BasicCallProcedureComponent {
+export class RetailerRouteComponent {
 	
 
 	constructor (
 		private _layoutService: LayoutService,
-		private _matchMediaService: MatchMediaService,
+    	private _matchMediaService: MatchMediaService,
 		private _headerService: HeaderService
-		) 
+    	) 
 	{
-		this._layoutService.setCurrentPage('BasicCallProcedure');
-		this._headerService.setTitle("BCP");
+
+		this._layoutService.setCurrentPage('RetailerRoute');
+		this._headerService.setTitle("Retailer Route");
     }
 	
 	getResize(){

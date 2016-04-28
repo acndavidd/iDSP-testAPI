@@ -6,23 +6,26 @@ import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
-    templateUrl: './app/basic-call-procedure/components/basic-call-pro.component.html',
+	selector: 'targets-actuals',
+    templateUrl: './app/my-transaction/components/targets-actuals.component.html',
 	directives: [
+		NgModel,
 		ROUTER_DIRECTIVES
     ]
 })
 
-export class BasicCallProcedureComponent {
+export class TargetsActualsComponent {
 	
 
 	constructor (
 		private _layoutService: LayoutService,
-		private _matchMediaService: MatchMediaService,
+    	private _matchMediaService: MatchMediaService,
 		private _headerService: HeaderService
-		) 
+    	) 
 	{
-		this._layoutService.setCurrentPage('BasicCallProcedure');
-		this._headerService.setTitle("BCP");
+
+		this._layoutService.setCurrentPage('TargetsActuals');
+		this._headerService.setTitle("Targets & Actuals");
     }
 	
 	getResize(){

@@ -55,7 +55,7 @@ function bootstrapApp() {
             }
         }
     });
-    System.import('app/app/main')
+    System.import('app/main')
     .then(null, console.error.bind(console));
     ga('create', 'UA-75852872-2', {'storage': 'none','clientId':device.uuid});
     ga('set','checkProtocolTask',null);
