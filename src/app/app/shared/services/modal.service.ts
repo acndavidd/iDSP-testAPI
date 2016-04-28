@@ -10,7 +10,7 @@ export class ModalService {
 
     modalState = {
         info: false,
-        verificationCode : false
+        verificationcode : false
     }
 
     constructor() {}
@@ -24,15 +24,15 @@ export class ModalService {
     {
         return this.modalState;
     }
-    
-    toggleVerificationCodesModal() 
+
+    toggleVerificationCodeModal() 
     {
         if(this.mainModalState)
         {
             this.refreshModal();
         }else
         {
-            this.modalState.verificationCode = !this.modalState.verificationCode;
+            this.modalState.verificationcode = !this.modalState.verificationcode;
         }
         this.mainModalState = !this.mainModalState;
     }
@@ -40,7 +40,7 @@ export class ModalService {
     refreshModal()
     {
         this.modalState.info = false;
-        this.modalState.verificationCode = false;
+        this.modalState.verificationcode = false;
     }
 
 }

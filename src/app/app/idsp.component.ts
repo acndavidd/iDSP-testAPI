@@ -81,7 +81,7 @@ declare var configChannel: any;
     },
     {
         path: '/forgotpassword',
-        name: 'ForgeotPassword',
+        name: 'ForgotPassword',
         component: ForgotPasswordComponent
     }
 ])
