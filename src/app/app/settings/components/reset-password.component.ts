@@ -6,14 +6,14 @@ import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
-    selector: 'settings',
-    templateUrl: './app/settings/components/settings.component.html',
+    selector: 'ResetPassword',
+    templateUrl: './app/settings/components/reset-password.component.html',
         directives: [
         NgModel
     ]
 })
 
-export class SettingsComponent {
+export class ResetPasswordComponent {
 	
 
 	constructor (
@@ -23,23 +23,12 @@ export class SettingsComponent {
         private _headerService: HeaderService
         ) {
 
-		this._layoutService.setCurrentPage('Settings');
-        this._headerService.setTitle("SETTINGS");
+		this._layoutService.setCurrentPage('ResetPassword');
+        this._headerService.setTitle("Reset Password");
     }
 	
 	getResize(){
         return this._matchMediaService.getmm();  
-    }
-    
-    goToResetPassword(){
-        console.log('RESETTT');
-    	this._router.navigate(['ResetPassword']);
-    }
-
-    logout()
-    {
-        console.log('logout');
-    	this._router.navigate(['Starter']);
     }
 
 }

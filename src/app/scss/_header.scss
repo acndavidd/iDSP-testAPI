@@ -13,26 +13,23 @@
       .defaultBox{
         height: 48px;
         .title{
-          position: fixed;
-          z-index: 1000;
-          width:48px;
           height:48px;
-          /*background: url("/app/img/icon/arrow_left.png") no-repeat;*/
           background-size: 30px;
           background-position: center center;
           cursor: pointer;
-          padding-top: 2%;            
+          text-align: center;
+          color: #FFF;
+          font-size: 30px;
         }
         .back{
             position: fixed;
             z-index: 1000;
             width:48px;
             height:48px;
-            background: url("/app/img/icon/arrow_left.png") no-repeat;
+            background: url("../img/icon-idsp/back-white.png") no-repeat;
             background-size: 30px;
             background-position: center center;
             cursor: pointer;
-
         }
       }
     }

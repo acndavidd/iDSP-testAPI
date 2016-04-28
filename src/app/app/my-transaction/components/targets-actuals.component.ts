@@ -3,23 +3,29 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/ro
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
+import {NgModel} from 'angular2/common';
 
 @Component({
-    templateUrl: './app/close-day/components/close-day.component.html',
+	selector: 'targets-actuals',
+    templateUrl: './app/my-transaction/components/targets-actuals.component.html',
 	directives: [
+		NgModel,
 		ROUTER_DIRECTIVES
     ]
 })
 
-export class CloseDayComponent {
+export class TargetsActualsComponent {
 	
 
-	constructor (private _layoutService: LayoutService,
-    private _matchMediaService: MatchMediaService,
-    private _headerService: HeaderService) {
+	constructor (
+		private _layoutService: LayoutService,
+    	private _matchMediaService: MatchMediaService,
+		private _headerService: HeaderService
+    	) 
+	{
 
-		this._layoutService.setCurrentPage('CloseDay');
-        this._headerService.setTitle("CLOSE DAY");
+		this._layoutService.setCurrentPage('TargetsActuals');
+		this._headerService.setTitle("Targets & Actuals");
     }
 	
 	getResize(){

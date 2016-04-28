@@ -22,24 +22,24 @@ export class FooterMenuComponent{
 	gotoMyTransaction()
 	{
 		console.log("My Transaction");
-		this._router.navigate(['MyTransaction']);
+		this._router.navigate(['MainPage','MyTransaction']);
 	}
 		gotoBasicCallProcedure()
 	{
 		console.log("Basic");
-		this._router.navigate(['BasicCallProcedure']);
+		this._router.navigate(['MainPage','BasicCallProcedure']);
 	}
 
 	gotoCloseDay()
 	{
 		console.log("Close Day");
-		this._router.navigate(['CloseDay']);
+		this._router.navigate(['MainPage','CloseDay']);
 	}
 
 	gotoSettings()
 	{
 		console.log("Settings");
-		this._router.navigate(['Settings']);
+		this._router.navigate(['MainPage','Settings']);
 	}
 	
 	getfooterItem(){

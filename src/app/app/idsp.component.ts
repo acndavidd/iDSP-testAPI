@@ -14,6 +14,9 @@ import {BasicCallProcedureComponent} from './basic-call-procedure/components/bas
 import {CloseDayComponent} from './close-day/components/close-day.component';
 import {SettingsComponent} from './settings/components/settings.component';
 import {VerificationComponent} from './verification/components/verification.component';
+import {RetailerRouteComponent} from './my-transaction/components/retailer-route.component';
+import {HeaderService} from './shared/services/header.service';
+import {MainPageComponent} from './shared/components/main-page.component';
 declare var FastClick: FastClickStatic;
 declare var configChannel: any;
 
@@ -37,7 +40,8 @@ declare var configChannel: any;
         MatchMediaService,
         LayoutService,
         PageNavigationService,
-        AuthenticationService
+        AuthenticationService,
+        HeaderService
     ]
 })
 
@@ -48,30 +52,15 @@ declare var configChannel: any;
         component: LoginComponent,
         useAsDefault: true
     },
-     {
+    {
         path: '/verification',
         name: 'Verification',
         component: VerificationComponent
     },
     {
-        path: '/mytransaction',
-        name: 'MyTransaction',
-        component: MyTransactionComponent
-    },
-    {
-        path: '/basiccallprocedure',
-        name: 'BasicCallProcedure',
-        component: BasicCallProcedureComponent
-    },
-    {
-        path: '/closeday',
-        name: 'CloseDay',
-        component: CloseDayComponent
-    },
-    {
-        path: '/settings',
-        name: 'Settings',
-        component: SettingsComponent
+        path: '/main/...',
+        name: 'MainPage',
+        component: MainPageComponent
     }
 ])
 export class IDSPComponent implements OnInit {

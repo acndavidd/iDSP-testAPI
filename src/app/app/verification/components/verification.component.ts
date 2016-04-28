@@ -33,7 +33,7 @@ export class VerificationComponent {
 	login(event) {
         event.preventDefault();
         this._authenticationService.login(this.userId,this.password);
-        this._router.navigate(['MyTransaction']);
+        this._router.navigate(['MainPage', 'MyTransaction']);
     }
 
     getErrorMessageText(){
