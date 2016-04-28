@@ -9,26 +9,17 @@ import {User} from '../../models/user.model';
 
 export class TokenService{
 
-	generateToken():string{
+	generateToken(obj?:any):string{
 		var signingkey = config.service.key;
-		var claims = {
-			role : 'admin'
-		}
+		var claims = [];
+		claims.push(obj);
+		console.log(claims);
 		var jwt = nJwt.create(claims,signingkey);
 		var token = jwt.compact();
 		return token;
 	}
 
 	async verifyToken(token:string):Promise<string>{
-		/*return new Promise(function(resolve,reject){
-			nJwt.verify(token,config.service.key,function(err,verifiedJwt){
-				if(err){
-					reject(err); // Token has expired, has been tampered with, etc
-				}else{
-					resolve(verifiedJwt);// Will contain the header and body
-				}
-			});
-		});*/
 		try{
 			return nJwt.verify(token,config.service.key);
 		}catch(err){

@@ -10,12 +10,16 @@ export class LoginController{
 	doLogin(req:string,res:string){
 		let tokenSvc = new TokenService();
 		var result = {};
-		result.token = tokenSvc.generateToken();
+		var tokenobj = {};
+		tokenobj.user = {};
+		tokenobj.user.name = req.body.username;
+		tokenobj.user.password = req.body.password;
+		result.token = tokenSvc.generateToken(tokenobj);
 		res.cookie('accessToken',result.token,{httpOnly:true});
 		res.json(result);
 	}
 
 	checkToken(req:string,res:string){
-		res.json('calling checkToken ' + req.body.token);
+		res.json('calling checkToken ' + req.get('Authorization'));
 	}
 }
