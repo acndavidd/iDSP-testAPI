@@ -33,8 +33,10 @@ export class LoginComponent {
 	login(event) {
         event.preventDefault();
         this._authenticationService.login(this.username,this.password);
-        //this._router.navigate(['MyTransaction']);
-        //this._router.navigate(['Verification']);
+    }
+
+    getLoadingState(){
+        return this._authenticationService.getLoadingState();
     }
 
     gotoForgetPassword()
@@ -42,7 +44,8 @@ export class LoginComponent {
         this._router.navigate(['ForgetPassword']);
     }
 
-    getErrorMessageText(){
+    getErrorMessageText()
+    {
     	return this._authenticationService.getError();
     }
 

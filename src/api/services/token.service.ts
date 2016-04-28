@@ -13,13 +13,13 @@ export class TokenService{
 		var signingkey = config.service.key;
 		var claims = [];
 		claims.push(obj);
-		console.log(claims);
-		var jwt = nJwt.create(claims,signingkey);
+		var jwt = nJwt.create(obj,signingkey);
+		console.log(jwt);
 		var token = jwt.compact();
 		return token;
 	}
 
-	async verifyToken(token:string):Promise<string>{
+	verifyToken(token:string){
 		try{
 			return nJwt.verify(token,config.service.key);
 		}catch(err){
