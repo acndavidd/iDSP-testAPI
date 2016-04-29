@@ -22,7 +22,7 @@ export class BasicCallProcedureComponent {
 		) 
 	{
 		this._layoutService.setCurrentPage('BasicCallProcedure');
-		this._headerService.setTitle("BCP");
+		this._headerService.setTitle("Basic Call Procedure");
     }
 	
 	getResize(){

@@ -2,4 +2,26 @@
     //padding-bottom: 45px;
     z-index: 1;
     height: 100%;
+    .submenu
+    {
+	    width: 33.33333%;
+	    background-color: $smartmenucolor;
+	    padding-top: 10px;
+	    padding-bottom: 10px;
+	    margin-top: -2px;
+	    float: left
+	    &.active{
+		    border-bottom: 3px solid $red;
+	    	margin-left: 0;
+	    }
+	    .text
+	    {
+	    	color: #fff;
+	    	text-align: center;
+	    	font-size: 15px;
+
+	    }
+
+    }
+
 }

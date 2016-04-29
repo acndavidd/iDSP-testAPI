@@ -1,5 +1,4 @@
 $containerLogin-height: 100%;
-
 .containerLoginSmall {
 	z-index: 50;
 	position: fixed;
@@ -38,7 +37,6 @@ $containerLogin-height: 100%;
 			border: 0;
 			text-align: center;
 			padding: 0;
-
 			.button {
 				width: 100%;
 				margin: 60px auto 18px;
@@ -63,6 +61,7 @@ $containerLogin-height: 100%;
 				color: #FFF;
 			}
             .errorAlert{
+            	display: block;
                 color:#FFF;
                 font-size:14px;
             }
