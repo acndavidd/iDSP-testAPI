@@ -5,6 +5,7 @@ import {LayoutService} from '../../shared/services/layout.service';
 import {MyTransactionComponent} from '../../my-transaction/components/my-transaction.component';
 import {BasicCallProcedureComponent} from '../../basic-call-procedure/components/basic-call-pro.component';
 import {CloseDayComponent} from '../../close-day/components/close-day.component';
+import {CollectionComponent} from '../../close-day/components/collection.component';
 import {SettingsComponent} from '../../settings/components/settings.component';
 import {TargetsActualsComponent} from '../../my-transaction/components/targets-actuals.component';
 import {InventoryComponent} from '../../my-transaction/components/inventory.component';
@@ -74,6 +75,11 @@ import {ResetPasswordComponent} from '../../settings/components/reset-password.c
     //UNDER BCP TAB - END
     
     //UNDER CLOSE DAY TAB - START
+    {
+        path: '/collection',
+        name: 'Collection',
+        component: CollectionComponent
+    },
     //UNDER SETTINGS TAB - END
     
     //UNDER SETTINGS TAB - START

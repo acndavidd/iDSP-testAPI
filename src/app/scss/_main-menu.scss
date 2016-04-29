@@ -1,0 +1,60 @@
+.mainMenu {
+    //padding-bottom: 45px;
+    z-index: 1;
+    height: 100%;
+    .containerBody {
+        //width: 100%;
+        background-color: #E6E7E9;
+        .separator {
+            border-bottom: 1px solid #E6E7E9;
+            margin-bottom: 1px;
+        }
+        .button {
+            display: inline-block;
+            width: 100%;
+            padding-bottom: 12px;
+            padding-top: 12px;
+            background-color: #00989B;
+            .buttonIdentifier {
+                font-size: 17px;
+                text-align: center;
+                &.green {
+                    color: #fff;
+                }
+                
+                &.subItem{
+                    padding-left: 40px;
+                    width: calc(100% - 140px);
+                }
+                
+                small {
+                    color: #008080;
+                }
+            }
+            .buttonValue {
+                font-size: 15px;
+                float: right;
+                font-size: 15px;
+                width: 100px;
+                text-align: right;
+                &:after {
+                    clear: both;
+                }
+                &.red {
+                    color: #008080;
+                }
+            }
+        }
+        .itemFooterContainer {
+            display: inline-block;
+            width: 100%;
+            padding-top: 20px;
+            small {
+                clear: both;
+                float: right;
+                color: #008080;
+                margin-right: 10px;
+            }
+        }
+    }
+}

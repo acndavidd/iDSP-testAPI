@@ -10,7 +10,8 @@ export class ModalService {
 
     modalState = {
         info: false,
-        verificationcode : false
+        verificationcode : false,
+        collection: false
     }
 
     constructor() {}
@@ -37,10 +38,25 @@ export class ModalService {
         this.mainModalState = !this.mainModalState;
     }
 
+    toggleCollectionModal() 
+    {
+        if(this.mainModalState)
+        {
+            this.refreshModal();
+        }else
+        {
+            this.modalState.collection = !this.modalState.collection;
+        }
+        this.mainModalState = !this.mainModalState;
+    }
+
     refreshModal()
     {
         this.modalState.info = false;
+
+        this.modalState.collection = false;
         this.modalState.verificationcode = false;
+
     }
 
 }
