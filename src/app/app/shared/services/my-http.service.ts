@@ -1,3 +1,5 @@
+"use strict";
+
 import {Injectable} from 'angular2/core';
 import {Http, Request, RequestOptions, RequestMethod, RequestOptionsArgs, Headers} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
@@ -12,20 +14,23 @@ export class MyHttp {
 
     constructor(private _http: Http,		
                 private _router: Router) {
-        const url = 'config/service.json';        
+        this.serviceBaseUrl = '';  
+        /*
+        const url = 'config/service.json';
+        this.serviceBaseUrl = '';       
         this._http.get(url,        
-                    <RequestOptionsArgs> {        
-                        headers: new Headers({        
-                            'Content-Type': 'application/x-www-form-urlencoded',        
-                        })        
-                    })        
-                   .subscribe(file => {        
-                       let config = file.json();        
-                       this.serviceBaseUrl = config.baseUrl;    
-                       this.timeout = Number(config.timeout);    
-                   });        
+            <RequestOptionsArgs> {        
+                headers: new Headers({        
+                    'Content-Type': 'application/x-www-form-urlencoded',        
+                })        
+            })        
+           .subscribe(file => {        
+               let config = file.json();
+               this.serviceBaseUrl = config.baseUrl;    
+               this.timeout = Number(config.timeout);
+               console.log(this.serviceBaseUrl);    
+           });*/    
     }
-
 
     public get(url: string, options?: RequestOptionsArgs) {
         return this._request(RequestMethod.Get, url, null, options);
@@ -57,7 +62,71 @@ export class MyHttp {
         return headers;
     }
 
+
     private _request(method: RequestMethod, url: string, body?: string, options?: RequestOptionsArgs): Observable<any> {
+        let requestOptions = new RequestOptions({
+            method: method,
+            body: body
+        });
+        //using custom options
+        if (options) {
+            for (let attrname in options) {
+                requestOptions[attrname] = options[attrname];
+            }
+        } else {
+            requestOptions.headers = this._createAuthHeaders(method);
+        }
+
+        return Observable.create((observer) => {
+            const configUrl = 'config/service.json';
+            if(this.serviceBaseUrl === ''){
+                this._http.get(configUrl,        
+                <RequestOptionsArgs> {        
+                    headers: new Headers({        
+                        'Content-Type': 'application/x-www-form-urlencoded',        
+                    })        
+                })        
+               .subscribe(file => {        
+                   let config = file.json();
+                   this.serviceBaseUrl = config.baseUrl;    
+                   this.timeout = Number(config.timeout);
+                   console.log(this.serviceBaseUrl);
+                   requestOptions.url = this.serviceBaseUrl + url;
+                   this.executeRequest(observer,requestOptions);
+               });
+            }else{
+                requestOptions.url = this.serviceBaseUrl + url;
+                this.executeRequest(observer,requestOptions);
+            }
+        });
+    }
+
+    public executeRequest(observer , opt:RequestOptions){
+        this._http.request(new Request(opt))
+            .timeout(this.timeout,{status:408})
+            .subscribe(
+                (res) => {
+                    observer.next(res);
+                    observer.complete();
+                },
+                (err) => {
+                    switch (err.status) {
+                        case 403:
+                            observer.error(err);
+                            break;
+                        default:
+                            observer.error(err);
+                            break;
+                    }
+                });
+    }
+
+    /*
+    private _request(method: RequestMethod, url: string, body?: string, options?: RequestOptionsArgs): Observable<any> {
+        while(!this.serviceBaseUrl || this.serviceBaseUrl === ''){
+            console.log(this.serviceBaseUrl + 'aaa');
+        }
+        console.log(this.serviceBaseUrl);
         let requestOptions = new RequestOptions({
             method: method,
             url: this.serviceBaseUrl + url,
@@ -124,5 +193,5 @@ export class MyHttp {
                     }
                 })
         });
-    }
+    }*/
 }
