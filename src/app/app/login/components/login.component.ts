@@ -31,8 +31,9 @@ export class LoginComponent {
 	}
 
 	login(event) {
-        event.preventDefault();
-        this._authenticationService.login(this.username,this.password);
+        // event.preventDefault();
+        // this._authenticationService.login(this.username,this.password);
+        this._router.navigate(['MainPage','MyTransaction']);
     }
 
     getLoadingState(){

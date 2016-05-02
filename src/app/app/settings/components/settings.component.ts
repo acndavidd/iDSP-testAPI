@@ -39,7 +39,7 @@ export class SettingsComponent {
     logout()
     {
         console.log('logout');
-    	this._router.navigate(['Starter']);
+    	this._router.parent.navigate(['Starter']);
     }
 
 }

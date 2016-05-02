@@ -59,7 +59,7 @@ declare var configChannel: any;
         component: VerificationComponent
     },
     {
-        path: '/main/...',
+        path: './...',
         name: 'MainPage',
         component: MainPageComponent
     },
