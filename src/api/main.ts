@@ -65,7 +65,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-router.get('/test',ormSvc.executeFunction);
 router.get('/refreshmodels',ormSvc.refreshModels);
 router.post('/login',loginCtrl.doLogin);
 router.post('/queryCallPlan',retailCtrl.queryCallPlan);

@@ -7,6 +7,5 @@ var db_orm = require('../model');
         native: false,
         dialect: dbconn.dialect
     });
-console.log("dalam db orm");
-//var sequelize = db_orm.sequelize;
+var sequelize = db_orm.sequelize;
 module.exports = db_orm;

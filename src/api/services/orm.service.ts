@@ -45,9 +45,8 @@ export class ORMService{
         proc(cmd,function(error, stdout, stderr){
             if(error){
             	res.send(error);
-            	console.log(error);
             }
-            var response = stdout.replace(new RegExp("info: (Created)", 'g'),"<br/>");
+            var response = stdout.replace(new RegExp("info: (Created)/g"),"<br/>");
             res.send(response);
         });
 	}
