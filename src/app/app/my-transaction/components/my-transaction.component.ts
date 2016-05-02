@@ -22,19 +22,6 @@ export class MyTransactionComponent {
 		
 		this._layoutService.setCurrentPage('MyTransaction');
     }
-
-    test(){
-    	this._http.get('/check').subscribe(
-            	response => {
-            		this.is_loading = false;
-            		console.log(response.json());
-            	},
-            	error => {
-            		console.log(error);
-            		this.error_msg = 'failed connecting to login service';
-            	}
-            );
-    }
 	
 	getResize(){
         return this._matchMediaService.getmm();  

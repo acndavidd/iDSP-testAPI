@@ -50,6 +50,5 @@ export class LoginComponent {
     }
 
     gotoForgotPassword(){
-        this._authenticationService.checkToken();
     }
 }
