@@ -28,7 +28,7 @@ export class MyTransactionComponent {
     	) 
 	{
 		this._layoutService.setCurrentPage('MyTransaction');
-		this._headerService.setTitle("MY TRANSACTION");
+		this._headerService.setTitle("My Transaction");
     }
 
     test(){

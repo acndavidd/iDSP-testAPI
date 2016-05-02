@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import { Router } from 'angular2/router';
+import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/router';
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
@@ -9,7 +9,7 @@ import {NgModel} from 'angular2/common';
     selector: 'settings',
     templateUrl: './app/settings/components/settings.component.html',
         directives: [
-        NgModel
+        NgModel, ROUTER_DIRECTIVES
     ]
 })
 
@@ -24,7 +24,7 @@ export class SettingsComponent {
         ) {
 
 		this._layoutService.setCurrentPage('Settings');
-        this._headerService.setTitle("SETTINGS");
+        this._headerService.setTitle("Settings");
     }
 	
 	getResize(){
@@ -39,7 +39,7 @@ export class SettingsComponent {
     logout()
     {
         console.log('logout');
-    	this._router.navigate(['Starter', 'Login']);
+    	this._router.navigate(['Starter']);
     }
 
 }

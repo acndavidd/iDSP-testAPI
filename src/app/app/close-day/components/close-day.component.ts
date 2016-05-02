@@ -26,7 +26,7 @@ export class CloseDayComponent {
 	private _headerService: HeaderService
     ){
 		this._layoutService.setCurrentPage('CloseDay');
-        this._headerService.setTitle("CLOSE DAY");
+        this._headerService.setTitle("Close Day");
     }
 	
 	getResize(){
