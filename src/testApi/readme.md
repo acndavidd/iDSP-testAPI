@@ -32,5 +32,3 @@ Run
     #NOT YET git push heroku `git subtree split --prefix src/api/ master`:master --force
 
 on top level folder
-
-tesstt
