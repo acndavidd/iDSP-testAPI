@@ -12,8 +12,8 @@ app.use(function (req, res, next) {
     /*Allow access control origin*/
     let allow;
     let origin = req.get('origin');
-    if (origin == 'http://localhost:3000') {
-        allow = 'http://localhost:3000';
+    if (origin == 'http://localhost:3002') {
+        allow = 'http://localhost:3002';
     }
     if (allow) {
         res.header("Access-Control-Allow-Origin", allow);
@@ -170,19 +170,7 @@ router.post('/testQueryRetailer', function (req, res) {
         res.send("Failed to Query" + ' Time :' + new Date().toLocaleString() + " Error : " + error);
     });
 });
-
-var server = app.listen(3001, "localhost", function () {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log(host);
-    console.log(port);
-    console.log('Example app listening at http://%s:%s', host, port);
-});
-
 app.use('/', router);
 app.listen(port);
 console.log('http://127.0.0.1:' + port + '/');
-
-
-
 //# sourceMappingURL=main.js.map

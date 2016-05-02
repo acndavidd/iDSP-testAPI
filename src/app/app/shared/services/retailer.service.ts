@@ -18,7 +18,6 @@ export class RetailerService{
 
 	getRetailer(retailerID:number){
 		let data:string = 'retailerID='+retailerID;
-		console.log('anjaaay');
 		this._http.post('/testQueryRetailer',data,
 			<RequestOptionsArgs> {headers: new Headers(
                 {'Content-Type': 'application/x-www-form-urlencoded'})

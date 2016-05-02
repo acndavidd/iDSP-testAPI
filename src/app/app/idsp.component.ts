@@ -30,6 +30,7 @@ declare var configChannel: any;
             <idsp-footer-menu></idsp-footer-menu>
     	</div>
     `,
+
     directives: [
         HeaderComponent,
         FooterMenuComponent,
