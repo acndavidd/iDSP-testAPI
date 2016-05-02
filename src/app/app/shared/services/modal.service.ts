@@ -10,8 +10,7 @@ export class ModalService {
 
     modalState = {
         info: false,
-        verificationcode : false,
-        collection: false
+        verificationCode : false
     }
 
     constructor() {}
@@ -25,27 +24,15 @@ export class ModalService {
     {
         return this.modalState;
     }
-
-    toggleVerificationCodeModal() 
+    
+    toggleVerificationCodesModal() 
     {
         if(this.mainModalState)
         {
             this.refreshModal();
         }else
         {
-            this.modalState.verificationcode = !this.modalState.verificationcode;
-        }
-        this.mainModalState = !this.mainModalState;
-    }
-
-    toggleCollectionModal() 
-    {
-        if(this.mainModalState)
-        {
-            this.refreshModal();
-        }else
-        {
-            this.modalState.collection = !this.modalState.collection;
+            this.modalState.verificationCode = !this.modalState.verificationCode;
         }
         this.mainModalState = !this.mainModalState;
     }
@@ -53,10 +40,7 @@ export class ModalService {
     refreshModal()
     {
         this.modalState.info = false;
-
-        this.modalState.collection = false;
-        this.modalState.verificationcode = false;
-
+        this.modalState.verificationCode = false;
     }
 
 }

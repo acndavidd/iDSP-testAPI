@@ -7,11 +7,6 @@ export class LayoutService {
 
 	currentPage: string;
     numberSelection = false;
-    
-    constructor (private _pageNavigationService: PageNavigationService,
-    private _matchMediaService: MatchMediaService) {
-        
-    }
 
 	layoutState = {
 		appHeader: false,
@@ -31,42 +26,29 @@ export class LayoutService {
         closeday : false,
         settings :false
     }
-    
-    headerItem = {
+
+	headerItem = {
         back: false,
         filter: false,
         edit: false
     };
-
-	/*
-	constructor (private _http: Http,
-    private _pageNavigationService: PageNavigationService,
+    
+	constructor (private _pageNavigationService: PageNavigationService,
     private _matchMediaService: MatchMediaService) { 
-        const url = 'config/layout.json';        
-        this._http.get(
-            url,        
-            <RequestOptionsArgs>{        
-                headers: new Headers({        
-                    'Content-Type': 'application/x-www-form-urlencoded',        
-                })        
-            }).subscribe(file => {        
-                let layout = file.json();
-                console.log(layout);  
-            });
-        }
-	*/
-
+        
+  }
+	
 	getCurrentPage(){
 		return this.currentPage;
 	}
     
-    getFooterState(){
-        return this.footerState;
-    }
+  getFooterState(){
+      return this.footerState;
+  }
 
-    getFooterLayout(){
-        return this.footerItem;
-    }
+  getFooterLayout(){
+      return this.footerItem;
+  }
 	
 	getLayout(){
 		return this.layoutState;
@@ -84,10 +66,6 @@ export class LayoutService {
         return this.footerItem;
     }
 
-    getHeaderLayout(){
-        return this.headerItem;
-    }
-
     setCurrentPage(current : string)
     {
         this.currentPage = current;
@@ -101,138 +79,65 @@ export class LayoutService {
                 appFooter: false
             };
         }
-
-        else if(current=='MyTransaction')
+       else if(current=='MyTransaction')
         {
             this.layoutState = {
-                appHeader: true,
-                appFooter: true
+              appHeader: true,
+              appFooter: true
             };
             this.footerState = 
             {
-                mytransaction : true,
-                basicp : false,
-                closeday : false,
-                settings : false
+               mytransaction : true,
+               basicp : false,
+               closeday : false,
+               settings : false
             };    
-            this.headerItem = {
-                back: false,
-                filter: false,
-                edit: false
-            }
-         }
-        else if(current=='BasicCallProcedure')
-        {
-            this.layoutState = {
-                appHeader: true,
-                appFooter: true
-            };
-            this.footerState = 
-            {
-                mytransaction : false,
-                basicp : true,
-                closeday : false,
-                settings : false
-            };    
-            this.headerItem = {
-                back: false,
-                filter: false,
-                edit: false
-            }
         }
-        else if(current=='CloseDay')
+          else if(current=='BasicCallProcedure')
+          {
+              this.layoutState = {
+                  appHeader: true,
+                  appFooter: true
+              };
+               this.footerState = 
+               {
+                   mytransaction : false,
+                   basicp : true,
+                   closeday : false,
+                   settings : false
+               };    
+          }
+           else if(current=='CloseDay')
+          {
+              this.layoutState = {
+                  appHeader: true,
+                  appFooter: true
+              };
+               this.footerState = 
+               {
+                   mytransaction : false,
+                   basicp : false,
+                   closeday : true,
+                   settings : false
+               };    
+          }
+           else if(current=='Settings')
+          {
+               this.layoutState = {
+                   appHeader: true,
+                   appFooter: true
+               };
+              this.footerState = 
+              {
+                  mytransaction : false,
+                  basicp : false,
+                  closeday : false,
+                  settings : true
+              };        
+           }
+        else if(current=='DetailRetailer')
         {
-            this.layoutState = {
-                appHeader: true,
-                appFooter: true
-            };
-            this.footerState = 
-            {
-                mytransaction : false,
-                basicp : false,
-                closeday : true,
-                settings : false
-            };    
-            this.headerItem = {
-                back: false,
-                filter: false,
-                edit: false
-            }
-        }
-        else if(current=='Settings')
-        {
-            this.layoutState = {
-                appHeader: true,
-                appFooter: true
-            };
-            this.footerState = 
-            {
-                mytransaction : false,
-                basicp : false,
-                closeday : false,
-                settings : true
-            };    
-            this.headerItem = {
-                back: false,
-                filter: false,
-                edit: false
-            }
-        }
-        else if(
-            current=='TargetsActuals' ||
-            current=='Inventory' ||
-            current=='RetailerRoute' ||
-            current=='AccountsReceivables' ||
-            current=='DSPAlerts')
-        {
-            this._pageNavigationService.setPreviousPage('MyTransaction');
-            
-            this.layoutState = {
-                appHeader: true,
-                appFooter: true
-            };
-            this.footerState = 
-            {
-                mytransaction : true,
-                basicp : false,
-                closeday : false,
-                settings : false
-            };    
-            this.headerItem = {
-                back: true,
-                filter: false,
-                edit: false
-            }
-        }
-        else if(
-            current=='TargetActual' ||
-            current=='VisiteRetail' ||
-            current=='Collection' ||
-            current=='StockReturn' ||
-            current=='Sync')
-        {
-            this._pageNavigationService.setPreviousPage('CloseDay');
-            
-            this.layoutState = {
-                appHeader: true,
-                appFooter: true
-            };
-            this.footerState = 
-            {
-                mytransaction : false,
-                basicp : false,
-                closeday : true,
-                settings : false
-            };    
-            this.headerItem = {
-                back: true,
-                filter: false,
-                edit: false
-            }
-        } 
-        else if(current=='ResetPassword')
-        {
-            this._pageNavigationService.setPreviousPage('Settings');
+            this._pageNavigationService.setPreviousPage('BasicCallProcedure');
             
             this.layoutState = {
               appHeader: true,
@@ -241,9 +146,9 @@ export class LayoutService {
             this.footerState = 
             {
                 mytransaction : false,
-                basicp : false,
+                basicp : true,
                 closeday : false,
-                settings : true
+                settings : false
             };    
             this.headerItem = {
                 back: true,
