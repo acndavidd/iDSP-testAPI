@@ -170,7 +170,19 @@ router.post('/testQueryRetailer', function (req, res) {
         res.send("Failed to Query" + ' Time :' + new Date().toLocaleString() + " Error : " + error);
     });
 });
+
+var server = app.listen(3001, "localhost", function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log(host);
+    console.log(port);
+    console.log('Example app listening at http://%s:%s', host, port);
+});
+
 app.use('/', router);
 app.listen(port);
 console.log('http://127.0.0.1:' + port + '/');
+
+
+
 //# sourceMappingURL=main.js.map
