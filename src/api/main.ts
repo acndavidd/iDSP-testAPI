@@ -2,6 +2,7 @@
 'use strict';
 
 import {LoginController} from './controllers/login.controller';
+import {RetailerController} from './controllers/retailer.controller';
 import {TokenService} from './services/token.service';
 import {ORMService} from './services/orm.service';
 
@@ -15,6 +16,8 @@ const router = express.Router();
 var loginCtrl:LoginController = new LoginController();
 var tokenSvc:TokenService = new TokenService();
 var ormSvc:ORMService = new ORMService();
+
+var retailCtrl:RetailerController = new RetailerController();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -65,7 +68,9 @@ app.use(function(req, res, next) {
 router.get('/test',ormSvc.executeFunction);
 router.get('/refreshmodels',ormSvc.refreshModels);
 router.post('/login',loginCtrl.doLogin);
+router.post('/queryCallPlan',retailCtrl.queryCallPlan);
 //router.get('/check',loginCtrl.checkToken);
 app.use('/service',router);
+
 app.listen(port);
 console.log('http://127.0.0.1:' + port + '/service');
