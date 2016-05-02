@@ -13,6 +13,8 @@ import {RetailerRouteComponent} from '../../my-transaction/components/retailer-r
 import {AccountsReceivablesComponent} from '../../my-transaction/components/accounts-receivables.component';
 import {DSPAlertsComponent} from '../../my-transaction/components/dsp-alerts.component';
 import {ResetPasswordComponent} from '../../settings/components/reset-password.component';
+import {DetailRetailerComponent} from '../../basic-call-procedure/components/detail-retailer.component';
+
 
 @Component({
     selector : 'MainPage',
@@ -72,6 +74,11 @@ import {ResetPasswordComponent} from '../../settings/components/reset-password.c
     //UNDER MY TRANSACTION TAB - END
     
     //UNDER BCP TAB - START
+    {
+        path: '/detailRetailer',
+        name: 'DetailRetailer',
+        component: DetailRetailerComponent
+    },
     //UNDER BCP TAB - END
     
     //UNDER CLOSE DAY TAB - START

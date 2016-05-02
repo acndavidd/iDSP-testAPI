@@ -15,6 +15,7 @@ import {MainPageComponent} from './shared/components/main-page.component';
 import {ForgotPasswordComponent} from './login/components/forgot-password.component';
 import {ModalComponent} from './shared/components/modal.component';
 import {ModalService} from './shared/services/modal.service';
+import {RetailerService} from './shared/services/retailer.service';
 declare var FastClick: FastClickStatic;
 declare var configChannel: any;
 
@@ -42,7 +43,8 @@ declare var configChannel: any;
         PageNavigationService,
         AuthenticationService,
         HeaderService,
-        ModalService
+        ModalService,
+        RetailerService
     ]
 })
 

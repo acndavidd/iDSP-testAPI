@@ -7,13 +7,13 @@ import {RetailerService} from '../../shared/services/retailer.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
-    templateUrl: './app/basic-call-procedure/components/basic-call-pro.component.html',
+    templateUrl: './app/basic-call-procedure/components/detail-retailer.component.html',
 	directives: [
 		ROUTER_DIRECTIVES
     ]
 })
 
-export class BasicCallProcedureComponent {
+export class DetailRetailerComponent {
 
 	constructor (
 		private _layoutService: LayoutService,
@@ -23,12 +23,28 @@ export class BasicCallProcedureComponent {
 		) 
 	{
 		this._retailerService.getRetailer(100);
-		this._layoutService.setCurrentPage('BasicCallProcedure');
-		this._headerService.setTitle("Basic Call Procedure");
+		this._layoutService.setCurrentPage('DetailRetailer');
+		this._headerService.setTitle("Detail Retailer");
     }
 	
 	getResize(){
         return this._matchMediaService.getmm();  
     }
 
+   getRetailerAll()
+    {
+    	if(this._retailerService.getRetailerAll())
+    	{
+    		return this._retailerService.getRetailerAll();
+    	}
+    	else
+    	{
+    		return null;
+    	}
+    }
+
+    //  getRetailerAddress()
+    // {
+    // 	return this._retailerService.getRetailerAddress();
+    // }
 }

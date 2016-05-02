@@ -251,5 +251,26 @@ export class LayoutService {
                 edit: false
             }
         }
+        else if(current=='DetailRetailer')
+        {
+            this._pageNavigationService.setPreviousPage('BasicCallProcedure');
+            
+            this.layoutState = {
+              appHeader: true,
+              appFooter: true
+            };
+            this.footerState = 
+            {
+                mytransaction : false,
+                basicp : true,
+                closeday : false,
+                settings : false
+            };    
+            this.headerItem = {
+                back: true,
+                filter: false,
+                edit: false
+            }
+        }
     }
 }
