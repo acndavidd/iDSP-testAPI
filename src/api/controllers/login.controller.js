@@ -6,7 +6,6 @@ class LoginController {
     }
     doLogin(req, res) {
         let tokenSvc = new token_service_1.TokenService();
-        //var result = {};
         var tokenobj = {
             user: {
                 name: req.body.username,
@@ -14,14 +13,9 @@ class LoginController {
             },
             success: 1
         };
-        /*tokenobj.user = {};
-        tokenobj.user.name = req.body.username;
-        tokenobj.user.password = req.body.password;
-        result.success = 1;*/
         var result = {
             token: tokenSvc.generateToken(tokenobj)
         };
-        //result.token = tokenSvc.generateToken(tokenobj);
         res.cookie('accessToken', result.token, { httpOnly: true });
         res.json(result);
     }

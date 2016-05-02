@@ -62,10 +62,8 @@ app.use(function(req, res, next) {
     next();
 });
 
-router.get('/test',ormSvc.executeFunction);
 router.get('/refreshmodels',ormSvc.refreshModels);
 router.post('/login',loginCtrl.doLogin);
-//router.get('/check',loginCtrl.checkToken);
 app.use('/service',router);
 app.listen(port);
 console.log('http://127.0.0.1:' + port + '/service');
