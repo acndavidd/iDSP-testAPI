@@ -15,9 +15,6 @@ import {NgModel} from 'angular2/common';
 
 export class BasicCallProcedureComponent {
 
-	constructor (private _layoutService: LayoutService,
-    private _matchMediaService: MatchMediaService) {
-
 	constructor (
 		private _layoutService: LayoutService,
 		private _matchMediaService: MatchMediaService,

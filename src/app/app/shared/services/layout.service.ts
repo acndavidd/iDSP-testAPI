@@ -27,34 +27,28 @@ export class LayoutService {
         settings :false
     }
 
-	/*
-	constructor (private _http: Http,
-    private _pageNavigationService: PageNavigationService,
+	headerItem = {
+        back: false,
+        filter: false,
+        edit: false
+    };
+    
+	constructor (private _pageNavigationService: PageNavigationService,
     private _matchMediaService: MatchMediaService) { 
-        const url = 'config/layout.json';        
-        this._http.get(
-            url,        
-            <RequestOptionsArgs>{        
-                headers: new Headers({        
-                    'Content-Type': 'application/x-www-form-urlencoded',        
-                })        
-            }).subscribe(file => {        
-                let layout = file.json();
-                console.log(layout);  
-            });
-        }
-	*/
+        
+  }
+	
 	getCurrentPage(){
 		return this.currentPage;
 	}
     
-    getFooterState(){
-        return this.footerState;
-    }
+  getFooterState(){
+      return this.footerState;
+  }
 
-    getFooterLayout(){
-        return this.footerItem;
-    }
+  getFooterLayout(){
+      return this.footerItem;
+  }
 	
 	getLayout(){
 		return this.layoutState;

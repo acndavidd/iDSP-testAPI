@@ -4,6 +4,7 @@ import {HTTP_PROVIDERS} from 'angular2/http';
 import {FastClickStatic} from './shared/fastclick/fastclick.d';
 import {MatchMediaService} from './shared/services/match-media.service';
 import {LayoutService} from './shared/services/layout.service';
+import {HeaderService} from './shared/services/header.service';
 import {PageNavigationService} from './shared/services/page-navigation.service';
 import {AuthenticationService} from './shared/services/authentication.service';
 import {LoginComponent} from './login/components/login.component';
@@ -44,7 +45,7 @@ declare var configChannel: any;
         LayoutService,
         PageNavigationService,
         AuthenticationService,
-        ModalService
+        ModalService,
         HeaderService,
         ModalService,
         RetailerService
