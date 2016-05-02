@@ -80,6 +80,27 @@ app.get('/testQueryUser', function (req, res) {
         res.send("Failed to Query" + ' Time :' + new Date().toLocaleString() + " Error : " + error);
     });
 });
+app.get('/testQueryRetailer', function (req, res) {
+    var message = 'Query retailer start.';
+    var vId = req.param('id');
+    var retailer = db_orm.model('public.retailer');
+    retailer.findOne({
+        where: {
+            retailerId: 2
+        }
+    }).then(function (result) {
+        console.log(result);
+        if (result === null) {
+            throw " NO Data Found";
+        }
+        else {
+            res.send('Retailer Found, ID =' + result.retailerId + ' | Name =' + result.retailerName + ' | Address =' + result.retailerAdd + ' | HP =' + result.retailerContact);
+        }
+    }).catch(function (error) {
+        console.log("Gagal Query Retailer" + error);
+        res.send("Failed to Query" + ' Time :' + new Date().toLocaleString() + " Error : " + error);
+    });
+});
 var server = app.listen(3001, "localhost", function () {
     var host = server.address().address;
     var port = server.address().port;
