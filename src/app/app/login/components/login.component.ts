@@ -42,7 +42,7 @@ export class LoginComponent {
 
     gotoForgetPassword()
     {
-        this._router.navigate(['ForgetPassword']);
+        this._router.navigate(['ForgotPassword']);
     }
 
     getErrorMessageText()

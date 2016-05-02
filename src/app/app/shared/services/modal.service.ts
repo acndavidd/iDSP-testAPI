@@ -26,7 +26,7 @@ export class ModalService {
         return this.modalState;
     }
     
-    toggleVerificationCodesModal() 
+    toggleVerificationCodeModal() 
     {
         if(this.mainModalState)
         {
