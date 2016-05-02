@@ -24,10 +24,10 @@ export class CollectionComponent {
     ) {
 
 		this._layoutService.setCurrentPage('Collection');
-        this._headerService.setTitle("Collection & Remittance");
+        this._headerService.setTitle("Collection");
     }
 	
 	getResize(){
         return this._matchMediaService.getmm();  
     }
-} 
+}
