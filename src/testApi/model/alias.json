@@ -1,12 +1,1 @@
-{
-    "public.profile": {
-        "belongsTo": {
-            "user": null
-        }
-    },
-    "public.users": {
-        "hasMany": {
-            "userProfiles": null
-        }
-    }
-}
+{}
