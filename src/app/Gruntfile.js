@@ -5,6 +5,8 @@ module.exports = function(grunt) {
     // Load Grunt Tasks
     require('load-grunt-tasks')(grunt);
 
+    grunt.loadNpmTasks('grunt-cache-breaker');
+
     // Project Configuration
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -267,6 +269,22 @@ module.exports = function(grunt) {
                 tasks: ['copy:resources'],
             },
         },
+        // ---------------------
+// Cache Breaker Configuration
+// ---------------------          
+        cachebreaker: {
+            dev: {
+                options: {
+                    match: ['init.js', 'app.css'],
+                },
+                files: {
+                    src: ['../../debug/index.html']
+                }
+            }
+        }
+
+
+
     });  
 // ---------------------
 // Register Grunt Tasks
@@ -297,6 +315,7 @@ module.exports = function(grunt) {
         'jshint',
         'cssmin',
         'uglify',
+        'cachebreaker',
         'watch'
         ]); 
 
