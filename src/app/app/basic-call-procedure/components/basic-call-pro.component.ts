@@ -25,7 +25,7 @@ export class BasicCallProcedureComponent {
 	{
 		this._retailerService.getRetailer(100);
 		this._layoutService.setCurrentPage('BasicCallProcedure');
-		this._headerService.setTitle("Basic Call Procedure");
+        this._headerService.setTitle('Basic Call Procedure');
     }
 	
 	getResize(){

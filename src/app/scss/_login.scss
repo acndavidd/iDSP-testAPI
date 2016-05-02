@@ -1,4 +1,5 @@
 $containerLogin-height: 100%;
+
 .containerLogin {
 	z-index: 50;
 	position: fixed;
@@ -37,6 +38,7 @@ $containerLogin-height: 100%;
 			border: 0;
 			text-align: center;
 			padding: 0;
+
 			.button {
 				width: 100%;
 				margin: 60px auto 18px;
@@ -61,8 +63,6 @@ $containerLogin-height: 100%;
 				color: #FFF;
 			}
             .errorAlert{
-            	display: block;
-            	position: fixed;
                 color:#FFF;
                 font-size:14px;
             }
@@ -79,6 +79,7 @@ $containerLogin-height: 100%;
 				outline: 0;
 				color : #000;
 				text-align: center;
+				font-style: italic;
                 border-bottom: 1px solid #000;
 			}
 			p {
@@ -92,12 +93,12 @@ $containerLogin-height: 100%;
 		.loginButton
 		{
 			height: 35px;
-			background-color: $bluebutton;
+			background-color: #00C2BA;
 			text-align: center;
 			vertical-align: center;
 			font-size: 15pt;
     		padding-top: 7px;
-    		color : $white;
+    		color : #FFF;
 		}
 		.loginSeparator
 		{

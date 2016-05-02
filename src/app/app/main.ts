@@ -49,7 +49,6 @@ bootstrap(IDSPComponent,[
     provide(BrowserXhr, { useClass: CustomBrowserXhr })
 ]);
 
-
 function getPath(){
 	console.log(window.location.href);
 	var str = window.location.href;

@@ -12,7 +12,7 @@ export class AuthenticationService{
 	constructor(
 		private _http: Http,
 		private _router: Router){
-
+		
 		this.is_loading = false;
 	}
 
@@ -25,6 +25,27 @@ export class AuthenticationService{
 		}
 	}
 
+	autoLogin(){
+		this._http.get('/verifytoken',
+			<RequestOptionsArgs> {headers: new Headers(
+                {'Content-Type': 'application/x-www-form-urlencoded'})
+            }).subscribe(
+            	response => {
+            		this.is_loading = false;
+            		if(response.json().success == 1){//success login
+            			//set token to local storage(mobile)
+            			this._router.navigate(['MyTransaction']);
+            		}else{//failed login
+            			this.error_msg = response.json().error;
+            		}
+            	},
+            	error => {
+            		console.log(error);
+            		this.error_msg = 'failed connecting to login service';
+            	}
+            );
+	}
+
 	loginValidation(username:string,password:string):boolean{
 		if(username == null || username == "")return false;
 		if(password == null || password  == "")return false;
@@ -33,10 +54,7 @@ export class AuthenticationService{
 
 	loginService(username:string,password:string):boolean{
 		let data:string = 'username='+username+'&password='+password;
-		this._http.post('/login',data,
-			<RequestOptionsArgs> {headers: new Headers(
-                {'Content-Type': 'application/x-www-form-urlencoded'})
-            }).subscribe(
+		this._http.post('/login',data).subscribe(
             	response => {
             		this.is_loading = false;
             		if(response.json().success == 1){//success login
@@ -48,24 +66,16 @@ export class AuthenticationService{
             		}
             	},
             	error => {
-            		console.log(error);
             		this.error_msg = 'failed connecting to login service';
             	}
             );
        	return false;
 	}
 
-	checkToken():boolean{
-		this._http.get('/check')
-            .subscribe(
-            	response => {
-            		console.log(response);
-            	},
-            	error => {
-            		console.log(error);
-            	}
-            );
-        return false;
+	logout(){
+		//destroy token for mobile device
+		localStorage.removeItem('accessToken');
+		this._router.navigate(['Starter']);
 	}
 
 	getError():string{

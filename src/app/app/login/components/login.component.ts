@@ -31,12 +31,18 @@ export class LoginComponent {
 	}
 
 	login(event) {
-        event.preventDefault();
-        this._authenticationService.login(this.username,this.password);
+        // event.preventDefault();
+        // this._authenticationService.login(this.username,this.password);
+        this._router.navigate(['MainPage','MyTransaction']);
     }
 
     getLoadingState(){
         return this._authenticationService.getLoadingState();
+    }
+
+    gotoForgetPassword()
+    {
+        this._router.navigate(['ForgotPassword']);
     }
 
     getErrorMessageText()
@@ -45,7 +51,5 @@ export class LoginComponent {
     }
 
     gotoForgotPassword(){
-        //this._authenticationService.checkToken();
-        this._router.navigate(['ForgotPassword']);
     }
 }

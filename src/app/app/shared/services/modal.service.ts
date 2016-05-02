@@ -25,7 +25,7 @@ export class ModalService {
     {
         return this.modalState;
     }
-
+    
     toggleVerificationCodeModal() 
     {
         if(this.mainModalState)
@@ -37,7 +37,7 @@ export class ModalService {
         }
         this.mainModalState = !this.mainModalState;
     }
-
+    
     toggleCollectionModal() 
     {
         if(this.mainModalState)
@@ -48,15 +48,15 @@ export class ModalService {
             this.modalState.collection = !this.modalState.collection;
         }
         this.mainModalState = !this.mainModalState;
-    }
+    }                
+
+
 
     refreshModal()
     {
         this.modalState.info = false;
-
         this.modalState.collection = false;
         this.modalState.verificationcode = false;
-
     }
 
 }

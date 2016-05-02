@@ -25,7 +25,7 @@ export class ForgotPasswordComponent {
 		this._layoutService.setCurrentPage('ForgotPassword');
 		
     }
-	
+    
 	getResize(){
         return this._matchMediaService.getmm();  
     }
@@ -36,7 +36,6 @@ export class ForgotPasswordComponent {
     }
 
     toggleVerificationCodeModal() {
-        console.log("masuk toddle");
         this._modalService.toggleVerificationCodeModal();
     }
 

@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
 
 	ngOnInit() 
 	{
-		//this.title = this._headerService.getTitle();
+		
 	}
 	
 	getTitle(){
