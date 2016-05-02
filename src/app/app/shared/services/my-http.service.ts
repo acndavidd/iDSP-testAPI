@@ -10,9 +10,9 @@ declare var configChannel: any;
 @Injectable()
 export class MyHttp {
     private serviceBaseUrl: string;
-    private timeout: number;		 
+    private timeout: number;         
 
-    constructor(private _http: Http,		
+    constructor(private _http: Http,        
                 private _router: Router) {
         this.serviceBaseUrl = '';  
         /*
@@ -169,21 +169,21 @@ export class MyHttp {
                                             .subscribe(
                                                 (res) => {
                                                     console.log('retry success');
-                                                    observer.next(res);		
-                                                    observer.complete();		
-                                                },		
-                                                (err) => {		
-                                                    console.log('retry failed');		
-                                                    observer.error(err);		
-                                                })		
-                                            });		
-                                        },		
-                                    error => {		
-                                        localStorage.removeItem('accessToken');		
-                                        localStorage.removeItem('refreshToken');		
-                                        this._router.navigate(['Starter','Login']); // router might not work, need more tests		
-                                    }		
-                                );		
+                                                    observer.next(res);        
+                                                    observer.complete();        
+                                                },        
+                                                (err) => {        
+                                                    console.log('retry failed');        
+                                                    observer.error(err);        
+                                                })        
+                                            });        
+                                        },        
+                                    error => {        
+                                        localStorage.removeItem('accessToken');        
+                                        localStorage.removeItem('refreshToken');        
+                                        this._router.navigate(['Starter','Login']); // router might not work, need more tests        
+                                    }        
+                                );        
                             }
                             observer.error(err);
                             break;
