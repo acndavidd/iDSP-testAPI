@@ -1,54 +1,65 @@
 .headerSmall{
   width: 100%;
     height: 50px;
-    .openSearch{
-        height: 96px;
-      }
-    .mainBox{
-      background-color: #007879;
-      top: 0;
-      z-index: 100;
-      width: 100%;
-      position: fixed;
-      .defaultBox{
-        height: 48px;
-        .title{
-          height:48px;
-          background-size: 30px;
-          background-position: center center;
-          cursor: pointer;
-          text-align: center;
-          color: #FFF;
-          font-size: 30px;
-        }
-        .back{
-            position: fixed;
-            z-index: 1000;
-            width:48px;
-            height:48px;
-            background: url("../img/icon-idsp/back-white.png") no-repeat;
-            background-size: 30px;
-            background-position: center center;
-            cursor: pointer;
-        }
-      }
-    }
+     }
+
+.headerSmall .openSearch{
+    height: 96px;
+   }
+
+.headerSmall .mainBox{
+  background-color: #007879;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  position: fixed;
+}
+
+.headerSmall .mainBox .defaultBox{
+    height: 48px;
+}
+
+ .headerSmall .mainBox .defaultBox .title{
+ position: fixed;
+    z-index: 1000;
+    width:48px;
+    height:48px;
+    /*background: url("/app/img/icon/arrow_left.png") no-repeat;*/
+    background-size: 30px;
+    background-position: center center;
+    cursor: pointer;
+    padding-top: 2%;            
+ }
+
+ .headerSmall .mainBox .defaultBox .back{
+    position: fixed;
+    z-index: 1000;
+    width:48px;
+    height:48px;
+    background: url("/app/img/icon/arrow_left.png") no-repeat;
+    background-size: 30px;
+    background-position: center center;
+    cursor: pointer;
+
+}
 
 .headerContainer{
+
   width: 100%;
   height: 48px;
   z-index: 500;
   position: fixed;
   top: 10px;
-      .backArrow {
-        height: 46px;
-        width: 46px;
-        margin-bottom: 60px;
-        margin-left: -10px;
-        background: url("")no-repeat;
-        background-size: 40px;
-        background-position: 0 0px;
-        cursor: pointer;
-      }
-  }
 }
+
+.headerContainer  .backArrow{
+      height: 46px;
+      width: 46px;
+      margin-bottom: 60px;
+      margin-left: -10px;
+      background: url("")no-repeat;
+      background-size: 40px;
+      background-position: 0 0px;
+      cursor: pointer;
+
+  }

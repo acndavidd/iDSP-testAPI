@@ -24,11 +24,7 @@ export class PageNavigationService {
     }
 	
 	gotoPreviousPage(){
-        if(this.childNode == 'login'){
-			this._router.navigate(['Starter',this.previousPage]);
-		}else{
-			this._router.navigate(['MainPage',this.previousPage]);
-		}
+
 	}
 
 }

@@ -1,23 +1,23 @@
 <div class="myTransaction" [ngClass]="{medium : getResize().mediumUp}" *ngIf="!getResize().largeUp">
     <div class="containerBody">
         <div class="button">
-            <div class="buttonIdentifier green" (click)="goToTargetsActuals()">Targets &amp; Actuals</div>
+            <div class="buttonIdentifier green" (click)="test($event)">Targets &amp; Actuals</div>
         </div>
          <div class="separator"></div>
          <div class="button">
-            <div class="buttonIdentifier green" (click)="goToInventory()">Inventory</div>
+            <div class="buttonIdentifier green">Inventory</div>
         </div>
          <div class="separator"></div>
           <div class="button">
-            <div class="buttonIdentifier green" (click)="goToRetailerRoute()">Retailer Route</div>
+            <div class="buttonIdentifier green">Retailer Route</div>
         </div>
          <div class="separator"></div>
           <div class="button">
-            <div class="buttonIdentifier green" (click)="goToAccountsReceivables()">Accounts Receivables</div>
+            <div class="buttonIdentifier green">Accounts Receivables</div>
         </div>
          <div class="separator"></div>
          <div class="button">
-            <div class="buttonIdentifier green" (click)="goToDSPAlerts()">DSP Alerts</div>
+            <div class="buttonIdentifier green">DSP Alerts</div>
         </div>
     </div>
 </div>
