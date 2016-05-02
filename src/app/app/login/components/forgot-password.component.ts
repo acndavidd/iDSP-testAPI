@@ -22,7 +22,7 @@ export class ForgotPasswordComponent {
         private _modalService: ModalService
     	) {
 
-		this._layoutService.setCurrentPage('ForgotPassword');
+		this._layoutService.setCurrentPage('ForgetPassword');
 		
     }
     
@@ -35,9 +35,8 @@ export class ForgotPasswordComponent {
     	this._router.navigate(['Starter', 'Login']);
     }
 
-    toggleVerificationCodeModal() {
-        console.log("masuk toddle");
-        this._modalService.toggleVerificationCodeModal();
+    toggleVerificationCodesModal() {
+        this._modalService.toggleVerificationCodesModal();
     }
 
 }

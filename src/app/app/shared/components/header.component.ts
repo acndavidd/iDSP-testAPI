@@ -3,9 +3,7 @@ import { Router } from 'angular2/router';
 import {LayoutService} from '../services/layout.service';
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
-import {HeaderService} from '../../shared/services/header.service';
 import {Layout} from '../../../models/layout';
-
 declare var ga:any;
 
 @Component({
@@ -18,30 +16,18 @@ export class HeaderComponent implements OnInit {
 		private _layoutService : LayoutService, 
         private _router: Router,
 		private _matchMediaService: MatchMediaService,
-		private _pageNavigationService: PageNavigationService,
-		private _headerService: HeaderService) {
+		private _pageNavigationService: PageNavigationService) {
 	}
 
 	title :string;
 
 	ngOnInit() 
 	{
-		//this.title = this._headerService.getTitle();
-	}
-	
-	getTitle(){
-		return this._headerService.getTitle();
+		this.title;
 	}
 
 	getLayout(){
 		return this._layoutService.getLayout();
 	}
 	
-	getHeaderLayout(){
-        return this._layoutService.getHeaderLayout();
-    }
-	
-	goToPreviousPage(){
-		this._pageNavigationService.gotoPreviousPage();
-	}   
 }

@@ -1,1 +1,23 @@
 <div>Basic Call Procedure</div>
+<div class="mainMenu" [ngClass]="{medium : getResize().mediumUp}" *ngIf="!getResize().largeUp">
+    <div class="containerBody">
+        <div class="header">
+            <div class="void"></div>
+            <div class="text">
+                <div class="headerText">Discount 30% SmartLoad</div>
+            </div>
+        </div>
+        <div class="itemComponent">
+        <div class="categoryHeader">Add Ons</div>
+        <div class="itemContainer" *ngFor="#each of listRetailer" (click)="toggleDetailRetailerModal(each)">
+            <div class="itemIdentifier">
+                <div class="title">{{each.retail_name}}</div>
+                <div class="smallText">Retailer mobile number {{each.mobile_number}}</div>
+                <div class="smallText">Amount payable to DSP {{each.amount_payable}}</div>
+                <div class="smallText">Status {{each.status}}</div>
+            </div>
+            <div class="itemValue">{{each.retail_id}}</div>
+        </div>
+    </div>
+    </div>
+</div>

@@ -40,13 +40,16 @@ export class LoginComponent {
         return this._authenticationService.getLoadingState();
     }
 
+    gotoForgetPassword()
+    {
+        this._router.navigate(['ForgetPassword']);
+    }
+
     getErrorMessageText()
     {
     	return this._authenticationService.getError();
     }
 
     gotoForgotPassword(){
-        //this._authenticationService.checkToken();
-        this._router.navigate(['ForgotPassword']);
     }
 }
