@@ -116,9 +116,7 @@
                         clear: both;
                     }
                 }
-            }
-
-
+            }            
         }
 
         .itemSubContainer {
@@ -198,7 +196,16 @@
                 }
             }
 
-
         }
+        .startBCPButton
+            {
+                height: 35px;
+                background-color: #00C2BA;
+                text-align: center;
+                vertical-align: center;
+                font-size: 15pt;
+                padding-top: 7px;
+                color : #FFF;
+            }
     }
 }
