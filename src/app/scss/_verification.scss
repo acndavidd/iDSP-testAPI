@@ -56,7 +56,7 @@ $containerLogin-height: 100%;
                     }
                 }
 			}
-            .errorAlert{
+            .error-alert{
                 color:#FFF;
                 font-size:14px;
             }
@@ -86,7 +86,7 @@ $containerLogin-height: 100%;
 				}
 			}
 		}
-		.loginButton
+		.login-button
 		{
 			height: 35px;
 			background-color: #00C2BA;
@@ -96,7 +96,7 @@ $containerLogin-height: 100%;
     		padding-top: 7px;
     		color : #FFF;
 		}
-		.loginSeparator
+		.login-separator
 		{
 			border: 5px solid #005A5B;
 			margin-bottom: 50px;
@@ -105,7 +105,7 @@ $containerLogin-height: 100%;
 	.after-box {
 		margin-top: 20px;
 	}
-	.smartLogo
+	.smart-logo
 	{
 		display: block;
         height: 30px;
@@ -131,11 +131,11 @@ $containerLogin-height: 100%;
     	font-style: italic;
     	padding: 12px;
 	}
-	.mpinBox
+	.mpin-box
 	{
 		display: block;
 		align-content: center;
-		.separatorBox
+		.separator-box
 		{
 			padding-right: 5px;
 		}

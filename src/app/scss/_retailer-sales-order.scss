@@ -1,8 +1,8 @@
-.retailerSalesOrder{
+.retailer-sales-order{
 	background-color:#FFFFFF;
 	z-index: 1;
     height: 0%;
-    .containerBody {
+    .container-body {
         width: 100%;
         background-color: #FFFFFF;
          .divider{
@@ -16,7 +16,7 @@
             padding-top: 12px;
             background-color: #00C2C4;
             margin: 0 calc(15%);
-            .buttonIdentifier {
+            .button-identifier {
                 cursor: pointer;
                 font-size: 17px;
                 text-align: center;
@@ -34,7 +34,7 @@
                     color: #008080;
                 }
             }
-            .buttonValue {
+            .button-value {
                 font-size: 15px;
                 float: right;
                 font-size: 15px;
@@ -48,7 +48,7 @@
                 }
             }
         }
-        .itemFooterContainer {
+        .item-footer-container {
             display: inline-block;
             width: 100%;
             padding-top: 20px;
