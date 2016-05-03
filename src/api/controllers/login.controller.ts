@@ -1,6 +1,7 @@
 'use strict';
 
 import {TokenService} from '../services/token.service';
+import {ORMService} from '../services/orm.service';
 
 export class LoginController{
 	
@@ -9,18 +10,33 @@ export class LoginController{
 
 	doLogin(req:string,res:string){
 		let tokenSvc = new TokenService();
-		var result = {};
-		var tokenobj = {};
-		tokenobj.user = {};
-		tokenobj.user.name = req.body.username;
-		tokenobj.user.password = req.body.password;
-		result.success = 1;
-		result.token = tokenSvc.generateToken(tokenobj);
+		var tokenobj = {
+			user : {
+				name : req.body.username,
+				password : req.body.password
+			},
+			success : 1
+		};
+		var result = {
+			token : tokenSvc.generateToken(tokenobj)
+		};
 		res.cookie('accessToken',result.token,{httpOnly:true});
 		res.json(result);
 	}
 
-	checkToken(req:string,res:string){
-		res.json('calling checkToken ' + res.locals.jwt);
+	verifyToken(token:string){
+		let tokenSvc = new TokenService();
+		try{
+			var verify = tokenSvc.verifyToken(token);
+			return verify;
+		}catch(err){
+			throw err;
+		}
+	}
+
+	sp(req:string,res:string){
+		let ormSvc = new ORMService();
+		var user = 'djoko';
+		ormSvc.executeFunction('anjay',JSON.stringify(user));
 	}
 }

@@ -12,6 +12,9 @@ run: tsc
 run: node main.js
 
 
+##Notes
+To map database tables into models call /service/refreshmodel
+
 ### Debug
 run: node-debug src/rest/main.js
 

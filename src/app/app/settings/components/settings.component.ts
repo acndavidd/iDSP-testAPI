@@ -23,23 +23,23 @@ export class SettingsComponent {
         private _headerService: HeaderService
         ) {
 
-		this._layoutService.setCurrentPage('Settings');
-        this._headerService.setTitle("SETTINGS");
+        this._layoutService.setCurrentPage('Settings');
+        this._headerService.setTitle('Settings');
     }
 	
-	getResize(){
-        return this._matchMediaService.getmm();  
-    }
-    
     goToResetPassword(){
         console.log('RESETTT');
-    	this._router.navigate(['ResetPassword']);
+        this._router.navigate(['ResetPassword']);
+    }
+
+	getResize(){
+        return this._matchMediaService.getmm();  
     }
 
     logout()
     {
         console.log('logout');
-    	this._router.navigate(['Starter', 'Login']);
+    	this._router.parent.navigate(['Starter']);
     }
 
 }

@@ -219,10 +219,27 @@ module.exports = function(grunt) {
                 files: [              
                     {
                         cwd: '../../debug/',
-                        src:['**'],
+                        //src:['**'],
+						src:[
+							'app/**/*.*',
+							'config/*.*',
+							'css/*.*',
+							'img/**/*.*',
+							'js/*.*',
+							'scripts/*.*',
+							'services/**/*.json',
+							'init.js', 'tsconfig.json'
+						],
                         dest:'../cordova/www/',
                         expand: true
                     },
+					{
+                        cwd: './',
+                        src:['index.cordova.html'],
+                        dest:'../cordova/www/index.html',
+                        expand: false,
+                        flatten: true,
+                    }
                 ] 
             }
              

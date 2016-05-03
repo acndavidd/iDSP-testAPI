@@ -3,6 +3,7 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/ro
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
+import {RetailerService} from '../../shared/services/retailer.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
@@ -13,20 +14,27 @@ import {NgModel} from 'angular2/common';
 })
 
 export class BasicCallProcedureComponent {
-	
 
 	constructor (
 		private _layoutService: LayoutService,
 		private _matchMediaService: MatchMediaService,
-		private _headerService: HeaderService
+		private _headerService: HeaderService,
+		private _retailerService: RetailerService,
+		private _router: Router
 		) 
 	{
+		this._retailerService.getRetailer(100);
 		this._layoutService.setCurrentPage('BasicCallProcedure');
-		this._headerService.setTitle("BCP");
+        this._headerService.setTitle('Basic Call Procedure');
     }
 	
 	getResize(){
         return this._matchMediaService.getmm();  
     }
 
+    gotoDetailRetailer()
+    {
+    	console.log('aaa');
+    	this._router.navigate(['DetailRetailer']);
+    }
 }

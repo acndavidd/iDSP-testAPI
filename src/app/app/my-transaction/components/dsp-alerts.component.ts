@@ -31,5 +31,4 @@ export class DSPAlertsComponent {
 	getResize(){
         return this._matchMediaService.getmm();  
     }
-
 }
