@@ -233,7 +233,8 @@ export class LayoutService {
                 edit: false
             }
         }
-        else if(current=='DetailRetailer')
+        else if(current=='RetailerSalesOrder' 
+            || current=='DetailRetailer')
         {
             this._pageNavigationService.setPreviousPage('BasicCallProcedure');
             
