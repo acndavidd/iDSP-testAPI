@@ -13,8 +13,8 @@ app.use(function(req, res, next) {
     /*Allow access control origin*/
     let allow: string;
     let origin: string = req.get('origin');
-    if (origin == 'http://localhost:3000') {
-        allow = 'http://localhost:3000';
+    if (origin == 'http://localhost:3002') {
+        allow = 'http://localhost:3002';
     }
     if(allow) {
          res.header("Access-Control-Allow-Origin", allow);

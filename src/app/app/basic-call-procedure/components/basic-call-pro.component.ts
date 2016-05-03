@@ -19,15 +19,22 @@ export class BasicCallProcedureComponent {
 		private _layoutService: LayoutService,
 		private _matchMediaService: MatchMediaService,
 		private _headerService: HeaderService,
-		private _retailerService: RetailerService
+		private _retailerService: RetailerService,
+		private _router: Router
 		) 
 	{
 		this._retailerService.getRetailer(100);
 		this._layoutService.setCurrentPage('BasicCallProcedure');
+        this._headerService.setTitle('Basic Call Procedure');
     }
 	
 	getResize(){
         return this._matchMediaService.getmm();  
     }
 
+    gotoDetailRetailer()
+    {
+    	console.log('aaa');
+    	this._router.navigate(['DetailRetailer']);
+    }
 }

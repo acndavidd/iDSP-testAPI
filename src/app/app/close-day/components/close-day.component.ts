@@ -3,6 +3,11 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/ro
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 
+import {ModalService} from '../../shared/services/modal.service';
+
+import {HeaderService} from '../../shared/services/header.service';
+
+
 @Component({
     templateUrl: './app/close-day/components/close-day.component.html',
 	directives: [
@@ -11,16 +16,24 @@ import {LayoutService} from '../../shared/services/layout.service';
 })
 
 export class CloseDayComponent {
-	
 
-	constructor (private _layoutService: LayoutService,
-    private _matchMediaService: MatchMediaService) {
 
+	constructor (
+	private _router: Router,
+	private _layoutService: LayoutService,
+    private _matchMediaService: MatchMediaService,
+	private _modalService: ModalService,
+	private _headerService: HeaderService
+    ){
 		this._layoutService.setCurrentPage('CloseDay');
+        this._headerService.setTitle("Close Day");
     }
 	
 	getResize(){
         return this._matchMediaService.getmm();  
     }
 
+    toggleCollection(){
+        this._router.navigate(['Collection']);
+    }
 }

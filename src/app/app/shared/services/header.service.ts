@@ -3,9 +3,19 @@ import {Injectable} from 'angular2/core';
 @Injectable()
 
 export class HeaderService{
-	private title:string;
+	headerCaption:string;
+	title:string;
+
 	constructor(){}
 
+	setHeaderCaption(caption:string){
+		this.headerCaption = caption;
+	}
+
+	getHeaderCaption(){
+		return this.headerCaption;
+	}
+	
 	setTitle(title:string){
 		this.title = title;
 	}

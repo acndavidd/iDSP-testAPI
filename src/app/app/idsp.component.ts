@@ -10,6 +10,7 @@ import {AuthenticationService} from './shared/services/authentication.service';
 import {LoginComponent} from './login/components/login.component';
 import {HeaderComponent} from './shared/components/header.component';
 import {FooterMenuComponent} from './shared/components/footer-menu.component';
+import {MainPageComponent} from './shared/components/main-page.component';
 import {MyTransactionComponent} from './my-transaction/components/my-transaction.component';
 import {BasicCallProcedureComponent} from './basic-call-procedure/components/basic-call-pro.component';
 import {CloseDayComponent} from './close-day/components/close-day.component';
@@ -33,6 +34,7 @@ declare var configChannel: any;
             <idsp-footer-menu></idsp-footer-menu>
     	</div>
     `,
+
     directives: [
         HeaderComponent,
         FooterMenuComponent,
@@ -47,7 +49,6 @@ declare var configChannel: any;
         AuthenticationService,
         ModalService,
         HeaderService,
-        ModalService,
         RetailerService
     ]
 })
@@ -59,34 +60,19 @@ declare var configChannel: any;
         component: LoginComponent,
         useAsDefault: true
     },
-     {
+    {
         path: '/verification',
         name: 'Verification',
         component: VerificationComponent
     },
     {
-        path: '/mytransaction',
-        name: 'MyTransaction',
-        component: MyTransactionComponent
-    },
-    {
-        path: '/basiccallprocedure',
-        name: 'BasicCallProcedure',
-        component: BasicCallProcedureComponent
-    },
-    {
-        path: '/closeday',
-        name: 'CloseDay',
-        component: CloseDayComponent
-    },
-    {
-        path: '/settings',
-        name: 'Settings',
-        component: SettingsComponent
+        path: './...',
+        name: 'MainPage',
+        component: MainPageComponent
     },
     {
         path: '/forgotpassword',
-        name: 'ForgeotPassword',
+        name: 'ForgotPassword',
         component: ForgotPasswordComponent
     }
 ])

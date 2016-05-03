@@ -11,7 +11,7 @@ export class VerificationCodeModalComponent {
     }
     
     close(){
-        this._modalService.toggleVerificationCodesModal();
+        this._modalService.toggleVerificationCodeModal();
     }
     
 }

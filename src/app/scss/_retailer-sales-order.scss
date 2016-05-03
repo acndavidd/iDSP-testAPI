@@ -1,0 +1,63 @@
+.retailerSalesOrder{
+	background-color:#FFFFFF;
+	z-index: 1;
+    height: 0%;
+    .containerBody {
+        width: 100%;
+        background-color: #FFFFFF;
+         .divider{
+            width: 50%;
+            float:left;
+        }  
+        .button {
+            display: inline-block;
+            width: 70%;
+            padding-bottom: 12px;
+            padding-top: 12px;
+            background-color: #00C2C4;
+            margin: 0 calc(15%);
+            .buttonIdentifier {
+                cursor: pointer;
+                font-size: 17px;
+                text-align: center;
+                color: #fff;
+                width: 100%;
+                &.green {
+                    color: #fff;
+                }
+                &.subItem{
+                    padding-left: 40px;
+                    width: calc(100% - 140px);
+                }
+                
+                small {
+                    color: #008080;
+                }
+            }
+            .buttonValue {
+                font-size: 15px;
+                float: right;
+                font-size: 15px;
+                width: 100px;
+                text-align: right;
+                &:after {
+                    clear: both;
+                }
+                &.red {
+                    color: #008080;
+                }
+            }
+        }
+        .itemFooterContainer {
+            display: inline-block;
+            width: 100%;
+            padding-top: 20px;
+            small {
+                clear: both;
+                float: right;
+                color: #008080;
+                margin-right: 10px;
+            }
+        }
+    }
+}

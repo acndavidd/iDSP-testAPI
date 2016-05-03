@@ -6,10 +6,11 @@
 2. Run 'npm install -g sequelize-pg-generator'
 3. Run `npm install` from this directory.
 4. Run `typings install` from this directory
+5. Install grunt-cli `npm install -g typescript`
 
 ## If there is any DB Objects changes
 1. CD to folder testApi
-2. spgen -d postgres -u postgres -p 123456 -s public -h localhost
+2. spgen -d postgres -u postgres -p root -s public -h localhost
 
 -d = DB Name
 -u = Username
