@@ -299,6 +299,14 @@ module.exports = function(grunt) {
         'watch'
         ]);
 
+    //grunt without watch for jenkins
+    grunt.registerTask('build-h1',[
+        'concat',
+        'sass',
+        'cssmin',
+        'uglify'
+        ]);
+
 //Debug
     grunt.registerTask('debug',[      
         'clean:debug',
