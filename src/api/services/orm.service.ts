@@ -46,7 +46,7 @@ export class ORMService{
             if(error){
             	res.send(error);
             }
-            var response = stdout.replace(new RegExp("info: (Created)/g"),"<br/>");
+            var response = stdout.replace(/\n/g,"<br/>");
             res.send(response);
         });
 	}

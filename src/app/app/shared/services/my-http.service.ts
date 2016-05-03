@@ -51,7 +51,7 @@ export class MyHttp {
     private _createAuthHeaders(method: RequestMethod): Headers {
         let headers: Headers = new Headers();
         if (method != RequestMethod.Get) {
-            headers.append('Content-Type', 'application/json');        
+            headers.append('Content-Type', 'application/json');
         }
         if (configChannel !== 'web') {
             let accessToken = localStorage.getItem('accessToken');
@@ -90,7 +90,6 @@ export class MyHttp {
                    let config = file.json();
                    this.serviceBaseUrl = config.baseUrl;    
                    this.timeout = Number(config.timeout);
-                   console.log(this.serviceBaseUrl);
                    requestOptions.url = this.serviceBaseUrl + url;
                    this.executeRequest(observer,requestOptions);
                });
@@ -120,78 +119,4 @@ export class MyHttp {
                     }
                 });
     }
-
-    /*
-    private _request(method: RequestMethod, url: string, body?: string, options?: RequestOptionsArgs): Observable<any> {
-        while(!this.serviceBaseUrl || this.serviceBaseUrl === ''){
-            console.log(this.serviceBaseUrl + 'aaa');
-        }
-        console.log(this.serviceBaseUrl);
-        let requestOptions = new RequestOptions({
-            method: method,
-            url: this.serviceBaseUrl + url,
-            body: body
-        });
-        //using custom options
-        if (options) {
-            for (let attrname in options) {
-                requestOptions[attrname] = options[attrname];
-            }
-        } else {
-            requestOptions.headers = this._createAuthHeaders(method);
-        }
-        return Observable.create((observer) => {
-            this._http.request(new Request(requestOptions))
-            .timeout(this.timeout,{status:408})
-            .subscribe(
-                (res) => {
-                    observer.next(res);
-                    observer.complete();
-                },
-                (err) => {
-                    switch (err.status) {
-                        case 403:
-                            console.log('forbidden');
-                            const refreshToken: string = localStorage.getItem('refreshToken');
-                            const url: string = this.serviceBaseUrl + '/token/renew';
-                            if (refreshToken) {
-                                let data = {
-                                    "refreshToken": refreshToken
-                                };
-                                this._http.post(url, JSON.stringify(data))
-                                .timeout(this.timeout,{status:408})
-                                .subscribe(
-                                    response => {
-                                        localStorage.setItem('accessToken', response.json().accessToken);
-                                        // do original call
-                                        return Observable.create((observer) => {
-                                            this._http.request(new Request(requestOptions)).timeout(this.timeout,{status:408})
-                                            .subscribe(
-                                                (res) => {
-                                                    console.log('retry success');
-                                                    observer.next(res);        
-                                                    observer.complete();        
-                                                },        
-                                                (err) => {        
-                                                    console.log('retry failed');        
-                                                    observer.error(err);        
-                                                })        
-                                            });        
-                                        },        
-                                    error => {        
-                                        localStorage.removeItem('accessToken');        
-                                        localStorage.removeItem('refreshToken');        
-                                        this._router.navigate(['Starter','Login']); // router might not work, need more tests        
-                                    }        
-                                );        
-                            }
-                            observer.error(err);
-                            break;
-                        default:
-                            observer.error(err);
-                            break;
-                    }
-                })
-        });
-    }*/
 }

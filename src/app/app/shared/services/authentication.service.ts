@@ -53,10 +53,12 @@ export class AuthenticationService{
 	}
 
 	loginService(username:string,password:string):boolean{
-		let data:string = 'username='+username+'&password='+password;
-		this._http.post('/login',data).subscribe(
+		let data = {
+			username : username,
+			password : password
+		};
+		this._http.post('/login',JSON.stringify(data)).subscribe(
             	response => {
-            		this.is_loading = false;
             		if(response.json().success == 1){//success login
             			//set token to local storage(mobile)
             			localStorage.setItem('accessToken', response.json().token);
@@ -66,6 +68,7 @@ export class AuthenticationService{
             		}
             	},
             	error => {
+            		console.log(error);
             		this.error_msg = 'failed connecting to login service';
             	}
             );
@@ -73,8 +76,19 @@ export class AuthenticationService{
 	}
 
 	logout(){
-		//destroy token for mobile device
-		localStorage.removeItem('accessToken');
+		this._http.get('/logout').subscribe(
+        	response => {
+        		if(response.json().success == 1){//success login
+        			//remove token of mobile device
+					localStorage.removeItem('accessToken');
+        		}else{//failed login
+        			console.log(response.json().error);
+        		}
+        	},
+        	error => {
+        		console.log(error);
+        	}
+        );
 		this._router.navigate(['Starter']);
 	}
 

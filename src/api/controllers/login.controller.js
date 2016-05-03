@@ -5,18 +5,43 @@ class LoginController {
     constructor() {
     }
     doLogin(req, res) {
-        let tokenSvc = new token_service_1.TokenService();
-        var tokenobj = {
-            user: {
-                name: req.body.username,
-                password: req.body.password
-            },
-            success: 1
-        };
-        var result = {
-            token: tokenSvc.generateToken(tokenobj)
-        };
-        res.cookie('accessToken', result.token, { httpOnly: true });
+        try {
+            let tokenSvc = new token_service_1.TokenService();
+            var tokenobj = {
+                user: {
+                    name: req.body.username,
+                    password: req.body.password
+                }
+            };
+            var result = {
+                success: 1,
+                token: tokenSvc.generateToken(tokenobj)
+            };
+            res.cookie('accessToken', result.token, { httpOnly: true });
+        }
+        catch (err) {
+            var result = {
+                success: 0
+            };
+        }
+        res.json(result);
+    }
+    doLogout(req, res) {
+        try {
+            req.session.destroy(function (err) {
+                if (err)
+                    throw err;
+                var result = {
+                    success: 1
+                };
+            });
+        }
+        catch (err) {
+            var result = {
+                success: 0,
+                error: err
+            };
+        }
         res.json(result);
     }
     verifyToken(token) {

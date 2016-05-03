@@ -9,18 +9,41 @@ export class LoginController{
 	}
 
 	doLogin(req:string,res:string){
-		let tokenSvc = new TokenService();
-		var tokenobj = {
-			user : {
-				name : req.body.username,
-				password : req.body.password
-			},
-			success : 1
-		};
-		var result = {
-			token : tokenSvc.generateToken(tokenobj)
-		};
-		res.cookie('accessToken',result.token,{httpOnly:true});
+		try{
+			let tokenSvc = new TokenService();
+			var tokenobj = {
+				user : {
+					name : req.body.username,
+					password : req.body.password
+				}
+			};
+			var result = {
+				success : 1
+				token : tokenSvc.generateToken(tokenobj)
+			};
+			res.cookie('accessToken',result.token,{httpOnly:true});
+		}catch(err){
+			var result = {
+				success : 0
+			};
+		}
+		res.json(result);
+	}
+
+	doLogout(req:string,res:string){
+		try{
+			req.session.destroy(function(err){
+				if(err)throw err;
+				var result = {
+					success : 1
+				}
+			});
+		}catch(err){
+			var result = {
+				success : 0,
+				error   : err
+			}
+		}
 		res.json(result);
 	}
 
