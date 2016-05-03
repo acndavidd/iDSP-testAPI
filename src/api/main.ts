@@ -38,13 +38,13 @@ app.use(function(req, res, next) {
     //validate token
     if(req.path !== '/service/login' && req.path !== '/service/refreshmodels'){//all request to service will validate token except login
         var token = '';
-        if(req.cookies['accessToken']){//accessed from web
-            token = cookieParser.JSONCookies(req.cookies).accessToken;
-        }else{//accessed from mobile
-            token = req.get('Authorization');
-            token = token.replace('Bearer ','');
-        }
         try{
+            if(req.cookies['accessToken']){//accessed from web
+                token = cookieParser.JSONCookies(req.cookies).accessToken;
+            }else{//accessed from mobile
+                token = req.get('Authorization');
+                token = token.replace('Bearer ','');
+            }
             var jwt = tokenSvc.verifyToken(token);
             res.locals.jwt = jwt;
             if(req.path === '/service/verifytoken'){
@@ -61,9 +61,12 @@ app.use(function(req, res, next) {
     }
     next();
 });
-
 router.get('/refreshmodels',ormSvc.refreshModels);
+
 router.post('/login',loginCtrl.doLogin);
+router.get('/logout',loginCtrl.doLogout);
+
+
 app.use('/service',router);
 app.listen(port);
 console.log('http://127.0.0.1:' + port + '/service');
