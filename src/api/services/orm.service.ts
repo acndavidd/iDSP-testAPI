@@ -1,41 +1,28 @@
-var path = require("path");
-var env = process.env.NODE_ENV || "development";
-var config = require(path.join(__dirname, '..', 'config', 'config.json'))[env];
-var Sequelize = require("sequelize");
-var db_orm = require('../model/');
-
+var vFs        = require("fs");
+var vPath = require("path");
+var vEnv = process.env.NODE_ENV || "development";
+var vConfig = require(path.join(__dirname, '..', 'config', 'config.json'))[env];
+var vSequelize = require("sequelize");
 export class ORMService{
-	private obj;
 	constructor(){
-		db_orm.setup(config.db.name, config.db.username, config.db.password, {
-	        host: config.db.host,
-	        native: false,
-	        dialect: config.db.dialect
-	    });
+		
 	}
-	
-	public executeFunction(req:string,res:string){
-		var sequelize = db_orm.sequelize();
-		console.log(req.param('id'));
-		return sequelize.transaction(function (t) {
-			var id = req.param('id');
-			// chain all your queries here. make sure you return them.
-			return db_orm.model('public.user').create({
-				userID: req.param('id') + 2,
-				password: 'anjayy'
-			},{transaction: t}).then(function (user) {
-				return db_orm.model('public.user').create({
-					userID: id+1,
-					password: 'hihi'
-				}, {transaction: t});
-			});
-		}).then(function (result) {
-		}).catch(function (err) {
-		});
+
+	public initialize(){
+		var vSequelize = new Sequelize(vConfig.db.database, config.username, config.password, config);
+		vFs.readdirSync(path.join(__dirname,'..','model')
+			.filter(function(file) {
+    			return (file.indexOf(".") !== 0) && (file !== "index.js");
+  			})
+ 			.forEach(function(file) {
+ 				console.log(file);
+    			//var model = sequelize.import(path.join(__dirname, file));
+    			//db[model.name] = model;
+  			});
+		//vSequelize = new Sequelize(vConfig.db.name);
 	}
 				
-
-	public refreshModels(req:string,res:string){
+	public refreshModels(pRequest:string,pResponse:string){
 		var proc = require('child_process').exec;
 		var modelPath = req.body.path;
         var cmd = 'spgen -d '+config.db.name+' -u '+config.db.username+' -s '+config.db.schema+' -h '+config.db .host;
@@ -47,7 +34,7 @@ export class ORMService{
             	res.send(error);
             }
             var response = stdout.replace(/\n/g,"<br/>");
-            res.send(response);
+            pRes.send(response);
         });
 	}
 }

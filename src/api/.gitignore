@@ -1,6 +1,6 @@
 node_modules
 typings
 /src/**/*.js.map
-/src/**/*.js
+/src/[^m]**/*.js
 .tscache
 *.tmp.txt
