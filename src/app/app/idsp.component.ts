@@ -4,17 +4,22 @@ import {HTTP_PROVIDERS} from 'angular2/http';
 import {FastClickStatic} from './shared/fastclick/fastclick.d';
 import {MatchMediaService} from './shared/services/match-media.service';
 import {LayoutService} from './shared/services/layout.service';
+import {HeaderService} from './shared/services/header.service';
 import {PageNavigationService} from './shared/services/page-navigation.service';
 import {AuthenticationService} from './shared/services/authentication.service';
 import {LoginComponent} from './login/components/login.component';
-import {VerificationComponent} from './verification/components/verification.component'; 
 import {HeaderComponent} from './shared/components/header.component';
 import {FooterMenuComponent} from './shared/components/footer-menu.component';
-import {HeaderService} from './shared/services/header.service';
 import {MainPageComponent} from './shared/components/main-page.component';
+import {MyTransactionComponent} from './my-transaction/components/my-transaction.component';
+import {BasicCallProcedureComponent} from './basic-call-procedure/components/basic-call-pro.component';
+import {CloseDayComponent} from './close-day/components/close-day.component';
+import {SettingsComponent} from './settings/components/settings.component';
+import {VerificationComponent} from './verification/components/verification.component';
 import {ForgotPasswordComponent} from './login/components/forgot-password.component';
 import {ModalComponent} from './shared/components/modal.component';
 import {ModalService} from './shared/services/modal.service';
+import {RetailerService} from './shared/services/retailer.service';
 declare var FastClick: FastClickStatic;
 declare var configChannel: any;
 
@@ -29,6 +34,7 @@ declare var configChannel: any;
             <idsp-footer-menu></idsp-footer-menu>
     	</div>
     `,
+
     directives: [
         HeaderComponent,
         FooterMenuComponent,
@@ -41,8 +47,9 @@ declare var configChannel: any;
         LayoutService,
         PageNavigationService,
         AuthenticationService,
+        ModalService,
         HeaderService,
-        ModalService
+        RetailerService
     ]
 })
 
@@ -59,7 +66,7 @@ declare var configChannel: any;
         component: VerificationComponent
     },
     {
-        path: '/main/...',
+        path: './...',
         name: 'MainPage',
         component: MainPageComponent
     },

@@ -1,11 +1,18 @@
 {
   "development": {
   	"db" : {
+      "dialect"  : "postgres",
+      "host"     : "localhost",
+      "schema"   : "public",
   		"username" : "root",
 	  	"password" : "",
-	    "dialect"  : "postgres",
 	    "name" 	   : "idsp",
-	    "port"     : 5432
+	    "port"     : 5432,
+      "pool"     : {
+          "min"  : 0,
+          "max"  : 5,
+          "idle" : 10000
+      }
   	},
     "service" : {
       "key" : "J@karta",

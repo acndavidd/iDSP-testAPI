@@ -1,0 +1,28 @@
+{
+    "public.role": {
+        "belongsToMany": {
+            "relatedUserRoleIdFkeyCreatedBies": null,
+            "relatedUserRoleIdFkeyUpdatedBies": null
+        },
+        "hasMany": {
+            "userRoleIdFkeys": null
+        }
+    },
+    "public.user": {
+        "belongsTo": {
+            "relatedCreatedBy": null,
+            "relatedRoleId": null,
+            "relatedUpdatedBy": null
+        },
+        "belongsToMany": {
+            "relatedCreatedByFkeyRoleIds": null,
+            "relatedCreatedByFkeyUpdatedBies": null,
+            "relatedUpdatedByFkeyCreatedBies": null,
+            "relatedUpdatedByFkeyRoleIds": null
+        },
+        "hasMany": {
+            "createdByFkeys": null,
+            "updatedByFkeys": null
+        }
+    }
+}

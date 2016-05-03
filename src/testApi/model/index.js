@@ -127,6 +127,8 @@ function init() {
     getFileList(modelsPath).forEach(defineModel);
     processAllRelations(defineRelation);
 
+    console.log("proses define relation");
+
     if (debug) {
         fs.closeSync(debugFD);
     }

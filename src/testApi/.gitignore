@@ -4,3 +4,4 @@ js
 .tscache
 *.tmp.txt
 *.js.map
+*.js

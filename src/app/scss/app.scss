@@ -1,6 +1,6 @@
 @import '../node_modules/spinkit/scss/spinners/7-three-bounce';
 @import '../node_modules/spinkit/scss/spinners/8-circle';
-@import "idsp";
+@import 'idsp';
 @import "layout";
 @import "header";
 @import "footer";
@@ -9,6 +9,7 @@
 @import "mytransaction";
 @import "setting";
 @import "verification";
+@import "modal-verificationcode";
 @import "targets-actuals";
 @import "inventory";
 @import "retailer-route";
