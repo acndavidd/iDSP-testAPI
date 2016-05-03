@@ -1,4 +1,4 @@
-.modalVerificationCode {
+.modal-verification-code {
     background-color: #E6E7E9;
     margin-left: auto;
     margin-right: auto;
@@ -7,31 +7,31 @@
     border: 1px solid #FFF;
     box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.4);
     border-radius: 15px;
-    .modalBody {
+    .modal-body {
         display: inline-block;
         width: calc(100% - 20px);
         padding: 20px 10px 0px 10px;
-        .itemHeader {
+        .item-header {
             font-size: 24px;
             margin-bottom: 30px;
             text-align: center;
             color: #000;
         }
-        .itemTitle {
+        .item-title {
             font-size: 15px;
             font-weight: bold;
             margin: 0px 0px 10px 30px;
         }
-        .itemSubTitle {
+        .item-subtitle {
             font-size: 20px;
             color: #000;
             margin: 0px 0px 10px 30px;
         }
-        .itemRow {
+        .item-row {
             margin-bottom: 5px;
             width: 100%;
             display: inline-block;
-            .itemIcon {
+            .item-icon {
                 float: left;
                 width: 30px;
                 height: 30px;
@@ -48,7 +48,7 @@
                     background-size: 30px;
                 }
             }
-            .itemText {
+            .item-text {
                 float: left;
                 font-size: 14px;
                 color: black;
@@ -67,7 +67,7 @@
             }
         }
     }
-    .modalFooter {
+    .modal-footer {
         display: inline-block;
         width: calc(100% - 20px);
         text-align: right;

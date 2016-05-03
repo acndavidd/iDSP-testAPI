@@ -36,5 +36,6 @@ export class BasicCallProcedureComponent {
     {
     	console.log('aaa');
     	this._router.navigate(['DetailRetailer']);
+    	//this._router.navigate(['RetailerSalesOrder']);
     }
 }

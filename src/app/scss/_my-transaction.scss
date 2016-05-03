@@ -1,9 +1,9 @@
-.myTransaction {
+.my-transaction {
     //padding-bottom: 45px;
     z-index: 1;
     height: 100%;
     background-color: #E6E7E9;
-    .containerBody {
+    .container-body {
         //width: 100%;
         height: 100%;
         background-color: #E6E7E9;
@@ -17,7 +17,7 @@
             padding-bottom: 12px;
             padding-top: 12px;
             background-color: #00989B;
-            .buttonIdentifier {
+            .button-identifier {
                 font-size: 17px;
                 text-align: center;
                 &.green {
@@ -33,7 +33,7 @@
                     color: #008080;
                 }
             }
-            .buttonValue {
+            .button-value {
                 font-size: 15px;
                 float: right;
                 font-size: 15px;
@@ -47,7 +47,7 @@
                 }
             }
         }
-        .itemFooterContainer {
+        .item-footer-container {
             display: inline-block;
             width: 100%;
             padding-top: 20px;
