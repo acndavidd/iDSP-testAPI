@@ -21,7 +21,7 @@ export class SettingsComponent {
         private _layoutService: LayoutService,
         private _router: Router,
         private _matchMediaService: MatchMediaService,
-        private _authenticationService: AuthenticationService
+        private _authenticationService: AuthenticationService,
         private _headerService: HeaderService
         ) {
 

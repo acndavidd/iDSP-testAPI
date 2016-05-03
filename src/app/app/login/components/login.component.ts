@@ -12,7 +12,7 @@ declare var ga:any;
 
 @Component({
     selector: 'login',
-    templateUrl: './app/login/components/login.html',
+    templateUrl: './app/login/components/login.component.html',
     directives: [
         NgModel
     ],
