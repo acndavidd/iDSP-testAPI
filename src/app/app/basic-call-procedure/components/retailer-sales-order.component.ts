@@ -3,38 +3,32 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/ro
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
-// import {RetailerService} from '../../shared/services/retailer.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
-    templateUrl: './app/basic-call-procedure/components/basic-call-pro.component.html',
+	selector: 'retailer-sales-order',
+    templateUrl: './app/basic-call-procedure/components/retailer-sales-order.component.html',
 	directives: [
+		NgModel,
 		ROUTER_DIRECTIVES
     ]
 })
 
-export class BasicCallProcedureComponent {
+export class RetailerSalesOrderComponent {
+	
 
 	constructor (
 		private _layoutService: LayoutService,
 		private _matchMediaService: MatchMediaService,
-		private _headerService: HeaderService,
-		// private _retailerService: RetailerService,
-		private _router: Router
+		private _headerService: HeaderService
 		) 
 	{
-		// this._retailerService.getRetailer(100);
-		this._layoutService.setCurrentPage('BasicCallProcedure');
-		this._headerService.setTitle("Basic Call Procedure");
+		this._layoutService.setCurrentPage('RetailerSalesOrder');
+		this._headerService.setTitle("Retailer Sales Order");
     }
 	
 	getResize(){
         return this._matchMediaService.getmm();  
     }
 
-    gotoDetailRetailer()
-    {
-    	console.log('aaa');
-    	this._router.navigate(['DetailRetailer']);
-    }
 }

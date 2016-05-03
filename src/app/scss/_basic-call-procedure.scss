@@ -1,0 +1,204 @@
+.basicCallProContainer {
+    //padding-bottom: 45px;
+    z-index: 1;
+    height: 100%;
+    background-color: #FFF;
+    .containerBody {
+        background-color: white;
+        width: 100%;
+        height: 100%;
+        .header {
+            display: inline-block;
+            width: 100%;
+            border-bottom: 1px solid #BFBFBF;
+            background-size: cover;
+            height: 140px;
+            .void {
+                display: inline-block;
+                width: 100%;
+                height: 136px;
+            }
+            .text {
+                display: inline-block;
+                background-color: #000;
+                width: calc(100% - 20px);
+                padding: 10px;
+                height: 37px;
+                .headerText {
+                    color: #FFF;
+                    font-size: 20px;
+                }
+                .headerSubText {
+                    color: #FFF;
+                    font-size: 15px;
+                    line-height: 20px;
+                }
+            }
+        }
+        .itemContainer {
+            display: inline-block;
+            width: calc(100% - 20px);
+            padding-left: 10px;
+            padding-right: 10px;
+            border-bottom: 1px solid #BFBFBF;
+            cursor: pointer;
+            .itemTitle{
+                font-size: 30px;
+                font-weight: bold;
+                margin-bottom: 5px;
+                margin-top: 5px;
+            }
+            .itemIcon {
+                height: 30px;
+                width: 30px;
+                float: right;
+                color: #000;
+                font-size: 17px;
+                text-align: center;
+                &.openSubItem {
+                    background: url("../img/icon-idsp/path-right-grey.png")no-repeat;
+                    background-position-x: center;
+                    background-position-y: 7px;
+                    background-size: 13px;
+                }
+                &.selected
+                {
+                    transform: rotate(180deg);
+                }
+                &.call
+                {
+                    background: url("../img/icon-idsp/phone-grey.png")no-repeat;
+                    background-position-x: center;
+                    background-position-y: 7px;
+                    background-size: 20px;
+                }
+            }
+            .itemIdentifier {
+                color: #7F7F7F;
+                font-size: 18px;
+                margin-right: 10px;
+                margin-top: 10px;
+                &.singleLine {
+                    width: 125px;
+                    float: left;
+                }
+                &:after {
+                    clear: both;
+                }
+            }
+            .itemValue{
+                font-size: 18px;
+                color: #000;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                padding-top:5px;
+                float: left;
+                &.red {
+                    color: red;
+                }
+                ul {
+                    margin: 0px 0px 15px -20px;
+                }
+                .text {
+                    margin: 0px 0px 5px 0px;
+                    color: #000;
+                }
+                &.multiLine {
+                    margin: 0px 0px 0px 10px;
+                }
+                &.singleLine {
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    width: 100px;
+                    float: right;
+                    text-align: right;
+                    &:after {
+                        clear: both;
+                    }
+                }
+            }
+
+
+        }
+
+        .itemSubContainer {
+            display: inline-block;
+            width: calc(100% - 20px);
+            padding-left: 10px;
+            padding-right: 20px;
+            border-bottom: 1px solid #BFBFBF;
+            cursor: pointer;
+            background-color: #EEE;
+            .itemTitle{
+                font-size: 30px;
+                font-weight: bold;
+                margin-bottom: 5px;
+                margin-top: 5px;
+            }
+            .itemIcon {
+                height: 30px;
+                width: 30px;
+                float: right;
+                color: #000;
+                font-size: 17px;
+                text-align: center;
+                &.openSubItem {
+                    background: url("../img/icon-idsp/path-down-grey.png")no-repeat;
+                    background-position-x: center;
+                    background-position-y: 7px;
+                    background-size: 20px;
+                }
+                &.selected
+                {
+                    transform: rotate(180deg);
+                }
+            }
+            .itemIdentifier {
+                color: #7F7F7F;
+                font-size: 18px;
+                margin-right: 10px;
+                margin-top: 10px;
+                &.singleLine {
+                    width: 125px;
+                    float: left;
+                }
+                &:after {
+                    clear: both;
+                }
+            }
+            .itemValue{
+                font-size: 18px;
+                color: #000;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                padding-top:5px;
+                float: left;
+                &.red {
+                    color: red;
+                }
+                ul {
+                    margin: 0px 0px 15px -20px;
+                }
+                .text {
+                    margin: 0px 0px 5px 0px;
+                    color: #000;
+                }
+                &.multiLine {
+                    margin: 0px 0px 0px 10px;
+                }
+                &.singleLine {
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    width: 100px;
+                    float: right;
+                    text-align: right;
+                    &:after {
+                        clear: both;
+                    }
+                }
+            }
+
+
+        }
+    }
+}
