@@ -1,16 +1,16 @@
- <div class="footerMenu" *ngIf="getLayout().appFooter">
+ <div class="footer-menu" *ngIf="getLayout().appFooter">
     <div class="column" (click)="gotoMyTransaction()">
-      <div class="mytransaction" [ngClass]="{ active : getFooterState().mytransaction}"></div>
+      <div class="my-transaction" [ngClass]="{ active : getFooterState().mytransaction}"></div>
       <div class="text"[ngClass]="{ active : getFooterState().mytransaction}">My Transaction</div>
    </div>
  
    <div class="column" (click)="gotoBasicCallProcedure()">
-      <div class="basicp" [ngClass]="{ active : getFooterState().basicp}"></div>
+      <div class="basic-procedure" [ngClass]="{ active : getFooterState().basicp}"></div>
       <div class="text" [ngClass]="{ active : getFooterState().basicp}">Basic Procedure</div>
    </div>
  
    <div class="column" (click)="gotoCloseDay()">
-      <div class="closeday" [ngClass]="{ active : getFooterState().closeday}"></div>
+      <div class="close-day" [ngClass]="{ active : getFooterState().closeday}"></div>
       <div class="text" [ngClass]="{ active : getFooterState().closeday}">Close Day</div> 
    </div>
  

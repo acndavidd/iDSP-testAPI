@@ -1,9 +1,9 @@
-.detailRetailerContainer {
+.detail-retailer-container {
     //padding-bottom: 45px;
     z-index: 1;
     height: 100%;
     background-color: #FFF;
-    .containerBody {
+    .container-body {
         background-color: white;
         width: 100%;
         height: 100%;
@@ -24,38 +24,38 @@
                 width: calc(100% - 20px);
                 padding: 10px;
                 height: 37px;
-                .headerText {
+                .header-text {
                     color: #FFF;
                     font-size: 20px;
                 }
-                .headerSubText {
+                .header-sub-text {
                     color: #FFF;
                     font-size: 15px;
                     line-height: 20px;
                 }
             }
         }
-        .itemContainer {
+        .item-container {
             display: inline-block;
             width: calc(100% - 20px);
             padding-left: 10px;
             padding-right: 10px;
             border-bottom: 1px solid #BFBFBF;
             cursor: pointer;
-            .itemTitle{
+            .item-title{
                 font-size: 30px;
                 font-weight: bold;
                 margin-bottom: 5px;
                 margin-top: 5px;
             }
-            .itemIcon {
+            .item-icon {
                 height: 30px;
                 width: 30px;
                 float: right;
                 color: #000;
                 font-size: 17px;
                 text-align: center;
-                &.openSubItem {
+                &.open-sub-item {
                     background: url("../img/icon-idsp/path-down-grey.png")no-repeat;
                     background-position-x: center;
                     background-position-y: 7px;
@@ -73,12 +73,12 @@
                     background-size: 20px;
                 }
             }
-            .itemIdentifier {
+            .item-identifier {
                 color: #7F7F7F;
                 font-size: 18px;
                 margin-right: 10px;
                 margin-top: 10px;
-                &.singleLine {
+                &.single-line {
                     width: 125px;
                     float: left;
                 }
@@ -86,7 +86,7 @@
                     clear: both;
                 }
             }
-            .itemValue{
+            .item-value{
                 font-size: 18px;
                 color: #000;
                 margin-right: 10px;
@@ -103,10 +103,10 @@
                     margin: 0px 0px 5px 0px;
                     color: #000;
                 }
-                &.multiLine {
+                &.multi-line {
                     margin: 0px 0px 0px 10px;
                 }
-                &.singleLine {
+                &.single-line {
                     margin-top: 10px;
                     margin-bottom: 10px;
                     width: 100px;
@@ -119,7 +119,7 @@
             }            
         }
 
-        .itemSubContainer {
+        .item-sub-container {
             display: inline-block;
             width: calc(100% - 20px);
             padding-left: 10px;
@@ -127,20 +127,20 @@
             border-bottom: 1px solid #BFBFBF;
             cursor: pointer;
             background-color: #EEE;
-            .itemTitle{
+            .item-title{
                 font-size: 30px;
                 font-weight: bold;
                 margin-bottom: 5px;
                 margin-top: 5px;
             }
-            .itemIcon {
+            .item-icon {
                 height: 30px;
                 width: 30px;
                 float: right;
                 color: #000;
                 font-size: 17px;
                 text-align: center;
-                &.openSubItem {
+                &.open-sub-item {
                     background: url("../img/icon-idsp/path-down-grey.png")no-repeat;
                     background-position-x: center;
                     background-position-y: 7px;
@@ -151,12 +151,12 @@
                     transform: rotate(180deg);
                 }
             }
-            .itemIdentifier {
+            .item-identifier {
                 color: #7F7F7F;
                 font-size: 18px;
                 margin-right: 10px;
                 margin-top: 10px;
-                &.singleLine {
+                &.single-line {
                     width: 125px;
                     float: left;
                 }
@@ -164,7 +164,7 @@
                     clear: both;
                 }
             }
-            .itemValue{
+            .item-value{
                 font-size: 18px;
                 color: #000;
                 margin-right: 10px;
@@ -181,10 +181,10 @@
                     margin: 0px 0px 5px 0px;
                     color: #000;
                 }
-                &.multiLine {
+                &.multi-line {
                     margin: 0px 0px 0px 10px;
                 }
-                &.singleLine {
+                &.single-line {
                     margin-top: 10px;
                     margin-bottom: 10px;
                     width: 100px;
@@ -197,7 +197,7 @@
             }
 
         }
-        .startBCPButton
+        .start-basic-procedure-button
             {
                 height: 35px;
                 background-color: #00C2BA;

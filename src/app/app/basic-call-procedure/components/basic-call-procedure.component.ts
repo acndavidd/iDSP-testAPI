@@ -7,7 +7,7 @@ import {RetailerService} from '../../shared/services/retailer.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
-    templateUrl: './app/basic-call-procedure/components/basic-call-pro.component.html',
+    templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
 	directives: [
 		ROUTER_DIRECTIVES
     ]

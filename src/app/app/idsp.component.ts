@@ -12,7 +12,7 @@ import {HeaderComponent} from './shared/components/header.component';
 import {FooterMenuComponent} from './shared/components/footer-menu.component';
 import {MainPageComponent} from './shared/components/main-page.component';
 import {MyTransactionComponent} from './my-transaction/components/my-transaction.component';
-import {BasicCallProcedureComponent} from './basic-call-procedure/components/basic-call-pro.component';
+import {BasicCallProcedureComponent} from './basic-call-procedure/components/basic-call-procedure.component';
 import {CloseDayComponent} from './close-day/components/close-day.component';
 import {SettingsComponent} from './settings/components/settings.component';
 import {VerificationComponent} from './verification/components/verification.component';
