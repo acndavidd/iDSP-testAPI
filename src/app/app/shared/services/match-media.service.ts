@@ -3,9 +3,9 @@ import {Injectable} from 'angular2/core';
 @Injectable()
 export class MatchMediaService {
 
-	key;
+	vKey;
 	
-    rules = {
+    vRules = {
             print: "print",
             screen : "screen",
             small : "(max-width: 640px)",
@@ -16,7 +16,7 @@ export class MatchMediaService {
             landscape : "(orientation: landscape)"
         };
         
-    mmqry ={
+    vMmqry ={
         	print: false,
             screen : false,
             small : false,
@@ -31,26 +31,26 @@ export class MatchMediaService {
 
     OnResize() {
         // get media query
-        for (this.key in this.rules) {
-            if (this.rules.hasOwnProperty(this.key)) {
-            this.mmqry[this.key] = window.matchMedia(this.rules[this.key]).matches;
+        for (this.vKey in this.vRules) {
+            if (this.vRules.hasOwnProperty(this.vKey)) {
+            this.vMmqry[this.vKey] = window.matchMedia(this.vRules[this.vKey]).matches;
             }
         }
         
-        if(this.mmqry.large || this.mmqry.xlarge){
-            this.mmqry.largeUp = true;
+        if(this.vMmqry.large || this.vMmqry.xlarge){
+            this.vMmqry.largeUp = true;
         } else{
-            this.mmqry.largeUp = false;
+            this.vMmqry.largeUp = false;
         }
-		if(this.mmqry.medium || this.mmqry.large || this.mmqry.xlarge){
-            this.mmqry.mediumUp = true;
+		if(this.vMmqry.medium || this.vMmqry.large || this.vMmqry.xlarge){
+            this.vMmqry.mediumUp = true;
         } else{
-            this.mmqry.mediumUp = false;
+            this.vMmqry.mediumUp = false;
         }
     }
     
-    getmm(){
-        return this.mmqry;
+    getMm(){
+        return this.vMmqry;
     }
 
 }

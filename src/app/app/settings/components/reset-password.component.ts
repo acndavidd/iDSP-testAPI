@@ -28,7 +28,7 @@ export class ResetPasswordComponent {
     }
 	
 	getResize(){
-        return this._matchMediaService.getmm();  
+        return this._matchMediaService.getMm();  
     }
 
 }

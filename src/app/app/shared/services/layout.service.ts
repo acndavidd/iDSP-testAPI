@@ -5,251 +5,253 @@ import {MatchMediaService} from './match-media.service';
 @Injectable()
 export class LayoutService {
 
-	currentPage: string;
-    numberSelection = false;
+	vCurrentPage: string;
+    vNumberSelection = false;
     
     constructor (private _pageNavigationService: PageNavigationService,
     private _matchMediaService: MatchMediaService) {
         
     }
 
-	layoutState = {
+	vLayoutState = {
 		appHeader: false,
         appFooter: false
 	};
     
-    footerItem = {
+
+    Unused
+    vFooterItem = {
         start: true,
         call: true,
         end: true,
         setting: true
     };
 
-    footerState = {
-        mytransaction: false,
-        basicp :false,
-        closeday : false,
+    vFooterState = {
+        myTransaction: false,
+        basicCallProcedure :false,
+        closeDay : false,
         settings :false
     }
     
-    headerItem = {
+    vHeaderItem = {
         back: false,
         filter: false,
         edit: false
     };
 
 	getCurrentPage(){
-		return this.currentPage;
+		return this.vCurrentPage;
 	}
     
     getFooterState(){
-        return this.footerState;
+        return this.vFooterState;
     }
 
-    getFooterLayout(){
-        return this.footerItem;
-    }
+    //getFooterLayout(){
+    //    return this.vFooterItem;
+    //}
 	
 	getLayout(){
-		return this.layoutState;
+		return this.vLayoutState;
 	}
     
     setNumberSelectionState(){
-        this.numberSelection = !this.numberSelection;
+        this.vNumberSelection = !this.vNumberSelection;
     }
     
     getNumberSelectionState(){
-        return this.numberSelection;
+        return this.vNumberSelection;
     }
 
-    getfooterItem(){
-        return this.footerItem;
+    getFooterItem(){
+        return this.vFooterItem;
     }
 
     getHeaderLayout(){
-        return this.headerItem;
+        return this.vHeaderItem;
     }
 
-    setCurrentPage(current : string)
+    setCurrentPage(pCurrent : string)
     {
-        this.currentPage = current;
+        this.vCurrentPage = pCurrent;
         
-      if(current == 'GetStarted' ||
-        current == 'Verification' ||
-        current == 'Login'){
+      if(pCurrent == 'GetStarted' ||
+        pCurrent == 'Verification' ||
+        pCurrent == 'Login'){
         
-            this.layoutState = {
+            this.vLayoutState = {
                 appHeader: false,
                 appFooter: false
             };
         }
 
-        else if(current=='MyTransaction')
+        else if(pCurrent=='MyTransaction')
         {
-            this.layoutState = {
+            this.vLayoutState = {
                 appHeader: true,
                 appFooter: true
             };
-            this.footerState = 
+            this.vFooterState = 
             {
-                mytransaction : true,
-                basicp : false,
-                closeday : false,
+                myTransaction : true,
+                basicCallProcedure : false,
+                closeDay : false,
                 settings : false
             };    
-            this.headerItem = {
+            this.vHeaderItem = {
                 back: false,
                 filter: false,
                 edit: false
             }
          }
-        else if(current=='BasicCallProcedure')
+        else if(pCurrent=='BasicCallProcedure')
         {
-            this.layoutState = {
+            this.vLayoutState = {
                 appHeader: true,
                 appFooter: true
             };
-            this.footerState = 
+            this.vFooterState = 
             {
-                mytransaction : false,
-                basicp : true,
-                closeday : false,
+                myTransaction : false,
+                basicCallProcedure : true,
+                closeDay : false,
                 settings : false
             };    
-            this.headerItem = {
+            this.vHeaderItem = {
                 back: false,
                 filter: false,
                 edit: false
             }
         }
-        else if(current=='CloseDay')
+        else if(pCurrent=='CloseDay')
         {
-            this.layoutState = {
+            this.vLayoutState = {
                 appHeader: true,
                 appFooter: true
             };
-            this.footerState = 
+            this.vFooterState = 
             {
-                mytransaction : false,
-                basicp : false,
-                closeday : true,
+                myTransaction : false,
+                basicCallProcedure : false,
+                closeDay : true,
                 settings : false
             };    
-            this.headerItem = {
+            this.vHeaderItem = {
                 back: false,
                 filter: false,
                 edit: false
             }
         }
-        else if(current=='Settings')
+        else if(pCurrent=='Settings')
         {
-            this.layoutState = {
+            this.vLayoutState = {
                 appHeader: true,
                 appFooter: true
             };
-            this.footerState = 
+            this.vFooterState = 
             {
-                mytransaction : false,
-                basicp : false,
-                closeday : false,
+                myTransaction : false,
+                basicCallProcedure : false,
+                closeDay : false,
                 settings : true
             };    
-            this.headerItem = {
+            this.vHeaderItem = {
                 back: false,
                 filter: false,
                 edit: false
             }
         }
         else if(
-            current=='TargetsActuals' ||
-            current=='Inventory' ||
-            current=='RetailerRoute' ||
-            current=='AccountsReceivables' ||
-            current=='DSPAlerts')
+            pCurrent=='TargetsActuals' ||
+            pCurrent=='Inventory' ||
+            pCurrent=='RetailerRoute' ||
+            pCurrent=='AccountsReceivables' ||
+            pCurrent=='DSPAlerts')
         {
             this._pageNavigationService.setPreviousPage('MyTransaction');
             
-            this.layoutState = {
+            this.vLayoutState = {
                 appHeader: true,
                 appFooter: true
             };
-            this.footerState = 
+            this.vFooterState = 
             {
-                mytransaction : true,
-                basicp : false,
-                closeday : false,
+                myTransaction : true,
+                basicCallProcedure : false,
+                closeDay : false,
                 settings : false
             };    
-            this.headerItem = {
+            this.vHeaderItem = {
                 back: true,
                 filter: false,
                 edit: false
             }
         }
         else if(
-            current=='TargetActual' ||
-            current=='VisiteRetail' ||
-            current=='Collection' ||
-            current=='StockReturn' ||
-            current=='Sync')
+            pCurrent=='TargetActual' ||
+            pCurrent=='VisiteRetail' ||
+            pCurrent=='Collection' ||
+            pCurrent=='StockReturn' ||
+            pCurrent=='Sync')
         {
             this._pageNavigationService.setPreviousPage('CloseDay');
             
-            this.layoutState = {
+            this.vLayoutState = {
                 appHeader: true,
                 appFooter: true
             };
-            this.footerState = 
+            this.vFooterState = 
             {
-                mytransaction : false,
-                basicp : false,
-                closeday : true,
+                myTransaction : false,
+                basicCallProcedure : false,
+                closeDay : true,
                 settings : false
             };    
-            this.headerItem = {
+            this.vHeaderItem = {
                 back: true,
                 filter: false,
                 edit: false
             }
         } 
-        else if(current=='ResetPassword')
+        else if(pCurrent=='ResetPassword')
         {
             this._pageNavigationService.setPreviousPage('Settings');
             
-            this.layoutState = {
+            this.vLayoutState = {
               appHeader: true,
               appFooter: true
             };
-            this.footerState = 
+            this.vFooterState = 
             {
-                mytransaction : false,
-                basicp : false,
-                closeday : false,
+                myTransaction : false,
+                basicCallProcedure : false,
+                closeDay : false,
                 settings : true
             };    
-            this.headerItem = {
+            this.vHeaderItem = {
                 back: true,
                 filter: false,
                 edit: false
             }
         }
-        else if(current=='RetailerSalesOrder' 
-            || current=='DetailRetailer')
+        else if(pCurrent=='RetailerSalesOrder' 
+            || pCurrent=='DetailRetailer')
         {
             this._pageNavigationService.setPreviousPage('BasicCallProcedure');
             
-            this.layoutState = {
+            this.vLayoutState = {
               appHeader: true,
               appFooter: true
             };
-            this.footerState = 
+            this.vFooterState = 
             {
-                mytransaction : false,
-                basicp : true,
-                closeday : false,
+                myTransaction : false,
+                basicCallProcedure : true,
+                closeDay : false,
                 settings : false
             };    
-            this.headerItem = {
+            this.vHeaderItem = {
                 back: true,
                 filter: false,
                 edit: false

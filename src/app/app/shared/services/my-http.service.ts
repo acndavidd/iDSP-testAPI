@@ -5,19 +5,19 @@ import {Http, Request, RequestOptions, RequestMethod, RequestOptionsArgs, Header
 import {Observable} from 'rxjs/Observable';
 import {Router} from 'angular2/router';
 
-declare var configChannel: any;
+declare var vConfigChannel: any;
 
 @Injectable()
 export class MyHttp {
-    private serviceBaseUrl: string;
-    private timeout: number;         
+    private vServiceBaseUrl: string;
+    private vTimeout: number;         
 
     constructor(private _http: Http,        
                 private _router: Router) {
-        this.serviceBaseUrl = '';  
+        this.vServiceBaseUrl = '';  
         /*
         const url = 'config/service.json';
-        this.serviceBaseUrl = '';       
+        this.vServiceBaseUrl = '';       
         this._http.get(url,        
             <RequestOptionsArgs> {        
                 headers: new Headers({        
@@ -26,61 +26,61 @@ export class MyHttp {
             })        
            .subscribe(file => {        
                let config = file.json();
-               this.serviceBaseUrl = config.baseUrl;    
+               this.vServiceBaseUrl = config.baseUrl;    
                this.timeout = Number(config.timeout);
-               console.log(this.serviceBaseUrl);    
+               console.log(this.vServiceBaseUrl);    
            });*/    
     }
 
-    public get(url: string, options?: RequestOptionsArgs) {
-        return this._request(RequestMethod.Get, url, null, options);
+    public get(pUrl: string, pOptions?: RequestOptionsArgs) {
+        return this._request(RequestMethod.Get, pUrl, null, pOptions);
     }
 
-    public post(url: string, body: string, options?: RequestOptionsArgs) {
-        return this._request(RequestMethod.Post, url, body, options);
+    public post(pUrl: string, pBody: string, pOptions?: RequestOptionsArgs) {
+        return this._request(RequestMethod.Post, pUrl, pBody, pOptions);
     }
 
-    public put(url: string, body: string, options?: RequestOptionsArgs) {
-        return this._request(RequestMethod.Put, url, body, options);
+    public put(pUrl: string, pBody: string, pOptions?: RequestOptionsArgs) {
+        return this._request(RequestMethod.Put, pUrl, pBody, pOptions);
     }
 
-    public delete(url: string, options?: RequestOptionsArgs) {
-        return this._request(RequestMethod.Delete, url, null, options);
+    public delete(pUrl: string, pOptions?: RequestOptionsArgs) {
+        return this._request(RequestMethod.Delete, pUrl, null, pOptions);
     }
 
     private _createAuthHeaders(method: RequestMethod): Headers {
-        let headers: Headers = new Headers();
+        let vHeaders: Headers = new Headers();
         if (method != RequestMethod.Get) {
-            headers.append('Content-Type', 'application/json');
+            vHeaders.append('Content-Type', 'application/json');
         }
-        if (configChannel !== 'web') {
-            let accessToken = localStorage.getItem('accessToken');
-            if (accessToken) {
-                headers.append('Authorization', 'Bearer ' + accessToken)
+        if (vConfigChannel !== 'web') {
+            let vAccessToken = localStorage.getItem('accessToken');
+            if (vAccessToken) {
+                vHeaders.append('Authorization', 'Bearer ' + vAccessToken)
             }
         }
-        return headers;
+        return vHeaders;
     }
 
 
     private _request(method: RequestMethod, url: string, body?: string, options?: RequestOptionsArgs): Observable<any> {
-        let requestOptions = new RequestOptions({
+        let vRequestOptions = new RequestOptions({
             method: method,
             body: body
         });
         //using custom options
         if (options) {
             for (let attrname in options) {
-                requestOptions[attrname] = options[attrname];
+                vRequestOptions[attrname] = options[attrname];
             }
         } else {
-            requestOptions.headers = this._createAuthHeaders(method);
+            vRequestOptions.headers = this._createAuthHeaders(method);
         }
 
-        return Observable.create((observer) => {
-            const configUrl = 'config/service.json';
-            if(this.serviceBaseUrl === ''){
-                this._http.get(configUrl,        
+        return Observable.create((pObserver) => {
+            const CONFIG_URL = 'config/service.json';
+            if(this.vServiceBaseUrl === ''){
+                this._http.get(CONFIG_URL,        
                 <RequestOptionsArgs> {        
                     headers: new Headers({        
                         'Content-Type': 'application/x-www-form-urlencoded',        
@@ -88,33 +88,33 @@ export class MyHttp {
                 })        
                .subscribe(file => {        
                    let config = file.json();
-                   this.serviceBaseUrl = config.baseUrl;    
-                   this.timeout = Number(config.timeout);
-                   requestOptions.url = this.serviceBaseUrl + url;
-                   this.executeRequest(observer,requestOptions);
+                   this.vServiceBaseUrl = config.baseUrl;    
+                   this.vTimeout = Number(config.timeout);
+                   vRequestOptions.url = this.vServiceBaseUrl + url;
+                   this.executeRequest(pObserver,vRequestOptions);
                });
             }else{
-                requestOptions.url = this.serviceBaseUrl + url;
-                this.executeRequest(observer,requestOptions);
+                vRequestOptions.url = this.vServiceBaseUrl + url;
+                this.executeRequest(pObserver,vRequestOptions);
             }
         });
     }
 
-    public executeRequest(observer , opt:RequestOptions){
-        this._http.request(new Request(opt))
-            .timeout(this.timeout,{status:408})
+    public executeRequest(pObserver , pOpt:RequestOptions){
+        this._http.request(new Request(pOpt))
+            .timeout(this.vTimeout,{status:408})
             .subscribe(
                 (res) => {
-                    observer.next(res);
-                    observer.complete();
+                    pObserver.next(res);
+                    pObserver.complete();
                 },
                 (err) => {
                     switch (err.status) {
                         case 403:
-                            observer.error(err);
+                            pObserver.error(err);
                             break;
                         default:
-                            observer.error(err);
+                            pObserver.error(err);
                             break;
                     }
                 });
