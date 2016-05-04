@@ -1,5 +1,5 @@
  <div class="footer-menu" *ngIf="getLayout().appFooter">
-    <div class="column" (click)="gotoMyTransaction()">
+    <div class="column" (click)="goToMyTransaction()">
       <div class="my-transaction" [ngClass]="{ active : getFooterState().myTransaction}"></div>
       <div class="text"[ngClass]="{ active : getFooterState().myTransaction}">My Transaction</div>
    </div>
