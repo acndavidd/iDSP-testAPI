@@ -5,7 +5,7 @@
 1. Install grunt-cli `npm install -g grunt-cli`
 2. Run `npm install` from this directory.
 3. Run `typings install` from this directory
-
+4. Copy `config/config.json.example` to `config/config.json`
 
 ## Running
 run: tsc
