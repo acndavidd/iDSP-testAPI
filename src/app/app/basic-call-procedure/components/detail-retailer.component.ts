@@ -15,8 +15,8 @@ import {NgModel} from 'angular2/common';
 
 export class DetailRetailerComponent {
 
-    menuShow = false;
-    arrowMap = false;
+    vMenuShow = false;
+    vArrowMap = false;
 	constructor (
 		private _layoutService: LayoutService,
 		private _matchMediaService: MatchMediaService,
@@ -47,8 +47,8 @@ export class DetailRetailerComponent {
 
     subMenuShow()
     {
-        this.menuShow = !this.menuShow;
-        this.arrowMap = !this.arrowMap;
+        this.vMenuShow = !this.vMenuShow;
+        this.vArrowMap = !this.vArrowMap;
     }
 
     //  getRetailerAddress()
