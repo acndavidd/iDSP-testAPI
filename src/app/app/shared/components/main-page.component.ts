@@ -15,6 +15,7 @@ import {DSPAlertsComponent} from '../../my-transaction/components/dsp-alerts.com
 import {ResetPasswordComponent} from '../../settings/components/reset-password.component';
 import {RetailerSalesOrderComponent} from '../../basic-call-procedure/components/retailer-sales-order.component';
 import {DetailRetailerComponent} from '../../basic-call-procedure/components/detail-retailer.component';
+import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/sales-order-payment.component';
 
 
 @Component({
@@ -85,6 +86,12 @@ import {DetailRetailerComponent} from '../../basic-call-procedure/components/det
         path: '/detailRetailer',
         name: 'DetailRetailer',
         component: DetailRetailerComponent
+    },
+
+    {
+        path: '/salesOrderPayment',
+        name: 'SalesOrderPayment',
+        component: SalesOrderPaymentComponent
     },
     //UNDER BCP TAB - END
     

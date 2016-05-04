@@ -236,7 +236,8 @@ export class LayoutService {
             }
         }
         else if(pCurrent=='RetailerSalesOrder' 
-            || pCurrent=='DetailRetailer')
+            || pCurrent=='DetailRetailer'
+            || pCurrent=='SalesOrderPayment')
         {
             this._pageNavigationService.setPreviousPage('BasicCallProcedure');
             

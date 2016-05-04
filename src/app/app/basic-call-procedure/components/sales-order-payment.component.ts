@@ -6,7 +6,7 @@ import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
-	selector: 'retailer-sales-order',
+	selector: 'sales-order-payment',
     templateUrl: './app/basic-call-procedure/components/sales-order-payment.component.html',
 	directives: [
 		NgModel,
