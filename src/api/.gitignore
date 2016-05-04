@@ -4,3 +4,4 @@ typings
 /src/**/*.js
 .tscache
 *.tmp.txt
+config/migrate.json
