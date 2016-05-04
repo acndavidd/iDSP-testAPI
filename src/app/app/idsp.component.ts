@@ -71,7 +71,7 @@ declare var configChannel: any;
         component: MainPageComponent
     },
     {
-        path: '/forgotpassword',
+        path: '/forgotPassword',
         name: 'ForgotPassword',
         component: ForgotPasswordComponent
     }
@@ -96,13 +96,13 @@ export class IDSPComponent implements OnInit {
     }
 
      isFullScreen() {
-         let currentPage: string = this._layoutService.getCurrentPage();
-         return !currentPage || currentPage === 'GetStarted' || currentPage === 'Login' ||
-         currentPage === 'Register';
+         let vCurrentPage: string = this._layoutService.getCurrentPage();
+         return !vCurrentPage || vCurrentPage === 'GetStarted' || vCurrentPage === 'Login' ||
+         vCurrentPage === 'Register';
      }
  
      isSmallScreen() {
-         return !this._matchMediaService.getmm().largeUp;
+         return !this._matchMediaService.getMm().largeUp;
      }
 }
 
