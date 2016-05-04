@@ -5,3 +5,4 @@ typings
 .tscache
 *.tmp.txt
 config/config.json
+config/migrate.json
