@@ -4,6 +4,7 @@ import {MatchMediaService} from '../../shared/services/match-media.service';
 import {AuthenticationService} from '../../shared/services/authentication.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
+import {ModalService} from '../../shared/services/modal.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
@@ -23,6 +24,7 @@ export class SettingsComponent {
         private _matchMediaService: MatchMediaService,
         private _authenticationService: AuthenticationService,
         private _headerService: HeaderService
+        private _modalService: ModalService
         ) {
 
         this._layoutService.setCurrentPage('Settings');
@@ -32,6 +34,15 @@ export class SettingsComponent {
     goToResetPassword(){
         console.log('RESET');
         this._router.navigate(['ResetPassword']);
+    }
+
+    sync(){
+        console.log('Sync');
+        this._router.navigate(['Sync']);
+    }
+
+    toggleVerificationCodeModal() {
+        this._modalService.toggleVerificationCodeModal();
     }
 
 	getResize(){

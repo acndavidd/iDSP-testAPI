@@ -1,11 +1,13 @@
 <div class="setting">
     <div class="container-body">
         <div class="button">
-            <div class="button-identifier green">Reset Password</div>
+            <div class="button-identifier green" (click)="goToResetPassword()">Reset Password</div>
         </div>
          <div class="separator"></div>
-        <div class="button">
-            <div class="button-identifier green">Sync</div>
+         <div class="button">
+            <a (click)="toggleVerificationCodeModal()">
+                <div class="button-identifier green" (click)="sync()">Sync</div>
+            </a>
         </div>
          <div class="separator"></div>
          <div class="button">
