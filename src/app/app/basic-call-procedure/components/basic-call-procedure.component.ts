@@ -34,7 +34,7 @@ export class BasicCallProcedureComponent {
 
     gotoDetailRetailer()
     {
-    	console.log('aaa');
+    	console.log('in detail retailer BCP Component');
     	this._router.navigate(['DetailRetailer']);
     	//this._router.navigate(['RetailerSalesOrder']);
     }
