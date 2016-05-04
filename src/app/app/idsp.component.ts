@@ -20,6 +20,10 @@ import {ForgotPasswordComponent} from './login/components/forgot-password.compon
 import {ModalComponent} from './shared/components/modal.component';
 import {ModalService} from './shared/services/modal.service';
 import {RetailerService} from './shared/services/retailer.service';
+import {RetailerSalesOrderComponent} from './basic-call-procedure/components/retailer-sales-order.component';
+import {SalesOrderPaymentComponent} from './basic-call-procedure/components/sales-order-payment.component';
+
+
 declare var FastClick: FastClickStatic;
 declare var configChannel: any;
 
@@ -74,6 +78,17 @@ declare var configChannel: any;
         path: '/forgotPassword',
         name: 'ForgotPassword',
         component: ForgotPasswordComponent
+    },
+
+    {
+        path: '/retailerSalesOrder',
+        name: 'RetailerSalesOrder',
+        component: RetailerSalesOrderComponent
+    },
+    {
+        path: '/salesOrderPayment',
+        name: 'SalesOrderPayment',
+        component: SalesOrderPaymentComponent
     }
 ])
 export class IDSPComponent implements OnInit {
