@@ -28,8 +28,11 @@ export class LoginComponent {
 	}
 
 	login(pEvent) {
-        // event.preventDefault();
-        // this._authenticationService.login(this.username,this.password);
+        event.preventDefault();
+        //For Hit API
+        //this._authenticationService.login(this.vUsername,this.vPassword);
+
+        //For By Pass Directly without API
         this._router.navigate(['MainPage','MyTransaction']);
     }
 

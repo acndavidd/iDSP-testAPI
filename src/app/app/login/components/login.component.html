@@ -4,8 +4,8 @@
 		<div class="inner-box">
 			<div class="login-separator"></div>
 			<div class="error-alert">{{getErrorMessageText()}}</div>
-			<div><input placeholder="Username" [(ngModel)]="username"/></div>
-			<div><input placeholder="Password" type="password" [(ngModel)]="password"/></div>
+			<div><input placeholder="Username" [(ngModel)]="vUsername"/></div>
+			<div><input placeholder="Password" type="password" [(ngModel)]="vPassword"/></div>
 			<a (click)="login($event)"><div class="login-button">SIGN IN</div></a>
 			<p><a (click)="gotoForgetPassword()">Forgot your password?</a></p>
 		</div>

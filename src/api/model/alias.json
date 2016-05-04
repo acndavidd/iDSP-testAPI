@@ -1,28 +1,28 @@
 {
-    "public.role": {
-        "belongsToMany": {
-            "relatedUserRoleIdFkeyCreatedBies": null,
-            "relatedUserRoleIdFkeyUpdatedBies": null
-        },
-        "hasMany": {
-            "userRoleIdFkeys": null
+    "public.collection": {
+        "belongsTo": {
+            "relatedRetailerID": null
         }
     },
-    "public.user": {
+    "public.profile": {
         "belongsTo": {
-            "relatedCreatedBy": null,
-            "relatedRoleId": null,
-            "relatedUpdatedBy": null
-        },
-        "belongsToMany": {
-            "relatedCreatedByFkeyRoleIds": null,
-            "relatedCreatedByFkeyUpdatedBies": null,
-            "relatedUpdatedByFkeyCreatedBies": null,
-            "relatedUpdatedByFkeyRoleIds": null
-        },
+            "user": null
+        }
+    },
+    "public.retailer": {
         "hasMany": {
-            "createdByFkeys": null,
-            "updatedByFkeys": null
+            "fKs": null,
+            "routeFKs": null
+        }
+    },
+    "public.retailerRoute": {
+        "belongsTo": {
+            "relatedRetailerID": null
+        }
+    },
+    "public.users": {
+        "hasMany": {
+            "userProfiles": null
         }
     }
 }

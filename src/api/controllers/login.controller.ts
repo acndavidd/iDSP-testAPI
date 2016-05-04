@@ -8,7 +8,9 @@ export class LoginController{
 	constructor(){
 	}
 
-	doLogin(pReq:string,pRes:string){
+	doLogin(pReq,pRes){
+		var vResult;
+
 		try{
 			let vTokenSvc = new TokenService();
 			var vTokenobj = {
@@ -17,20 +19,20 @@ export class LoginController{
 					password : pReq.body.password
 				}
 			};
-			var vResult = {
-				success : 1
+			vResult = {
+				success : 1,
 				token : vTokenSvc.generateToken(vTokenobj)
 			};
 			pRes.cookie('accessToken',vResult.token,{httpOnly:true});
 		}catch(pErr){
-			var vResult = {
+			vResult = {
 				success : 0
 			};
 		}
 		pRes.json(vResult);
 	}
 
-	doLogout(pReq:string,pRes:string){
+	doLogout(pReq,pRes){
 		try{
 			pReq.session.destroy(function(pErr){
 				if(pErr)throw pErr;
@@ -57,7 +59,7 @@ export class LoginController{
 		}
 	}
 
-	sp(pReq:string,Res:string){
+	sp(pReq:string,pRes:string){
 		let vOrmSvc = new ORMService();
 		var vUser = 'djoko';
 		vOrmSvc.executeFunction('anjay',JSON.stringify(vUser));
