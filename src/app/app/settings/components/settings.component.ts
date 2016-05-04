@@ -30,12 +30,12 @@ export class SettingsComponent {
     }
 	
     goToResetPassword(){
-        console.log('RESETTT');
+        console.log('RESET');
         this._router.navigate(['ResetPassword']);
     }
 
 	getResize(){
-        return this._matchMediaService.getmm();  
+        return this._matchMediaService.getMm();  
     }
 
     logout(){

@@ -29,12 +29,12 @@ export class BasicCallProcedureComponent {
     }
 	
 	getResize(){
-        return this._matchMediaService.getmm();  
+        return this._matchMediaService.getMm();  
     }
 
     gotoDetailRetailer()
     {
-    	console.log('aaa');
+    	console.log('in detail retailer BCP Component');
     	this._router.navigate(['DetailRetailer']);
     	//this._router.navigate(['RetailerSalesOrder']);
     }

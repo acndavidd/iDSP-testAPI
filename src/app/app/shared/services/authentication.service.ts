@@ -5,23 +5,23 @@ import {Response,RequestOptionsArgs,Headers,Http,Connection,RequestOptions} from
 @Injectable()
 
 export class AuthenticationService{
-	private service_url:string;
-	private error_msg:string;
-	private is_loading:boolean;
+	private vServiceUrl:string;
+	private vErrorMsg:string;
+	private vIsLoading:boolean;
 
 	constructor(
 		private _http: Http,
 		private _router: Router){
 		
-		this.is_loading = false;
+		this.vIsLoading = false;
 	}
 
-	login(username:string,password:string){
-		if(!this.loginValidation(username,password)){
-			this.error_msg = 'Invalid username or password';
+	login(pUsername:string,pPassword:string){
+		if(!this.loginValidation(pUsername,pPassword)){
+			this.vErrorMsg = 'Invalid username or password';
 		}else{
-			this.is_loading = true;
-			this.loginService(username,password);
+			this.vIsLoading = true;
+			this.loginService(pUsername,pPassword);
 		}
 	}
 
@@ -31,45 +31,45 @@ export class AuthenticationService{
                 {'Content-Type': 'application/x-www-form-urlencoded'})
             }).subscribe(
             	response => {
-            		this.is_loading = false;
+            		this.vIsLoading = false;
             		if(response.json().success == 1){//success login
             			//set token to local storage(mobile)
             			this._router.navigate(['MyTransaction']);
             		}else{//failed login
-            			this.error_msg = response.json().error;
+            			this.vErrorMsg = response.json().error;
             		}
             	},
             	error => {
             		console.log(error);
-            		this.error_msg = 'failed connecting to login service';
+            		this.vErrorMsg = 'failed connecting to login service';
             	}
             );
 	}
 
-	loginValidation(username:string,password:string):boolean{
-		if(username == null || username == "")return false;
-		if(password == null || password  == "")return false;
+	loginValidation(pUsername:string,pPassword:string):boolean{
+		if(pUsername == null || pUsername == "")return false;
+		if(pPassword == null || pPassword  == "")return false;
 		return true;
 	}
 
-	loginService(username:string,password:string):boolean{
-		let data = {
-			username : username,
-			password : password
+	loginService(pUsername:string,pPassword:string):boolean{
+		let vData = {
+			username : pUsername,
+			password : pPassword
 		};
-		this._http.post('/login',JSON.stringify(data)).subscribe(
+		this._http.post('/login',JSON.stringify(vData)).subscribe(
             	response => {
             		if(response.json().success == 1){//success login
             			//set token to local storage(mobile)
             			localStorage.setItem('accessToken', response.json().token);
             			this._router.navigate(['MyTransaction']);
             		}else{//failed login
-            			this.error_msg = response.json().error;
+            			this.vErrorMsg = response.json().error;
             		}
             	},
             	error => {
             		console.log(error);
-            		this.error_msg = 'failed connecting to login service';
+            		this.vErrorMsg = 'failed connecting to login service';
             	}
             );
        	return false;
@@ -93,10 +93,10 @@ export class AuthenticationService{
 	}
 
 	getError():string{
-		return this.error_msg;
+		return this.vErrorMsg;
 	}
 
 	getLoadingState():boolean{
-		return this.is_loading;
+		return this.vIsLoading;
 	}
 }

@@ -45,7 +45,7 @@ export class MyTransactionComponent {
     }
 	
 	getResize(){
-        return this._matchMediaService.getmm();  
+        return this._matchMediaService.getMm();  
     }
 
 	goToTargetsActuals(){

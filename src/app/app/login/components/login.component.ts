@@ -7,9 +7,6 @@ import {AuthenticationService} from '../../shared/services/authentication.servic
 import {Layout} from '../../../models/layout';
 import {LayoutService} from '../../shared/services/layout.service';
 
-
-declare var ga:any;
-
 @Component({
     selector: 'login',
     templateUrl: './app/login/components/login.component.html',
@@ -19,8 +16,8 @@ declare var ga:any;
 })
 
 export class LoginComponent {
-    username: string;
-    password: string;
+    vUsername: string;
+    vPassword: string;
     constructor (
         private _router: Router,
         private _layoutService: LayoutService,
@@ -30,7 +27,7 @@ export class LoginComponent {
         this._layoutService.setCurrentPage('Login');
 	}
 
-	login(event) {
+	login(pEvent) {
         // event.preventDefault();
         // this._authenticationService.login(this.username,this.password);
         this._router.navigate(['MainPage','MyTransaction']);

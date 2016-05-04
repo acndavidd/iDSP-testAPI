@@ -4,13 +4,13 @@ import { Layout } from '../../../models/layout';
 @Injectable()
 export class ModalService {
 
-    currentPage: string;
+    vCurrentPage: string;
 
-    mainModalState = false;
+    vMainModalState = false;
 
-    modalState = {
+    vModalState = {
         info: false,
-        verificationcode : false,
+        verificationCode : false,
         collection: false
     }
 
@@ -18,45 +18,45 @@ export class ModalService {
 
     getMainModalState()
     {
-        return this.mainModalState;
+        return this.vMainModalState;
     }
 
     getModalState() 
     {
-        return this.modalState;
+        return this.vModalState;
     }
     
     toggleVerificationCodeModal() 
     {
-        if(this.mainModalState)
+        if(this.vMainModalState)
         {
             this.refreshModal();
         }else
         {
-            this.modalState.verificationcode = !this.modalState.verificationcode;
+            this.vModalState.verificationCode = !this.vModalState.verificationCode;
         }
-        this.mainModalState = !this.mainModalState;
+        this.vMainModalState = !this.vMainModalState;
     }
     
     toggleCollectionModal() 
     {
-        if(this.mainModalState)
+        if(this.vMainModalState)
         {
             this.refreshModal();
         }else
         {
-            this.modalState.collection = !this.modalState.collection;
+            this.vModalState.collection = !this.vModalState.collection;
         }
-        this.mainModalState = !this.mainModalState;
+        this.vMainModalState = !this.vMainModalState;
     }                
 
 
 
     refreshModal()
     {
-        this.modalState.info = false;
-        this.modalState.collection = false;
-        this.modalState.verificationcode = false;
+        this.vModalState.info = false;
+        this.vModalState.collection = false;
+        this.vModalState.verificationCode = false;
     }
 
 }

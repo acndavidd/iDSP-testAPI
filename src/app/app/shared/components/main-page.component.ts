@@ -18,7 +18,7 @@ import {DetailRetailerComponent} from '../../basic-call-procedure/components/det
 
 
 @Component({
-    selector : 'MainPage',
+    selector : 'main-page',
     templateUrl: './app/shared/components/main-page.component.html',
 	directives: [
 		ROUTER_DIRECTIVES
@@ -32,7 +32,7 @@ import {DetailRetailerComponent} from '../../basic-call-procedure/components/det
         component: MyTransactionComponent
     },
     {
-        path: '/BCP',
+        path: '/basicCallProcedure',
         name: 'BasicCallProcedure',
         component: BasicCallProcedureComponent
     },
@@ -112,7 +112,7 @@ export class MainPageComponent {
     private _matchMediaService: MatchMediaService) {}
 	
 	getResize(){
-        return this._matchMediaService.getmm();  
+        return this._matchMediaService.getMm();  
     }
 
 }

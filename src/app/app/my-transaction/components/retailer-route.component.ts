@@ -29,7 +29,7 @@ export class RetailerRouteComponent {
     }
 	
 	getResize(){
-        return this._matchMediaService.getmm();  
+        return this._matchMediaService.getMm();  
     }
 
 }
