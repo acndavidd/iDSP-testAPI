@@ -5,52 +5,52 @@ import {Response,RequestOptionsArgs,Headers,Http,Connection,RequestOptions} from
 @Injectable()
 
 export class RetailerService{
-	private service_url:string;
-	private error_msg:string;
-	private is_loading:boolean;
-	private retailer:any;
+	private vServiceUrl:string;
+	private vErrorMsg:string;
+	private vIsLoading:boolean;
+	private vRetailer:any;
 	constructor(
 		private _http: Http,
 		private _router: Router){
 
-		this.is_loading = false;
+		this.vIsLoading = false;
 	}
 
-	getRetailer(retailerID:number){
-		let data:string = 'retailerID='+retailerID;
-		this._http.post('/testQueryRetailer',data,
+	getRetailer(pRetailerID:number){
+		let vData:string = 'retailerID='+pRetailerID;
+		this._http.post('/testQueryRetailer',vData,
 			<RequestOptionsArgs> {headers: new Headers(
                 {'Content-Type': 'application/x-www-form-urlencoded'})
             }).subscribe(
             	response => {
-            		this.is_loading = false;
+            		this.vIsLoading = false;
             		if(response.json().success == 1){//success login
             			//set token to local storage(mobile)
             			//localStorage.setItem('accessToken', response.json().token);
             			console.log( response.json().res);
-            			this.retailer = response.json().res;
+            			this.vRetailer = response.json().res;
 
             		}else{//failed login
-            			this.error_msg = response.json().error;
+            			this.vErrorMsg = response.json().error;
             		}
             	},
             	error => {
             		console.log(error);
-            		this.error_msg = 'failed connecting DB';
+            		this.vErrorMsg = 'failed connecting DB';
             	}
             );
        	return false;
 	}
 
 	getRetailerAll(){
-		return this.retailer;
+		return this.vRetailer;
 	}
 
 	getError():string{
-		return this.error_msg;
+		return this.vErrorMsg;
 	}
 
 	getLoadingState():boolean{
-		return this.is_loading;
+		return this.vIsLoading;
 	}
 }

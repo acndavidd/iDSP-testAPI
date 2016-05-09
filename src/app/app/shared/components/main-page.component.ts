@@ -3,7 +3,7 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/ro
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {MyTransactionComponent} from '../../my-transaction/components/my-transaction.component';
-import {BasicCallProcedureComponent} from '../../basic-call-procedure/components/basic-call-pro.component';
+import {BasicCallProcedureComponent} from '../../basic-call-procedure/components/basic-call-procedure.component';
 import {CloseDayComponent} from '../../close-day/components/close-day.component';
 import {CollectionComponent} from '../../close-day/components/collection.component';
 import {SettingsComponent} from '../../settings/components/settings.component';
@@ -15,10 +15,11 @@ import {DSPAlertsComponent} from '../../my-transaction/components/dsp-alerts.com
 import {ResetPasswordComponent} from '../../settings/components/reset-password.component';
 import {RetailerSalesOrderComponent} from '../../basic-call-procedure/components/retailer-sales-order.component';
 import {DetailRetailerComponent} from '../../basic-call-procedure/components/detail-retailer.component';
+import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/sales-order-payment.component';
 
 
 @Component({
-    selector : 'MainPage',
+    selector : 'main-page',
     templateUrl: './app/shared/components/main-page.component.html',
 	directives: [
 		ROUTER_DIRECTIVES
@@ -32,7 +33,7 @@ import {DetailRetailerComponent} from '../../basic-call-procedure/components/det
         component: MyTransactionComponent
     },
     {
-        path: '/BCP',
+        path: '/basicCallProcedure',
         name: 'BasicCallProcedure',
         component: BasicCallProcedureComponent
     },
@@ -86,6 +87,12 @@ import {DetailRetailerComponent} from '../../basic-call-procedure/components/det
         name: 'DetailRetailer',
         component: DetailRetailerComponent
     },
+
+    {
+        path: '/salesOrderPayment',
+        name: 'SalesOrderPayment',
+        component: SalesOrderPaymentComponent
+    },
     //UNDER BCP TAB - END
     
     //UNDER CLOSE DAY TAB - START
@@ -112,7 +119,7 @@ export class MainPageComponent {
     private _matchMediaService: MatchMediaService) {}
 	
 	getResize(){
-        return this._matchMediaService.getmm();  
+        return this._matchMediaService.getMm();  
     }
 
 }

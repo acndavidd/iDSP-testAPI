@@ -1,5 +1,223 @@
-.retailerRoute {
+.retailer-route {
     //padding-bottom: 45px;
-    z-index: 1;
+     z-index: 1;
     height: 100%;
+    background-color: #FFF;
+
+    .container-body {
+        background-color: white;
+        width: 100%;
+        height: 100%;
+        .header {
+            display: inline-block;
+            width: 100%;
+            border-bottom: 1px solid #BFBFBF;
+            background-size: cover;
+            height: 140px;
+            .void {
+                display: inline-block;
+                width: 100%;
+                height: 136px;
+            }
+            .text {
+                display: inline-block;
+                background-color: #000;
+                width: calc(100% - 20px);
+                padding: 10px;
+                height: 37px;
+                .header-text {
+                    color: #FFF;
+                    font-size: 20px;
+                }
+                .header-sub-text {
+                    color: #FFF;
+                    font-size: 15px;
+                    line-height: 20px;
+                }
+            }
+        }
+        .item-container {
+            display: inline-block;
+            width: calc(100% - 20px);
+            padding-left: 10px;
+            padding-right: 10px;
+            border-bottom: 1px solid #BFBFBF;
+            margin-top: 10px;
+            cursor: pointer;
+            
+		    /* Month header */
+			.month {
+			    padding: 70px 25px;
+			    width: 100%;
+			    background: #1abc9c;
+
+			    .prev{
+				float: left;
+			    padding-top: 10px;
+			    }
+
+			    .next{
+				float: right;
+				padding-top: 10px;
+			    }
+			    
+			}
+
+            .item-title{
+                font-size: 30px;
+                font-weight: bold;
+                margin-bottom: 5px;
+                margin-top: 5px;
+            }
+            .item-icon {
+                height: 30px;
+                width: 30px;
+                float: right;
+                color: #000;
+                font-size: 17px;
+                text-align: center;
+                &.open-sub-item {
+                    background: url("../img/icon-idsp/path-right-grey.png")no-repeat;
+                    background-position-x: center;
+                    background-position-y: 7px;
+                    background-size: 13px;
+                }
+                &.selected
+                {
+                    transform: rotate(180deg);
+                }
+                &.call
+                {
+                    background: url("../img/icon-idsp/phone-grey.png")no-repeat;
+                    background-position-x: center;
+                    background-position-y: 7px;
+                    background-size: 20px;
+                }
+            }
+            .item-identifier {
+                color: #7F7F7F;
+                font-size: 18px;
+                margin-right: 10px;
+                margin-top: 10px;
+                &.single-line {
+                    width: 125px;
+                    float: left;
+                }
+                &:after {
+                    clear: both;
+                }
+            }
+            .item-value{
+                font-size: 18px;
+                color: #000;
+                padding : 0;
+                &.ol{
+                	display: inline;
+                	padding : left;
+                }
+                &.red {
+                    color: red;
+                }
+                .text {
+                    margin: 0px 0px 5px 0px;
+                    color: #000;
+                }
+                &.multi-line {
+                    margin: 0px 0px 0px 10px;
+                }
+                &.single-line {
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    width: 100px;
+                    float: right;
+                    text-align: right;
+                    &:after {
+                        clear: both;
+                    }
+                }
+            }
+
+        }
+
+        .item-sub-container {
+            display: inline-block;
+            width: calc(100% - 20px);
+            padding-left: 10px;
+            padding-right: 20px;
+            border-bottom: 1px solid #BFBFBF;
+            cursor: pointer;
+            background-color: #EEE;
+            .item-title{
+                font-size: 30px;
+                font-weight: bold;
+                margin-bottom: 5px;
+                margin-top: 5px;
+            }
+            .item-icon {
+                height: 30px;
+                width: 30px;
+                float: right;
+                color: #000;
+                font-size: 17px;
+                text-align: center;
+                &.open-sub-item {
+                    background: url("../img/icon-idsp/path-down-grey.png")no-repeat;
+                    background-position-x: center;
+                    background-position-y: 7px;
+                    background-size: 20px;
+                }
+                &.selected
+                {
+                    transform: rotate(180deg);
+                }
+            }
+            .item-identifier {
+                color: #7F7F7F;
+                font-size: 18px;
+                margin-right: 10px;
+                margin-top: 10px;
+                &.singleLine {
+                    width: 125px;
+                    float: left;
+                }
+                &:after {
+                    clear: both;
+                }
+            }
+
+            .item-value{
+                font-size: 18px;
+                color: #000;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                padding-top:5px;
+                float: left;
+                &.red {
+                    color: red;
+                }
+                ul {
+                    margin: 0px 0px 15px -20px;
+                }
+                .text {
+                    margin: 0px 0px 5px 0px;
+                    color: #000;
+                }
+                &.multi-line {
+                    margin: 0px 0px 0px 10px;
+                }
+                &.single-line {
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    width: 100px;
+                    float: right;
+                    text-align: right;
+                    &:after {
+                        clear: both;
+                    }
+                }
+            }
+
+
+        }
+    }
 }

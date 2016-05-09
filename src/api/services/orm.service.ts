@@ -4,6 +4,8 @@ var config = require(path.join(__dirname, '..', 'config', 'config.json'))[env];
 var Sequelize = require("sequelize");
 var db_orm = require('../model/');
 
+//No Need to change will be replace by Eddy
+
 export class ORMService{
 	private obj;
 	constructor(){
@@ -14,7 +16,7 @@ export class ORMService{
 	    });
 	}
 	
-	public executeFunction(req:string,res:string){
+	public executeFunction(req,res){
 		var sequelize = db_orm.sequelize();
 		console.log(req.param('id'));
 		return sequelize.transaction(function (t) {
@@ -35,7 +37,7 @@ export class ORMService{
 	}
 				
 
-	public refreshModels(req:string,res:string){
+	public refreshModels(req,res){
 		var proc = require('child_process').exec;
 		var modelPath = req.body.path;
         var cmd = 'spgen -d '+config.db.name+' -u '+config.db.username+' -s '+config.db.schema+' -h '+config.db .host;

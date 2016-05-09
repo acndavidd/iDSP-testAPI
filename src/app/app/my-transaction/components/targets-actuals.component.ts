@@ -35,7 +35,7 @@ export class TargetsActualsComponent {
     }
 	
 	getResize(){
-        return this._matchMediaService.getmm();  
+        return this._matchMediaService.getMm();  
     }
 
     showMenuDay()

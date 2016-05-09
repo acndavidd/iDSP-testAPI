@@ -6,7 +6,7 @@ import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
-    selector: 'ResetPassword',
+    selector: 'reset-password',
     templateUrl: './app/settings/components/reset-password.component.html',
         directives: [
         NgModel
@@ -28,7 +28,7 @@ export class ResetPasswordComponent {
     }
 	
 	getResize(){
-        return this._matchMediaService.getmm();  
+        return this._matchMediaService.getMm();  
     }
 
 }

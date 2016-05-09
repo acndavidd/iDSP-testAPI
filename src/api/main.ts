@@ -5,68 +5,71 @@ import {LoginController} from './controllers/login.controller';
 import {TokenService} from './services/token.service';
 import {ORMService} from './services/orm.service';
 
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-const port:number = process.env.PORT || 8080;
-const router = express.Router();
+
+var vExpress = require('express');
+var vApp = vExpress();
+var vBodyParser = require('body-parser');
+var vCookieParser = require('cookie-parser');
+const PORT:number = process.env.PORT || 8080;
+const ROUTER = vExpress.Router();
+
 
 var loginCtrl:LoginController = new LoginController();
 var tokenSvc:TokenService = new TokenService();
 var ormSvc:ORMService = new ORMService();
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-app.use(cookieParser());
+vApp.use(vBodyParser.urlencoded({extended: true}));
+vApp.use(vBodyParser.json());
+vApp.use(vCookieParser());
 
-app.use(function(req, res, next) {
+vApp.use(function(pReq, pRes, pNext) {
     /*Allow access control origin*/
-    let allow: string;
-    let origin: string = req.get('origin');
-    if (origin == 'http://localhost:3000') {
-        allow = 'http://localhost:3000';
+    let vAllow: string;
+    let vOrigin: string = pReq.get('origin');
+    if (vOrigin == 'http://localhost:3000') {
+        vAllow = 'http://localhost:3000';
     }
-    if(allow) {
-         res.header("Access-Control-Allow-Origin", allow);
+    if(vAllow) {
+         pRes.header("Access-Control-Allow-Origin", vAllow);
     }
-    res.header("Access-Control-Allow-Credentials", "true");
-    res.header("Access-Control-Allow-Headers", 
+    pRes.header("Access-Control-Allow-Credentials", "true");
+    pRes.header("Access-Control-Allow-Headers", 
         "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept,Authorization,Proxy-Authorization,X-session");
-    res.header("Access-Control-Allow-Methods","GET,PUT,DELETE,POST");
+    pRes.header("Access-Control-Allow-Methods","GET,PUT,DELETE,POST");
 
     //validate token
-    if(req.path !== '/service/login' && req.path !== '/service/refreshmodels'){//all request to service will validate token except login
-        var token = '';
+    console.log("Origin : " + pReq.get('origin') + " Path : " + pReq.path);
+    if(pReq.path !== '/service/login' && pReq.path !== '/service/refreshModels'){//all request to service will validate token except login
+        var vToken = '';
         try{
-            if(req.cookies['accessToken']){//accessed from web
-                token = cookieParser.JSONCookies(req.cookies).accessToken;
+            if(pReq.cookies['accessToken']){//accessed from web
+                vToken = vCookieParser.JSONCookies(pReq.cookies).accessToken;
             }else{//accessed from mobile
-                token = req.get('Authorization');
-                token = token.replace('Bearer ','');
+                vToken = pReq.get('Authorization');
+                vToken = vToken.replace('Bearer ','');
             }
-            var jwt = tokenSvc.verifyToken(token);
-            res.locals.jwt = jwt;
-            if(req.path === '/service/verifytoken'){
-                var result = {
+            var jwt = tokenSvc.verifyToken(vToken);
+            pReq.locals.jwt = jwt;
+            if(pReq.path === '/service/verifyToken'){
+                var vResult = {
                     success : 1,
                     token : jwt
                 };
-                res.json(result);
+                pReq.json(vResult);
             }
         }catch(err){
             console.log("error : " + err);
-            res.sendStatus(403);
+            pRes.sendStatus(403);
         }      
     }
-    next();
+    pNext();
 });
-router.get('/refreshmodels',ormSvc.refreshModels);
+ROUTER.get('/refreshModels',ormSvc.refreshModels);
 
-router.post('/login',loginCtrl.doLogin);
-router.get('/logout',loginCtrl.doLogout);
+ROUTER.post('/login',loginCtrl.doLogin);
+ROUTER.get('/logout',loginCtrl.doLogout);
 
 
-app.use('/service',router);
-app.listen(port);
-console.log('http://127.0.0.1:' + port + '/service');
+vApp.use('/service',ROUTER);
+vApp.listen(PORT);
+console.log('http://127.0.0.1:' + PORT + '/service');

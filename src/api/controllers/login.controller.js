@@ -4,60 +4,61 @@ const orm_service_1 = require('../services/orm.service');
 class LoginController {
     constructor() {
     }
-    doLogin(req, res) {
+    doLogin(pReq, pRes) {
+        var vResult;
         try {
-            let tokenSvc = new token_service_1.TokenService();
-            var tokenobj = {
+            let vTokenSvc = new token_service_1.TokenService();
+            var vTokenobj = {
                 user: {
-                    name: req.body.username,
-                    password: req.body.password
+                    name: pReq.body.username,
+                    password: pReq.body.password
                 }
             };
-            var result = {
+            vResult = {
                 success: 1,
-                token: tokenSvc.generateToken(tokenobj)
+                token: vTokenSvc.generateToken(vTokenobj)
             };
-            res.cookie('accessToken', result.token, { httpOnly: true });
+            pRes.cookie('accessToken', vResult.token, { httpOnly: true });
         }
-        catch (err) {
-            var result = {
+        catch (pErr) {
+            vResult = {
                 success: 0
             };
         }
-        res.json(result);
+        pRes.json(vResult);
     }
-    doLogout(req, res) {
+    doLogout(pReq, pRes) {
         try {
-            req.session.destroy(function (err) {
-                if (err)
-                    throw err;
-                var result = {
+            pReq.session.destroy(function (pErr) {
+                if (pErr)
+                    throw pErr;
+                var vResult = {
                     success: 1
                 };
             });
         }
-        catch (err) {
-            var result = {
+        catch (pErr) {
+            var vResult = {
                 success: 0,
-                error: err
+                error: pErr
             };
         }
-        res.json(result);
+        pRes.json(vResult);
     }
-    verifyToken(token) {
-        let tokenSvc = new token_service_1.TokenService();
+    verifyToken(pToken) {
+        let vTokenSvc = new token_service_1.TokenService();
         try {
-            var verify = tokenSvc.verifyToken(token);
-            return verify;
+            var vVerify = vTokenSvc.verifyToken(pToken);
+            return vVerify;
         }
-        catch (err) {
-            throw err;
+        catch (pErr) {
+            throw pErr;
         }
     }
-    sp(req, res) {
-        let ormSvc = new orm_service_1.ORMService();
-        var user = 'djoko';
-        ormSvc.executeFunction('anjay', JSON.stringify(user));
+    sp(pReq, pRes) {
+        let vOrmSvc = new orm_service_1.ORMService();
+        var vUser = 'djoko';
+        vOrmSvc.executeFunction('anjay', JSON.stringify(vUser));
     }
 }
 exports.LoginController = LoginController;
