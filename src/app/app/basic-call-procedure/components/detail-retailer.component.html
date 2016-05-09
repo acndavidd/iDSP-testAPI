@@ -8,24 +8,26 @@
         <div class="item-container">
             <div class="item-identifier">Retailer Owner</div>
             <div class="item-value"><div *ngIf="getRetailerAll()">{{getRetailerAll().ownerName}}</div></div>
-            <a (click)="subMenuShow()"><div class="item-icon open-sub-item selected" [ngClass] = "{selected: arrowMap}"></div></a>
+            <a (click)="subMenuShow()"><div class="item-icon open-sub-item selected" [ngClass] = "{selected: vArrowMap}"></div></a>
 
-            <div *ngIf="menuShow" class="item-sub-container">
+         <div *ngIf="vMenuShow">
+            <div class="item-sub-container">
                <div class="item-identifier">Civil Status</div>
                 <div class="item-value"><div *ngIf="getRetailerAll()">{{getRetailerAll().serviceNumber}}</div></div>
             </div>
-             <div *ngIf="menuShow" class="item-sub-container">
+             <div class="item-sub-container">
                <div class="item-identifier">Email</div>
                 <div class="item-value"><div *ngIf="getRetailerAll()">{{getRetailerAll().email}}</div></div>
             </div>
-             <div *ngIf="menuShow" class="item-sub-container">
+             <div class="item-sub-container">
                <div class="item-identifier">Gender</div>
                 <div class="item-value"><div *ngIf="getRetailerAll()">{{getRetailerAll().gender}}</div></div>
             </div>
-             <div *ngIf="menuShow" class="item-sub-container">
+             <div class="item-sub-container">
                <div class="item-identifier">Birthday</div>
                 <div class="item-value"><div *ngIf="getRetailerAll()">{{getRetailerAll().birthday}}</div></div>
             </div>
+        </div>
 
         </div>
         <div class="item-container" >

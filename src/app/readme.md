@@ -7,6 +7,7 @@
 3. Install typings `npm install -g typings`
 4. Run `npm install` from this directory.
 5. Run `typings install` from this directory.
+6. Run 'npm install grunt-cache-breaker --save-dev' from this directory.
 
 
 ## Running
