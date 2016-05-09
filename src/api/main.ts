@@ -10,7 +10,8 @@ var app = express();
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 const port:number = process.env.PORT || 8080;
-const router = express.Router();
+const serviceRouter = express.Router();
+const adminRouter = express.Router();
 
 var loginCtrl:LoginController = new LoginController();
 var tokenSvc:TokenService = new TokenService();
@@ -36,7 +37,7 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Methods","GET,PUT,DELETE,POST");
 
     //validate token
-    if(req.path !== '/service/login' && req.path !== '/service/refreshmodels'){//all request to service will validate token except login
+    if(req.path !== '/service/login' && req.path.indexOf('/admin') !== 0){//all request to service will validate token except login
         var token = '';
         try{
             if(req.cookies['accessToken']){//accessed from web
@@ -61,12 +62,13 @@ app.use(function(req, res, next) {
     }
     next();
 });
-router.get('/refreshmodels',ormSvc.refreshModels);
+adminRouter.get('/syncModel/:model?',ormSvc.syncModel);
+adminRouter.get('/syncAllModel',ormSvc.syncAllModel);
 
-router.post('/login',loginCtrl.doLogin);
-router.get('/logout',loginCtrl.doLogout);
+serviceRouter.post('/login',loginCtrl.doLogin);
+serviceRouter.get('/logout',loginCtrl.doLogout);
 
-
-app.use('/service',router);
+app.use('/service',serviceRouter);
+app.use('/admin',adminRouter);
 app.listen(port);
 console.log('http://127.0.0.1:' + port + '/service');
