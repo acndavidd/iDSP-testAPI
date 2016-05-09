@@ -16,8 +16,8 @@ export class RetailerService{
 		this.vIsLoading = false;
 	}
 
-	getRetailer(retailerID:number){
-		let vData:string = 'retailerID='+retailerID;
+	getRetailer(pRetailerID:number){
+		let vData:string = 'retailerID='+pRetailerID;
 		this._http.post('/testQueryRetailer',vData,
 			<RequestOptionsArgs> {headers: new Headers(
                 {'Content-Type': 'application/x-www-form-urlencoded'})
