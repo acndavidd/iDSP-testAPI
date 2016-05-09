@@ -41,5 +41,10 @@ export class HeaderComponent implements OnInit {
 	
 	goToPreviousPage(){
 		this._pageNavigationService.gotoPreviousPage();
+	}
+
+	toggleSearch()
+	{
+		
 	}   
 }
