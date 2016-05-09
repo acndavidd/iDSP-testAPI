@@ -5,70 +5,69 @@
     width: 100%;
     .submenuDay
     {
-    	display: block;
-	    width: 34%;
-	    background-color: $smartmenucolor;
-	    padding-top: 10px;
-	    padding-bottom: 10px;
-	    margin-top: -3px;
-	    margin-right: -1%;
-	    float: left;
-	    &.active{
-		    border-bottom: 3px solid $red;
-	    	margin-left: 0;
-	    }
-	    .text
-	    {
-	    	color: #fff;
-	    	text-align: center;
-	    	font-size: 15px;
+        display: block;
+        width: 34%;
+        background-color: $smartmenucolor;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-top: -3px;
+        margin-right: -1%;
+        float: left;
+        &.active{
+            border-bottom: 3px solid $red;
+            margin-left: 0;
+        }
+        .text
+        {
+            color: #fff;
+            text-align: center;
+            font-size: 15px;
 
-	    }
-	}
-	.submenuWeek
+        }
+    }
+    .submenuWeek
     {
-    	display: block;
-	    width: 35%;
-	    background-color: $smartmenucolor;
-	    padding-top: 10px;
-	    padding-bottom: 10px;
-	    margin-top: -3px;
-	    margin-right: -1%;
-	    margin-left: -1%;
-	    float: left;
-	    &.active{
-		    border-bottom: 3px solid $red;
-	    	margin-left: 0;
-	    }
-	    .text
-	    {
-	    	color: #fff;
-	    	text-align: center;
-	    	font-size: 15px;
+        display: block;
+        width: 35%;
+        background-color: $smartmenucolor;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-top: -3px;
+        margin-right: -1%;
+        margin-left: -1%;
+        float: left;
+        &.active{
+            border-bottom: 3px solid $red;
+            margin-left: 0;
+        }
+        .text
+        {
+            color: #fff;
+            text-align: center;
+            font-size: 15px;
 
-	   }
-	}
-	.submenuMonth
+       }
+    }
+    .submenuMonth
     {
-    	display: block;
-	    width: 34%;
-	    background-color: $smartmenucolor;
-	    padding-top: 10px;
-	    padding-bottom: 10px;
-	    margin-top: -3px;
-	    margin-right: -1%;
-	    float: left;
-	    &.active{
-		    border-bottom: 3px solid $red;
-	    	margin-left: 0;
-	    }
-	    .text
-	    {
-	    	color: #fff;
-	    	text-align: center;
-	    	font-size: 15px;
+        display: block;
+        width: 34%;
+        background-color: $smartmenucolor;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-top: -3px;
+        margin-right: -1%;
+        float: left;
+        &.active{
+            border-bottom: 3px solid $red;
+            margin-left: 0;
+        }
+        .text
+        {
+            color: #fff;
+            text-align: center;
+            font-size: 15px;
 
-	    }    
+        }    
 
     }
-}

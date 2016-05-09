@@ -7,9 +7,6 @@ import {AuthenticationService} from '../../shared/services/authentication.servic
 import {Layout} from '../../../models/layout';
 import {LayoutService} from '../../shared/services/layout.service';
 
-
-declare var ga:any;
-
 @Component({
     selector: 'verification',
     templateUrl: './app/verification/components/verification.component.html',
@@ -19,8 +16,8 @@ declare var ga:any;
 })
 
 export class VerificationComponent {
-    userId: string;
-    password: string;
+    vUserId: string;
+    vPassword: string;
     constructor (
         private _router: Router,
         private _layoutService: LayoutService,
@@ -30,9 +27,9 @@ export class VerificationComponent {
         this._layoutService.setCurrentPage('AuthLogin');
 	}
 
-	login(event) {
-        event.preventDefault();
-        this._authenticationService.login(this.userId,this.password);
+	login(pEvent) {
+        pEvent.preventDefault();
+        this._authenticationService.login(this.vUserId,this.vPassword);
         this._router.navigate(['MyTransaction']);
     }
 

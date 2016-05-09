@@ -4,7 +4,6 @@ import {LayoutService} from '../services/layout.service';
 import {Layout} from '../../../models/layout';
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
-declare var ga:any;
 
 @Component({
     selector: 'idsp-footer-menu',
@@ -19,33 +18,33 @@ export class FooterMenuComponent{
 		private _pageNavigationService: PageNavigationService) {
 	}
 	
-	gotoMyTransaction()
+	goToMyTransaction()
 	{
 		console.log("My Transaction");
 		this._router.navigate(['MainPage','MyTransaction']);
 	}
 
-	gotoBasicCallProcedure()
+	goToBasicCallProcedure()
 	{
 		console.log("Basic");
 		this._router.navigate(['MainPage','BasicCallProcedure']);
 	}
 
-	gotoCloseDay()
+	goToCloseDay()
 	{
 		console.log("Close Day");
 		this._router.navigate(['MainPage','CloseDay']);
 	}
 
-	gotoSettings()
+	goToSettings()
 	{
 		console.log("Settings");
 		this._router.navigate(['MainPage','Settings']);
 	}
 	
-	getfooterItem(){
-		console.log("footer item");
-        return this._layoutService.getfooterItem();
+	getFooterItem(){
+		console.log("Footer item");
+        return this._layoutService.getFooterItem();
     }
 
   	getFooterState(){

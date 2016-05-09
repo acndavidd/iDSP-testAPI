@@ -1,5 +1,5 @@
 .ModalOuterBox{
-	display: table;
+    display: table;
     position: fixed;
     height: 100%;
     width: 100%;
@@ -13,10 +13,10 @@
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
     transition: opacity 400ms ease-in; 
-	
-	.ModalInternal{
-		display: table-cell;
-		vertical-align: middle;
+    
+    .ModalInternal{
+        display: table-cell;
+        vertical-align: middle;
 
-	}
+    }
 }

@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {VerificationCodeModalComponent} from './modal-includes/verificationcode-modal.component';
+import {VerificationCodeModalComponent} from './modal-includes/verification-code-modal.component';
 import {ModalService} from '../services/modal.service';
 
 @Component({

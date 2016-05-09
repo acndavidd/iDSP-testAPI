@@ -1,6 +1,6 @@
-$containerLogin-height: 100%;
+$container-login-height: 100%;
 
-.containerLogin {
+.container-login {
 	z-index: 50;
 	position: fixed;
     left: 0;
@@ -62,7 +62,7 @@ $containerLogin-height: 100%;
 			.message{
 				color: #FFF;
 			}
-            .errorAlert{
+            .error-alert{
                 color:#FFF;
                 font-size:14px;
             }
@@ -90,7 +90,7 @@ $containerLogin-height: 100%;
 				}
 			}
 		}
-		.loginButton
+		.login-button
 		{
 			height: 35px;
 			background-color: #00C2BA;
@@ -100,7 +100,7 @@ $containerLogin-height: 100%;
     		padding-top: 7px;
     		color : #FFF;
 		}
-		.loginSeparator
+		.login-separator
 		{
 			border: 5px solid #005A5B;
 			margin-bottom: 50px;
@@ -109,7 +109,7 @@ $containerLogin-height: 100%;
 	.after-box {
 		margin-top: 20px;
 	}
-	.smartLogo
+	.smart-logo
 	{
 		display: block;
         height: 30px;

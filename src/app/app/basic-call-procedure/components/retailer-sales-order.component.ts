@@ -20,15 +20,17 @@ export class RetailerSalesOrderComponent {
 	constructor (
 		private _layoutService: LayoutService,
 		private _matchMediaService: MatchMediaService,
-		private _headerService: HeaderService
+		private _headerService: HeaderService,
+		private _router: Router
 		) 
 	{
 		this._layoutService.setCurrentPage('RetailerSalesOrder');
 		this._headerService.setTitle("Retailer Sales Order");
     }
 	
-	getResize(){
-        return this._matchMediaService.getmm();  
-    }
+	goToSalesOrderPayment(){
+		console.log('Go to Sales Order Payment');
+		this._router.navigate(['SalesOrderPayment']);
+	}
 
 }

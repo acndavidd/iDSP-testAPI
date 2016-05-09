@@ -4,30 +4,30 @@ import { Router } from 'angular2/router';
 @Injectable()
 export class PageNavigationService {
 	
-	currentPage: string;
-	previousPage: string;
-	childNode: string;
-    subChildNode: string;
+	vCurrentPage: string;
+	vPreviousPage: string;
+	vChildNode: string;
+    vSubChildNode: string;
 	
 	constructor (private _router: Router) {}
     
     getPreviousPage(){
-        return this.previousPage;
+        return this.vPreviousPage;
     }
     
-    setManageNumberNavigation(previous){
-        this.previousPage = previous;
+    setManageNumberNavigation(pPrevious){
+        this.vPreviousPage = pPrevious;
     }
 
-    setPreviousPage(previous) {
-        this.previousPage = previous;
+    setPreviousPage(pPrevious) {
+        this.vPreviousPage = pPrevious;
     }
 	
 	gotoPreviousPage(){
-        if(this.childNode == 'login'){
-            this._router.navigate(['Starter',this.previousPage]);
+        if(this.vChildNode == 'login'){
+            this._router.navigate(['Starter',this.vPreviousPage]);
         }else{
-            this._router.navigate(['MainPage',this.previousPage]);
+            this._router.navigate(['MainPage',this.vPreviousPage]);
         }
 	}
 

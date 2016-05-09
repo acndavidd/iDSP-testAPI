@@ -12,12 +12,13 @@ import {HeaderComponent} from './shared/components/header.component';
 import {FooterMenuComponent} from './shared/components/footer-menu.component';
 import {MainPageComponent} from './shared/components/main-page.component';
 import {MyTransactionComponent} from './my-transaction/components/my-transaction.component';
-import {BasicCallProcedureComponent} from './basic-call-procedure/components/basic-call-pro.component';
+import {BasicCallProcedureComponent} from './basic-call-procedure/components/basic-call-procedure.component';
 import {CloseDayComponent} from './close-day/components/close-day.component';
 import {SettingsComponent} from './settings/components/settings.component';
 import {VerificationComponent} from './verification/components/verification.component';
 import {ForgotPasswordComponent} from './login/components/forgot-password.component';
 import {ModalComponent} from './shared/components/modal.component';
+import {RetailerRouteComponent} from './my-transaction/components/retailer-route.component';
 import {ModalService} from './shared/services/modal.service';
 import {RetailerService} from './shared/services/retailer.service';
 declare var FastClick: FastClickStatic;
@@ -71,9 +72,14 @@ declare var configChannel: any;
         component: MainPageComponent
     },
     {
-        path: '/forgotpassword',
+        path: '/forgotPassword',
         name: 'ForgotPassword',
         component: ForgotPasswordComponent
+    },
+    {
+        path: '/retailerRoute',
+        name: 'RetailerRoute',
+        component: RetailerRouteComponent
     }
 ])
 export class IDSPComponent implements OnInit {
@@ -96,13 +102,13 @@ export class IDSPComponent implements OnInit {
     }
 
      isFullScreen() {
-         let currentPage: string = this._layoutService.getCurrentPage();
-         return !currentPage || currentPage === 'GetStarted' || currentPage === 'Login' ||
-         currentPage === 'Register';
+         let vCurrentPage: string = this._layoutService.getCurrentPage();
+         return !vCurrentPage || vCurrentPage === 'GetStarted' || vCurrentPage === 'Login' ||
+         vCurrentPage === 'Register';
      }
  
      isSmallScreen() {
-         return !this._matchMediaService.getmm().largeUp;
+         return !this._matchMediaService.getMm().largeUp;
      }
 }
 

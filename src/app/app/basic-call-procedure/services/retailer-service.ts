@@ -5,20 +5,20 @@ import {Response,RequestOptionsArgs,Headers,Http,Connection,RequestOptions} from
 @Injectable()
 
 export class RetailerService{
-	private service_url:string;
-	private error_msg:string;
-	private is_loading:boolean;
+	private vServiceUrl:string;
+	private vErrorMsg:string;
+	private vIsLoading:boolean;
 
 	constructor(
 		private _http: Http,
 		private _router: Router){
 
-		this.is_loading = false;
+		this.vIsLoading = false;
 	}
 
 	//To query list of retailer that will be visited pertoday for user that login
 	queryTodayCallPlan(){
-		this.is_loading = true;
+		this.vIsLoading = true;
  
 		//To-Do : Query User ID or Username
 		let vUserId:string = '1';
@@ -33,17 +33,17 @@ export class RetailerService{
                 {'Content-Type': 'application/x-www-form-urlencoded'})
             }).subscribe(
             	response => {
-            		this.is_loading = false;
+            		this.vIsLoading = false;
             		if(response.json().success == 1){//success login
             			//Pass back the call plan result
             			return response.json().resultCallPlan;
             		}else{//failed login
-            			this.error_msg = response.json().error;
+            			this.vErrorMsg = response.json().error;
             		}
             	},
             	error => {
             		console.log(error);
-            		this.error_msg = 'Failed connecting to Retailer service';
+            		this.vErrorMsg = 'Failed connecting to Retailer service';
             	}
             );
        	return '';
@@ -52,10 +52,10 @@ export class RetailerService{
 
 
 	getError():string{
-		return this.error_msg;
+		return this.vErrorMsg;
 	}
 
 	getLoadingState():boolean{
-		return this.is_loading;
+		return this.vIsLoading;
 	}
 }
