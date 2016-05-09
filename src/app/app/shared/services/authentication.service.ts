@@ -26,7 +26,7 @@ export class AuthenticationService{
 	}
 
 	autoLogin(){
-		this._http.get('/verifytoken',
+		this._http.get('/verifyToken',
 			<RequestOptionsArgs> {headers: new Headers(
                 {'Content-Type': 'application/x-www-form-urlencoded'})
             }).subscribe(
@@ -34,7 +34,8 @@ export class AuthenticationService{
             		this.vIsLoading = false;
             		if(response.json().success == 1){//success login
             			//set token to local storage(mobile)
-            			this._router.navigate(['MyTransaction']);
+            			//this._router.navigate(['MyTransaction']);
+            			this._router.navigate(['MainPage','MyTransaction']);
             		}else{//failed login
             			this.vErrorMsg = response.json().error;
             		}
@@ -47,12 +48,14 @@ export class AuthenticationService{
 	}
 
 	loginValidation(pUsername:string,pPassword:string):boolean{
+		console.log("Start validate user and password " + pUsername + " : " +  pPassword);
 		if(pUsername == null || pUsername == "")return false;
 		if(pPassword == null || pPassword  == "")return false;
 		return true;
 	}
 
 	loginService(pUsername:string,pPassword:string):boolean{
+		console.log("Start hit login service");
 		let vData = {
 			username : pUsername,
 			password : pPassword
@@ -62,7 +65,9 @@ export class AuthenticationService{
             		if(response.json().success == 1){//success login
             			//set token to local storage(mobile)
             			localStorage.setItem('accessToken', response.json().token);
-            			this._router.navigate(['MyTransaction']);
+            			console.log("Login Sukses with token " + response.json().token);
+            			//this._router.navigate(['MyTransaction']);
+            			this._router.navigate(['MainPage','MyTransaction']);
             		}else{//failed login
             			this.vErrorMsg = response.json().error;
             		}

@@ -6,15 +6,15 @@ import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
-	selector: 'retailer-sales-order',
-    templateUrl: './app/basic-call-procedure/components/retailer-sales-order.component.html',
+	selector: 'sales-order-payment',
+    templateUrl: './app/basic-call-procedure/components/sales-order-payment.component.html',
 	directives: [
 		NgModel,
 		ROUTER_DIRECTIVES
     ]
 })
 
-export class RetailerSalesOrderComponent {
+export class SalesOrderPaymentComponent {
 	
 
 	constructor (
@@ -24,13 +24,8 @@ export class RetailerSalesOrderComponent {
 		private _router: Router
 		) 
 	{
-		this._layoutService.setCurrentPage('RetailerSalesOrder');
-		this._headerService.setTitle("Retailer Sales Order");
+		this._layoutService.setCurrentPage('SalesOrderPayment');
+		this._headerService.setTitle("Sales Order Payment");
     }
-	
-	goToSalesOrderPayment(){
-		console.log('Go to Sales Order Payment');
-		this._router.navigate(['SalesOrderPayment']);
-	}
 
 }

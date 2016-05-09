@@ -5,7 +5,7 @@ import {Http, Request, RequestOptions, RequestMethod, RequestOptionsArgs, Header
 import {Observable} from 'rxjs/Observable';
 import {Router} from 'angular2/router';
 
-declare var vConfigChannel: any;
+declare var configChannel: any;
 
 @Injectable()
 export class MyHttp {
@@ -14,22 +14,25 @@ export class MyHttp {
 
     constructor(private _http: Http,        
                 private _router: Router) {
+        
         this.vServiceBaseUrl = '';  
-        /*
-        const url = 'config/service.json';
+
+        /* Read Config 
+        const URL = 'config/service.json';
         this.vServiceBaseUrl = '';       
-        this._http.get(url,        
+        this._http.get(URL,        
             <RequestOptionsArgs> {        
                 headers: new Headers({        
                     'Content-Type': 'application/x-www-form-urlencoded',        
                 })        
             })        
            .subscribe(file => {        
-               let config = file.json();
-               this.vServiceBaseUrl = config.baseUrl;    
-               this.timeout = Number(config.timeout);
-               console.log(this.vServiceBaseUrl);    
-           });*/    
+               let vConfig = file.json();
+               this.vServiceBaseUrl = vConfig.baseUrl;    
+               this.vTimeout = Number(vConfig.timeout);
+                   
+           });  
+        */ 
     }
 
     public get(pUrl: string, pOptions?: RequestOptionsArgs) {
@@ -48,12 +51,12 @@ export class MyHttp {
         return this._request(RequestMethod.Delete, pUrl, null, pOptions);
     }
 
-    private _createAuthHeaders(method: RequestMethod): Headers {
+    private _createAuthHeaders(pMethod: RequestMethod): Headers {
         let vHeaders: Headers = new Headers();
-        if (method != RequestMethod.Get) {
+        if (pMethod != RequestMethod.Get) {
             vHeaders.append('Content-Type', 'application/json');
         }
-        if (vConfigChannel !== 'web') {
+        if (configChannel !== 'web') {
             let vAccessToken = localStorage.getItem('accessToken');
             if (vAccessToken) {
                 vHeaders.append('Authorization', 'Bearer ' + vAccessToken)
@@ -63,19 +66,21 @@ export class MyHttp {
     }
 
 
-    private _request(method: RequestMethod, url: string, body?: string, options?: RequestOptionsArgs): Observable<any> {
+    private _request(pMethod: RequestMethod, pUrl: string, pBody?: string, pOptions?: RequestOptionsArgs): Observable<any> {
         let vRequestOptions = new RequestOptions({
-            method: method,
-            body: body
+            method: pMethod,
+            body: pBody
         });
         //using custom options
-        if (options) {
-            for (let attrname in options) {
-                vRequestOptions[attrname] = options[attrname];
+        if (pOptions) {
+            for (let vAttrname in pOptions) {
+                vRequestOptions[vAttrname] = pOptions[vAttrname];
             }
         } else {
-            vRequestOptions.headers = this._createAuthHeaders(method);
+            vRequestOptions.headers = this._createAuthHeaders(pMethod);
         }
+
+        ;
 
         return Observable.create((pObserver) => {
             const CONFIG_URL = 'config/service.json';
@@ -87,14 +92,17 @@ export class MyHttp {
                     })        
                 })        
                .subscribe(file => {        
-                   let config = file.json();
-                   this.vServiceBaseUrl = config.baseUrl;    
-                   this.vTimeout = Number(config.timeout);
-                   vRequestOptions.url = this.vServiceBaseUrl + url;
+                   let vConfig = file.json();
+                   this.vServiceBaseUrl = vConfig.baseUrl;    
+                   this.vTimeout = Number(vConfig.timeout);
+                   vRequestOptions.url = this.vServiceBaseUrl + pUrl;
+
+                   console.log("Start request to " + this.vServiceBaseUrl + pUrl)
+
                    this.executeRequest(pObserver,vRequestOptions);
                });
             }else{
-                vRequestOptions.url = this.vServiceBaseUrl + url;
+                vRequestOptions.url = this.vServiceBaseUrl + pUrl;
                 this.executeRequest(pObserver,vRequestOptions);
             }
         });
