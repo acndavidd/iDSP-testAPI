@@ -5,29 +5,33 @@
             	<div class="itemTitle"><div *ngIf="getRetailerAll()">{{getRetailerAll().storeName}}</div></div>
             </div>
         </div>
-        <div class="itemContainer">
-            <div class="itemIdentifier">Retailer Owner</div>
-            <div class="itemValue"><div *ngIf="getRetailerAll()">{{getRetailerAll().ownerName}}</div></div>
-            <a (click)="subMenuShow()"><div class="itemIcon openSubItem selected" [ngClass] = "{selected: arrowMap}"></div></a>
-
-            <div *ngIf="menuShow" class="itemSubContainer">
-               <div class="itemIdentifier">Civil Status</div>
-                <div class="itemValue"><div *ngIf="getRetailerAll()">{{getRetailerAll().serviceNumber}}</div></div>
-            </div>
-             <div *ngIf="menuShow" class="itemSubContainer">
-               <div class="itemIdentifier">Email</div>
-                <div class="itemValue"><div *ngIf="getRetailerAll()">{{getRetailerAll().email}}</div></div>
-            </div>
-             <div *ngIf="menuShow" class="itemSubContainer">
-               <div class="itemIdentifier">Gender</div>
-                <div class="itemValue"><div *ngIf="getRetailerAll()">{{getRetailerAll().gender}}</div></div>
-            </div>
-             <div *ngIf="menuShow" class="itemSubContainer">
-               <div class="itemIdentifier">Birthday</div>
-                <div class="itemValue"><div *ngIf="getRetailerAll()">{{getRetailerAll().birthday}}</div></div>
+        
+       
+            <div class="itemContainer">
+                <div class="itemIdentifier">Retailer Owner</div>
+                <div class="itemValue"><div *ngIf="getRetailerAll()">{{getRetailerAll().ownerName}}</div></div>
+                <a (click)="subMenuShow()"><div class="itemIcon openSubItem selected" [ngClass] = "{selected: arrowMap}"></div></a>
             </div>
 
-        </div>
+             <div *ngIf="menuShow">
+                <div  class="itemSubContainer">
+                   <div class="itemIdentifier">Civil Status</div>
+                    <div class="itemValue"><div *ngIf="getRetailerAll()">{{getRetailerAll().serviceNumber}}</div></div>
+                </div>
+                 <div class="itemSubContainer">
+                   <div class="itemIdentifier">Email</div>
+                    <div class="itemValue"><div *ngIf="getRetailerAll()">{{getRetailerAll().email}}</div></div>
+                </div>
+                 <div class="itemSubContainer">
+                   <div class="itemIdentifier">Gender</div>
+                    <div class="itemValue"><div *ngIf="getRetailerAll()">{{getRetailerAll().gender}}</div></div>
+                </div>
+                 <div class="itemSubContainer">
+                   <div class="itemIdentifier">Birthday</div>
+                    <div class="itemValue"><div *ngIf="getRetailerAll()">{{getRetailerAll().birthday}}</div></div>
+                </div>
+            </div>
+
         <div class="itemContainer" >
             <div class="itemIdentifier">Mobile Number</div>
             <div class="itemValue"><div *ngIf="getRetailerAll()">{{getRetailerAll().serviceNumber}}</div></div>
