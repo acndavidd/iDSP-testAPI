@@ -8,60 +8,29 @@ export class LoginController{
 	constructor(){
 	}
 
-	doLogin(pReq,pRes){
-		var vResult;
-
+	login(pRequest,pResponse){
 		try{
 			let vTokenSvc = new TokenService();
-			var vTokenobj = {
+			var vTokenObj = {
 				user : {
-					name : pReq.body.username,
-					password : pReq.body.password
+					name : pRequest.body.username,
+					password : pRequest.body.password
 				}
 			};
-			vResult = {
+			var vResult = {
 				success : 1,
-				token : vTokenSvc.generateToken(vTokenobj)
+				token : vTokenSvc.generateToken(vTokenObj)
 			};
-			pRes.cookie('accessToken',vResult.token,{httpOnly:true});
-		}catch(pErr){
-			vResult = {
-				success : 0
-			};
-		}
-		pRes.json(vResult);
-	}
-
-	doLogout(pReq,pRes){
-		try{
-			pReq.session.destroy(function(pErr){
-				if(pErr)throw pErr;
-				var vResult = {
-					success : 1
-				}
-			});
-		}catch(pErr){
+			pResponse.cookie('accessToken',vResult.token,{httpOnly:true});
+		}catch(err){
 			var vResult = {
 				success : 0,
-				error   : pErr
-			}
+				token   : ''
+			};
 		}
-		pRes.json(vResult);
+		pResponse.json(vResult);
 	}
-
-	verifyToken(pToken:string){
-		let vTokenSvc = new TokenService();
-		try{
-			var vVerify = vTokenSvc.verifyToken(pToken);
-			return vVerify;
-		}catch(pErr){
-			throw pErr;
-		}
-	}
-
-	sp(pReq:string,pRes:string){
-		let vOrmSvc = new ORMService();
-		var vUser = 'djoko';
-		vOrmSvc.executeFunction('anjay',JSON.stringify(vUser));
+	logout(pRequest,pResponse){
+		
 	}
 }
