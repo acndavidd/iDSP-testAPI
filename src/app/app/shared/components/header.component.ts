@@ -6,8 +6,6 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {HeaderService} from '../../shared/services/header.service';
 import {Layout} from '../../../models/layout';
 
-declare var ga:any;
-
 @Component({
     selector: 'idsp-header',
     templateUrl: 'app/shared/components/header.component.html'
@@ -22,7 +20,7 @@ export class HeaderComponent implements OnInit {
 		private _headerService: HeaderService) {
 	}
 
-	title :string;
+	vTitle :string;
 
 	ngOnInit() 
 	{

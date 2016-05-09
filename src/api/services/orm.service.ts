@@ -9,9 +9,9 @@ export class ORMService{
 	}
 
 	public syncModel(pRequest,pResponse){
-		let sequelizeSvc:SequelizeService = new SequelizeService();
+		let vSequelizeSvc:SequelizeService = new SequelizeService();
 		try{
-			var vModel = sequelizeSvc.getInstance().import(vPath.join(sequelizeSvc.getModelPath(),pRequest.query.model + sequelizeSvc.getModelNaming()));
+			var vModel = vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),pRequest.query.model + vSequelizeSvc.getModelNaming()));
 			vModel.sync();
 			pResponse.send('success');
 		}catch(err){
@@ -21,25 +21,25 @@ export class ORMService{
 	}
 
 	public getModel(pModelName:string){
-		let sequelizeSvc:SequelizeService = new SequelizeService();
+		let vSequelizeSvc:SequelizeService = new SequelizeService();
 		try{
-			return  sequelizeSvc.getInstance().import(vPath.join(sequelizeSvc.getModelPath(),pModelName + sequelizeSvc.getModelNaming()));
+			return  vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),pModelName + vSequelizeSvc.getModelNaming()));
 		}catch(err){
 			console.log(err);
 			throw err;
 		}
 	}
-
+	/*
 	public syncAllModel(pRequest,pResponse){
-		let sequelizeSvc:SequelizeService = new SequelizeService();
+		let vSequelizeSvc:SequelizeService = new SequelizeService();
 		try{
-			vFs.readdirSync(vPath.join(sequelizeSvc.getModelPath()),function(file){
+			vFs.readdirSync(vPath.join(vSequelizeSvc.getModelPath()),function(file){
 				console.log(file);
 			});
-			//sequelizeSvc.getInstance().import(vPath.join(sequelizeSvc.getModelPath(),pModelName + sequelizeSvc.getModelNaming()));
+			//vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),pModelName + vSequelizeSvc.getModelNaming()));
 		}catch(err){
 			console.log(err);
 			throw err;
 		}
-	}
+	}*/
 }

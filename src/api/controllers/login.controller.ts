@@ -30,7 +30,6 @@ export class LoginController{
 		}
 		pResponse.json(vResult);
 	}
-
 	logout(pRequest,pResponse){
 		
 	}

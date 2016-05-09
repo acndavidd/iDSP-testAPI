@@ -1,25 +1,25 @@
-var path = require("path");
-var env = process.env.NODE_ENV || "development";
-var config = require(path.join(__dirname, '..', 'config', 'config.json'))[env];
-var uuid = require('uuid');
-var nJwt = require('njwt');
+var vPath = require("path");
+var vEnv = process.env.NODE_ENV || "development";
+var vConfig = require(vPath.join(__dirname, '..', 'config', 'config.json'))[vEnv];
+var vUuid = require('uuid');
+var vNJwt = require('njwt');
 
 export class TokenService{
 
-	generateToken(obj?:any):string{
-		var signingkey = config.service.key;
-		var claims = [];
-		claims.push(obj);
-		var jwt = nJwt.create(obj,signingkey);
-		var token = jwt.compact();
-		return token;
+	generateToken(pObj?:any):string{
+		var vSigningkey = vConfig.service.key;
+		var vClaims = [];
+		vClaims.push(pObj);
+		var vJwt = vNJwt.create(pObj,vSigningkey);
+		var vToken = vJwt.compact();
+		return vToken;
 	}
 
-	verifyToken(token:string){
+	verifyToken(pToken:string){
 		try{
-			return nJwt.verify(token,config.service.key);
-		}catch(err){
-			throw err;
+			return vNJwt.verify(pToken,vConfig.service.key);
+		}catch(pErr){
+			throw pErr;
 		}
 	}
 }

@@ -1,13 +1,13 @@
-.targetsActuals {
+.targets-actuals {
     //padding-bottom: 45px;
     z-index: 1;
     height: 100%;
     width: 100%;
-    .submenuDay
+    .sub-menu-day
     {
     	display: block;
 	    width: 34%;
-	    background-color: $smartmenucolor;
+	    background-color: $smart-menu-color;
 	    padding-top: 10px;
 	    padding-bottom: 10px;
 	    margin-top: -3px;
@@ -25,11 +25,11 @@
 
 	    }
 	}
-	.submenuWeek
+	.sub-menu-week
     {
     	display: block;
 	    width: 35%;
-	    background-color: $smartmenucolor;
+	    background-color: $smart-menu-color;
 	    padding-top: 10px;
 	    padding-bottom: 10px;
 	    margin-top: -3px;
@@ -48,11 +48,11 @@
 
 	   }
 	}
-	.submenuMonth
+	.sub-menu-month
     {
     	display: block;
 	    width: 34%;
-	    background-color: $smartmenucolor;
+	    background-color: $smart-menu-color;
 	    padding-top: 10px;
 	    padding-bottom: 10px;
 	    margin-top: -3px;
@@ -67,8 +67,6 @@
 	    	color: #fff;
 	    	text-align: center;
 	    	font-size: 15px;
-
-	    }    
-
+        }    
     }
 }
