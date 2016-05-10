@@ -1,10 +1,10 @@
 <div class="targets-actuals">
 
-<a (click)="showMenuDay()"><div class="sub-menu-day" [ngClass] = "{active: vUnderlineDay}"><div class="text">Day</div></div></a>
-<a (click)="showMenuWeek()"><div class="sub-menu-week" [ngClass] = "{active: vUnderlineWeek}"><div class="text">Week</div></div></a>
-<a (click)="showMenuMonth()"><div class="sub-menu-month" [ngClass] = "{active: vUnderlineMonth}"><div class="text">Month</div></div></a>
+<a (click)="showMenuDay()"><div class="sub-menu-day" [ngClass] = "{active: vUnderlineDay}"><div class="text" [ngClass] = "{active: vUnderlineDay}">Day</div></div></a>
+<a (click)="showMenuWeek()"><div class="sub-menu-week" [ngClass] = "{active: vUnderlineWeek}"><div class="text" [ngClass] = "{active: vUnderlineWeek}">Week</div></div></a>
+<a (click)="showMenuMonth()"><div class="sub-menu-month" [ngClass] = "{active: vUnderlineMonth}"><div class="text" [ngClass] = "{active: vUnderlineMonth}">Month</div></div></a>
 <!--Container-->
-<div class="container-body">
+<div class="container-body-ta">
 	
 	<!--<div *ngIf="getFilter().filterTargetsActuals" >-->
 	<div class="filter-container" *ngIf="getFilter().filterTargetsActuals">
@@ -18,8 +18,8 @@
 	</div>
 
 	<div *ngIf="vDayShow" >
-		<div class="item-container">
-			<div class="item-title">Broadband</div>
+		<div class="item-container-ta">
+			<div class="item-title-ta">Broadband</div>
 				<div class="item-left">SIM</div>
 				<div class="item-mid">23.33%</div>
 				<div class="item-right">
@@ -29,7 +29,7 @@
 				</div>
 		</div>
 		<div class="divider"></div>
-		<div class="item-container">
+		<div class="item-container-ta">
 				<div class="item-left">SIM</div>
 				<div class="item-mid">23.33%</div>
 				<div class="item-right">
@@ -38,8 +38,8 @@
 					<div class="balance">Balance : <div class="balace-number">200</div> </div>
 				</div>
 		</div>
-		<div class="item-container">
-			<div class="item-title">Broadband</div>
+		<div class="item-container-ta">
+			<div class="item-title-ta">Broadband</div>
 				<div class="item-left">SIM</div>
 				<div class="item-mid">23.33%</div>
 				<div class="item-right">
@@ -48,8 +48,8 @@
 					<div class="balance">Balance : <div class="balace-number">200</div> </div>
 				</div>
 		</div>
-		<div class="item-container">
-			<div class="item-title">SIM</div>
+		<div class="item-container-ta">
+			<div class="item-title-ta">SIM</div>
 				<div class="item-left">SmartSIM</div>
 				<div class="item-mid">23.33%</div>
 				<div class="item-right">
@@ -61,8 +61,8 @@
 	</div>
 
 	<div *ngIf="vWeekShow">
-		<div class="item-container">
-			<div class="item-title">Airtime2</div>
+		<div class="item-container-ta">
+			<div class="item-title-ta">Airtime2</div>
 			<div class="item-body">
 				<div class="item-left">Submenu</div>
 				<div class="item-mid">50%</div>
@@ -76,8 +76,8 @@
 	</div>
 
 	<div *ngIf="vMonthShow">
-		<div class="item-container">
-			<div class="item-title">Airtime3</div>
+		<div class="item-container-ta">
+			<div class="item-title-ta">Airtime3</div>
 			<div class="item-body">
 				<div class="item-left">Submenu</div>
 				<div class="item-mid">89%</div>
