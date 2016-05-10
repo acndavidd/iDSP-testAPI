@@ -1,5 +1,6 @@
 $select-arrow: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4IiB3aWR0aD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE0LjgzIDE2LjQybDkuMTcgOS4xNyA5LjE3LTkuMTcgMi44MyAyLjgzLTEyIDEyLTEyLTEyeiIvPjxwYXRoIGQ9Ik0wLS43NWg0OHY0OGgtNDh6IiBmaWxsPSJub25lIi8+PC9zdmc+';
 $select-padding: 0;
+$menu-underline : #ED135B;
 
 .targets-actuals {
     //padding-bottom: 45px;
@@ -17,7 +18,7 @@ $select-padding: 0;
 	    margin-right: -1%;
 	    float: left;
 	    &.active{
-		    border-bottom: 2px solid $red;
+		    border-bottom: 2px solid $menu-underline;
 	    	margin-left: 0;
 	    }
 	    .text
@@ -40,7 +41,7 @@ $select-padding: 0;
 	    margin-left: -1%;
 	    float: left;
 	    &.active{
-		    border-bottom: 2px solid $red;
+		    border-bottom: 2px solid $menu-underline;
 	    	margin-left: -1%;
 	    }
 	    .text
@@ -62,7 +63,7 @@ $select-padding: 0;
 	    margin-right: -1%;
 	    float: left;
 	    &.active{
-		    border-bottom: 2px solid $red;
+		    border-bottom: 2px solid $menu-underline;
 	    	margin-left: 0px;
 	    }
 	    .text
@@ -92,6 +93,7 @@ $select-padding: 0;
             float: left;
             text-align: left;
             padding-left: 10px;
+            padding-top: 1%;
         }
         .item-mid{
             display: block;
@@ -99,6 +101,7 @@ $select-padding: 0;
             font-size: 18px;
             float: left;
             text-align: center;
+            padding-top: 1%;
         }
         .item-right{
             display: block;
@@ -106,6 +109,7 @@ $select-padding: 0;
             font-size: 18px;
             float: left;
             text-align: right;
+            padding-top: 1%;
             .target-text{
                     font-size: 12px;
                     color: $grey-text;
@@ -160,7 +164,7 @@ $select-padding: 0;
                     background-repeat: no-repeat;
                   }
                 }
-                select option{
+                option{
                     background: #fff;               
                     width: 90%;
                     font-size: 14px;
