@@ -19,3 +19,4 @@ This will build the project and copy the files to base project directory under `
 
 Run `lite-server` in the `debug/` directory.
 
+initial commit for stable branch
