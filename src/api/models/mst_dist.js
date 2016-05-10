@@ -1,8 +1,11 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Role = sequelize.define('Role', {
-    roleID: DataTypes.INTEGER,
-    roleName: DataTypes.STRING(200)
+  var mst_dist = sequelize.define('mst_dist', {
+    dist_id: {
+      type        : DataTypes.STRING(20),
+      primaryKey  : true
+    }, 
+    dist_name: DataTypes.STRING(50)
   }, {
     classMethods: {
       associate: function(models) {
@@ -10,5 +13,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return Role;
+  return mst_dist;
 };
