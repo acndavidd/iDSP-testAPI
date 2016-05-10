@@ -5,6 +5,18 @@
 <a (click)="showMenuMonth()"><div class="sub-menu-month" [ngClass] = "{active: vUnderlineMonth}"><div class="text">Month</div></div></a>
 <!--Container-->
 <div class="container-body">
+	
+	<!--<div *ngIf="getFilter().filterTargetsActuals" >-->
+	<div class="filter-container" *ngIf="getFilter().filterTargetsActuals">
+		<div class="filter-label">Brand</div>
+		<div class="filter-dropdown"><select name="cars">
+		  <option value="volvo">Volvo</option>
+		  <option value="saab">Saab</option>
+		  <option value="fiat">Fiat</option>
+		  <option value="audi">Audi</option>
+		</select></div>
+	</div>
+
 	<div *ngIf="vDayShow" >
 		<div class="item-container">
 			<div class="item-title">Broadband</div>

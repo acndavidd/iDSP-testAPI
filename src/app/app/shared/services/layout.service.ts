@@ -13,6 +13,10 @@ export class LayoutService {
         
     }
 
+    vFilter  = {
+        filterTargetsActuals : false
+    };
+
 	vLayoutState = {
 		appHeader: false,
         appFooter: false
@@ -56,6 +60,11 @@ export class LayoutService {
 		return this.vLayoutState;
 	}
     
+    getFilter(){
+        return this.vFilter;
+    }
+    
+
     setNumberSelectionState(){
         this.vNumberSelection = !this.vNumberSelection;
     }
@@ -279,5 +288,10 @@ export class LayoutService {
                 edit: false
             }
         }
+    }
+
+    setFilter()
+    {        
+        this.vFilter.filterTargetsActuals = !this.vFilter.filterTargetsActuals;
     }
 }
