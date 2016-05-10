@@ -41,13 +41,27 @@ export class LoginController{
         	
         	console.log("mw Create");
 		     sales_order_new.create({
-		     	order_id:1,
 		         dsp_id: 1,
-		 	    retailer_id: 1
+		 	    retailer_id: 1,
+		 	    total_amount: 1000000
 		     }, {isNewRecord:true}
 		     ).then(function(pResult){
 		         console.log("Successfully insert"+ pResult.get("order_id"));
+
+		         console.log("mw Create detail unserved order");
+		         var sales_order_unserved = orm.getModel("trx_unserved_order");
+			     sales_order_unserved.create({
+			     	order_id:pResult.order_id,
+			        product_id: 'ITEM_1',
+			 	    quantity: 10,
+			 	    remarks: 'YO MAMEN'
+			     }, {isNewRecord:true}
+			     ).then(function(pResult){
+			         console.log("Successfully insert"+ pResult.get("order_id"));
+				});
 			});
+
+		     
 		}
 		catch(pErr){
 			console.log(pErr);
