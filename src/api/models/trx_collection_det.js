@@ -1,10 +1,20 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var trx_collection_det = sequelize.define('trx_collection_det', {
-    coll_id: DataTypes.INTEGER,
-    ar_id: DataTypes.INTEGER,
+    coll_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      unique: true
+    },
+    ar_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      unique: true
+    },
     ar_type: DataTypes.STRING(20),
-    amount: DataTypes.INTEGER
+    amount: DataTypes.DECIMAL(10,2)
   }, {
     classMethods: {
       associate: function(models) {

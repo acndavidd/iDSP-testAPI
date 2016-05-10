@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('trx_sales_orders', {
+    return queryInterface.createTable('trx_sales_order', {
       order_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -22,31 +22,23 @@ module.exports = {
         type: Sequelize.STRING(100)
       },
       total_amount: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL(10,2)
       },
       payment_amount: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL(10,2)
       },
       balance: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL(10,2)
       },
       payment_status: {
         type: Sequelize.STRING(20)
       },
       order_status: {
         type: Sequelize.STRING(1)
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('trx_sales_orders');
+    return queryInterface.dropTable('trx_sales_order');
   }
 };

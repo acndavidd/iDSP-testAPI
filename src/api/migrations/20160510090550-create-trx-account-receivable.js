@@ -1,15 +1,12 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('trx_account_receivables', {
-      id: {
+    return queryInterface.createTable('trx_account_receivable', {
+      ar_id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      ar_id: {
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
       order_id: {
         type: Sequelize.INTEGER
@@ -18,7 +15,7 @@ module.exports = {
         type: Sequelize.STRING(20)
       },
       amount: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL(10,2)
       },
       trans_date: {
         type: Sequelize.DATE
@@ -43,18 +40,10 @@ module.exports = {
       },
       updated_by: {
         type: Sequelize.STRING(30)
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('trx_account_receivables');
+    return queryInterface.dropTable('trx_account_receivable');
   }
 };
