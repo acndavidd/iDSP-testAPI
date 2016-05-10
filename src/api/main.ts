@@ -37,7 +37,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
         "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept,Authorization,Proxy-Authorization,X-session");
     pResponse.header("Access-Control-Allow-Methods","GET,PUT,DELETE,POST");
 
-    if(pRequest.path !== '/service/login'){//all request to service will validate token except login
+    if(pRequest.path !== '/service/login' && pRequest.path !== '/service/logout' ){//all request to service will validate token except login
         var vToken = '';
         try{
             if(pRequest.cookies['accessToken']){//accessed from web

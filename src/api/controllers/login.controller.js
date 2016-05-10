@@ -1,5 +1,6 @@
 'use strict';
 const token_service_1 = require('../services/token.service');
+const orm_service_1 = require('../services/orm.service');
 class LoginController {
     constructor() {
     }
@@ -27,6 +28,24 @@ class LoginController {
         pResponse.json(vResult);
     }
     logout(pRequest, pResponse) {
+        try {
+            var message = 'Insert start.';
+            console.log("mw Init");
+            var orm = new orm_service_1.ORMService();
+            console.log("mw map mode");
+            var sales_order_new = orm.getModel("trx_sales_order");
+            console.log("mw Create");
+            sales_order_new.create({
+                order_id: 1,
+                dsp_id: 1,
+                retailer_id: 1
+            }, { isNewRecord: true }).then(function (pResult) {
+                console.log("Successfully insert" + pResult.get("order_id"));
+            });
+        }
+        catch (pErr) {
+            console.log(pErr);
+        }
     }
 }
 exports.LoginController = LoginController;
