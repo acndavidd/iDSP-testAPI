@@ -1,55 +1,45 @@
-var path = require("path");
-var env = process.env.NODE_ENV || "development";
-var config = require(path.join(__dirname, '..', 'config', 'config.json'))[env];
-var Sequelize = require("sequelize");
-var db_orm = require('../model/');
+import {SequelizeService} from './sequelize.service';
 
-//No Need to change will be replace by Eddy
+var vPath = require("path");
+var vFs = require('fs');
 
 export class ORMService{
-	private obj;
 	constructor(){
-		db_orm.setup(config.db.name, config.db.username, config.db.password, {
-	        host: config.db.host,
-	        native: false,
-	        dialect: config.db.dialect
-	    });
+		
 	}
-	
-	public executeFunction(req,res){
-		var sequelize = db_orm.sequelize();
-		console.log(req.param('id'));
-		return sequelize.transaction(function (t) {
-			var id = req.param('id');
-			// chain all your queries here. make sure you return them.
-			return db_orm.model('public.user').create({
-				userID: req.param('id') + 2,
-				password: 'anjayy'
-			},{transaction: t}).then(function (user) {
-				return db_orm.model('public.user').create({
-					userID: id+1,
-					password: 'hihi'
-				}, {transaction: t});
-			});
-		}).then(function (result) {
-		}).catch(function (err) {
-		});
-	}
-				
 
-	public refreshModels(req,res){
-		var proc = require('child_process').exec;
-		var modelPath = req.body.path;
-        var cmd = 'spgen -d '+config.db.name+' -u '+config.db.username+' -s '+config.db.schema+' -h '+config.db .host;
-        if(config.db.password && config.db.password !== '')
-        	cmd += ' -p ' + config.db.password;
-        if(modelPath)cmd += ' -t ' + modelPath;
-        proc(cmd,function(error, stdout, stderr){
-            if(error){
-            	res.send(error);
-            }
-            var response = stdout.replace(/\n/g,"<br/>");
-            res.send(response);
-        });
+	public syncModel(pRequest,pResponse){
+		let vSequelizeSvc:SequelizeService = new SequelizeService();
+		try{
+			var vModel = vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),pRequest.query.model + vSequelizeSvc.getModelNaming()));
+			vModel.sync();
+			pResponse.send('success');
+		}catch(err){
+			console.log(err);
+			pResponse.send(err);
+		}
 	}
+
+	public getModel(pModelName:string){
+		let vSequelizeSvc:SequelizeService = new SequelizeService();
+		try{
+			return  vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),pModelName + vSequelizeSvc.getModelNaming()));
+		}catch(err){
+			console.log(err);
+			throw err;
+		}
+	}
+	/*
+	public syncAllModel(pRequest,pResponse){
+		let vSequelizeSvc:SequelizeService = new SequelizeService();
+		try{
+			vFs.readdirSync(vPath.join(vSequelizeSvc.getModelPath()),function(file){
+				console.log(file);
+			});
+			//vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),pModelName + vSequelizeSvc.getModelNaming()));
+		}catch(err){
+			console.log(err);
+			throw err;
+		}
+	}*/
 }

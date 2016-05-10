@@ -1,0 +1,26 @@
+{
+  "development": {
+  	"db" : {
+      "dialect"  : "postgres",
+      "host"     : "localhost",
+      "schema"   : "public",
+  		"username" : "root",
+	  	"password" : "",
+	    "name" 	   : "idsp",
+	    "port"     : 5432,
+      "pool"     : {
+          "min"  : 0,
+          "max"  : 5,
+          "idle" : 10000
+      }
+  	},
+    "model" : {
+        "dir" : "model",
+        "naming" : ".model.js"
+    },
+    "service" : {
+      "key" : "J@karta",
+      "serviceURL" : "http://127:0:0:1/service/"
+    }
+  }
+}

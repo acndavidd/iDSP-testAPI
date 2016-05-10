@@ -16,6 +16,12 @@ import {NgModel} from 'angular2/common';
 
 export class TargetsActualsComponent {
 	
+	vDayShow = true;
+	vWeekShow = false;
+	vMonthShow = false;
+    vUnderlineDay = true;
+    vUnderlineWeek = false;
+    vUnderlineMonth = false;
 
 	constructor (
 		private _layoutService: LayoutService,
@@ -26,10 +32,49 @@ export class TargetsActualsComponent {
 
 		this._layoutService.setCurrentPage('TargetsActuals');
 		this._headerService.setTitle("Targets & Actuals");
+
     }
 	
 	getResize(){
         return this._matchMediaService.getMm();  
     }
 
+    getFilter()
+    {
+        return this._layoutService.getFilter();
+    }
+
+    showMenuDay()
+    {
+        this.vDayShow = true;
+        this.vUnderlineDay = true;
+        this.vUnderlineWeek = false;
+    	this.vUnderlineMonth = false;
+    	this.vWeekShow = false;
+		this.vMonthShow = false
+
+    }
+
+    showMenuWeek()
+    {
+    	this.vWeekShow = true;
+        this.vUnderlineWeek = true;
+        this.vUnderlineDay = false;
+   		this.vUnderlineMonth = false;
+   		this.vDayShow = false;
+		this.vMonthShow = false
+    }
+
+    showMenuMonth()
+    {
+    	this.vMonthShow = true;
+        this.vUnderlineMonth = true;
+        this.vUnderlineWeek = false;
+    	this.vUnderlineDay = false;
+    	this.vWeekShow = false;
+		this.vDayShow = false
+    }
+
+
+       
 }

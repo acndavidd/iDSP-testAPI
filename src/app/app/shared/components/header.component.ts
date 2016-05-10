@@ -17,8 +17,7 @@ export class HeaderComponent implements OnInit {
         private _router: Router,
 		private _matchMediaService: MatchMediaService,
 		private _pageNavigationService: PageNavigationService,
-		private _headerService: HeaderService) {
-	}
+		private _headerService: HeaderService){}
 
 	vTitle :string;
 
@@ -41,5 +40,15 @@ export class HeaderComponent implements OnInit {
 	
 	goToPreviousPage(){
 		this._pageNavigationService.gotoPreviousPage();
+	}
+
+	toggleSearch()
+	{
+		
 	}   
+
+	toggleFilter()
+	{
+		this._layoutService.setFilter();
+	}
 }

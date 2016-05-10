@@ -1,7 +1,8 @@
 node_modules
 typings
-/src/**/*.js.map
-/src/**/*.js
+**/*.js.map
+[^m]**/*.js
 .tscache
 *.tmp.txt
+config/config.json
 config/migrate.json

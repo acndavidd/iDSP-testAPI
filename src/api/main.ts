@@ -5,71 +5,76 @@ import {LoginController} from './controllers/login.controller';
 import {TokenService} from './services/token.service';
 import {ORMService} from './services/orm.service';
 
-
 var vExpress = require('express');
 var vApp = vExpress();
 var vBodyParser = require('body-parser');
 var vCookieParser = require('cookie-parser');
+var vSOAP = require('soap');
+var vRouter = vExpress.Router();
 const PORT:number = process.env.PORT || 8080;
-const ROUTER = vExpress.Router();
 
-
-var loginCtrl:LoginController = new LoginController();
-var tokenSvc:TokenService = new TokenService();
-var ormSvc:ORMService = new ORMService();
+var vLoginCtrl:LoginController = new LoginController();
+var vTokenSvc:TokenService = new TokenService();
+var vOrmSvc:ORMService = new ORMService();
 
 vApp.use(vBodyParser.urlencoded({extended: true}));
 vApp.use(vBodyParser.json());
 vApp.use(vCookieParser());
 
-vApp.use(function(pReq, pRes, pNext) {
+
+vApp.use(function(pRequest, pResponse, pNext) {
     /*Allow access control origin*/
     let vAllow: string;
-    let vOrigin: string = pReq.get('origin');
+    let vOrigin: string = pRequest.get('origin');
     if (vOrigin == 'http://localhost:3000') {
         vAllow = 'http://localhost:3000';
     }
     if(vAllow) {
-         pRes.header("Access-Control-Allow-Origin", vAllow);
+         pResponse.header("Access-Control-Allow-Origin", vAllow);
     }
-    pRes.header("Access-Control-Allow-Credentials", "true");
-    pRes.header("Access-Control-Allow-Headers", 
+    pResponse.header("Access-Control-Allow-Credentials", "true");
+    pResponse.header("Access-Control-Allow-Headers", 
         "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept,Authorization,Proxy-Authorization,X-session");
-    pRes.header("Access-Control-Allow-Methods","GET,PUT,DELETE,POST");
+    pResponse.header("Access-Control-Allow-Methods","GET,PUT,DELETE,POST");
 
-    //validate token
-    console.log("Origin : " + pReq.get('origin') + " Path : " + pReq.path);
-    if(pReq.path !== '/service/login' && pReq.path !== '/service/refreshModels'){//all request to service will validate token except login
+    if(pRequest.path !== '/service/login'){//all request to service will validate token except login
         var vToken = '';
         try{
-            if(pReq.cookies['accessToken']){//accessed from web
-                vToken = vCookieParser.JSONCookies(pReq.cookies).accessToken;
+            if(pRequest.cookies['accessToken']){//accessed from web
+                vToken = vCookieParser.JSONCookies(pRequest.cookies).accessToken;
             }else{//accessed from mobile
-                vToken = pReq.get('Authorization');
+                vToken = pRequest.get('Authorization');
                 vToken = vToken.replace('Bearer ','');
             }
-            var jwt = tokenSvc.verifyToken(vToken);
-            pReq.locals.jwt = jwt;
-            if(pReq.path === '/service/verifyToken'){
+            var jwt = vTokenSvc.verifyToken(vToken);
+            pRequest.locals.jwt = jwt;
+            if(pRequest.path === '/service/verifyToken'){
                 var vResult = {
                     success : 1,
                     token : jwt
                 };
-                pReq.json(vResult);
+                pRequest.json(vResult);
             }
         }catch(err){
             console.log("error : " + err);
-            pRes.sendStatus(403);
+            pResponse.sendStatus(403);
         }      
     }
     pNext();
 });
-ROUTER.get('/refreshModels',ormSvc.refreshModels);
 
-ROUTER.post('/login',loginCtrl.doLogin);
-ROUTER.get('/logout',loginCtrl.doLogout);
+//vRouter.post('/login',vLoginCtrl.login);
+vRouter.get('/login',function(pRequest,pResponse){
+    var vUrl = './wsdl/CurrencyConvertor.asmx.xml';
+    var vArgs = { "FromCurrency" : "AFA","ToCurrency" : "IDR"};
+    vSOAP.createClient(vUrl,function(pErr,pClient){
+        pClient.ConversionRate(vArgs, function(pErr, pResult) {
+            pResponse.json(pResult);
+        });
+    });
+});
+vRouter.get('/logout',vLoginCtrl.logout);
 
-
-vApp.use('/service',ROUTER);
+vApp.use('/service',vRouter);
 vApp.listen(PORT);
 console.log('http://127.0.0.1:' + PORT + '/service');
