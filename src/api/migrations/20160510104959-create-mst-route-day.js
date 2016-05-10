@@ -9,6 +9,9 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       route_day: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
         type: Sequelize.INTEGER
       },
       sequence: {
