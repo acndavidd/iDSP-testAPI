@@ -22,7 +22,7 @@ module.exports = {
   down: function (queryInterface, Sequelize) {
     return [
       //queryInterface.removeColumn('trx_remittance','dsp_id')
-        queryInterface.sequelize.query('ALTER TABLE trx_saleord_load_det DROP CONSTRAINT product_id_foreign_idx')
+        queryInterface.sequelize.query('ALTER TABLE trx_saleord_load_det DROP CONSTRAINT order_id_foreign_idx')
     ];
   }
 };
