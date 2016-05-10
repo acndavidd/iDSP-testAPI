@@ -2,10 +2,34 @@ import {SequelizeService} from './sequelize.service';
 
 var vPath = require("path");
 var vFs = require('fs');
+var vExec = require('child_process').spawn;
 
 export class ORMService{
 	constructor(){
 		
+	}
+
+	public buildModels(pRequest,pResponse){
+		try{
+			let vPS = vExec('powershell.exe');
+			vPS.stdout.on('data',(data) => {
+				console.log('output : ' + data);
+			});
+			vPS.stderr.on('data', (error) => {
+				console.log('error : ' + error);
+			});
+			vFs.readFile('models/tables', 'UTF-8', 'r' , (err,data) => {
+				if(err)throw err;
+				data.split('\n').forEach(function(pLine){
+					console.log('execute ' + pLine);
+					vPS.stdin.write(pLine);
+				});
+			});
+			vPS.stdin.end();
+		}catch(err){
+			console.log(err);
+			pResponse.json(err);
+		}
 	}
 
 	public syncModel(pRequest,pResponse){

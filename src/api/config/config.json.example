@@ -15,8 +15,8 @@
       }
   	},
     "model" : {
-        "dir" : "model",
-        "naming" : ".model.js"
+        "dir" : "models",
+        "naming" : ".js"
     },
     "service" : {
       "key" : "J@karta",
