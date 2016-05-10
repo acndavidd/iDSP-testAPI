@@ -26,6 +26,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('mst_promos');
+    return queryInterface.dropTable('mst_promo');
   }
 };

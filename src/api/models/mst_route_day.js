@@ -8,6 +8,8 @@ module.exports = function(sequelize, DataTypes) {
     route_day: DataTypes.INTEGER,
     sequence: DataTypes.INTEGER
   }, {
+    timestamps : false,
+    freezeTableName: true,
     classMethods: {
       associate: function(models) {
         // associations can be defined here

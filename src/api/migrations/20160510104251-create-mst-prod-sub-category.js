@@ -19,6 +19,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('mst_prod_sub_categories');
+    return queryInterface.dropTable('mst_prod_sub_category');
   }
 };

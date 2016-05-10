@@ -17,6 +17,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('mst_route_days');
+    return queryInterface.dropTable('mst_route_day');
   }
 };
