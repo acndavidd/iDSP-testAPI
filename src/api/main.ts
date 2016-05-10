@@ -9,6 +9,7 @@ var vExpress = require('express');
 var vApp = vExpress();
 var vBodyParser = require('body-parser');
 var vCookieParser = require('cookie-parser');
+var vSOAP = require('soap');
 var vRouter = vExpress.Router();
 const PORT:number = process.env.PORT || 8080;
 
@@ -19,6 +20,7 @@ var vOrmSvc:ORMService = new ORMService();
 vApp.use(vBodyParser.urlencoded({extended: true}));
 vApp.use(vBodyParser.json());
 vApp.use(vCookieParser());
+
 
 vApp.use(function(pRequest, pResponse, pNext) {
     /*Allow access control origin*/
@@ -61,7 +63,16 @@ vApp.use(function(pRequest, pResponse, pNext) {
     pNext();
 });
 
-vRouter.post('/login',vLoginCtrl.login);
+//vRouter.post('/login',vLoginCtrl.login);
+vRouter.get('/login',function(pRequest,pResponse){
+    var vUrl = './wsdl/CurrencyConvertor.asmx.xml';
+    var vArgs = { "FromCurrency" : "AFA","ToCurrency" : "IDR"};
+    vSOAP.createClient(vUrl,function(pErr,pClient){
+        pClient.ConversionRate(vArgs, function(pErr, pResult) {
+            pResponse.json(pResult);
+        });
+    });
+});
 vRouter.get('/logout',vLoginCtrl.logout);
 
 vApp.use('/service',vRouter);
