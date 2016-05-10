@@ -163,7 +163,6 @@ export class LayoutService {
             }
         }
         else if(
-            pCurrent=='TargetsActuals' ||
             pCurrent=='Inventory' ||
             pCurrent=='RetailerRoute' ||
             pCurrent=='AccountsReceivables' ||
@@ -185,6 +184,28 @@ export class LayoutService {
             this.vHeaderItem = {
                 back: true,
                 filter: false,
+                edit: false
+            }
+        }
+         else if(
+            pCurrent=='TargetsActuals')
+        {
+            this._pageNavigationService.setPreviousPage('MyTransaction');
+            
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: true
+            };
+            this.vFooterState = 
+            {
+                myTransaction : true,
+                basicCallProcedure : false,
+                closeDay : false,
+                settings : false
+            };    
+            this.vHeaderItem = {
+                back: true,
+                filter: true,
                 edit: false
             }
         }

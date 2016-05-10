@@ -21,6 +21,10 @@ import {ModalComponent} from './shared/components/modal.component';
 import {RetailerRouteComponent} from './my-transaction/components/retailer-route.component';
 import {ModalService} from './shared/services/modal.service';
 import {RetailerService} from './shared/services/retailer.service';
+import {RetailerSalesOrderComponent} from './basic-call-procedure/components/retailer-sales-order.component';
+import {DetailRetailerComponent} from './basic-call-procedure/components/detail-retailer.component';
+import {SalesOrderPaymentComponent} from './basic-call-procedure/components/sales-order-payment.component';
+
 declare var FastClick: FastClickStatic;
 declare var configChannel: any;
 
@@ -80,7 +84,23 @@ declare var configChannel: any;
         path: '/retailerRoute',
         name: 'RetailerRoute',
         component: RetailerRouteComponent
+    },
+    {
+        path: '/retailerSalesOrder',
+        name: 'RetailerSalesOrder',
+        component: RetailerSalesOrderComponent
+    },
+    {
+        path: '/detailRetailer',
+        name: 'DetailRetailer',
+        component: DetailRetailerComponent
+    },
+    {
+        path: '/salesOrderPayment',
+        name: 'SalesOrderPayment',
+        component: SalesOrderPaymentComponent
     }
+
 ])
 export class IDSPComponent implements OnInit {
 

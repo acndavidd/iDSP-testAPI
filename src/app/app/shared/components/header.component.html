@@ -1,12 +1,9 @@
 <div class="header-small"  *ngIf="getLayout().appHeader">
 	<div class="main-box">
         <div class="default-box">
+        <div class="title">{{getTitle()}}</div>
             <div class="back" *ngIf="getHeaderLayout().back" (click)="goToPreviousPage()"></div>
-            <div class="title">{{getTitle()}}</div>
-              <!--<div class="refresh"></div>
-            <div class="magnifier"></div>
-            <div class="up-arrow"></div>
-            <div class="logo"></div>-->
+            <div class="filter" *ngIf="getHeaderLayout().filter"></div>
         </div>
     </div>
 </div>
