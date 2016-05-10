@@ -1,0 +1,259 @@
+
+/*
+===========================================================
+SUBMENU
+===========================================================
+*/
+.sub-main-menu {
+    //padding-bottom: 45px;
+    z-index: 1;
+    height: 100%;
+    .container-body {
+        background-color: $dark-cyan;
+        .separator {
+            border-bottom: 2px solid $white;
+            margin-bottom: 2px;
+        }
+        .sub-main-button {
+            display: inline-block;
+            width: 100%;
+            padding-bottom: 15px;
+            padding-top: 15px;
+            background-color: $dark-cyan;
+            .button-identifier {
+                font-size: $content-heading-1;
+                text-align: center;
+                color: $white;
+            }
+        }
+    }
+}
+
+/*
+===========================================================
+LIST VIEW
+===========================================================
+*/
+
+/*
+===========================================================
+LIST VIEW - BUTTON
+===========================================================
+*/
+.container-body {
+    background-color: $white;
+    width: 100%;
+    height: 100%;
+
+    .no-divider {
+        width: 100%;
+        float:left;
+    }
+    .double-divider{
+        width: 50%;
+        float:left;
+    }
+    .button {
+        display: inline-block;
+        width: 80%;
+        padding-bottom: 15px;
+        padding-top: 15px;
+        background-color: $dark-sea-green;
+        margin: 10%;
+        border-radius: 5px;
+        .button-identifier {
+            cursor: pointer;
+            font-size: $button;
+            text-align: center;
+            width: 100%;
+            color: $white;
+        }
+    }
+
+
+
+/*
+===========================================================
+LIST VIEW - TEXT
+===========================================================
+*/
+
+    .item-container {
+        display: inline-block;
+        width: calc(100% - 20px);
+        padding-left: 10px;
+        padding-right: 10px;
+        border-bottom: 2px solid #BFBFBF;
+        cursor: pointer;
+
+        div .tbs{
+            width: 100%;
+        }
+
+        div.tbs > div:nth-child(2n-1)
+        {
+            //word-wrap: break-word;
+            //word-break: break-all;
+            white-space: normal;
+            width: 60%;
+            float: left;
+            font-size: $content-normal;
+            color: $grey;
+        }
+        div .tbs > div:nth-child(2n)
+        {
+            //word-wrap: break-word;
+            //word-break: break-all;
+            margin-top: 10%;
+            white-space: normal;
+            width: 40%;
+            float: left;
+            font-size: $content-normal;
+            color: $black;
+        }
+        
+        .item-title{
+            font-size: $content-title;
+            font-weight: bold;
+            margin-bottom: 5px;
+            margin-top: 5px;
+            &.left {
+            text-align:left;    
+            }
+            &.center {
+            text-align:center;
+            }
+        }
+        .item-identifier {
+            color: $black;
+            font-size: $content-heading-2;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        .item-value{
+            font-size: $content-normal;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            padding-top:5px;
+            float: left;
+            &.black {
+            color: $black; 
+            }
+            &.green {
+            color: $dark-cyan;
+            }
+        }
+        .item-center-identifier {
+            color: $black;
+            font-size: $content-heading-1;
+            text-align:center;
+            margin-top: 18px;
+            margin-bottom: 18px;
+            &.single-line {
+                width: 125px;
+                float: left;
+            }
+            &.after {
+                clear: both;
+            }
+        }
+        .item-left-identifier {
+            color: $black;
+            font-size: $content-heading-1;
+            text-align:left;
+            margin-top: 18px;
+            margin-right: 5px;
+            margin-bottom: 18px;
+            font-weight:bold;
+            &.single-line {
+                width: 125px;
+                float: left;
+            }
+            &.after {
+                clear: both;
+            }
+        }
+
+
+/*
+===========================================================
+LIST VIEW - ICON
+===========================================================
+*/
+        .item-icon {
+            height: 30px;
+            width: 30px;
+            float: right;
+            text-align: center;
+	        
+            &.arrow-down {
+                background: url("../img/icon-idsp/path-down-grey.png")no-repeat;
+                background-position-x: center;
+		        background-position-y: 7px;
+		        background-size: 20px;
+            }
+            &.arrow-right {
+                background: url("../img/icon-idsp/path-right-grey.png")no-repeat;
+                background-position-x: center;
+		        background-position-y: 7px;
+		        background-size: 13px;
+            }
+            &.selected
+            {   
+                background-position-x: center;
+                background-position-y: 7px;
+                background-size: 20px;
+                transform: rotate(180deg);
+            }
+            &.call
+            {
+                background: url("../img/icon-idsp/phone-grey.png")no-repeat;
+                background-position-x: center;
+		        background-position-y: 7px;
+		        background-size: 20px;
+            }
+        }
+    }
+
+/*
+===========================================================
+LIST VIEW - ICON - ARROW DOWN
+===========================================================
+*/
+    .item-sub-container {
+        display: inline-block;
+        width: calc(100% - 20px);
+        padding-left: 10px;
+        padding-right: 20px;
+        border-bottom: 2px solid #BFBFBF;
+        cursor: pointer;
+        background-color: #EEE;
+        .item-icon {
+            height: 30px;
+            width: 30px;
+            float: right;
+            text-align: center;
+            background-position-x: center;
+            background-position-y: 7px;
+            background-size: 20px;
+        }
+        .item-identifier {
+            color: $grey;
+            font-size: $content-heading-2;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        .item-value{
+            font-size: $content-normal;
+            color: $black;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            padding-top:5px;
+            float: left;
+        }
+    }
+}
+
+
+
+

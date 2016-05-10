@@ -5,7 +5,7 @@
         height: 96px;
       }
     .main-box{
-      background-color: #007879;
+      background-color: $deep-cyan;
       top: 0;
       z-index: 100;
       width: 100%;
@@ -18,9 +18,10 @@
           background-position: center center;
           cursor: pointer;
           text-align: center;
+          font-weight: bold;
           color: $white;
-          font-size: 20px;
-          padding-top: 10px;
+          font-size: $header-title;
+          padding-top: 6px;
         }
         .back{
             position: fixed;
