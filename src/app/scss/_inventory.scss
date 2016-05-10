@@ -1,5 +1,13 @@
-.targets-actuals {
-    //padding-bottom: 45px;
-    z-index: 1;
-    height: 100%;
+
+.container-body {
+    .item-container {
+        .item-notification {   
+            font-size: $content-normal;
+            background-color: $iris-blue;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            color: $white;
+            text-align: center;
+		}
+    }
 }

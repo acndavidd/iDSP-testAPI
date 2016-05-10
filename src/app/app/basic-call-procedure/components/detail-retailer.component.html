@@ -1,4 +1,3 @@
-<div class="detail-retailer-container">
     <div class="container-body">
         <div class="item-container">
             <div class="item-identifier">
@@ -8,7 +7,7 @@
         <div class="item-container">
             <div class="item-identifier">Retailer Owner</div>
             <div class="item-value"><div *ngIf="getRetailerAll()">{{getRetailerAll().ownerName}}</div></div>
-            <a (click)="subMenuShow()"><div class="item-icon open-sub-item selected" [ngClass] = "{selected: vArrowMap}"></div></a>
+            <a (click)="subMenuShow()"><div class="item-icon arrow-down selected" [ngClass] = "{selected: vArrowMap}"></div></a>
 
          <div *ngIf="vMenuShow">
             <div class="item-sub-container">
@@ -33,7 +32,7 @@
         <div class="item-container" >
             <div class="item-identifier">Mobile Number</div>
             <div class="item-value"><div *ngIf="getRetailerAll()">{{getRetailerAll().serviceNumber}}</div></div>
-            <div class="item-icon call"></div>
+            <a href="tel:1234566"><div class="item-icon call"></div></a>
         </div>
         <div class="item-container" >
             <div class="item-identifier">Address</div>
@@ -57,4 +56,3 @@
             <div class="item-value"></div>
         </div>
     </div>
-</div>

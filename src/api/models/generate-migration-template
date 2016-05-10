@@ -1,0 +1,17 @@
+sequelize model:create --name mst_sync_version --attributes 'table_name:string(50), table_description:string(200), lastSync:date' --env sql-dev --config config/migrate.json
+sequelize model:create --name mst_product --attributes 'product_id:string(20), product_name:string(50), category_id:string(30), sub_category_id:string(50), brand:string(50), price:integer' --env sql-dev --config config/migrate.json
+sequelize model:create --name mst_product_category --attributes 'category_id:string(20), category_name:string(50), brand:string(20)' --env sql-dev --config config/migrate.json
+sequelize model:create --name mst_dist --attributes 'dist_id:string(20), dist_name:string(50)' --env sql-dev --config config/migrate.json
+sequelize model:create --name mst_dss --attributes 'dss_id:string(20), dist_id:string(20), first_name:string(50), last_name:string(50)' --env sql-dev --config config/migrate.json
+sequelize model:create --name mst_prod_sub_category --attributes 'sub_category_id:string(20), sub_category_name:string(50), category_id:string(20), brand:string(20)' --env sql-dev --config config/migrate.json
+sequelize model:create --name mst_dsp --attributes 'dsp_id:string(20), dss_id:string(20), first_name:string(50), last_name:string(50), dealer_min_smart:string(20), dealer_min_sun:string(20)' --env sql-dev --config config/migrate.json
+sequelize model:create --name mst_retailer --attributes 'retailer_id:string(20), retailer_name:string(50), retailer_min:string(20), owner_first_name:string(20), owned_middle_name:string(20), owned_last_name:string(20), retailer_address:string(100), civil_status:string(20), email:string(100), gender:string(10), birthday:date, percent_share:integer, dsp_id:string(20), created_date:date, created_by:string(20), updated_date:date, updated_by:string(20)' --env sql-dev --config config/migrate.json
+sequelize model:create --name mst_retailer_dsp_alert --attributes 'retailer_id:string(20), retailer_name:string(50), retailer_min:string(20), date:date, value_segment:string(10), threshold_hit:decimal(10)' --env sql-dev --config config/migrate.json
+sequelize model:create --name mst_route_day --attributes 'route_id:integer, route_day:integer, sequence:integer' --env sql-dev --config config/migrate.json
+sequelize model:create --name mst_route --attributes 'route_id:integer, dsp_id:string(20), retailer_id:string(20), frequency:string(3), created_date:date, created_by:string(20), updated_date:date, updated_by:string(20)' --env sql-dev --config config/migrate.json
+sequelize model:create --name mst_promo --attributes 'promo_id:integer, promo_name:string(50), promo_description:string(2500), promo_pict:string(50), start_date:date, end_date:date' --env sql-dev --config config/migrate.json
+sequelize model:create --name mst_target --attributes 'target_id:integer, dsp_id:string(20), product_id:string(20), target_month:integer, target_year:integer, target_qty:integer' --env sql-dev --config config/migrate.json
+
+
+sequelize db:migrate:undo:all --env sql-dev --config config\migrate.json
+sequelize db:migrate --env sql-dev --config config\migrate.json

@@ -16,6 +16,10 @@ import {NgModel} from 'angular2/common';
 
 export class InventoryComponent {
 	
+	vLoadShow = true;
+	vPhysicalShow = false;
+	vUnderlineLoad = true;
+	vUnderlinePhysical = false;
 
 	constructor (
 		private _layoutService: LayoutService,
@@ -23,13 +27,29 @@ export class InventoryComponent {
 		private _headerService: HeaderService
     	) 
 	{
-
 		this._layoutService.setCurrentPage('Inventory');
 		this._headerService.setTitle("Inventory");
     }
 	
-	getResize(){
+	getResize() {
         return this._matchMediaService.getMm();  
     }
 
+    getFilter() {
+        return this._layoutService.getFilter();
+    }
+
+    showMenuLoad() {
+    	this.vLoadShow = true;
+    	this.vPhysicalShow = false;
+    	this.vUnderlineLoad = true;
+    	this.vUnderlinePhysical = false;
+    }
+
+    showMenuPhysical() {
+    	this.vLoadShow = false;
+    	this.vPhysicalShow = true;
+    	this.vUnderlineLoad = false;
+    	this.vUnderlinePhysical = true;
+    }
 }
