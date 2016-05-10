@@ -1,4 +1,4 @@
-
+$select-arrow: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4IiB3aWR0aD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE0LjgzIDE2LjQybDkuMTcgOS4xNyA5LjE3LTkuMTcgMi44MyAyLjgzLTEyIDEyLTEyLTEyeiIvPjxwYXRoIGQ9Ik0wLS43NWg0OHY0OGgtNDh6IiBmaWxsPSJub25lIi8+PC9zdmc+';
 /*
 ===========================================================
 SUBMENU
@@ -28,6 +28,39 @@ SUBMENU
         }
     }
 }
+
+/*
+===========================================================
+SUBTAB
+===========================================================
+*/
+.sub-tab {
+    display: block;
+    background-color: $smart-menu-color;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: -3px;
+    float: left;
+    &.double {
+        width: 50%;
+    }
+    &.triple {
+        width: 33%;
+    }
+    &.active {
+        border-bottom: 2px solid $menu-underline;
+    }
+    .text {
+        color: $inactive-tab-grey;
+        text-align: center;
+        font-size: $header-tab;
+
+        &.active {
+            color: $white;
+        }
+    }
+}
+
 
 /*
 ===========================================================
@@ -81,8 +114,7 @@ LIST VIEW - TEXT
     .item-container {
         display: inline-block;
         width: 100%;
-        padding-right: 10px;
-        border-bottom: 2px solid #BFBFBF;
+        border-bottom: 2px solid $border-line;
         cursor: pointer;
 
         div .tbs{
@@ -126,7 +158,7 @@ LIST VIEW - TEXT
             }
         }
         .item-identifier {
-            color: $black;
+            color: $grey;
             font-size: $content-heading-2;
             margin-right: 10px;
             margin-top: 10px;
@@ -192,27 +224,23 @@ LIST VIEW - ICON
             &.arrow-down {
                 background: url("../img/icon-idsp/path-down-grey.png")no-repeat;
                 background-position-x: center;
-		        background-position-y: 7px;
 		        background-size: 20px;
             }
             &.arrow-right {
                 background: url("../img/icon-idsp/path-right-grey.png")no-repeat;
                 background-position-x: center;
-		        background-position-y: 7px;
 		        background-size: 13px;
             }
             &.selected
             {   
+                background: url("../img/icon-idsp/path-down-up.png")no-repeat;
                 background-position-x: center;
-                background-position-y: 7px;
                 background-size: 20px;
-                transform: rotate(180deg);
             }
             &.call
             {
                 background: url("../img/icon-idsp/phone-grey.png")no-repeat;
                 background-position-x: center;
-		        background-position-y: 7px;
 		        background-size: 20px;
             }
         }
@@ -248,6 +276,47 @@ LIST VIEW - ICON - ARROW DOWN
             margin-bottom: 10px;
             padding-top:5px;
             float: left;
+        }
+    }
+
+ /*
+===========================================================
+LIST VIEW - FILTER
+===========================================================
+*/   
+
+    .filter-container{
+            background-color: $white-smoke;
+            width: 100%;
+            display: block;
+            clear: left;
+            height: 60px;
+        .filter-label {
+            font-size: $filter-label;
+            color: #000;
+            padding-top: 20px;
+            padding-left: 10px;
+            float: left;
+        }
+        .filter-dropdown {
+            padding-top: 15px;
+            padding-left: 70px;
+            select {
+                background: $white;
+                height: 31px;
+                border: 1px solid $dark-grey;
+                width: 90%;
+                -webkit-appearance: none;
+                border-radius: 7px;
+                padding-left: 15px;
+                font-size: $filter-select;
+                appearance: none;
+                @media screen and (-webkit-min-device-pixel-ratio: 0) {
+                    background-image: url(#{$select-arrow});
+                    background-position: right 0 top 50%;
+                    background-repeat: no-repeat;
+                }
+            }
         }
     }
 }

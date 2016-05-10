@@ -1,47 +1,13 @@
-.inventory {
-    z-index: 1;
-    height: 100%;
-    width: 100%;
-    .sub-menu
-    {
-    	display: block;
-	    width: 50%;
-	    background-color: $smart-menu-color;
-	    padding-top: 10px;
-	    padding-bottom: 10px;
-	    margin-top: -3px;
-	    float: left;
-	    &.active {
-		    border-bottom: 2px solid $menu-underline;
-	    }
-	    .text {
-	    	color: $inactive-tab-grey;
-	    	text-align: center;
-	    	font-size: $header-tab;
 
-	    	&.active {
-		    	color: $white;
-		    }
-	    }
-	}
-	
-    .container-body-inventory {
-	    background-color: $white;
-	    width: 100%;
-	    height: 100%;
-	    .item-container {
-		    display: inline-block;
-		    width: 100%;
-		    padding-bottom: 10px;
-
-	        .item-title {   
-	            font-size: $content-normal;
-	            background-color: $light-grayish-blue;
-	            padding-top: 5px;
-	            padding-bottom: 5px;
-	            color: $white;
-	            text-align: center;
-			}
-        }
+.container-body {
+    .item-container {
+        .item-notification {   
+            font-size: $content-normal;
+            background-color: $iris-blue;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            color: $white;
+            text-align: center;
+		}
     }
 }
