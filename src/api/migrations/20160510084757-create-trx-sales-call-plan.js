@@ -1,15 +1,12 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('trx_sales_call_plans', {
-      id: {
+    return queryInterface.createTable('trx_sales_call_plan', {
+      call_id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      call_id: {
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
       route_id: {
         type: Sequelize.INTEGER
@@ -46,18 +43,10 @@ module.exports = {
       },
       sales_remarks: {
         type: Sequelize.STRING(30)
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('trx_sales_call_plans');
+    return queryInterface.dropTable('trx_sales_call_plan');
   }
 };

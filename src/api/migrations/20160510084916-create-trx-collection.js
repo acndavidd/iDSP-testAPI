@@ -1,15 +1,12 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('trx_collections', {
-      id: {
+    return queryInterface.createTable('trx_collection', {
+      coll_id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      coll_id: {
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
       dsp_id: {
         type: Sequelize.STRING(20)
@@ -21,19 +18,11 @@ module.exports = {
         type: Sequelize.DATE
       },
       amount: {
-        type: Sequelize.INTEGER
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DECIMAL(10,2)
       }
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('trx_collections');
+    return queryInterface.dropTable('trx_collection');
   }
 };

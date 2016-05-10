@@ -1,7 +1,13 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var trx_sales_call_plan = sequelize.define('trx_sales_call_plan', {
-    call_id: DataTypes.INTEGER,
+    call_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      unique: true,
+      autoIncrement: true
+    },
     route_id: DataTypes.INTEGER,
     route_day: DataTypes.INTEGER,
     call_sequence: DataTypes.INTEGER,
@@ -15,6 +21,8 @@ module.exports = function(sequelize, DataTypes) {
     end_sales_date: DataTypes.DATE,
     sales_remarks: DataTypes.STRING(30)
   }, {
+    timestamps: false,
+    freezeTableName: true,
     classMethods: {
       associate: function(models) {
         // associations can be defined here

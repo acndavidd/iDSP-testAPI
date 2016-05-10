@@ -1,36 +1,27 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('trx_saleord_prd_dets', {
-      id: {
+    return queryInterface.createTable('trx_saleord_prd_det', {
+      order_id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      order_id: {
-        type: Sequelize.INTEGER
       },
       product_id: {
-        type: Sequelize.STRING(20)
+        type: Sequelize.STRING(20),
+        primaryKey: true,
+        allowNull: false
       },
       quantity: {
         type: Sequelize.INTEGER
       },
       price: {
-        type: Sequelize.INTEGER
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DECIMAL(10,2)
       }
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('trx_saleord_prd_dets');
+    return queryInterface.dropTable('trx_saleord_prd_det');
   }
 };

@@ -1,17 +1,16 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('trx_remittance_dets', {
-      id: {
+    return queryInterface.createTable('trx_remittance_det', {
+      remit_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
+      remit_det_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      remit_id: {
-        type: Sequelize.INTEGER
-      },
-      remit_det_id: {
         type: Sequelize.INTEGER
       },
       remit_type: {
@@ -33,19 +32,11 @@ module.exports = {
         type: Sequelize.STRING(20)
       },
       remit_amount: {
-        type: Sequelize.INTEGER
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DECIMAL(10,2)
       }
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('trx_remittance_dets');
+    return queryInterface.dropTable('trx_remittance_det');
   }
 };
