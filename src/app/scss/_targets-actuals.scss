@@ -1,5 +1,4 @@
 $select-arrow: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4IiB3aWR0aD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE0LjgzIDE2LjQybDkuMTcgOS4xNyA5LjE3LTkuMTcgMi44MyAyLjgzLTEyIDEyLTEyLTEyeiIvPjxwYXRoIGQ9Ik0wLS43NWg0OHY0OGgtNDh6IiBmaWxsPSJub25lIi8+PC9zdmc+';
-$select-padding: 0;
 $menu-underline : #ED135B;
 
 .targets-actuals {
@@ -10,67 +9,73 @@ $menu-underline : #ED135B;
     .sub-menu-day
     {
     	display: block;
-	    width: 34%;
+	    width: 33%;
 	    background-color: $smart-menu-color;
 	    padding-top: 10px;
 	    padding-bottom: 10px;
 	    margin-top: -3px;
-	    margin-right: -1%;
 	    float: left;
 	    &.active{
 		    border-bottom: 2px solid $menu-underline;
 	    	margin-left: 0;
+            color: $white;
 	    }
 	    .text
 	    {
-	    	color: #fff;
+	    	color: $inactive-tab-grey;
 	    	text-align: center;
 	    	font-size: 15px;
-
+            &.active{
+                color: $white;
+            }
 	    }
 	}
 	.sub-menu-week
     {
     	display: block;
-	    width: 35%;
-	    background-color: $smart-menu-color;
-	    padding-top: 10px;
-	    padding-bottom: 10px;
-	    margin-top: -3px;
-	    margin-right: -1%;
-	    margin-left: -1%;
-	    float: left;
-	    &.active{
-		    border-bottom: 2px solid $menu-underline;
-	    	margin-left: -1%;
-	    }
-	    .text
-	    {
-	    	color: #fff;
-	    	text-align: center;
-	    	font-size: 15px;
-
-	   }
-	}
-	.sub-menu-month
-    {
-    	display: block;
 	    width: 34%;
 	    background-color: $smart-menu-color;
 	    padding-top: 10px;
 	    padding-bottom: 10px;
 	    margin-top: -3px;
-	    margin-right: -1%;
 	    float: left;
+	    &.active{
+		    border-bottom: 2px solid $menu-underline;
+	    	margin-left: 0;
+            color: $white;
+	    }
+	    .text
+	    {
+	    	color: $inactive-tab-grey;
+	    	text-align: center;
+	    	font-size: 15px;
+             &.active{
+                color: $white;
+            }
+	   }
+	}
+	.sub-menu-month
+    {
+    	display: block;
+	    width: 33%;
+	    background-color: $smart-menu-color;
+	    padding-top: 10px;
+	    padding-bottom: 10px;
+	    margin-top: -3px;
+	    float: left;
+        color: $white;
 	    &.active{
 		    border-bottom: 2px solid $menu-underline;
 	    	margin-left: 0px;
 	    }
 	    .text
 	    {
-	    	color: #fff;
+	    	color: $inactive-tab-grey;
 	    	text-align: center;
 	    	font-size: 15px;
+             &.active{
+                color: $white;
+            }
         }    
     }
     .container-body-ta {
