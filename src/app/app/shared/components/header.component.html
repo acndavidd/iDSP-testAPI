@@ -4,6 +4,7 @@
         <div class="title">{{getTitle()}}</div>
             <div class="back" *ngIf="getHeaderLayout().back" (click)="goToPreviousPage()"></div>
             <div class="filter" *ngIf="getHeaderLayout().filter" (click)="toggleFilter()"></div>
+            <div class="search" *ngIf="getHeaderLayout().search" (click)="toggleSearch()"></div>
         </div>
     </div>
 </div>
