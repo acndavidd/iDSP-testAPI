@@ -1,3 +1,42 @@
 <div class="inventory">
-    SUDAH MASUK KE INVENTORY COY
+    <a (click)="showMenuLoad()">
+    	<div class="sub-menu" [ngClass] = "{active: vUnderlineLoad}">
+    		<div class="text" [ngClass] = "{active: vUnderlineLoad}">
+    			Load
+    		</div>
+    	</div>
+    </a>
+    <a (click)="showMenuPhysical()">
+    	<div class="sub-menu" [ngClass] = "{active: vUnderlinePhysical}">
+    		<div class="text" [ngClass] = "{active: vUnderlinePhysical}">
+    			Physical
+    		</div>
+    	</div>
+    </a>
+
+    <div class="container-body-inventory">
+
+    	<div class="filter-container" *ngIf="getFilter().filterTargetsActuals">
+			<div class="filter-label">Brand</div>
+			<div class="filter-dropdown"><select name="cars">
+			  <option value="volvo">Volvo</option>
+			  <option value="saab">Saab</option>
+			  <option value="fiat">Fiat</option>
+			  <option value="audi">Audi</option>
+			</select></div>
+		</div>
+
+		<div *ngIf="vLoadShow">
+			<div class="item-container">
+				<div class="item-title">LOAD AS OF 04/12/2016 10.00 AM</div>
+			</div>
+		</div>
+
+		<div *ngIf="vPhysicalShow">
+			<div class="item-container">
+				<div class="item-title">PHYSICAL INVENTORY AS OF 04/12/2016 10.00 AM</div>
+			</div> 
+		</div>
+    	
+    </div>
 </div>

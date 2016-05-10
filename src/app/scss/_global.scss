@@ -80,8 +80,7 @@ LIST VIEW - TEXT
 
     .item-container {
         display: inline-block;
-        width: calc(100% - 20px);
-        padding-left: 10px;
+        width: 100%;
         padding-right: 10px;
         border-bottom: 2px solid #BFBFBF;
         cursor: pointer;
@@ -99,6 +98,7 @@ LIST VIEW - TEXT
             float: left;
             font-size: $content-normal;
             color: $grey;
+            margin-left: 10px;
         }
         div .tbs > div:nth-child(2n)
         {
@@ -117,6 +117,7 @@ LIST VIEW - TEXT
             font-weight: bold;
             margin-bottom: 5px;
             margin-top: 5px;
+            margin-left: 10px;
             &.left {
             text-align:left;    
             }
@@ -129,11 +130,13 @@ LIST VIEW - TEXT
             font-size: $content-heading-2;
             margin-right: 10px;
             margin-top: 10px;
+            margin-left: 10px;
         }
         .item-value{
             font-size: $content-normal;
             margin-right: 10px;
             margin-bottom: 10px;
+            margin-left: 10px;
             padding-top:5px;
             float: left;
             &.black {
@@ -184,7 +187,7 @@ LIST VIEW - ICON
             height: 30px;
             width: 30px;
             float: right;
-            text-align: center;
+            margin-right: 10px;
 	        
             &.arrow-down {
                 background: url("../img/icon-idsp/path-down-grey.png")no-repeat;
@@ -222,9 +225,7 @@ LIST VIEW - ICON - ARROW DOWN
 */
     .item-sub-container {
         display: inline-block;
-        width: calc(100% - 20px);
-        padding-left: 10px;
-        padding-right: 20px;
+        width: 100%;
         border-bottom: 2px solid #BFBFBF;
         cursor: pointer;
         background-color: #EEE;
@@ -232,10 +233,7 @@ LIST VIEW - ICON - ARROW DOWN
             height: 30px;
             width: 30px;
             float: right;
-            text-align: center;
-            background-position-x: center;
-            background-position-y: 7px;
-            background-size: 20px;
+            margin-right: 10px;
         }
         .item-identifier {
             color: $grey;
