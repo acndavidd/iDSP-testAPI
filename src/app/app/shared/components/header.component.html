@@ -3,7 +3,7 @@
         <div class="default-box">
         <div class="title">{{getTitle()}}</div>
             <div class="back" *ngIf="getHeaderLayout().back" (click)="goToPreviousPage()"></div>
-            <div class="filter" *ngIf="getHeaderLayout().filter"></div>
+            <div class="filter" *ngIf="getHeaderLayout().filter" (click)="toggleFilter()"></div>
         </div>
     </div>
 </div>

@@ -32,10 +32,16 @@ export class TargetsActualsComponent {
 
 		this._layoutService.setCurrentPage('TargetsActuals');
 		this._headerService.setTitle("Targets & Actuals");
+
     }
 	
 	getResize(){
         return this._matchMediaService.getMm();  
+    }
+
+    getFilter()
+    {
+        return this._layoutService.getFilter();
     }
 
     showMenuDay()
@@ -68,4 +74,7 @@ export class TargetsActualsComponent {
     	this.vWeekShow = false;
 		this.vDayShow = false
     }
+
+
+       
 }
