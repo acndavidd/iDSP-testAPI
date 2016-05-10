@@ -5,7 +5,10 @@ module.exports = function(sequelize, DataTypes) {
       type : DataTypes.INTEGER,
       primaryKey : true
     },
-    route_day: DataTypes.INTEGER,
+    route_day: {
+      type : DataTypes.INTEGER,
+      primaryKey : true
+    },
     sequence: DataTypes.INTEGER
   }, {
     classMethods: {

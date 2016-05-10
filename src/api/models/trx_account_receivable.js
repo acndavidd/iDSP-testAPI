@@ -10,6 +10,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     order_id: DataTypes.INTEGER,
     dsp_id: DataTypes.STRING(20),
+    retailer_id: DataTypes.STRING(20),
     amount: DataTypes.DECIMAL(10,2),
     trans_date: DataTypes.DATE,
     due_date: DataTypes.DATE,

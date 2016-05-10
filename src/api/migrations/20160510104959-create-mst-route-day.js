@@ -9,7 +9,9 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       route_day: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        allowNull: false
       },
       sequence: {
         type: Sequelize.INTEGER
