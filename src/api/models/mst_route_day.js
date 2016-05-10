@@ -11,6 +11,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     sequence: DataTypes.INTEGER
   }, {
+    timestamps : false,
+    freezeTableName: true,
     classMethods: {
       associate: function(models) {
         // associations can be defined here

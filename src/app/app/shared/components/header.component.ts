@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
 
 	toggleSearch()
 	{
-		
+		this._layoutService.setSearch();
 	}   
 
 	toggleFilter()

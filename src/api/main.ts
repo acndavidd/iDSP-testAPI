@@ -65,13 +65,19 @@ vApp.use(function(pRequest, pResponse, pNext) {
 
 //vRouter.post('/login',vLoginCtrl.login);
 vRouter.get('/login',function(pRequest,pResponse){
-    var vUrl = './wsdl/CurrencyConvertor.asmx.xml';
+    /*var vUrl = './wsdl/CurrencyConvertor.asmx.xml';
     var vArgs = { "FromCurrency" : "AFA","ToCurrency" : "IDR"};
     vSOAP.createClient(vUrl,function(pErr,pClient){
         pClient.ConversionRate(vArgs, function(pErr, pResult) {
             pResponse.json(pResult);
         });
-    });
+    });*/
+    vOrmSvc.getModel('mst_dss').create({
+         dss_id : 'qqq',
+         dist_id: 'aaa',
+         first_name: 'firstname',
+         last_name : 'last_name'
+     }, {isNewRecord:true};
 });
 vRouter.get('/logout',vLoginCtrl.logout);
 

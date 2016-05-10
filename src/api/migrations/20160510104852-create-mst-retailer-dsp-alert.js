@@ -25,6 +25,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('mst_retailer_dsp_alerts');
+    return queryInterface.dropTable('mst_retailer_dsp_alert');
   }
 };

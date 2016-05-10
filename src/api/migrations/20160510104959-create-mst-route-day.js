@@ -9,9 +9,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       route_day: {
-        type: Sequelize.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
-        allowNull: false
+        type: Sequelize.INTEGER
       },
       sequence: {
         type: Sequelize.INTEGER
@@ -19,6 +20,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('mst_route_days');
+    return queryInterface.dropTable('mst_route_day');
   }
 };

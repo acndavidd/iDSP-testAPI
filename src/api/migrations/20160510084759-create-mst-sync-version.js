@@ -16,6 +16,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('mst_sync_versions');
+    return queryInterface.dropTable('mst_sync_version');
   }
 };

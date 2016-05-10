@@ -11,6 +11,8 @@ module.exports = function(sequelize, DataTypes) {
     dealer_min_smart: DataTypes.STRING(20),
     dealer_min_sun: DataTypes.STRING(20)
   }, {
+    timestamps : false,
+    freezeTableName: true,
     classMethods: {
       associate: function(models) {
         // associations can be defined here
