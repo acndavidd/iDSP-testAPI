@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
     freezeTableName: true,
     classMethods: {
       associate: function(models) {
-        mst_product_category.hasMany(models.mst_prod_sub_category);
+        mst_product_category.hasMany(models.mst_prod_sub_category , {as : 'ProductSubCategory', foreignKey : 'category_id'});
       },
       getAssociatedModels : function(){
         return ['mst_prod_sub_category'];

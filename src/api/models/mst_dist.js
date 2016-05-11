@@ -11,7 +11,10 @@ module.exports = function(sequelize, DataTypes) {
     freezeTableName: true,
     classMethods: {
       associate: function(models) {
-        
+        mst_dist.hasMany(models.mst_dss, {as : 'DSS' , foreignKey : 'dist_id'});
+      },
+      getAssociatedModels : function(){
+        return ['mst_dss'];
       }
     }
   });
