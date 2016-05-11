@@ -11,7 +11,7 @@
       width: 100%;
       position: fixed;
       .default-box{
-        height: 48px;
+        height: 50px;
         width: 100%;
         .title{
           position: fixed;
@@ -21,7 +21,8 @@
           text-align: center;
           color: $white;
           font-size: $header-title;
-          padding-top: 6px;
+          padding-top: 0.9em;
+          font-weight: lighter;
         }
         .back{
             position: fixed;
@@ -29,7 +30,7 @@
             width:48px;
             height:48px;
             background: url("../img/icon-idsp/back-white.png") no-repeat;
-            background-size: 30px;
+            background-size: 25px;
             background-position: center center;
             cursor: pointer;
         }
@@ -40,7 +41,7 @@
               right: 0;
               z-index: 1000;
               background: url("../img/icon-idsp/filter.png") no-repeat;
-              background-size: 30px;
+              background-size: 25px;
               background-position: center center;
               cursor: pointer;
           }
@@ -51,7 +52,7 @@
             right: 0;
             z-index: 1000;
             background: url("../img/icon-idsp/search-white.png") no-repeat;
-            background-size: 30px;
+            background-size: 25px;
             background-position: center center;
             cursor: pointer;
         }

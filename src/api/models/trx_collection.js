@@ -8,8 +8,16 @@ module.exports = function(sequelize, DataTypes) {
       unique: true,
       autoIncrement: true
     },
-    dsp_id: DataTypes.STRING(20),
-    retailer_id: DataTypes.STRING(20),
+    dsp_id: {
+      type: DataTypes.STRING(20),
+      references: "mst_dsp",
+      referencesKey: "dsp_id"
+    },
+    retailer_id: {
+      type: DataTypes.STRING(20),
+      references: "mst_retailer",
+      referencesKey: "retailer_id"
+    },
     trans_date: DataTypes.DATE,
     amount: DataTypes.DECIMAL(10,2)
   }, {
@@ -18,6 +26,9 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        trx_collection.belongsTo(models.mst_dsp);
+        trx_collection.belongsTo(models.mst_retailer);
+        trx_collection.hasMany(models.trx_collection_det);
       }
     }
   });
