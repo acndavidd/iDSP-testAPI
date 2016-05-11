@@ -172,6 +172,16 @@ module.exports = function(grunt) {
                     },
                 ]
             },
+
+            fonts: {
+                files: [
+                    {
+                        src:['fonts/*.*'],
+                        dest:'../../debug/',
+                        expand: true
+                    }
+                ]
+            },
             
             js: {
                 files: [    
@@ -332,6 +342,7 @@ module.exports = function(grunt) {
         'copy:resources',
         'copy:html',
         'copy:css',
+        'copy:fonts',
         'ts',
         'copy:js',
         'concat',
@@ -350,6 +361,7 @@ module.exports = function(grunt) {
         'copy:resources',
         'copy:html',
         'copy:css',
+        'copy:fonts',
         'ts',
         'copy:js',
         'concat',
@@ -383,6 +395,7 @@ module.exports = function(grunt) {
         'copy:resources',
         'copy:html',
         'copy:css',
+        'copy:fonts',
         'ts',
         'copy:js',
         'concat',
