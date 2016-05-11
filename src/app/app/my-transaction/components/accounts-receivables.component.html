@@ -1,15 +1,13 @@
-<div class="filter-container" *ngIf="getSearch().searchBox">
-	<div class="filter-input">
-		<input type="text" id="AccSearchBox" placeholder="Input Retailer Name or MIN"/>
+<div class="accounts-receivables">
+	<div class="filter-container" *ngIf="getSearch().searchBox">
+		<div class="filter-input">	
+			<input [(ngModel)]="vTotal" id="RetailerSearchBox" placeholder="Input Store Name or Number" />
+		</div>	
 	</div>
-</div>
-<div class="container-body">
-	<div class="item-container">
-		<div class="item-title">Total Receivables : 3,450.00 &#x20a7;</div>
+	<div class="container-body">
+		<div class="item-container">
+			<div class="item-title">Total Receivables : {{getTotalReceivable()}} &#x20B1;</div>
+		</div>
 	</div>
+	<div>
 </div>
-
-
-	
-
-
