@@ -15,7 +15,10 @@ module.exports = function(sequelize, DataTypes) {
     freezeTableName: true,
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        mst_retailer_dsp_alert.belongsTo(models.mst_retailer, {as : 'Retailer' , foreignKey : 'retailer_id'});
+      },
+      getAssociatedModels : function(){
+        return ['mst_retailer'];
       }
     }
   });
