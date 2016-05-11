@@ -1,18 +1,13 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('mst_prod_sub_category', {
-      sub_category_id: {
-        allowNull: false,
-        primaryKey: true,
-        type: Sequelize.STRING(20)
-      },
+    return queryInterface.createTable('mst_prod_cat', {
       category_id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING(20)
       },
-      sub_category_name: {
+      category_name: {
         type: Sequelize.STRING(50)
       },
       brand: {
@@ -21,6 +16,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('mst_prod_sub_category');
+    return queryInterface.dropTable('mst_prod_cat');
   }
 };
