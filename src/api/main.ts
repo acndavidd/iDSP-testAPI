@@ -71,15 +71,28 @@ vRouter.get('/login',function(pRequest,pResponse){
         pClient.ConversionRate(vArgs, function(pErr, pResult) {
             pResponse.json(pResult);
         });
-    });*/
-    /*
+    });
     vOrmSvc.getModel('mst_dss').create({
          dss_id : 'qqq',
          dist_id: 'aaa',
          first_name: 'firstname',
          last_name : 'last_name'
-     }, {isNewRecord:true};
-    */
+     }, {isNewRecord:true};*/
+     var prod = vOrmSvc.getModel('mst_product');
+     var prod_sub_cat = vOrmSvc.getModel('mst_prod_sub_category');
+     var prod_cat = vOrmSvc.getModel('mst_product_category');
+     
+     var p1 = prod.create({
+         product_id : '1',
+         product_name : 'anjay1'
+     },{isNewRecord:true});
+     var p2 = prod.create({
+         product_id : '2',
+         product_name : 'anjay2'
+     },{isNewRecord:true});
+     prod_sub_cat.findById('1').then(function(psc){
+         psc.addProducts([p1,p2]);
+     });
 });
 vRouter.get('/logout',vLoginCtrl.logout);
 

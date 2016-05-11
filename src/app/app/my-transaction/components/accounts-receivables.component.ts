@@ -12,7 +12,7 @@ import {AccountReceivablesService} from '../services/account-receivables-service
 	directives: [
 		NgModel,
 		ROUTER_DIRECTIVES
-    ]
+    ],
     providers: [
     	ROUTER_PROVIDERS,
     	AccountReceivablesService

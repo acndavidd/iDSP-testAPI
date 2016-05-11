@@ -8,7 +8,7 @@ export class AccountReceivablesService{
 	private vServiceUrl:string;
 	private vErrorMsg:string;
 	private vIsLoading:boolean;
-	private vListRetailer: retailerList[];
+	// private vListRetailer: retailerList[];
 	private vRetailerResult:string;
 
 	constructor(
