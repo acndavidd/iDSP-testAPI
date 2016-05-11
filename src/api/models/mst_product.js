@@ -14,14 +14,14 @@ module.exports = function(sequelize, DataTypes) {
     freezeTableName: true,
     classMethods: {
       associate: function(models) {
-        mst_product.belongsTo(models.mst_prod_sub_category, {as : 'SubCategory' , foreignKey : 'sub_category_id'});
+        mst_product.belongsTo(models.mst_prod_sub_cat, {as : 'SubCategory' , foreignKey : 'sub_category_id'});
         mst_product.hasMany(models.mst_target , {as : 'Target' , foreignKey : 'product_id'});
         mst_product.hasMany(models.trx_collection, { as : 'Collection' , foreignKey : 'product_id'});
         mst_product.hasMany(models.trx_saleord_prd_det, { as : 'SalesOrder' , foreignKey : 'product_id'});
-        mst_product.hasMany(models.trx_unserved_order, {as : 'UnservedOrder'} , foreignKey : 'product_id'});
+        mst_product.hasMany(models.trx_unserved_order, {as : 'UnservedOrder' , foreignKey : 'product_id'});
       },
       getAssociatedModels : function(){
-        return ['mst_prod_sub_category', 'mst_target' , 'trx_collection' , 'trx_saleord_prd_det' , 'trx_unserved_order'];
+        return ['mst_prod_sub_cat', 'mst_target' , 'trx_collection' , 'trx_saleord_prd_det' , 'trx_unserved_order'];
       }
     }
   });

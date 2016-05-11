@@ -17,6 +17,7 @@ export class LayoutService {
         filterTargetsActuals : false,
         filterInventoryLoad : false,
         filterInventoryPhysical : false,
+        filterDSPAlerts : false
     };
 
 	vLayoutState = {
