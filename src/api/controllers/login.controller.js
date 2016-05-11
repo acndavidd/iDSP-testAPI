@@ -33,61 +33,63 @@ class LoginController {
             console.log("mw Init");
             var orm = new orm_service_1.ORMService();
             console.log("mw map mode");
-            /*
-            var sales_order_new = orm.getModel("trx_sales_order");
-            
-            console.log("mw Create");
-             sales_order_new.create({
-                 dsp_id: 1,
-                retailer_id: 1,
-                total_amount: 1000000
-             }, {isNewRecord:true}
-             ).then(function(pResult){
-                 console.log("Successfully insert"+ pResult.get("order_id"));
-
-                 console.log("mw Create detail unserved order");
-                 var sales_order_unserved = orm.getModel("trx_unserved_order");
-                 sales_order_unserved.create({
-                    order_id:pResult.order_id,
-                    product_id: 'ITEM_1',
-                    quantity: 10,
-                    remarks: 'YO MAMEN'
-                 }, {isNewRecord:true}
-                 ).then(function(pResult){
-                     console.log("Successfully insert"+ pResult.get("order_id"));
+            var vOrder_id;
+            return orm.getSequelize().transaction(function (t) {
+                var sales_order_new = orm.getModel("trx_sales_order");
+                return sales_order_new.create({
+                    dsp_id: 'DSP01',
+                    retailer_id: 'RET01',
+                    total_amount: 1000000
+                }, { transaction: t }).then(function (so) {
+                    vOrder_id = so.get("order_id");
+                    console.log("Successfully insert " + vOrder_id);
+                    var unserve1 = orm.getModel('trx_unserved_order');
+                    var promises = [];
+                    promises.push(unserve1.create({
+                        order_id: vOrder_id,
+                        product_id: 'P00001',
+                        quantity: 10,
+                        remarks: 'YO MAMEN 1'
+                    }, { transaction: t }));
+                    promises.push(unserve1.create({
+                        order_id: vOrder_id,
+                        product_id: 'P00002',
+                        quantity: 100,
+                        remarks: 'YO MAMEN 2'
+                    }, { transaction: t }));
+                    return Promise.all([
+                        promises
+                    ]);
                 });
-            });
-            */
-            var sales_order_new = orm.getModel("trx_sales_order");
-            console.log("mw Create");
-            sales_order_new.create({
-                dsp_id: 'DSP01',
-                retailer_id: 'RET01',
-                total_amount: 1000000,
-                remarks: 'TEST INSERT'
-            }, { isNewRecord: true }).then(function (pResult) {
-                console.log("Successfully insert " + pResult.get("order_id"));
-                console.log("mw Create detail unserved order");
-                var sales_order_unserved = orm.getModel("trx_unserved_order");
-                console.log("start insert data to object");
-                console.log(sales_order_unserved);
-                sales_order_unserved.create({
-                    order_id: pResult.order_id,
-                    product_id: 'P00001',
-                    quantity: 10
-                }, { isNewRecord: true }).then(function (pResult) {
-                    console.log("Successfully insert " + pResult.get("order_id"));
-                    var queryUnserved = orm.getModel("trx_unserved_order");
-                    var so = orm.getModel("trx_sales_order");
-                    queryUnserved.belongsTo(so, { foreignKey: 'order_id' });
-                    so.hasMany(queryUnserved, { foreignKey: 'order_id' });
-                    queryUnserved.find({
-                        where: { order_id: pResult.order_id },
-                        include: [so]
-                    }).success(function (match) {
-                        console.log(match);
+            }).then(function (result) {
+                // Transaction has been committed
+                // result is whatever the result of the promise chain returned to the transaction callback
+                //console.log(t.)
+                pResponse.send("Success Transaction" + ' Time :' + new Date().toLocaleString() + " with ID : " + vOrder_id);
+                //Sample query and get Children and get 
+                var so = orm.getModel("trx_sales_order");
+                so.find({
+                    where: { order_id: vOrder_id }
+                }).then(function (match) {
+                    match.getSalesOrderUnserved().then(function (resultUnserved) {
+                        console.log(resultUnserved.length);
+                        console.log(resultUnserved[0].get("product_id"));
+                        console.log(resultUnserved[1].get("product_id"));
                     });
                 });
+                var unSo = orm.getModel("trx_unserved_order");
+                unSo.find({
+                    where: { order_id: vOrder_id }
+                }).then(function (match) {
+                    match.getSalesOrder().then(function (resultSO) {
+                        console.log(resultSO.get("retailer_id"));
+                    });
+                });
+            }).catch(function (err) {
+                // Transaction has been rolled back
+                // err is whatever rejected the promise chain returned to the transaction callback
+                //t.rollback();
+                pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
             });
         }
         catch (pErr) {
