@@ -2,15 +2,18 @@
 module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('trx_saleord_load_det', {
-      order_id: {
+      order_det_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+      },
+      order_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       load_id: {
         type: Sequelize.STRING(20),
-        primaryKey: true,
         allowNull: false
       },
       amount: {

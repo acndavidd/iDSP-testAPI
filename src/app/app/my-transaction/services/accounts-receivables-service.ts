@@ -16,11 +16,10 @@ export class AccountsReceivablesService{
 		this.vIsLoading = false;
 	}
 
-	//to Search name of Retailer
-	/*searchRetailer():string{
-		return var vListSearchRetailer: vSearchRetailer[
-		];
-	}*/
+	searchRetailer(){
+		console.log('test onkeypress masuk service');
+		return;
+	}
 
 	getError():string{
 		return this.vErrorMsg;
@@ -28,5 +27,9 @@ export class AccountsReceivablesService{
 
 	getLoadingState():boolean{
 		return this.vIsLoading;
+	}
+
+	getTotalReceivable(){
+		return '35,000';
 	}
 }

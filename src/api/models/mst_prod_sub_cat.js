@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var mst_prod_sub_category = sequelize.define('mst_prod_sub_category', {
+  var mst_prod_sub_cat = sequelize.define('mst_prod_sub_cat', {
     sub_category_id: {
       type : DataTypes.STRING(20),
       primaryKey : true
@@ -15,12 +15,12 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         mst_prod_sub_category.hasMany(models.mst_product, {as : 'Product' , foreignKey : 'sub_category_id'});
-        mst_prod_sub_category.belongsTo(models.mst_product_category, {as : 'ProductCategory' , foreignKey : 'category_id'});
+        mst_prod_sub_category.belongsTo(models.mst_product_cat, {as : 'ProductCategory' , foreignKey : 'category_id'});
       },
       getAssociatedModels : function(){
-        return ['mst_product' , 'mst_product_category'];
+        return ['mst_product' , 'mst_product_cat'];
       }
     }
   });
-  return mst_prod_sub_category;
+  return mst_prod_sub_cat;
 };

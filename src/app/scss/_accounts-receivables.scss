@@ -6,6 +6,7 @@
             display: block;
             clear: left;
             height: 50px;
+            position: center center;
         .filter-label {
             font-size: $filter-label;
             color: #000;
@@ -16,6 +17,7 @@
         .filter-input{
             padding-top: 7px;
             padding-left: 24px;
+
             input {
                 background: $white;
                 height: 30px;
@@ -60,7 +62,13 @@
                 {
                     transform: rotate(180deg);
                 }
+
             }
+
+            .item-title {
+                position: center center;
+            }
+            
             .item-identifier {
                 color: #7F7F7F;
                 font-size: 18px;
