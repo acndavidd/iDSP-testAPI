@@ -36,4 +36,26 @@ export class CloseDayComponent {
     toggleCollection(){
         this._router.navigate(['Collection']);
     }
+
+    goToTargetsActuals()
+    {
+        console.log('TA');
+        this._router.navigate(['CDTargetsActuals']);
+    }
+
+    goToVisitedRetailer()
+    {
+        console.log('VR');
+    }
+
+    goToCollection()
+    {
+        console.log('C');
+         this._router.navigate(['Collection']);
+    }
+
+    goToStockReturn()
+    {
+        console.log('SR');
+    }
 }
