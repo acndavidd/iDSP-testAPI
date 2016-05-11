@@ -345,6 +345,20 @@ module.exports = function(grunt) {
         ]); 
 
     grunt.registerTask('cordova',[      
+        'clean:debug',
+        'copy:dependencies',
+        'copy:resources',
+        'copy:html',
+        'copy:css',
+        'ts',
+        'copy:js',
+        'concat',
+        'sass',
+        'clean:sasscache',
+        'jshint',
+        'cssmin',
+        'uglify',
+        'cachebreaker',
         'clean:cordova',
         'copy:cordova'
         ]); 
