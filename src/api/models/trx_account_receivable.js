@@ -8,9 +8,21 @@ module.exports = function(sequelize, DataTypes) {
       unique: true,
       autoIncrement: true
     },
-    order_id: DataTypes.INTEGER,
-    dsp_id: DataTypes.STRING(20),
-    retailer_id: DataTypes.STRING(20),
+    order_id: : {
+      type: DataTypes.INTEGER,
+      references: "trx_sales_order",
+      referencesKey: "order_id"
+    },
+    dsp_id: {
+      type: DataTypes.STRING(20),
+      references: "mst_dsp",
+      referencesKey: "dsp_id"
+    },
+    retailer_id: {
+      type: DataTypes.STRING(20),
+      references: "mst_retailer",
+      referencesKey: "retailer_id"
+    },
     amount: DataTypes.DECIMAL(10,2),
     trans_date: DataTypes.DATE,
     due_date: DataTypes.DATE,
@@ -26,6 +38,10 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        trx_account_receivable.belongsTo(models.trx_sales_order);
+        trx_account_receivable.belongsTo(models.mst_dsp);
+        trx_account_receivable.belongsTo(models.mst_retailer);
+        trx_account.receivable.hasMany(models.trx_collection_det);
       }
     },
 

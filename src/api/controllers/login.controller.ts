@@ -37,6 +37,8 @@ export class LoginController{
 
 			var orm = new ORMService();
 			console.log("mw map mode");
+
+			/*
 			var sales_order_new = orm.getModel("trx_sales_order");
         	
         	console.log("mw Create");
@@ -58,6 +60,49 @@ export class LoginController{
 			     }, {isNewRecord:true}
 			     ).then(function(pResult){
 			         console.log("Successfully insert"+ pResult.get("order_id"));
+				});
+			});
+			*/
+
+			var sales_order_new = orm.getModel("trx_sales_order");
+        	
+        	console.log("mw Create");
+		     sales_order_new.create({
+		         dsp_id: 'DSP01',
+		 	    retailer_id: 'RET01',
+		 	    total_amount: 1000000,
+		 	    remarks: 'TEST INSERT'
+		     }, {isNewRecord:true}
+		     ).then(function(pResult){
+		         console.log("Successfully insert "+ pResult.get("order_id"));
+
+		         console.log("mw Create detail unserved order");
+		         var sales_order_unserved = orm.getModel("trx_unserved_order");
+		         console.log("start insert data to object");
+		         console.log(sales_order_unserved);
+			     sales_order_unserved.create({
+			     	order_id: pResult.order_id,
+			        product_id: 'P00001',
+			 	    quantity: 10			 	  
+			     }, {isNewRecord:true}
+			     ).then(function(pResult){
+			         console.log("Successfully insert "+ pResult.get("order_id"));
+
+			         var queryUnserved = orm.getModel("trx_unserved_order");	
+			         var so = orm.getModel("trx_sales_order");
+			         
+					queryUnserved.belongsTo(so, {foreignKey: 'order_id'})
+			        so.hasMany(queryUnserved, {foreignKey: 'order_id'})
+
+			        queryUnserved.find({
+				        where: { order_id: pResult.order_id},
+				      	include: [so]
+				    }).success(function(match){
+				    	console.log(match);
+				    });
+
+
+
 				});
 			});
 

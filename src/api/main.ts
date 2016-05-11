@@ -72,12 +72,14 @@ vRouter.get('/login',function(pRequest,pResponse){
             pResponse.json(pResult);
         });
     });*/
+    /*
     vOrmSvc.getModel('mst_dss').create({
          dss_id : 'qqq',
          dist_id: 'aaa',
          first_name: 'firstname',
          last_name : 'last_name'
      }, {isNewRecord:true};
+    */
 });
 vRouter.get('/logout',vLoginCtrl.logout);
 

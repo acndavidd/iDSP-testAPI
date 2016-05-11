@@ -8,7 +8,11 @@ module.exports = function(sequelize, DataTypes) {
       unique: true,
       autoIncrement: true
     },
-    route_id: DataTypes.INTEGER,
+    route_id: : {
+      type: DataTypes.INTEGER,
+      references: "mst_route",
+      referencesKey: "mst_route"
+    },
     route_day: DataTypes.INTEGER,
     call_sequence: DataTypes.INTEGER,
     call_date: DataTypes.DATE,
@@ -26,6 +30,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        trx_sales_call_plan.belongsTo(models.mst_route);
       }
     }
   });
