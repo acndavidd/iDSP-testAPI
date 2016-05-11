@@ -20,7 +20,7 @@ import {AccountsReceivablesService} from '../services/accounts-receivables-servi
 
 export class AccountsReceivablesComponent {
 	
-    vSearchRetailer: string;
+    vTotal: string;
     
 	constructor (
 		private _layoutService: LayoutService,
@@ -56,12 +56,15 @@ export class AccountsReceivablesComponent {
     }
 
     getSearchRetailer(){
-        console.log('test onkeypress masuk component');
-        this._accountsReceivablesService.searchRetailer();
+        this.setTotalReceivable('35000');
     }
 
     getTotalReceivable(){
-        return this._accountsReceivablesService.getTotalReceivable();
+        return this.vTotal;
+    }
+
+    setTotalReceivable(pTotal){
+        this.vTotal = pTotal;
     }
 
 }

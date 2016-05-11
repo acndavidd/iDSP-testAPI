@@ -1,7 +1,7 @@
 <div class="accounts-receivables">
 	<div class="filter-container" *ngIf="getSearch().searchBox">
 		<div class="filter-input">	
-			<input ng-keydown="getSearchRetailer()" id="RetailerSearchBox" placeholder="Input Store Name or Number" />
+			<input [(ngModel)]="vTotal" id="RetailerSearchBox" placeholder="Input Store Name or Number" />
 		</div>	
 	</div>
 	<div class="container-body">
