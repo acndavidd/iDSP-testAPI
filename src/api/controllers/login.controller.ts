@@ -53,6 +53,8 @@ export class LoginController{
 
 		            var unserve1 = orm.getModel('trx_unserved_order');
 		            var promises = [];
+
+		            
 		            promises.push(
 		            	unserve1.create({
 			                order_id:vOrder_id,
@@ -71,6 +73,7 @@ export class LoginController{
 			            }, {transaction: t})
 			        );
 
+			        console.log("start hit promise");
 		            return Promise.all([
 		            	promises
 		            ]);

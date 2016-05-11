@@ -57,6 +57,7 @@ class LoginController {
                         quantity: 100,
                         remarks: 'YO MAMEN 2'
                     }, { transaction: t }));
+                    console.log("start hit promise");
                     return Promise.all([
                         promises
                     ]);
