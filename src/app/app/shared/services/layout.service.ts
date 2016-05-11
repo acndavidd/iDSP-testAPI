@@ -7,6 +7,7 @@ export class LayoutService {
 
 	vCurrentPage: string;
     vNumberSelection = false;
+    vOldCurrentPage : string;
     
     constructor (private _pageNavigationService: PageNavigationService,
     private _matchMediaService: MatchMediaService) {
@@ -62,6 +63,13 @@ export class LayoutService {
     //getFooterLayout(){
     //    return this.vFooterItem;
     //}
+    getOldCurrentPage(){
+        return this.vOldCurrentPage;
+    }
+
+    setOldCurrentPage(pCurrentPage : string){
+        this.vOldCurrentPage = pCurrentPage;
+    }
 	
 	getLayout(){
 		return this.vLayoutState;
@@ -94,7 +102,7 @@ export class LayoutService {
     setCurrentPage(pCurrent : string)
     {
         this.vCurrentPage = pCurrent;
-        
+
       if(pCurrent == 'GetStarted' ||
         pCurrent == 'Verification' ||
         pCurrent == 'Login'){
@@ -295,8 +303,13 @@ export class LayoutService {
             || pCurrent=='DetailRetailer'
             || pCurrent=='SalesOrderPayment')
         {
-            this._pageNavigationService.setPreviousPage('BasicCallProcedure');
             
+            this._pageNavigationService.setPreviousPage("BasicCallProcedure");
+
+            if(this.vOldCurrentPage!==null || this.vOldCurrentPage!==""){
+                this._pageNavigationService.setPreviousPage(this.vOldCurrentPage);
+            }
+        
             this.vLayoutState = {
               appHeader: true,
               appFooter: true

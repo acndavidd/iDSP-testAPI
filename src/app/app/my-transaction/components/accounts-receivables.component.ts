@@ -3,34 +3,35 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet, ROUTER_PROVIDERS }
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
-import {NgModel} from 'angular2/common';
-import {AccountReceivablesService} from '../services/account-receivables-service';
+import {RetailerService} from '../../shared/services/retailer.service';
+//import {NgModel} from 'angular2/common';
+import {AccountsReceivablesService} from '../services/accounts-receivables-service';
 
 @Component({
 	selector: 'accounts-receivables',
     templateUrl: './app/my-transaction/components/accounts-receivables.component.html',
 	directives: [
-		NgModel,
 		ROUTER_DIRECTIVES
     ],
     providers: [
-    	ROUTER_PROVIDERS,
-    	AccountReceivablesService
+    	AccountsReceivablesService
     ]
 })
 
 export class AccountsReceivablesComponent {
 	
-
 	constructor (
 		private _layoutService: LayoutService,
     	private _matchMediaService: MatchMediaService,
-		private _headerService: HeaderService
+		private _headerService: HeaderService,
+        private _router: Router,
+        private _retailerService: RetailerService
     	) 
 	{
 
 		this._layoutService.setCurrentPage('AccountsReceivables');
 		this._headerService.setTitle("Accounts Receivables");
+        this._retailerService.getRetailer(100);
     }
 	
 	getResize(){
@@ -40,6 +41,12 @@ export class AccountsReceivablesComponent {
     getSearch()
     {
         return this._layoutService.getSearch();
+    }
+
+    gotoDetailRetailer()
+    {
+        this._layoutService.setOldCurrentPage('AccountsReceivables');
+        this._router.navigate(['DetailRetailer']);
     }
 
 }

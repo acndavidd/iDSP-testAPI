@@ -4,7 +4,7 @@ import {Response,RequestOptionsArgs,Headers,Http,Connection,RequestOptions} from
 
 @Injectable()
 
-export class AccountReceivablesService{
+export class AccountsReceivablesService{
 	private vServiceUrl:string;
 	private vErrorMsg:string;
 	private vIsLoading:boolean;
@@ -22,8 +22,6 @@ export class AccountReceivablesService{
 	searchRetailer():string{
 		return this.vRetailerResult;
 	}
-
-
 
 	getError():string{
 		return this.vErrorMsg;
