@@ -6,13 +6,16 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey : true
     },
     category_name: DataTypes.STRING(50),
-    brand: DataTypes.VARCHAR(20)
+    brand: DataTypes.STRING(20)
   }, {
     timestamps : false,
     freezeTableName: true,
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        mst_product_category.hasMany(models.mst_prod_sub_category);
+      },
+      getAssociatedModels : function(){
+        return ['mst_prod_sub_category'];
       }
     }
   });

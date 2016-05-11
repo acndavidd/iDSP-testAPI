@@ -5,7 +5,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
-      unique: true
+      unique: true,
+      references: "trx_sales_order",
+      referencesKey: "order_id"
     },
     load_id: {
       type: DataTypes.STRING(20),
@@ -22,6 +24,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        trx_saleord_load_det.belongsTo(models.trx_sales_order);
       }
     }
   });
