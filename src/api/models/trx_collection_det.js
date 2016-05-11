@@ -21,7 +21,11 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        trx_collection_det.belongsTo(models.trx_account_receivable);
+        trx_collection_det.belongsTo(models.trx_account_receivable,{as: 'AccountReceivable', foreignKey : 'ar_id'});
+      },
+      getAssociatedModels : function(){
+        return ['trx_account_receivable'];
+        //return '';
       }
     }
   });

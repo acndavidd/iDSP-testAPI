@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
         mst_product.hasMany(models.mst_target , {as : 'Target' , foreignKey : 'product_id'});
         mst_product.hasMany(models.trx_collection, { as : 'Collection' , foreignKey : 'product_id'});
         mst_product.hasMany(models.trx_saleord_prd_det, { as : 'SalesOrder' , foreignKey : 'product_id'});
-        mst_product.hasMany(models.trx_unserved_order, {as : 'UnservedOrder' , foreignKey : 'product_id'});
+        mst_product.hasMany(models.trx_unserved_order, {as : 'UnservedOrder', foreignKey : 'product_id'});
       },
       getAssociatedModels : function(){
         return ['mst_prod_sub_cat', 'mst_target' , 'trx_collection' , 'trx_saleord_prd_det' , 'trx_unserved_order'];
