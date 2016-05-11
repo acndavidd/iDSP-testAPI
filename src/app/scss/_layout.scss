@@ -1,7 +1,17 @@
+@font-face {
+  font-family: 'HelveticaNeue-Light';
+  font-style: normal;
+  font-weight: normal;
+  src: local('HelveticaNeue-Light'), url('../fonts/HelveticaNeue-Light.ttf') format('truetype');
+}
+
 body{
+	font-family: 'HelveticaNeue-Light';
+	overflow-x: hidden;
+	position: relative;
 	// font-family: 'Roboto', sans-serif;
 	// font-family: Futura, Arial, sans-serif;
-	font-family: 'Calibri', sans-serif;
+	//font-family: 'Calibri', sans-serif;
 	// font-family: Helvetica, sans-serif;
 	background-color: #FFF;
 	margin: 0;

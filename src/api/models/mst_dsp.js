@@ -15,7 +15,25 @@ module.exports = function(sequelize, DataTypes) {
     freezeTableName: true,
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        mst_dsp.belongsTo(models.mst_dss , {as : 'DSS', foreignKey : 'dsp_id'});
+        mst_dsp.hasMany(models.mst_retailer , {as : 'Retailer' , foreignKey : 'dsp_id'});
+        mst_dsp.hasMany(models.mst_target , {as : 'Target' , foreignKey : 'dsp_id'});
+        mst_dsp.hasMany(models.mst_route , {as : 'Route' , foreignKey : 'dsp_id'});
+        mst_dsp.hasMany(models.trx_remittance, {as : 'Remittance', foreignKey : 'dsp_id'});
+        mst_dsp.hasMany(models.trx_sales_order , {as : 'SalesOrder' , foreignKey : 'dsp_id'});
+        mst_dsp.hasMany(models.trx_collection, {as : 'Collection', foreignKey : 'dsp_id'});
+        mst_dsp.hasMany(models.trx_account_receivable, {as : 'AccountReceivable' , foreignKey : 'dsp_id'});
+      },
+      getAssociatedModels : function(){
+        return [
+        'mst_dss',
+        'mst_retailer' , 
+        'mst_target' , 
+        'mst_route' , 
+        'trx_remittance' , 
+        'trx_sales_order' , 
+        'trx_collection' , 
+        'trx_account_receivable'];
       }
     }
   });

@@ -7,7 +7,7 @@
         <div class="item-container">
             <div class="item-identifier">Retailer Owner</div>
             <div class="item-value"><div *ngIf="getRetailerAll()">{{getRetailerAll().ownerName}}</div></div>
-            <a (click)="subMenuShow()"><div class="item-icon arrow-down selected" [ngClass] = "{selected: vArrowMap}"></div></a>
+            <a (click)="subMenuShow()"><div class="item-icon arrow-down" [ngClass] = "{selected: vArrowMap}"></div></a>
 
          <div *ngIf="vMenuShow">
             <div class="item-sub-container">

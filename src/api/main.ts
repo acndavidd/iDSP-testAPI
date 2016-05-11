@@ -82,16 +82,35 @@ vRouter.get('/login',function(pRequest,pResponse){
      var prod_sub_cat = vOrmSvc.getModel('mst_prod_sub_category');
      var prod_cat = vOrmSvc.getModel('mst_product_category');
      
-     var p1 = prod.create({
-         product_id : '1',
-         product_name : 'anjay1'
-     },{isNewRecord:true});
+     /*var p1 = prod.create({
+         product_id : '10',
+         product_name : 'anjay10'
+     },{isNewRecord:true}).then(function(res){
+
+     });
+
      var p2 = prod.create({
-         product_id : '2',
-         product_name : 'anjay2'
+         product_id : '11',
+         product_name : 'anjay20'
      },{isNewRecord:true});
+    */
      prod_sub_cat.findById('1').then(function(psc){
-         psc.addProducts([p1,p2]);
+        /*prod.create({
+             product_id : '10',
+             product_name : 'anjay10'
+         },{isNewRecord:true}).then(function(res){
+             psc.addProducts(res).then(function(res2){
+                 res2.getProducts().then(function(prod){
+                    console.log(prod.length);
+                });
+             });
+         });*/
+         psc.createProduct({
+             product_id : '11',
+             product_name : 'anjay20'
+         }).then(function(prod){
+             console.log(prod);
+         });
      });
 });
 vRouter.get('/logout',vLoginCtrl.logout);
