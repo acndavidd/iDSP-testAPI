@@ -115,10 +115,13 @@ LIST VIEW - TEXT
 */
 
     .item-container {
-        display: inline-block;
         width: 100%;
         border-bottom: 1px solid $border-line;
         cursor: pointer;
+
+        &.sub {
+            background-color: $whisper;
+        }
 
         div .tbs{
             width: 100%;
@@ -146,8 +149,6 @@ LIST VIEW - TEXT
             font-size: $content-normal;
             color: $black;
         }
-
-
 
         .container {
             display: table;
@@ -188,6 +189,10 @@ LIST VIEW - TEXT
                 color: $deep-cyan;
             }
 
+            &.sub-cell {
+                padding-left:2em;
+            }
+
             &.arrow-down {
                 background: url("../img/icon-idsp/path-down-grey.png")no-repeat;
                 background-position-x: center;
@@ -200,15 +205,13 @@ LIST VIEW - TEXT
                 background-position-y: center;
                 background-size: 13px;
             }
-            &.selected
-            {   
+            &.selected {   
                 background: url("../img/icon-idsp/path-down-up.png")no-repeat;
                 background-position-x: center;
                 background-position-y: center;
                 background-size: 20px;
             }
-            &.call
-            {
+            &.call {
                 background: url("../img/icon-idsp/phone-grey.png")no-repeat;
                 background-position-x: center;
                 background-position-y: center;
@@ -216,7 +219,7 @@ LIST VIEW - TEXT
             }
         }
         
-        .item-title{
+        .item-title {
             font-size: $content-title;
             font-weight: bold;
             margin-bottom: 5px;

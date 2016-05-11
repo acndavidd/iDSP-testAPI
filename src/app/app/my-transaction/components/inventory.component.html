@@ -100,31 +100,39 @@
 			<div class="container">
 				<div class='cell'>
 			        <div class='container'><div class='cell left bold'>Smartload</div></div>
-			        <div class='container'><div class='cell left grey'>Ending Balance</div></div>
+			        <div class='container'><div class='cell left grey' *ngIf="!vSubMenuShow">Ending Balance</div></div>
 			    </div>
 				<div class='cell'>
 			        <div class='container'><div class='cell right'></div></div>
-			        <div class='container'><div class='cell right bold'>500</div></div>
+			        <div class='container'><div class='cell right bold'  *ngIf="!vSubMenuShow">500</div></div>
 			    </div>
 			    <a (click)="subMenuShow()" class='cell icon arrow-down' [ngClass]="{selected: vSubMenuShow}"></a>
 			</div>
 		</div>
 
-		<div *ngIf="vSubMenuShow">
-			<div class="item-container">
-				<div class="container">
-					<div class='cell'>
-				        <div class='container'><div class='cell left bold'>ISI 1</div></div>
-				        <div class='container'><div class='cell left bold'>ISI 2</div></div>
-				        <div class='container'><div class='cell left bold'>ISI 3</div></div>
-				    </div>
-					<div class='cell'>
-				        <div class='container'><div class='cell right'>ANAK 1</div></div>
-				        <div class='container'><div class='cell right'>ANAK 2</div></div>
-				        <div class='container'><div class='cell right'>ANAK 3</div></div>
-				    </div>
-				    <div class='cell icon call'></div>
-				</div>
+		<div class="item-container sub" *ngIf="vSubMenuShow">
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell left bold'>Total Inventory</div></div>
+			        <div class='container'><div class='cell left sub-cell'>Beginning Balance</div></div>
+			        <div class='container'><div class='cell left sub-cell'>Delivery</div></div>
+			        <div class='container'><div class='cell left sub-cell'>Sub Total</div></div>
+			        <div class='container'><div class='cell left bold'>Sales</div></div>
+			        <div class='container'><div class='cell left sub-cell'>Sold</div></div>
+			        <div class='container'><div class='cell left sub-cell'>Sub Total</div></div>
+			        <div class='container'><div class='cell left bold'>Ending Balance</div></div>
+			    </div>
+				<div class='cell'>
+			        <div class='container'><div class='cell right'></div></div>
+			        <div class='container'><div class='cell right'>500</div></div>
+			        <div class='container'><div class='cell right'>100</div></div>
+			        <div class='container'><div class='cell right'>600</div></div>
+			        <div class='container'><div class='cell right'></div></div>
+			        <div class='container'><div class='cell right'>100</div></div>
+			        <div class='container'><div class='cell right'>100</div></div>
+			        <div class='container'><div class='cell right bold'>500</div></div>
+			    </div>
+			    <div class='cell icon call'></div>
 			</div>
 		</div>
 
