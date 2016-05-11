@@ -8,11 +8,10 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true
       },
-      order_id: {
-        type: Sequelize.INTEGER
-      },
-      product_id: {
-        type: Sequelize.STRING(20)
+      order_det_id: {
+        type: Sequelize.INTEGER,
+        unique: true,
+        allowNull: false
       },
       serial_number_start: {
         type: Sequelize.STRING(30)

@@ -8,15 +8,10 @@ module.exports = function(sequelize, DataTypes) {
       unique: true,
       autoIncrement: true
     },
-    order_id: {
+    order_det_id: {
       type: DataTypes.INTEGER,
       references: "trx_saleord_prd_det",
-      referencesKey: "order_id"
-    },
-    product_id: {
-      type: DataTypes.STRING(20),
-      references: "trx_saleord_prd_det",
-      referencesKey: "product_id"
+      referencesKey: "order_det_id"
     },
     serial_number_start: DataTypes.STRING(30),
     serial_number_end: DataTypes.STRING(30),
@@ -27,7 +22,11 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        trx_saleord_prd_sub_det.belongsTo(models.trx_saleord_prd_det);
+        trx_saleord_prd_sub_det.belongsTo(models.trx_saleord_prd_det,{as: 'SalesOrderPrdDet', foreignKey : 'order_det_id'});
+      },
+      getAssociatedModels : function(){
+        return ['trx_saleord_prd_det'];
+        //return '';
       }
     }
   });

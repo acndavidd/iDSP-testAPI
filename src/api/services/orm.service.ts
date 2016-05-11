@@ -10,6 +10,11 @@ export class ORMService{
 
 	}
 
+	public getSequelize(){
+		let vSequelizeSvc:SequelizeService = new SequelizeService();
+		return vSequelizeSvc.getInstance();
+	}
+
 	public buildModels(pRequest,pResponse){
 		try{
 			let vPS = vExec('powershell.exe');
@@ -51,17 +56,20 @@ export class ORMService{
 		try{
 			let vModel = vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),pModelName + vSequelizeSvc.getModelNaming()));
 			let associatedModels = {};
+			
 			if("getAssociatedModels" in vModel)
 				vModel.getAssociatedModels().forEach(function(associatedModel){
 					let assocModel = vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),associatedModel + vSequelizeSvc.getModelNaming()));
 					associatedModels[associatedModel] = assocModel;
+					console.log("print aso model done");
 				});
-			if("associate" in vModel && associatedModels){
+
+			if("associate" in vModel){
 				vModel.associate(associatedModels);
 			}
 			return vModel;
 		}catch(err){
-			console.log(err);
+			console.log("Error in get Model : "+ err);
 			throw err;
 		}
 	}
