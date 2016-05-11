@@ -11,7 +11,7 @@
       width: 100%;
       position: fixed;
       .default-box{
-        height: 48px;
+        height: 50px;
         width: 100%;
         .title{
           position: fixed;
@@ -21,7 +21,7 @@
           text-align: center;
           color: $white;
           font-size: $header-title;
-          padding-top: 0.7em;
+          padding-top: 0.8em;
           font-weight: lighter;
         }
         .back{
