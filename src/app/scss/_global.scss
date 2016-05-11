@@ -144,6 +144,75 @@ LIST VIEW - TEXT
             font-size: $content-normal;
             color: $black;
         }
+
+
+
+        .container {
+            display: table;
+            width: 100%;
+        }
+        .cell {
+            display:table-cell;
+            font-size: $content-normal;
+            height:1.6em;
+            vertical-align:middle;
+
+            &.left {
+                width: 45%;
+                padding-left:0.6em;
+            }
+            &.right {
+                width: 40%;
+                text-align: right;
+            }
+            &.single {
+                width: 85%;
+                padding-left:0.6em;
+            }
+            &.icon {
+                width: 15%;
+            }
+
+            &.bold {
+                font-weight: bold;
+            }
+            &.italic {
+                font-weight: italic;
+            }
+            &.grey {
+                color: $grey;
+            }
+            &.deep-cyan {
+                color: $deep-cyan;
+            }
+
+            &.arrow-down {
+                background: url("../img/icon-idsp/path-down-grey.png")no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 20px;
+            }
+            &.arrow-right {
+                background: url("../img/icon-idsp/path-right-grey.png")no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 13px;
+            }
+            &.selected
+            {   
+                background: url("../img/icon-idsp/path-down-up.png")no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 20px;
+            }
+            &.call
+            {
+                background: url("../img/icon-idsp/phone-grey.png")no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 20px;
+            }
+        }
         
         .item-title{
             font-size: $content-title;
