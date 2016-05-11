@@ -2,9 +2,7 @@ import {Component} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/router';
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
-
 import {ModalService} from '../../shared/services/modal.service';
-
 import {HeaderService} from '../../shared/services/header.service';
 
 
@@ -46,6 +44,7 @@ export class CloseDayComponent {
     goToVisitedRetailer()
     {
         console.log('VR');
+        this._router.navigate(['VisitedRetail']);
     }
 
     goToCollection()
