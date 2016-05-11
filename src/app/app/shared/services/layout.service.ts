@@ -23,9 +23,13 @@ export class LayoutService {
 		appHeader: false,
         appFooter: false
 	};
+
+    vSearch = {
+        searchBox: false
+    };
     
 
-    Unused
+    //Unused
     vFooterItem = {
         start: true,
         call: true,
@@ -38,12 +42,13 @@ export class LayoutService {
         basicCallProcedure :false,
         closeDay : false,
         settings :false
-    }
+    };
     
     vHeaderItem = {
         back: false,
         filter: false,
-        edit: false
+        edit: false,
+        search: false
     };
 
 	getCurrentPage(){
@@ -66,6 +71,9 @@ export class LayoutService {
         return this.vFilter;
     }
     
+    getSearch(){
+        return this.vSearch;
+    }
 
     setNumberSelectionState(){
         this.vNumberSelection = !this.vNumberSelection;
@@ -113,7 +121,8 @@ export class LayoutService {
             this.vHeaderItem = {
                 back: false,
                 filter: false,
-                edit: false
+                edit: false,
+                search: false
             }
          }
         else if(pCurrent=='BasicCallProcedure')
@@ -132,7 +141,8 @@ export class LayoutService {
             this.vHeaderItem = {
                 back: false,
                 filter: false,
-                edit: false
+                edit: false,
+                search: false
             }
         }
         else if(pCurrent=='CloseDay')
@@ -151,7 +161,8 @@ export class LayoutService {
             this.vHeaderItem = {
                 back: false,
                 filter: false,
-                edit: false
+                edit: false,
+                search: false
             }
         }
         else if(pCurrent=='Settings')
@@ -170,7 +181,8 @@ export class LayoutService {
             this.vHeaderItem = {
                 back: false,
                 filter: false,
-                edit: false
+                edit: false,
+                search: false
             }
         }
         else if(
@@ -191,11 +203,20 @@ export class LayoutService {
                 basicCallProcedure : false,
                 closeDay : false,
                 settings : false
-            };    
+            };
             this.vHeaderItem = {
-                back: true,
-                filter: false,
-                edit: false
+                    back: true,
+                    filter: false,
+                    edit: false,
+                    search: false
+            };
+            if (pCurrent=='AccountsReceivables'){   
+                this.vHeaderItem = {
+                    back: true,
+                    filter: false,
+                    edit: false,
+                    search: true
+                }
             }
         }
          else if(pCurrent=='Inventory' ||
@@ -217,7 +238,8 @@ export class LayoutService {
             this.vHeaderItem = {
                 back: true,
                 filter: true,
-                edit: false
+                edit: false,
+                search: false
             }
         }
         else if(
@@ -243,7 +265,8 @@ export class LayoutService {
             this.vHeaderItem = {
                 back: true,
                 filter: false,
-                edit: false
+                edit: false,
+                search: false
             }
         } 
         else if(pCurrent=='ResetPassword')
@@ -264,7 +287,8 @@ export class LayoutService {
             this.vHeaderItem = {
                 back: true,
                 filter: false,
-                edit: false
+                edit: false,
+                search: false
             }
         }
         else if(pCurrent=='RetailerSalesOrder' 
@@ -287,7 +311,8 @@ export class LayoutService {
             this.vHeaderItem = {
                 back: true,
                 filter: false,
-                edit: false
+                edit: false,
+                search: false
             }
         }
     }
@@ -297,5 +322,10 @@ export class LayoutService {
         this.vFilter.filterTargetsActuals = !this.vFilter.filterTargetsActuals;
         this.vFilter.filterInventoryLoad = !this.vFilter.filterInventoryLoad;
         this.vFilter.filterInventoryPhysical = !this.vFilter.filterInventoryPhysical;
+    }
+
+    setSearch()
+    {        
+        this.vSearch.searchBox = !this.vSearch.searchBox;
     }
 }

@@ -13,6 +13,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('mst_dists');
+    return queryInterface.dropTable('mst_dist');
   }
 };

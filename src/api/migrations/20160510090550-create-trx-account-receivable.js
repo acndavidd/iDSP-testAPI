@@ -14,6 +14,9 @@ module.exports = {
       dsp_id: {
         type: Sequelize.STRING(20)
       },
+      retailer_id: {
+        type: Sequelize.STRING(20)
+      },
       amount: {
         type: Sequelize.DECIMAL(10,2)
       },

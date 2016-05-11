@@ -32,6 +32,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('mst_routes');
+    return queryInterface.dropTable('mst_route');
   }
 };

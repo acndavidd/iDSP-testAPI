@@ -4,11 +4,12 @@ module.exports = {
     return queryInterface.createTable('mst_route_day', {
       route_id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
       route_day: {
+        allowNull: false,
+        primaryKey: true,
         type: Sequelize.INTEGER
       },
       sequence: {
@@ -17,6 +18,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('mst_route_days');
+    return queryInterface.dropTable('mst_route_day');
   }
 };
