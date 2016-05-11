@@ -243,7 +243,6 @@ export class LayoutService {
             }
         }
         else if(
-            pCurrent=='VisiteRetail' ||
             pCurrent=='Collection' ||
             pCurrent=='StockReturn' ||
             pCurrent=='Sync')
@@ -334,7 +333,31 @@ export class LayoutService {
                 filter: true,
                 edit: false,
                 search: false
-            }}
+            }
+    }
+    else if(pCurrent=='VisitedRetail' )
+     {
+         this._pageNavigationService.setPreviousPage('CloseDay');
+            
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: true
+            };
+            this.vFooterState = 
+            {
+                myTransaction : false,
+                basicCallProcedure : false,
+                closeDay : true,
+                settings : false
+            };    
+            this.vHeaderItem = {
+                back: true,
+                filter: false,
+                edit: false,
+                search: false
+            }
+    }
+
 
     }
 
