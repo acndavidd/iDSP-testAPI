@@ -1,56 +1,12 @@
 <div class="accounts-receivables">
-	<div class="search-container" *ngIf="getSearch().searchBox">
-		<div class="search-box">
-			<div class="inner-editor">
-				<input type="text" id="AccSearchBox" placeholder="Enter Store Name or Number"/>
-			</div>
+	<div class="filter-container" *ngIf="getSearch().searchBox">
+		<div class="filter-input">
+			<input ng-keypress="$getSearchRetailer;" id="RetailerSearchBox" placeholder="Input Store Name or Number" />
 		</div>
 	</div>
 	<div class="container-body">
-		<div class="header">
-			<div class="text">
-				<div class="header-text">
-					<div>Total Receivables : 3,450.00 &#x20a7;</div>
-				</div>
-			</div>
+		<div class="item-container">
+			<div class="item-title">Total Receivables : 3,450.00 &#x20a7;</div>
 		</div>
-	</div>
-	<div class="container-body">
-	    <div class="item-container">
-	    	<div class="item-identifier">
-	    		<div class="item-header left"># Route 2</div>
-	    		<div>Bird Cell</div>
-	    		<div class="item-text right">3,000.00 &#x20a7;</div>
-	    		<a (click)="gotoDetailRetailer()"><div class="item-icon arrow-right"></div></a>  
-	    		<div>9999900002</div>  			
-	    	</div>	     	
-	    </div>
-	    <div class="item-container">
-	    	<div class="item-identifier">
-	    		<div class="item-header left"># Route 3</div>
-	    		<div>Rose Cell</div>
-	    		<div class="item-text right">3,000.00 &#x20a7;</div>
-	    		<a (click)="gotoDetailRetailer()"><div class="item-icon arrow-right"></div></a>
-	    		<div>9999900002</div>
-	    	</div>   	
-	    </div>
-	    <div class="item-container">
-	    	<div class="item-identifier">
-	    		<div class="item-header left"># Route 4</div>
-	    		<div>ABC Cell</div>
-	    		<div class="item-text right">3,000.00 &#x20a7;</div>
-	    		<a (click)="gotoDetailRetailer()"><div class="item-icon arrow-right"></div></a>
-	    		<div>9999900002</div>
-	    	</div>     	
-	    </div>
-	    <div class="item-container">
-	    	<div class="item-identifier">
-	    		<div class="item-header left"># Route 5</div>
-	    		<div>Lova Cell</div>
-	    		<div class="item-text right">3,000.00 &#x20a7;</div>
-	    		<a (click)="gotoDetailRetailer()"><div class="item-icon arrow-right"></div></a>
-	    		<div>9999900002</div>
-	    	</div>
-	    </div>
 	</div>
 </div>

@@ -251,7 +251,6 @@ export class LayoutService {
             }
         }
         else if(
-            pCurrent=='TargetActual' ||
             pCurrent=='VisiteRetail' ||
             pCurrent=='Collection' ||
             pCurrent=='StockReturn' ||
@@ -328,6 +327,28 @@ export class LayoutService {
                 search: false
             }
         }
+     else if(pCurrent=='CDTargetsActuals' )
+     {
+         this._pageNavigationService.setPreviousPage('CloseDay');
+            
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: true
+            };
+            this.vFooterState = 
+            {
+                myTransaction : false,
+                basicCallProcedure : false,
+                closeDay : true,
+                settings : false
+            };    
+            this.vHeaderItem = {
+                back: true,
+                filter: true,
+                edit: false,
+                search: false
+            }}
+
     }
 
     setFilter()

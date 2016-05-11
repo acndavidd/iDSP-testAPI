@@ -5,8 +5,9 @@ var vFs = require('fs');
 var vExec = require('child_process').spawn;
 
 export class ORMService{
+	private model;
 	constructor(){
-		
+
 	}
 
 	public buildModels(pRequest,pResponse){
@@ -46,8 +47,19 @@ export class ORMService{
 
 	public getModel(pModelName:string){
 		let vSequelizeSvc:SequelizeService = new SequelizeService();
+		let vOrmSvc = this;
 		try{
-			return  vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),pModelName + vSequelizeSvc.getModelNaming()));
+			let vModel = vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),pModelName + vSequelizeSvc.getModelNaming()));
+			let associatedModels = {};
+			if("getAssociatedModels" in vModel)
+				vModel.getAssociatedModels().forEach(function(associatedModel){
+					let assocModel = vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),associatedModel + vSequelizeSvc.getModelNaming()));
+					associatedModels[associatedModel] = assocModel;
+				});
+			if("associate" in vModel && associatedModels){
+				vModel.associate(associatedModels);
+			}
+			return vModel;
 		}catch(err){
 			console.log(err);
 			throw err;

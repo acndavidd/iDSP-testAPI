@@ -20,18 +20,22 @@ import {AccountsReceivablesService} from '../services/accounts-receivables-servi
 
 export class AccountsReceivablesComponent {
 	
+    vSearchRetailer: string;
+
 	constructor (
 		private _layoutService: LayoutService,
     	private _matchMediaService: MatchMediaService,
 		private _headerService: HeaderService,
         private _router: Router,
-        private _retailerService: RetailerService
+        private _retailerService: RetailerService ,
+        private _accountsReceivablesService: AccountsReceivablesService
     	) 
 	{
 
 		this._layoutService.setCurrentPage('AccountsReceivables');
 		this._headerService.setTitle("Accounts Receivables");
         this._retailerService.getRetailer(100);
+       // this._accountsReceivablesService
     }
 	
 	getResize(){
@@ -40,13 +44,23 @@ export class AccountsReceivablesComponent {
 
     getSearch()
     {
-        return this._layoutService.getSearch();
+       return this._layoutService.getSearch();
+       
     }
 
     gotoDetailRetailer()
     {
         this._layoutService.setOldCurrentPage('AccountsReceivables');
         this._router.navigate(['DetailRetailer']);
+    }
+
+    getSearchRetailer(){
+        //return this.vSearchRetailer;
+        console.log("Coba keypress");
+    }
+
+    setSearchRetailer(pSearchRetailer: string){
+        this.vSearchRetailer = pSearchRetailer;
     }
 
 }

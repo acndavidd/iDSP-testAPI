@@ -7,11 +7,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING(20)
       },
+      category_id: {
+        allowNull: false,
+        primaryKey: true,
+        type: Sequelize.STRING(20)
+      },
       sub_category_name: {
         type: Sequelize.STRING(50)
-      },
-      category_id: {
-        type: Sequelize.STRING(20)
       },
       brand: {
         type: Sequelize.STRING(20)

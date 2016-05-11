@@ -5,7 +5,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
-      unique: true
+      unique: true,
+      references: "trx_collection",
+      referencesKey: "coll_id"
     },
     ar_id: {
       type: DataTypes.INTEGER,
@@ -19,6 +21,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        trx_collection_det.belongsTo(models.trx_account_receivable);
       }
     }
   });

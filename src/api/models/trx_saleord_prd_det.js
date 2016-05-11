@@ -5,13 +5,17 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
-      unique: true
+      unique: true,
+      references: "trx_sales_order",
+      referencesKey: "order_id"
     },
     product_id: {
       type: DataTypes.STRING(20),
       primaryKey: true,
       allowNull: false,
-      unique: true
+      unique: true,
+      references: "mst_product",
+      referencesKey: "product_id"
     },
     quantity: DataTypes.INTEGER,
     price: DataTypes.DECIMAL(10,2)
@@ -21,6 +25,9 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        trx_saleord_prd_det.belongsTo(models.trx_sales_order);
+        trx_saleord_prd_det.belongsTo(models.mst_product);
+        trx_saleord_prd_det.hasMany(models.trx_saleord_prd_sub_det);
       }
     }
   });

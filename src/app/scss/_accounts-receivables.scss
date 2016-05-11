@@ -1,38 +1,39 @@
-.accounts-receivables {
-    //padding-bottom: 45px;
-    z-index: 1;
-    height: 100%;
-    background-color: #FFF;
-    .container-body {
+.accounts-receivables{
+  
+    .filter-container{
+            background-color: $white-smoke;
+            width: 100%;
+            display: block;
+            clear: left;
+            height: 50px;
+        .filter-label {
+            font-size: $filter-label;
+            color: #000;
+            padding-top: 20px;
+            padding-left: 10px;
+            float: left;
+        }
+        .filter-input{
+            padding-top: 7px;
+            padding-left: 24px;
+            input {
+                background: $white;
+                height: 30px;
+                border: 1px solid $dark-grey;
+                width: 90%;
+                -webkit-appearance: none;
+                border-radius: 7px;
+                padding-left: 15px;
+                font-size: $filter-select;
+                appearance: none;
+            }
+        }
+    }
+
+    .container-body{
         background-color: white;
         width: 100%;
         height: 100%;
-        .header {
-            display: inline-block;
-            width: 100%;
-            border-bottom: 1px solid #000;
-            background-size: cover;
-            height: 40px;
-            .void {
-                display: inline-block;
-                width: 100%;
-                height: 136px;
-            }
-            .text {
-                display: inline-block;
-                background-color: #FFF;
-                width: 100%;
-                padding: 10px;
-                height: 25px;
-
-                .header-text{
-	                text-align: center;	
-	                font-weight: 500;
-	                font-size: 17px;
-	                font-family: Arial;
-				}
-            }
-        }
 
         .item-container {
             display: inline-block;
@@ -41,7 +42,7 @@
             padding-right: 10px;
             border-bottom: 1px solid #BFBFBF;
             cursor: pointer;
-           
+
             .item-icon {
                 height: 30px;
                 width: 30px;
@@ -76,41 +77,21 @@
                     font-size: 20px;
                     font-weight: 500;
                     margin-bottom: 5px;
-                    color: #A8A8A8;
+                    color: #A8A8A8;               
                 }
-                .item-text{
-                    font-size: 18px;
-                    margin-top:5px;
-                    position: right;
-                    text-align: right;
-                    margin-right: 20px;
+                .item-body{
+                     .float-right{
+                        float: right;
+                        font-size: 18px;
+                        margin-right: 20px;
+                        position: center;
+                    }
+                    .float-left{
+                        float: left;
+                    }
                 }
             }
-
         }
-        
     }
-
-    .search-container{
-		background-color: #E0E0E0;
-        width: 100%;
-        display: block;
-        clear: left;
-        height: 100%;
-       
-            .search-box{         	
-            	margin: ;
-                width: 100%;
-                height: 100%;
-                text-align: center;
-                display: block;
-
-                .inner-editor{
-                    font-size: 20px;
-                    border: none;  
-                }
-            }
-    }
-
 
 }

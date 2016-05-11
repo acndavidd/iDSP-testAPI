@@ -8,8 +8,6 @@ export class AccountsReceivablesService{
 	private vServiceUrl:string;
 	private vErrorMsg:string;
 	private vIsLoading:boolean;
-	// private vListRetailer: retailerList[];
-	private vRetailerResult:string;
 
 	constructor(
 		private _http: Http,
@@ -19,9 +17,10 @@ export class AccountsReceivablesService{
 	}
 
 	//to Search name of Retailer
-	searchRetailer():string{
-		return this.vRetailerResult;
-	}
+	/*searchRetailer():string{
+		return var vListSearchRetailer: vSearchRetailer[
+		];
+	}*/
 
 	getError():string{
 		return this.vErrorMsg;
