@@ -42,36 +42,36 @@ export class TargetsActualsController{
 		}
 	}
 
-	getProdCat(pRequest,pResponse){
-	   try{
+	// getProdCat(pRequest,pResponse){
+	//    try{
 
-	   var message = 'Insert start.';
-				console.log("mw Init");
-	    var orm = new ORMService();
-	    var product = orm.getModel("mst_product_category");	
+	//    var message = 'Insert start.';
+	// 			console.log("mw Init");
+	//     var orm = new ORMService();
+	//     var product = orm.getModel("mst_product_category");	
 
-	    product.findAll({
-		  attributes: ['category_name'], 
-   			group: ['category_name']
-		}).then(function(result){
+	//     product.findAll({
+	// 	  attributes: ['category_name'], 
+ //   			group: ['category_name']
+	// 	}).then(function(result){
 
-			console.log(result);
+	// 		console.log(result);
 
-			var vResult = {
-				"status" : "Success",
-				"statusMessage" : "",
-				"error":"error",
-				"CatList" : result
+	// 		var vResult = {
+	// 			"status" : "Success",
+	// 			"statusMessage" : "",
+	// 			"error":"error",
+	// 			"CatList" : result
 
-			}
-			pResponse.json(vResult);
+	// 		}
+	// 		pResponse.json(vResult);
 
-		}).catch(function (err) {
-		        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
-			});
-		}
-		catch(pErr){
-			console.log(pErr);
-		}
-	}
+	// 	}).catch(function (err) {
+	// 	        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
+	// 		});
+	// 	}
+	// 	catch(pErr){
+	// 		console.log(pErr);
+	// 	}
+	// }
 }
