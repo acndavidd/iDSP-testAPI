@@ -20,6 +20,7 @@ export class InventoryComponent {
 	vPhysicalShow = false;
 	vUnderlineLoad = true;
 	vUnderlinePhysical = false;
+    vSubMenuShow = false;
 
 	constructor (
 		private _layoutService: LayoutService,
@@ -51,5 +52,10 @@ export class InventoryComponent {
     	this.vPhysicalShow = true;
     	this.vUnderlineLoad = false;
     	this.vUnderlinePhysical = true;
+    }
+
+    subMenuShow()
+    {
+        this.vSubMenuShow = !this.vSubMenuShow;
     }
 }

@@ -172,6 +172,16 @@ module.exports = function(grunt) {
                     },
                 ]
             },
+
+            fonts: {
+                files: [
+                    {
+                        src:['fonts/*.*'],
+                        dest:'../../debug/',
+                        expand: true
+                    }
+                ]
+            },
             
             js: {
                 files: [    
@@ -332,6 +342,7 @@ module.exports = function(grunt) {
         'copy:resources',
         'copy:html',
         'copy:css',
+        'copy:fonts',
         'ts',
         'copy:js',
         'concat',
@@ -345,6 +356,21 @@ module.exports = function(grunt) {
         ]); 
 
     grunt.registerTask('cordova',[      
+        'clean:debug',
+        'copy:dependencies',
+        'copy:resources',
+        'copy:html',
+        'copy:css',
+        'copy:fonts',
+        'ts',
+        'copy:js',
+        'concat',
+        'sass',
+        'clean:sasscache',
+        'jshint',
+        'cssmin',
+        'uglify',
+        'cachebreaker',
         'clean:cordova',
         'copy:cordova'
         ]); 
@@ -369,6 +395,7 @@ module.exports = function(grunt) {
         'copy:resources',
         'copy:html',
         'copy:css',
+        'copy:fonts',
         'ts',
         'copy:js',
         'concat',

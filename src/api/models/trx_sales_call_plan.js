@@ -30,7 +30,11 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        trx_sales_call_plan.belongsTo(models.mst_route);
+        trx_sales_call_plan.belongsTo(models.mst_route,{as: 'Route', foreignKey : 'route_id'});
+      },
+      getAssociatedModels : function(){
+        return ['mst_route'];
+        //return '';
       }
     }
   });
