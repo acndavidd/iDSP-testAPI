@@ -1,15 +1,38 @@
-<div class="filter-container" *ngIf="getSearch().searchBox">
-	<div class="filter-input">
-		<input type="text" id="AccSearchBox" placeholder="Input Retailer Name or MIN"/>
-	</div>
-</div>
 <div class="container-body">
-	<div class="item-container">
-		<div class="item-title">Total Receivables : 3,450.00 &#x20a7;</div>
+	<div class="filter-container" *ngIf="getSearch().searchBox">
+		<div class="filter-input">	
+			<input [(ngModel)]="vTotal" id="RetailerSearchBox" placeholder="Input Store Name or Number" />
+		</div>	
 	</div>
+
+	<div class="item-container">
+        <div class="container">
+            <div class='cell'>
+                <div class='container'><div class='cell single title bold center'>Total Receivables : {{getTotalReceivable()}} &#x20B1;</div></div>
+            </div>
+            <div class='cell icon'></div>
+        </div>
+    </div>
+
+    <div class="item-container">
+        <div class="container">
+            <div class='cell'>
+                <div class='container'><div class='cell left grey'># Route 2</div></div>
+                <div class='container'><div class='cell left'>Bird Cell</div></div>
+                <div class='container'><div class='cell left italic'>99999900002</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container'><div class='cell right'>3,000.00 ₱</div></div>
+                <div class='container'><div class='cell right'></div></div>
+            </div>
+            <div class='cell icon'></div>
+        </div>
+    </div>
+
+	<!-- <div class="container-body">
+		<div class="item-container">
+			<div class="item-title">Total Receivables : {{getTotalReceivable()}} &#x20B1;</div>
+		</div>
+	</div> -->
 </div>
-
-
-	
-
-
