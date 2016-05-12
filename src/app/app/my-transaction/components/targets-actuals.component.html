@@ -7,16 +7,17 @@
 	<div class="filter-container" *ngIf="getFilter().filterTargetsActuals">
 		<div class="filter-label">Brand</div>
 		<div class="filter-dropdown">
-		<select>
-			<option *ngFor="#each of getBrand()" [value]="each.brand" >
-			    {{each.brand}}
-			</option>
-		</select></div>
+			<select [(ngModel)]="vSelectedBrand"  (ngModelChange)="onChangeSelectBrand($event)">
+				<option  *ngFor="#each of getBrand()" [value]="each.brand" >
+				    {{each.brand}}
+				</option>
+			</select>
+		</div>
 	</div>
 
 	<div *ngIf="vDayShow" >
-		<div class="item-container-ta" id="ta-container">
-			<div class="item-title-ta">Airtime</div>
+		<div class="item-container-ta" id="ta-container" >
+			<div class="item-title-ta" >Airtime</div>
 				<div class="item-left">SIM</div>
 				<div class="item-mid">23.33%</div>
 				<div class="item-right">

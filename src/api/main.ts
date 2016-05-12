@@ -126,6 +126,7 @@ vRouter.get('/login',function(pRequest,pResponse){
 vRouter.get('/logout',vLoginCtrl.logout);
 vRouter.get('/targetsActuals',vTargetsActualsCtrl.getBrand);
 vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
+//vRouter.get('/getProductCategory',vTargetsActualsCtrl.getProdCat);
 vApp.use('/service',vRouter);
 vApp.listen(PORT);
 console.log('http://127.0.0.1:' + PORT + '/service');
