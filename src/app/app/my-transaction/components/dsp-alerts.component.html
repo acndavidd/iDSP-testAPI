@@ -1,9 +1,36 @@
-<div class="container-body">
-    <div class="filter-container" *ngIf="getFilter().filterDSPAlerts">
-		<div class="filter-input">
-			<input type="text" id="AccSearchBox" placeholder="Input Retailer Name or MIN"/>
+	<div class="filter-container-dsp" *ngIf="getFilter().filterInventoryLoad && vLoadShow">
+		<div class="two-col">
+			<div class="two-col-child-40">
+				<div class="filter-label">Value Segment</div>
+			</div>
+			<div class="two-col-child-60">
+				<div class="filter-dropdown">
+					<select name="cars">
+					  <option value="volvo">High</option>
+					  <option value="saab">Medium</option>
+					  <option value="fiat">Low</option>
+					</select>
+				</div>
+			</div>
 		</div>
+
+		<div class="two-col">
+			<div class="two-col-child-40">
+				<div class="filter-label">Threshold</div>			
+			</div>
+			<div class="two-col-child-60">
+				<div class="filter-input">
+					<input type="text"/>
+				</div>
+			</div>
+		</div>
+		<div class="float-bottom">
+		</div>
+
 	</div>
+
+
+<div class="container-body">
 
     <div class="item-container">
         <div class="container">

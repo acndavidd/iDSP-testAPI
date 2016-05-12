@@ -24,6 +24,7 @@ export class TargetsActualsComponent {
     vUnderlineMonth = false;
 
 	constructor (
+        private _router: Router,
 		private _layoutService: LayoutService,
     	private _matchMediaService: MatchMediaService,
 		private _headerService: HeaderService
@@ -73,6 +74,10 @@ export class TargetsActualsComponent {
     	this.vUnderlineDay = false;
     	this.vWeekShow = false;
 		this.vDayShow = false
+    }
+
+    brand(pEvent) {
+        pEvent.preventDefault();
     }
 
 

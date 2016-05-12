@@ -1,38 +1,38 @@
-<div class="container-body">
-		<div class="filter-container" *ngIf="getFilter().filterTargetsActuals">
-			<div class="filter-input">	
-				<input #box (keyup)="onKey(box.value)" id="RetailerSearchBox" placeholder="Input Retailer Name or MIN"/>
-			</div>	
-		</div>
+<div class="accounts-receivables">	
+	<div class="filter-container" *ngIf="getFilter().filterTargetsActuals">
+		<div class="filter-input input">	
+			<input #box (keyup)="onKey(box.value)" id="RetailerSearchBox" placeholder="Input Retailer Name or MIN"/>
+		</div>	
+	</div>
 
-		<div class="item-container">
-	        <div class="container">
-	            <div class='cell'>
-	                <div class='container'><div class='cell single title bold center'>Total Receivables : {{getTotalReceivable()}} ₱</div></div>
-	            </div>
-	            <div class='cell icon'></div>
-	        </div>
+	<div class="container-body">
+	    <div class="item-container">
+            <div class='cell'>
+                <div class='container'><div class='cell single title bold center'>Total Receivables : {{getTotalReceivable()}} ₱</div></div>
+            </div>
+            <div class='cell icon'></div>
 	    </div>
+	</div>
 
-		<div ng-app="accounts-receivables" ng-controller="Retailers">
-			<div ng-repeat="list in retailers">
-				<div id="accList" ng-init="init(list.retailerName)">
-				    <div class="item-container">
-				        <div class="container">
-				            <div class='cell'>
-				                <div class='container'><div class='cell left grey'># Route {{list.routeID}}</div></div>
-				                <div class='container'><div class='cell left'>{{list.retailerName}}</div></div>
-				                <div class='container'><div class='cell left italic'>{{list.retailerID}}</div></div>
-				            </div>
-				            <div class='cell'>
-				                <div class='container'><div class='cell right'></div></div>
-				                <div class='container'><div class='cell right'>{{list.accReceivables}} ₱</div></div>
-				                <div class='container'><div class='cell right'></div></div>
-				            </div>
-				            <div class='cell icon'></div>
+	<div ng-app="accounts-receivables" ng-controller="Retailers">
+		<div ng-repeat="list in retailers">
+			<div id="accList" ng-init="init(list.retailerName)">
+				<div class="item-container">
+				    <div class="container">
+				        <div class='cell'>
+			                <div class='container'><div class='cell left grey'># Route {{list.routeID}}</div></div>
+			                <div class='container'><div class='cell left'>{{list.retailerName}}</div></div>
+			                <div class='container'><div class='cell left italic'>{{list.retailerID}}</div></div>
 				        </div>
+				        <div class='cell'>
+			                <div class='container'><div class='cell right'></div></div>
+			                <div class='container'><div class='cell right'>{{list.accReceivables}} ₱</div></div>
+			                <div class='container'><div class='cell right'></div></div>
+				        </div>
+				            <div class='cell icon'></div>
 				    </div>
 				</div>
 			</div>
 		</div>
+	</div>
 </div>
