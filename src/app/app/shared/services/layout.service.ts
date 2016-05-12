@@ -18,6 +18,7 @@ export class LayoutService {
         filterTargetsActuals : false,
         filterInventoryLoad : false,
         filterInventoryPhysical : false,
+        filterRetailerRoute : false,
         filterDSPAlerts : false
     };
 
@@ -196,7 +197,7 @@ export class LayoutService {
         }
         else if(
             
-            pCurrent=='RetailerRoute' ||
+            
             pCurrent=='AccountsReceivables' ||
             pCurrent=='DSPAlerts')
         {
@@ -236,7 +237,9 @@ export class LayoutService {
                 }
             }
         }
-         else if(pCurrent=='Inventory' ||
+         else if(
+            pCurrent=='RetailerRoute' ||
+            pCurrent=='Inventory' ||
             pCurrent=='TargetsActuals')
         {
             this._pageNavigationService.setPreviousPage('MyTransaction');
@@ -388,6 +391,7 @@ export class LayoutService {
         this.vFilter.filterTargetsActuals = !this.vFilter.filterTargetsActuals;
         this.vFilter.filterInventoryLoad = !this.vFilter.filterInventoryLoad;
         this.vFilter.filterInventoryPhysical = !this.vFilter.filterInventoryPhysical;
+        this.vFilter.filterRetailerRoute = !this.vFilter.filterRetailerRoute;
     }
 
     setSearch()

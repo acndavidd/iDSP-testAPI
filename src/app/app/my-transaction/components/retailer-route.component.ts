@@ -20,6 +20,8 @@ import {NgModel} from 'angular2/common';
 
 export class RetailerRouteComponent {
 	private vListRetailers;
+    private vListDay;
+    private vSelectedDay; 
 	private vSelectedDate: Date;
 	private vSelectedDateStr: String;
 
@@ -30,32 +32,61 @@ export class RetailerRouteComponent {
 		private _retailerRouteService: RetailerRouteService
     	) 
 	{
-		this.vSelectedDate = new Date();
-		this.refreshRetailerRoute();
+        this.vListDay = [
+            {
+                "name" : "Sunday",
+                "value" : "0"
+            },
+            {
+                "name" : "Monday",
+                "value" : "1"
+            },
+            {
+                "name" : "Tuesday",
+                "value" : "2"
+            },
+            {
+                "name" : "Wednesday",
+                "value" : "3"
+            },
+            {
+                "name" : "Thursday",
+                "value" : "4"
+            },
+            {
+                "name" : "Friday",
+                "value" : "5"
+            },
+            {
+                "name" : "Saturday",
+                "value" : "6"
+            }            
+        ];
+        
+        this.vSelectedDate = new Date();
+        console.log(this.vSelectedDate);
+        this.vSelectedDay = this.vSelectedDate.getDay();
+        this.refreshRetailerRoute();
 		this._layoutService.setCurrentPage('RetailerRoute');
 		this._headerService.setTitle("Retailer Route");
+
     }
 	
 	getResize(){
         return this._matchMediaService.getMm();  
     }
 
+    getFilter() {
+        return this._layoutService.getFilter();
+    }
+
     refreshRetailerRoute(){
+        console.log("Refresh retailer route with for Day "+ this.vSelectedDay);
     	this.vListRetailers = this._retailerRouteService.queryRetailerRoute(this.vSelectedDate);
     }
 
-    goToPreviousDay(){
-    	//Selected Date - 1
-    	
-    	this.refreshRetailerRoute();
-
-    }
-
-    goToNextDay(){
-    	//Selected Date + 1
-
-    	this.refreshRetailerRoute();
-    }
-
-
+    onChangeSelectDay(pSelectedDay){
+        this.vSelectedDay = pSelectedDay        
+        this.refreshRetailerRoute();
+    }   
 }
