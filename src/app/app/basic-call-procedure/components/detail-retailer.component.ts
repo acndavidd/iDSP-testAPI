@@ -23,10 +23,12 @@ export class DetailRetailerComponent {
 		private _headerService: HeaderService,
 		private _retailerService: RetailerService
 		) 
+
 	{
 		this._retailerService.getRetailer(100);
 		this._layoutService.setCurrentPage('DetailRetailer');
 		this._headerService.setTitle("Detail Retailer");
+        console.log('in detail retailer BCP Component');
     }
 	
 	getResize(){

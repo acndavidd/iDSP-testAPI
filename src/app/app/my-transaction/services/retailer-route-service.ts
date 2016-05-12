@@ -26,18 +26,21 @@ export class RetailerRouteService{
 		var vSampleObject = [
 			{
 				"retailer_id": "1",
+				"route_sequence": "1",
 				"retailer_name": "Gloria Cell",
 				"retailer_address": "Barangka Dr. Mandaluyong",
 				"owner_name": "Ms. Gloria"
 			},
 			{
 				"retailer_id": "2",
+				"route_sequence": "2",
 				"retailer_name": "Bird Cell",
 				"retailer_address": "Mr. Jaja",
 				"owner_name": "Barangka Dr. Sutrisno"
 			},
 			{
 				"retailer_id": "3",
+				"route_sequence": "3",
 				"retailer_name": "Rose Cell",
 				"retailer_address": "Ms. Rose",
 				"owner_name": "Matalang 56 Barangka"
