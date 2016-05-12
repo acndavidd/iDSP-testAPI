@@ -7,7 +7,6 @@ export class LayoutService {
 
 	vCurrentPage: string;
     vNumberSelection = false;
-    vOldCurrentPage : string;
     
     constructor (private _pageNavigationService: PageNavigationService,
     private _matchMediaService: MatchMediaService) {
@@ -18,7 +17,8 @@ export class LayoutService {
         filterTargetsActuals : false,
         filterInventoryLoad : false,
         filterInventoryPhysical : false,
-        filterDSPAlerts : false
+        filterDSPAlerts : false,
+        filterAccReceivables : false
     };
 
 	vLayoutState = {
@@ -64,13 +64,6 @@ export class LayoutService {
     //getFooterLayout(){
     //    return this.vFooterItem;
     //}
-    getOldCurrentPage(){
-        return this.vOldCurrentPage;
-    }
-
-    setOldCurrentPage(pCurrentPage : string){
-        this.vOldCurrentPage = pCurrentPage;
-    }
 	
 	getLayout(){
 		return this.vLayoutState;
@@ -312,10 +305,6 @@ export class LayoutService {
         {
             
             this._pageNavigationService.setPreviousPage("BasicCallProcedure");
-
-            if(this.vOldCurrentPage!==null || this.vOldCurrentPage!==""){
-                this._pageNavigationService.setPreviousPage(this.vOldCurrentPage);
-            }
         
             this.vLayoutState = {
               appHeader: true,
@@ -388,6 +377,7 @@ export class LayoutService {
         this.vFilter.filterTargetsActuals = !this.vFilter.filterTargetsActuals;
         this.vFilter.filterInventoryLoad = !this.vFilter.filterInventoryLoad;
         this.vFilter.filterInventoryPhysical = !this.vFilter.filterInventoryPhysical;
+        this.vFilter.filterAccReceivables = !this.vFilter.filterAccReceivables;
     }
 
     setSearch()

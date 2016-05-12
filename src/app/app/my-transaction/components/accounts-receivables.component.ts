@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet, ROUTER_PROVIDERS } from 'angular2/router';
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
@@ -19,7 +19,7 @@ import { AllRetailer } from './all-retailer';
     ]
 })
 
-export class AccountsReceivablesComponent implements OnInit{
+export class AccountsReceivablesComponent{
 
     vTotal: string;
     retailerList: AllRetailer[];
@@ -35,6 +35,7 @@ export class AccountsReceivablesComponent implements OnInit{
 
 		this._layoutService.setCurrentPage('AccountsReceivables');
 		this._headerService.setTitle("Accounts Receivables");
+        this._accountsReceivablesService.getAllRetailer().then(retailers => this.retailerList = retailers);
 
     }
 	
@@ -61,14 +62,6 @@ export class AccountsReceivablesComponent implements OnInit{
 
     onKey(value:string){
         console.log ('test onkey');
-    }
-
-    getAllRetailer(){
-        this._accountsReceivablesService.getAllRetailer().then(retailers => this.retailerList = retailers);
-    }
-
-    ngOnInit(){
-        this.getAllRetailer();
     }
 
     Retailers($scope){
