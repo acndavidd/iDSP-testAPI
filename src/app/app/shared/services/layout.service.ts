@@ -391,11 +391,8 @@ export class LayoutService {
         this.vFilter.filterTargetsActuals = !this.vFilter.filterTargetsActuals;
         this.vFilter.filterInventoryLoad = !this.vFilter.filterInventoryLoad;
         this.vFilter.filterInventoryPhysical = !this.vFilter.filterInventoryPhysical;
-<<<<<<< HEAD
         this.vFilter.filterDSPAlerts = !this.vFilter.filterDSPAlerts;
-=======
         this.vFilter.filterRetailerRoute = !this.vFilter.filterRetailerRoute;
->>>>>>> b13f1daa0d83cbd218ef56b16d56744b3fa74d95
     }
 
     setSearch()

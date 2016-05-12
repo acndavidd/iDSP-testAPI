@@ -1,32 +1,37 @@
-<div class="filter-container-dsp" *ngIf="getFilter().filterDSPAlerts">
-	<div class="two-col">
-		<div class="two-col-child-40">
-			<div class="filter-label">Value Segment</div>
-		</div>
-		<div class="two-col-child-60">
-			<div class="filter-dropdown">
-				<select name="cars">
-				  <option value="volvo">High</option>
-				  <option value="saab">Medium</option>
-				  <option value="fiat">Low</option>
-				</select>
+	<div class="filter-container-dsp" *ngIf="getFilter().filterInventoryLoad && vLoadShow">
+		<div class="two-col">
+			<div class="two-col-child-40">
+				<div class="filter-label">Value Segment</div>
+			</div>
+			<div class="two-col-child-60">
+				<div class="filter-dropdown">
+					<select name="cars">
+					  <option value="volvo">High</option>
+					  <option value="saab">Medium</option>
+					  <option value="fiat">Low</option>
+					</select>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="two-col">
-		<div class="two-col-child-40">
-			<div class="filter-label">Threshold</div>			
-		</div>
-		<div class="two-col-child-60">
-			<div class="filter-input">
-				<input type="text"/>
+
+		<div class="two-col">
+			<div class="two-col-child-40">
+				<div class="filter-label">Threshold</div>			
+			</div>
+			<div class="two-col-child-60">
+				<div class="filter-input">
+					<input type="text"/>
+				</div>
 			</div>
 		</div>
+		<div class="float-bottom">
+		</div>
+
 	</div>
-	<div class="float-bottom">
-	</div>
-</div>
+
+
 <div class="container-body">
+
     <div class="item-container">
         <div class="container">
             <div class='cell'>
@@ -41,9 +46,66 @@
                 <div class='container'><div class='cell right'></div></div>
                 <div class='container'><div class='cell right'></div></div>
                 <div class='container'><div class='cell right'>High</div></div>
-                <div class='container'><div class='cell right'>1,000.00 &nbsp; &#8369;</div></div>
+                <div class='container'><div class='cell right'>1,000.00 P</div></div>
             </div>
             <div class='cell icon'></div>
         </div>
     </div>
+
+    <!--<div class="threshold-list">
+    	<div>
+    		<div class="route">#Route 2</div>
+    		<div class="retailer-name">Gloria Cell</div>
+    		<div class="retailer-detail">
+    			<div class="retailer-detail-left">Value Segment</div><div class="retailer-detail-right"> ????? </div>
+    			<div class="retailer-detail-left">Threshold hit</div><div class="retailer-detail-right"> High </div>
+    		</div>
+    		<hr>
+    	</div>
+    	<div>
+    		<div class="route">#Route 2</div>
+    		<div class="retailer-name">Gloria Cell</div>
+    		<div class="retailer-detail">
+    			<div class="retailer-detail-left">Value Segment</div><div class="retailer-detail-right"> ????? </div>
+    			<div class="retailer-detail-left">Threshold hit</div><div class="retailer-detail-right"> High </div>
+    		</div>
+    		<hr>
+    	</div>
+    	<div>
+    		<div class="route">#Route 2</div>
+    		<div class="retailer-name">Gloria Cell</div>
+    		<div class="retailer-detail">
+    			<div class="retailer-detail-left">Value Segment</div><div class="retailer-detail-right"> ????? </div>
+    			<div class="retailer-detail-left">Threshold hit</div><div class="retailer-detail-right"> High </div>
+    		</div>
+    		<hr>
+    	</div>
+    	<div>
+    		<div class="route">#Route 2</div>
+    		<div class="retailer-name">Gloria Cell</div>
+    		<div class="retailer-detail">
+    			<div class="retailer-detail-left">Value Segment</div><div class="retailer-detail-right"> ????? </div>
+    			<div class="retailer-detail-left">Threshold hit</div><div class="retailer-detail-right"> High </div>
+    		</div>
+    		<hr>
+    	</div>
+    	<div>
+    		<div class="route">#Route 2</div>
+    		<div class="retailer-name">Gloria Cell</div>
+    		<div class="retailer-detail">
+    			<div class="retailer-detail-left">Value Segment</div><div class="retailer-detail-right"> ????? </div>
+    			<div class="retailer-detail-left">Threshold hit</div><div class="retailer-detail-right"> High </div>
+    		</div>
+    		<hr>
+    	</div>
+    	<div>
+    		<div class="route">#Route 2</div>
+    		<div class="retailer-name">Gloria Cell</div>
+    		<div class="retailer-detail">
+    			<div class="retailer-detail-left">Value Segment</div><div class="retailer-detail-right"> ????? </div>
+    			<div class="retailer-detail-left">Threshold hit</div><div class="retailer-detail-right"> High </div>
+    		</div>
+    		<hr>
+    	</div>
+    </div>-->
 </div>
