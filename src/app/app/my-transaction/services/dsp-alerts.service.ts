@@ -13,13 +13,6 @@ export class DSPAlertsService{
 	}
 
 	getDSPAlert(){
-		this._http.get('/getDSPAlert',null).subscribe(
-			response => {
-				console.log(response);
-			},
-			error => {
-
-			}
-		);
+		return this._http.get('/getRetailerAlert',null);
 	}
 }

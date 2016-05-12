@@ -3,6 +3,7 @@
 
 import {LoginController} from './controllers/login.controller';
 import {TargetsActualsController} from './controllers/targets-actuals.controller';
+import {RetailerController} from './controllers/retailer.controller';
 import {TokenService} from './services/token.service';
 import {ORMService} from './services/orm.service';
 
@@ -14,6 +15,7 @@ var vSOAP = require('soap');
 var vRouter = vExpress.Router();
 const PORT:number = process.env.PORT || 8080;
 
+var vRetailerCtrl:RetailerController = new RetailerController();
 var vLoginCtrl:LoginController = new LoginController();
 var vTargetsActualsCtrl:TargetsActualsController = new TargetsActualsController();
 var vTokenSvc:TokenService = new TokenService();
@@ -123,6 +125,7 @@ vRouter.get('/login',function(pRequest,pResponse){
 
 vRouter.get('/logout',vLoginCtrl.logout);
 vRouter.get('/targetsActuals',vTargetsActualsCtrl.getBrand);
+vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
 vApp.use('/service',vRouter);
 vApp.listen(PORT);
 console.log('http://127.0.0.1:' + PORT + '/service');

@@ -1,4 +1,4 @@
-	<div class="filter-container-dsp" *ngIf="getFilter().filterInventoryLoad && vLoadShow">
+	<div class="filter-container-dsp" *ngIf="getFilter().filterDSPAlerts">
 		<div class="two-col">
 			<div class="two-col-child-40">
 				<div class="filter-label">Value Segment</div>
@@ -33,20 +33,20 @@
 <div class="container-body">
 
     <div class="item-container">
-        <div class="container">
+        <div class="container" *ngFor="#alert of getRetailerAlert()">
             <div class='cell'>
                 <div class='container'><div class='cell left bold grey'># Route 1</div></div>
-                <div class='container'><div class='cell left bold'>Gloria Cell</div></div>
-                <div class='container'><div class='cell left italic'>99999900001</div></div>
-                <div class='container'><div class='cell left grey'>Value segment</div></div>
+                <div class='container'><div class='cell left bold'>{{alert.retailer_name}}</div></div>
+                <div class='container'><div class='cell left italic'>{{alert.retailer_min}}</div></div>
+                <div class='container'><div class='cell left grey'>Value Segment</div></div>
                 <div class='container'><div class='cell left grey'>Threshold hit</div></div>
             </div>
             <div class='cell'>
                 <div class='container'><div class='cell right'></div></div>
                 <div class='container'><div class='cell right'></div></div>
                 <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'>High</div></div>
-                <div class='container'><div class='cell right'>1,000.00 P</div></div>
+                <div class='container'><div class='cell right'>{{alert.alert[0].value_segment}}</div></div>
+                <div class='container'><div class='cell right'>{{alert.alert[0].threshold_hit}} &nbsp; &#8369; </div></div>
             </div>
             <div class='cell icon'></div>
         </div>
