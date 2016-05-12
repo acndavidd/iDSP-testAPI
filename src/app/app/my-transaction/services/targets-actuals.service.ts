@@ -8,37 +8,37 @@ export class TargetsActualsService{
 	private vServiceUrl:string;
 	private vErrorMsg:string;
 	private vIsLoading:boolean;
+	private vBrand;
 
 	constructor(
 		private _http: Http,
 		private _router: Router){
 
 		this.vIsLoading = false;
+		this.queryBrand();
+
 	}
 
-	//To query list of retailer that will be visited pertoday for user that login
+	
 	queryBrand(){
 		this.vIsLoading = true;
  
-		//To-Do : Query User ID or Username
+		
 		let vUserId:string = '1';
 		let vCurrentDate = new Date();
 
 		console.log(vCurrentDate);
 
-		//Hit API with parameter user_id and current date
-
-		this._http.get('/queryBrand',
+		this._http.get('/targetsActuals',
 			<RequestOptionsArgs> {headers: new Headers(
                 {'Content-Type': 'application/x-www-form-urlencoded'})
             }).subscribe(
             	response => {
             		this.vIsLoading = false;
             		console.log(response.json());
-            		if(response.json().success == 1){//success login
-            			//Pass back the call plan result
-            			return response.json().resultCallPlan;
-            		}else{//failed login
+            		if(response.json().status == "Success"){
+            			this.vBrand = response.json().brandList;
+            		}else{
             			this.vErrorMsg = response.json().error;
             		}
             	},
@@ -47,7 +47,10 @@ export class TargetsActualsService{
             		this.vErrorMsg = 'Failed connecting to Retailer service';
             	}
             );
-       	return '';
+	}
+
+	getBrand(){
+		return this.vBrand;
 	}
 
 
