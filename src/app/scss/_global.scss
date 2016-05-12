@@ -85,7 +85,7 @@ LIST VIEW - BUTTON
     width: 100%;
     height: 100%;
     margin-bottom: 50px;
-    overflow-x: hidden;
+    overflow-x: hidden; 
     .no-divider {
         width: 100%;
         float:left;
@@ -229,7 +229,7 @@ LIST VIEW - FILTER
             width: 100%;
             display: block;
             clear: left;
-            height: 60px;
+            height: 20px;
         .filter-label {
             font-size: $filter-label;
             color: #000;

@@ -1,22 +1,32 @@
-<div class="container-body">
-    <div class="item-container-i">
-        <div class="item-notification">UPDATED AS OF 04/12/2016 10.00 AM</div>
-    </div>
-    <div class="filter-container-i" *ngIf="getFilter().filterDSPAlerts">
-		<div class="filter-label">Value Segment</div>
-        <div class="filter-dropdown">
-            <select name="value-segment">
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option>
-            </select>
-        </div>
-        <div class="filter-label">Threshold</div>
-        <div class="filter-dropdown">
-            <input type="text" placeholder="Enter Threshold"/>
-        </div>
-        <br/>
+<div class="filter-container-dsp" *ngIf="getFilter().filterDSPAlerts">
+	<div class="two-col">
+		<div class="two-col-child-40">
+			<div class="filter-label">Value Segment</div>
+		</div>
+		<div class="two-col-child-60">
+			<div class="filter-dropdown">
+				<select name="cars">
+				  <option value="volvo">High</option>
+				  <option value="saab">Medium</option>
+				  <option value="fiat">Low</option>
+				</select>
+			</div>
+		</div>
 	</div>
+	<div class="two-col">
+		<div class="two-col-child-40">
+			<div class="filter-label">Threshold</div>			
+		</div>
+		<div class="two-col-child-60">
+			<div class="filter-input">
+				<input type="text"/>
+			</div>
+		</div>
+	</div>
+	<div class="float-bottom">
+	</div>
+</div>
+<div class="container-body">
     <div class="item-container">
         <div class="container">
             <div class='cell'>

@@ -18,6 +18,7 @@ export class LayoutService {
         filterTargetsActuals : false,
         filterInventoryLoad : false,
         filterInventoryPhysical : false,
+        filterRetailerRoute : false,
         filterDSPAlerts : false
     };
 
@@ -196,7 +197,7 @@ export class LayoutService {
         }
         else if(
             
-            pCurrent=='RetailerRoute' ||
+            
             pCurrent=='AccountsReceivables' ||
             pCurrent=='DSPAlerts')
         {
@@ -227,8 +228,18 @@ export class LayoutService {
                     search: true
                 }
             }
+            if (pCurrent=='DSPAlerts'){   
+                this.vHeaderItem = {
+                    back: true,
+                    filter: true,
+                    edit: false,
+                    search: false
+                }
+            }
         }
-         else if(pCurrent=='Inventory' ||
+         else if(
+            pCurrent=='RetailerRoute' ||
+            pCurrent=='Inventory' ||
             pCurrent=='TargetsActuals')
         {
             this._pageNavigationService.setPreviousPage('MyTransaction');
@@ -380,7 +391,11 @@ export class LayoutService {
         this.vFilter.filterTargetsActuals = !this.vFilter.filterTargetsActuals;
         this.vFilter.filterInventoryLoad = !this.vFilter.filterInventoryLoad;
         this.vFilter.filterInventoryPhysical = !this.vFilter.filterInventoryPhysical;
+<<<<<<< HEAD
         this.vFilter.filterDSPAlerts = !this.vFilter.filterDSPAlerts;
+=======
+        this.vFilter.filterRetailerRoute = !this.vFilter.filterRetailerRoute;
+>>>>>>> b13f1daa0d83cbd218ef56b16d56744b3fa74d95
     }
 
     setSearch()

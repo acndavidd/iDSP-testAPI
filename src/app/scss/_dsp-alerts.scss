@@ -1,0 +1,84 @@
+.dsp-alerts {
+    z-index: 1;
+    height: 100%;
+
+
+
+    .filter-container{
+    	height : 20%;
+    }
+
+    .threshold-list{
+    	height : 80%;
+    	overflow-x:hidden;
+    }
+}
+
+
+
+.filter-container-dsp{
+            background-color: $white-smoke;
+            width			: 100%;
+            display			: block;
+            clear			: left;
+            height			: 150px;
+
+        .two-col{
+			width		: 100%;
+			float		: left;
+			margin-top	: 10px;
+		}
+
+		.two-col-child-40{
+			width	: 40%;
+			float	: left;		
+		}
+
+		.two-col-child-60{
+			width	: 60%;		
+			float	: left;	
+	
+		}
+
+		input {
+		    margin-top			: 15px;
+		    background 			: #FFF;
+		    height				: 31px;
+		    border 				: 1px solid #A6A6A6;
+		    width 				: 90%;
+		    -webkit-appearance	: none;
+		    border-radius		: 4px;
+		    font-size			: 14px;
+		    appearance 			: none;
+		}
+
+        .filter-label {
+            font-size: $filter-label;
+            color: #000;
+            padding-top: 20px;
+            padding-left: 10px;
+            float: left;
+        }
+
+
+        
+        .filter-dropdown {
+            padding-top: 15px;
+            select {
+                background: $white;
+                height: 31px;
+                border: 1px solid $dark-grey;
+                width: 90%;
+                -webkit-appearance: none;
+                border-radius: 7px;
+                padding-left: 15px;
+                font-size: $filter-select;
+                appearance: none;
+                @media screen and (-webkit-min-device-pixel-ratio: 0) {
+                    background-image: url(#{$select-arrow});
+                    background-position: right 0 top 50%;
+                    background-repeat: no-repeat;
+                }
+            }
+        }   
+    }
