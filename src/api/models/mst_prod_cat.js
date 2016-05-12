@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var mst_product_cat = sequelize.define('mst_product_cat', {
+  var mst_prod_cat = sequelize.define('mst_prod_cat', {
     category_id: {
       type : DataTypes.STRING(20),
       primaryKey : true
