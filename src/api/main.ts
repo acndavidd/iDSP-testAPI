@@ -81,8 +81,8 @@ vRouter.get('/login',function(pRequest,pResponse){
          last_name : 'last_name'
      }, {isNewRecord:true};*/
      var prod = vOrmSvc.getModel('mst_product');
-     var prod_sub_cat = vOrmSvc.getModel('mst_prod_sub_category');
-     var prod_cat = vOrmSvc.getModel('mst_product_category');
+     //var prod_sub_cat = vOrmSvc.getModel('mst_prod_sub_category');
+     //var prod_cat = vOrmSvc.getModel('mst_product_category');
      
      /*var p1 = prod.create({
          product_id : '10',
@@ -95,7 +95,8 @@ vRouter.get('/login',function(pRequest,pResponse){
          product_id : '11',
          product_name : 'anjay20'
      },{isNewRecord:true});
-    */
+
+
      prod_sub_cat.findById('1').then(function(psc){
         /*prod.create({
              product_id : '10',
@@ -106,14 +107,18 @@ vRouter.get('/login',function(pRequest,pResponse){
                     console.log(prod.length);
                 });
              });
-         });*/
+
+         });
+
          psc.createProduct({
              product_id : '11',
              product_name : 'anjay20'
          }).then(function(prod){
              console.log(prod);
          });
-     });
+
+     });*/
+
 });
 
 vRouter.get('/logout',vLoginCtrl.logout);

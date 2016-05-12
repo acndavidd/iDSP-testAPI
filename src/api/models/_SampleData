@@ -14,17 +14,14 @@ insert into public.mst_retailer(retailer_id, retailer_name, retailer_min) values
 	'RET01','GLORIA CELL','123131'
 );
 
-insert into public.mst_product_category(category_id, category_name, brand) values
+insert into public.mst_prod_cat(category_id, category_name, brand) values
 ('PCAT01','Category 1','SMART');
 
-insert into mst_prod_sub_category(sub_category_id, sub_category_name,category_id, brand) values
+insert into mst_prod_sub_cat(sub_category_id, sub_category_name,category_id, brand) values
 ('PSCAT01','Sub Category 1','PCAT01','SMART');
 
-insert into mst_product(product_id,product_name,sub_category_id, category_id, brand, price) values
-('P00001','Product 1','PSCAT01','PCAT01','SMART', 10000);
+insert into mst_product(product_id,product_name,sub_category_id, brand, price) values
+('P00001','Product 1','PSCAT01','SMART', 10000);
 
-insert into mst_product(product_id,product_name,sub_category_id, category_id, brand, price) values
-('P00002','Product 2','PSCAT01','PCAT01','SMART', 10000);
-
-
-
+insert into mst_product(product_id,product_name,sub_category_id, brand, price) values
+('P00002','Product 2','PSCAT01','SMART', 10000);

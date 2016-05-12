@@ -53,15 +53,17 @@ export class ORMService{
 	public getModel(pModelName:string){
 		let vSequelizeSvc:SequelizeService = new SequelizeService();
 		let vOrmSvc = this;
+
+		let vModelStr;
 		try{
 			let vModel = vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),pModelName + vSequelizeSvc.getModelNaming()));
 			let associatedModels = {};
 			
 			if("getAssociatedModels" in vModel)
 				vModel.getAssociatedModels().forEach(function(associatedModel){
+					vModelStr = associatedModel;
 					let assocModel = vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),associatedModel + vSequelizeSvc.getModelNaming()));
 					associatedModels[associatedModel] = assocModel;
-					console.log("print aso model done");
 				});
 
 			if("associate" in vModel){
@@ -69,7 +71,7 @@ export class ORMService{
 			}
 			return vModel;
 		}catch(err){
-			console.log("Error in get Model : "+ err);
+			console.log("Error in get Model : "+ err + " : in model " + vModelStr);
 			throw err;
 		}
 	}
