@@ -216,7 +216,7 @@ export class LayoutService {
             };
             this.vHeaderItem = {
                     back: true,
-                    filter: false,
+                    filter: true,
                     edit: false,
                     search: false
             };
@@ -391,6 +391,7 @@ export class LayoutService {
         this.vFilter.filterTargetsActuals = !this.vFilter.filterTargetsActuals;
         this.vFilter.filterInventoryLoad = !this.vFilter.filterInventoryLoad;
         this.vFilter.filterInventoryPhysical = !this.vFilter.filterInventoryPhysical;
+        this.vFilter.filterDSPAlerts = !this.vFilter.filterDSPAlerts;
         this.vFilter.filterRetailerRoute = !this.vFilter.filterRetailerRoute;
     }
 

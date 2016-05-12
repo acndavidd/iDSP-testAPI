@@ -15,11 +15,6 @@ import {NgModel} from 'angular2/common';
 })
 
 export class DSPAlertsComponent {
-	
-	vLoadShow = true;
-	vPhysicalShow = false;
-	vUnderlineLoad = true;
-	vUnderlinePhysical = false;
 
 	constructor (
 		private _layoutService: LayoutService,
@@ -27,7 +22,6 @@ export class DSPAlertsComponent {
 		private _headerService: HeaderService
     	) 
 	{
-
 		this._layoutService.setCurrentPage('DSPAlerts');
 		this._headerService.setTitle("Alert & Threshold");
     }

@@ -5,9 +5,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
-      unique: true,
-      references: "trx_collection",
-      referencesKey: "coll_id"
+      unique: true
     },
     ar_id: {
       type: DataTypes.INTEGER,
