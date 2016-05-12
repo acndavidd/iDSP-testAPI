@@ -23,7 +23,6 @@ export class DSPAlertsComponent {
 		private _headerService: HeaderService
     	) 
 	{
-
 		this._layoutService.setCurrentPage('DSPAlerts');
 		this._headerService.setTitle("DSP Alerts");
     }

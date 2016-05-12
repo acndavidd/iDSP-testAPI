@@ -9,14 +9,10 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true
     },
     dsp_id: {
-      type: DataTypes.STRING(20),
-      references: "mst_dsp",
-      referencesKey: "dsp_id"
+      type: DataTypes.STRING(20)
     },
     retailer_id: {
-      type: DataTypes.STRING(20),
-      references: "mst_retailer",
-      referencesKey: "retailer_id"
+      type: DataTypes.STRING(20)
     },
     order_date: DataTypes.DATE,
     remarks: DataTypes.STRING(100),
@@ -31,7 +27,6 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        console.log(models);
         trx_sales_order.belongsTo(models.mst_dsp,{as: 'Dsp', foreignKey : 'dsp_id'});
         trx_sales_order.belongsTo(models.mst_retailer,{as: 'Retailer', foreignKey : 'retailer_id'});
         trx_sales_order.hasMany(models.trx_saleord_load_det,{as: 'SalesOrderLoadDet', foreignKey : 'order_id'});

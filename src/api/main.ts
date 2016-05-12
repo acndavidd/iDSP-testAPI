@@ -2,6 +2,7 @@
 'use strict';
 
 import {LoginController} from './controllers/login.controller';
+import {RetailerController} from './controllers/retailer.controller';
 import {TokenService} from './services/token.service';
 import {ORMService} from './services/orm.service';
 
@@ -14,6 +15,7 @@ var vRouter = vExpress.Router();
 const PORT:number = process.env.PORT || 8080;
 
 var vLoginCtrl:LoginController = new LoginController();
+var vRetailerCtrl:RetailerController = new RetailerController();
 var vTokenSvc:TokenService = new TokenService();
 var vOrmSvc:ORMService = new ORMService();
 
@@ -57,7 +59,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
             }
         }catch(err){
             console.log("error : " + err);
-            pResponse.sendStatus(403);
+            //pResponse.sendStatus(403);
         }      
     }
     pNext();
@@ -114,7 +116,7 @@ vRouter.get('/login',function(pRequest,pResponse){
      });*/
 });
 vRouter.get('/logout',vLoginCtrl.logout);
-
+vRouter.get('/getDSPAlert',vRetailerCtrl.getAllRetailerAlert);
 vApp.use('/service',vRouter);
 vApp.listen(PORT);
 console.log('http://127.0.0.1:' + PORT + '/service');
