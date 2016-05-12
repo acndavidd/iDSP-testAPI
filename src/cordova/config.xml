@@ -8,18 +8,17 @@
         Accenture Pty Ltd
     </author>
     <platform name="android">
-        <!-- you can use any density that exists in the Android project -->
-        <splash src="www/img/login_screen.png" density="land-hdpi"/>
-        <splash src="www/img/login_screen.png" density="land-ldpi"/>
-        <splash src="www/img/login_screen.png" density="land-mdpi"/>
-        <splash src="www/img/login_screen.png" density="land-xhdpi"/>
-
-        <splash src="www/img/smart-logo.png" density="port-hdpi"/>
-        <splash src="www/img/smart-logo.png" density="port-ldpi"/>
-        <splash src="www/img/smart-logo.png" density="port-mdpi"/>
-        <splash src="www/img/smart-logo.png" density="port-xhdpi"/>
+        <splash density="land-hdpi" src="www/img/login_screen.png" />
+        <splash density="land-ldpi" src="www/img/login_screen.png" />
+        <splash density="land-mdpi" src="www/img/login_screen.png" />
+        <splash density="land-xhdpi" src="www/img/login_screen.png" />
+        <splash density="port-hdpi" src="www/img/smart-logo.png" />
+        <splash density="port-ldpi" src="www/img/smart-logo.png" />
+        <splash density="port-mdpi" src="www/img/smart-logo.png" />
+        <splash density="port-xhdpi" src="www/img/smart-logo.png" />
     </platform>
-	<preference name="SplashScreen" value="screen" />    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="AutoHideSplashScreen" value="true" />
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="SplashShowOnlyFirstTime" value="false" />

@@ -50,12 +50,10 @@ bootstrap(IDSPComponent,[
 ]);
 
 function getPath(){
-	console.log(window.location.href);
 	var str = window.location.href;
 	var res = str.replace("index.html", "");
     if(configChannel === 'web'){
         res = '/';
     }
-	console.log(res);
 	return res;
 }
