@@ -2,10 +2,10 @@
 <widget id="ph.com.smart.idsp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>iDSP</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        iDSP Smart App for Sales
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="dev@accenture.com" href="http://accenture.com">
+        Accenture Pty Ltd
     </author>
     <platform name="android">
         <!-- you can use any density that exists in the Android project -->
@@ -19,7 +19,7 @@
         <splash src="www/img/smart-logo.png" density="port-mdpi"/>
         <splash src="www/img/smart-logo.png" density="port-xhdpi"/>
     </platform>
-    <preference name="AutoHideSplashScreen" value="true" />
+	<preference name="SplashScreen" value="screen" />    <preference name="AutoHideSplashScreen" value="true" />
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
