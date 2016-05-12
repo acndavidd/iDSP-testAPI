@@ -10,14 +10,18 @@ class TargetsActualsController {
             var orm = new orm_service_1.ORMService();
             var product = orm.getModel("mst_product");
             product.findAll({
+                attributes: ['brand'],
                 group: ['brand']
             }).then(function (result) {
                 console.log(result);
-                pResponse.json(result);
+                var vResult = {
+                    "status": "Success",
+                    "statusMessage": "",
+                    "error": "error",
+                    "brandList": result
+                };
+                pResponse.json(vResult);
             }).catch(function (err) {
-                // Transaction has been rolled back
-                // err is whatever rejected the promise chain returned to the transaction callback
-                //t.rollback();
                 pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
             });
         }
