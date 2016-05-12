@@ -8,8 +8,16 @@ module.exports = function(sequelize, DataTypes) {
       unique: true,
       autoIncrement: true
     },
-    dsp_id: DataTypes.STRING(20),
-    retailer_id: DataTypes.STRING(20),
+    dsp_id: {
+      type: DataTypes.STRING(20),
+      references: "mst_dsp",
+      referencesKey: "dsp_id"
+    },
+    retailer_id: {
+      type: DataTypes.STRING(20),
+      references: "mst_retailer",
+      referencesKey: "retailer_id"
+    },
     order_date: DataTypes.DATE,
     remarks: DataTypes.STRING(100),
     total_amount: DataTypes.DECIMAL(10,2),
@@ -23,6 +31,17 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        console.log(models);
+        trx_sales_order.belongsTo(models.mst_dsp,{as: 'Dsp', foreignKey : 'dsp_id'});
+        trx_sales_order.belongsTo(models.mst_retailer,{as: 'Retailer', foreignKey : 'retailer_id'});
+        trx_sales_order.hasMany(models.trx_saleord_load_det,{as: 'SalesOrderLoadDet', foreignKey : 'order_id'});
+        trx_sales_order.hasMany(models.trx_saleord_prd_det,{as: 'SalesOrderPrdDet', foreignKey : 'order_id'});
+        trx_sales_order.hasMany(models.trx_unserved_order,{as: 'SalesOrderUnserved', foreignKey : 'order_id'});
+        trx_sales_order.hasMany(models.trx_account_receivable,{as: 'AccountReceivable', foreignKey : 'order_id'});
+      },
+      getAssociatedModels : function(){
+        return ['mst_dsp' , 'mst_retailer' , 'trx_saleord_load_det' , 'trx_saleord_prd_det' , 'trx_unserved_order' , 'trx_account_receivable'];
+        //return '';
       }
     }
   });

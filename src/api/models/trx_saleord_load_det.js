@@ -1,17 +1,23 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var trx_saleord_load_det = sequelize.define('trx_saleord_load_det', {
-    order_id: {
+    order_det_id: {
       type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true,
       allowNull: false,
       unique: true
     },
+    order_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: "trx_sales_order",
+      referencesKey: "order_id"
+    },
     load_id: {
       type: DataTypes.STRING(20),
-      primaryKey: true,
       allowNull: false,
-      unique: true
+
     },
     amount: DataTypes.DECIMAL(10,2),
     rrn: DataTypes.STRING(50),
@@ -22,6 +28,11 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        trx_saleord_load_det.belongsTo(models.trx_sales_order,{as: 'SalesOrder', foreignKey : 'order_id'});
+      },
+      getAssociatedModels : function(){
+        return ['trx_sales_order'];
+        //return '';
       }
     }
   });

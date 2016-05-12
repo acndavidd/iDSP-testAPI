@@ -1,4 +1,3 @@
-
 .sub-menu-week
 {
 	display: block;
@@ -20,6 +19,7 @@
     	font-size: $header-tab;
          &.active{
             color: $white;
+            font-weight: bold;
         }
    }
 }
@@ -32,7 +32,7 @@
         
         .item-title-ta{   
             font-size: 20px;
-            background-color: $iris-blue;
+            background-color: $azure-white;
             padding-left: 2%;
         }
 
@@ -79,5 +79,9 @@
                 float: right;
             }
         }
+    }
+
+    .divider {
+        border-bottom: 1px solid #BFBFBF;
     }
 }

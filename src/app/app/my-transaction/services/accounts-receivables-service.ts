@@ -4,12 +4,10 @@ import {Response,RequestOptionsArgs,Headers,Http,Connection,RequestOptions} from
 
 @Injectable()
 
-export class AccountReceivablesService{
+export class AccountsReceivablesService{
 	private vServiceUrl:string;
 	private vErrorMsg:string;
 	private vIsLoading:boolean;
-	// private vListRetailer: retailerList[];
-	private vRetailerResult:string;
 
 	constructor(
 		private _http: Http,
@@ -18,12 +16,10 @@ export class AccountReceivablesService{
 		this.vIsLoading = false;
 	}
 
-	//to Search name of Retailer
-	searchRetailer():string{
-		return this.vRetailerResult;
+	searchRetailer(){
+		console.log('test onkeypress masuk service');
+		return;
 	}
-
-
 
 	getError():string{
 		return this.vErrorMsg;
@@ -31,5 +27,9 @@ export class AccountReceivablesService{
 
 	getLoadingState():boolean{
 		return this.vIsLoading;
+	}
+
+	getTotalReceivable(){
+		return '35,000';
 	}
 }

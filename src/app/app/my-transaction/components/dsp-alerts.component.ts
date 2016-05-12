@@ -31,4 +31,8 @@ export class DSPAlertsComponent {
 	getResize(){
         return this._matchMediaService.getMm();  
     }
+
+    getFilter(){
+    	return this._layoutService.getFilter();
+    }
 }

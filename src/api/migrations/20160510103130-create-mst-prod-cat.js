@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('mst_product_category', {
+    return queryInterface.createTable('mst_prod_cat', {
       category_id: {
         allowNull: false,
         primaryKey: true,
@@ -16,6 +16,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('mst_product_category');
+    return queryInterface.dropTable('mst_prod_cat');
   }
 };
