@@ -17,8 +17,7 @@ import {RetailerSalesOrderComponent} from '../../basic-call-procedure/components
 import {DetailRetailerComponent} from '../../basic-call-procedure/components/detail-retailer.component';
 import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/sales-order-payment.component';
 import {CDTargetsActualsComponent} from '../../close-day/components/cd-targets-actuals.component';
-
-
+import {VisitedRetailComponent} from '../../close-day/components/visited-retail.component';
 
 @Component({
     selector : 'main-page',
@@ -107,6 +106,11 @@ import {CDTargetsActualsComponent} from '../../close-day/components/cd-targets-a
         path: '/closeDayTargetsActuals',
         name: 'CDTargetsActuals',
         component: CDTargetsActualsComponent
+    },
+    {
+        path: '/visitedRetail',
+        name: 'VisitedRetail',
+        component: VisitedRetailComponent
     },
     //UNDER SETTINGS TAB - END
     

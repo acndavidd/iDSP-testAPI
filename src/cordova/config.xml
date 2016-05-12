@@ -7,6 +7,22 @@
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
     </author>
+    <platform name="android">
+        <!-- you can use any density that exists in the Android project -->
+        <splash src="www/img/login_screen.png" density="land-hdpi"/>
+        <splash src="www/img/login_screen.png" density="land-ldpi"/>
+        <splash src="www/img/login_screen.png" density="land-mdpi"/>
+        <splash src="www/img/login_screen.png" density="land-xhdpi"/>
+
+        <splash src="www/img/smart-logo.png" density="port-hdpi"/>
+        <splash src="www/img/smart-logo.png" density="port-ldpi"/>
+        <splash src="www/img/smart-logo.png" density="port-mdpi"/>
+        <splash src="www/img/smart-logo.png" density="port-xhdpi"/>
+    </platform>
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />

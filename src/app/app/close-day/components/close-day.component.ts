@@ -46,6 +46,7 @@ export class CloseDayComponent {
     goToVisitedRetailer()
     {
         console.log('VR');
+        this._router.navigate(['VisitedRetail']);
     }
 
     goToCollection()
