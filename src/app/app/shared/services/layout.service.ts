@@ -218,6 +218,14 @@ export class LayoutService {
                     search: true
                 }
             }
+            if (pCurrent=='DSPAlerts'){   
+                this.vHeaderItem = {
+                    back: true,
+                    filter: true,
+                    edit: false,
+                    search: false
+                }
+            }
         }
          else if(pCurrent=='Inventory' ||
             pCurrent=='TargetsActuals')
