@@ -1,6 +1,7 @@
 import {Injectable} from 'angular2/core';
 import {Router} from 'angular2/router';
 import {Response,RequestOptionsArgs,Headers,Http,Connection,RequestOptions} from 'angular2/http';
+import {AllRetailerList} from '../components/sample-mock-all-retailer';
 
 @Injectable()
 
@@ -31,5 +32,10 @@ export class AccountsReceivablesService{
 
 	getTotalReceivable(){
 		return '35,000';
+	}
+
+	getAllRetailer(){
+		console.log('masuk service, get total all retailer: '+AllRetailerList.length;
+		return Promise.resolve(AllRetailerList);
 	}
 }

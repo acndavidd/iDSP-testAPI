@@ -222,9 +222,9 @@ export class LayoutService {
             if (pCurrent=='AccountsReceivables'){   
                 this.vHeaderItem = {
                     back: true,
-                    filter: false,
+                    filter: true,
                     edit: false,
-                    search: true
+                    search: false
                 }
             }
         }
