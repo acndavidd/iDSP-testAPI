@@ -93,7 +93,8 @@ vRouter.get('/login',function(pRequest,pResponse){
          product_id : '11',
          product_name : 'anjay20'
      },{isNewRecord:true});
-    
+
+
      prod_sub_cat.findById('1').then(function(psc){
         /*prod.create({
              product_id : '10',
@@ -104,14 +105,18 @@ vRouter.get('/login',function(pRequest,pResponse){
                     console.log(prod.length);
                 });
              });
+
          });
+
          psc.createProduct({
              product_id : '11',
              product_name : 'anjay20'
          }).then(function(prod){
              console.log(prod);
          });
+
      });*/
+
 });
 vRouter.get('/logout',vLoginCtrl.logout);
 

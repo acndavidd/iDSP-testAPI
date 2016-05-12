@@ -1,14 +1,28 @@
 <div class="container-body">
-    <div class="item-container">
-    	<div class="container">
-    		<div class='cell'>
-    	        <div class='container'><div class='cell single bold deep-cyan'># Route 1</div></div>
-    	        <div class='container'><div class='cell single bold'>Gloria Cell</div></div>
-    	        <div class='container'><div class='cell single'>Ms. Gloria</div></div>
-    	        <div class='container'><div class='cell single'>Barangka Dr. Mandaluyong</div></div>
-    	    </div>
-    	    <div class='cell icon arrow-right'></div>
-    	</div>
+	<div class="item-container">
+        <div class="item-identifier">
+            <div class="item-title">
+            	<div>Mission for: {{vSelectedDate | date:'MMM, dd yyyy'}}</div>
+           </div>
+        </div>
+    </div>
+    <div class="item-container" *ngFor="#each of vListRetailers" (click)='gotoDetailRetailer(each.retailer_id)'>
+        <div class="container">
+        	<div class='cell'>
+        		<div class='container'>
+        			<div class='cell single bold deep-cyan'># Route {{each.route_sequence}}</div>
+        		</div>
+		        <div class='container'>
+	        		<div class='cell single bold'>{{each.retailer_name}}</div>
+		        </div>
+		        <div class='container'>
+		        	<div class='cell single'>{{each.owner_name}}</div>
+		        </div>
+		        <div class='container'>
+		        	<div class='cell single'>{{each.retailer_address}}</div>
+		    	</div>
+		    </div>
+		    <div class='cell icon arrow-right'></div>
+		</div>
     </div>
 </div>
-
