@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
       unique: true,
       autoIncrement: true
     },
-    order_id: : {
+    order_id: {
       type: DataTypes.INTEGER,
       references: "trx_sales_order",
       referencesKey: "order_id"
@@ -38,13 +38,16 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        trx_account_receivable.belongsTo(models.trx_sales_order);
-        trx_account_receivable.belongsTo(models.mst_dsp);
-        trx_account_receivable.belongsTo(models.mst_retailer);
-        trx_account.receivable.hasMany(models.trx_collection_det);
+        trx_account_receivable.belongsTo(models.trx_sales_order,{as: 'SalesOrder', foreignKey : 'order_id'});
+        trx_account_receivable.belongsTo(models.mst_dsp,{as: 'Dsp', foreignKey : 'dsp_id'});
+        trx_account_receivable.belongsTo(models.mst_retailer,{as: 'Retailer', foreignKey : 'retailer_id'});
+        trx_account.receivable.hasMany(models.trx_collection_det,{as: 'Collection', foreignKey : 'coll_id'});
+      },
+      getAssociatedModels : function(){
+        return ['trx_sales_order','mst_dsp','mst_retailer','trx_collection_det'];
+        //return '';
       }
-    },
-
+    }
   });
   return trx_account_receivable;
 };

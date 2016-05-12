@@ -16,6 +16,10 @@ import {NgModel} from 'angular2/common';
 
 export class DSPAlertsComponent {
 	
+	vLoadShow = true;
+	vPhysicalShow = false;
+	vUnderlineLoad = true;
+	vUnderlinePhysical = false;
 
 	constructor (
 		private _layoutService: LayoutService,
@@ -25,10 +29,15 @@ export class DSPAlertsComponent {
 	{
 
 		this._layoutService.setCurrentPage('DSPAlerts');
-		this._headerService.setTitle("DSP Alerts");
+		this._headerService.setTitle("Alert & Threshold");
     }
 	
-	getResize(){
+	getResize() {
         return this._matchMediaService.getMm();  
     }
+
+    getFilter() {
+        return this._layoutService.getFilter();
+    }
+
 }

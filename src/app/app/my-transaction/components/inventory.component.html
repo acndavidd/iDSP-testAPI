@@ -15,49 +15,131 @@
 
 <div class="container-body">
 
-	<div class="filter-container-i" *ngIf="getFilter().filterInventoryLoad && vLoadShow">
+	<div class="filter-container-i load" *ngIf="getFilter().filterInventoryLoad && vLoadShow">
 		<div class="filter-input">
-			<input type="text"/>
+			<input type="text" placeholder="Enter Brand, Category, or Sub Category"/>
 		</div>
-		<div class="filter-label">Load</div>
-		<div class="filter-dropdown"><select name="cars">
-		  <option value="volvo">SSS</option>
-		  <option value="saab">Saab</option>
-		  <option value="fiat">Fiat</option>
-		  <option value="audi">Audi</option>
-		</select></div>
+		<div class="filter-label">Brand</div>
+		<div class="filter-dropdown">
+			<select name="cars">
+				<option value="volvo">SSS</option>
+				<option value="saab">Saab</option>
+				<option value="fiat">Fiat</option>
+				<option value="audi">Audi</option>
+			</select>
+		</div>
+		<div class="filter-label">Category</div>
+		<div class="filter-dropdown">
+			<select name="cars">
+				<option value="volvo">SSS</option>
+				<option value="saab">Saab</option>
+				<option value="fiat">Fiat</option>
+				<option value="audi">Audi</option>
+			</select>
+		</div>
+		<div class="filter-label">Sub Category</div>
+		<div class="filter-dropdown">
+			<select name="cars">
+				<option value="volvo">SSS</option>
+				<option value="saab">Saab</option>
+				<option value="fiat">Fiat</option>
+				<option value="audi">Audi</option>
+			</select>
+		</div>
 	</div>
 
-	<div class="filter-container-i" *ngIf="getFilter().filterInventoryPhysical && vPhysicalShow">
-		<div class="filter-label">Phy</div>
-		<div class="filter-dropdown"><select name="cars">
-		  <option value="volvo">SSS</option>
-		  <option value="saab">Saab</option>
-		  <option value="fiat">Fiat</option>
-		  <option value="audi">Audi</option>
-		</select></div>
+	<div class="filter-container-i physical" *ngIf="getFilter().filterInventoryPhysical && vPhysicalShow">
+		<div class="filter-input">
+			<input type="text" placeholder="Enter Brand, Category, Sub Category, or Item Code"/>
+		</div>
+		<div class="filter-label">Brand</div>
+		<div class="filter-dropdown">
+			<select name="cars">
+				<option value="volvo">SSS</option>
+				<option value="saab">Saab</option>
+				<option value="fiat">Fiat</option>
+				<option value="audi">Audi</option>
+			</select>
+		</div>
+		<div class="filter-label">Category</div>
+		<div class="filter-dropdown">
+			<select name="cars">
+				<option value="volvo">SSS</option>
+				<option value="saab">Saab</option>
+				<option value="fiat">Fiat</option>
+				<option value="audi">Audi</option>
+			</select>
+		</div>
+		<div class="filter-label">Sub Category</div>
+		<div class="filter-dropdown">
+			<select name="cars">
+				<option value="volvo">SSS</option>
+				<option value="saab">Saab</option>
+				<option value="fiat">Fiat</option>
+				<option value="audi">Audi</option>
+			</select>
+		</div>
+		<div class="filter-label">Item Code</div>
+		<div class="filter-dropdown">
+			<select name="cars">
+				<option value="volvo">SSS</option>
+				<option value="saab">Saab</option>
+				<option value="fiat">Fiat</option>
+				<option value="audi">Audi</option>
+			</select>
+		</div>
 	</div>
 
 	<div *ngIf="vLoadShow">
-		<div class="item-container">
+		<div class="item-container-i">
 			<div class="item-notification">LOAD AS OF 04/12/2016 10.00 AM</div>
 		</div>
-		<div class="item-container">
-			<div class="item-identifier">SmartLoad</div>
-			<div class="item-value">Ending Balance</div>
-			<div class="item-icon arrow-down"></div>
+
+		<div class="item-container" (click)="subMenuShow()">
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell left bold' [ngClass]="{title: vSubMenuShow}">Smartload</div></div>
+			        <div class='container'><div class='cell left grey' *ngIf="!vSubMenuShow">Ending Balance</div></div>
+			    </div>
+				<div class='cell'>
+			        <div class='container'><div class='cell right'></div></div>
+			        <div class='container'><div class='cell right bold' *ngIf="!vSubMenuShow">500</div></div>
+			    </div>
+			    <div class='cell icon arrow-down' [ngClass]="{selected: vSubMenuShow}"></div>
+			</div>
 		</div>
-		<div class="item-container">
-			<div class="item-identifier">SKU1</div>
-			<div class="item-value">Ending Balance</div>
-			<div class="item-icon arrow-down selected"></div>
+
+		<div class="item-container sub" *ngIf="vSubMenuShow">
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell left bold'>Total Inventory</div></div>
+			        <div class='container'><div class='cell left sub-cell'>Beginning Balance</div></div>
+			        <div class='container'><div class='cell left sub-cell'>Delivery</div></div>
+			        <div class='container'><div class='cell left sub-cell'>Sub Total</div></div>
+			        <div class='container'><div class='cell left bold'>Sales</div></div>
+			        <div class='container'><div class='cell left sub-cell'>Sold</div></div>
+			        <div class='container'><div class='cell left sub-cell'>Sub Total</div></div>
+			        <div class='container'><div class='cell left bold'>Ending Balance</div></div>
+			    </div>
+				<div class='cell'>
+			        <div class='container'><div class='cell right'></div></div>
+			        <div class='container'><div class='cell right'>500</div></div>
+			        <div class='container'><div class='cell right'>100</div></div>
+			        <div class='container'><div class='cell right'>600</div></div>
+			        <div class='container'><div class='cell right'></div></div>
+			        <div class='container'><div class='cell right'>100</div></div>
+			        <div class='container'><div class='cell right'>100</div></div>
+			        <div class='container'><div class='cell right bold'>500</div></div>
+			    </div>
+			    <div class='cell icon'></div>
+			</div>
 		</div>
 	</div>
 
 	<div *ngIf="vPhysicalShow">
-		<div class="item-container">
-			<div class="item-notification">PHYSICAL INVENTORY AS OF 04/12/2016 10.00 AM</div>
-		</div> 
+		<div class="item-container-i">
+			<div class="item-notification">PHYSICAL AS OF 04/12/2016 10.00 AM</div>
+		</div>
 	</div>
 	
 </div>

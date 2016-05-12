@@ -8,8 +8,13 @@ SUBMENU
     //padding-bottom: 45px;
     z-index: 1;
     height: 100%;
+    overflow: hidden;
+    position: relative;
     .container-body {
         background-color: $dark-cyan;
+        overflow-x: hidden;
+        position: relative;
+        margin-bottom: 50px;
         .separator {
             border-bottom: 1px solid $white;
             margin-bottom: 2px;
@@ -79,7 +84,8 @@ LIST VIEW - BUTTON
     background-color: $white;
     width: 100%;
     height: 100%;
-
+    margin-bottom: 50px;
+    overflow-x: hidden;
     .no-divider {
         width: 100%;
         float:left;
@@ -115,102 +121,68 @@ LIST VIEW - TEXT
 */
 
     .item-container {
-        display: inline-block;
         width: 100%;
         border-bottom: 1px solid $border-line;
         cursor: pointer;
 
-        div .tbs{
-            width: 100%;
+        &.sub {
+            background-color: $whisper;
         }
 
-        div.tbs > div:nth-child(2n-1)
-        {
-            //word-wrap: break-word;
-            //word-break: break-all;
-            white-space: normal;
-            width: 60%;
-            float: left;
-            font-size: $content-normal;
-            color: $grey;
-            margin-left: 10px;
+        .container {
+            display: table;
+            width: 100%;
+
+            &.border {
+                border-bottom: 1px solid $border-line;
+            }
         }
-        div .tbs > div:nth-child(2n)
-        {
-            //word-wrap: break-word;
-            //word-break: break-all;
-            margin-top: 10%;
-            white-space: normal;
-            width: 40%;
-            float: left;
+        .cell {
+            display:table-cell;
             font-size: $content-normal;
-            color: $black;
-        }
-        
-        .item-title{
-            font-size: $content-title;
-            font-weight: bold;
-            margin-bottom: 5px;
-            margin-top: 5px;
-            margin-left: 10px;
+            height:1.6em;
+            vertical-align:middle;
+
             &.left {
-            text-align:left;    
+                width: 45%;
+                padding-left:0.6em;
+            }
+            &.right {
+                width: 40%;
+                text-align: right;
+            }
+            &.single {
+                width: 85%;
+                padding-left:0.6em;
+            }
+            &.icon {
+                width: 15%;
+            }
+
+            &.bold {
+                font-weight: bold;
+            }
+            &.italic {
+                font-style: italic;
             }
             &.center {
-            text-align:center;
+                text-align: center;
             }
-        }
-        .item-identifier {
-            color: $grey;
-            font-size: $content-heading-2;
-            margin-right: 10px;
-            margin-top: 10px;
-            margin-left: 10px;
-        }
-        .item-value{
-            font-size: $content-normal;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            margin-left: 10px;
-            padding-top:5px;
-            float: left;
-            &.black {
-            color: $black; 
+
+            &.grey {
+                color: $grey;
             }
-            &.green {
-            color: $dark-cyan;
+            &.deep-cyan {
+                color: $deep-cyan;
             }
-        }
-        .item-center-identifier {
-            color: $black;
-            font-size: $content-heading-1;
-            text-align:center;
-            margin-top: 18px;
-            margin-bottom: 18px;
-            &.single-line {
-                width: 125px;
-                float: left;
+
+            &.sub-cell {
+                padding-left:2em;
             }
-            &.after {
-                clear: both;
+            &.title {
+                font-size: 1.2em;
+                height:2.5em;
             }
-        }
-        .item-left-identifier {
-            color: $black;
-            font-size: $content-heading-1;
-            text-align:left;
-            margin-top: 18px;
-            margin-right: 5px;
-            margin-bottom: 18px;
-            font-weight:bold;
-            &.single-line {
-                width: 125px;
-                float: left;
-            }
-            &.after {
-                clear: both;
-            }
-        }
 
 
 /*
@@ -218,70 +190,34 @@ LIST VIEW - TEXT
 LIST VIEW - ICON
 ===========================================================
 */
-        .item-icon {
-            height: 30px;
-            width: 30px;
-            float: right;
-            margin-right: 10px;
-	        
+
             &.arrow-down {
                 background: url("../img/icon-idsp/path-down-grey.png")no-repeat;
                 background-position-x: center;
-		        background-size: 20px;
+                background-position-y: center;
+                background-size: 20px;
             }
             &.arrow-right {
                 background: url("../img/icon-idsp/path-right-grey.png")no-repeat;
                 background-position-x: center;
-		        background-size: 13px;
+                background-position-y: center;
+                background-size: 13px;
             }
-            &.selected
-            {   
+            &.selected {   
                 background: url("../img/icon-idsp/path-down-up.png")no-repeat;
                 background-position-x: center;
+                background-position-y: center;
                 background-size: 20px;
             }
-            &.call
-            {
+            &.call {
                 background: url("../img/icon-idsp/phone-grey.png")no-repeat;
                 background-position-x: center;
-		        background-size: 20px;
+                background-position-y: center;
+                background-size: 20px;
             }
         }
     }
-
-/*
-===========================================================
-LIST VIEW - ICON - ARROW DOWN
-===========================================================
-*/
-    .item-sub-container {
-        display: inline-block;
-        width: 100%;
-        border-bottom: 1px solid #BFBFBF;
-        cursor: pointer;
-        background-color: #EEE;
-        .item-icon {
-            height: 30px;
-            width: 30px;
-            float: right;
-            margin-right: 10px;
-        }
-        .item-identifier {
-            color: $grey;
-            font-size: $content-heading-2;
-            margin-right: 10px;
-            margin-top: 10px;
-        }
-        .item-value{
-            font-size: $content-normal;
-            color: $black;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            padding-top:5px;
-            float: left;
-        }
-    }
-
+      
  /*
 ===========================================================
 LIST VIEW - FILTER
