@@ -21,6 +21,7 @@ import {ModalComponent} from './shared/components/modal.component';
 import {RetailerRouteComponent} from './my-transaction/components/retailer-route.component';
 import {ModalService} from './shared/services/modal.service';
 import {RetailerService} from './shared/services/retailer.service';
+import {InvalidRouteComponent} from './shared/components/invalid-route.component';
 import {RetailerSalesOrderComponent} from './basic-call-procedure/components/retailer-sales-order.component';
 import {DetailRetailerComponent} from './basic-call-procedure/components/detail-retailer.component';
 import {SalesOrderPaymentComponent} from './basic-call-procedure/components/sales-order-payment.component';
@@ -99,6 +100,10 @@ declare var configChannel: any;
         path: '/salesOrderPayment',
         name: 'SalesOrderPayment',
         component: SalesOrderPaymentComponent
+    },
+    {
+        path: '/**',
+        redirectTo: ['Starter', 'Login'] 
     }
 
 ])

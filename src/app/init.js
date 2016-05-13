@@ -14,7 +14,7 @@ if(navigator.userAgent.match(/(iOS|iPhone|iPod|iPad|Android|blackberry|Windows P
     script.src = 'cordova.js';
     document.head.appendChild(script);
     document.addEventListener("deviceready", bootstrapApp, false);
-    console.log("device ready event listenter activated");
+    console.log("device ready event listener activated");
     configChannel = 'app';
 }else{
     configChannel = 'web';
