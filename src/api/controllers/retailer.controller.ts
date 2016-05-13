@@ -15,6 +15,17 @@ export class RetailerController{
 		vDSPModel.findById('1').then(function(dsp){
 			dsp.getRetailer().then(function(retailers){
 				retailers.forEach(function(retailer){
+					console.log(retailer);
+					retailer.getRouteDay().then(function(routes){
+						console.log(route);
+					});
+				});
+			});
+		});
+		/*
+		vDSPModel.findById('1').then(function(dsp){
+			dsp.getRetailer().then(function(retailers){
+				retailers.forEach(function(retailer){
 					var promise = retailer.getRetailerDSPAlert().then(function(alerts){
 						vResult.push({
 							retailer_id : retailer.retailer_id,
@@ -30,5 +41,6 @@ export class RetailerController{
 				});
 			});
 		});
+		*/
 	}
 }
