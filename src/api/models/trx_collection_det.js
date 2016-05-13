@@ -1,13 +1,14 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var trx_collection_det = sequelize.define('trx_collection_det', {
-    coll_id: {
+    coll_det_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
       unique: true,
-      references: "trx_collection",
-      referencesKey: "coll_id"
+    },
+    coll_id: {
+      type: DataTypes.INTEGER
     },
     ar_id: {
       type: DataTypes.INTEGER,
@@ -22,9 +23,10 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         // associations can be defined here
         trx_collection_det.belongsTo(models.trx_account_receivable,{as: 'AccountReceivable', foreignKey : 'ar_id'});
+        trx_collection_det.belongsTo(models.trx_collection,{as: 'Collection', foreignKey : 'coll_id'});
       },
       getAssociatedModels : function(){
-        return ['trx_account_receivable'];
+        return ['trx_account_receivable','trx_collection'];
         //return '';
       }
     }
