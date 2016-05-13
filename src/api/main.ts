@@ -5,6 +5,7 @@ import {LoginController} from './controllers/login.controller';
 import {InventoryController} from './controllers/inventory.controller';
 import {TargetsActualsController} from './controllers/targets-actuals.controller';
 import {RetailerController} from './controllers/retailer.controller';
+import {AccController} from './controllers/accounts-receivables.controller';
 import {TokenService} from './services/token.service';
 import {ORMService} from './services/orm.service';
 
@@ -20,6 +21,7 @@ var vRetailerCtrl:RetailerController = new RetailerController();
 var vLoginCtrl:LoginController = new LoginController();
 var vInventoryCtrl:InventoryController = new InventoryController();
 var vTargetsActualsCtrl:TargetsActualsController = new TargetsActualsController();
+var vAcc:AccController = new AccController();
 var vTokenSvc:TokenService = new TokenService();
 var vOrmSvc:ORMService = new ORMService();
 
@@ -47,7 +49,8 @@ vApp.use(function(pRequest, pResponse, pNext) {
         pRequest.path !== '/service/login' && 
         pRequest.path !== '/service/logout' &&
         pRequest.path !== '/service/getProductListPhysical' &&
-        pRequest.path !== '/service/getBrand' 
+        pRequest.path !== '/service/getBrand' &&
+        pRequest.path !== '/service/getAccountReceivables'
     ){//all request to service will validate token except login
         var vToken = '';
         try{
@@ -134,6 +137,7 @@ vRouter.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
 vRouter.get('/logout',vLoginCtrl.logout);
 vRouter.get('/targetsActuals',vTargetsActualsCtrl.getBrand);
 vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
+vRouter.get('/getAccountReceivables',vAcc.getAllRetailer);
 //vRouter.get('/getProductCategory',vTargetsActualsCtrl.getProdCat);
 vApp.use('/service',vRouter);
 vApp.listen(PORT);

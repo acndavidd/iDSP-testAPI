@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         // associations can be defined here
         mst_freq_mapping.belongsTo(models.mst_route, {as : 'Route' , foreignKey : 'freq_map_id'});
-      }
+      },
       getAssociatedModels : function(){
         return ['mst_route'];
         //return '';

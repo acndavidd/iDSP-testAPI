@@ -22,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
         mst_route.belongsTo(models.mst_retailer,{as: 'Retailer', foreignKey : 'retailer_id'});
         mst_route.belongsTo(models.mst_freq_mapping,{as: 'FreqMapping', foreignKey : 'freq_map_id'});
         mst_route.hasMany(models.mst_route_day,{as: 'RouteDay', foreignKey : 'route_id'});
-      }
+      },
       getAssociatedModels : function(){
         return ['mst_dsp','mst_retailer','mst_freq_mapping','mst_route_day'];
       }
