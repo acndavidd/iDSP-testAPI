@@ -52,4 +52,14 @@ export class LeftMenuComponent implements OnInit  {
         let min = localStorage.getItem('mobileNo');
         this.selectedPhone = min;
     }
+
+    toggleLeftMenu() { 
+        this._layoutService.toggleLeftMenu(); 
+    } 
+    
+    getLeftMenuState() { 
+        return this._layoutService.getLeftMenuState(); 
+    } 
+
+
 }

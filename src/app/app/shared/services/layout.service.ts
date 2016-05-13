@@ -28,7 +28,8 @@ export class LayoutService {
 
 	vLayoutState = {
 		appHeader: false,
-        appFooter: false
+        appFooter: false,
+        leftMenu: false
 	};
 
     vSearch = {
@@ -133,7 +134,8 @@ export class LayoutService {
             this.resetListPreviousData();
             this.vLayoutState = {
                 appHeader: false,
-                appFooter: false
+                appFooter: false,
+                leftMenu: false
             };
         }
 
@@ -142,7 +144,8 @@ export class LayoutService {
             this.resetListPreviousData();
             this.vLayoutState = {
                 appHeader: true,
-                appFooter: true
+                appFooter: true,
+                leftMenu: false
             };
             this.vFooterState = 
             {
@@ -164,7 +167,8 @@ export class LayoutService {
 
             this.vLayoutState = {
                 appHeader: true,
-                appFooter: true
+                appFooter: true,
+                leftMenu: false
             };
             this.vFooterState = 
             {
@@ -185,7 +189,8 @@ export class LayoutService {
             this.resetListPreviousData();
             this.vLayoutState = {
                 appHeader: true,
-                appFooter: true
+                appFooter: true,
+                leftMenu: false
             };
             this.vFooterState = 
             {
@@ -206,7 +211,8 @@ export class LayoutService {
             this.resetListPreviousData();
             this.vLayoutState = {
                 appHeader: true,
-                appFooter: true
+                appFooter: true,
+                leftMenu: false
             };
             this.vFooterState = 
             {
@@ -236,7 +242,8 @@ export class LayoutService {
             
             this.vLayoutState = {
                 appHeader: true,
-                appFooter: true
+                appFooter: true,
+                leftMenu: false
             };
             this.vFooterState = 
             {
@@ -282,7 +289,8 @@ export class LayoutService {
             
             this.vLayoutState = {
                 appHeader: true,
-                appFooter: true
+                appFooter: true,
+                leftMenu: false
             };
             this.vFooterState = 
             {
@@ -312,7 +320,8 @@ export class LayoutService {
 
             this.vLayoutState = {
                 appHeader: true,
-                appFooter: true
+                appFooter: true,
+                leftMenu: false
             };
             this.vFooterState = 
             {
@@ -338,7 +347,8 @@ export class LayoutService {
 
             this.vLayoutState = {
               appHeader: true,
-              appFooter: true
+              appFooter: true,
+                leftMenu: false
             };
             this.vFooterState = 
             {
@@ -365,7 +375,8 @@ export class LayoutService {
         
             this.vLayoutState = {
               appHeader: true,
-              appFooter: true
+              appFooter: true,
+                leftMenu: false
             };
             this.vFooterState = 
             {
@@ -394,7 +405,8 @@ export class LayoutService {
         
             this.vLayoutState = {
               appHeader: true,
-              appFooter: true
+              appFooter: true,
+                leftMenu: false
             };
             this.vFooterState = 
             {
@@ -421,7 +433,8 @@ export class LayoutService {
 
             this.vLayoutState = {
                 appHeader: true,
-                appFooter: true
+                appFooter: true,
+                leftMenu: false
             };
             this.vFooterState = 
             {
@@ -447,7 +460,8 @@ export class LayoutService {
 
             this.vLayoutState = {
                 appHeader: true,
-                appFooter: true
+                appFooter: true,
+                leftMenu: false
             };
             this.vFooterState = 
             {
@@ -492,4 +506,13 @@ export class LayoutService {
     {        
         this.vSearch.searchBox = !this.vSearch.searchBox;
     }
+
+    toggleLeftMenu(){
+        this.vLayoutState.leftMenu = !this.vLayoutState.leftMenu;
+    }
+
+    getLeftMenuState(){
+        return this.vLayoutState.leftMenu;
+    } 
+
 }
