@@ -64,7 +64,7 @@ export class AccountsReceivablesComponent implements OnInit{
         console.log(pInputText);
         this.vSearchedList = this.vAllRetailerList.filter(retailer => {
              return retailer.retailerName.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
-             retailer.retailerID.indexOf(pInputText) !== -1;
+             retailer.MIN.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1;
         });
     }
 
