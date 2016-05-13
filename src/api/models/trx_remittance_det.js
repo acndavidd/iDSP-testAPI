@@ -1,17 +1,15 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var trx_remittance_det = sequelize.define('trx_remittance_det', {
-    remit_id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      unique: true
-    },
     remit_det_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
-      unique: true
+      unique: true,
+      autoIncrement: true
+    },
+    remit_id: {
+      type: DataTypes.INTEGER
     },
     remit_type: DataTypes.INTEGER,
     bank_name: DataTypes.STRING(30),

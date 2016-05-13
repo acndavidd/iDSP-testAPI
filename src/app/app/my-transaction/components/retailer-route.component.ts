@@ -1,10 +1,11 @@
 import {Component} from 'angular2/core';
-import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/router';
+import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet, RouteParams } from 'angular2/router';
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {RetailerRouteService} from '../services/retailer-route-service';
 import {NgModel} from 'angular2/common';
+
 
 @Component({
 	selector: 'retailer-route',
@@ -29,7 +30,9 @@ export class RetailerRouteComponent {
 		private _layoutService: LayoutService,
     	private _matchMediaService: MatchMediaService,
 		private _headerService: HeaderService,
-		private _retailerRouteService: RetailerRouteService
+		private _router: Router,
+        private _params: RouteParams,
+        private _retailerRouteService: RetailerRouteService
     	) 
 	{
         this.vListDay = [
@@ -62,10 +65,17 @@ export class RetailerRouteComponent {
                 "value" : "6"
             }            
         ];
-        
-        this.vSelectedDate = new Date();
+
+        var vPreviousSelectedDay = this._params.get("selectedDay");
+        if(vPreviousSelectedDay !== null && vPreviousSelectedDay !== ''){
+             this.vSelectedDay = vPreviousSelectedDay;
+        }
+        else{
+            this.vSelectedDate = new Date();
+            this.vSelectedDay = this.vSelectedDate.getDay();
+        }
         console.log(this.vSelectedDate);
-        this.vSelectedDay = this.vSelectedDate.getDay();
+        
         this.refreshRetailerRoute();
 		this._layoutService.setCurrentPage('RetailerRoute');
 		this._headerService.setTitle("Retailer Route");
@@ -81,12 +91,34 @@ export class RetailerRouteComponent {
     }
 
     refreshRetailerRoute(){
-        console.log("Refresh retailer route with for Day "+ this.vSelectedDay);
+        console.log("Refresh retailer route for Day "+ this.vSelectedDay);
     	this.vListRetailers = this._retailerRouteService.queryRetailerRoute(this.vSelectedDate);
     }
 
     onChangeSelectDay(pSelectedDay){
         this.vSelectedDay = pSelectedDay        
         this.refreshRetailerRoute();
-    }   
+    }
+
+//each.retailer_id, each.route_sequence
+//pSelectedRetailer, pRouteSequence
+    goToDetailRetailer(pSelectedRetailer){
+        console.log(pSelectedRetailer);            
+
+        let vParamsOld = {
+            selectedDay : this.vSelectedDay
+        }
+        this._layoutService.addListPreviousData('RetailerRoute',vParamsOld);
+        /*
+        this._layoutService.setOldCurrentPage('RetailerRoute');
+        this._layoutService.setOldCurrentPageParams(vParamsOld);
+        */
+        let vParams = {
+            retailer_id: pSelectedRetailer.retailer_id, 
+            route_sequence : pSelectedRetailer.route_sequence
+        }
+        this._router.navigate(['DetailRetailer',vParams]);
+    }
+
+
 }

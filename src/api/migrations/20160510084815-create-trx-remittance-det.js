@@ -4,8 +4,7 @@ module.exports = {
     return queryInterface.createTable('trx_remittance_det', {
       remit_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        primaryKey: true,
+        allowNull: false
       },
       remit_det_id: {
         allowNull: false,

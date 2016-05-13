@@ -2,6 +2,7 @@
 'use strict';
 
 import {LoginController} from './controllers/login.controller';
+import {InventoryController} from './controllers/inventory.controller';
 import {TargetsActualsController} from './controllers/targets-actuals.controller';
 import {RetailerController} from './controllers/retailer.controller';
 import {TokenService} from './services/token.service';
@@ -17,6 +18,7 @@ const PORT:number = process.env.PORT || 8080;
 
 var vRetailerCtrl:RetailerController = new RetailerController();
 var vLoginCtrl:LoginController = new LoginController();
+var vInventoryCtrl:InventoryController = new InventoryController();
 var vTargetsActualsCtrl:TargetsActualsController = new TargetsActualsController();
 var vTokenSvc:TokenService = new TokenService();
 var vOrmSvc:ORMService = new ORMService();
@@ -41,7 +43,12 @@ vApp.use(function(pRequest, pResponse, pNext) {
         "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept,Authorization,Proxy-Authorization,X-session");
     pResponse.header("Access-Control-Allow-Methods","GET,PUT,DELETE,POST");
 
-    if(pRequest.path !== '/service/login' && pRequest.path !== '/service/logout' && pRequest.path !== '/service/getBrand' ){//all request to service will validate token except login
+    if(
+        pRequest.path !== '/service/login' && 
+        pRequest.path !== '/service/logout' &&
+        pRequest.path !== '/service/getProductListPhysical' &&
+        pRequest.path !== '/service/getBrand' 
+    ){//all request to service will validate token except login
         var vToken = '';
         try{
             if(pRequest.cookies['accessToken']){//accessed from web
@@ -123,6 +130,7 @@ vRouter.get('/login',function(pRequest,pResponse){
 
 });
 
+vRouter.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
 vRouter.get('/logout',vLoginCtrl.logout);
 vRouter.get('/targetsActuals',vTargetsActualsCtrl.getBrand);
 vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
