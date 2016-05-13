@@ -27,7 +27,7 @@ export class TargetsActualsComponent {
     vUnderlineWeek = false;
     vUnderlineMonth = false;
     private vListBrands;
-    private vSelectedBrand: String;
+    public vSelectedBrand;
 
 	constructor (
         private _router: Router,
@@ -40,13 +40,29 @@ export class TargetsActualsComponent {
 
 		this._layoutService.setCurrentPage('TargetsActuals');
 		this._headerService.setTitle("Targets & Actuals");
-        //this.vListBrands = this._targetsActualsService.queryBrand();
-        //this.refreshBrand();
+        // this._targetsActualsService.queryBrand().subscribe(
+        //     response => {
+        //         if(response.json().status == "Success"){
+        //             this.vListBrands = response.json().brandList;
+        //             this.vSelectedBrand = this.vListBrands;
+        //         }
+        //     },
+        //     error => {}
+        // );
 
+        // console.log("aabb"+ this.vListBrands);
+
+        this.vSelectedBrand = "SMART";
     }
 
     getBrand(){
-        return this._targetsActualsService.getBrand();
+        return this._targetsActualsService.vBrand;
+        //return this._targetsActualsService.getBrand();
+    }
+
+    getBrandSelected(){
+        return this._targetsActualsService.vBrand.brand[0];
+        //return this._targetsActualsService.getBrand();
     }
 	
 	getResize(){
@@ -66,7 +82,7 @@ export class TargetsActualsComponent {
     	this.vUnderlineMonth = false;
     	this.vWeekShow = false;
 		this.vMonthShow = false;
-        this.refreshBrand();
+
 
     }
 
@@ -78,7 +94,6 @@ export class TargetsActualsComponent {
    		this.vUnderlineMonth = false;
    		this.vDayShow = false;
 		this.vMonthShow = false;
-        this.refreshBrand();
     }
 
     showMenuMonth()
@@ -89,15 +104,23 @@ export class TargetsActualsComponent {
     	this.vUnderlineDay = false;
     	this.vWeekShow = false;
 		this.vDayShow = false;
-        this.refreshBrand();
     }
 
-    refreshBrand(){
-        this.vListBrands = this._targetsActualsService.queryBrand();
-        //console.log('asdadasdasdada');
-        //console.log(this.vListBrands );
-    }
+    // refreshBrand(){
+    //     this.vListBrands = this._targetsActualsService.queryBrand();
+    //     //console.log('asdadasdasdada');
+    //     //console.log(this.vListBrands );
+    // }
 
+    onChangeSelectBrand(pSelectedBrand){
+        this.vSelectedBrand = pSelectedBrand;
+        console.log(this.vSelectedBrand + " IS SELECTED")
+    }   
+
+    getProdCat()
+    {
+        return this._targetsActualsService.vProdCat;
+    }
 
       
 }

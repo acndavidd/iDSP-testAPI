@@ -9,9 +9,7 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true
     },
     order_det_id: {
-      type: DataTypes.INTEGER,
-      references: "trx_saleord_prd_det",
-      referencesKey: "order_det_id"
+      type: DataTypes.INTEGER
     },
     serial_number_start: DataTypes.STRING(30),
     serial_number_end: DataTypes.STRING(30),

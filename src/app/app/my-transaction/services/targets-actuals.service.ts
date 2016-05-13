@@ -8,7 +8,8 @@ export class TargetsActualsService{
 	private vServiceUrl:string;
 	private vErrorMsg:string;
 	private vIsLoading:boolean;
-	private vBrand;
+	public vBrand;
+	public vProdCat;
 
 	constructor(
 		private _http: Http,
@@ -21,14 +22,12 @@ export class TargetsActualsService{
 
 	
 	queryBrand(){
-		this.vIsLoading = true;
- 
-		
-		let vUserId:string = '1';
-		let vCurrentDate = new Date();
-
-		console.log(vCurrentDate);
-
+		//this.vIsLoading = true;
+		//let vUserId:string = '1';
+		//let vCurrentDate = new Date();
+		// console.log(vCurrentDate);
+		// return this._http.get('/targetsActuals');
+		/*
 		this._http.get('/targetsActuals',
 			<RequestOptionsArgs> {headers: new Headers(
                 {'Content-Type': 'application/x-www-form-urlencoded'})
@@ -47,10 +46,54 @@ export class TargetsActualsService{
             		this.vErrorMsg = 'Failed connecting to Retailer service';
             	}
             );
+            */
+
+            this._http.get('/targetsActuals').subscribe(
+            	response => {
+            		if(response.json().status == "Success"){
+            			this.vBrand = response.json().brandList;
+            			console.log('masukkk');
+            		}else{
+            			this.vErrorMsg = response.json().error;
+            		}
+            	},
+            	error => {
+            		console.log(error);
+            		this.vErrorMsg = 'Failed connecting to Retailer service';
+            	}
+            );
+
+            return null;
+	}
+
+	querySubCategory()
+	{
+		 this._http.get('/getProductCategory').subscribe(
+            	response => {
+            		if(response.json().status == "Success"){
+            			this.vProdCat = response.json().CatList;
+            			console.log('masukkk');
+            		}else{
+            			this.vErrorMsg = response.json().error;
+            		}
+            	},
+            	error => {
+            		console.log(error);
+            		this.vErrorMsg = 'Failed connecting to Retailer service';
+            	}
+            );
+
+            return null;
+
 	}
 
 	getBrand(){
 		return this.vBrand;
+	}
+
+	getProdCat()
+	{
+		return this.vProdCat;
 	}
 
 
