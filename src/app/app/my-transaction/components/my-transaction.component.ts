@@ -3,6 +3,7 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/ro
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
+import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {NgModel} from 'angular2/common';
 import {Response,RequestOptionsArgs,Headers,Http,Connection,RequestOptions} from 'angular2/http';
 
@@ -24,7 +25,8 @@ export class MyTransactionComponent {
 		private _layoutService: LayoutService,
     	private _matchMediaService: MatchMediaService,
 		private _headerService: HeaderService,
-		private _router: Router
+		private _router: Router,
+		private _pageNavigationService : PageNavigationService
     	) 
 	{
 		this._layoutService.setCurrentPage('MyTransaction');
@@ -70,7 +72,8 @@ export class MyTransactionComponent {
 	
 	goToDSPAlerts(){
 		console.log('PEGI KE DSP');
-		this._router.navigate(['DSPAlerts']);
+		this._pageNavigationService.navigate('DSPAlerts' , {id : 'anjayy'});
+		//this._router.navigate(['DSPAlerts']);
 	}
 
     getLayout(){

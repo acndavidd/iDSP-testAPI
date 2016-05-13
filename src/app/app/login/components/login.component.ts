@@ -24,7 +24,7 @@ export class LoginComponent {
         private _authenticationService:AuthenticationService
         ) {
         
-        this._layoutService.setCurrentPage('Login');
+        //this._layoutService.setCurrentPage('Login');
 	}
 
 	login(pEvent) {
