@@ -1,13 +1,13 @@
 <a (click)="showMenuLoad()">
-	<div class="sub-tab double" [ngClass] = "{active: vUnderlineLoad}">
-		<div class="text" [ngClass] = "{active: vUnderlineLoad}">
+	<div class="sub-tab double" [ngClass] = "{active: vLoadShow}">
+		<div class="text" [ngClass] = "{active: vLoadShow}">
 			Load
 		</div>
 	</div>
 </a>
 <a (click)="showMenuPhysical()">
-	<div class="sub-tab double" [ngClass] = "{active: vUnderlinePhysical}">
-		<div class="text" [ngClass] = "{active: vUnderlinePhysical}">
+	<div class="sub-tab double" [ngClass] = "{active: vPhysicalShow}">
+		<div class="text" [ngClass] = "{active: vPhysicalShow}">
 			Physical
 		</div>
 	</div>
@@ -90,48 +90,50 @@
 		</div>
 	</div>
 
-	<div *ngIf="vLoadShow">
+	<div *ngIf="vLoadShow && isProductListLoaded()">
 		<div class="item-container-i">
 			<div class="item-notification">LOAD AS OF 04/12/2016 10.00 AM</div>
 		</div>
 
-		<div class="item-container" (click)="subMenuShow()">
-			<div class="container">
-				<div class='cell'>
-			        <div class='container'><div class='cell left bold' [ngClass]="{title: vSubMenuShow}">Smartload</div></div>
-			        <div class='container'><div class='cell left grey' *ngIf="!vSubMenuShow">Ending Balance</div></div>
-			    </div>
-				<div class='cell'>
-			        <div class='container'><div class='cell right'></div></div>
-			        <div class='container'><div class='cell right bold' *ngIf="!vSubMenuShow">500</div></div>
-			    </div>
-			    <div class='cell icon arrow-down' [ngClass]="{selected: vSubMenuShow}"></div>
+		<div *ngFor="#vProduct of getProductList(); #i = index">
+			<div class="item-container" (click)="subMenuShow(i)">
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell left bold' [ngClass]="{title: vSubMenuShow[i]}">{{vProduct.productName}}</div></div>
+				        <div class='container'><div class='cell left grey' *ngIf="!vSubMenuShow[i]">Ending Balance</div></div>
+				    </div>
+					<div class='cell'>
+				        <div class='container'><div class='cell right'></div></div>
+				        <div class='container'><div class='cell right bold' *ngIf="!vSubMenuShow[i]">{{vProduct.endingBalance}}</div></div>
+				    </div>
+				    <div class='cell icon arrow-down' [ngClass]="{selected: vSubMenuShow[i]}"></div>
+				</div>
 			</div>
-		</div>
 
-		<div class="item-container sub" *ngIf="vSubMenuShow">
-			<div class="container">
-				<div class='cell'>
-			        <div class='container'><div class='cell left bold'>Total Inventory</div></div>
-			        <div class='container'><div class='cell left sub-cell'>Beginning Balance</div></div>
-			        <div class='container'><div class='cell left sub-cell'>Delivery</div></div>
-			        <div class='container'><div class='cell left sub-cell'>Sub Total</div></div>
-			        <div class='container'><div class='cell left bold'>Sales</div></div>
-			        <div class='container'><div class='cell left sub-cell'>Sold</div></div>
-			        <div class='container'><div class='cell left sub-cell'>Sub Total</div></div>
-			        <div class='container'><div class='cell left bold'>Ending Balance</div></div>
-			    </div>
-				<div class='cell'>
-			        <div class='container'><div class='cell right'></div></div>
-			        <div class='container'><div class='cell right'>500</div></div>
-			        <div class='container'><div class='cell right'>100</div></div>
-			        <div class='container'><div class='cell right'>600</div></div>
-			        <div class='container'><div class='cell right'></div></div>
-			        <div class='container'><div class='cell right'>100</div></div>
-			        <div class='container'><div class='cell right'>100</div></div>
-			        <div class='container'><div class='cell right bold'>500</div></div>
-			    </div>
-			    <div class='cell icon'></div>
+			<div class="item-container sub" *ngIf="vSubMenuShow[i]">
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell left bold'>Total Inventory</div></div>
+				        <div class='container'><div class='cell left sub-cell'>Beginning Balance</div></div>
+				        <div class='container'><div class='cell left sub-cell'>Delivery</div></div>
+				        <div class='container'><div class='cell left sub-cell'>Sub Total</div></div>
+				        <div class='container'><div class='cell left bold'>Sales</div></div>
+				        <div class='container'><div class='cell left sub-cell'>Sold</div></div>
+				        <div class='container'><div class='cell left sub-cell'>Sub Total</div></div>
+				        <div class='container'><div class='cell left bold'>Ending Balance</div></div>
+				    </div>
+					<div class='cell'>
+				        <div class='container'><div class='cell right'></div></div>
+				        <div class='container'><div class='cell right'>{{vProduct.beginningBalance}}</div></div>
+				        <div class='container'><div class='cell right'>{{vProduct.newDelivery}}</div></div>
+				        <div class='container'><div class='cell right'>600</div></div>
+				        <div class='container'><div class='cell right'></div></div>
+				        <div class='container'><div class='cell right'>{{vProduct.sold}}</div></div>
+				        <div class='container'><div class='cell right'>100</div></div>
+				        <div class='container'><div class='cell right bold'>{{vProduct.endingBalance}}</div></div>
+				    </div>
+				    <div class='cell icon'></div>
+				</div>
 			</div>
 		</div>
 	</div>
