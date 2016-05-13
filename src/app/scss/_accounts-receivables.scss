@@ -36,75 +36,83 @@
         background-color: white;
         width: 100%;
         height: 100%;
-
-        .item-container {
-            display: inline-block;
-            width: calc(100% - 20px);
-            padding-left: 10px;
-            padding-right: 10px;
-            border-bottom: 1px solid #BFBFBF;
-            cursor: pointer;
-
-            .item-icon {
-                height: 30px;
-                width: 30px;
-                float: right;
-                color: #000;
-                font-size: 17px;
-                text-align: center;
-                &.open-sub-item {
-                    background: url("../img/icon-idsp/path-right-grey.png")no-repeat;
-                    background-position-x: center;
-                    background-position-y: 7px;
-                    background-size: 13px;
-                }
-                &.selected
-                {
-                    transform: rotate(180deg);
-                }
-
-            }
-
-            .item-title {
-                position: center center;
-            }
-            
-            .item-identifier {
-                color: #7F7F7F;
-                font-size: 18px;
-                margin-right: 10px;
-                margin-top: 10px;
-                &.single-line {
-                    width: 125px;
-                    float: left;
-                }
-                &:after {
-                    clear: both;
-                }
-                .item-header{
-                    font-size: 20px;
-                    font-weight: 500;
-                    margin-bottom: 5px;
-                    color: #A8A8A8;               
-                }
-                .item-body{
-                     .float-right{
-                        float: right;
-                        font-size: 18px;
-                        margin-right: 20px;
-                        position: center;
-                    }
-                    .float-left{
-                        float: left;
-                    }
-                }
-            }
-        }
         
-        .animate-repeat {
-          line-height:30px;
+        .animate-container {
+          background:white;
+          border:1px solid black;
           list-style:none;
-          box-sizing:border-box;
+          margin:0;
+          padding:0 10px;
+        
+            .animate-repeat {
+              line-height:30px;
+              list-style:none;
+              box-sizing:border-box;
+
+                  .item-container {
+                    display: inline-block;
+                    width: calc(100% - 20px);
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    border-bottom: 1px solid #BFBFBF;
+                    cursor: pointer;
+
+                    .item-icon {
+                        height: 30px;
+                        width: 30px;
+                        float: right;
+                        color: #000;
+                        font-size: 17px;
+                        text-align: center;
+                        &.open-sub-item {
+                            background: url("../img/icon-idsp/path-right-grey.png")no-repeat;
+                            background-position-x: center;
+                            background-position-y: 7px;
+                            background-size: 13px;
+                        }
+                        &.selected
+                        {
+                            transform: rotate(180deg);
+                        }
+
+                    }
+
+                    .item-title {
+                        position: center center;
+                    }
+                    
+                    .item-identifier {
+                        color: #7F7F7F;
+                        font-size: 18px;
+                        margin-right: 10px;
+                        margin-top: 10px;
+                        &.single-line {
+                            width: 125px;
+                            float: left;
+                        }
+                        &:after {
+                            clear: both;
+                        }
+                        .item-header{
+                            font-size: 20px;
+                            font-weight: 500;
+                            margin-bottom: 5px;
+                            color: #A8A8A8;               
+                        }
+                        .item-body{
+                             .float-right{
+                                float: right;
+                                font-size: 18px;
+                                margin-right: 20px;
+                                position: center;
+                            }
+                            .float-left{
+                                float: left;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         .animate-repeat.ng-move,

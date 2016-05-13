@@ -1,29 +1,30 @@
-import {Component, Input} from 'angular2/core';
+import {Component, Input, OnInit, Provider, Pipe} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet, ROUTER_PROVIDERS } from 'angular2/router';
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {RetailerService} from '../../shared/services/retailer.service';
 import {AccountsReceivablesService} from '../services/accounts-receivables-service';
-import { AllRetailer } from './all-retailer';
+import {NgFor, NgModel} from 'angular2/common';
 
 
 @Component({
 	selector: 'accounts-receivables',
     templateUrl: './app/my-transaction/components/accounts-receivables.component.html',
 	directives: [
-		ROUTER_DIRECTIVES
+		NgFor,NgModel, ROUTER_DIRECTIVES
     ],
     providers: [
     	AccountsReceivablesService
     ]
 })
 
-export class AccountsReceivablesComponent{
-
-    vTotal: string;
-    retailerList: AllRetailer[];
+@Pipe({name: 'FilteredSearch'})
+export class AccountsReceivablesComponent implements OnInit{
     
+    vTotal: string;
+    vAllRetailerList: any [] = [];
+       
 	constructor (
 		private _layoutService: LayoutService,
     	private _matchMediaService: MatchMediaService,
@@ -35,11 +36,10 @@ export class AccountsReceivablesComponent{
 
 		this._layoutService.setCurrentPage('AccountsReceivables');
 		this._headerService.setTitle("Accounts Receivables");
-        this._accountsReceivablesService.getAllRetailer().then(retailers => this.retailerList = retailers);
 
     }
-	
-	getResize(){
+
+   	getResize(){
         return this._matchMediaService.getMm();  
     }
 
@@ -60,16 +60,15 @@ export class AccountsReceivablesComponent{
         this.vTotal = pTotal;
     }
 
-    onKey(value:string){
-        console.log ('test onkey');
+    onKey(pInputText:string){
+        console.log(pInputText);
     }
 
-    Retailers($scope){
-        $scope.init = function(list){
-            console.log('Test looping div:' +list);
-        }
-
-        $scope.retailers = this.retailerList;
+    getAllRetailer(){
+       this.vAllRetailerList = this._accountsReceivablesService.getAllRetailer();
     }
 
+    ngOnInit(){
+        this.getAllRetailer();
+    }
 }
