@@ -17,7 +17,6 @@
         .filter-input{
             padding-top: 7px;
             padding-left: 24px;
-
             input {
                 background: $white;
                 height: 30px;
@@ -27,6 +26,7 @@
                 border-radius: 7px;
                 padding-left: 15px;
                 font-size: $filter-select;
+                font-weight:lighter;
                 appearance: none;
             }
         }

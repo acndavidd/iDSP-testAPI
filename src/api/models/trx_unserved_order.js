@@ -10,15 +10,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     order_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: "trx_sales_order",
-      referencesKey: "order_id"
+      allowNull: false
     },
     product_id: {
       type: DataTypes.STRING(20),
-      allowNull: false,
-      references: "mst_product",
-      referencesKey: "product_id"
+      allowNull: false
     },
     quantity: DataTypes.INTEGER,
     remarks: DataTypes.STRING(50)

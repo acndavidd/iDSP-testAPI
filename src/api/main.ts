@@ -3,6 +3,8 @@
 
 import {LoginController} from './controllers/login.controller';
 import {InventoryController} from './controllers/inventory.controller';
+import {TargetsActualsController} from './controllers/targets-actuals.controller';
+import {RetailerController} from './controllers/retailer.controller';
 import {TokenService} from './services/token.service';
 import {ORMService} from './services/orm.service';
 
@@ -14,8 +16,10 @@ var vSOAP = require('soap');
 var vRouter = vExpress.Router();
 const PORT:number = process.env.PORT || 8080;
 
+var vRetailerCtrl:RetailerController = new RetailerController();
 var vLoginCtrl:LoginController = new LoginController();
 var vInventoryCtrl:InventoryController = new InventoryController();
+var vTargetsActualsCtrl:TargetsActualsController = new TargetsActualsController();
 var vTokenSvc:TokenService = new TokenService();
 var vOrmSvc:ORMService = new ORMService();
 
@@ -42,7 +46,8 @@ vApp.use(function(pRequest, pResponse, pNext) {
     if(
         pRequest.path !== '/service/login' && 
         pRequest.path !== '/service/logout' &&
-        pRequest.path !== '/service/getProductListPhysical'
+        pRequest.path !== '/service/getProductListPhysical' &&
+        pRequest.path !== '/service/getBrand' 
     ){//all request to service will validate token except login
         var vToken = '';
         try{
@@ -63,7 +68,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
             }
         }catch(err){
             console.log("error : " + err);
-            pResponse.sendStatus(403);
+            //pResponse.sendStatus(403);
         }      
     }
     pNext();
@@ -124,11 +129,12 @@ vRouter.get('/login',function(pRequest,pResponse){
      });*/
 
 });
-vRouter.get('/logout',vLoginCtrl.logout);
 
 vRouter.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
-
-
+vRouter.get('/logout',vLoginCtrl.logout);
+vRouter.get('/targetsActuals',vTargetsActualsCtrl.getBrand);
+vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
+//vRouter.get('/getProductCategory',vTargetsActualsCtrl.getProdCat);
 vApp.use('/service',vRouter);
 vApp.listen(PORT);
 console.log('http://127.0.0.1:' + PORT + '/service');

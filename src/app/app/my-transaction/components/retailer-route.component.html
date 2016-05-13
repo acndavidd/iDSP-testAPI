@@ -1,4 +1,13 @@
 <div class="container-body">
+	<div class="filter-container-ret-route" *ngIf="getFilter().filterRetailerRoute">
+		<div class="filter-label">Mission For: </div>
+		<div class="filter-dropdown">
+			<select [(ngModel)]="vSelectedDay" #val_day (change)="onChangeSelectDay(val_day.value)" >
+				<option *ngFor="#each of vListDay" [value]="each.value">{{each.name}}</option>
+			</select>
+		</div>	
+	</div>
+	<!--
 	<div class="item-container">
         <div class="item-identifier">
             <div class="item-title">
@@ -6,6 +15,7 @@
            </div>
         </div>
     </div>
+	-->
     <div class="item-container" *ngFor="#each of vListRetailers" (click)='gotoDetailRetailer(each.retailer_id)'>
         <div class="container">
         	<div class='cell'>

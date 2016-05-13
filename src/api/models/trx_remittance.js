@@ -9,9 +9,7 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true
     },
     dsp_id: {
-      type: DataTypes.STRING(20),
-      references: "mst_dsp",
-      referencesKey: "dsp_id"
+      type: DataTypes.STRING(20)
     },
     trans_date: DataTypes.DATE,
     remit_amount: DataTypes.DECIMAL(10,2)

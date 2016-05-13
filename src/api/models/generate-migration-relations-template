@@ -6,3 +6,4 @@ sequelize migration:generate --name mst-retailer-dsp-alert-references --env sql-
 sequelize migration:generate --name mst-dsp-references --env sql-dev --config config\migrate.json
 sequelize migration:generate --name mst-route-day-references --env sql-dev --config config\migrate.json
 sequelize migration:generate --name mst-target-references --env sql-dev --config config\migrate.json
+sequelize migration:generate --name mst-prod-percent-share-references --env sql-dev --config config\migrate.json
