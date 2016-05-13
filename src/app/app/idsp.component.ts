@@ -32,7 +32,8 @@ declare var configChannel: any;
     selector: 'idsp-app',
     template: `
     	<div id="content"
-            (window:resize)="OnResize()">
+            (window:resize)="OnResize()" 
+            (onBackKeyDown)="OnBack()">
             <idsp-header></idsp-header>
             <my-modal></my-modal>
     		<router-outlet></router-outlet>
@@ -106,13 +107,15 @@ export class IDSPComponent implements OnInit {
 
 	constructor ( private _matchMediaService: MatchMediaService,
     private _router: Router,
-    private _layoutService: LayoutService) {
+    private _layoutService: LayoutService,
+    private _pageNavigationService : PageNavigationService) {
         new FastClick(document.body);
     }
 
     ngOnInit(){
     	this.OnResize();
         if(configChannel === 'app'){
+            //this._pageNavigationService.addPage('Starter');
             this._router.navigate(['Starter', 'Login']);
         }
     }
@@ -125,6 +128,10 @@ export class IDSPComponent implements OnInit {
          let vCurrentPage: string = this._layoutService.getCurrentPage();
          return !vCurrentPage || vCurrentPage === 'GetStarted' || vCurrentPage === 'Login' ||
          vCurrentPage === 'Register';
+     }
+
+     OnBack(){
+         console.log('aa');
      }
  
      isSmallScreen() {
