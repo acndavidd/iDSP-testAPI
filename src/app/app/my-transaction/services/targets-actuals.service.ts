@@ -103,6 +103,11 @@ export class TargetsActualsService{
             return this._http.get('/getProduct');
       }
 
+      queryCategory()
+      {
+            return this._http.get('/getCategory');
+      }
+
 	getBrand(){
 		return this.vBrand;
 	}

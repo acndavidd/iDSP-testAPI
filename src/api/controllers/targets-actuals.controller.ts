@@ -163,4 +163,33 @@ export class TargetsActualsController{
 			console.log(pErr);
 		}
 	}
+
+	getCategory(pRequest,pResponse){
+		try{
+
+		var vmessage = 'Insert start.';
+	    var vorm = new ORMService();
+	    var vprod_cat = vorm.getModel("mst_prod_cat");	
+	    var vprod_cat_sub = vorm.getModel("mst_prod_sub_cat");
+
+	    vprod_cat.findAll({
+	    	attributes: ['category_name', 'brand'], 
+		})
+	    .then(function(result) {	
+			var vResult = {
+				"status" : "Success",
+				"statusMessage" : "",
+				"error":"error",
+				"CategoryList" : result
+			}
+			pResponse.json(vResult);
+		}).catch(function (err) {
+		        pResponse.send("Failed to get category" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
+			});
+		}
+		catch(pErr){
+			console.log(pErr);
+		}
+	}
+
 }

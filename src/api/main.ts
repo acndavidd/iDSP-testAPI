@@ -141,6 +141,7 @@ vRouter.get('/getAccountReceivables',vAcc.getAllRetailer);
 vRouter.get('/getProductCategory',vTargetsActualsCtrl.getProdCat);
 vRouter.get('/getProductSubCategory',vTargetsActualsCtrl.getProdSubCat);
 vRouter.get('/getProduct',vTargetsActualsCtrl.getProduct);
+vRouter.get('/getCategory',vTargetsActualsCtrl.getCategory);
 vApp.use('/service',vRouter);
 vApp.listen(PORT);
 console.log('http://127.0.0.1:' + PORT + '/service');
