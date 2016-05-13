@@ -26,6 +26,10 @@ export class HeaderComponent implements OnInit {
 		
 	}
 	
+	toggleLeftMenu(){
+		this._layoutService.toggleLeftMenu();
+	}
+
 	getTitle(){
 		return this._headerService.getTitle();
 	}
