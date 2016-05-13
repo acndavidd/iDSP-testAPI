@@ -12,9 +12,6 @@ module.exports = {
       },
       sub_category_name: {
         type: Sequelize.STRING(50)
-      },
-      brand: {
-        type: Sequelize.STRING(20)
       }
     });
   },

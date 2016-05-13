@@ -99,6 +99,10 @@ declare var configChannel: any;
         path: '/salesOrderPayment',
         name: 'SalesOrderPayment',
         component: SalesOrderPaymentComponent
+    },
+    {
+        path: '/**',
+        redirectTo: ['Starter', 'Login'] 
     }
 
 ])
@@ -121,14 +125,14 @@ export class IDSPComponent implements OnInit {
         this._matchMediaService.OnResize();
     }
 
-     isFullScreen() {
-         let vCurrentPage: string = this._layoutService.getCurrentPage();
-         return !vCurrentPage || vCurrentPage === 'GetStarted' || vCurrentPage === 'Login' ||
-         vCurrentPage === 'Register';
-     }
- 
-     isSmallScreen() {
-         return !this._matchMediaService.getMm().largeUp;
-     }
+    isFullScreen() {
+        let vCurrentPage: string = this._layoutService.getCurrentPage();
+        return !vCurrentPage || vCurrentPage === 'GetStarted' || vCurrentPage === 'Login' ||
+        vCurrentPage === 'Register';
+    }
+
+    isSmallScreen() {
+        return !this._matchMediaService.getMm().largeUp;
+    }
 }
 

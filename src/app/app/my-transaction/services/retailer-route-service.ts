@@ -22,7 +22,7 @@ export class RetailerRouteService{
 
 		//Hit Api with selectedDate and Login user
 
-		//Return
+		//Sample Hardcoded
 		var vSampleObject = [
 			{
 				"retailer_id": "1",
@@ -35,15 +35,15 @@ export class RetailerRouteService{
 				"retailer_id": "2",
 				"route_sequence": "2",
 				"retailer_name": "Bird Cell",
-				"retailer_address": "Mr. Jaja",
-				"owner_name": "Barangka Dr. Sutrisno"
+				"retailer_address": "Barangka Dr. Sutrisno",
+				"owner_name": "Mr. Jaja"
 			},
 			{
 				"retailer_id": "3",
-				"route_sequence": "3",
+				"route_sequence": null,
 				"retailer_name": "Rose Cell",
-				"retailer_address": "Ms. Rose",
-				"owner_name": "Matalang 56 Barangka"
+				"retailer_address": "Matalang 56 Barangka",
+				"owner_name": "Ms. Rose"
 			}];
 					
 		return vSampleObject;

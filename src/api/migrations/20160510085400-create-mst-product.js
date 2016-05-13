@@ -13,9 +13,6 @@ module.exports = {
       sub_category_id: {
         type: Sequelize.STRING(50)
       },
-      brand: {
-        type: Sequelize.STRING(50)
-      },
       price: {
         type: Sequelize.INTEGER
       }

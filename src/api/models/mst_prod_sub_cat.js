@@ -6,8 +6,7 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey : true
     },
     sub_category_name: DataTypes.STRING(50),
-    category_id: DataTypes.STRING(20),
-    brand: DataTypes.STRING(20)
+    category_id: DataTypes.STRING(20)
   }, {
     underscored : true,
     timestamps : false,
