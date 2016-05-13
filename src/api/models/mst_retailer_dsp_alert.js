@@ -1,9 +1,12 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var mst_retailer_dsp_alert = sequelize.define('mst_retailer_dsp_alert', {
-    retailer_id: {
-      type : DataTypes.STRING(20),
+    alert_id :{
+      type : DataTypes.INTEGER,
       primaryKey : true
+    },
+    retailer_id: {
+      type : DataTypes.STRING(20)
     },
     retailer_name: DataTypes.STRING(50),
     retailer_min: DataTypes.STRING(20),

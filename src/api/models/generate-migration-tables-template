@@ -23,6 +23,7 @@ sequelize model:create --name trx_remittance_det  --attributes ‘remit_id:integ
 sequelize model:create --name trx_saleord_prd_sub_det   --attributes ‘serial_id:integer, order_id:integer,  product_id:string(20), serial_number_start:string(30), serial_number_end:string(30), qty:integer’ --env sql-dev --config config/migrate.json
 sequelize model:create --name trx_collection   --attributes ‘coll_id:integer, dsp_id:string(20),  retailer_id:string(20), trans_date:date, amount:decimal(10) --env sql-dev --config config/migrate.json
 sequelize model:create --name trx_collection_det   --attributes ‘coll_id:integer, ar_id:integer,  ar_type:string(20), amount:decimal(10) --env sql-dev --config config/migrate.json
+sequelize model:create --name mst_prod_percent_share --attributes 'prod_percent_share_id:string(20), product_id:string(20), retailer_id:string(20), percent_share:integer' --env sql-dev --config config/migrate.json
 
 sequelize db:migrate:undo:all --env sql-dev --config config\migrate.json
 sequelize db:migrate --env sql-dev --config config\migrate.json

@@ -18,16 +18,22 @@ export class TargetsActualsController{
 	    var product = orm.getModel("mst_product");	
 
 	    product.findAll({
-		 group: ['brand']
+		  attributes: ['brand'], 
+   			group: ['brand']
 		}).then(function(result){
 
 			console.log(result);
-			pResponse.json(result);
+
+			var vResult = {
+				"status" : "Success",
+				"statusMessage" : "",
+				"error":"error",
+				"brandList" : result
+
+			}
+			pResponse.json(vResult);
 
 		}).catch(function (err) {
-		        // Transaction has been rolled back
-		        // err is whatever rejected the promise chain returned to the transaction callback
-		        //t.rollback();
 		        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
 			});
 		}
@@ -35,4 +41,37 @@ export class TargetsActualsController{
 			console.log(pErr);
 		}
 	}
+
+	// getProdCat(pRequest,pResponse){
+	//    try{
+
+	//    var message = 'Insert start.';
+	// 			console.log("mw Init");
+	//     var orm = new ORMService();
+	//     var product = orm.getModel("mst_product_category");	
+
+	//     product.findAll({
+	// 	  attributes: ['category_name'], 
+ //   			group: ['category_name']
+	// 	}).then(function(result){
+
+	// 		console.log(result);
+
+	// 		var vResult = {
+	// 			"status" : "Success",
+	// 			"statusMessage" : "",
+	// 			"error":"error",
+	// 			"CatList" : result
+
+	// 		}
+	// 		pResponse.json(vResult);
+
+	// 	}).catch(function (err) {
+	// 	        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
+	// 		});
+	// 	}
+	// 	catch(pErr){
+	// 		console.log(pErr);
+	// 	}
+	// }
 }

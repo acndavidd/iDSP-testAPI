@@ -3,6 +3,7 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/ro
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
+import {TargetsActualsService} from '../../my-transaction/services/targets-actuals.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
@@ -11,7 +12,10 @@ import {NgModel} from 'angular2/common';
 	directives: [
 		NgModel,
 		ROUTER_DIRECTIVES
-    ]
+    ],
+    providers: [
+        TargetsActualsService
+    ]    
 })
 
 export class TargetsActualsComponent {
@@ -22,18 +26,43 @@ export class TargetsActualsComponent {
     vUnderlineDay = true;
     vUnderlineWeek = false;
     vUnderlineMonth = false;
+    private vListBrands;
+    public vSelectedBrand;
 
 	constructor (
         private _router: Router,
 		private _layoutService: LayoutService,
     	private _matchMediaService: MatchMediaService,
-		private _headerService: HeaderService
+		private _headerService: HeaderService,
+        private _targetsActualsService: TargetsActualsService
     	) 
 	{
 
 		this._layoutService.setCurrentPage('TargetsActuals');
 		this._headerService.setTitle("Targets & Actuals");
+        // this._targetsActualsService.queryBrand().subscribe(
+        //     response => {
+        //         if(response.json().status == "Success"){
+        //             this.vListBrands = response.json().brandList;
+        //             this.vSelectedBrand = this.vListBrands;
+        //         }
+        //     },
+        //     error => {}
+        // );
 
+        // console.log("aabb"+ this.vListBrands);
+
+        this.vSelectedBrand = "SMART";
+    }
+
+    getBrand(){
+        return this._targetsActualsService.vBrand;
+        //return this._targetsActualsService.getBrand();
+    }
+
+    getBrandSelected(){
+        return this._targetsActualsService.vBrand.brand[0];
+        //return this._targetsActualsService.getBrand();
     }
 	
 	getResize(){
@@ -52,7 +81,8 @@ export class TargetsActualsComponent {
         this.vUnderlineWeek = false;
     	this.vUnderlineMonth = false;
     	this.vWeekShow = false;
-		this.vMonthShow = false
+		this.vMonthShow = false;
+
 
     }
 
@@ -63,7 +93,7 @@ export class TargetsActualsComponent {
         this.vUnderlineDay = false;
    		this.vUnderlineMonth = false;
    		this.vDayShow = false;
-		this.vMonthShow = false
+		this.vMonthShow = false;
     }
 
     showMenuMonth()
@@ -73,13 +103,24 @@ export class TargetsActualsComponent {
         this.vUnderlineWeek = false;
     	this.vUnderlineDay = false;
     	this.vWeekShow = false;
-		this.vDayShow = false
+		this.vDayShow = false;
     }
 
-    brand(pEvent) {
-        pEvent.preventDefault();
+    // refreshBrand(){
+    //     this.vListBrands = this._targetsActualsService.queryBrand();
+    //     //console.log('asdadasdasdada');
+    //     //console.log(this.vListBrands );
+    // }
+
+    onChangeSelectBrand(pSelectedBrand){
+        this.vSelectedBrand = pSelectedBrand;
+        console.log(this.vSelectedBrand + " IS SELECTED")
+    }   
+
+    getProdCat()
+    {
+        return this._targetsActualsService.vProdCat;
     }
 
-
-       
+      
 }
