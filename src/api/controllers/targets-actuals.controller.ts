@@ -74,24 +74,28 @@ export class TargetsActualsController{
 		}
 	}
 
-	getProdSubCat(pRequest,pResponse){
+	getProduct(pRequest,pResponse){
 	   try{
 
 	   var message = 'Insert start.';
 	    var orm = new ORMService();
-	    var product = orm.getModel("mst_prod_sub_cat");	
+	    var product_cat = orm.getModel("mst_prod_cat");	
+	    var product_sub = orm.getModel("mst_prod_sub_cat");
 
-	    product.findAll({
-		  attributes: ['sub_category_id', 'category_id', 'sub_category_name']
-		}).then(function(result){	
-
+	     product_cat.findAll({
+	    	  	attributes: ['category_id', 'category_name', 'brand'],
+        		include: [{ model: product_sub, as: 'ProductSubCategory', required : true,
+          		attributes: ['sub_category_id', 'sub_category_name' ]
+          		}]
+   		 })
+    	.then(function(result) {
 			console.log(result);
 
 			var vResult = {
 				"status" : "Success",
 				"statusMessage" : "",
 				"error":"error",
-				"SubCatList" : result
+				"ProdList" : result
 			}
 			pResponse.json(vResult);
 
@@ -130,7 +134,7 @@ export class TargetsActualsController{
 		});
 	}
 
-	getProduct(pRequest,pResponse){
+	getProdSubCat(pRequest,pResponse){
 		try{
 
 		var vmessage = 'Insert start.';
@@ -152,7 +156,7 @@ export class TargetsActualsController{
 				"status" : "Success",
 				"statusMessage" : "",
 				"error":"error",
-				"ProdList" : result
+				"SubCatList" : result
 			}
 			pResponse.json(vResult);
 		}).catch(function (err) {

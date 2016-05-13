@@ -81,7 +81,7 @@ export class TargetsActualsComponent {
                     this.vListProduct= response.json().ProdList;
                     this.vShowProduct = this.vListProduct.filter(
                         prod => {
-                            return prod.ProductCategory.brand == this.vSelectedBrand 
+                            return prod.brand == this.vSelectedBrand 
                         });
                 }
             },
@@ -149,7 +149,7 @@ export class TargetsActualsComponent {
         this.vSelectedBrand = pSelectedBrand;
         console.log(this.vSelectedBrand + " IS SELECTED");
         this.vShowProd = this.vListProd.filter(prod => prod.brand == this.vSelectedBrand);
-        this.vShowProduct = this.vListProduct.filter(prod => prod.ProductCategory.brand == this.vSelectedBrand);
+        this.vShowProduct = this.vListProduct.filter(prod => prod.brand == this.vSelectedBrand);
      }   
 
     getProdCat()
@@ -157,7 +157,7 @@ export class TargetsActualsComponent {
         return this.vShowProd;
     }
 
-    getProduct(pCategory)
+    getProduct()
     {
         // this._targetsActualsService.queryProduct().subscribe(
         //      response => {
@@ -173,9 +173,9 @@ export class TargetsActualsComponent {
         //     },
         //     error => {}
         // );
-        this.vShowProduct = this.vListProduct.filter(prod => {
-            return prod.ProductCategory.category_name == pCategory && 
-            prod.ProductCategory.brand == this.vSelectedBrand });
+        // this.vShowProduct = this.vListProduct.filter(prod => {
+        //     return prod.category_name == pCategory && 
+        //     prod.brand == this.vSelectedBrand });
         return this.vShowProduct;
     }
 
