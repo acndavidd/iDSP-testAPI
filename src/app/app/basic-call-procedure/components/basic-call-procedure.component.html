@@ -1,9 +1,27 @@
-<div class="basic-call-procedure-container">
-	<div class="container-body">
-        <div class="item-container" >
-        	<div class="item-identifier">Gloria Cell</div>
-        	<div class="item-value">Retailer mobile number</div>
-        	 <a (click)="gotoDetailRetailer()"><div class="item-icon open-sub-item"></div></a>      	
+<div class="container-body">
+    <div class="item-container">
+            <div class="container">
+                <div class='cell'>
+                    <div class='container'><div class='cell single title bold'>Today's Route</div></div>
+                </div>
+                <div class='cell icon'></div>
+            </div>
         </div>
-	</div>
+    <div class="item-container" (click)="gotoDetailRetailer()">
+        <div class="container">
+            <div class='cell'>
+                <div class='container'><div class='cell left bold'>Rose Cell</div></div>
+                <div class='container'><div class='cell left italic'>99999900003</div></div>
+                <div class='container'><div class='cell left grey'>Amount payable (5)</div></div>
+                <div class='container'><div class='cell left grey'>Status</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell right'>Route #2</div></div>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container'><div class='cell right'>3,000.00 ₱</div></div>
+                <div class='container'><div class='cell right'>In Progress</div></div>
+            </div>
+            <div class='cell icon arrow-right'></div>
+        </div>
+    </div>
 </div>

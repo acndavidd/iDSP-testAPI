@@ -66,7 +66,7 @@ export class MyTransactionComponent {
 	}
 	
 	goToAccountsReceivables(){
-		console.log('PEGI KE Account');
+		console.log('Go to Account Receivables');
 		this._router.navigate(['AccountsReceivables']);
 	}
 	

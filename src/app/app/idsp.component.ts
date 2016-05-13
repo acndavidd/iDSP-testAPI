@@ -32,8 +32,7 @@ declare var configChannel: any;
     selector: 'idsp-app',
     template: `
     	<div id="content"
-            (window:resize)="OnResize()" 
-            (onBackKeyDown)="OnBack()">
+            (window:resize)="OnResize()">
             <idsp-header></idsp-header>
             <my-modal></my-modal>
     		<router-outlet></router-outlet>
@@ -100,6 +99,10 @@ declare var configChannel: any;
         path: '/salesOrderPayment',
         name: 'SalesOrderPayment',
         component: SalesOrderPaymentComponent
+    },
+    {
+        path: '/**',
+        redirectTo: ['Starter', 'Login'] 
     }
 
 ])
@@ -107,15 +110,13 @@ export class IDSPComponent implements OnInit {
 
 	constructor ( private _matchMediaService: MatchMediaService,
     private _router: Router,
-    private _layoutService: LayoutService,
-    private _pageNavigationService : PageNavigationService) {
+    private _layoutService: LayoutService) {
         new FastClick(document.body);
     }
 
     ngOnInit(){
     	this.OnResize();
         if(configChannel === 'app'){
-            //this._pageNavigationService.addPage('Starter');
             this._router.navigate(['Starter', 'Login']);
         }
     }
@@ -124,18 +125,14 @@ export class IDSPComponent implements OnInit {
         this._matchMediaService.OnResize();
     }
 
-     isFullScreen() {
-         let vCurrentPage: string = this._layoutService.getCurrentPage();
-         return !vCurrentPage || vCurrentPage === 'GetStarted' || vCurrentPage === 'Login' ||
-         vCurrentPage === 'Register';
-     }
+    isFullScreen() {
+        let vCurrentPage: string = this._layoutService.getCurrentPage();
+        return !vCurrentPage || vCurrentPage === 'GetStarted' || vCurrentPage === 'Login' ||
+        vCurrentPage === 'Register';
+    }
 
-     OnBack(){
-         console.log('aa');
-     }
- 
-     isSmallScreen() {
-         return !this._matchMediaService.getMm().largeUp;
-     }
+    isSmallScreen() {
+        return !this._matchMediaService.getMm().largeUp;
+    }
 }
 

@@ -1,67 +1,50 @@
-.header-small{
+.header-container{
   width: 100%;
-    height: 50px;
-    .open-search{
-        height: 96px;
-      }
+    height: 3.2em;
     .main-box{
-      background-color: #007879;
+      background-color: $deep-cyan;
       top: 0;
       z-index: 100;
       width: 100%;
       position: fixed;
       .default-box{
-        height: 48px;
+        height: 3.1em;
         width: 100%;
         .title{
           position: fixed;
           z-index: 1000;
           width: 100%;
-          height: 48px;
           text-align: center;
           color: $white;
-          font-size: 20px;
-          padding-top: 10px;
+          font-size: $header-title;
+          padding-top: 0.75em;
         }
-        .back{
-            position: fixed;
-            z-index: 1000;
-            width:48px;
-            height:48px;
+        .header-icon{
+          width:3.1em;
+          height:3.1em;
+          position: fixed;
+          z-index:1000;
+          cursor: pointer;
+          &.back{
             background: url("../img/icon-idsp/back-white.png") no-repeat;
-            background-size: 30px;
+            background-size: 1.6em;
             background-position: center center;
-            cursor: pointer;
+          }
+          &.filter{
+            right: 0;
+            background: url("../img/icon-idsp/filter.png") no-repeat;
+            background-size: 1.6em;
+            background-position: center center;
+          }
+         &.search{
+            right: 0;
+            background: url("../img/icon-idsp/search-white.png") no-repeat;
+            background-size: 1.6em;
+            background-position: center center;
+          }
         }
-         .filter{
-                width:48px;
-                height:48px;
-                position: fixed;
-                right: 0;
-                z-index: 1000;
-                background: url("../img/icon-idsp/filter.png") no-repeat;
-                background-size: 30px;
-                background-position: center center;
-                cursor: pointer;
-            }
       }
     }
 
-.header-container{
-  width: 100%;
-  height: 48px;
-  z-index: 500;
-  position: fixed;
-  top: 10px;
-      .back-arrow {
-        height: 46px;
-        width: 46px;
-        margin-bottom: 60px;
-        margin-left: -10px;
-        background: url("")no-repeat;
-        background-size: 40px;
-        background-position: 0 0px;
-        cursor: pointer;
-      }
-  }
+
 }

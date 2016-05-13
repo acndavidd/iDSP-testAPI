@@ -1,3 +1,37 @@
-<div class="accounts-receivables">
-    SUDAH MASUK KE ACCOUNT NIH COY
+<div class="accounts-receivables">	
+	<div class="filter-container" *ngIf="getFilter().filterAccReceivables">
+		<div class="filter-input input">
+			<div class="icon"></div>
+			<input type="text" #listFilter (keyup)="onKey(listFilter.value)" id="RetailerSearchBox" placeholder="Input Retailer Name or MIN" />
+		</div>	
+	</div>
+
+	<div class="container-body">
+	    <div class="item-container">
+            <div class='cell'>
+                <div class='container'><div class='cell single title bold center'>Total Receivables : {{getTotalReceivable()}} ₱</div></div>
+            </div>
+            <div class='cell icon'></div>
+	    </div>
+	</div>
+
+	<ul class="animate-container">
+		<li class="animate-repeat" ng-animate="'animate'" *ngFor="#FilteredSearch of vSearchedList" >
+			<div class="item-container">
+			    <div class="container">
+			        <div class='cell'>
+		                <div class='container'><div class='cell left grey'># Route {{FilteredSearch.routeID}}</div></div>
+		                <div class='container'><div class='cell left'>{{FilteredSearch.retailerName}}</div></div>
+		                <div class='container'><div class='cell left italic'>{{FilteredSearch.MIN}}</div></div>
+			        </div>
+			        <div class='cell'>
+		                <div class='container'><div class='cell right'></div></div>
+		                <div class='container'><div class='cell right'>{{FilteredSearch.accReceivables}} ₱</div></div>
+		                <div class='container'><div class='cell right'></div></div>
+			        </div>
+			            <div class='cell icon'></div>
+			    </div>
+			</div>
+		</li>
+	</ul>
 </div>

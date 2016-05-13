@@ -152,7 +152,7 @@ module.exports = function(grunt) {
                             'node_modules/angular2/bundles/http.dev.js',
                             'node_modules/requirejs/require.js',
                             'node_modules/nouislider/distribute/nouislider.js',
-                            'node_modules/angular2/es6/dev/src/testing/shims_for_IE.js'
+                            'node_modules/angular2/es6/dev/src/testing/shims_for_IE.js',
                         ],
                         dest:'../../debug/scripts',
                         expand: true, 
@@ -168,6 +168,16 @@ module.exports = function(grunt) {
                         dest:'../../debug/',
                         expand: true,
                     },
+                ]
+            },
+
+            fonts: {
+                files: [
+                    {
+                        src:['fonts/*.*'],
+                        dest:'../../debug/',
+                        expand: true
+                    }
                 ]
             },
             
@@ -226,9 +236,10 @@ module.exports = function(grunt) {
 							'app/**/*.*',
 							'config/*.*',
 							'css/*.*',
+							'fonts/*.*',
 							'img/**/*.*',
-							'js/*.*',
-							'scripts/*.*',
+                            'js/*.*',
+                            'scripts/*.*',
 							'services/**/*.json',
 							'init.js', 'tsconfig.json'
 						],
@@ -330,6 +341,7 @@ module.exports = function(grunt) {
         'copy:resources',
         'copy:html',
         'copy:css',
+        'copy:fonts',
         'ts',
         'copy:js',
         'concat',
@@ -343,6 +355,21 @@ module.exports = function(grunt) {
         ]); 
 
     grunt.registerTask('cordova',[      
+        'clean:debug',
+        'copy:dependencies',
+        'copy:resources',
+        'copy:html',
+        'copy:css',
+        'copy:fonts',
+        'ts',
+        'copy:js',
+        'concat',
+        'sass',
+        'clean:sasscache',
+        'jshint',
+        'cssmin',
+        'uglify',
+        'cachebreaker',
         'clean:cordova',
         'copy:cordova'
         ]); 
@@ -367,6 +394,7 @@ module.exports = function(grunt) {
         'copy:resources',
         'copy:html',
         'copy:css',
+        'copy:fonts',
         'ts',
         'copy:js',
         'concat',

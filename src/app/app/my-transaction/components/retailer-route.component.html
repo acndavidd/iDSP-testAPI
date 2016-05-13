@@ -1,45 +1,39 @@
-<div class="retailer-route">
-    <div class="container-body">
-    <div>
-    	<div class="item-container" >
-    		<div>CALENDAR HERE</div>
-    		<div>
-	                <select class="month" #val_m (change)="setMonth(val_m.value)">
-	                    <option value="0" disabled selected>Month</option>
-	                    <option value="January">January</option>
-	                    <option value="February">February</option>
-	                    <option value="March">March</option>
-	                    <option value="April">April</option>
-	                    <option value="May">May</option>
-	                    <option value="June">June</option>
-	                    <option value="July">July</option>
-	                    <option value="August">August</option>
-	                    <option value="September">September</option>
-	                    <option value="October">October</option>
-	                    <option value="November">November</option>
-	                    <option value="December">December</option>
-	                </select>
-	                <select class="day" #val_m (change)="setDay(val_m.value)">
-	                </select>
-	                <div class="inner-box">
-	                <select class="year" #val_y (change)="setYear(val_y.value)">
-	                    <option value="0" disabled selected>Year</option>
-	                    <option value="2016">2016</option>
-	                    <option value="2017">2017</option>
-	                    <option value="2018">2018</option>
-	                </select>
-		</div>
-
-    		</div>
-    	</div>
-    </div>
-        <div class="item-container" >
-        <a (click)="gotoDetailRetailer()">
-        	<div class="item-value">1. Gloria Cell</div>
-        	<div class="item-value">Retailer Owner Name</div>
-        	<div class="item-value">Retailer Address</div>
-        	<div class="item-icon open-sub-item"></div>
-        </a>      	
-        </div>
+<div class="container-body">
+	<div class="filter-container-ret-route" *ngIf="getFilter().filterRetailerRoute">
+		<div class="filter-label">Mission For: </div>
+		<div class="filter-dropdown">
+			<select id="filter-day" [(ngModel)]="vSelectedDay" #val_day (change)="onChangeSelectDay(val_day.value)" >
+				<option *ngFor="#each of vListDay" [value]="each.value">{{each.name}}</option>
+			</select>
+		</div>	
 	</div>
+	<!--
+	<div class="item-container">
+        <div class="item-identifier">
+            <div class="item-title">
+            	<div>Mission for: {{vSelectedDate | date:'MMM, dd yyyy'}}</div>
+           </div>
+        </div>
+    </div>
+	-->
+    <div class="item-container" *ngFor="#each of vListRetailers" (click)='goToDetailRetailer(each)' id='list-retailer'>
+        <div class="container">
+        	<div class='cell'>
+        		<div class='container'>
+        			<div class='cell single bold deep-cyan' *ngIf="each.route_sequence"># Route {{each.route_sequence}}</div>
+        			<div class='cell single bold deep-cyan' *ngIf="!each.route_sequence"></div>
+        		</div>
+		        <div class='container'>
+	        		<div class='cell single bold'>{{each.retailer_name}}</div>
+		        </div>
+		        <div class='container'>
+		        	<div class='cell single'>{{each.owner_name}}</div>
+		        </div>
+		        <div class='container'>
+		        	<div class='cell single'>{{each.retailer_address}}</div>
+		    	</div>
+		    </div>
+		    <div class='cell icon arrow-right'></div>
+		</div>
+    </div>
 </div>

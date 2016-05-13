@@ -2,13 +2,30 @@
 <widget id="ph.com.smart.idsp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>iDSP</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        iDSP Smart App for Sales
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="dev@accenture.com" href="http://accenture.com">
+        Accenture Pty Ltd
     </author>
+    <platform name="android">
+        <splash density="land-hdpi" src="www/img/login_screen.png" />
+        <splash density="land-ldpi" src="www/img/login_screen.png" />
+        <splash density="land-mdpi" src="www/img/login_screen.png" />
+        <splash density="land-xhdpi" src="www/img/login_screen.png" />
+        <splash density="port-hdpi" src="www/img/smart-logo.png" />
+        <splash density="port-ldpi" src="www/img/smart-logo.png" />
+        <splash density="port-mdpi" src="www/img/smart-logo.png" />
+        <splash density="port-xhdpi" src="www/img/smart-logo.png" />
+    </platform>
+    <preference name="SplashScreen" value="screen" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="2000" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
+    <plugin name="cordova-plugin-device" spec="~1.1.2" />
+    <plugin name="cordova-plugin-splashscreen" spec="~3.2.2" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

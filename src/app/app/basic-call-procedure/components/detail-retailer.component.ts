@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/router';
+import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet, RouteParams } from 'angular2/router';
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
@@ -15,34 +15,38 @@ import {NgModel} from 'angular2/common';
 
 export class DetailRetailerComponent {
 
+    vSelectedRetail;
+    vSelectedRetailSeq;
+    vSelectedRetailId;
     vMenuShow = false;
     vArrowMap = false;
 	constructor (
 		private _layoutService: LayoutService,
 		private _matchMediaService: MatchMediaService,
 		private _headerService: HeaderService,
-		private _retailerService: RetailerService
+		private _retailerService: RetailerService,
+        private _router: Router,
+        private _params: RouteParams
 		) 
+
 	{
-		this._retailerService.getRetailer(100);
+        this.vSelectedRetailId = this._params.get("retailer_id");
+        this.vSelectedRetailSeq = this._params.get("route_sequence");
+		this.vSelectedRetail = this._retailerService.getRetailerDetail(this.vSelectedRetailId);
+        console.log(this.vSelectedRetail);
+
 		this._layoutService.setCurrentPage('DetailRetailer');
 		this._headerService.setTitle("Detail Retailer");
+        console.log('in detail retailer for retailer id ' +  this.vSelectedRetailId);
     }
 	
 	getResize(){
         return this._matchMediaService.getMm();  
     }
 
-   getRetailerAll()
+   getRetailer()
     {
-    	if(this._retailerService.getRetailerAll())
-    	{
-    		return this._retailerService.getRetailerAll();
-    	}
-    	else
-    	{
-    		return null;
-    	}
+    	return this.vSelectedRetail;
     }
 
     subMenuShow()
@@ -51,6 +55,25 @@ export class DetailRetailerComponent {
         this.vArrowMap = !this.vArrowMap;
     }
 
+    goToInventoryRetailer(pRetailerId){
+        console.log(pRetailerId);
+
+        let vParamsOld = {
+            retailer_id : this.vSelectedRetailId,
+            route_sequence: this.vSelectedRetailSeq
+        }
+        this._layoutService.addListPreviousData('DetailRetailer',vParamsOld);
+        /*
+        this._layoutService.setOldCurrentPage('DetailRetailer');
+        this._layoutService.setOldCurrentPageParams(vParamsOld);
+        */
+
+        let vParams = {
+            retailer_id: pRetailerId.retailer_id
+        }
+        this._router.navigate(['RetailerInventory',vParams]);
+
+    }
     //  getRetailerAddress()
     // {
     // 	return this._retailerService.getRetailerAddress();

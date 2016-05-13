@@ -6,8 +6,10 @@ export class PageNavigationService {
 	
 	vCurrentPage: string;
 	vPreviousPage: string;
-	vChildNode: string;
+	vPreviousParams;
+    vChildNode: string;
     vSubChildNode: string;
+
 	
 	constructor (private _router: Router) {}
     
@@ -22,12 +24,29 @@ export class PageNavigationService {
     setPreviousPage(pPrevious) {
         this.vPreviousPage = pPrevious;
     }
+
+    setPreviousParams(pParams) {
+        this.vPreviousParams = pParams;
+    }
+
+    getPreviousParams(){
+        return this.vPreviousParams;
+    }
 	
 	gotoPreviousPage(){
         if(this.vChildNode == 'login'){
             this._router.navigate(['Starter',this.vPreviousPage]);
         }else{
-            this._router.navigate(['MainPage',this.vPreviousPage]);
+
+            console.log(this.vPreviousPage);
+            if(this.vPreviousParams !== null || this.vPreviousParams !== '')
+            {
+                this._router.navigate(['MainPage',this.vPreviousPage,this.vPreviousParams]);
+            }
+            else{
+                this._router.navigate(['MainPage',this.vPreviousPage]);
+            }
+            
         }
 	}
 
