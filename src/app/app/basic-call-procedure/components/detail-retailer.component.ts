@@ -4,6 +4,7 @@ import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {RetailerService} from '../../shared/services/retailer.service';
+import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
@@ -26,12 +27,20 @@ export class DetailRetailerComponent {
 		private _headerService: HeaderService,
 		private _retailerService: RetailerService,
         private _router: Router,
-        private _params: RouteParams
+        private _params: RouteParams,
+        private _pageNavigationService: PageNavigationService
 		) 
 
 	{
-        this.vSelectedRetailId = this._params.get("retailer_id");
-        this.vSelectedRetailSeq = this._params.get("route_sequence");
+        console.log(this._pageNavigationService.getCurrentParams());
+        if(this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== ''){
+            this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
+            this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
+        }
+        else
+        {
+            console.log("Retailer ID not found");
+        }
 		this.vSelectedRetail = this._retailerService.getRetailerDetail(this.vSelectedRetailId);
         console.log(this.vSelectedRetail);
 
@@ -58,20 +67,13 @@ export class DetailRetailerComponent {
     goToInventoryRetailer(pRetailerId){
         console.log(pRetailerId);
 
-        let vParamsOld = {
-            retailer_id : this.vSelectedRetailId,
-            route_sequence: this.vSelectedRetailSeq
-        }
-        this._layoutService.addListPreviousData('DetailRetailer',vParamsOld);
-        /*
-        this._layoutService.setOldCurrentPage('DetailRetailer');
-        this._layoutService.setOldCurrentPageParams(vParamsOld);
-        */
+        let vParamsOld = this._pageNavigationService.getCurrentParams();
 
         let vParams = {
-            retailer_id: pRetailerId.retailer_id
-        }
-        this._router.navigate(['RetailerInventory',vParams]);
+        };
+
+
+        this._pageNavigationService.navigate('RetailerInventory', vParams, vParamsOld );
 
     }
     //  getRetailerAddress()

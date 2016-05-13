@@ -72,7 +72,7 @@ export class MyTransactionComponent {
 	
 	goToDSPAlerts(){
 		console.log('PEGI KE DSP');
-		this._pageNavigationService.navigate('DSPAlerts' , {id : 'anjayy'});
+		//this._pageNavigationService.navigate('DSPAlerts' , {id : 'anjayy'});
 		//this._router.navigate(['DSPAlerts']);
 	}
 

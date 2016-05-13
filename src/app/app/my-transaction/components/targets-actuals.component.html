@@ -16,9 +16,9 @@
 	</div>
 
 	<div *ngIf="vDayShow" >
-		<div class="item-container-ta" id="ta-container" >
-			<div class="item-title-ta" >Airtime</div>
-				<div class="item-left">SIM</div>
+		<div class="item-container-ta" id="ta-container" *ngFor="#each of getProduct()">
+			<div class="item-title-ta">{{each.category_name}} </div>
+				<div class="item-left">{{each.sub_category_name}}</div>
 				<div class="item-mid">23.33%</div>
 				<div class="item-right">
 					25/150
@@ -27,117 +27,32 @@
 				</div>
 		</div>
 		<div class="divider"></div>
-		<div class="item-container-ta" id="ta-container">
-				<div class="item-left">SIM</div>
-				<div class="item-mid">23.33%</div>
-				<div class="item-right">
-					25/150
-					<div class="target-text">Actual/Target</div>
-					<div class="balance">Balance : <div class="balace-number">200</div> </div>
-				</div>
-		</div>
-		<div class="item-container-ta" id="ta-container">
-			<div class="item-title-ta">Broadband</div>
-				<div class="item-left">SIM</div>
-				<div class="item-mid">23.33%</div>
-				<div class="item-right">
-					25/150
-					<div class="target-text">Actual/Target</div>
-					<div class="balance">Balance : <div class="balace-number">200</div> </div>
-				</div>
-		</div>
-		<div class="item-container-ta" id="ta-container">
-			<div class="item-title-ta">SIM</div>
-				<div class="item-left">SmartSIM</div>
-				<div class="item-mid">23.33%</div>
-				<div class="item-right">
-					25/150
-					<div class="target-text">Actual/Target</div>
-					<div class="balance">Balance : <div class="balace-number">200</div> </div>
-			</div>
-		</div>
 	</div>
 
 	<div *ngIf="vWeekShow">
-		<div class="item-container-ta" id="ta-container">
-			<div class="item-title-ta">Airtime</div>
-			<div class="item-body">
-				<div class="item-left">Submenu</div>
-				<div class="item-mid">50%</div>
+		<div class="item-container-ta" id="ta-container" *ngFor="#each of getProduct()">
+			<div class="item-title-ta">{{each.category_name}}</div>
+				<div class="item-left">SIM</div>
+				<div class="item-mid">23.33%</div>
 				<div class="item-right">
 					25/150
 					<div class="target-text">Actual/Target</div>
 					<div class="balance">Balance : <div class="balace-number">200</div> </div>
 				</div>
-			</div>
-		</div>
-
-		<div class="item-container-ta" id="ta-container">
-			<div class="item-title-ta">Broadband</div>
-			<div class="item-body">
-				<div class="item-left">Submenu</div>
-				<div class="item-mid">50%</div>
-				<div class="item-right">
-					25/150
-					<div class="target-text">Actual/Target</div>
-					<div class="balance">Balance : <div class="balace-number">200</div> </div>
-				</div>
-			</div>
-		</div>
-
-		<div class="item-container-ta" id="ta-container">
-			<div class="item-title-ta">SIM</div>
-			<div class="item-body">
-				<div class="item-left">Submenu</div>
-				<div class="item-mid">50%</div>
-				<div class="item-right">
-					25/150
-					<div class="target-text">Actual/Target</div>
-					<div class="balance">Balance : <div class="balace-number">200</div> </div>
-				</div>
-			</div>
 		</div>
 	</div>
 
 	<div *ngIf="vMonthShow">
-		<div class="item-container-ta" id="ta-container">
-			<div class="item-title-ta">Airtime</div>
-			<div class="item-body">
-				<div class="item-left">Submenu</div>
-				<div class="item-mid">89%</div>
+		<div class="item-container-ta" id="ta-container" *ngFor="#each of getProduct()">
+			<div class="item-title-ta">{{each.category_name}}</div>
+				<div class="item-left">SIM</div>
+				<div class="item-mid">23.33%</div>
 				<div class="item-right">
 					25/150
 					<div class="target-text">Actual/Target</div>
 					<div class="balance">Balance : <div class="balace-number">200</div> </div>
 				</div>
-			</div>
-		</div> 
-
-		<div class="item-container-ta" id="ta-container">
-			<div class="item-title-ta">Broadband</div>
-			<div class="item-body">
-				<div class="item-left">Submenu</div>
-				<div class="item-mid">89%</div>
-				<div class="item-right">
-					25/150
-					<div class="target-text">Actual/Target</div>
-					<div class="balance">Balance : <div class="balace-number">200</div> </div>
-				</div>
-			</div>
-		</div> 
-
-		<div class="item-container-ta" id="ta-container">
-			<div class="item-title-ta">SIM</div>
-			<div class="item-body">
-				<div class="item-left">Submenu</div>
-				<div class="item-mid">89%</div>
-				<div class="item-right">
-					25/150
-					<div class="target-text">Actual/Target</div>
-					<div class="balance">Balance : <div class="balace-number">200</div> </div>
-				</div>
-			</div>
-		</div> 
+		</div>
 	</div>
 </div>
 

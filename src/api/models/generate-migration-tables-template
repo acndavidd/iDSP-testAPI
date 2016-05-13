@@ -1,6 +1,6 @@
 sequelize model:create --name mst_sync_version --attributes 'table_name:string(50), table_description:string(200), lastSync:date' --env sql-dev --config config/migrate.json
 sequelize model:create --name mst_product --attributes 'product_id:string(20), product_name:string(50), sub_category_id:string(50), brand:string(50), price:integer' --env sql-dev --config config/migrate.json
-sequelize model:create --name mst_product_category --attributes 'category_id:string(20), category_name:string(50), brand:string(20)' --env sql-dev --config config/migrate.json
+sequelize model:create --name mst_prod_cat --attributes 'category_id:string(20), category_name:string(50), brand:string(20)' --env sql-dev --config config/migrate.json
 sequelize model:create --name mst_dist --attributes 'dist_id:string(20), dist_name:string(50)' --env sql-dev --config config/migrate.json
 sequelize model:create --name mst_dss --attributes 'dss_id:string(20), dist_id:string(20), first_name:string(50), last_name:string(50)' --env sql-dev --config config/migrate.json
 sequelize model:create --name mst_prod_sub_category --attributes 'sub_category_id:string(20), sub_category_name:string(50), category_id:string(20), brand:string(20)' --env sql-dev --config config/migrate.json
