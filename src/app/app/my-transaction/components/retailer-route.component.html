@@ -1,14 +1,39 @@
 <div class="container-body">
-    <div class="item-container">
-    	<div class="container">
-    		<div class='cell'>
-    	        <div class='container'><div class='cell single bold deep-cyan'># Route 1</div></div>
-    	        <div class='container'><div class='cell single bold'>Gloria Cell</div></div>
-    	        <div class='container'><div class='cell single'>Ms. Gloria</div></div>
-    	        <div class='container'><div class='cell single'>Barangka Dr. Mandaluyong</div></div>
-    	    </div>
-    	    <div class='cell icon arrow-right'></div>
-    	</div>
+	<div class="filter-container-ret-route" *ngIf="getFilter().filterRetailerRoute">
+		<div class="filter-label">Mission For: </div>
+		<div class="filter-dropdown">
+			<select id="filter-day" [(ngModel)]="vSelectedDay" #val_day (change)="onChangeSelectDay(val_day.value)" >
+				<option *ngFor="#each of vListDay" [value]="each.value">{{each.name}}</option>
+			</select>
+		</div>	
+	</div>
+	<!--
+	<div class="item-container">
+        <div class="item-identifier">
+            <div class="item-title">
+            	<div>Mission for: {{vSelectedDate | date:'MMM, dd yyyy'}}</div>
+           </div>
+        </div>
+    </div>
+	-->
+    <div class="item-container" *ngFor="#each of vListRetailers" (click)='goToDetailRetailer(each)' id='list-retailer'>
+        <div class="container">
+        	<div class='cell'>
+        		<div class='container'>
+        			<div class='cell single bold deep-cyan' *ngIf="each.route_sequence"># Route {{each.route_sequence}}</div>
+        			<div class='cell single bold deep-cyan' *ngIf="!each.route_sequence"></div>
+        		</div>
+		        <div class='container'>
+	        		<div class='cell single bold'>{{each.retailer_name}}</div>
+		        </div>
+		        <div class='container'>
+		        	<div class='cell single'>{{each.owner_name}}</div>
+		        </div>
+		        <div class='container'>
+		        	<div class='cell single'>{{each.retailer_address}}</div>
+		    	</div>
+		    </div>
+		    <div class='cell icon arrow-right'></div>
+		</div>
     </div>
 </div>
-

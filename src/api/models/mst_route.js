@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     dsp_id: DataTypes.STRING(20),
     retailer_id: DataTypes.STRING(20),
-    frequency: DataTypes.STRING(3),
+    freq_map_id: DataTypes.INEGER,
     created_date: DataTypes.DATE,
     created_by: DataTypes.STRING(20),
     updated_date: DataTypes.DATE,
@@ -18,6 +18,13 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
+        mst_route.belongsTo(models.mst_dsp,{as: 'Dsp', foreignKey : 'dsp_id'});
+        mst_route.belongsTo(models.mst_retailer,{as: 'Retailer', foreignKey : 'retailer_id'});
+        mst_route.belongsTo(models.mst_freq_mapping,{as: 'FreqMapping', foreignKey : 'freq_map_id'});
+        mst_route.hasMany(models.mst_route_day,{as: 'RouteDay', foreignKey : 'route_id'});
+      }
+      getAssociatedModels : function(){
+        return ['mst_dsp','mst_retailer','mst_freq_mapping','mst_route_day'];
       }
     }
   });

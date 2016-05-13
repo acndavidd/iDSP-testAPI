@@ -6,8 +6,9 @@ var vExec = require('child_process').spawn;
 
 export class ORMService{
 	private model;
+	private vAssociatedModels;
 	constructor(){
-
+		this.vAssociatedModels = {};
 	}
 
 	public getSequelize(){
@@ -53,26 +54,30 @@ export class ORMService{
 	public getModel(pModelName:string){
 		let vSequelizeSvc:SequelizeService = new SequelizeService();
 		let vOrmSvc = this;
-
 		let vModelStr;
 		try{
 			let vModel = vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),pModelName + vSequelizeSvc.getModelNaming()));
-			let associatedModels = {};
-			
-			if("getAssociatedModels" in vModel)
-				vModel.getAssociatedModels().forEach(function(associatedModel){
-					vModelStr = associatedModel;
-					let assocModel = vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),associatedModel + vSequelizeSvc.getModelNaming()));
-					associatedModels[associatedModel] = assocModel;
+			vOrmSvc.vAssociatedModels[pModelName] = vModel;
+			if("getAssociatedModels" in vModel){
+				let vAssocModel;
+				vModel.getAssociatedModels().forEach(function(pAssociatedModel){
+					vModelStr = pAssociatedModel;
+					if(vOrmSvc.vAssociatedModels.hasOwnProperty(pAssociatedModel) === false){
+						console.log('loading ' + pAssociatedModel + ' model');
+						vAssocModel = vOrmSvc.getModel(pAssociatedModel);
+						//vAssocModel = vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),pAssociatedModel + vSequelizeSvc.getModelNaming()));
+						vOrmSvc.vAssociatedModels[pAssociatedModel] = vAssocModel;
+					}
 				});
-
-			if("associate" in vModel){
-				vModel.associate(associatedModels);
 			}
+			if("associate" in vModel){
+				vModel.associate(vOrmSvc.vAssociatedModels);
+			}
+			vOrmSvc.vAssociatedModels[pModelName] = vModel;
 			return vModel;
-		}catch(err){
-			console.log("Error in get Model : "+ err + " : in model " + vModelStr);
-			throw err;
+		}catch(pErr){
+			console.log("Error in get Model : "+ pErr + " : in model " + vModelStr);
+			throw pErr;
 		}
 	}
 	/*

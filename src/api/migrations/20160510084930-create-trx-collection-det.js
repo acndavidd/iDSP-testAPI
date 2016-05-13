@@ -2,11 +2,15 @@
 module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('trx_collection_det', {
-      coll_id: {
+      coll_det_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
+      },
+      coll_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       ar_id: {
         type: Sequelize.INTEGER

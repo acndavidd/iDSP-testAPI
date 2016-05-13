@@ -3,21 +3,21 @@
 <a (click)="showMenuMonth()"><div class="sub-tab triple" [ngClass] = "{active: vUnderlineMonth}"><div class="text" [ngClass] = "{active: vUnderlineMonth}">Month</div></div></a>
 <!--Container-->
 <div class="container-body">
-	
-	<!--<div *ngIf="getFilter().filterTargetsActuals" >-->
+
 	<div class="filter-container" *ngIf="getFilter().filterTargetsActuals">
 		<div class="filter-label">Brand</div>
-		<div class="filter-dropdown"><select name="cars">
-		  <option value="volvo">Volvo</option>
-		  <option value="saab">Saab</option>
-		  <option value="fiat">Fiat</option>
-		  <option value="audi">Audi</option>
-		</select></div>
+		<div class="filter-dropdown">
+			<select [(ngModel)]="vSelectedBrand"  (ngModelChange)="onChangeSelectBrand($event)">
+				<option  *ngFor="#each of getBrand()" [value]="each.brand" >
+				    {{each.brand}}
+				</option>
+			</select>
+		</div>
 	</div>
 
 	<div *ngIf="vDayShow" >
-		<div class="item-container-ta" id="ta-container">
-			<div class="item-title-ta">Broadband</div>
+		<div class="item-container-ta" id="ta-container" >
+			<div class="item-title-ta" >Airtime</div>
 				<div class="item-left">SIM</div>
 				<div class="item-mid">23.33%</div>
 				<div class="item-right">
@@ -60,7 +60,33 @@
 
 	<div *ngIf="vWeekShow">
 		<div class="item-container-ta" id="ta-container">
-			<div class="item-title-ta">Airtime2</div>
+			<div class="item-title-ta">Airtime</div>
+			<div class="item-body">
+				<div class="item-left">Submenu</div>
+				<div class="item-mid">50%</div>
+				<div class="item-right">
+					25/150
+					<div class="target-text">Actual/Target</div>
+					<div class="balance">Balance : <div class="balace-number">200</div> </div>
+				</div>
+			</div>
+		</div>
+
+		<div class="item-container-ta" id="ta-container">
+			<div class="item-title-ta">Broadband</div>
+			<div class="item-body">
+				<div class="item-left">Submenu</div>
+				<div class="item-mid">50%</div>
+				<div class="item-right">
+					25/150
+					<div class="target-text">Actual/Target</div>
+					<div class="balance">Balance : <div class="balace-number">200</div> </div>
+				</div>
+			</div>
+		</div>
+
+		<div class="item-container-ta" id="ta-container">
+			<div class="item-title-ta">SIM</div>
 			<div class="item-body">
 				<div class="item-left">Submenu</div>
 				<div class="item-mid">50%</div>
@@ -75,7 +101,33 @@
 
 	<div *ngIf="vMonthShow">
 		<div class="item-container-ta" id="ta-container">
-			<div class="item-title-ta">Airtime3</div>
+			<div class="item-title-ta">Airtime</div>
+			<div class="item-body">
+				<div class="item-left">Submenu</div>
+				<div class="item-mid">89%</div>
+				<div class="item-right">
+					25/150
+					<div class="target-text">Actual/Target</div>
+					<div class="balance">Balance : <div class="balace-number">200</div> </div>
+				</div>
+			</div>
+		</div> 
+
+		<div class="item-container-ta" id="ta-container">
+			<div class="item-title-ta">Broadband</div>
+			<div class="item-body">
+				<div class="item-left">Submenu</div>
+				<div class="item-mid">89%</div>
+				<div class="item-right">
+					25/150
+					<div class="target-text">Actual/Target</div>
+					<div class="balance">Balance : <div class="balace-number">200</div> </div>
+				</div>
+			</div>
+		</div> 
+
+		<div class="item-container-ta" id="ta-container">
+			<div class="item-title-ta">SIM</div>
 			<div class="item-body">
 				<div class="item-left">Submenu</div>
 				<div class="item-mid">89%</div>
