@@ -19,7 +19,7 @@ import {NgModel} from 'angular2/common';
 })
 
 export class DSPAlertsComponent {
-
+    private vRetailerAlert;
 	constructor (
 		private _layoutService: LayoutService,
     	private _matchMediaService: MatchMediaService,
