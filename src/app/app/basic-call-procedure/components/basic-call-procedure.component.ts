@@ -34,7 +34,7 @@ export class BasicCallProcedureComponent {
 
     gotoDetailRetailer()
     {
-    	this._layoutService.setOldCurrentPage('BasicCallProcedure');
+    	//this._layoutService.setOldCurrentPage('BasicCallProcedure');
     	this._router.navigate(['DetailRetailer']);
     	//this._router.navigate(['RetailerSalesOrder']);
     }
