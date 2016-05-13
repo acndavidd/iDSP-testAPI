@@ -7,6 +7,7 @@ export class LayoutService {
 
 	vCurrentPage: string;
     vNumberSelection = false;
+    vOldCurrentPage: string;
     vOldCurrentPageParams;
     vListPreviousData;
     
@@ -20,9 +21,8 @@ export class LayoutService {
         filterInventoryLoad : false,
         filterInventoryPhysical : false,
         filterDSPAlerts : false,
-        filterAccReceivables : false
+        filterAccReceivables : false,
         filterRetailerRoute : false,
-        filterDSPAlerts : false,
         filterRetailerInventory: false
     };
 
