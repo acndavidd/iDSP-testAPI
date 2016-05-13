@@ -1,7 +1,7 @@
 <div class="accounts-receivables">	
 	<div class="filter-container" *ngIf="getFilter().filterAccReceivables">
 		<div class="filter-input input">	
-			<input type="search" [(ngModel)]="FilteredSearch" id="RetailerSearchBox" placeholder="Input Retailer Name or MIN" aria-label="filter FilteredSearch" [value]="results"/>
+			<input type="text" #listFilter (keyup)="onKey(listFilter.value)" id="RetailerSearchBox" placeholder="Input Retailer Name or MIN" />
 		</div>	
 	</div>
 
@@ -15,7 +15,7 @@
 	</div>
 
 	<ul class="animate-container">
-		<li class="animate-repeat" *ngFor="#FilteredSearch of vAllRetailerList | filter:FilteredSearch">
+		<li class="animate-repeat" *ngFor="#FilteredSearch of vSearchedList">
 			<div class="item-container">
 			    <div class="container">
 			        <div class='cell'>
