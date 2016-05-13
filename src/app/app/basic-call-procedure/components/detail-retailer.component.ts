@@ -57,13 +57,16 @@ export class DetailRetailerComponent {
 
     goToInventoryRetailer(pRetailerId){
         console.log(pRetailerId);
-        this._layoutService.setOldCurrentPage('DetailRetailer');
 
         let vParamsOld = {
             retailer_id : this.vSelectedRetailId,
             route_sequence: this.vSelectedRetailSeq
         }
+        this._layoutService.addListPreviousData('DetailRetailer',vParamsOld);
+        /*
+        this._layoutService.setOldCurrentPage('DetailRetailer');
         this._layoutService.setOldCurrentPageParams(vParamsOld);
+        */
 
         let vParams = {
             retailer_id: pRetailerId.retailer_id

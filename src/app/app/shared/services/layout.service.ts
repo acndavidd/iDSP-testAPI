@@ -9,6 +9,8 @@ export class LayoutService {
     vNumberSelection = false;
     vOldCurrentPage : string;
     vOldCurrentPageParams;
+
+    vListPreviousData;
     
     constructor (private _pageNavigationService: PageNavigationService,
     private _matchMediaService: MatchMediaService) {
@@ -55,6 +57,26 @@ export class LayoutService {
         edit: false,
         search: false
     };
+
+    resetListPreviousData(){
+        this.vListPreviousData = null;
+    }
+
+    addListPreviousData(pPrevPage, pPrevParams){
+        if (this.vListPreviousData === null)
+        {
+            this.vListPreviousData = [];
+        }
+        var vPrevData= {
+            page: pPrevPage,
+            param: pPrevParams
+        }
+        this.vListPreviousData.push(vPrevData);
+    }
+
+    getLatestPreviousData(){
+        return this.vListPreviousData.pop();
+    }
 
 	getCurrentPage(){
 		return this.vCurrentPage;
@@ -115,8 +137,7 @@ export class LayoutService {
         pCurrent == 'Verification' ||
         pCurrent == 'Login'){
         
-            this.vOldCurrentPageParams=null;
-            this.vOldCurrentPage=null;
+            this.resetListPreviousData();
             this.vLayoutState = {
                 appHeader: false,
                 appFooter: false
@@ -125,8 +146,7 @@ export class LayoutService {
 
         else if(pCurrent=='MyTransaction')
         {
-            this.vOldCurrentPageParams=null;
-            this.vOldCurrentPage=null;
+            this.resetListPreviousData();
             this.vLayoutState = {
                 appHeader: true,
                 appFooter: true
@@ -147,8 +167,7 @@ export class LayoutService {
          }
         else if(pCurrent=='BasicCallProcedure')
         {
-            this.vOldCurrentPageParams=null;
-            this.vOldCurrentPage=null;
+            this.resetListPreviousData();
 
             this.vLayoutState = {
                 appHeader: true,
@@ -170,8 +189,7 @@ export class LayoutService {
         }
         else if(pCurrent=='CloseDay')
         {
-            this.vOldCurrentPageParams=null;
-            this.vOldCurrentPage=null;
+            this.resetListPreviousData();
             this.vLayoutState = {
                 appHeader: true,
                 appFooter: true
@@ -192,8 +210,7 @@ export class LayoutService {
         }
         else if(pCurrent=='Settings')
         {
-            this.vOldCurrentPageParams=null;
-            this.vOldCurrentPage=null;
+            this.resetListPreviousData();
             this.vLayoutState = {
                 appHeader: true,
                 appFooter: true
@@ -218,9 +235,11 @@ export class LayoutService {
             pCurrent=='AccountsReceivables' ||
             pCurrent=='DSPAlerts')
         {
-            this.vOldCurrentPageParams=null;
-            this.vOldCurrentPage=null;
-            this._pageNavigationService.setPreviousPage('MyTransaction');
+            //this._pageNavigationService.setPreviousPage('MyTransaction');
+            this.resetListPreviousData();
+            this.vOldCurrentPage = "MyTransaction";
+            this.vOldCurrentPageParams = null;
+            this.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
             
             this.vLayoutState = {
                 appHeader: true,
@@ -259,12 +278,14 @@ export class LayoutService {
          else if(
             pCurrent=='RetailerRoute' ||
             pCurrent=='Inventory' ||
-            pCurrent=='TargetsActuals' ||
-            pCurrent=='RetailerInventory'
+            pCurrent=='TargetsActuals' 
             )
         {
-            this._pageNavigationService.setPreviousPage('MyTransaction');
-            
+            //this._pageNavigationService.setPreviousPage('MyTransaction');
+            this.resetListPreviousData();
+            this.vOldCurrentPage = "MyTransaction";
+            this.vOldCurrentPageParams = null;
+            this.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
             
             this.vLayoutState = {
                 appHeader: true,
@@ -289,10 +310,12 @@ export class LayoutService {
             pCurrent=='StockReturn' ||
             pCurrent=='Sync')
         {
-            this._pageNavigationService.setPreviousPage('CloseDay');
+            //this._pageNavigationService.setPreviousPage('CloseDay');
+            this.resetListPreviousData();
+            this.vOldCurrentPage = "CloseDay";
+            this.vOldCurrentPageParams = null;
+            this.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
 
-            this.vOldCurrentPageParams=null;
-            this.vOldCurrentPage=null;
 
             this.vLayoutState = {
                 appHeader: true,
@@ -314,10 +337,12 @@ export class LayoutService {
         } 
         else if(pCurrent=='ResetPassword')
         {
-            this._pageNavigationService.setPreviousPage('Settings');
-             this.vOldCurrentPageParams=null;
-            this.vOldCurrentPage=null;
-            
+            //this._pageNavigationService.setPreviousPage('Settings');
+            this.resetListPreviousData();
+             this.vOldCurrentPage = "Settings";
+             this.vOldCurrentPageParams = null;
+             this.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
             this.vLayoutState = {
               appHeader: true,
               appFooter: true
@@ -337,11 +362,42 @@ export class LayoutService {
             }
         }
         else if(pCurrent=='RetailerSalesOrder' 
-            || pCurrent=='DetailRetailer'
             || pCurrent=='SalesOrderPayment')
         {
-            
-            this._pageNavigationService.setPreviousPage("BasicCallProcedure");
+            this.resetListPreviousData();
+            this.vOldCurrentPage = "BasicCallProcedure";
+            this.vOldCurrentPageParams = null; 
+            this.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+            //this._pageNavigationService.setPreviousPage("BasicCallProcedure");
+
+            //if(this.vOldCurrentPage!==null || this.vOldCurrentPage!==""){
+            //    this._pageNavigationService.setPreviousPage(this.vOldCurrentPage);
+            //}
+        
+            this.vLayoutState = {
+              appHeader: true,
+              appFooter: true
+            };
+            this.vFooterState = 
+            {
+                myTransaction : false,
+                basicCallProcedure : true,
+                closeDay : false,
+                settings : false
+            };    
+            this.vHeaderItem = {
+                back: true,
+                filter: false,
+                edit: false,
+                search: false
+            }
+        }
+        else if( pCurrent=='DetailRetailer' 
+            || pCurrent=='RetailerInventory')
+        {
+
+            // NO NEED TO SET THE PREVIOUS PAGE SINCE IT CAN COMES FROM MULTIPLE VIEW
+            //this._pageNavigationService.setPreviousPage("BasicCallProcedure");
 
             //if(this.vOldCurrentPage!==null || this.vOldCurrentPage!==""){
             //    this._pageNavigationService.setPreviousPage(this.vOldCurrentPage);
@@ -367,8 +423,13 @@ export class LayoutService {
         }
      else if(pCurrent=='CDTargetsActuals' )
      {
-         this._pageNavigationService.setPreviousPage('CloseDay');
-            
+        //this._pageNavigationService.setPreviousPage('CloseDay');
+        this.resetListPreviousData();
+        this.vOldCurrentPage = "CloseDay";
+        this.vOldCurrentPageParams = null; 
+        this.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+        
+
             this.vLayoutState = {
                 appHeader: true,
                 appFooter: true
@@ -389,8 +450,12 @@ export class LayoutService {
     }
     else if(pCurrent=='VisitedRetail' )
      {
-         this._pageNavigationService.setPreviousPage('CloseDay');
-            
+        //this._pageNavigationService.setPreviousPage('CloseDay');
+        this.resetListPreviousData();
+        this.vOldCurrentPage = "CloseDay";
+        this.vOldCurrentPageParams = null; 
+        this.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
             this.vLayoutState = {
                 appHeader: true,
                 appFooter: true
@@ -409,12 +474,16 @@ export class LayoutService {
                 search: false
             }
         }
-        if(this.vOldCurrentPage!==null || this.vOldCurrentPage!==""){
-            this._pageNavigationService.setPreviousPage(this.vOldCurrentPage);
-        }    
-        if(this.vOldCurrentPageParams!==null || this.vOldCurrentPageParams!==""){
-            this._pageNavigationService.setPreviousParams(this.vOldCurrentPageParams);
+        
+        if (this.vListPreviousData)
+        {
+            console.log("Total Previous Page " +  this.vListPreviousData.length);
+            var vPreviousData = this.getLatestPreviousData();
+                    
+            this._pageNavigationService.setPreviousPage(vPreviousData.page);  
+            this._pageNavigationService.setPreviousParams(vPreviousData.params);
         }
+
 
 
     }

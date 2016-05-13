@@ -103,14 +103,16 @@ export class RetailerRouteComponent {
 //each.retailer_id, each.route_sequence
 //pSelectedRetailer, pRouteSequence
     goToDetailRetailer(pSelectedRetailer){
-        console.log(pSelectedRetailer);
-        this._layoutService.setOldCurrentPage('RetailerRoute');
+        console.log(pSelectedRetailer);            
 
         let vParamsOld = {
             selectedDay : this.vSelectedDay
         }
+        this._layoutService.addListPreviousData('RetailerRoute',vParamsOld);
+        /*
+        this._layoutService.setOldCurrentPage('RetailerRoute');
         this._layoutService.setOldCurrentPageParams(vParamsOld);
-
+        */
         let vParams = {
             retailer_id: pSelectedRetailer.retailer_id, 
             route_sequence : pSelectedRetailer.route_sequence

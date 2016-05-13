@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     dsp_id: DataTypes.STRING(20),
     retailer_id: DataTypes.STRING(20),
-    freq_map_id: DataTypes.STRING(3),
+    freq_map_id: DataTypes.INEGER,
     created_date: DataTypes.DATE,
     created_by: DataTypes.STRING(20),
     updated_date: DataTypes.DATE,

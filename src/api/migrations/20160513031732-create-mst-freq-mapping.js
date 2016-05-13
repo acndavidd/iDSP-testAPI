@@ -1,11 +1,14 @@
-'use strict';
+use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('mst_freq_mapping', {
-      freq_map_id: {
+    return queryInterface.createTable('mst_freq_mappings', {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      freq_map_id: {
         type: Sequelize.INTEGER
       },
       frequency: {
@@ -16,10 +19,18 @@ module.exports = {
       },
       schedule_name: {
         type: Sequelize.STRING(100)
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
       }
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('mst_freq_mapping');
+    return queryInterface.dropTable('mst_freq_mappings');
   }
 };

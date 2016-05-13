@@ -12,9 +12,6 @@ module.exports = function(sequelize, DataTypes) {
     },
     ar_id: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false,
-      unique: true
     },
     ar_type: DataTypes.STRING(20),
     amount: DataTypes.DECIMAL(10,2)

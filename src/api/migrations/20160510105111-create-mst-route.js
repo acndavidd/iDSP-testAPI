@@ -14,7 +14,7 @@ module.exports = {
       retailer_id: {
         type: Sequelize.STRING(20)
       },
-      frequency_map_id: {
+      freq_map_id: {
         type: Sequelize.INTEGER
       },
       created_date: {
