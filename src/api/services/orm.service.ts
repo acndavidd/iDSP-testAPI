@@ -52,21 +52,26 @@ export class ORMService{
 	}
 
 	public getModel(pModelName:string){
+		console.log('loading ' + pModelName + ' model');
 		let vSequelizeSvc:SequelizeService = new SequelizeService();
 		let vOrmSvc = this;
 		let vModelStr;
 		try{
 			let vModel = vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),pModelName + vSequelizeSvc.getModelNaming()));
 			vOrmSvc.vAssociatedModels[pModelName] = vModel;
+			console.log('loading associated models for ' + pModelName + ' model');
 			if("getAssociatedModels" in vModel){
 				let vAssocModel;
 				vModel.getAssociatedModels().forEach(function(pAssociatedModel){
+					
 					vModelStr = pAssociatedModel;
 					if(vOrmSvc.vAssociatedModels.hasOwnProperty(pAssociatedModel) === false){
-						console.log('loading ' + pAssociatedModel + ' model');
+						console.log('\tloading associated model ' + pAssociatedModel + ' for ' + pModelName + ' model');
 						vAssocModel = vOrmSvc.getModel(pAssociatedModel);
 						//vAssocModel = vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),pAssociatedModel + vSequelizeSvc.getModelNaming()));
 						vOrmSvc.vAssociatedModels[pAssociatedModel] = vAssocModel;
+					}else{
+						console.log('\tskip loading ' + pAssociatedModel + ' model');
 					}
 				});
 			}
@@ -74,6 +79,7 @@ export class ORMService{
 				vModel.associate(vOrmSvc.vAssociatedModels);
 			}
 			vOrmSvc.vAssociatedModels[pModelName] = vModel;
+			console.log('finish loading ' + pModelName + ' model');
 			return vModel;
 		}catch(pErr){
 			console.log("Error in get Model : "+ pErr + " : in model " + vModelStr);

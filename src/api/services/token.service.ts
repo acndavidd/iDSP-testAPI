@@ -1,7 +1,7 @@
 var vPath = require("path");
 var vEnv = process.env.NODE_ENV || "development";
 var vConfig = require(vPath.join(__dirname, '..', 'config', 'config.json'))[vEnv];
-var vUuid = require('uuid');
+//var vUuid = require('uuid');
 var vNJwt = require('njwt');
 
 export class TokenService{

@@ -68,7 +68,6 @@ export class TargetsActualsService{
             );
             */
             return this._http.get('/targetsActuals');
-            return null;
 	}
 
 	queryProdCat()     
