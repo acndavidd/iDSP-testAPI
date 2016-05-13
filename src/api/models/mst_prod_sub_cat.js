@@ -15,10 +15,10 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         mst_prod_sub_cat.hasMany(models.mst_product, {as : 'Product' , foreignKey : 'sub_category_id'});
-        mst_prod_sub_cat.belongsTo(models.mst_product_cat, {as : 'ProductCategory' , foreignKey : 'category_id'});
+        mst_prod_sub_cat.belongsTo(models.mst_prod_cat, {as : 'ProductCategory' , foreignKey : 'category_id'});
       },
       getAssociatedModels : function(){
-        return ['mst_product' , 'mst_product_cat'];
+        return ['mst_product' , 'mst_prod_cat'];
       }
     }
   });

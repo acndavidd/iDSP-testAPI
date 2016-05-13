@@ -42,36 +42,96 @@ export class TargetsActualsController{
 		}
 	}
 
-	// getProdCat(pRequest,pResponse){
-	//    try{
+	getProdCat(pRequest,pResponse){
+	   try{
 
-	//    var message = 'Insert start.';
-	// 			console.log("mw Init");
-	//     var orm = new ORMService();
-	//     var product = orm.getModel("mst_product_category");	
+	   var message = 'Insert start.';
+				console.log("mw Init");
+	    var orm = new ORMService();
+	    var product = orm.getModel("mst_prod_cat");	
 
-	//     product.findAll({
-	// 	  attributes: ['category_name'], 
- //   			group: ['category_name']
-	// 	}).then(function(result){
+	    product.findAll({
+		  attributes: ['category_name','category_id','brand'], 
+   			group: ['category_name','category_id']
+		}).then(function(result){	
 
-	// 		console.log(result);
+			console.log(result);
 
-	// 		var vResult = {
-	// 			"status" : "Success",
-	// 			"statusMessage" : "",
-	// 			"error":"error",
-	// 			"CatList" : result
+			var vResult = {
+				"status" : "Success",
+				"statusMessage" : "",
+				"error":"error",
+				"CatList" : result
+			}
+			pResponse.json(vResult);
 
-	// 		}
-	// 		pResponse.json(vResult);
+		}).catch(function (err) {
+		        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
+			});
+		}
+		catch(pErr){
+			console.log(pErr);
+		}
+	}
 
-	// 	}).catch(function (err) {
-	// 	        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
-	// 		});
-	// 	}
-	// 	catch(pErr){
-	// 		console.log(pErr);
-	// 	}
-	// }
+	getProdSubCat(pRequest,pResponse){
+	   try{
+
+	   var message = 'Insert start.';
+	    var orm = new ORMService();
+	    var product = orm.getModel("mst_prod_sub_cat");	
+
+	    product.findAll({
+		  attributes: ['sub_category_id', 'category_id', 'sub_category_name', 'brand']
+		}).then(function(result){	
+
+			console.log(result);
+
+			var vResult = {
+				"status" : "Success",
+				"statusMessage" : "",
+				"error":"error",
+				"SubCatList" : result
+			}
+			pResponse.json(vResult);
+
+		}).catch(function (err) {
+		        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
+			});
+		}
+		catch(pErr){
+			console.log(pErr);
+		}
+	}
+
+	getProduct(pRequest,pResponse){
+		try{
+
+		var message = 'Insert start.';
+	    var orm = new ORMService();
+	    var prod_cat = orm.getModel("mst_prod_cat");	
+	    var prod_sub_cat = orm.getModel("mst_prod_sub_cat");	
+	    
+	    prod_sub_cat.findAll({
+		  attributes: ['sub_category_name','sub_category_id', 'category_id', 'brand']
+		}).then(function(result){	
+
+			console.log(result);
+
+			var vResult = {
+				"status" : "Success",
+				"statusMessage" : "",
+				"error":"error",
+				"ProdList" : result
+			}
+			pResponse.json(vResult);
+
+		}).catch(function (err) {
+		        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
+			});
+		}
+		catch(pErr){
+			console.log(pErr);
+		}
+	}
 }
