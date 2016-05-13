@@ -1,0 +1,213 @@
+<div class="leftmenuContainer" [ngClass]="{active : getLeftMenuState()}">
+    <div class="menuHeader">
+        <circular-spinner *ngIf="getSpinnerStatus()" [color]="'white'"></circular-spinner>
+        <div *ngIf="!getSpinnerStatus()">
+            <img src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif" class="menuPic" id="menuPic" (click)="takepic()"/>
+            <div class="menuHeaderText">
+                <div class="smartPic">
+                    <div class="picture"></div>
+                    <!--<div class="text">Rewards</div>-->
+                </div>
+                <!--<input type="file" />-->
+                <div class="smartPoint" *ngIf="hasActiveRewardsAccount()">{{ getRewardsBalance().rewards }} <span>pts</span></div>
+            </div>
+            <div class="expiry" *ngIf="hasActiveRewardsAccount()">{{getRewardsBalance().expPoints}} pts expire on {{getRewardsBalance().expDate}}</div>
+        </div>
+        <select class="phoneNumber" [(ngModel)]="selectedPhone" (ngModelChange)="phoneChange($event)">
+            <option *ngFor="#phone of getListOfPhone()" [value]="phone.phoneNo">+63{{ phone.phoneNo }}</option>
+        </select>
+    </div>
+    <div class="menuItemBox" *ngIf="menuSelection.mainMenu">
+        <div class="itemCategory" (click)="goToInbox()">
+            Inbox
+            <div class="arrow"></div>
+        </div>
+        <div class="itemCategory" (click)="toggleChangeMenu('account')">
+            My Online Account
+            <div class="arrow"></div>
+        </div>
+        <div class="itemCategory" (click)="toggleChangeMenu('smartService')">
+            My Smart Service Details
+            <div class="arrow"></div>
+        </div>
+        <div class="itemCategory" (click)="toggleChangeMenu('addOns')">
+            Purchase Add-Ons and Services
+            <div class="arrow"></div>
+        </div>
+        <div class="itemCategory" *ngIf="isPostpaid()" (click)="toggleChangeMenu('billingDetail')">
+            My Billing Details
+            <div class="arrow"></div>
+        </div>
+        <div class="itemCategory" *ngIf="!isPostpaid()" (click)="toggleChangeMenu('balanceUsage')">
+            My Balance and Usage
+            <div class="arrow"></div>
+        </div>
+        <div class="itemCategory" (click)="toggleChangeMenu('rewards')" *ngIf="hasActiveRewardsAccount()">
+            My Rewards
+            <div class="arrow"></div>
+        </div>
+        <div class="itemCategory" (click)="toggleChangeMenu('support')">
+            Support
+            <div class="arrow"></div>
+        </div>
+        <div class="itemCategory" (click)="logout()">
+            Logout
+            <div class="arrow"></div>
+        </div>
+    </div>
+    <div class="menuItemBox" *ngIf="menuSelection.account">
+        <div class="itemCategory subMenu" (click)="toggleChangeMenu('account')">
+            <div class="backButton"></div>
+            My Online Account
+        </div>
+        <div class="itemMenu" (click)="gotoProfile()">
+            <div class="text">Update Profile</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu" (click)="gotoManageNumber()">
+            <div class="text">Manage My Numbers</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu" (click)="gotoChangePassword()">
+            <div class="text">Change Password</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu" (click)="gotoPastActivity()">
+            <div class="text">View Activity History</div>
+            <div class="arrow"></div>
+        </div>
+    </div>
+    <div class="menuItemBox" *ngIf="menuSelection.smartService">
+        <div class="itemCategory subMenu" (click)="toggleChangeMenu('smartService')">
+            <div class="backButton"></div>
+            My Smart Service Details
+        </div>
+        <div class="itemMenu" (click)="goToPuk()">
+            <div class="text">View PUK</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu">
+            <div class="text">View My Plan Details</div>
+            <div class="arrow"></div>
+        </div>
+    </div>
+    <div class="menuItemBox" *ngIf="menuSelection.addOns">
+        <div class="itemCategory subMenu" (click)="toggleChangeMenu('addOns')">
+            <div class="backButton"></div>
+            Purchase Add-Ons and Services
+        </div>
+        <div class="itemMenu">
+            <div class="text">Buy Add-Ons</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu" (click)="goToInternationalRoaming()">
+            <div class="text">Activate International Roaming</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu" (click)="goToPasaLoad()">
+            <div class="text">Buy Pasaload</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu">
+            <div class="text">Get ePIN</div>
+            <div class="arrow"></div>
+        </div>
+    </div>
+    <div class="menuItemBox" *ngIf="menuSelection.billingDetail">
+        <div class="itemCategory subMenu" (click)="toggleChangeMenu('billingDetail')">
+            <div class="backButton"></div>
+            My Billing Details
+        </div>
+        <div class="itemMenu" *ngIf="!isBrandPrepaid()">
+            <div class="text">View Account Balance</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu" *ngIf="!isBrandPrepaid()" (click)="gotoBillSetting()">
+            <div class="text">View Bill Settings</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu" *ngIf="!isBrandPrepaid()" (click)="gotoPastBills()">
+            <div class="text">View Invoice</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu" *ngIf="isBrandPrepaid()" (click)="goToPrepaidBalance()">
+            <div class="text">View Balance</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu">
+            <div class="text">View Usage</div>
+            <div class="arrow"></div>
+        </div>
+    </div>
+    <div class="menuItemBox" *ngIf="menuSelection.balanceUsage">
+        <div class="itemCategory subMenu" (click)="toggleChangeMenu('balanceUsage')">
+            <div class="backButton"></div>
+            My Balance and Usage
+        </div>
+        <div class="itemMenu">
+            <div class="text">View Balance</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu">
+            <div class="text">View Usage</div>
+            <div class="arrow"></div>
+        </div>
+    </div>
+    <div class="menuItemBox" *ngIf="menuSelection.rewards">
+        <div class="itemCategory subMenu" (click)="toggleChangeMenu('rewards')">
+            <div class="backButton"></div>
+            My Rewards
+        </div>
+        <div class="itemMenu" (click)="goToMyReward()">
+            <div class="text">View Rewards Summary</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu" (click)="gotoActivityHistory()">
+            <div class="text">View Rewards History</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu" (click)="gotoDeals()">
+            <div class="text">Get Exclusive Deals</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu" (click)="gotoCatalog()">
+            <div class="text">View Catalog</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu" (click)="gotoPayBillWithPoint()">
+            <div class="text">Pay Bill with Point</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu" (click)="gotoTransfer()">
+            <div class="text">Transfer Point</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu" (click)="goToUnclaimedRedemption()">
+            <div class="text">View Unclaimed Redemption</div>
+            <div class="arrow"></div>
+        </div>
+    </div>
+    <div class="menuItemBox" *ngIf="menuSelection.support">
+        <div class="itemCategory subMenu" (click)="toggleChangeMenu('support')">
+            <div class="backButton"></div>
+            Support
+        </div>
+        <div class="itemMenu" (click)="goToKnowledgeBase()">
+            <div class="text">Smart Knowledge Base</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu">
+            <div class="text">About MySmart</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu">
+            <div class="text">About MyRewards</div>
+            <div class="arrow"></div>
+        </div>
+        <div class="itemMenu" (click)="goToHelpFAQ()">
+            <div class="text">Help & FAQ</div>
+            <div class="arrow"></div>
+        </div>
+    </div>
+</div>
+<div class="leftmenuOther" *ngIf="getLeftMenuState()" (click)="toggleLeftMenu()"></div>
