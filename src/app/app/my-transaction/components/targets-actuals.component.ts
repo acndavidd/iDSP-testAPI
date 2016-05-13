@@ -5,6 +5,8 @@ import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {TargetsActualsService} from '../../my-transaction/services/targets-actuals.service';
 import {NgModel} from 'angular2/common';
+import { Pipe, PipeTransform } from 'angular2/core';
+
 
 @Component({
 	selector: 'targets-actuals',
@@ -27,7 +29,15 @@ export class TargetsActualsComponent {
     vUnderlineWeek = false;
     vUnderlineMonth = false;
     private vListBrands;
+    private vListProd;
+    private vListProdSubCat;
+    private vShowProd;
+    private vShowProdSubCat;
     public vSelectedBrand;
+    public vSelectedProd;
+
+    private vListProduct;
+    private vShowProduct;
 
 	constructor (
         private _router: Router,
@@ -40,31 +50,45 @@ export class TargetsActualsComponent {
 
 		this._layoutService.setCurrentPage('TargetsActuals');
 		this._headerService.setTitle("Targets & Actuals");
-        // this._targetsActualsService.queryBrand().subscribe(
-        //     response => {
-        //         if(response.json().status == "Success"){
-        //             this.vListBrands = response.json().brandList;
-        //             this.vSelectedBrand = this.vListBrands;
-        //         }
-        //     },
-        //     error => {}
-        // );
+        this._targetsActualsService.queryBrand().subscribe(
+             response => {
+                if(response.json().status == "Success"){
+                    this.vListBrands = response.json().brandList;
+                    this.vSelectedBrand = "SMART";
+                    //this.vSelectedBrand = this.vListBrands;
+                }
+            },
+            error => {}
+        );
 
-        // console.log("aabb"+ this.vListBrands);
+        this._targetsActualsService.queryProdCat().subscribe(
+             response => {
+                if(response.json().status == "Success"){
+                    this.vListProd = response.json().CatList;
+                    this.vShowProd = this.vListProd;
+                    //this.vSelectedBrand = this.vListBrands;
+                }
+            },
+            error => {}
+        );
 
-        this.vSelectedBrand = "SMART";
+
+        this._targetsActualsService.queryProduct().subscribe(
+             response => {
+                if(response.json().status == "Success"){
+                    this.vListProduct= response.json().ProdList;
+                    this.vShowProduct = this.vListProduct;
+                }
+            },
+            error => {}
+        );
+
     }
 
     getBrand(){
-        return this._targetsActualsService.vBrand;
-        //return this._targetsActualsService.getBrand();
+        return this.vListBrands;
     }
 
-    getBrandSelected(){
-        return this._targetsActualsService.vBrand.brand[0];
-        //return this._targetsActualsService.getBrand();
-    }
-	
 	getResize(){
         return this._matchMediaService.getMm();  
     }
@@ -106,21 +130,22 @@ export class TargetsActualsComponent {
 		this.vDayShow = false;
     }
 
-    // refreshBrand(){
-    //     this.vListBrands = this._targetsActualsService.queryBrand();
-    //     //console.log('asdadasdasdada');
-    //     //console.log(this.vListBrands );
-    // }
-
     onChangeSelectBrand(pSelectedBrand){
         this.vSelectedBrand = pSelectedBrand;
-        console.log(this.vSelectedBrand + " IS SELECTED")
-    }   
+        console.log(this.vSelectedBrand + " IS SELECTED");
+        this.vShowProd = this.vListProd.filter(prod => prod.brand == this.vSelectedBrand);
+        this.vShowProduct = this.vListProduct.filter(prod => prod.ProductCategory.brand == this.vSelectedBrand);
+     }   
 
     getProdCat()
-    {
-        return this._targetsActualsService.vProdCat;
+    {  
+        return this.vShowProd;
+        //return this._targetsActualsService.vProdCat;
     }
 
-      
+    getProduct()
+    {    
+         return this.vShowProduct;
+    }
+
 }

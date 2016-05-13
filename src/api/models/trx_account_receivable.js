@@ -35,7 +35,7 @@ module.exports = function(sequelize, DataTypes) {
         trx_account_receivable.belongsTo(models.trx_sales_order,{as: 'SalesOrder', foreignKey : 'order_id'});
         trx_account_receivable.belongsTo(models.mst_dsp,{as: 'Dsp', foreignKey : 'dsp_id'});
         trx_account_receivable.belongsTo(models.mst_retailer,{as: 'Retailer', foreignKey : 'retailer_id'});
-        trx_account.receivable.hasMany(models.trx_collection_det,{as: 'CollectionDet', foreignKey : 'ar_id'});
+        trx_account_receivable.hasMany(models.trx_collection_det,{as: 'CollectionDet', foreignKey : 'ar_id'});
       },
       getAssociatedModels : function(){
         return ['trx_sales_order','mst_dsp','mst_retailer','trx_collection_det'];

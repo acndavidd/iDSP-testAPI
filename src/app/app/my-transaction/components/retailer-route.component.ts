@@ -4,6 +4,7 @@ import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {RetailerRouteService} from '../services/retailer-route-service';
+import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {NgModel} from 'angular2/common';
 
 
@@ -32,7 +33,8 @@ export class RetailerRouteComponent {
 		private _headerService: HeaderService,
 		private _router: Router,
         private _params: RouteParams,
-        private _retailerRouteService: RetailerRouteService
+        private _retailerRouteService: RetailerRouteService,
+        private _pageNavigationService: PageNavigationService
     	) 
 	{
         this.vListDay = [
@@ -66,9 +68,10 @@ export class RetailerRouteComponent {
             }            
         ];
 
-        var vPreviousSelectedDay = this._params.get("selectedDay");
-        if(vPreviousSelectedDay !== null && vPreviousSelectedDay !== ''){
-             this.vSelectedDay = vPreviousSelectedDay;
+        console.log(this._pageNavigationService.getCurrentParams());
+        if(this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== ''){
+            var vPreviousSelectedDay = this._pageNavigationService.getCurrentParams().selectedDay;
+            this.vSelectedDay = vPreviousSelectedDay;
         }
         else{
             this.vSelectedDate = new Date();
@@ -108,17 +111,15 @@ export class RetailerRouteComponent {
         let vParamsOld = {
             selectedDay : this.vSelectedDay
         }
-        this._layoutService.addListPreviousData('RetailerRoute',vParamsOld);
-        /*
-        this._layoutService.setOldCurrentPage('RetailerRoute');
-        this._layoutService.setOldCurrentPageParams(vParamsOld);
-        */
+
         let vParams = {
             retailer_id: pSelectedRetailer.retailer_id, 
             route_sequence : pSelectedRetailer.route_sequence
         }
-        this._router.navigate(['DetailRetailer',vParams]);
-    }
 
+        this._pageNavigationService.navigate('DetailRetailer', vParams, vParamsOld);
+
+        //this._router.navigate(['DetailRetailer',vParams]);
+    }
 
 }

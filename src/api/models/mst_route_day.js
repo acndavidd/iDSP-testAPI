@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         // associations can be defined here
         mst_route_day.belongsTo(models.mst_route,{as: 'Route', foreignKey : 'route_id'});
-      }
+      },
       getAssociatedModels : function(){
         return ['mst_route'];
       }
