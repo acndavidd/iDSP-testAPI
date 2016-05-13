@@ -16,7 +16,78 @@ export class RetailerService{
 		this.vIsLoading = false;
 	}
 
-	getRetailer(pRetailerID:number){
+	getRetailerDetail(pRetailerID:number){
+
+		//Sample Hardcoded
+		var vSampleObject;
+		if (pRetailerID == 1)
+		{
+			vSampleObject =
+			{
+				"retailer_id": "1",
+				"retailer_name": "Gloria Cell",
+				"retailer_min": "2931791239",
+				"owner_first_name": 'Ms. Gloria',
+				"owner_middle_name": '',
+				"owner_last_name": '',
+				"retailer_address": "Barangka Dr. Mandaluyong",
+				"civil_status": 'WNI',
+				"email": 'GLORIAR@GMAIL.COM',
+				"gender": 'Female',
+				"birthday": new Date(),
+				"amount_receivable": 1000000,
+        		"value_segment": "High",
+        		"threshold": 100000
+			};
+		}
+		else if (pRetailerID == 2)
+		{
+			vSampleObject =
+			{
+				"retailer_id": "2",
+				"retailer_name": "Bird Cell",
+				"retailer_min": "2931791239",
+				"owner_first_name": 'Ms. Jaja',
+				"owner_middle_name": '',
+				"owner_last_name": '',
+				"retailer_address": "Barangka Dr. Sutrisno",
+				"civil_status": 'WNI',
+				"email": 'JAJA@GMAIL.COM',
+				"gender": 'Male',
+				"birthday": new Date(),
+				"amount_receivable": 2000000,
+        		"value_segment": "Medium",
+        		"threshold": 500000
+        	};
+		}
+		else if (pRetailerID == 3)
+		{
+			vSampleObject =
+			{
+				"retailer_id": "3",
+				"retailer_name": "Rose Cell",
+				"retailer_min": "1231312311",
+				"owner_first_name": 'Rose Cell',
+				"owner_middle_name": '',
+				"owner_last_name": '',
+				"retailer_address": "Matalang 56 Barangka",
+				"civil_status": 'WNI',
+				"email": 'ROSE@GMAIL.COM',
+				"gender": 'Female',
+				"birthday": new Date(),
+				"amount_receivable": 3000000,
+        		"value_segment": "Low",
+        		"threshold": 700000
+			};
+		}		
+					
+		return vSampleObject;
+
+		
+	}
+
+	getRetailer(pRetailerID){
+		/*
 		let vData:string = 'retailerID='+pRetailerID;
 		this._http.post('/testQueryRetailer',vData,
 			<RequestOptionsArgs> {headers: new Headers(
@@ -40,6 +111,7 @@ export class RetailerService{
             	}
             );
        	return false;
+       	*/
 	}
 
 	getRetailerAll(){

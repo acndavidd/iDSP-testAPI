@@ -99,6 +99,10 @@ declare var configChannel: any;
         path: '/salesOrderPayment',
         name: 'SalesOrderPayment',
         component: SalesOrderPaymentComponent
+    },
+    {
+        path: '/**',
+        redirectTo: ['Starter', 'Login'] 
     }
 
 ])

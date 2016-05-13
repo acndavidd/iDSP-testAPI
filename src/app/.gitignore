@@ -3,3 +3,7 @@ typings
 js
 .tscache
 *.tmp.txt
+*.js.map
+app/**/*.js
+models/*.js
+.baseDir.js
