@@ -16,16 +16,44 @@
 	</div>
 
 	<div *ngIf="vDayShow" >
-		<div class="item-container-ta" id="ta-container" *ngFor="#each of getProduct()">
-			<div class="item-title-ta">{{each.category_name}} </div>
-				<div class="item-left">{{each.sub_category_name}}</div>
-				<div class="item-mid">23.33%</div>
-				<div class="item-right">
-					25/150
-					<div class="target-text">Actual/Target</div>
-					<div class="balance">Balance : <div class="balace-number">200</div> </div>
+		<div class="item-container-ta" id="ta-container">
+			<div *ngFor="#category of getCategories()" >
+				
+				<div class="item-title-ta">
+					{{category.category_name}}
 				</div>
+				
+				<div *ngFor="#each of getProduct(category.category_name)">
+					
+					<div class="item-left">
+						{{each.sub_category_name}}
+					</div>
+					
+					<div class="item-mid">
+						23.33%
+					</div>
+					
+					<div class="item-right">
+						25/150
+						
+						<div class="target-text">
+							Actual/Target
+						</div>
+						
+						<div class="balance">
+							Balance : 
+							<div class="balance-number">
+								200
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
 		</div>
+
 		<div class="divider"></div>
 	</div>
 

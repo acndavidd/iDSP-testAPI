@@ -36,8 +36,12 @@ export class TargetsActualsComponent {
     public vSelectedBrand;
     public vSelectedProd;
 
+    private vShowProductFirst;
+
     private vListProduct;
+    private vListCategory;
     private vShowProduct;
+    private vShowCategory;
 
 	constructor (
         private _router: Router,
@@ -47,6 +51,7 @@ export class TargetsActualsComponent {
         private _targetsActualsService: TargetsActualsService
     	) 
 	{
+        this.vSelectedBrand = "SMART";
 
 		this._layoutService.setCurrentPage('TargetsActuals');
 		this._headerService.setTitle("Targets & Actuals");
@@ -54,8 +59,6 @@ export class TargetsActualsComponent {
              response => {
                 if(response.json().status == "Success"){
                     this.vListBrands = response.json().brandList;
-                    this.vSelectedBrand = "SMART";
-                    //this.vSelectedBrand = this.vListBrands;
                 }
             },
             error => {}
@@ -66,7 +69,6 @@ export class TargetsActualsComponent {
                 if(response.json().status == "Success"){
                     this.vListProd = response.json().CatList;
                     this.vShowProd = this.vListProd;
-                    //this.vSelectedBrand = this.vListBrands;
                 }
             },
             error => {}
@@ -77,7 +79,20 @@ export class TargetsActualsComponent {
              response => {
                 if(response.json().status == "Success"){
                     this.vListProduct= response.json().ProdList;
-                    this.vShowProduct = this.vListProduct;
+                    this.vShowProduct = this.vListProduct.filter(
+                        prod => {
+                            return prod.ProductCategory.brand == this.vSelectedBrand 
+                        });
+                }
+            },
+            error => {}
+        );
+
+        this._targetsActualsService.queryCategory().subscribe(
+             response => {
+                if(response.json().status == "Success"){
+                    this.vListCategory= response.json().CategoryList;
+                    this.vShowCategory = this.vListCategory.filter(cat => cat.brand == this.vSelectedBrand);
                 }
             },
             error => {}
@@ -140,12 +155,33 @@ export class TargetsActualsComponent {
     getProdCat()
     {  
         return this.vShowProd;
-        //return this._targetsActualsService.vProdCat;
     }
 
-    getProduct()
+    getProduct(pCategory)
+    {
+        // this._targetsActualsService.queryProduct().subscribe(
+        //      response => {
+        //         if(response.json().status == "Success"){
+        //             this.vListProduct= response.json().ProdList;
+        //             this.vShowProduct = this.vListProduct.filter(
+        //                 vCategories => {
+        //                     return vCategories.ProductCategory.brand == this.vSelectedBrand &&
+        //                     vCategories.ProductCategory.category_name == pCategory
+        //                 }
+        //                 );
+        //         }
+        //     },
+        //     error => {}
+        // );
+        this.vShowProduct = this.vListProduct.filter(prod => {
+            return prod.ProductCategory.category_name == pCategory && 
+            prod.ProductCategory.brand == this.vSelectedBrand });
+        return this.vShowProduct;
+    }
+
+    getCategories()
     {    
-         return this.vShowProduct;
+        return this.vShowCategory;
     }
 
 }
