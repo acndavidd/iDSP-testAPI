@@ -12,7 +12,7 @@ export class RetailerController{
 		let vDSPModel = vOrmSvc.getModel('mst_dsp');
 		let vResult = [];
 		var vPromises = [];
-		vDSPModel.findById('1').then(function(dsp){
+		/*vDSPModel.findById('1').then(function(dsp){
 			dsp.getRetailer().then(function(retailers){
 				retailers.forEach(function(retailer){
 					console.log(retailer);
