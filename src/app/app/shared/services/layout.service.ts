@@ -7,10 +7,8 @@ export class LayoutService {
 
 	vCurrentPage: string;
     vNumberSelection = false;
-    vOldCurrentPage : string;
+    vOldCurrentPage: string;
     vOldCurrentPageParams;
-
-    
     
     constructor (private _pageNavigationService: PageNavigationService,
     private _matchMediaService: MatchMediaService) {
@@ -21,8 +19,9 @@ export class LayoutService {
         filterTargetsActuals : false,
         filterInventoryLoad : false,
         filterInventoryPhysical : false,
-        filterRetailerRoute : false,
         filterDSPAlerts : false,
+        filterAccReceivables : false,
+        filterRetailerRoute : false,
         filterRetailerInventory: false
     };
 
@@ -71,6 +70,7 @@ export class LayoutService {
     //getFooterLayout(){
     //    return this.vFooterItem;
     //}
+
     getOldCurrentPage(){
         return this.vOldCurrentPage;
     }
@@ -87,6 +87,7 @@ export class LayoutService {
         this.vOldCurrentPage = pCurrentPage;
     }
     */
+
 	
 	getLayout(){
 		return this.vLayoutState;
@@ -252,9 +253,9 @@ export class LayoutService {
             if (pCurrent=='AccountsReceivables'){   
                 this.vHeaderItem = {
                     back: true,
-                    filter: false,
+                    filter: true,
                     edit: false,
-                    search: true
+                    search: false
                 }
             }
             if (pCurrent=='DSPAlerts'){   
@@ -355,15 +356,12 @@ export class LayoutService {
         else if(pCurrent=='RetailerSalesOrder' 
             || pCurrent=='SalesOrderPayment')
         {
+
             this._pageNavigationService.resetListPreviousData();
             this.vOldCurrentPage = "BasicCallProcedure";
             this.vOldCurrentPageParams = null; 
             this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
-            //this._pageNavigationService.setPreviousPage("BasicCallProcedure");
 
-            //if(this.vOldCurrentPage!==null || this.vOldCurrentPage!==""){
-            //    this._pageNavigationService.setPreviousPage(this.vOldCurrentPage);
-            //}
         
             this.vLayoutState = {
               appHeader: true,
@@ -474,6 +472,7 @@ export class LayoutService {
         this.vFilter.filterTargetsActuals = !this.vFilter.filterTargetsActuals;
         this.vFilter.filterInventoryLoad = !this.vFilter.filterInventoryLoad;
         this.vFilter.filterInventoryPhysical = !this.vFilter.filterInventoryPhysical;
+        this.vFilter.filterAccReceivables = !this.vFilter.filterAccReceivables;
         this.vFilter.filterDSPAlerts = !this.vFilter.filterDSPAlerts;
         this.vFilter.filterRetailerRoute = !this.vFilter.filterRetailerRoute;
         this.vFilter.filterRetailerInventory = !this.vFilter.filterRetailerInventory;

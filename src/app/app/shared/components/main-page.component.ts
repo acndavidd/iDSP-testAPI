@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/router';
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
+import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {MyTransactionComponent} from '../../my-transaction/components/my-transaction.component';
 import {BasicCallProcedureComponent} from '../../basic-call-procedure/components/basic-call-procedure.component';
 import {CloseDayComponent} from '../../close-day/components/close-day.component';
@@ -26,6 +27,9 @@ import {VisitedRetailComponent} from '../../close-day/components/visited-retail.
     templateUrl: './app/shared/components/main-page.component.html',
 	directives: [
 		ROUTER_DIRECTIVES
+    ],
+    providers : [
+        //PageNavigationService
     ]
 })
 

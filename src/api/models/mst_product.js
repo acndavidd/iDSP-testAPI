@@ -7,7 +7,6 @@ module.exports = function(sequelize, DataTypes) {
     }, 
     product_name: DataTypes.STRING(50),
     sub_category_id: DataTypes.STRING(50),
-    brand: DataTypes.STRING(50),
     price: DataTypes.DECIMAL(10,2)
   }, {
     timestamps : false,

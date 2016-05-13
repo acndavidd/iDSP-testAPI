@@ -1,40 +1,37 @@
 <div class="accounts-receivables">	
-	<div class="filter-container" *ngIf="getSearch().searchBox">
-		<div class="filter-input input">					
-			<input [(ngModel)]="vTotal" id="RetailerSearchBox" placeholder="Input Retailer Name or MIN" />
+	<div class="filter-container" *ngIf="getFilter().filterAccReceivables">
+		<div class="filter-input input">
+			<div class="icon"></div>
+			<input type="text" #listFilter (keyup)="onKey(listFilter.value)" id="RetailerSearchBox" placeholder="Input Retailer Name or MIN" />
 		</div>	
 	</div>
-</div>
 
-<div class="container-body">
-	<div class="item-container">
-        <div class="container">
+	<div class="container-body">
+	    <div class="item-container">
             <div class='cell'>
-                <div class='container'><div class='cell single title bold center'>Total Receivables : {{getTotalReceivable()}} &#x20B1;</div></div>
+                <div class='container'><div class='cell single title bold center'>Total Receivables : {{getTotalReceivable()}} ₱</div></div>
             </div>
             <div class='cell icon'></div>
-        </div>
-    </div>
+	    </div>
+	</div>
 
-    <div class="item-container">
-        <div class="container">
-            <div class='cell'>
-                <div class='container'><div class='cell left grey'># Route 2</div></div>
-                <div class='container'><div class='cell left'>Bird Cell</div></div>
-                <div class='container'><div class='cell left italic'>99999900002</div></div>
-            </div>
-            <div class='cell'>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'>3,000.00 ₱</div></div>
-                <div class='container'><div class='cell right'></div></div>
-            </div>
-            <div class='cell icon'></div>
-        </div>
-    </div>
-
-	<!-- <div class="container-body">
-		<div class="item-container">
-			<div class="item-title">Total Receivables : {{getTotalReceivable()}} &#x20B1;</div>
-		</div>
-	</div> -->
+	<ul class="animate-container">
+		<li class="animate-repeat" ng-animate="'animate'" *ngFor="#FilteredSearch of vSearchedList" >
+			<div class="item-container">
+			    <div class="container">
+			        <div class='cell'>
+		                <div class='container'><div class='cell left grey'># Route {{FilteredSearch.routeID}}</div></div>
+		                <div class='container'><div class='cell left'>{{FilteredSearch.retailerName}}</div></div>
+		                <div class='container'><div class='cell left italic'>{{FilteredSearch.MIN}}</div></div>
+			        </div>
+			        <div class='cell'>
+		                <div class='container'><div class='cell right'></div></div>
+		                <div class='container'><div class='cell right'>{{FilteredSearch.accReceivables}} ₱</div></div>
+		                <div class='container'><div class='cell right'></div></div>
+			        </div>
+			            <div class='cell icon'></div>
+			    </div>
+			</div>
+		</li>
+	</ul>
 </div>

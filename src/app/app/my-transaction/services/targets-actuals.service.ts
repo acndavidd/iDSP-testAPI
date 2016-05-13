@@ -10,6 +10,7 @@ export class TargetsActualsService{
 	private vIsLoading:boolean;
 	public vBrand;
 	public vProdCat;
+      public vProdCatBrand;
 
 	constructor(
 		private _http: Http,
@@ -17,6 +18,9 @@ export class TargetsActualsService{
 
 		this.vIsLoading = false;
 		this.queryBrand();
+            this.queryProdCat();
+            this.queryProdSubCat();
+            this.queryProduct();
 
 	}
 
@@ -47,7 +51,7 @@ export class TargetsActualsService{
             	}
             );
             */
-
+            /*
             this._http.get('/targetsActuals').subscribe(
             	response => {
             		if(response.json().status == "Success"){
@@ -62,17 +66,18 @@ export class TargetsActualsService{
             		this.vErrorMsg = 'Failed connecting to Retailer service';
             	}
             );
-
+            */
+            return this._http.get('/targetsActuals');
             return null;
 	}
 
-	querySubCategory()
+	queryProdCat()     
 	{
+            /*console.log('masuk service');
 		 this._http.get('/getProductCategory').subscribe(
             	response => {
             		if(response.json().status == "Success"){
             			this.vProdCat = response.json().CatList;
-            			console.log('masukkk');
             		}else{
             			this.vErrorMsg = response.json().error;
             		}
@@ -84,8 +89,20 @@ export class TargetsActualsService{
             );
 
             return null;
-
+            */
+            return this._http.get('/getProductCategory');
 	}
+
+      queryProdSubCat()
+      {
+            return this._http.get('/getProductSubCategory');
+      }
+
+
+      queryProduct()
+      {
+            return this._http.get('/getProduct');
+      }
 
 	getBrand(){
 		return this.vBrand;
@@ -95,8 +112,6 @@ export class TargetsActualsService{
 	{
 		return this.vProdCat;
 	}
-
-
 
 	getError():string{
 		return this.vErrorMsg;
