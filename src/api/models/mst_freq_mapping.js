@@ -1,7 +1,7 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var mst_freq_mapping = sequelize.define('mst_freq_mapping', {
-    freq_map_id: : {
+    freq_map_id:{
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false,
@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         // associations can be defined here
         mst_freq_mapping.belongsTo(models.mst_route, {as : 'Route' , foreignKey : 'freq_map_id'});
-      }
+      },
       getAssociatedModels : function(){
         return ['mst_route'];
         //return '';

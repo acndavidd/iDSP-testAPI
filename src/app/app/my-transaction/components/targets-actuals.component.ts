@@ -36,6 +36,9 @@ export class TargetsActualsComponent {
     public vSelectedBrand;
     public vSelectedProd;
 
+    private vListProduct;
+    private vShowProduct;
+
 	constructor (
         private _router: Router,
 		private _layoutService: LayoutService,
@@ -69,33 +72,23 @@ export class TargetsActualsComponent {
             error => {}
         );
 
-        this._targetsActualsService.queryProdSubCat().subscribe(
+
+        this._targetsActualsService.queryProduct().subscribe(
              response => {
                 if(response.json().status == "Success"){
-                    this.vListProdSubCat = response.json().SubCatList;
-                    this.vShowProdSubCat = this.vListProdSubCat;
-                    //this.vSelectedBrand = this.vListBrands;
+                    this.vListProduct= response.json().ProdList;
+                    this.vShowProduct = this.vListProduct;
                 }
             },
             error => {}
         );
 
-        console.log("aabb"+ this.vListBrands);
-
-        //this.vSelectedBrand = "SMART";
     }
 
     getBrand(){
         return this.vListBrands;
-        //return this._targetsActualsService.vBrand;
-        //return this._targetsActualsService.getBrand();
     }
 
-    getBrandSelected(){
-        return this._targetsActualsService.vBrand.brand[0];
-        //return this._targetsActualsService.getBrand();
-    }
-	
 	getResize(){
         return this._matchMediaService.getMm();  
     }
@@ -141,12 +134,7 @@ export class TargetsActualsComponent {
         this.vSelectedBrand = pSelectedBrand;
         console.log(this.vSelectedBrand + " IS SELECTED");
         this.vShowProd = this.vListProd.filter(prod => prod.brand == this.vSelectedBrand);
-        this.vShowProdSubCat = this.vListProdSubCat.filter(prodSubCat => 
-            {    
-                return prodSubCat.brand == this.vSelectedBrand ||
-                prodSubCat.category_id == this.vSelectedProd
-
-            });
+        this.vShowProduct = this.vListProduct.filter(prod => prod.ProductCategory.brand == this.vSelectedBrand);
      }   
 
     getProdCat()
@@ -155,11 +143,9 @@ export class TargetsActualsComponent {
         //return this._targetsActualsService.vProdCat;
     }
 
-    getProdSubCat()
-    {
-        console.log('selected prod' +this.vSelectedProd);
-        console.log('selected brand'+this.vSelectedBrand);
-       
-        return this.vShowProdSubCat;
+    getProduct()
+    {    
+         return this.vShowProduct;
     }
+
 }
