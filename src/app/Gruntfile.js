@@ -414,7 +414,8 @@ module.exports = function(grunt) {
         'clean:sasscache',
         'jshint',
         'cssmin',
-        'uglify'
+        'uglify',
+        'cachebreaker',
         ]); 
 
 };
