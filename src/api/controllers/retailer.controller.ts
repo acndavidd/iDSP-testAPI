@@ -156,6 +156,7 @@ export class RetailerController{
 
 		let vResult = [];
 		var vPromises = [];
+
 		vDSPModel.findById('1').then(function(dsp){
 			dsp.getRetailer({
 				attributes : ['retailer_name', 'retailer_min'],
@@ -177,6 +178,7 @@ export class RetailerController{
 				}]
 			}).then(function(ret){
 				console.log(JSON.stringify(ret));
+
 			});
 		});
 		/*

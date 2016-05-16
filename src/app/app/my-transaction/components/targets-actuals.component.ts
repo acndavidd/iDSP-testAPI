@@ -43,6 +43,10 @@ export class TargetsActualsComponent {
     private vShowProduct;
     private vShowCategory;
 
+    private vSubCatID;
+    private vListTargets;
+    private vShowTargets;
+
 	constructor (
         private _router: Router,
 		private _layoutService: LayoutService,
@@ -182,6 +186,24 @@ export class TargetsActualsComponent {
     getCategories()
     {    
         return this.vShowCategory;
+    }
+
+    getTargets(pSubCategoryID)
+    {
+        this.vSubCatID = pSubCategoryID;
+        console.log('subbb'+pSubCategoryID);
+
+         this._targetsActualsService.queryTargets(pSubCategoryID).subscribe(
+             response => {
+                if(response.json().status == "Success"){
+                    this.vListCategory= response.json().Targets;
+                    this.vShowCategory = this.vListCategory;
+                }
+            },
+            error => {}
+        );
+
+        console.log('targetss'+ this.vShowTargets)
     }
 
 }

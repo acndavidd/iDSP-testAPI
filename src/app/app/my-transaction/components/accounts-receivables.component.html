@@ -6,32 +6,30 @@
 		</div>	
 	</div>
 
-	<div class="container-body">
-	    <div class="item-container">
+<div class="container-body">
+    <div class="item-container">
+        <div class='container'>
             <div class='cell'>
-                <div class='container'><div class='cell single title bold center'>Total Receivables : {{getTotalReceivable()}} ₱</div></div>
+            	<div class='container'><div class='cell header bold center title'>Total Receivables : {{getTotalReceivable()}} ₱</div></div>
             </div>
-            <div class='cell icon'></div>
-	    </div>
-	</div>
+        </div>
+    </div>
 
-	<ul class="animate-container">
-		<li class="animate-repeat" ng-animate="'animate'" *ngFor="#FilteredSearch of vSearchedList" >
+    <div *ngFor="#FilteredSearch of vSearchedList" >
 			<div class="item-container">
 			    <div class="container">
 			        <div class='cell'>
-		                <div class='container'><div class='cell left grey'># Route {{FilteredSearch.routeID}}</div></div>
-		                <div class='container'><div class='cell left'>{{FilteredSearch.retailerName}}</div></div>
-		                <div class='container'><div class='cell left italic'>{{FilteredSearch.MIN}}</div></div>
+		                <div class='container' *ngIf="FilteredSearch.AccountReceivable[0].Retailer.Route.RouteDay[0].sequence"><div class='cell left grey'># Route {{FilteredSearch.AccountReceivable[0].Retailer.Route.RouteDay[0].sequence}}</div></div>
+		                <div class='container'><div class='cell left'>{{FilteredSearch.AccountReceivable[0].Retailer.retailer_name}}</div></div>
+		                <div class='container'><div class='cell left italic'>{{FilteredSearch.AccountReceivable[0].Retailer.retailer_min}}</div></div>
 			        </div>
 			        <div class='cell'>
 		                <div class='container'><div class='cell right'></div></div>
-		                <div class='container'><div class='cell right'>{{FilteredSearch.accReceivables}} ₱</div></div>
+		                <div class='container'><div class='cell right'>{{FilteredSearch.AccountReceivable[0].amount}} ₱</div></div>
 		                <div class='container'><div class='cell right'></div></div>
 			        </div>
 			            <div class='cell icon'></div>
 			    </div>
 			</div>
-		</li>
-	</ul>
+		</div>
 </div>

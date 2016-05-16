@@ -108,6 +108,22 @@ export class TargetsActualsService{
             return this._http.get('/getCategory');
       }
 
+      queryTargets(pSubCategoryID)
+      {
+ 
+            //To-Do : Query User ID or Username
+            let vSubCategoryID:string = pSubCategoryID;
+
+            //Hit API with parameter user_id and current date
+            let data:string = 'sub_category_id='+vSubCategoryID;
+            return this._http.post('/getTargets',data,
+                  <RequestOptionsArgs> {headers: new Headers(
+                {'Content-Type': 'application/x-www-form-urlencoded'})
+            });
+            
+      }
+
+
 	getBrand(){
 		return this.vBrand;
 	}

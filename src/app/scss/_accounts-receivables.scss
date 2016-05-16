@@ -45,108 +45,70 @@
             }
         }
     }
+    .item-container {
+    width: 100%;
+    border-bottom: 1px solid $border-line;
+    cursor: pointer;
 
-    .animate-container{
-        display: block;
-        overflow: hidden;
-
-        .animate-repeat.ng-enter{
-            -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            position: relative;
-            display: block;
-        }
-        .animate-repeat.ng-enter-active{
-            opacity: 1;
-            top: 0;
-            height: 30px;
-        }
-        .animate-repeat.ng-leave{
-            -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-            position: relative;
-            display: block;
-        }
-        .animate-repeat.ng-leave-active{
-            opacity: 0;
-            top: -50px;
-            height: 0px;
+        &.sub {
+            background-color: $whisper;
         }
 
-        .item-container {
-        width: 100%;
-        border-bottom: 1px solid $border-line;
-        cursor: pointer;
+        .container {
+            display: table;
+            width: 100%;
 
-            &.sub {
-                background-color: $whisper;
-            }
-
-            .container {
-                display: table;
-                width: 100%;
-
-                &.border {
-                    border-bottom: 1px solid $border-line;
-                }
-            }
-            .cell {
-                display:table-cell;
-                font-size: $content-normal;
-                height:1.6em;
-                vertical-align:middle;
-
-                &.left {
-                    width: 45%;
-                    padding-left:0.6em;
-                }
-                &.right {
-                    width: 40%;
-                    text-align: right;
-                }
-                &.single {
-                    width: 85%;
-                    padding-left:0.6em;
-                }
-                &.icon {
-                    width: 15%;
-                }
-
-                &.bold {
-                    font-weight: bold;
-                }
-                &.italic {
-                    font-style: italic;
-                }
-                &.center {
-                    text-align: center;
-                }
-
-                &.grey {
-                    color: $grey;
-                }
-                &.deep-cyan {
-                    color: $deep-cyan;
-                }
-
-                &.sub-cell {
-                    padding-left:2em;
-                }
-                &.title {
-                    font-size: 1.2em;
-                    height:2.5em;
-                }
+            &.border {
+                border-bottom: 1px solid $border-line;
             }
         }
+        .cell {
+            display:table-cell;
+            font-size: $content-normal;
+            height:1.6em;
+            vertical-align:middle;
 
+            &.left {
+                width: 45%;
+                padding-left:0.6em;
+            }
+            &.right {
+                width: 40%;
+                text-align: right;
+            }
+            &.single {
+                width: 85%;
+                padding-left:0.6em;
+            }
+            &.icon {
+                width: 15%;
+            }
+
+            &.bold {
+                font-weight: bold;
+            }
+            &.italic {
+                font-style: italic;
+            }
+            &.center {
+                text-align: center;
+            }
+
+            &.grey {
+                color: $grey;
+            }
+            &.deep-cyan {
+                color: $deep-cyan;
+            }
+
+            &.sub-cell {
+                padding-left:2em;
+            }
+            &.title {
+                font-size: 1.2em;
+                height:2.5em;
+            }
+        }
     }
-
-
-
+    
 }

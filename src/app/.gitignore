@@ -7,3 +7,4 @@ js
 app/**/*.js
 models/*.js
 .baseDir.js
+config/service.json

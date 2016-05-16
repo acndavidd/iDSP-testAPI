@@ -51,7 +51,7 @@ export class DetailRetailerComponent {
                     this.vSelectedRetail = response.json().result;
 
                     this.vSelectedRetail.retailer.birthday = new Date(this.vSelectedRetail.retailer.birthday);
-                    console.log("Abis format" + JSON.stringify(vSelectedRetail));
+                    console.log("Abis format" + JSON.stringify(this.vSelectedRetail));
                 }else{//failed login
                     console.log("Query Failed")
                     //this.vErrorMsg = response.json().errorMessage;

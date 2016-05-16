@@ -1,14 +1,30 @@
 <div class="left-menu-container" [ngClass]="{active : getLeftMenuState()}">
+    <!-- <div class="menu-header">
+        <div class="header-container">
+            <div class="header-cell pic">
+                <img src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif" class="menu-pic" id="menuPic" (click)="takepic()"/>
+            </div>
+            <div class="header-cell text">
+                Tamara Josh Honey Panda
+            </div>
+        </div>
+    </div> -->
+
+
     <div class="menu-header">
-        
-        <div>
-            <img src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif" class="menu-pic" id="menuPic" (click)="takepic()"/>
-            <div class="menu-header-text">
+        <div class="header-container">
+            <div class="header-cell pic">
                 <!--<input type="file" />-->
-                <div class="smart-point">Tamara Josh</div>
+                <img src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif" class="menu-pic" id="menuPic" (click)="takepic()"/>
+            </div>
+            <div class="header-cell">
+                <div class="header-container">
+                    <div class="header-cell text">Tamara Josh Honey Panda</div>
+                </div>
             </div>
         </div>
     </div>
+
     <div class="menu-item-box">
 
         <div class="container" (click)="goToMyDashboard()">
@@ -17,36 +33,42 @@
             </div>
             <div class='cell icon arrow-right'></div>
         </div>
+        <div class="separator"></div>
             <div class="container" (click)="goToTargets()">
                 <div class='cell icon call'></div>
                 <div class='cell'>
                     <div class='container'><div class='cell single'>Targets &amp; Actuals</div></div>
                 </div>
             </div>
+        <div class="separator"></div>
             <div class="container" (click)="goToInventory()">
                 <div class='cell icon call'></div>
                 <div class='cell'>
                     <div class='container'><div class='cell single'>Inventory</div></div>
                 </div>
             </div>
+        <div class="separator"></div>
             <div class="container" (click)="goToRetailerRoute()">
                 <div class='cell icon call'></div>
                 <div class='cell'>
                     <div class='container'><div class='cell single'>Retailer Route</div></div>
                 </div>
             </div>
+        <div class="separator"></div>
             <div class="container" (click)="goToAccountReceivables()">
                 <div class='cell icon call'></div>
                 <div class='cell'>
                     <div class='container'><div class='cell single'>Account Receivables</div></div>
                 </div>
             </div>
+        <div class="separator"></div>
             <div class="container" (click)="goToThresholdAlerts()">
                 <div class='cell icon call'></div>
                 <div class='cell'>
                     <div class='container'><div class='cell single'>Threshold &amp; Alerts</div></div>
                 </div>
             </div>
+        <div class="separator"></div>
 
 
         <div class="container" (click)="goToBasicCallProcedure()">
@@ -55,31 +77,36 @@
             </div>
             <div class='cell icon arrow-right'></div>
         </div>
-
+        <div class="separator"></div>
         <div class="container" (click)="goToCloseOfTheDay()">
             <div class='cell'>
                 <div class='container'><div class='cell single'>Close of the Day</div></div>
             </div>
             <div class='cell icon arrow-right'></div>
         </div>
+        <div class="separator"></div>
             <div class="container" (click)="goToTargetsActuals()">
                 <div class='cell icon call'></div>
                 <div class='cell'>
                     <div class='container'><div class='cell single'>Targets &amp; Actuals</div></div>
                 </div>
             </div>
+        <div class="separator"></div>
             <div class="container" (click)="goToVisitedRetailerRoute()">
                 <div class='cell icon call'></div>
                 <div class='cell'>
                     <div class='container'><div class='cell single'>Visited Retailer Route</div></div>
                 </div>
             </div>
+        <div class="separator"></div>
             <div class="container" (click)="goToCollection()">
                 <div class='cell icon call'></div>
                 <div class='cell'>
                     <div class='container'><div class='cell single'>Collection &amp; Remittance Summary</div></div>
                 </div>
             </div>
+        <div class="separator"></div>
+
 
         <div class="container" (click)="goToRemittance()">
             <div class='cell'>
@@ -87,6 +114,8 @@
             </div>
             <div class='cell icon arrow-right'></div>
         </div>
+        <div class="separator"></div>
+
 
         <div class="container" (click)="goToStockReturn()">
             <div class='cell'>
@@ -94,6 +123,8 @@
             </div>
             <div class='cell icon arrow-right'></div>
         </div>
+        <div class="separator"></div>
+
 
         <div class="container" (click)="goToLogout()">
             <div class='cell'>
