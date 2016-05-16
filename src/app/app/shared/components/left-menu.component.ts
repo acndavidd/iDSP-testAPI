@@ -20,21 +20,7 @@ declare var configChannel:any;
 })
 export class LeftMenuComponent implements OnInit  {
     
-    selectedPhone;
-    zone;
     image;
-    
-    menuSelection:any = {
-        mainMenu: true,
-
-        account:false,
-        smartService:false,
-        addOns: false,
-        billingDetail: false,
-        balanceUsage: false,
-        rewards: false,
-        support: false
-    };
     
     constructor(private _layoutService : LayoutService,
     private _router: Router,
@@ -42,15 +28,11 @@ export class LeftMenuComponent implements OnInit  {
     private _authenticationService: AuthenticationService,
     private _headerService: HeaderService
     ){
-        //this._accountService.getMobileNumberlistFromBackEnd(false);
-        let min = localStorage.getItem('mobileNo');
-        this.selectedPhone = min;
         this.image = null;
     }
     
     ngOnInit() {
-        let min = localStorage.getItem('mobileNo');
-        this.selectedPhone = min;
+
     }
 
     toggleLeftMenu() { 
@@ -60,9 +42,57 @@ export class LeftMenuComponent implements OnInit  {
     getLeftMenuState() { 
         return this._layoutService.getLeftMenuState(); 
     }
-
+    
+    goToMyDashboard() {
+        this._router.navigate(['MainPage','MyTransaction']);
+    }
+    
+    goToTargets() {
+        this._router.navigate(['MainPage','TargetsActuals']);
+    }
+    
     goToInventory() {
         this._router.navigate(['MainPage','Inventory']);
+    }
+
+    goToRetailerRoute() {
+        this._router.navigate(['MainPage','RetailerRoute']);
+    }
+
+    goToAccountReceivables() {
+        this._router.navigate(['MainPage','AccountsReceivables']);
+    }
+
+    goToThresholdAlerts() {
+        this._router.navigate(['MainPage','DSPAlerts']);
+    }
+
+    goToBasicCallProcedure() {
+        this._router.navigate(['MainPage','BasicCallProcedure']);
+    }
+
+    goToCloseOfTheDay() {
+        this._router.navigate(['MainPage','CloseDay']);
+    }
+
+    goToTargetsActuals() {
+        this._router.navigate(['MainPage','CDTargetsActuals']);
+    }
+
+    goToVisitedRetailerRoute() {
+        this._router.navigate(['MainPage','VisitedRetail']);
+    }
+
+    goToCollection() {
+        this._router.navigate(['MainPage','Collection']);
+    }
+
+    goToRemittance() {
+        //this._router.navigate(['MainPage','DSPAlerts']);
+    }
+
+    goToStockReturn() {
+        //this._router.navigate(['MainPage','DSPAlerts']);
     }
 
     goToLogout() {
