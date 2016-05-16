@@ -15,7 +15,7 @@
 		</div>
 	</div>
 
-	<div *ngIf="vDayShow" >
+<div *ngIf="vDayShow" >
 		<div class="item-container-ta" id="ta-container">
 			<div>
 				<div *ngFor="#prod_cat of getProduct()">
@@ -30,7 +30,9 @@
 							23.33%
 						</div>
 						<div class="item-right">
-							25/150
+								<div style="clear: right;">
+								25/{{prod_sub.Product[0].Target[0].Total}}
+								</div>
 							<div class="target-text">
 								Actual/Target
 							</div>
