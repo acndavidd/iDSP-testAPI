@@ -94,22 +94,70 @@
 			<div class="item-notification">LOAD AS OF 04/12/2016 10.00 AM</div>
 		</div>
 
-		<div *ngFor="#vProduct of getProductList(); #i = index">
-			<div class="item-container" (click)="subMenuShow(i)">
+		<div>
+			<div class="item-container" (click)="subLoadMenuShow(i)">
 				<div class="container">
 					<div class='cell'>
-				        <div class='container'><div class='cell left bold' [ngClass]="{title: vSubMenuShow[i]}">{{vProduct.productName}}</div></div>
-				        <div class='container'><div class='cell left grey' *ngIf="!vSubMenuShow[i]">Ending Balance</div></div>
+				        <div class='container'><div class='cell left bold' [ngClass]="{title: vSubLoadMenuShow[i]}">Smartload</div></div>
+				        <div class='container'><div class='cell left grey' *ngIf="!vSubLoadMenuShow[i]">Ending Balance</div></div>
 				    </div>
 					<div class='cell'>
 				        <div class='container'><div class='cell right'></div></div>
-				        <div class='container'><div class='cell right bold' *ngIf="!vSubMenuShow[i]">{{vProduct.endingBalance}}</div></div>
+				        <div class='container'><div class='cell right bold' *ngIf="!vSubLoadMenuShow[i]">700</div></div>
 				    </div>
-				    <div class='cell icon arrow-down' [ngClass]="{selected: vSubMenuShow[i]}"></div>
+				    <div class='cell icon arrow-down' [ngClass]="{selected: vSubLoadMenuShow[i]}"></div>
 				</div>
 			</div>
 
-			<div class="item-container sub" *ngIf="vSubMenuShow[i]">
+			<div class="item-container sub" *ngIf="vSubLoadMenuShow[i]">
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell left bold'>Total Inventory</div></div>
+				        <div class='container'><div class='cell left sub-cell'>Beginning Balance</div></div>
+				        <div class='container'><div class='cell left sub-cell'>Delivery</div></div>
+				        <div class='container'><div class='cell left sub-cell'>Sub Total</div></div>
+				        <div class='container'><div class='cell left bold'>Sales</div></div>
+				        <div class='container'><div class='cell left sub-cell'>Sold</div></div>
+				        <div class='container'><div class='cell left sub-cell'>Sub Total</div></div>
+				        <div class='container'><div class='cell left bold'>Ending Balance</div></div>
+				    </div>
+					<div class='cell'>
+				        <div class='container'><div class='cell right'></div></div>
+				        <div class='container'><div class='cell right'>100</div></div>
+				        <div class='container'><div class='cell right'>100</div></div>
+				        <div class='container'><div class='cell right'>600</div></div>
+				        <div class='container'><div class='cell right'></div></div>
+				        <div class='container'><div class='cell right'>100</div></div>
+				        <div class='container'><div class='cell right'>100</div></div>
+				        <div class='container'><div class='cell right bold'>700</div></div>
+				    </div>
+				    <div class='cell icon'></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="vPhysicalShow">
+		<div class="item-container-i">
+			<div class="item-notification">PHYSICAL AS OF 04/12/2016 10.00 AM</div>
+		</div>
+
+		<div *ngFor="#vProduct of getProductList(); #i = index">
+			<div class="item-container" (click)="subPhysicalMenuShow(i)">
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell left bold' [ngClass]="{title: vSubPhysicalMenuShow[i]}">{{vProduct.productName}}</div></div>
+				        <div class='container'><div class='cell left grey' *ngIf="!vSubPhysicalMenuShow[i]">Ending Balance</div></div>
+				    </div>
+					<div class='cell'>
+				        <div class='container'><div class='cell right'></div></div>
+				        <div class='container'><div class='cell right bold' *ngIf="!vSubPhysicalMenuShow[i]">{{vProduct.endingBalance}}</div></div>
+				    </div>
+				    <div class='cell icon arrow-down' [ngClass]="{selected: vSubPhysicalMenuShow[i]}"></div>
+				</div>
+			</div>
+
+			<div class="item-container sub" *ngIf="vSubPhysicalMenuShow[i]">
 				<div class="container">
 					<div class='cell'>
 				        <div class='container'><div class='cell left bold'>Total Inventory</div></div>
@@ -135,12 +183,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div *ngIf="vPhysicalShow">
-		<div class="item-container-i">
-			<div class="item-notification">PHYSICAL AS OF 04/12/2016 10.00 AM</div>
-		</div>
 	</div>
 	
 </div>

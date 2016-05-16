@@ -59,7 +59,14 @@ export class LeftMenuComponent implements OnInit  {
     
     getLeftMenuState() { 
         return this._layoutService.getLeftMenuState(); 
-    } 
+    }
 
+    goToInventory() {
+        this._router.navigate(['MainPage','Inventory']);
+    }
+
+    goToLogout() {
+        this._router.navigate(['Starter','Login']);
+    }
 
 }
