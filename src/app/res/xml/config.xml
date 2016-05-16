@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="ph.com.smart.idsp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <preference name="loglevel" value="DEBUG" />
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <splash density="land-hdpi" src="www/img/login_screen.png" />
+    <splash density="land-ldpi" src="www/img/login_screen.png" />
+    <splash density="land-mdpi" src="www/img/login_screen.png" />
+    <splash density="land-xhdpi" src="www/img/login_screen.png" />
+    <splash density="port-hdpi" src="www/img/login_screen.png" />
+    <splash density="port-ldpi" src="www/img/login_screen.png" />
+    <splash density="port-mdpi" src="www/img/login_screen.png" />
+    <splash density="port-xhdpi" src="www/img/login_screen.png" />
+    <allow-intent href="market:*" />
+    <name>iDSP</name>
+    <description>
+        iDSP Smart App for Sales
+    </description>
+    <author email="dev@accenture.com" href="http://accenture.com">
+        Accenture Pty Ltd
+    </author>
+    <preference name="SplashScreen" value="screen" />
+    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="1000" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+</widget>

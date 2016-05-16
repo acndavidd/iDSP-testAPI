@@ -25,14 +25,14 @@
     </feature>
 
     <platform name="android">
-        <splash density="land-hdpi" src="www/img/login_screen.png" />
-        <splash density="land-ldpi" src="www/img/login_screen.png" />
-        <splash density="land-mdpi" src="www/img/login_screen.png" />
-        <splash density="land-xhdpi" src="www/img/login_screen.png" />
-        <splash density="port-hdpi" src="www/img/login_screen.png" />
-        <splash density="port-ldpi" src="www/img/login_screen.png" />
-        <splash density="port-mdpi" src="www/img/login_screen.png" />
-        <splash density="port-xhdpi" src="www/img/login_screen.png" />
+        <splash density="land-hdpi"  src="res/drawable-land-hdpi/screen.png" />
+        <splash density="land-ldpi"  src="res/drawable-land-ldpi/screen.png" />
+        <splash density="land-mdpi"  src="res/drawable-land-mdpi/screen.png" />
+        <splash density="land-xhdpi" src="res/drawable-land-xhdpi/screen.png" />
+        <splash density="port-hdpi"  src="res/drawable-port-hdpi/screen.png" />
+        <splash density="port-ldpi"  src="res/drawable-port-ldpi/screen.png" />
+        <splash density="port-mdpi"  src="res/drawable-port-mdpi/screen.png" />
+        <splash density="port-xhdpi" src="res/drawable-port-xhdpi/screen.png" />
     </platform>
 
     <content src="index.html" />
