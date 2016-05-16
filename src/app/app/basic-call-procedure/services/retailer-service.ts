@@ -49,8 +49,6 @@ export class RetailerService{
        	return '';
 	}
 
-
-
 	getError():string{
 		return this.vErrorMsg;
 	}

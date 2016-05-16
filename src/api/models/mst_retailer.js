@@ -24,14 +24,15 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     timestamps : false,
     freezeTableName: true,
-    classMethods: {
+    classMethods: { 
       associate: function(models) {
         mst_retailer.hasMany(models.mst_retailer_dsp_alert, {as : 'RetailerDSPAlert' , foreignKey : 'retailer_id'});
+        mst_retailer.hasMany(models.mst_route, {as : 'Route' , foreignKey : 'retailer_id'});
         mst_retailer.belongsTo(models.mst_dsp , {as : 'DSP' , foreignKey : 'dsp_id'});
-        mst_retailer.hasOne(models.mst_route, {as : 'Route' , foreignKey : 'retailer_id' });
+        mst_retailer.hasMany(models.trx_account_receivable , {as : 'AccountReceivable' , foreignKey : 'retailer_id'});
       },
       getAssociatedModels : function(){
-        return ['mst_retailer_dsp_alert' , 'mst_dsp', 'mst_route'];
+        return ['mst_retailer_dsp_alert' , 'mst_retailer','mst_route','trx_account_receivable'];
       }
     }
   });

@@ -24,7 +24,8 @@ export class InventoryComponent {
     vSelectedDate: String;
 	vLoadShow = true;
 	vPhysicalShow = false;
-    vSubMenuShow = [];
+    vSubPhysicalMenuShow = [];
+    vSubLoadMenuShow = [];
 
 	constructor (
 		private _layoutService: LayoutService,
@@ -57,13 +58,17 @@ export class InventoryComponent {
     	this.vPhysicalShow = true;
     }
 
-    subMenuShow(indexArr)
+    subPhysicalMenuShow(indexArr)
     {
         console.log(indexArr);
-        //if(this.vSubMenuShow[indexArr] === undefined || this.vSubMenuShow[indexArr] === null) this.vSubMenuShow[indexArr] = false;
-        this.vSubMenuShow[indexArr] = !this.vSubMenuShow[indexArr];
+        this.vSubPhysicalMenuShow[indexArr] = !this.vSubPhysicalMenuShow[indexArr];
     }
 
+    subLoadMenuShow(indexArr)
+    {
+        console.log(indexArr);
+        this.vSubLoadMenuShow[indexArr] = !this.vSubLoadMenuShow[indexArr];
+    }
 
     getProductList(){
         return this._inventoryService.productList;
