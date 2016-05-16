@@ -168,6 +168,11 @@ module.exports = function(grunt) {
                         dest:'../../debug/',
                         expand: true,
                     },
+                    {
+                        src:['res/**/*.*'],
+                        dest:'../../debug/',
+                        expand: true,                        
+                    }
                 ]
             },
 
@@ -239,11 +244,18 @@ module.exports = function(grunt) {
 							'fonts/*.*',
 							'img/**/*.*',
                             'js/*.*',
+                            'res/**/*.*',
                             'scripts/*.*',
 							'services/**/*.json',
 							'init.js', 'tsconfig.json'
 						],
                         dest:'../cordova/www/',
+                        expand: true
+                    },
+                    {
+                        cwd: '../../debug/',
+                        src:['res/**/*.*'],
+                        dest:'../cordova/',
                         expand: true
                     },
 					{
