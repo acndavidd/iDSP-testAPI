@@ -18,7 +18,6 @@ module.exports = function(sequelize, DataTypes) {
         mst_dsp.belongsTo(models.mst_dss , {as : 'DSS', foreignKey : 'dsp_id'});
         mst_dsp.hasMany(models.mst_retailer , {as : 'Retailer' , foreignKey : 'dsp_id'});
         mst_dsp.hasMany(models.mst_target , {as : 'Target' , foreignKey : 'dsp_id'});
-        mst_dsp.hasMany(models.mst_route , {as : 'Route' , foreignKey : 'dsp_id'});
         mst_dsp.hasMany(models.trx_remittance, {as : 'Remittance', foreignKey : 'dsp_id'});
         mst_dsp.hasMany(models.trx_sales_order , {as : 'SalesOrder' , foreignKey : 'dsp_id'});
         mst_dsp.hasMany(models.trx_collection, {as : 'Collection', foreignKey : 'dsp_id'});
@@ -28,8 +27,7 @@ module.exports = function(sequelize, DataTypes) {
         return [
         'mst_dss',
         'mst_retailer' , 
-        'mst_target' , 
-        'mst_route' , 
+        'mst_target',
         'trx_remittance' , 
         'trx_sales_order' , 
         'trx_collection' , 

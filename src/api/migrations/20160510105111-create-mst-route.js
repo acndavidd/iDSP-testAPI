@@ -8,9 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      dsp_id: {
-        type: Sequelize.STRING(20)
-      },
       retailer_id: {
         type: Sequelize.STRING(20)
       },

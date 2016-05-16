@@ -16,21 +16,41 @@
 	</div>
 
 	<div *ngIf="vDayShow" >
-		<div class="item-container-ta" id="ta-container" *ngFor="#each of getProdCat()">
-			<div class="item-title-ta">{{each.category_name}} </div>
-				<div class="item-left" *ngFor="#prodSubCat of getProdSubCat()">{{prodSubCat.sub_category_name}}</div>
-				<div class="item-mid">23.33%</div>
-				<div class="item-right">
-					25/150
-					<div class="target-text">Actual/Target</div>
-					<div class="balance">Balance : <div class="balace-number">200</div> </div>
+		<div class="item-container-ta" id="ta-container">
+			<div>
+				<div *ngFor="#prod_cat of getProduct()">
+					<div class="item-title-ta">
+						{{prod_cat.category_name}}
+					</div>
+					<div *ngFor="#prod_sub of prod_cat.ProductSubCategory">
+						<div class="item-left">
+							{{prod_sub.sub_category_name}}
+						</div>
+						<div class="item-mid">
+							23.33%
+						</div>
+						<div class="item-right">
+							25/150
+							<div class="target-text">
+								Actual/Target
+							</div>
+							<div class="balance">
+								Balance : 
+								<div class="balance-number">
+									200
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="divider"></div>
 				</div>
+			</div>
 		</div>
-		<div class="divider"></div>
+		
 	</div>
 
 	<div *ngIf="vWeekShow">
-		<div class="item-container-ta" id="ta-container" *ngFor="#each of getProdCat()">
+		<div class="item-container-ta" id="ta-container" *ngFor="#each of getProduct()">
 			<div class="item-title-ta">{{each.category_name}}</div>
 				<div class="item-left">SIM</div>
 				<div class="item-mid">23.33%</div>
@@ -43,7 +63,7 @@
 	</div>
 
 	<div *ngIf="vMonthShow">
-		<div class="item-container-ta" id="ta-container" *ngFor="#each of getProdCat()">
+		<div class="item-container-ta" id="ta-container" *ngFor="#each of getProduct()">
 			<div class="item-title-ta">{{each.category_name}}</div>
 				<div class="item-left">SIM</div>
 				<div class="item-mid">23.33%</div>

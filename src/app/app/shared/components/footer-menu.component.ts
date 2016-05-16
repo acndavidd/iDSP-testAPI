@@ -42,14 +42,14 @@ export class FooterMenuComponent{
 		this._router.navigate(['MainPage','Settings']);
 	}
 	
-	getFooterItem(){
-		console.log("Footer item");
-        return this._layoutService.getFooterItem();
-    }
+	// getFooterItem(){
+	// 	console.log("Footer item");
+	// 	return this._layoutService.getFooterItem();
+	// }
 
-  	getFooterState(){
-        return this._layoutService.getFooterState();
-    }
+	// getFooterState(){
+	// 	return this._layoutService.getFooterState();
+	// }
 
     getLayout(){
 		return this._layoutService.getLayout();

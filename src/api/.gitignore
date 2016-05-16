@@ -1,7 +1,10 @@
-node_modules
-typings
 **/*.js.map
-[^m]**/*.js
+**/*.js
+!models/*.js
+!migrations/*.js
+!seeders/*.js
+typings
+node_modules
 .tscache
 *.tmp.txt
 config/config.json

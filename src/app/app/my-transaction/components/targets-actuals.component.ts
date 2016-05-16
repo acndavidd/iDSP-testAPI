@@ -36,6 +36,13 @@ export class TargetsActualsComponent {
     public vSelectedBrand;
     public vSelectedProd;
 
+    private vShowProductFirst;
+
+    private vListProduct;
+    private vListCategory;
+    private vShowProduct;
+    private vShowCategory;
+
 	constructor (
         private _router: Router,
 		private _layoutService: LayoutService,
@@ -44,6 +51,7 @@ export class TargetsActualsComponent {
         private _targetsActualsService: TargetsActualsService
     	) 
 	{
+        this.vSelectedBrand = "SMART";
 
 		this._layoutService.setCurrentPage('TargetsActuals');
 		this._headerService.setTitle("Targets & Actuals");
@@ -51,8 +59,6 @@ export class TargetsActualsComponent {
              response => {
                 if(response.json().status == "Success"){
                     this.vListBrands = response.json().brandList;
-                    this.vSelectedBrand = "SMART";
-                    //this.vSelectedBrand = this.vListBrands;
                 }
             },
             error => {}
@@ -63,39 +69,41 @@ export class TargetsActualsComponent {
                 if(response.json().status == "Success"){
                     this.vListProd = response.json().CatList;
                     this.vShowProd = this.vListProd;
-                    //this.vSelectedBrand = this.vListBrands;
                 }
             },
             error => {}
         );
 
-        this._targetsActualsService.queryProdSubCat().subscribe(
+
+        this._targetsActualsService.queryProduct().subscribe(
              response => {
                 if(response.json().status == "Success"){
-                    this.vListProdSubCat = response.json().SubCatList;
-                    this.vShowProdSubCat = this.vListProdSubCat;
-                    //this.vSelectedBrand = this.vListBrands;
+                    this.vListProduct= response.json().ProdList;
+                    this.vShowProduct = this.vListProduct.filter(
+                        prod => {
+                            return prod.brand == this.vSelectedBrand 
+                        });
                 }
             },
             error => {}
         );
 
-        console.log("aabb"+ this.vListBrands);
+        this._targetsActualsService.queryCategory().subscribe(
+             response => {
+                if(response.json().status == "Success"){
+                    this.vListCategory= response.json().CategoryList;
+                    this.vShowCategory = this.vListCategory.filter(cat => cat.brand == this.vSelectedBrand);
+                }
+            },
+            error => {}
+        );
 
-        //this.vSelectedBrand = "SMART";
     }
 
     getBrand(){
         return this.vListBrands;
-        //return this._targetsActualsService.vBrand;
-        //return this._targetsActualsService.getBrand();
     }
 
-    getBrandSelected(){
-        return this._targetsActualsService.vBrand.brand[0];
-        //return this._targetsActualsService.getBrand();
-    }
-	
 	getResize(){
         return this._matchMediaService.getMm();  
     }
@@ -141,25 +149,39 @@ export class TargetsActualsComponent {
         this.vSelectedBrand = pSelectedBrand;
         console.log(this.vSelectedBrand + " IS SELECTED");
         this.vShowProd = this.vListProd.filter(prod => prod.brand == this.vSelectedBrand);
-        this.vShowProdSubCat = this.vListProdSubCat.filter(prodSubCat => 
-            {    
-                return prodSubCat.brand == this.vSelectedBrand ||
-                prodSubCat.category_id == this.vSelectedProd
-
-            });
+        this.vShowProduct = this.vListProduct.filter(prod => prod.brand == this.vSelectedBrand);
      }   
 
     getProdCat()
     {  
         return this.vShowProd;
-        //return this._targetsActualsService.vProdCat;
     }
 
-    getProdSubCat()
+    getProduct()
     {
-        console.log('selected prod' +this.vSelectedProd);
-        console.log('selected brand'+this.vSelectedBrand);
-       
-        return this.vShowProdSubCat;
+        // this._targetsActualsService.queryProduct().subscribe(
+        //      response => {
+        //         if(response.json().status == "Success"){
+        //             this.vListProduct= response.json().ProdList;
+        //             this.vShowProduct = this.vListProduct.filter(
+        //                 vCategories => {
+        //                     return vCategories.ProductCategory.brand == this.vSelectedBrand &&
+        //                     vCategories.ProductCategory.category_name == pCategory
+        //                 }
+        //                 );
+        //         }
+        //     },
+        //     error => {}
+        // );
+        // this.vShowProduct = this.vListProduct.filter(prod => {
+        //     return prod.category_name == pCategory && 
+        //     prod.brand == this.vSelectedBrand });
+        return this.vShowProduct;
     }
+
+    getCategories()
+    {    
+        return this.vShowCategory;
+    }
+
 }
