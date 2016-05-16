@@ -20,6 +20,18 @@ To map database tables into models call /service/refreshmodel
 Run Sequelize with the following parameters:
 `sequelize <options> --env sql-dev  --config config/migrate.json`
 
+### Migrating Database
+`sequelize db:migrate --env sql-dev --config config/migrate.json`
+
+### Reverting All Migration
+`sequelize db:migrate:undo:all --env sql-dev --config config/migrate.json`
+
+### Seed Database
+`sequelize db:seed:all --env sql-dev --config config/migrate.json`
+
+### Undoing Seed on Database
+`sequelize db:seed:undo:all --env sql-dev --config config/migrate.json`
+
 ### Debug
 run: node-debug src/rest/main.js
 
