@@ -1,9 +1,12 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var mst_route = sequelize.define('mst_route', {
+    
     route_id: {
       type : DataTypes.INTEGER,
-      primaryKey : true
+      primaryKey : true,
+      allowNull: false,
+      autoIncrement: true
     },
     retailer_id: DataTypes.STRING(20),
     freq_map_id: DataTypes.INTEGER,

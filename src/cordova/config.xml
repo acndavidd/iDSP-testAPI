@@ -9,8 +9,10 @@
     </author>
 
     <preference name="SplashScreen" value="screen" />
+    <preference name="ShowSplashScreenSpinner" value="false"/>
+    <preference name="FadeSplashScreen" value="false"/>
     <preference name="AutoHideSplashScreen" value="true" />
-    <preference name="SplashScreenDelay" value="1000" />
+    <preference name="SplashScreenDelay" value="3000" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
 
@@ -25,14 +27,15 @@
     </feature>
 
     <platform name="android">
-        <splash density="land-hdpi" src="www/img/login_screen.png" />
-        <splash density="land-ldpi" src="www/img/login_screen.png" />
-        <splash density="land-mdpi" src="www/img/login_screen.png" />
-        <splash density="land-xhdpi" src="www/img/login_screen.png" />
-        <splash density="port-hdpi" src="www/img/login_screen.png" />
-        <splash density="port-ldpi" src="www/img/login_screen.png" />
-        <splash density="port-mdpi" src="www/img/login_screen.png" />
-        <splash density="port-xhdpi" src="www/img/login_screen.png" />
+        <splash src="res/screen/android/splash-land-hdpi.png" density="land-hdpi"/>
+        <splash src="res/screen/android/splash-land-ldpi.png" density="land-ldpi"/>
+        <splash src="res/screen/android/splash-land-mdpi.png" density="land-mdpi"/>
+        <splash src="res/screen/android/splash-land-xhdpi.png" density="land-xhdpi"/>
+
+        <splash src="res/screen/android/splash-port-hdpi.png" density="port-hdpi"/>
+        <splash src="res/screen/android/splash-port-ldpi.png" density="port-ldpi"/>
+        <splash src="res/screen/android/splash-port-mdpi.png" density="port-mdpi"/>
+        <splash src="res/screen/android/splash-port-xhdpi.png" density="port-xhdpi"/>
     </platform>
 
     <content src="index.html" />
