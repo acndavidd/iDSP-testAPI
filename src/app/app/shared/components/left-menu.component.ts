@@ -21,6 +21,8 @@ declare var configChannel:any;
 export class LeftMenuComponent implements OnInit  {
     
     image;
+    vCurrentPage;
+    vGoToPage;
     
     constructor(private _layoutService : LayoutService,
     private _router: Router,
@@ -42,60 +44,87 @@ export class LeftMenuComponent implements OnInit  {
     getLeftMenuState() { 
         return this._layoutService.getLeftMenuState(); 
     }
+
+    checkCurrentPage(pGoToPage : string) {
+        this.vCurrentPage = this._layoutService.getCurrentPage();
+        console.log(pGoToPage + " - " + this.vCurrentPage);
+
+        if(pGoToPage === this.vCurrentPage) {
+            this.toggleLeftMenu();
+        }
+        else {
+            this._router.navigate(['MainPage', pGoToPage]);
+        }
+    }
     
     goToMyDashboard() {
-        this._router.navigate(['MainPage','MyTransaction']);
+        this.vGoToPage = "MyTransaction";
+        this.checkCurrentPage(this.vGoToPage);
     }
     
     goToTargets() {
-        this._router.navigate(['MainPage','TargetsActuals']);
+        this.vGoToPage = "TargetsActuals";
+        this.checkCurrentPage(this.vGoToPage);
     }
     
     goToInventory() {
-        this._router.navigate(['MainPage','Inventory']);
+        this.vGoToPage = "Inventory";
+        this.checkCurrentPage(this.vGoToPage);
     }
 
     goToRetailerRoute() {
-        this._router.navigate(['MainPage','RetailerRoute']);
+        this.vGoToPage = "RetailerRoute";
+        this.checkCurrentPage(this.vGoToPage);
     }
 
     goToAccountReceivables() {
-        this._router.navigate(['MainPage','AccountsReceivables']);
+        this.vGoToPage = "AccountsReceivables";
+        this.checkCurrentPage(this.vGoToPage);
     }
 
     goToThresholdAlerts() {
-        this._router.navigate(['MainPage','DSPAlerts']);
+        this.vGoToPage = "DSPAlerts";
+        this.checkCurrentPage(this.vGoToPage);
     }
 
     goToBasicCallProcedure() {
-        this._router.navigate(['MainPage','BasicCallProcedure']);
+        this.vGoToPage = "BasicCallProcedure";
+        this.checkCurrentPage(this.vGoToPage);
     }
 
     goToCloseOfTheDay() {
-        this._router.navigate(['MainPage','CloseDay']);
+        this.vGoToPage = "CloseDay";
+        this.checkCurrentPage(this.vGoToPage);
     }
 
     goToTargetsActuals() {
-        this._router.navigate(['MainPage','CDTargetsActuals']);
+        this.vGoToPage = "CDTargetsActuals";
+        this.checkCurrentPage(this.vGoToPage);
     }
 
     goToVisitedRetailerRoute() {
-        this._router.navigate(['MainPage','VisitedRetail']);
+        this.vGoToPage = "VisitedRetail";
+        this.checkCurrentPage(this.vGoToPage);
     }
 
     goToCollection() {
-        this._router.navigate(['MainPage','Collection']);
+        this.vGoToPage = "Collection";
+        this.checkCurrentPage(this.vGoToPage);
     }
 
     goToRemittance() {
-        //this._router.navigate(['MainPage','DSPAlerts']);
+        // this.vGoToPage = "Remittance";
+        // this.checkCurrentPage(this.vGoToPage);
     }
 
     goToStockReturn() {
-        //this._router.navigate(['MainPage','DSPAlerts']);
+        // this.vGoToPage = "StockReturn";
+        // this.checkCurrentPage(this.vGoToPage);
     }
 
     goToLogout() {
+        this._layoutService.toggleLeftMenu();
+        this._layoutService.toggleHeader();
         this._router.navigate(['Starter','Login']);
     }
 
