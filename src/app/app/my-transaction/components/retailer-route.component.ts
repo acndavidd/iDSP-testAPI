@@ -95,7 +95,21 @@ export class RetailerRouteComponent {
 
     refreshRetailerRoute(){
         console.log("Refresh retailer route for Day "+ this.vSelectedDay);
-    	this.vListRetailers = this._retailerRouteService.queryRetailerRoute(this.vSelectedDate);
+    	this._retailerRouteService.queryRetailerRoute(this.vSelectedDay).subscribe(
+                response => {
+                    if(response.json().status == 'Success'){//success login
+                        console.log("Query Success");
+                        this.vListRetailers = response.json().result;
+                    }else{//failed login
+                        console.log("Query Failed")
+                        //this.vErrorMsg = response.json().errorMessage;
+                    }
+                },
+                error => {
+                    console.log(error);
+                    //this.vErrorMsg = 'Failed connecting to login service';
+                }
+        );
     }
 
     onChangeSelectDay(pSelectedDay){
@@ -114,7 +128,7 @@ export class RetailerRouteComponent {
 
         let vParams = {
             retailer_id: pSelectedRetailer.retailer_id, 
-            route_sequence : pSelectedRetailer.route_sequence
+            route_sequence : pSelectedRetailer.Route[0].RouteDay[0].sequence
         }
 
         this._pageNavigationService.navigate('DetailRetailer', vParams, vParamsOld);

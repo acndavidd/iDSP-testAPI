@@ -20,21 +20,9 @@ declare var configChannel:any;
 })
 export class LeftMenuComponent implements OnInit  {
     
-    selectedPhone;
-    zone;
     image;
-    
-    menuSelection:any = {
-        mainMenu: true,
-
-        account:false,
-        smartService:false,
-        addOns: false,
-        billingDetail: false,
-        balanceUsage: false,
-        rewards: false,
-        support: false
-    };
+    vCurrentPage;
+    vGoToPage;
     
     constructor(private _layoutService : LayoutService,
     private _router: Router,
@@ -42,15 +30,11 @@ export class LeftMenuComponent implements OnInit  {
     private _authenticationService: AuthenticationService,
     private _headerService: HeaderService
     ){
-        //this._accountService.getMobileNumberlistFromBackEnd(false);
-        let min = localStorage.getItem('mobileNo');
-        this.selectedPhone = min;
         this.image = null;
     }
     
     ngOnInit() {
-        let min = localStorage.getItem('mobileNo');
-        this.selectedPhone = min;
+
     }
 
     toggleLeftMenu() { 
@@ -59,7 +43,89 @@ export class LeftMenuComponent implements OnInit  {
     
     getLeftMenuState() { 
         return this._layoutService.getLeftMenuState(); 
-    } 
+    }
 
+    checkCurrentPage(pGoToPage : string) {
+        this.vCurrentPage = this._layoutService.getCurrentPage();
+        console.log(pGoToPage + " - " + this.vCurrentPage);
+
+        if(pGoToPage === this.vCurrentPage) {
+            this.toggleLeftMenu();
+        }
+        else {
+            this._router.navigate(['MainPage', pGoToPage]);
+        }
+    }
+    
+    goToMyDashboard() {
+        this.vGoToPage = "MyTransaction";
+        this.checkCurrentPage(this.vGoToPage);
+    }
+    
+    goToTargets() {
+        this.vGoToPage = "TargetsActuals";
+        this.checkCurrentPage(this.vGoToPage);
+    }
+    
+    goToInventory() {
+        this.vGoToPage = "Inventory";
+        this.checkCurrentPage(this.vGoToPage);
+    }
+
+    goToRetailerRoute() {
+        this.vGoToPage = "RetailerRoute";
+        this.checkCurrentPage(this.vGoToPage);
+    }
+
+    goToAccountReceivables() {
+        this.vGoToPage = "AccountsReceivables";
+        this.checkCurrentPage(this.vGoToPage);
+    }
+
+    goToThresholdAlerts() {
+        this.vGoToPage = "DSPAlerts";
+        this.checkCurrentPage(this.vGoToPage);
+    }
+
+    goToBasicCallProcedure() {
+        this.vGoToPage = "BasicCallProcedure";
+        this.checkCurrentPage(this.vGoToPage);
+    }
+
+    goToCloseOfTheDay() {
+        this.vGoToPage = "CloseDay";
+        this.checkCurrentPage(this.vGoToPage);
+    }
+
+    goToTargetsActuals() {
+        this.vGoToPage = "CDTargetsActuals";
+        this.checkCurrentPage(this.vGoToPage);
+    }
+
+    goToVisitedRetailerRoute() {
+        this.vGoToPage = "VisitedRetail";
+        this.checkCurrentPage(this.vGoToPage);
+    }
+
+    goToCollection() {
+        this.vGoToPage = "Collection";
+        this.checkCurrentPage(this.vGoToPage);
+    }
+
+    goToRemittance() {
+        // this.vGoToPage = "Remittance";
+        // this.checkCurrentPage(this.vGoToPage);
+    }
+
+    goToStockReturn() {
+        // this.vGoToPage = "StockReturn";
+        // this.checkCurrentPage(this.vGoToPage);
+    }
+
+    goToLogout() {
+        this._layoutService.toggleLeftMenu();
+        this._layoutService.toggleHeader();
+        this._router.navigate(['Starter','Login']);
+    }
 
 }

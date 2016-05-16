@@ -51,6 +51,9 @@ vApp.use(function(pRequest, pResponse, pNext) {
         pRequest.path !== '/service/getProductListPhysical' &&
         pRequest.path !== '/service/getBrand' &&
         pRequest.path !== '/service/getAccountsReceivables'
+        pRequest.path !== '/service/getSalesRoute' &&
+        pRequest.path !== '/service/getRetailerSummary'
+
     ){//all request to service will validate token except login
         var vToken = '';
         try{
@@ -138,10 +141,16 @@ vRouter.get('/logout',vLoginCtrl.logout);
 vRouter.get('/targetsActuals',vTargetsActualsCtrl.getBrand);
 vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
 vRouter.get('/getAccountsReceivables',vAcc.getAccountsReceivables);
+
 vRouter.get('/getProductCategory',vTargetsActualsCtrl.getProdCat);
 vRouter.get('/getProductSubCategory',vTargetsActualsCtrl.getProdSubCat);
 vRouter.get('/getProduct',vTargetsActualsCtrl.getProduct);
+
 vRouter.get('/getCategory',vTargetsActualsCtrl.getCategory);
+
+
+vRouter.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
+vRouter.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
 vApp.use('/service',vRouter);
 vApp.listen(PORT);
 console.log('http://127.0.0.1:' + PORT + '/service');

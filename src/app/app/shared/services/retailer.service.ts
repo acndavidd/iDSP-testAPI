@@ -16,9 +16,19 @@ export class RetailerService{
 		this.vIsLoading = false;
 	}
 
-	getRetailerDetail(pRetailerID:number){
+	getRetailerSummary(pRetailerID){
 
-		//Sample Hardcoded
+		console.log("Start hit login service to Query Retailer Summary");
+		//Get Current Login User
+		let vData = {
+			retailerId : pRetailerID
+		};
+
+
+		//Hit Api with selectedDate and Login user
+		return this._http.post('/getRetailerSummary',JSON.stringify(vData));
+
+		/*Sample Hardcoded
 		var vSampleObject;
 		if (pRetailerID == 1)
 		{
@@ -82,6 +92,7 @@ export class RetailerService{
 		}		
 					
 		return vSampleObject;
+		*/
 
 		
 	}

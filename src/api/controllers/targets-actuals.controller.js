@@ -55,20 +55,49 @@ class TargetsActualsController {
             console.log(pErr);
         }
     }
-    getProdSubCat(pRequest, pResponse) {
+    getProduct(pRequest, pResponse) {
         try {
             var message = 'Insert start.';
             var orm = new orm_service_1.ORMService();
-            var product = orm.getModel("mst_prod_sub_cat");
-            product.findAll({
-                attributes: ['sub_category_id', 'category_id', 'sub_category_name']
-            }).then(function (result) {
+            var ormS = orm.getSequelize();
+            var product_cat = orm.getModel("mst_prod_cat");
+            var product_sub = orm.getModel("mst_prod_sub_cat");
+            var product = orm.getModel("mst_product");
+            var target = orm.getModel("mst_target");
+            var dsp = orm.getModel("mst_dsp");
+            var sales_order = orm.getModel("trx_sales_order");
+            var prd_order = orm.getModel("trx_saleord_prd_det");
+            var load_order = orm.getModel("trx_saleord_load_det");
+            var dateObj = new Date();
+            var vmonth = dateObj.getMonth() + 1;
+            var vyear = dateObj.getFullYear();
+            product_cat.findAll({
+                attributes: ['category_id', 'category_name', 'brand'],
+                include: [{
+                        model: product_sub, as: 'ProductSubCategory',
+                        attributes: ['sub_category_id', 'sub_category_name'],
+                        include: [{ model: product, as: 'Product',
+                                attributes: ['sub_category_id'],
+                                include: [{ model: target, as: 'Target',
+                                        attributes: [[ormS.fn('SUM', ormS.col('target_qty')), 'Total']],
+                                        where: {
+                                            dsp_id: 'DSP00001',
+                                            target_month: vmonth,
+                                            target_year: vyear
+                                        }
+                                    }]
+                            }]
+                    }],
+                group: ['ProductSubCategory.Product.sub_category_id', 'mst_prod_cat.category_id', 'ProductSubCategory.sub_category_id',
+                    'ProductSubCategory.Product.product_id', 'ProductSubCategory.Product.Target.target_id']
+            })
+                .then(function (result) {
                 console.log(result);
                 var vResult = {
                     "status": "Success",
                     "statusMessage": "",
                     "error": "error",
-                    "SubCatList": result
+                    "ProdList": result
                 };
                 pResponse.json(vResult);
             }).catch(function (err) {
@@ -103,7 +132,7 @@ class TargetsActualsController {
             });
         });
     }
-    getProduct(pRequest, pResponse) {
+    getProdSubCat(pRequest, pResponse) {
         try {
             var vmessage = 'Insert start.';
             var vorm = new orm_service_1.ORMService();
@@ -122,7 +151,7 @@ class TargetsActualsController {
                     "status": "Success",
                     "statusMessage": "",
                     "error": "error",
-                    "ProdList": result
+                    "SubCatList": result
                 };
                 pResponse.json(vResult);
             }).catch(function (err) {
