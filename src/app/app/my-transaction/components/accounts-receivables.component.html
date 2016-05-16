@@ -6,17 +6,16 @@
 		</div>	
 	</div>
 
-	<div class="container-body">
-	    <div class="item-container">
+<div class="container-body">
+    <div class="item-container">
+        <div class='container'>
             <div class='cell'>
-                <div class='container'><div class='cell single title bold center'>Total Receivables : {{getTotalReceivable()}} ₱</div></div>
+            	<div class='container'><div class='cell header bold center title'>Total Receivables : {{getTotalReceivable()}} ₱</div></div>
             </div>
-            <div class='cell icon'></div>
-	    </div>
-	</div>
+        </div>
+    </div>
 
-	<ul class="animate-container">
-		<li class="ng-enter" *ngFor="#FilteredSearch of vSearchedList" >
+    <div *ngFor="#FilteredSearch of vSearchedList" >
 			<div class="item-container">
 			    <div class="container">
 			        <div class='cell'>
@@ -32,6 +31,5 @@
 			            <div class='cell icon'></div>
 			    </div>
 			</div>
-		</li>
-	</ul>
+		</div>
 </div>
