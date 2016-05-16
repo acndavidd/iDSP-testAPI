@@ -50,7 +50,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
         pRequest.path !== '/service/logout' &&
         pRequest.path !== '/service/getProductListPhysical' &&
         pRequest.path !== '/service/getBrand' &&
-        pRequest.path !== '/service/getAccountReceivables'
+        pRequest.path !== '/service/getAccountsReceivables'
     ){//all request to service will validate token except login
         var vToken = '';
         try{
@@ -137,7 +137,7 @@ vRouter.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
 vRouter.get('/logout',vLoginCtrl.logout);
 vRouter.get('/targetsActuals',vTargetsActualsCtrl.getBrand);
 vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
-vRouter.get('/getAccountReceivables',vAcc.getAllRetailer);
+vRouter.get('/getAccountsReceivables',vAcc.getAccountsReceivables);
 vRouter.get('/getProductCategory',vTargetsActualsCtrl.getProdCat);
 vRouter.get('/getProductSubCategory',vTargetsActualsCtrl.getProdSubCat);
 vRouter.get('/getProduct',vTargetsActualsCtrl.getProduct);

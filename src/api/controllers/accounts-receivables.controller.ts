@@ -6,41 +6,52 @@ import {ORMService} from '../services/orm.service';
 export class AccController{
 	
 
-	constructor(
-		){ 
-		
+	constructor(){ 		
 	}
 
-	getAllRetailer(pRequest,pResponse){
-		console.log("masukk sini coy");
-		var vResult;
-		var _vORMService:ORMService = new ORMService();
-		var vPromises = [];
-		var vResult:any = [];
+	getAccountsReceivables(pRequest,pResponse){
 		try{
-			
-			console.log('masuk try');
-			var vAccReceivables = _vORMService.getModel("trx_account_receivable");
-			console.log('masuk try 2');
-			var promise = vAccReceivables.findAll().then(function(res){
-				vResult.push(res);
+			let vOrmSvc = new ORMService();
+			let vAccModel = vOrmSvc.getModel('trx_sales_order');
+
+			let vResult = [];
+			var vPromises = [];
+			var vDate = new Date().getDay();
+			var vDspId = 'dsp1';
+
+			vAccModel.findAll({
+				attributes : ['dsp_id'],
+				include : [{
+					model : vOrmSvc.getModel('trx_account_receivable'),
+					as : 'AccountReceivable',
+					required : true,
+					attributes : ['amount'],
+					where : {dsp_id : vDspId}, 
+					include :[{
+						model : vOrmSvc.getModel('mst_retailer'),
+						as : 'Retailer',
+						required : true,
+						attributes : ['retailer_name', 'retailer_min'],
+						include : [{
+							model : vOrmSvc.getModel('mst_route'),
+							as : 'Route',
+							attributes : ['route_id'],
+							include : [{
+								model : vOrmSvc.getModel('mst_route_day'),
+								as : 'RouteDay',
+								required : true,
+								where : { route_day : vDate},
+								attributes : ['sequence']
+							}]
+						}]
+					}]
+				}]
+			}).then(function(ret){
+				pResponse.json(ret);
 			});
-			vPromises.push(promise);
-			Promise.all(vPromises).then(function(){
-				console.log('finished '+vResult);
-				pResponse.json(vResult);
-			});
-			
-		//	vResult = vAccReceivables;
-		}catch(err){
-			vResult = {
-				status : "ERROR",
-				statusMessage : "GAGAL BRO",
-				productList : {
-				}
-			};
-			console.log(err);
+
+		}catch(pErr){
+			console.log('Error at AccController: '+pErr);
 		}
-		//pResponse.json(vResult);
 	}
 }

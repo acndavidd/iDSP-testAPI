@@ -47,10 +47,8 @@
     }
 
     .animate-container{
-        display: block;
-        overflow: hidden;
 
-        .animate-repeat.ng-enter{
+        .ng-enter{
             -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
             -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
             -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
@@ -58,13 +56,11 @@
             transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
             position: relative;
             display: block;
-        }
-        .animate-repeat.ng-enter-active{
             opacity: 1;
             top: 0;
             height: 30px;
         }
-        .animate-repeat.ng-leave{
+        .ng-leave{
             -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
             -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
             -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
@@ -72,13 +68,10 @@
             transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
             position: relative;
             display: block;
-        }
-        .animate-repeat.ng-leave-active{
             opacity: 0;
             top: -50px;
             height: 0px;
         }
-
         .item-container {
         width: 100%;
         border-bottom: 1px solid $border-line;
@@ -146,7 +139,5 @@
         }
 
     }
-
-
 
 }
