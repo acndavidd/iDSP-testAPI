@@ -41,11 +41,12 @@ export class TargetsActualsComponent {
     private vListProduct;
     private vListCategory;
     private vShowProduct;
-    private vShowCategory;
 
     private vSubCatID;
     private vListTargets;
     private vShowTargets;
+
+
 
 	constructor (
         private _router: Router,
@@ -87,16 +88,6 @@ export class TargetsActualsComponent {
                         prod => {
                             return prod.brand == this.vSelectedBrand 
                         });
-                }
-            },
-            error => {}
-        );
-
-        this._targetsActualsService.queryCategory().subscribe(
-             response => {
-                if(response.json().status == "Success"){
-                    this.vListCategory= response.json().CategoryList;
-                    this.vShowCategory = this.vListCategory.filter(cat => cat.brand == this.vSelectedBrand);
                 }
             },
             error => {}
@@ -163,47 +154,13 @@ export class TargetsActualsComponent {
 
     getProduct()
     {
-        // this._targetsActualsService.queryProduct().subscribe(
-        //      response => {
-        //         if(response.json().status == "Success"){
-        //             this.vListProduct= response.json().ProdList;
-        //             this.vShowProduct = this.vListProduct.filter(
-        //                 vCategories => {
-        //                     return vCategories.ProductCategory.brand == this.vSelectedBrand &&
-        //                     vCategories.ProductCategory.category_name == pCategory
-        //                 }
-        //                 );
-        //         }
-        //     },
-        //     error => {}
-        // );
-        // this.vShowProduct = this.vListProduct.filter(prod => {
-        //     return prod.category_name == pCategory && 
-        //     prod.brand == this.vSelectedBrand });
         return this.vShowProduct;
     }
 
-    getCategories()
-    {    
-        return this.vShowCategory;
-    }
-
-    getTargets(pSubCategoryID)
+    getActual(pSubCategoryID)
     {
         this.vSubCatID = pSubCategoryID;
-        console.log('subbb'+pSubCategoryID);
-
-         this._targetsActualsService.queryTargets(pSubCategoryID).subscribe(
-             response => {
-                if(response.json().status == "Success"){
-                    this.vListCategory= response.json().Targets;
-                    this.vShowCategory = this.vListCategory;
-                }
-            },
-            error => {}
-        );
-
-        console.log('targetss'+ this.vShowTargets)
+        console.log('cat id = '+ this.vSubCatID);
     }
 
 }
