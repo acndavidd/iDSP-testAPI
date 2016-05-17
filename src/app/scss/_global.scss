@@ -38,11 +38,12 @@ SUBTAB
 */
 .sub-tab {
     display: block;
-    background-color: $smart-menu-color;
+    background-color: $apple;
     padding-top: 10px;
     padding-bottom: 10px;
     margin-top: -3px;
     float: left;
+    border-bottom: 2px solid $apple;
     &.double {
         width: 50%;
     }
@@ -50,7 +51,7 @@ SUBTAB
         width: 33%;
     }
     &.active {
-        border-bottom: 0.3em solid $menu-underline;
+        border-bottom: 2px solid $menu-underline;
     }
     .text {
         color: $inactive-tab-grey;
@@ -228,6 +229,16 @@ LIST VIEW - TEXT
         width: 100%;
         border-bottom: 1px solid $border-line;
         cursor: pointer;
+        
+        .item-notification {   
+            font-size: $filter-select;
+            background-color: $apple;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            color: $white;
+            text-align: center;
+            opacity: 0.6;
+        }
 
         &.sub {
             background-color: $whisper;
