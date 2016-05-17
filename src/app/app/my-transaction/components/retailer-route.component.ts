@@ -10,7 +10,7 @@ import {NgModel} from 'angular2/common';
 
 @Component({
 	selector: 'retailer-route',
-    templateUrl: './app/my-transaction/components/retailer-route.component.html',
+    templateUrl: './app/my-transaction/components/hc-retailer-route.component.html',
 	directives: [
 		NgModel,
 		ROUTER_DIRECTIVES
