@@ -38,11 +38,12 @@ SUBTAB
 */
 .sub-tab {
     display: block;
-    background-color: $smart-menu-color;
+    background-color: $apple;
     padding-top: 10px;
     padding-bottom: 10px;
     margin-top: -3px;
     float: left;
+    border-bottom: 2px solid $apple;
     &.double {
         width: 50%;
     }
@@ -50,7 +51,7 @@ SUBTAB
         width: 33%;
     }
     &.active {
-        border-bottom: 0.3em solid $menu-underline;
+        border-bottom: 2px solid $menu-underline;
     }
     .text {
         color: $inactive-tab-grey;
@@ -301,6 +302,16 @@ LIST VIEW - TEXT
         width: 100%;
         border-bottom: 1px solid $border-line;
         cursor: pointer;
+        
+        .item-notification {   
+            font-size: $filter-select;
+            background-color: $apple;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            color: $white;
+            text-align: center;
+            opacity: 0.6;
+        }
 
         &.sub {
             background-color: $whisper;
@@ -340,6 +351,12 @@ LIST VIEW - TEXT
             &.icon {
                 width: 15%;
             }
+            &.logo {
+                width:30%;
+            }
+            &.content{
+                width:70%
+            }
 
             &.bold {
                 font-weight: bold;
@@ -353,6 +370,9 @@ LIST VIEW - TEXT
 
             &.grey {
                 color: $grey;
+            }
+            &.green {
+                color: $apple;
             }
             &.deep-cyan {
                 color: $deep-cyan;
@@ -400,6 +420,29 @@ LIST VIEW - ICON
                 background-position-y: center;
                 background-size: 20px;
             }
+            .profpic-purple {
+                border: 1px solid $black;
+                border-radius: 100%;
+                background-color:#E6E0EC;
+                padding: 10% 0% 40% 0%;
+                margin: 0% 25% 0% 25%;
+                color:$apple;
+                text-align: center;
+                line-height:0px;
+                font-size: 30px;
+            }
+            .profpic-pink {
+                border: 1px solid $black;
+                border-radius: 100%;
+                background-color:#FDEADA;
+                padding: 10% 0% 40% 0%;
+                margin: 0% 25% 0% 25%;
+                color:$apple;
+                text-align: center;
+                line-height:0px;
+                font-size: 30px;
+            }
+
         }
     }
       

@@ -27,11 +27,11 @@
 							{{prod_sub.sub_category_name}}
 						</div>
 						<div class="item-mid">
-							{{25/(prod_sub.target_sum)*100 | number}}%
+							{{prod_sub.actual_sum/(prod_sub.target_sum_days)*100 | number}}%
 						</div>
 						<div class="item-right">
 								<div style="clear: right;">
-								{{prod_sub.actual_sum}}/{{prod_sub.target_sum}}
+								{{prod_sub.actual_sum}}/{{prod_sub.target_sum_days}}
 								</div>
 							<div class="target-text">
 								Actual/Target
@@ -62,11 +62,11 @@
 							{{prod_sub.sub_category_name}}
 						</div>
 						<div class="item-mid">
-							23.33%
+							{{prod_sub.actual_sum/(prod_sub.target_sum_weeks)*100 | number}}%
 						</div>
 						<div class="item-right">
 								<div style="clear: right;">
-								25/{{prod_sub.Product[0].Target[0].Total}}
+								{{prod_sub.actual_sum}}/{{prod_sub.target_sum_weeks}}
 								</div>
 							<div class="target-text">
 								Actual/Target
@@ -97,7 +97,7 @@
 							{{prod_sub.sub_category_name}}
 						</div>
 						<div class="item-mid">
-							{{25/(prod_sub.target_sum)*100 | number}}%
+							{{prod_sub.actual_sum/(prod_sub.target_sum)*100 | number}}%
 						</div>
 						<div class="item-right">
 								<div style="clear: right;">

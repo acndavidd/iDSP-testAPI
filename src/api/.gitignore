@@ -1,8 +1,9 @@
-**/*.js.map
-**/*.js
+!js/*.js
 !models/*.js
 !migrations/*.js
 !seeders/*.js
+**/*.js.map
+**/*.js
 typings
 node_modules
 .tscache

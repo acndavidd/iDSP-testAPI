@@ -2,8 +2,9 @@ import {ORMService} from '../services/orm.service';
 
 
 export class RetailerController{
-	constructor(){
 
+	constructor(){
+		
 	}
 	
 	getProduct(pRequest,pResponse){
@@ -46,6 +47,7 @@ export class RetailerController{
 			});
 			pResponse.json(pProdCats);
 		});
+	}
 
 	getRetailerSummary(pRequest, pResponse){
 		try{
@@ -192,65 +194,61 @@ export class RetailerController{
 	}
 
 	getAllRetailerAlert(pRequest,pResponse){
-		console.log('Enter Controller');
 		let vOrmSvc = new ORMService();
+		var vCurrentDate = new Date();
 		let vDSPModel = vOrmSvc.getModel('mst_dsp');
-		vDSPModel.findById('1').then(function(dsp){
+		let vDSPID = 'DSP00001';
+		let vResult;
+		vDSPModel.findById(vDSPID).then(function(dsp){
 			dsp.getRetailer({
 				attributes : ['retailer_name', 'retailer_min'],
+				include : [{
+					model : vOrmSvc.getModel('mst_retailer_dsp_alert'),
+					as : 'RetailerDSPAlert',
+					attributes : ['value_segment' , 'threshold_hit'],
+					where : { 
+						date : { $gte : vCurrentDate.setHours(0,0,0,0) }
+					}
+				},{
+					model : vOrmSvc.getModel('mst_route'),
+					as : 'Route',
+					attributes : ['route_id'],
 					include : [{
-						model : vOrmSvc.getModel('mst_retailer_dsp_alert'),
-						as : 'RetailerDSPAlert',
-						required : true,
-						attributes : ['value_segment' , 'threshold_hit' , [vOrmSvc.getSequelize().fn('to_char', vOrmSvc.getSequelize().col('date') , 'YYYY/MM/DD'), alert_date ]],
-						where : {
-							alert_date : vOrmSvc.getSequelize().fn('to_char', vOrmSvc.getSequelize().fn('NOW') , 'YYYY/MM/DD')
-						}
-					},
-					{
-						model : vOrmSvc.getModel('mst_route'),
-						as : 'Route',
-						attributes : ['route_id'],
-						include : [{
-							model : vOrmSvc.getModel('mst_route_day'),
-							as : 'RouteDay',
-							attributes : ['route_day','sequence']
-						}]
-					}],
-				}).then(function(pResult){
-					vResult = {
-						success : 1,
-						result : pResult
-					};
-					pResponse.json(vResult);
+						model : vOrmSvc.getModel('mst_route_day'),
+						as : 'RouteDay',
+						attributes : ['sequence' , 'route_day']
+					}]
+				}],
+				order : [ [ vOrmSvc.getSequelize().col('sequence') , 'ASC NULLS LAST']]
+			}).then(function(pResult){
+				pResult = JSON.parse(JSON.stringify(pResult));
+				pResult.map(function(pRetailer){
+					pRetailer.threshold_hit = pRetailer.RetailerDSPAlert[0].threshold_hit;
+					pRetailer.value_segment = pRetailer.RetailerDSPAlert[0].value_segment;
+					if( pRetailer.Route.length > 0 
+						&& "RouteDay" in pRetailer.Route[0] 
+						&& pRetailer.Route[0].RouteDay.length > 0  
+						&& pRetailer.Route[0].RouteDay[0].route_day == vCurrentDate.getDay()
+					  ){
+						pRetailer.sequence = pRetailer.Route[0].RouteDay[0].sequence;
+					}else{
+						pRetailer.sequence = 0;
+					}
+					delete pRetailer.Route;
+					delete pRetailer.RetailerDSPAlert;
+				});
+				vResult = {
+					success : 1,
+					result : pResult
+				};
+				pResponse.json(vResult);
 			});
 		}).catch(function(pErr){
-			vResult = {
+			var vResult = {
 				success : 0,
 				error : pErr
 			}
 			pResponse.json(vResult);
 		});
-		
-		/*
-		vDSPModel.findById('1').then(function(dsp){
-			dsp.getRetailer().then(function(retailers){
-				retailers.forEach(function(retailer){
-					var promise = retailer.getRetailerDSPAlert().then(function(alerts){
-						vResult.push({
-							retailer_id : retailer.retailer_id,
-							retailer_name : retailer.retailer_name,
-							retailer_min : retailer.retailer_min,
-							alert : alerts
-						});
-					});
-					vPromises.push(promise);
-				});
-				Promise.all(vPromises).then(function(){
-					pResponse.json(vResult);
-				});
-			});
-		});
-		*/
 	}
 }
