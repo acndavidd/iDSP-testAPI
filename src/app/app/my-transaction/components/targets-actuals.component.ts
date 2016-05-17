@@ -41,7 +41,12 @@ export class TargetsActualsComponent {
     private vListProduct;
     private vListCategory;
     private vShowProduct;
-    private vShowCategory;
+
+    private vSubCatID;
+    private vListTargets;
+    private vShowTargets;
+
+
 
 	constructor (
         private _router: Router,
@@ -81,18 +86,8 @@ export class TargetsActualsComponent {
                     this.vListProduct= response.json().ProdList;
                     this.vShowProduct = this.vListProduct.filter(
                         prod => {
-                            return prod.ProductCategory.brand == this.vSelectedBrand 
+                            return prod.brand == this.vSelectedBrand 
                         });
-                }
-            },
-            error => {}
-        );
-
-        this._targetsActualsService.queryCategory().subscribe(
-             response => {
-                if(response.json().status == "Success"){
-                    this.vListCategory= response.json().CategoryList;
-                    this.vShowCategory = this.vListCategory.filter(cat => cat.brand == this.vSelectedBrand);
                 }
             },
             error => {}
@@ -149,7 +144,7 @@ export class TargetsActualsComponent {
         this.vSelectedBrand = pSelectedBrand;
         console.log(this.vSelectedBrand + " IS SELECTED");
         this.vShowProd = this.vListProd.filter(prod => prod.brand == this.vSelectedBrand);
-        this.vShowProduct = this.vListProduct.filter(prod => prod.ProductCategory.brand == this.vSelectedBrand);
+        this.vShowProduct = this.vListProduct.filter(prod => prod.brand == this.vSelectedBrand);
      }   
 
     getProdCat()
@@ -157,31 +152,15 @@ export class TargetsActualsComponent {
         return this.vShowProd;
     }
 
-    getProduct(pCategory)
+    getProduct()
     {
-        // this._targetsActualsService.queryProduct().subscribe(
-        //      response => {
-        //         if(response.json().status == "Success"){
-        //             this.vListProduct= response.json().ProdList;
-        //             this.vShowProduct = this.vListProduct.filter(
-        //                 vCategories => {
-        //                     return vCategories.ProductCategory.brand == this.vSelectedBrand &&
-        //                     vCategories.ProductCategory.category_name == pCategory
-        //                 }
-        //                 );
-        //         }
-        //     },
-        //     error => {}
-        // );
-        this.vShowProduct = this.vListProduct.filter(prod => {
-            return prod.ProductCategory.category_name == pCategory && 
-            prod.ProductCategory.brand == this.vSelectedBrand });
         return this.vShowProduct;
     }
 
-    getCategories()
-    {    
-        return this.vShowCategory;
+    getActual(pSubCategoryID)
+    {
+        this.vSubCatID = pSubCategoryID;
+        console.log('cat id = '+ this.vSubCatID);
     }
 
 }

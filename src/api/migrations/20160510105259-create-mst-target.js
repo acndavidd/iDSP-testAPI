@@ -25,6 +25,9 @@ module.exports = {
       },
       target_qty: {
         type: Sequelize.INTEGER
+      },
+       sub_category_id: {
+        type: Sequelize.STRING(20)
       }
     });
   },

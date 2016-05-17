@@ -21,6 +21,7 @@ export class DetailRetailerComponent {
     vSelectedRetailId;
     vMenuShow = false;
     vArrowMap = false;
+
 	constructor (
 		private _layoutService: LayoutService,
 		private _matchMediaService: MatchMediaService,
@@ -41,12 +42,34 @@ export class DetailRetailerComponent {
         {
             console.log("Retailer ID not found");
         }
-		this.vSelectedRetail = this._retailerService.getRetailerDetail(this.vSelectedRetailId);
-        console.log(this.vSelectedRetail);
+        console.log('in detail retailer for retailer id ' +  this.vSelectedRetailId);
+        
+		this._retailerService.getRetailerSummary(this.vSelectedRetailId).subscribe(
+            response => {
+                if(response.json().status == 'Success'){//success login
+                    console.log("Query Success" + JSON.stringify(response.json().result));
+                    this.vSelectedRetail = response.json().result;
+
+                    this.vSelectedRetail.retailer.birthday = new Date(this.vSelectedRetail.retailer.birthday);
+                    console.log("Abis format" + JSON.stringify(this.vSelectedRetail));
+                }else{//failed login
+                    console.log("Query Failed")
+                    //this.vErrorMsg = response.json().errorMessage;
+                }
+            },
+            error => {
+                console.log(error);
+                //this.vErrorMsg = 'Failed connecting to login service';
+        });
+        //console.log(this.vSelectedRetail);
 
 		this._layoutService.setCurrentPage('DetailRetailer');
 		this._headerService.setTitle("Detail Retailer");
-        console.log('in detail retailer for retailer id ' +  this.vSelectedRetailId);
+        
+    }
+
+    getSelectedRetailer(){
+        return this.vSelectedRetail;
     }
 	
 	getResize(){

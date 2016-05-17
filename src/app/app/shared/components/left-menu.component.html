@@ -1,80 +1,137 @@
-<div class="leftmenuContainer" [ngClass]="{active : getLeftMenuState()}">
-    <div class="menuHeader">
-        
-        <div>
-            <img src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif" class="menuPic" id="menuPic" (click)="takepic()"/>
-            <div class="menuHeaderText">
+<div class="left-menu-container" [ngClass]="{active : getLeftMenuState()}">
+    <!-- <div class="menu-header">
+        <div class="header-container">
+            <div class="header-cell pic">
+                <img src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif" class="menu-pic" id="menuPic" (click)="takepic()"/>
+            </div>
+            <div class="header-cell text">
+                Tamara Josh Honey Panda
+            </div>
+        </div>
+    </div> -->
+
+
+    <div class="menu-header">
+        <div class="header-container">
+            <div class="header-cell pic">
                 <!--<input type="file" />-->
-                <div class="smartPoint">Tamara Josh</div>
+                <img src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif" class="menu-pic" id="menuPic" (click)="takepic()"/>
+            </div>
+            <div class="header-cell">
+                <div class="header-container">
+                    <div class="header-cell text">Tamara Josh Honey Panda</div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="menuItemBox">
-        <div class="itemCategory" (click)="goToInbox()">
-            My Dashboard
-            <div class="arrow"></div>
+
+    <div class="menu-item-box">
+
+        <div class="container" (click)="goToMyDashboard()">
+            <div class='cell'>
+                <div class='container'><div class='cell single'>My Dashboards</div></div>
+            </div>
+            <div class='cell icon arrow-right'></div>
         </div>
-                <div class="itemCategory" (click)="toggleChangeMenu('account')">
-                    Targets &amp; Actuals
-                    <div class="arrow"></div>
+        <div class="separator"></div>
+            <div class="container" (click)="goToTargets()">
+                <div class='cell icon call'></div>
+                <div class='cell'>
+                    <div class='container'><div class='cell single'>Targets &amp; Actuals</div></div>
                 </div>
-                <div class="itemCategory" (click)="toggleChangeMenu('smartService')">
-                    Inventory
-                    <div class="arrow"></div>
+            </div>
+        <div class="separator"></div>
+            <div class="container" (click)="goToInventory()">
+                <div class='cell icon call'></div>
+                <div class='cell'>
+                    <div class='container'><div class='cell single'>Inventory</div></div>
                 </div>
-                <div class="itemCategory" (click)="toggleChangeMenu('addOns')">
-                    Retailer Route
-                    <div class="arrow"></div>
+            </div>
+        <div class="separator"></div>
+            <div class="container" (click)="goToRetailerRoute()">
+                <div class='cell icon call'></div>
+                <div class='cell'>
+                    <div class='container'><div class='cell single'>Retailer Route</div></div>
                 </div>
-                <div class="itemCategory" (click)="toggleChangeMenu('billingDetail')">
-                    Account Receivables
-                    <div class="arrow"></div>
+            </div>
+        <div class="separator"></div>
+            <div class="container" (click)="goToAccountReceivables()">
+                <div class='cell icon call'></div>
+                <div class='cell'>
+                    <div class='container'><div class='cell single'>Account Receivables</div></div>
                 </div>
-                <div class="itemCategory" (click)="toggleChangeMenu('balanceUsage')">
-                    Threshold &amp; Alerts
-                    <div class="arrow"></div>
+            </div>
+        <div class="separator"></div>
+            <div class="container" (click)="goToThresholdAlerts()">
+                <div class='cell icon call'></div>
+                <div class='cell'>
+                    <div class='container'><div class='cell single'>Threshold &amp; Alerts</div></div>
                 </div>
-        
+            </div>
+        <div class="separator"></div>
 
-        <div class="itemCategory" (click)="toggleChangeMenu('rewards')" >
-            Basic Call Procedure
-            <div class="arrow"></div>
+
+        <div class="container" (click)="goToBasicCallProcedure()">
+            <div class='cell'>
+                <div class='container'><div class='cell single'>Basic Call Procedure</div></div>
+            </div>
+            <div class='cell icon arrow-right'></div>
         </div>
-
-
-        <div class="itemCategory" (click)="toggleChangeMenu('support')">
-            Close of the Day
-            <div class="arrow"></div>
+        <div class="separator"></div>
+        <div class="container" (click)="goToCloseOfTheDay()">
+            <div class='cell'>
+                <div class='container'><div class='cell single'>Close of the Day</div></div>
+            </div>
+            <div class='cell icon arrow-right'></div>
         </div>
-                <div class="itemCategory" (click)="logout()">
-                    Targets &amp; Actuals
-                    <div class="arrow"></div>
+        <div class="separator"></div>
+            <div class="container" (click)="goToTargetsActuals()">
+                <div class='cell icon call'></div>
+                <div class='cell'>
+                    <div class='container'><div class='cell single'>Targets &amp; Actuals</div></div>
                 </div>
-                <div class="itemCategory" (click)="goToInbox()">
-                    Visited Retailer Route
-                    <div class="arrow"></div>
+            </div>
+        <div class="separator"></div>
+            <div class="container" (click)="goToVisitedRetailerRoute()">
+                <div class='cell icon call'></div>
+                <div class='cell'>
+                    <div class='container'><div class='cell single'>Visited Retailer Route</div></div>
                 </div>
-                <div class="itemCategory" (click)="toggleChangeMenu('account')">
-                    Collection &amp; Remittance Summary
-                    <div class="arrow"></div>
+            </div>
+        <div class="separator"></div>
+            <div class="container" (click)="goToCollection()">
+                <div class='cell icon call'></div>
+                <div class='cell'>
+                    <div class='container'><div class='cell single'>Collection &amp; Remittance Summary</div></div>
                 </div>
+            </div>
+        <div class="separator"></div>
 
-        <div class="itemCategory" (click)="toggleChangeMenu('smartService')">
-            Remittance
-            <div class="arrow"></div>
+
+        <div class="container" (click)="goToRemittance()">
+            <div class='cell'>
+                <div class='container'><div class='cell single'>Remittance</div></div>
+            </div>
+            <div class='cell icon arrow-right'></div>
         </div>
+        <div class="separator"></div>
 
 
-        <div class="itemCategory" (click)="toggleChangeMenu('addOns')">
-            Stock Return
-            <div class="arrow"></div>
+        <div class="container" (click)="goToStockReturn()">
+            <div class='cell'>
+                <div class='container'><div class='cell single'>Stock Return</div></div>
+            </div>
+            <div class='cell icon arrow-right'></div>
         </div>
+        <div class="separator"></div>
 
 
-        <div class="itemCategory" (click)="logout()">
-            Logout
-            <div class="arrow"></div>
+        <div class="container" (click)="goToLogout()">
+            <div class='cell'>
+                <div class='container'><div class='cell single'>Logout</div></div>
+            </div>
+            <div class='cell icon arrow-right'></div>
         </div>
     </div>
 </div>
-<div class="leftmenuOther" *ngIf="getLeftMenuState()" (click)="toggleLeftMenu()"></div>
+<div class="left-menu-other" *ngIf="getLeftMenuState()" (click)="toggleLeftMenu()"></div>

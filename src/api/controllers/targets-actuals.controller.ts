@@ -74,28 +74,92 @@ export class TargetsActualsController{
 		}
 	}
 
-	getProdSubCat(pRequest,pResponse){
+	getProduct(pRequest,pResponse){
 	   try{
 
 	   var message = 'Insert start.';
 	    var orm = new ORMService();
-	    var product = orm.getModel("mst_prod_sub_cat");	
+	    var ormS  = orm.getSequelize();
+	    var product_cat = orm.getModel("mst_prod_cat");	
+	    var product_sub = orm.getModel("mst_prod_sub_cat");
+	    var product = orm.getModel("mst_product");
+	    var target = orm.getModel("mst_target");
+	    var dsp = orm.getModel("mst_dsp");
+	    var sales_order = orm.getModel("trx_sales_order");
+	    var prd_order = orm.getModel("trx_saleord_prd_det");
+	    var load_order = orm.getModel("trx_saleord_load_det");
 
-	    product.findAll({
-		  attributes: ['sub_category_id', 'category_id', 'sub_category_name']
-		}).then(function(result){	
+	    var dateObj = new Date();
+		var vmonth = dateObj.getMonth()+1;
+		var vyear= dateObj.getFullYear();
 
-			console.log(result);
+	     product_cat.findAll({
+	    	  	attributes: ['category_id', 'category_name', 'brand'],
+        		include: [{ 
+        			model: product_sub, as: 'ProductSubCategory',
+          			attributes: ['sub_category_id', 'sub_category_name'],
+	        			include :[
+						{model : load_order, as :'SalesOrderLoad',
+	        			attribute : ['order_id','amount']},
 
-			var vResult = {
+
+	        			{model: product, as : 'Product',
+	        			attributes: ['product_id'],
+	        				include:[
+	        				{model : prd_order, as:'SalesOrder',
+	        					attributes: ['order_id','quantity']
+	        				},
+	        				{ model: target, as : 'Target',
+	        					attributes : [ 'target_qty'],
+		        				where: {
+					    			dsp_id : 'DSP00001',
+					    			target_month : vmonth,
+					    			target_year : vyear
+			    					}
+	        				}]
+	        		}]
+          		}]
+
+   		 })
+    	.then(function(pProdCats) {
+			pProdCats = JSON.parse(JSON.stringify(pProdCats)); 
+			pProdCats.map(function(pProdCat){ 
+                pProdCat.ProductSubCategory.map(function(pProdSubCat){ 
+	                let vSumTarget = 0; 
+	                let vSumActual = 0;
+					if("SalesOrderLoad" in pProdSubCat && pProdSubCat.SalesOrderLoad.length !== 0 ){
+						pProdSubCat.SalesOrderLoad.map(function(pOrder){
+		            	    vSumActual +=  pOrder.amount;
+	                    });
+					}
+	                pProdSubCat.Product.map(function(pProd){ 
+	            		if("SalesOrder" in pProd && pProd.SalesOrder.length !== 0){
+	                		pProd.SalesOrder.map(function(pOrder){
+	                			vSumActual += pOrder.quantity; 
+	                		});
+	                	}
+
+	                	if("Target" in pProd && pProd.Target.length !== 0){
+	                        pProd.Target.map(function(pTarget){
+	                            vSumTarget +=  pTarget.target_qty;
+	                        }); 
+	                	}
+	                }); 
+	                pProdSubCat.target_sum = vSumTarget; 
+	              	pProdSubCat.actual_sum = vSumActual; 
+	                delete pProdSubCat.Product; 
+	                delete pProdSubCat.SalesOrderLoad; 
+	            }); 
+       		}); 
+            var vResult = {
 				"status" : "Success",
 				"statusMessage" : "",
 				"error":"error",
-				"SubCatList" : result
+				"ProdList" : pProdCats
 			}
-			pResponse.json(vResult);
-
+            pResponse.json(vResult);
 		}).catch(function (err) {
+			console.log(err);
 		        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
 			});
 		}
@@ -130,7 +194,7 @@ export class TargetsActualsController{
 		});
 	}
 
-	getProduct(pRequest,pResponse){
+	getProdSubCat(pRequest,pResponse){
 		try{
 
 		var vmessage = 'Insert start.';
@@ -152,7 +216,7 @@ export class TargetsActualsController{
 				"status" : "Success",
 				"statusMessage" : "",
 				"error":"error",
-				"ProdList" : result
+				"SubCatList" : result
 			}
 			pResponse.json(vResult);
 		}).catch(function (err) {
