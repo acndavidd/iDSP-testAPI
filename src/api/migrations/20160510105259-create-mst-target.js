@@ -14,6 +14,9 @@ module.exports = {
       product_id: {
         type: Sequelize.STRING(20)
       },
+      sub_category_id:{
+        type : Sequelize.STRING(20)
+      },
       target_month: {
         type: Sequelize.INTEGER
       },

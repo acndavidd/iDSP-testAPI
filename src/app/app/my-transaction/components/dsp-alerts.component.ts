@@ -3,7 +3,7 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/ro
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
-import {DSPAlertsService} from '../services/dsp-alerts.service';
+import {Http} from 'angular2/http';
 import {NgModel} from 'angular2/common';
 
 @Component({
@@ -14,17 +14,17 @@ import {NgModel} from 'angular2/common';
 		ROUTER_DIRECTIVES
     ],
     providers : [
-    	DSPAlertsService
+    	
     ]
 })
 
 export class DSPAlertsComponent {
     private vRetailerAlert;
 	constructor (
+        private _http:Http,
 		private _layoutService: LayoutService,
     	private _matchMediaService: MatchMediaService,
-		private _headerService: HeaderService,
-		private vDSPAlertService:DSPAlertsService
+		private _headerService: HeaderService
     	) 
 	{
 		this._layoutService.setCurrentPage('DSPAlerts');
@@ -33,10 +33,9 @@ export class DSPAlertsComponent {
     }
 
     loadAlert(){
-    	this.vDSPAlertService.getDSPAlert().subscribe(
+    	this._http.get('/getRetailerAlert',null).subscribe(
     		response => {
     			this.vRetailerAlert = response.json();
-    			console.log(response.json());
     		},
     		error => {
 

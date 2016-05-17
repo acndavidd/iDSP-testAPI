@@ -45,9 +45,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
 
     if(
         pRequest.path !== '/service/login' && 
-        pRequest.path !== '/service/logout' &&
-        pRequest.path !== '/service/getProductListPhysical' &&
-        pRequest.path !== '/service/getBrand' 
+        pRequest.path !== '/service/logout'
     ){//all request to service will validate token except login
         var vToken = '';
         try{

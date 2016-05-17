@@ -15,7 +15,6 @@ module.exports = function(sequelize, DataTypes) {
     freezeTableName: true,
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
         mst_route_day.belongsTo(models.mst_route,{as: 'Route', foreignKey : 'route_id'});
       },
       getAssociatedModels : function(){

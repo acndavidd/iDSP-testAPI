@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
       unique: true,
       autoIncrement: true
     },
-    route_id: : {
+    route_id: {
       type: DataTypes.INTEGER
     },
     route_day: DataTypes.INTEGER,
