@@ -20,6 +20,8 @@ import {NgModel} from 'angular2/common';
 
 export class DSPAlertsComponent {
     private vRetailerAlert;
+    private vAllRetailerAlert;
+    private vValueSegmentFilter;
 	constructor (
         private _http:Http,
 		private _layoutService: LayoutService,
@@ -29,18 +31,34 @@ export class DSPAlertsComponent {
 	{
 		this._layoutService.setCurrentPage('DSPAlerts');
 		this._headerService.setTitle("Alert & Threshold");
+        this.vValueSegmentFilter = '';
 		this.loadAlert();
     }
 
     loadAlert(){
     	this._http.get('/getRetailerAlert',null).subscribe(
     		response => {
-    			this.vRetailerAlert = response.json();
+    			this.vRetailerAlert = this.vAllRetailerAlert = response.json().result;
     		},
     		error => {
 
     		}
     	);
+    }
+
+    onFilterValueSegment(pSelectedValueSegment){
+        this.vValueSegmentFilter = pSelectedValueSegment;
+        if(this.vValueSegmentFilter !== ''){
+            this.vRetailerAlert = this.vAllRetailerAlert.filter(alert => alert.value_segment == this.vValueSegmentFilter);
+        }else{
+            this.vRetailerAlert = this.vAllRetailerAlert;
+        }
+    }
+
+    onFilterThreshold(pThresholdValue){
+        if(pThresholdValue != '')
+            this.vRetailerAlert = this.vAllRetailerAlert.filter(alert => alert.threshold_hit.indexOf(pThresholdValue) !== -1);
+        else this.vRetailerAlert = this.vAllRetailerAlert;
     }
 
     getRetailerAlert(){
