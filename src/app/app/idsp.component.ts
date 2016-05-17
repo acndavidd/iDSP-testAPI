@@ -1,4 +1,4 @@
-import {Renderer, Component, OnInit} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {FastClickStatic} from './shared/fastclick/fastclick.d';
@@ -114,13 +114,8 @@ export class IDSPComponent implements OnInit {
 
 	constructor ( private _matchMediaService: MatchMediaService,
     private _router: Router,
-    private _layoutService: LayoutService,
-    private _renderer: Renderer) {
+    private _layoutService: LayoutService) {
         new FastClick(document.body);
-        _renderer.listen('document', 'backbutton', (event) => {
-            event.preventDefault();
-            alert('override backbutton on angular2');
-        });
     }
 
     ngOnInit(){
