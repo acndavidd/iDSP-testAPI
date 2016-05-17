@@ -10,9 +10,6 @@ module.exports = {
       product_name: {
         type: Sequelize.STRING(50)
       },
-      sub_category_id: {
-        type: Sequelize.STRING(50)
-      },
       price: {
         type: Sequelize.INTEGER
       }

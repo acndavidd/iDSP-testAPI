@@ -8,7 +8,7 @@
     margin-top: -3px;
     float: left;
     &.active{
-	    border-bottom: 2px solid $menu-underline;
+	    border-bottom: 0.3em solid $menu-underline;
     	margin-left: 0;
         color: $white;
     }
