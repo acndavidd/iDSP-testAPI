@@ -117,8 +117,6 @@ export class TargetsActualsComponent {
     	this.vUnderlineMonth = false;
     	this.vWeekShow = false;
 		this.vMonthShow = false;
-
-
     }
 
     showMenuWeek()
@@ -141,7 +139,8 @@ export class TargetsActualsComponent {
 		this.vDayShow = false;
     }
 
-    onChangeSelectBrand(pSelectedBrand){
+    onChangeSelectBrand(pSelectedBrand)
+    {
         this.vSelectedBrand = pSelectedBrand;
         console.log(this.vSelectedBrand + " IS SELECTED");
         this.vShowProd = this.vListProd.filter(prod => prod.brand == this.vSelectedBrand);
@@ -156,12 +155,6 @@ export class TargetsActualsComponent {
     getProduct()
     {
         return this.vShowProduct;
-    }
-
-    getActual(pSubCategoryID)
-    {
-        this.vSubCatID = pSubCategoryID;
-        console.log('cat id = '+ this.vSubCatID);
     }
 
 }

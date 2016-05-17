@@ -20,12 +20,12 @@ export class AccController{
 			var vDspId = 'dsp1';
 
 			vAccModel.findAll({
-				attributes : ['dsp_id'],
+				attributes : ['order_id'],
 				include : [{
 					model : vOrmSvc.getModel('trx_account_receivable'),
 					as : 'AccountReceivable',
 					required : true,
-					attributes : ['amount'],
+					attributes : ['amount', 'dsp_id'],
 					where : {dsp_id : vDspId}, 
 					include :[{
 						model : vOrmSvc.getModel('mst_retailer'),

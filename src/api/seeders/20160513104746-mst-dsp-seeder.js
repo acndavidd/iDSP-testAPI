@@ -1,5 +1,6 @@
 'use strict';
-var faker = require('faker');
+var faker = require('faker'),
+    sharedAPI = require('../js/sharedAPI.js');
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
@@ -16,8 +17,8 @@ module.exports = {
     var dspData=[];
     for(var i=1;i<11;i++){
       var tempDSP = {
-        dsp_id: 'DSP' + i,
-        dss_id: 'DSS' + i,
+        dsp_id: 'DSP' + sharedAPI.pad(i,4),
+        dss_id: 'DSS' + sharedAPI.pad(i,4),
         first_name: faker.name.firstName(),
         last_name: faker.name.lastName(),
         dealer_min_smart: faker.random.number(),

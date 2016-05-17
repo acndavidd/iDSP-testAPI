@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="856.16437"
+   width="750"
+   viewBox="0 0 750 856.16437"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="icon-plain-color-inventory.svg">
+  <metadata
+     id="metadata11">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs9" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="892"
+     inkscape:window-height="480"
+     id="namedview7"
+     showgrid="false"
+     inkscape:zoom="0.076822917"
+     inkscape:cx="11.38801"
+     inkscape:cy="9.5423356"
+     inkscape:window-x="335"
+     inkscape:window-y="116"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <g
+     id="g4"
+     style="fill:#f57900;fill-opacity:1"
+     transform="matrix(32.929399,0,0,32.929399,-415.30558,-362.22339)">
+    <path
+       id="path1"
+       transform="matrix(0.8125,0,0,0.8125,12.612,11)"
+       d="m 2.0020766,10.313703 0,12.425311 10.9508744,6.369041 0,-12.525112 z m 24.0269914,-0.07282 -11.07407,6.334561 0,12.534167 11.07407,-6.37365 z M 7.9547414,5.766717 3.0402941,8.6020098 13.947012,14.847024 18.915749,12.004758 z M 13.948007,2.309021 9.9642581,4.6073656 20.933895,10.850318 24.872543,8.5972929 z M 13.946053,0 28.032,8.1069946 28.032,23.891968 13.9441,32 0,23.888977 0,8.0460205 z"
+       style="fill:#f57900;fill-opacity:1"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
