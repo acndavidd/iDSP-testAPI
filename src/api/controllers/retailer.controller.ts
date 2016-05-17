@@ -6,6 +6,48 @@ export class RetailerController{
 	constructor(){
 		
 	}
+	
+	getProduct(pRequest,pResponse){
+		let vOrmSvc = new ORMService();
+		let vProdCatModel = vOrmSvc.getModel('mst_prod_cat');
+		vProdCatModel.findAll({
+			attributes : ['category_name' , 'brand'],
+			include : [{
+				model : vOrmSvc.getModel('mst_prod_sub_cat'),
+				as : 'ProductSubCategory',
+				required : true,
+				attributes : ['sub_category_name'],
+				include : [{
+					model : vOrmSvc.getModel('mst_product'),
+					attributes : ['product_id'],
+					as : 'Product',
+					required : true,
+					include : [{
+						model : vOrmSvc.getModel('mst_target'),
+						as : 'Target',
+						attributes : ['target_qty'],
+						required : true,
+					}]
+				}]
+			}]
+		}).then(function(pProdCats){
+			pProdCats = JSON.parse(JSON.stringify(pProdCats));
+			pProdCats.map(function(pProdCat){
+				pProdCat.ProductSubCategory.map(function(pProdSubCat){
+					let vSumTarget = 0;
+					pProdSubCat.Product.map(function(pProd){
+						vSumTarget += pProd.Target.reduce(function(pPrevVal,pCurrVal){
+							return  pPrevVal.target_qty + pCurrVal.target_qty;
+						}).target_qty;
+						delete pProd.Target;
+					});
+					pProdSubCat.target_sum = vSumTarget;
+					delete pProdSubCat.Product;
+				});
+			});
+			pResponse.json(pProdCats);
+		});
+	}
 
 	getRetailerSummary(pRequest, pResponse){
 		try{
@@ -181,17 +223,14 @@ export class RetailerController{
 			}).then(function(pResult){
 				pResult = JSON.parse(JSON.stringify(pResult));
 				pResult.map(function(pRetailer){
-					//console.log(pRetailer);
 					pRetailer.threshold_hit = pRetailer.RetailerDSPAlert[0].threshold_hit;
 					pRetailer.value_segment = pRetailer.RetailerDSPAlert[0].value_segment;
-					
 					if( pRetailer.Route.length > 0 
 						&& "RouteDay" in pRetailer.Route[0] 
 						&& pRetailer.Route[0].RouteDay.length > 0  
 						&& pRetailer.Route[0].RouteDay[0].route_day == vCurrentDate.getDay()
 					  ){
 						pRetailer.sequence = pRetailer.Route[0].RouteDay[0].sequence;
-						//console.log(pRetailer.RouteDay);
 					}else{
 						pRetailer.sequence = 0;
 					}
@@ -205,8 +244,7 @@ export class RetailerController{
 				pResponse.json(vResult);
 			});
 		}).catch(function(pErr){
-			console.log(pErr);
-			vResult = {
+			var vResult = {
 				success : 0,
 				error : pErr
 			}
