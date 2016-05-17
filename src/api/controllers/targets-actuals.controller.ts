@@ -6,10 +6,9 @@ import {ORMService} from '../services/orm.service';
 export class TargetsActualsController{
 
 
-	constructor(){
-	}
+    constructor(){}
    
-   getBrand(pRequest,pResponse){
+    getBrand(pRequest,pResponse){
 	   try{
 
 	   var message = 'Insert start.';
@@ -76,8 +75,7 @@ export class TargetsActualsController{
 
 	getProduct(pRequest,pResponse){
 	   try{
-
-	   var message = 'Insert start.';
+	    var message = 'Insert start.';
 	    var orm = new ORMService();
 	    var ormS  = orm.getSequelize();
 	    var product_cat = orm.getModel("mst_prod_cat");	
@@ -92,6 +90,16 @@ export class TargetsActualsController{
 	    var dateObj = new Date();
 		var vmonth = dateObj.getMonth()+1;
 		var vyear= dateObj.getFullYear();
+		var vday = dateObj.getUTCDay();
+		var vDaysInMonth = new Date(vyear, vmonth, 0).getDate();
+
+	    var vFirstOfMonth = new Date(vyear, vmonth-1, 1,0,0,0,0);
+	    var vLastOfMonth = new Date(vyear, vmonth, 0,11,59,59,59);
+
+	    var used = vFirstOfMonth.getDay() + vLastOfMonth.getDate();
+	    var vWeeksInMonth = Math.ceil( used / 7);
+
+	    console.log('aaaaaa'+vFirstOfMonth+'bbb' + vLastOfMonth);
 
 	     product_cat.findAll({
 	    	  	attributes: ['category_id', 'category_name', 'brand'],
@@ -99,17 +107,28 @@ export class TargetsActualsController{
         			model: product_sub, as: 'ProductSubCategory',
           			attributes: ['sub_category_id', 'sub_category_name'],
 	        			include :[
-						{model : load_order, as :'SalesOrderLoad',
-	        			attribute : ['order_id','amount']},
-
-
 	        			{model: product, as : 'Product',
 	        			attributes: ['product_id'],
 	        				include:[
-	        				{model : prd_order, as:'SalesOrder',
-	        					attributes: ['order_id','quantity']
+	        				{
+		        				model : load_order, as :'SalesOrderLoad', required :false,
+		        				attribute : ['order_id','amount'],
+		        				include : [{
+		        					model: sales_order, as : 'SalesOrderMain',required :false,
+		        					attribute : ['order_id'],
+		        					where : {order_date : {$between: [vFirstOfMonth,vLastOfMonth]}}
+		        				}]
 	        				},
-	        				{ model: target, as : 'Target',
+	        				{
+	        					model : prd_order, as:'SalesOrder', required :false,
+	        					attributes: ['order_id','quantity'],
+	        					include : [{
+		        					model: sales_order, as : 'SalesOrderMain', required :false,
+		        					attribute : ['order_id'],
+		        					where : {order_date : {$between: [vFirstOfMonth,vLastOfMonth]}}
+		        				}]
+	        				},
+	        				{ model: target, as : 'Target', 
 	        					attributes : [ 'target_qty'],
 		        				where: {
 					    			dsp_id : 'DSP00001',
@@ -123,16 +142,23 @@ export class TargetsActualsController{
    		 })
     	.then(function(pProdCats) {
 			pProdCats = JSON.parse(JSON.stringify(pProdCats)); 
+			
 			pProdCats.map(function(pProdCat){ 
                 pProdCat.ProductSubCategory.map(function(pProdSubCat){ 
 	                let vSumTarget = 0; 
 	                let vSumActual = 0;
-					if("SalesOrderLoad" in pProdSubCat && pProdSubCat.SalesOrderLoad.length !== 0 ){
-						pProdSubCat.SalesOrderLoad.map(function(pOrder){
-		            	    vSumActual +=  pOrder.amount;
-	                    });
-					}
+	                let vSumTargetDays = 0;
+	                let vSumTargetWeek = 0;
+			
 	                pProdSubCat.Product.map(function(pProd){ 
+	                	if("SalesOrderLoad" in pProd && pProd.SalesOrderLoad.length !== 0 ){
+							pProd.SalesOrderLoad.map(function(pOrder){
+			            	    vSumActual +=  pOrder.amount;
+		                    });
+
+		                    
+						}
+
 	            		if("SalesOrder" in pProd && pProd.SalesOrder.length !== 0){
 	                		pProd.SalesOrder.map(function(pOrder){
 	                			vSumActual += pOrder.quantity; 
@@ -142,11 +168,16 @@ export class TargetsActualsController{
 	                	if("Target" in pProd && pProd.Target.length !== 0){
 	                        pProd.Target.map(function(pTarget){
 	                            vSumTarget +=  pTarget.target_qty;
+	                            vSumTargetDays = vSumTarget/vDaysInMonth;
+	                            vSumTargetWeek = vSumTarget/vWeeksInMonth;
+
 	                        }); 
 	                	}
 	                }); 
 	                pProdSubCat.target_sum = vSumTarget; 
 	              	pProdSubCat.actual_sum = vSumActual; 
+	              	pProdSubCat.target_sum_days = Math.ceil(vSumTargetDays); 
+	              	pProdSubCat.target_sum_weeks = Math.ceil(vSumTargetWeek); 
 	                delete pProdSubCat.Product; 
 	                delete pProdSubCat.SalesOrderLoad; 
 	            }); 
@@ -160,7 +191,7 @@ export class TargetsActualsController{
             pResponse.json(vResult);
 		}).catch(function (err) {
 			console.log(err);
-		        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
+		        pResponse.send("Failed to Fetch Data Products" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
 			});
 		}
 		catch(pErr){
@@ -168,36 +199,9 @@ export class TargetsActualsController{
 		}
 	}
 
-
-	getAllRetailerAlert(pRequest,pResponse){
-		let vOrmSvc = new ORMService();
-		let vDSPModel = vOrmSvc.getModel('mst_dsp');
-		let vResult = [];
-		var vPromises = [];
-		vDSPModel.findById('1').then(function(dsp){
-			dsp.getRetailer().then(function(retailers){
-				retailers.forEach(function(retailer){
-					var promise = retailer.getRetailerDSPAlert().then(function(alerts){
-						vResult.push({
-							retailer_id : retailer.retailer_id,
-							retailer_name : retailer.retailer_name,
-							retailer_min : retailer.retailer_min,
-							alert : alerts
-						});
-					});
-					vPromises.push(promise);
-				});
-				Promise.all(vPromises).then(function(){
-					pResponse.json(vResult);
-				});
-			});
-		});
-	}
-
 	getProdSubCat(pRequest,pResponse){
 		try{
-
-		var vmessage = 'Insert start.';
+		var vmessage = 'Get Data Starts.';
 	    var vorm = new ORMService();
 	    var vprod_cat = vorm.getModel("mst_prod_cat");	
 	    var vprod_cat_sub = vorm.getModel("mst_prod_sub_cat");	
@@ -210,8 +214,6 @@ export class TargetsActualsController{
           		}]
    		 })
     	.then(function(result) {
-       	//console.log(result);
-
 			var vResult = {
 				"status" : "Success",
 				"statusMessage" : "",
@@ -220,7 +222,7 @@ export class TargetsActualsController{
 			}
 			pResponse.json(vResult);
 		}).catch(function (err) {
-		        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
+		        pResponse.send("Failed to Fetch Data" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
 			});
 		}
 		catch(pErr){
@@ -230,7 +232,6 @@ export class TargetsActualsController{
 
 	getCategory(pRequest,pResponse){
 		try{
-
 		var vmessage = 'Insert start.';
 	    var vorm = new ORMService();
 	    var vprod_cat = vorm.getModel("mst_prod_cat");	

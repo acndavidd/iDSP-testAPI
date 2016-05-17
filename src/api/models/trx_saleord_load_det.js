@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    sub_category_id: {
+    product_id: {
       type: DataTypes.STRING(20),
       allowNull: false
     },
@@ -25,8 +25,8 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        trx_saleord_load_det.belongsTo(models.trx_sales_order,{as: 'SalesOrder', foreignKey : 'order_id'});
-        trx_saleord_load_det.belongsTo(models.mst_prod_sub_cat,{as: 'LoadOrder', foreignKey : 'sub_category_id'});
+        trx_saleord_load_det.belongsTo(models.trx_sales_order,{as: 'SalesOrderMain', foreignKey : 'order_id'});
+        trx_saleord_load_det.belongsTo(models.mst_product,{as: 'LoadOrder', foreignKey : 'product_id'});
       },
       getAssociatedModels : function(){
         return ['trx_sales_order','mst_prod_sub_cat'];

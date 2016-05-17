@@ -48,8 +48,7 @@ module.exports = {
   down: function (queryInterface, Sequelize) {
     return [
       queryInterface.sequelize.query('ALTER TABLE mst_target DROP CONSTRAINT dsp_id_foreign_idx'),
-      queryInterface.sequelize.query('ALTER TABLE mst_target DROP CONSTRAINT product_id_foreign_idx'),
-      queryInterface.sequelize.query('ALTER TABLE mst_target DROP CONSTRAINT sub_category_id_foreign_idx')
+      queryInterface.sequelize.query('ALTER TABLE mst_target DROP CONSTRAINT product_id_foreign_idx')
     ];
   }
 };
