@@ -19,7 +19,7 @@
             </div>
             <div class="header-cell">
                 <div class="header-container">
-                    <div class="header-cell text">Tamara Josh Honey Panda</div>
+                    <div class="header-cell text">Tamara Josh</div>
                 </div>
             </div>
         </div>
@@ -35,14 +35,14 @@
         </div>
         <div class="separator"></div>
             <div class="container" (click)="goToTargets()">
-                <div class='cell icon call'></div>
+                <div class='cell icon target'></div>
                 <div class='cell'>
                     <div class='container'><div class='cell single'>Targets &amp; Actuals</div></div>
                 </div>
             </div>
         <div class="separator"></div>
             <div class="container" (click)="goToInventory()">
-                <div class='cell icon call'></div>
+                <div class='cell icon inventory'></div>
                 <div class='cell'>
                     <div class='container'><div class='cell single'>Inventory</div></div>
                 </div>
@@ -132,6 +132,7 @@
             </div>
             <div class='cell icon arrow-right'></div>
         </div>
+        <div class="separator"></div>
     </div>
 </div>
 <div class="left-menu-other" *ngIf="getLeftMenuState()" (click)="toggleLeftMenu()"></div>
