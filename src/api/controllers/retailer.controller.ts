@@ -10,10 +10,11 @@ export class RetailerController{
 		try{
 			console.log("Start getting retailer detail");
 			var vSelectedRetailId = pRequest.body.retailerId;
-			var vCurrentDate = new Date();
+			var vCurrentDate = new Date().setHours(0,0,0,0);
 			var vArStatusPaid = 'Paid';
 
 		    var vOrmSvc = new ORMService();
+		    var vSequelize = vOrmSvc.getSequelize(); 
 			var vRetailer = vOrmSvc.getModel("mst_retailer");
 			var vDspAlert = vOrmSvc.getModel("mst_retailer_dsp_alert");
 			var vAccountReceivable = vOrmSvc.getModel("trx_account_receivable");
@@ -28,7 +29,6 @@ export class RetailerController{
 				where: {
 						retailer_id : vSelectedRetailId						
 				}				
-				//,group : ['mst_retailer_id','','','','','']
 			}).then(function (pResRetailer){
 				
 				var listPromise=[];
@@ -38,7 +38,13 @@ export class RetailerController{
 				//Query Alert
 				listPromise.push(pResRetailer.getRetailerDSPAlert({
 						attributes : ['value_segment','threshold_hit'],
-						where : { date : vCurrentDate}
+						order : [['date','DESC']],
+						where : {
+							date : {
+								$gt: vCurrentDate
+							}
+						},	
+						limit : 1				
 					}).then(function (pResAlert)
 					{	
 						console.log("Alert is Found" + JSON.stringify(pResAlert));
@@ -105,6 +111,7 @@ export class RetailerController{
 			var vSalesPerson = pRequest.body.salesPerson;
 
 		    var vOrmSvc = new ORMService();
+		    var vSequelize = vOrmSvc.getSequelize(); 
 		    var vRoute = vOrmSvc.getModel("mst_route");	
 			var vRouteDay = vOrmSvc.getModel("mst_route_day");
 			var vRetailer = vOrmSvc.getModel("mst_retailer");
@@ -117,11 +124,11 @@ export class RetailerController{
 							],
 				where: {dsp_id : vSalesPerson},
 				include: [
-					{	model: vRoute, as: 'Route', attributes:['route_id'], 
+					{	model: vRoute, as: 'Route', attributes:['route_id'], required: true, 
 						include: [{model: vRouteDay, as: 'RouteDay', attributes:['sequence'], where : {route_day : vSelectedDay}}]
 					}					
 				],
-				sort : ['$Route.RouteDay.sequence$']
+				order: [[vSequelize.col('sequence', 'Route.RouteDay'), 'DESC NULLS LAST']]				
 			}).then(function (pResult){
 				var vResult = {
 				"status" : "Success",
@@ -149,6 +156,7 @@ export class RetailerController{
 
 		let vResult = [];
 		var vPromises = [];
+
 		vDSPModel.findById('1').then(function(dsp){
 			dsp.getRetailer({
 				attributes : ['retailer_name', 'retailer_min'],
@@ -170,6 +178,7 @@ export class RetailerController{
 				}]
 			}).then(function(ret){
 				console.log(JSON.stringify(ret));
+
 			});
 		});
 		/*

@@ -13,7 +13,7 @@
                 <div class='cell icon'></div>
             </div>
         </div>
-        <div class="item-container" (click)="subMenuShow()">
+        <div class="item-container" (click)="subMenuShow()" id="retailer-sub-menu-btn">
             <div class="container">
                 <div class='cell'>
                     <div class='container'><div class='cell single grey'>Retailer Owner</div></div>
@@ -48,7 +48,7 @@
             <div class="container">
                 <div class='cell'>
                     <div class='container'><div class='cell single grey'>BOD</div></div>
-                    <div class='container'><div class='cell single'>{{getSelectedRetailer().retailer.birthday }}</div></div>
+                    <div class='container'><div class='cell single'>{{getSelectedRetailer().retailer.birthday | date:'yyyy-MM-dd HH:mm:ss' }}</div></div>
                 </div>
                 <div class='cell icon'></div>
             </div>
@@ -103,9 +103,9 @@
             </div>
         </div>
         <div class="item-container">
-            <div class="container" (click)='goToInventoryRetailer(1)'>
+            <div class="container" (click)='goToInventoryRetailer(1)' id="inventory-retailer-btn">
                 <div class='cell'>
-                    <div class='container'><div class='cell single-large grey'>Inventory</div></div>
+                    <div class='container' ><div class='cell single-large grey'>Inventory</div></div>
                 </div>
                 <div class='cell icon arrow-right'></div>
             </div>
