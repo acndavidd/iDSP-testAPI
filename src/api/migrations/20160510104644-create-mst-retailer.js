@@ -16,10 +16,10 @@ module.exports = {
       owner_first_name: {
         type: Sequelize.STRING(20)
       },
-      owned_middle_name: {
+      owner_middle_name: {
         type: Sequelize.STRING(20)
       },
-      owned_last_name: {
+      owner_last_name: {
         type: Sequelize.STRING(20)
       },
       retailer_address: {

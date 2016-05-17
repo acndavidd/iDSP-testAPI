@@ -27,10 +27,12 @@
 							{{prod_sub.sub_category_name}}
 						</div>
 						<div class="item-mid">
-							23.33%
+							{{25/(prod_sub.target_sum)*100 | number}}%
 						</div>
 						<div class="item-right">
-							25/150
+								<div style="clear: right;">
+								{{prod_sub.actual_sum}}/{{prod_sub.target_sum}}
+								</div>
 							<div class="target-text">
 								Actual/Target
 							</div>
@@ -46,34 +48,76 @@
 				</div>
 			</div>
 		</div>
-		
 	</div>
 
 	<div *ngIf="vWeekShow">
-		<div class="item-container-ta" id="ta-container" *ngFor="#each of getProduct()">
-			<div class="item-title-ta">{{each.category_name}}</div>
-				<div class="item-left">SIM</div>
-				<div class="item-mid">23.33%</div>
-				<div class="item-right">
-					25/150
-					<div class="target-text">Actual/Target</div>
-					<div class="balance">Balance : <div class="balace-number">200</div> </div>
+				<div class="item-container-ta" id="ta-container">
+			<div>
+				<div *ngFor="#prod_cat of getProduct()">
+					<div class="item-title-ta">
+						{{prod_cat.category_name}}
+					</div>
+					<div *ngFor="#prod_sub of prod_cat.ProductSubCategory">
+						<div class="item-left">
+							{{prod_sub.sub_category_name}}
+						</div>
+						<div class="item-mid">
+							23.33%
+						</div>
+						<div class="item-right">
+								<div style="clear: right;">
+								25/{{prod_sub.Product[0].Target[0].Total}}
+								</div>
+							<div class="target-text">
+								Actual/Target
+							</div>
+							<div class="balance">
+								Balance : 
+								<div class="balance-number">
+									200
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="divider"></div>
 				</div>
+			</div>
 		</div>
 	</div>
 
 	<div *ngIf="vMonthShow">
-		<div class="item-container-ta" id="ta-container" *ngFor="#each of getProduct()">
-			<div class="item-title-ta">{{each.category_name}}</div>
-				<div class="item-left">SIM</div>
-				<div class="item-mid">23.33%</div>
-				<div class="item-right">
-					25/150
-					<div class="target-text">Actual/Target</div>
-					<div class="balance">Balance : <div class="balace-number">200</div> </div>
+		<div class="item-container-ta" id="ta-container">
+			<div>
+				<div *ngFor="#prod_cat of getProduct()">
+					<div class="item-title-ta">
+						{{prod_cat.category_name}}
+					</div>
+					<div *ngFor="#prod_sub of prod_cat.ProductSubCategory">
+						<div class="item-left">
+							{{prod_sub.sub_category_name}}
+						</div>
+						<div class="item-mid">
+							{{25/(prod_sub.target_sum)*100 | number}}%
+						</div>
+						<div class="item-right">
+								<div style="clear: right;">
+								{{prod_sub.actual_sum}}/{{prod_sub.target_sum}}
+								</div>
+							<div class="target-text">
+								Actual/Target
+							</div>
+							<div class="balance">
+								Balance : 
+								<div class="balance-number">
+									200
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="divider"></div>
 				</div>
+			</div>
 		</div>
-	</div>
 </div>
 
 <!--End of Container-->

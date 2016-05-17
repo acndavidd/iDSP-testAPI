@@ -138,5 +138,6 @@ export class IDSPComponent implements OnInit {
     isSmallScreen() {
         return !this._matchMediaService.getMm().largeUp;
     }
+
 }
 

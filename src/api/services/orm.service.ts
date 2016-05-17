@@ -2,13 +2,43 @@ import {SequelizeService} from './sequelize.service';
 
 var vPath = require("path");
 var vFs = require('fs');
+var vEnv = process.env.NODE_ENV || "development";
 var vExec = require('child_process').spawn;
+var vDebug = (vEnv === 'development') ? true : false;
 
 export class ORMService{
-	private model;
+	private vModels;
 	private vAssociatedModels;
 	constructor(){
-		this.vAssociatedModels = {};
+		this.vModels = {};
+		let vOrmInstance = this;
+		let vSequelizeSvc:SequelizeService = new SequelizeService();
+		if(vDebug)console.log('Begin loading models');
+		vFs.readdirSync(vPath.join(vSequelizeSvc.getModelPath())).forEach(function(pModel){
+			try{
+				if(pModel.indexOf(vSequelizeSvc.getModelNaming()) !== -1){
+					vOrmInstance.vModels[pModel.replace(vSequelizeSvc.getModelNaming(),'')] = vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),pModel));
+					if(vDebug)console.log('success loading model : ' + pModel);
+				}
+			}catch(pErr){
+				console.log('Error occurred while loading model : ' + pModel + '\nError : ' + pErr);
+			}
+		});
+		if(vDebug)console.log('Finished loading models');
+		//process all associate relation
+		if(vDebug)console.log('\n\nBegin loading association');
+		for(var model in this.vModels){
+			try{
+				if("associate" in this.vModels[model]){
+					this.vModels[model].associate(this.vModels);
+					if(vDebug)console.log('success loading association for model : ' + model);
+				}
+			}catch(pErr){
+				console.log('Error occurred while loading association for model : ' + model,'\nError : ' + pErr);
+			}
+		};
+		if(vDebug)console.log('Finished loading association');
+		//this.vAssociatedModels = {};
 	}
 
 	public getSequelize(){
@@ -52,6 +82,8 @@ export class ORMService{
 	}
 
 	public getModel(pModelName:string){
+		return this.vModels[pModelName];
+		/*
 		console.log('loading ' + pModelName + ' model');
 		let vSequelizeSvc:SequelizeService = new SequelizeService();
 		let vOrmSvc = this;
@@ -84,7 +116,7 @@ export class ORMService{
 		}catch(pErr){
 			console.log("Error in get Model : "+ pErr + " : in model " + vModelStr);
 			throw pErr;
-		}
+		}*/
 	}
 	/*
 	public syncAllModel(pRequest,pResponse){

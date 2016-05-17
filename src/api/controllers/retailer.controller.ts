@@ -5,15 +5,57 @@ export class RetailerController{
 	constructor(){
 
 	}
+	
+	getProduct(pRequest,pResponse){
+		let vOrmSvc = new ORMService();
+		let vProdCatModel = vOrmSvc.getModel('mst_prod_cat');
+		vProdCatModel.findAll({
+			attributes : ['category_name' , 'brand'],
+			include : [{
+				model : vOrmSvc.getModel('mst_prod_sub_cat'),
+				as : 'ProductSubCategory',
+				required : true,
+				attributes : ['sub_category_name'],
+				include : [{
+					model : vOrmSvc.getModel('mst_product'),
+					attributes : ['product_id'],
+					as : 'Product',
+					required : true,
+					include : [{
+						model : vOrmSvc.getModel('mst_target'),
+						as : 'Target',
+						attributes : ['target_qty'],
+						required : true,
+					}]
+				}]
+			}]
+		}).then(function(pProdCats){
+			pProdCats = JSON.parse(JSON.stringify(pProdCats));
+			pProdCats.map(function(pProdCat){
+				pProdCat.ProductSubCategory.map(function(pProdSubCat){
+					let vSumTarget = 0;
+					pProdSubCat.Product.map(function(pProd){
+						vSumTarget += pProd.Target.reduce(function(pPrevVal,pCurrVal){
+							return  pPrevVal.target_qty + pCurrVal.target_qty;
+						}).target_qty;
+						delete pProd.Target;
+					});
+					pProdSubCat.target_sum = vSumTarget;
+					delete pProdSubCat.Product;
+				});
+			});
+			pResponse.json(pProdCats);
+		});
 
 	getRetailerSummary(pRequest, pResponse){
 		try{
 			console.log("Start getting retailer detail");
 			var vSelectedRetailId = pRequest.body.retailerId;
-			var vCurrentDate = new Date();
+			var vCurrentDate = new Date().setHours(0,0,0,0);
 			var vArStatusPaid = 'Paid';
 
 		    var vOrmSvc = new ORMService();
+		    var vSequelize = vOrmSvc.getSequelize(); 
 			var vRetailer = vOrmSvc.getModel("mst_retailer");
 			var vDspAlert = vOrmSvc.getModel("mst_retailer_dsp_alert");
 			var vAccountReceivable = vOrmSvc.getModel("trx_account_receivable");
@@ -28,7 +70,6 @@ export class RetailerController{
 				where: {
 						retailer_id : vSelectedRetailId						
 				}				
-				//,group : ['mst_retailer_id','','','','','']
 			}).then(function (pResRetailer){
 				
 				var listPromise=[];
@@ -38,7 +79,13 @@ export class RetailerController{
 				//Query Alert
 				listPromise.push(pResRetailer.getRetailerDSPAlert({
 						attributes : ['value_segment','threshold_hit'],
-						where : { date : vCurrentDate}
+						order : [['date','DESC']],
+						where : {
+							date : {
+								$gt: vCurrentDate
+							}
+						},	
+						limit : 1				
 					}).then(function (pResAlert)
 					{	
 						console.log("Alert is Found" + JSON.stringify(pResAlert));
@@ -105,6 +152,7 @@ export class RetailerController{
 			var vSalesPerson = pRequest.body.salesPerson;
 
 		    var vOrmSvc = new ORMService();
+		    var vSequelize = vOrmSvc.getSequelize(); 
 		    var vRoute = vOrmSvc.getModel("mst_route");	
 			var vRouteDay = vOrmSvc.getModel("mst_route_day");
 			var vRetailer = vOrmSvc.getModel("mst_retailer");
@@ -117,11 +165,11 @@ export class RetailerController{
 							],
 				where: {dsp_id : vSalesPerson},
 				include: [
-					{	model: vRoute, as: 'Route', attributes:['route_id'], 
+					{	model: vRoute, as: 'Route', attributes:['route_id'], required: true, 
 						include: [{model: vRouteDay, as: 'RouteDay', attributes:['sequence'], where : {route_day : vSelectedDay}}]
 					}					
 				],
-				sort : ['$Route.RouteDay.sequence$']
+				order: [[vSequelize.col('sequence', 'Route.RouteDay'), 'DESC NULLS LAST']]				
 			}).then(function (pResult){
 				var vResult = {
 				"status" : "Success",
@@ -144,34 +192,46 @@ export class RetailerController{
 	}
 
 	getAllRetailerAlert(pRequest,pResponse){
+		console.log('Enter Controller');
 		let vOrmSvc = new ORMService();
 		let vDSPModel = vOrmSvc.getModel('mst_dsp');
-
-		let vResult = [];
-		var vPromises = [];
 		vDSPModel.findById('1').then(function(dsp){
 			dsp.getRetailer({
 				attributes : ['retailer_name', 'retailer_min'],
-				include : [{
-					model : vOrmSvc.getModel('mst_retailer_dsp_alert'),
-					as : 'RetailerDSPAlert',
-					required : true,
-					attributes : ['alert_id' , 'value_segment' , 'threshold_hit' , 'date']
-				},
-				{
-					model : vOrmSvc.getModel('mst_route'),
-					as : 'Route',
-					attributes : ['route_id'],
 					include : [{
-						model : vOrmSvc.getModel('mst_route_day'),
-						as : 'RouteDay',
-						attributes : ['route_day','sequence']
-					}]
-				}]
-			}).then(function(ret){
-				console.log(JSON.stringify(ret));
+						model : vOrmSvc.getModel('mst_retailer_dsp_alert'),
+						as : 'RetailerDSPAlert',
+						required : true,
+						attributes : ['value_segment' , 'threshold_hit' , [vOrmSvc.getSequelize().fn('to_char', vOrmSvc.getSequelize().col('date') , 'YYYY/MM/DD'), alert_date ]],
+						where : {
+							alert_date : vOrmSvc.getSequelize().fn('to_char', vOrmSvc.getSequelize().fn('NOW') , 'YYYY/MM/DD')
+						}
+					},
+					{
+						model : vOrmSvc.getModel('mst_route'),
+						as : 'Route',
+						attributes : ['route_id'],
+						include : [{
+							model : vOrmSvc.getModel('mst_route_day'),
+							as : 'RouteDay',
+							attributes : ['route_day','sequence']
+						}]
+					}],
+				}).then(function(pResult){
+					vResult = {
+						success : 1,
+						result : pResult
+					};
+					pResponse.json(vResult);
 			});
+		}).catch(function(pErr){
+			vResult = {
+				success : 0,
+				error : pErr
+			}
+			pResponse.json(vResult);
 		});
+		
 		/*
 		vDSPModel.findById('1').then(function(dsp){
 			dsp.getRetailer().then(function(retailers){

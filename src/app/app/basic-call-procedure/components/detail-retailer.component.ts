@@ -21,6 +21,7 @@ export class DetailRetailerComponent {
     vSelectedRetailId;
     vMenuShow = false;
     vArrowMap = false;
+
 	constructor (
 		private _layoutService: LayoutService,
 		private _matchMediaService: MatchMediaService,
@@ -48,6 +49,9 @@ export class DetailRetailerComponent {
                 if(response.json().status == 'Success'){//success login
                     console.log("Query Success" + JSON.stringify(response.json().result));
                     this.vSelectedRetail = response.json().result;
+
+                    this.vSelectedRetail.retailer.birthday = new Date(this.vSelectedRetail.retailer.birthday);
+                    console.log("Abis format" + JSON.stringify(this.vSelectedRetail));
                 }else{//failed login
                     console.log("Query Failed")
                     //this.vErrorMsg = response.json().errorMessage;
