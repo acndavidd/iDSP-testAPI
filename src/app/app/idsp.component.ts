@@ -117,10 +117,10 @@ export class IDSPComponent implements OnInit {
     private _layoutService: LayoutService,
     private _renderer: Renderer) {
         new FastClick(document.body);
-        renderer.listen(elementRef.nativeElement, 'backbutton', (event) => {
+        _renderer.listen('document', 'backbutton', (event) => {
             event.preventDefault();
             alert('override backbutton on angular2');
-        }
+        });
     }
 
     ngOnInit(){
