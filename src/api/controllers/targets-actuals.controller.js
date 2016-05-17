@@ -76,10 +76,17 @@ class TargetsActualsController {
                 include: [{
                         model: product_sub, as: 'ProductSubCategory',
                         attributes: ['sub_category_id', 'sub_category_name'],
-                        include: [{ model: product, as: 'Product',
-                                attributes: ['sub_category_id'],
-                                include: [{ model: target, as: 'Target',
-                                        attributes: [[ormS.fn('SUM', ormS.col('target_qty')), 'Total']],
+                        include: [
+                            { model: load_order, as: 'SalesOrderLoad',
+                                attribute: ['order_id', 'amount'] },
+                            { model: product, as: 'Product',
+                                attributes: ['product_id'],
+                                include: [
+                                    { model: prd_order, as: 'SalesOrder',
+                                        attributes: ['order_id', 'quantity']
+                                    },
+                                    { model: target, as: 'Target',
+                                        attributes: ['target_qty'],
                                         where: {
                                             dsp_id: 'DSP00001',
                                             target_month: vmonth,
@@ -87,20 +94,46 @@ class TargetsActualsController {
                                         }
                                     }]
                             }]
-                    }],
-                group: ['ProductSubCategory.Product.sub_category_id', 'mst_prod_cat.category_id', 'ProductSubCategory.sub_category_id',
-                    'ProductSubCategory.Product.product_id', 'ProductSubCategory.Product.Target.target_id']
+                    }]
             })
-                .then(function (result) {
-                console.log(result);
+                .then(function (pProdCats) {
+                pProdCats = JSON.parse(JSON.stringify(pProdCats));
+                pProdCats.map(function (pProdCat) {
+                    pProdCat.ProductSubCategory.map(function (pProdSubCat) {
+                        let vSumTarget = 0;
+                        let vSumActual = 0;
+                        if ("SalesOrderLoad" in pProdSubCat && pProdSubCat.SalesOrderLoad.length !== 0) {
+                            pProdSubCat.SalesOrderLoad.map(function (pOrder) {
+                                vSumActual += pOrder.amount;
+                            });
+                        }
+                        pProdSubCat.Product.map(function (pProd) {
+                            if ("SalesOrder" in pProd && pProd.SalesOrder.length !== 0) {
+                                pProd.SalesOrder.map(function (pOrder) {
+                                    vSumActual += pOrder.quantity;
+                                });
+                            }
+                            if ("Target" in pProd && pProd.Target.length !== 0) {
+                                pProd.Target.map(function (pTarget) {
+                                    vSumTarget += pTarget.target_qty;
+                                });
+                            }
+                        });
+                        pProdSubCat.target_sum = vSumTarget;
+                        pProdSubCat.actual_sum = vSumActual;
+                        delete pProdSubCat.Product;
+                        delete pProdSubCat.SalesOrderLoad;
+                    });
+                });
                 var vResult = {
                     "status": "Success",
                     "statusMessage": "",
                     "error": "error",
-                    "ProdList": result
+                    "ProdList": pProdCats
                 };
                 pResponse.json(vResult);
             }).catch(function (err) {
+                console.log(err);
                 pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
             });
         }
