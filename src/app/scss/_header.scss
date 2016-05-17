@@ -1,44 +1,41 @@
 .header-container{
   width: 100%;
-    height: 3.2em;
+    height: 12vw;
     .main-box{
-      background-color: $deep-cyan;
-      top: 0;
+      background-color: $apple;
       z-index: 100;
       width: 100%;
       position: fixed;
       .default-box{
-        height: 3.1em;
+        height: 12vw;
         width: 100%;
         .title{
           position: fixed;
-          z-index: 1000;
           width: 100%;
           text-align: center;
           color: $white;
-          font-size: $header-title;
-          padding-top: 0.75em;
+          font-size: 5vw;
+          padding: 3% 0% 0% 0%;
         }
         .header-icon{
-          width:3.1em;
-          height:3.1em;
+          width: 10vw;
+          height: 12vw;
           position: fixed;
-          z-index:1000;
           cursor: pointer;
           &.hamburger{
             background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABhQTFRFAAAA%2F%2F%2F%2FAAAAAAAAAAAAAAAAAAAA%2F%2F%2F%2FeQ7W7QAAAAd0Uk5TAAAIGCBIYL3mPFwAAAA%2FSURBVChTYxBEAwx0ElAvRwKKQAFzZAFDoIBpGgKkggSUXRDAGaSFARkwYhVghFoogEuATu7AEKCFO9AANQQAPu5OcaM2uDkAAAAASUVORK5CYII%3D) center center no-repeat;
-            background-size: 1.6em;
+            background-size: 8vw;
             background-position: center center;
           }
           &.back{
             background: url("../img/icon-idsp/back-white.png") no-repeat;
-            background-size: 1.6em;
+            background-size: 8vw;
             background-position: center center;
           }
           &.filter{
             right: 0;
             background: url("../img/icon-idsp/filter.png") no-repeat;
-            background-size: 1.6em;
+            background-size: 8vw;
             background-position: center center;
           }
          &.search{
