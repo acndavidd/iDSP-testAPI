@@ -19,6 +19,7 @@ export class MyTransactionComponent {
 	
 	is_loading:boolean;	
 	error_msg:string;
+	private vDate: Date;
 
 	constructor (
 		private _http: Http,
@@ -30,7 +31,8 @@ export class MyTransactionComponent {
     	) 
 	{
 		this._layoutService.setCurrentPage('MyTransaction');
-		this._headerService.setTitle("My Transaction");
+		this._headerService.setTitle("My Dashboard");
+        this.vDate = new Date();
     }
 
     test(){
@@ -44,6 +46,10 @@ export class MyTransactionComponent {
             		this.error_msg = 'failed connecting to login service';
             	}
             );
+    }
+
+    getToday() {
+    	return this.vDate;
     }
 	
 	getResize(){
@@ -73,7 +79,7 @@ export class MyTransactionComponent {
 	goToDSPAlerts(){
 		console.log('PEGI KE DSP');
 		//this._pageNavigationService.navigate('DSPAlerts' , {id : 'anjayy'});
-		//this._router.navigate(['DSPAlerts']);
+		this._router.navigate(['DSPAlerts']);
 	}
 
     getLayout(){

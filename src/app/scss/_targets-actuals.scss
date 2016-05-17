@@ -2,11 +2,12 @@
 {
 	display: block;
     width: 34%;
-    background-color: $smart-menu-color;
+    background-color: $apple;
     padding-top: 10px;
     padding-bottom: 10px;
     margin-top: -3px;
     float: left;
+    border-bottom: 2px solid $apple;
     &.active{
 	    border-bottom: 0.3em solid $menu-underline;
     	margin-left: 0;
