@@ -46,6 +46,7 @@ export class RetailerController{
 			});
 			pResponse.json(pProdCats);
 		});
+	}
 
 	getRetailerSummary(pRequest, pResponse){
 		try{
@@ -202,7 +203,7 @@ export class RetailerController{
 						model : vOrmSvc.getModel('mst_retailer_dsp_alert'),
 						as : 'RetailerDSPAlert',
 						required : true,
-						attributes : ['value_segment' , 'threshold_hit' , [vOrmSvc.getSequelize().fn('to_char', vOrmSvc.getSequelize().col('date') , 'YYYY/MM/DD'), alert_date ]],
+						attributes : ['value_segment' , 'threshold_hit' , [vOrmSvc.getSequelize().fn('to_char', vOrmSvc.getSequelize().col('date') , 'YYYY/MM/DD'), 'alert_date' ]],
 						where : {
 							alert_date : vOrmSvc.getSequelize().fn('to_char', vOrmSvc.getSequelize().fn('NOW') , 'YYYY/MM/DD')
 						}
@@ -218,14 +219,14 @@ export class RetailerController{
 						}]
 					}],
 				}).then(function(pResult){
-					vResult = {
+					var vResult = {
 						success : 1,
 						result : pResult
 					};
 					pResponse.json(vResult);
 			});
 		}).catch(function(pErr){
-			vResult = {
+			var vResult = {
 				success : 0,
 				error : pErr
 			}
