@@ -144,7 +144,8 @@ export class LayoutService {
             pCurrent=='BasicCallProcedure' ||
             pCurrent=='CloseDay' ||
             pCurrent=='Remittance' ||
-            pCurrent=='StockReturn')
+            pCurrent=='StockReturn'||
+            pCurrent=='Home')
         {
             this._pageNavigationService.resetListPreviousData();
             this.vLayoutState = {

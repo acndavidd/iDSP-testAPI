@@ -21,6 +21,7 @@ import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/
 import {CDTargetsActualsComponent} from '../../close-day/components/cd-targets-actuals.component';
 import {VisitedRetailComponent} from '../../close-day/components/visited-retail.component';
 
+import {HomeComponent} from '../../shared/components/home.component';
 
 @Component({
     selector : 'main-page',
@@ -34,6 +35,11 @@ import {VisitedRetailComponent} from '../../close-day/components/visited-retail.
 })
 
 @RouteConfig([
+    {
+        path: '/home',
+        name: 'Home',
+        component: HomeComponent
+    },
     {
         path: '/myTransaction',
         name: 'MyTransaction',

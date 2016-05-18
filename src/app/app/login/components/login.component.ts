@@ -6,6 +6,7 @@ import {NgModel} from 'angular2/common';
 import {AuthenticationService} from '../../shared/services/authentication.service';
 import {Layout} from '../../../models/layout';
 import {LayoutService} from '../../shared/services/layout.service';
+import {PageNavigationService} from '../../shared/services/page-navigation.service';
 
 @Component({
     selector: 'login',
@@ -21,7 +22,8 @@ export class LoginComponent {
     constructor (
         private _router: Router,
         private _layoutService: LayoutService,
-        private _authenticationService:AuthenticationService
+        private _authenticationService:AuthenticationService,
+        private _pageNavigationService:PageNavigationService
         ) {
         
         //this._layoutService.setCurrentPage('Login');
@@ -34,6 +36,7 @@ export class LoginComponent {
 
         //For By Pass Directly without API
         this._router.navigate(['MainPage','MyTransaction']);
+        //this._pageNavigationService.navigate('MyTransaction',null,null);
     }
 
     getLoadingState(){
