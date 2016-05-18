@@ -56,7 +56,15 @@
 								</div>
 							</div>
 			            </div>
-			            <div class='cell progress-bar'><div class="progress-radial progress-{{prod_day.amountactual/(prod_day.target_qty)*100 | number}}"><div class="overlay">{{prod_day.amountactual/(prod_day.target_qty)*100 | number}}<sup>%</sup></div></div></div>
+			            <!-- <div *ngFor="#roundTotal of vRoundRangeList"> -->
+			           		<!-- <div *ngIf="roundTotal.vCategory === prod_day.sub_category_name"> -->
+					            <div class='cell progress-bar'>
+						            <div class="progress-radial progress-{{prod_day.amountactual/(prod_day.target_qty)*100 | number}}">
+						           	 	<div class="overlay">{{prod_day.amountactual/(prod_day.target_qty)*100 | number}}<sup>%</sup></div>
+					            	</div>
+					            </div>
+					       <!--  </div>		
+					    </div> -->
 			        </div>
 		    	</div>
 	    	</div>
@@ -119,7 +127,6 @@
 	            </div>
 	        </div>
 	        <div *ngFor="#prod_month of vShowProduct">
-	        	<div *ngIf="cat_name === prod_month.category_name">
 			        <div class="container border" *ngIf="prod_month.target_qty !== 0">
 			            <div class='cell'>
 			                <div class='container'>
@@ -150,11 +157,17 @@
 								</div>
 							</div>
 			            </div>
-			            <div class='cell progress-bar'><div class="progress-radial progress-{{prod_month.amountactual/(prod_month.target_qty)*100 | number}}"><div class="overlay">{{prod_month.amountactual/(prod_month.target_qty)*100 | number}}<sup>%</sup></div></div></div>
+						<div *ngFor="#roundTotal of vRoundRangeList">
+			            	<div class='cell progress-bar' *ngIf="roundTotal.vCategory === prod_month.sub_category_name">
+				            	<div class="progress-radial progress-{{roundTotal.vRoundChart}}">
+				            		<div class="overlay">{{roundTotal.vPercentage}}<sup>%</sup></div>
+				            	</div>
+			            	</div>
+						</div>			            
 			        </div>
 		    	</div>
 	    	</div>
 	    </div>
-	</div>
+	
 </div>
 <!--End of Container-->
