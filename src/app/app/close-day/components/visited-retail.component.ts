@@ -24,7 +24,7 @@ export class VisitedRetailComponent {
     ) {
 
         this._layoutService.setCurrentPage('VisitedRetail');
-        this._headerService.setTitle('Visited Today');
+        this._headerService.setTitle('Visited Retailer Route');
     }
 
     getResize() {
