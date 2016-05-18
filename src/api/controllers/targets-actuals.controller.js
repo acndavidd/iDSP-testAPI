@@ -81,31 +81,40 @@ class TargetsActualsController {
             product_cat.findAll({
                 attributes: ['category_id', 'category_name', 'brand'],
                 include: [{
-                        model: product_sub, as: 'ProductSubCategory',
+                        model: product_sub,
+                        as: 'ProductSubCategory',
                         attributes: ['sub_category_id', 'sub_category_name'],
-                        include: [
-                            { model: product, as: 'Product',
+                        include: [{
+                                model: product,
+                                as: 'Product',
                                 attributes: ['product_id'],
-                                include: [
-                                    {
-                                        model: load_order, as: 'SalesOrderLoad', required: false,
+                                include: [{
+                                        model: load_order,
+                                        as: 'SalesOrderLoad',
+                                        required: false,
                                         attribute: ['order_id', 'amount'],
                                         include: [{
-                                                model: sales_order, as: 'SalesOrderMain', required: false,
+                                                model: sales_order,
+                                                as: 'SalesOrderMain',
                                                 attribute: ['order_id'],
                                                 where: { order_date: { $between: [vFirstOfMonth, vLastOfMonth] } }
                                             }]
                                     },
                                     {
-                                        model: prd_order, as: 'SalesOrder', required: false,
+                                        model: prd_order,
+                                        as: 'SalesOrder',
+                                        required: false,
                                         attributes: ['order_id', 'quantity'],
                                         include: [{
-                                                model: sales_order, as: 'SalesOrderMain', required: false,
+                                                model: sales_order,
+                                                as: 'SalesOrderMain',
                                                 attribute: ['order_id'],
                                                 where: { order_date: { $between: [vFirstOfMonth, vLastOfMonth] } }
                                             }]
                                     },
-                                    { model: target, as: 'Target',
+                                    {
+                                        model: target,
+                                        as: 'Target',
                                         attributes: ['target_qty'],
                                         where: {
                                             dsp_id: 'DSP00001',
@@ -115,8 +124,9 @@ class TargetsActualsController {
                                     }]
                             }]
                     }]
-            })
-                .then(function (pProdCats) {
+            }).then(function (pProdCats) {
+                pResponse.json(pProdCats);
+                console.log(JSON.stringify(pProdCats));
                 pProdCats = JSON.parse(JSON.stringify(pProdCats));
                 pProdCats.map(function (pProdCat) {
                     pProdCat.ProductSubCategory.map(function (pProdSubCat) {
@@ -157,7 +167,7 @@ class TargetsActualsController {
                     "error": "error",
                     "ProdList": pProdCats
                 };
-                pResponse.json(vResult);
+                //pResponse.json(vResult);
             }).catch(function (err) {
                 console.log(err);
                 pResponse.send("Failed to Fetch Data Products" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
