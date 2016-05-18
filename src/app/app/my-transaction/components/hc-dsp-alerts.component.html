@@ -1,0 +1,104 @@
+<div class="filter-container-dsp" *ngIf="getFilter().filterDSPAlerts">
+	<div class="two-col">
+	   <div class="two-col-child-40">
+			<div class="filter-label">Value Segment</div>
+		</div>
+		<div class="two-col-child-60">
+			<div class="filter-dropdown">
+				<select name="value_segment_filter" [(ngModel)]="vValueSegmentFilter"  (ngModelChange)="onFilterValueSegment($event)">
+                    <option value="">All</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+				</select>
+			</div>
+		</div>
+	</div>
+
+	<div class="two-col">
+		<div class="two-col-child-40">
+			<div class="filter-label">Threshold</div>			
+		</div>
+		<div class="two-col-child-60">
+			<div class="filter-input">
+				<input type="text" #filterThreshold id='threshold_hit_filter' placeholder='Enter Threshold' name='threshold_hit_filter' (keyup)="onFilterThreshold(filterThreshold.value)"/>
+			</div>
+		</div>
+	</div>
+	<div class="float-bottom">
+	</div>
+</div>
+
+<div class="container-body">
+    <div class="item-container">
+        <div class="item-notification">UPDATED AS OF 05/16/2016 10.00 AM</div>
+        <div class="container border">
+            <div class='cell'>
+                <div class='container'><div class='cell left bold green'># Route 1</div></div>
+                <div class='container'><div class='cell left title2'>Gloria Cell</div></div>
+                <div class='container'><div class='cell left italic'>99999900001</div></div>
+                <div class='container'><div class='cell left grey'>Value Segment</div></div>
+                <div class='container'><div class='cell left grey'>Threshold hit</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container'><div class='cell right'>High</div></div>
+                <div class='container'><div class='cell right'>1,000.00 &nbsp; &#8369; </div></div>
+            </div>
+            <div class='cell icon'></div>
+        </div>
+        <div class="container border">
+            <div class='cell'>
+                <div class='container'><div class='cell left bold green'># Route 2</div></div>
+                <div class='container'><div class='cell left title2'>Duren Cell</div></div>
+                <div class='container'><div class='cell left italic'>99999900066</div></div>
+                <div class='container'><div class='cell left grey'>Value Segment</div></div>
+                <div class='container'><div class='cell left grey'>Threshold hit</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container'><div class='cell right'>Medium</div></div>
+                <div class='container'><div class='cell right'>800.00 &nbsp; &#8369; </div></div>
+            </div>
+            <div class='cell icon'></div>
+        </div>
+        <div class="container border">
+            <div class='cell'>
+                <div class='container'><div class='cell left bold green'></div></div>
+                <div class='container'><div class='cell left title2'>Panda Cell</div></div>
+                <div class='container'><div class='cell left italic'>99999900777</div></div>
+                <div class='container'><div class='cell left grey'>Value Segment</div></div>
+                <div class='container'><div class='cell left grey'>Threshold hit</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container'><div class='cell right'>Medium</div></div>
+                <div class='container'><div class='cell right'>700.00 &nbsp; &#8369; </div></div>
+            </div>
+            <div class='cell icon'></div>
+        </div>
+        <div class="container border">
+            <div class='cell'>
+                <div class='container'><div class='cell left bold green'></div></div>
+                <div class='container'><div class='cell left title2'>Smith Cell</div></div>
+                <div class='container'><div class='cell left italic'>99999908080</div></div>
+                <div class='container'><div class='cell left grey'>Value Segment</div></div>
+                <div class='container'><div class='cell left grey'>Threshold hit</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container'><div class='cell right'>Medium</div></div>
+                <div class='container'><div class='cell right'>500.00 &nbsp; &#8369; </div></div>
+            </div>
+            <div class='cell icon'></div>
+        </div>
+    </div>
+</div>

@@ -13,6 +13,6 @@ module.exports = function (grunt) {
             }
         }
     });
-    grunt.registerTask('build', ['ts']);
+    grunt.registerTask('default', ['ts']);
 };
 
