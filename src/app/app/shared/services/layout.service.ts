@@ -130,7 +130,8 @@ export class LayoutService {
         if(
             pCurrent == 'GetStarted' ||
             pCurrent == 'Verification' ||
-            pCurrent == 'Login')
+            pCurrent == 'Login'||
+            pCurrent == 'Mpin')
         {
             this._pageNavigationService.resetListPreviousData();
             this.vLayoutState = {
