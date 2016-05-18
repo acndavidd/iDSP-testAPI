@@ -21,7 +21,7 @@ export class TargetsActualsService {
             this.queryBrand();
             this.queryProdCat();
             this.queryProdSubCat();
-            this.queryProduct(this.vSelectedTab);
+
 
       }
 
@@ -97,13 +97,14 @@ export class TargetsActualsService {
       }
 
 
-      queryProduct(pSelectedTab) {
+      queryProduct(pSelectedTab, pSelectedBrand) {
             console.log('Start hit login service to Query Product');
             console.log('selecteddd' + pSelectedTab);
             // Get Current Login User
             let vData = {
                   salesPerson : 'DSP00001',
-                  actualType : pSelectedTab
+                  actualType : pSelectedTab,
+                  brand : pSelectedBrand
             };
             return this._http.post('/getProduct', JSON.stringify(vData));
       }
