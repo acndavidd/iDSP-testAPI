@@ -21,6 +21,7 @@ import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/
 import {CDTargetsActualsComponent} from '../../close-day/components/cd-targets-actuals.component';
 import {VisitedRetailComponent} from '../../close-day/components/visited-retail.component';
 import {BCPActivityStepComponent} from '../../basic-call-procedure/components/bcp-activity-step.component';
+import {StockReturnComponent} from '../../stock-return/components/stock-return.component';
 
 
 import {HomeComponent} from '../../shared/components/home.component';
@@ -121,6 +122,11 @@ import {HomeComponent} from '../../shared/components/home.component';
     // UNDER BCP TAB - END
 
     // UNDER CLOSE DAY TAB - START
+    {
+        path: '/stockReturn',
+        name: 'StockReturn',
+        component: StockReturnComponent
+    },
     {
         path: '/collection',
         name: 'Collection',

@@ -89,7 +89,7 @@ LIST VIEW - BUTTON
     }
     .no-divider {
         width: 100%;
-        float:left;
+        float:center;
     }
     .double-divider{
         width: 50%;
@@ -97,18 +97,18 @@ LIST VIEW - BUTTON
     }
     .button {
         display: inline-block;
-        width: 80%;
-        padding-bottom: 15px;
-        padding-top: 15px;
-        background-color: $dark-sea-green;
-        margin: 10%;
-        border-radius: 5px;
+        width: 70%;
+        padding-bottom: 2vw;
+        padding-top: 2vw;
+        margin-left: 15%;
+        //margin-top:8%;
+        background-color: $apple;
+        border-radius: 2vw;
         .button-identifier {
             cursor: pointer;
             font-size: $button;
             text-align: center;
             width: 100%;
-            
             color: $white;
             font-weight: lighter;
         }
