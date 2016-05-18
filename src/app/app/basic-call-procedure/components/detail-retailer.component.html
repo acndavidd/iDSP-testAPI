@@ -2,7 +2,7 @@
         <div class="item-container">
             <div class="container">
                 <div class='cell'>
-                    <div class='container'><div class='cell left title bold'>{{getSelectedRetailer().retailer.retailer_name}}</div></div>
+                    <div class='container'><div class='cell left title bold'>{{getSelectedRetailer().retailer_name}}</div></div>
                 </div>
                 <div class='cell'>
                     <div class='container'>
@@ -17,7 +17,7 @@
             <div class="container">
                 <div class='cell'>
                     <div class='container'><div class='cell single grey'>Retailer Owner</div></div>
-                    <div class='container'><div class='cell single'>{{getSelectedRetailer().retailer.owner_first_name}}</div></div>
+                    <div class='container'><div class='cell single'>{{getSelectedRetailer().owner_name}}</div></div>
                 </div>
                 <div class='cell icon arrow-down' [ngClass]="{selected: vSubMenuShow}"></div>
             </div>
@@ -27,28 +27,28 @@
             <div class="container border">
                 <div class='cell'>
                     <div class='container'><div class='cell single grey'>Civil Status</div></div>
-                    <div class='container'><div class='cell single'>{{getSelectedRetailer().retailer.civil_status}}</div></div>
+                    <div class='container'><div class='cell single'>{{getSelectedRetailer().civil_status}}</div></div>
                 </div>
                 <div class='cell icon'></div>
             </div>
             <div class="container border">
                 <div class='cell'>
                     <div class='container'><div class='cell single grey'>Email Address</div></div>
-                    <div class='container'><div class='cell single'>{{getSelectedRetailer().retailer.email}}</div></div>
+                    <div class='container'><div class='cell single'>{{getSelectedRetailer().email}}</div></div>
                 </div>
                 <div class='cell icon'></div>
             </div>
             <div class="container border">
                 <div class='cell'>
                     <div class='container'><div class='cell single grey'>Gender</div></div>
-                    <div class='container'><div class='cell single'>{{getSelectedRetailer().retailer.gender}}</div></div>
+                    <div class='container'><div class='cell single'>{{getSelectedRetailer().gender}}</div></div>
                 </div>
                 <div class='cell icon'></div>
             </div>
             <div class="container">
                 <div class='cell'>
                     <div class='container'><div class='cell single grey'>BOD</div></div>
-                    <div class='container'><div class='cell single'>{{getSelectedRetailer().retailer.birthday | date:'yyyy-MM-dd HH:mm:ss' }}</div></div>
+                    <div class='container'><div class='cell single'>{{getSelectedRetailer().birthday | date:'yyyy-MM-dd HH:mm:ss' }}</div></div>
                 </div>
                 <div class='cell icon'></div>
             </div>
@@ -59,7 +59,7 @@
             <div class="container">
                 <div class='cell'>
                     <div class='container'><div class='cell single grey'>Mobile Number (MIN)</div></div>
-                    <div class='container'><div class='cell single'>{{getSelectedRetailer().retailer.retailer_min}}</div></div>
+                    <div class='container'><div class='cell single'>{{getSelectedRetailer().retailer_min}}</div></div>
                 </div>
                 <a href="tel:1234566" class='cell icon call'></a>
             </div>
@@ -68,7 +68,7 @@
             <div class="container">
                 <div class='cell'>
                     <div class='container'><div class='cell single grey'>Address</div></div>
-                    <div class='container'><div class='cell single'>{{getSelectedRetailer().retailer.retailer_address}}</div></div>
+                    <div class='container'><div class='cell single'>{{getSelectedRetailer().retailer_address}}</div></div>
                 </div>
                 <div class='cell icon'></div>
             </div>
@@ -86,8 +86,8 @@
             <div class="container">
                 <div class='cell'>
                     <div class='container'><div class='cell single grey'>Value Segment</div></div>
-                    <div class='container'><div class='cell single' *ngIf="getSelectedRetailer().alert" >{{getSelectedRetailer().alert[0].value_segment}}</div></div>
-                    <div class='container'><div class='cell single' *ngIf="!getSelectedRetailer().alert" ></div></div>
+                    <div class='container'><div class='cell single' *ngIf="getSelectedRetailer().value_segment" >{{getSelectedRetailer().value_segment}}</div></div>
+                    <div class='container'><div class='cell single' *ngIf="!getSelectedRetailer().value_segment" ></div></div>
                 </div>
                 <div class='cell icon'></div>
             </div>
@@ -96,8 +96,8 @@
             <div class="container">
                 <div class='cell'>
                     <div class='container'><div class='cell single grey'>Threshold</div></div>
-                    <div class='container'><div class='cell single' *ngIf="getSelectedRetailer().alert" >{{getSelectedRetailer().alert[0].threshold_hit | number }} ₱</div></div>
-                    <div class='container'><div class='cell single' *ngIf="!getSelectedRetailer().alert" ></div></div>
+                    <div class='container'><div class='cell single' *ngIf="getSelectedRetailer().threshold_hit" >{{getSelectedRetailer().threshold_hit | number }} ₱</div></div>
+                    <div class='container'><div class='cell single' *ngIf="!getSelectedRetailer().threshold_hit" ></div></div>
                 </div>
                 <div class='cell icon'></div>
             </div>

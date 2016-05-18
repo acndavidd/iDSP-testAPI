@@ -20,14 +20,14 @@
         <div class="container">
         	<div class='cell'>
         		<div class='container'>
-        			<div class='cell single bold deep-cyan' *ngIf="each.Route[0].RouteDay[0].sequence"># Route {{each.Route[0].RouteDay[0].sequence}}</div>
-        			<div class='cell single bold deep-cyan' *ngIf="!each.Route[0].RouteDay[0].sequence"></div>
+        			<div class='cell single bold deep-cyan' *ngIf="each.seq"># Route {{each.seq}}</div>
+        			<div class='cell single bold deep-cyan' *ngIf="!each.seq"></div>
         		</div>
 		        <div class='container'>
 	        		<div class='cell single bold'>{{each.retailer_name}}</div>
 		        </div>
 		        <div class='container'>
-		        	<div class='cell single'>{{each.owner_first_name}}</div>
+		        	<div class='cell single'>{{each.owner_name}}</div>
 		        </div>
 		        <div class='container'>
 		        	<div class='cell single'>{{each.retailer_address}}</div>
