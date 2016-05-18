@@ -126,11 +126,11 @@ export class LayoutService {
     setCurrentPage(pCurrent: string) {
         this.vCurrentPage = pCurrent;
 
-        if(
-            pCurrent == 'GetStarted' ||
-            pCurrent == 'Verification' ||
-            pCurrent == 'Login'||
-            pCurrent == 'Mpin') {
+        if (
+            pCurrent === 'GetStarted' ||
+            pCurrent === 'Verification' ||
+            pCurrent === 'Login' ||
+            pCurrent === 'Mpin') {
             this._pageNavigationService.resetListPreviousData();
             this.vLayoutState = {
                 appHeader: false,

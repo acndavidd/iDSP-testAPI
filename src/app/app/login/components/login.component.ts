@@ -25,9 +25,9 @@ export class LoginComponent {
         private _layoutService: LayoutService,
         private _authenticationService: AuthenticationService,
         private _modalService: ModalService,
-        private _pageNavigationService : PageNavigationService
+        private _pageNavigationService: PageNavigationService
         ) {
-        
+
         this._layoutService.setCurrentPage('Login');
     }
 
