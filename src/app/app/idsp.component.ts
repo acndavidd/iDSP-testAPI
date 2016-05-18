@@ -16,7 +16,7 @@ import {BasicCallProcedureComponent} from './basic-call-procedure/components/bas
 import {CloseDayComponent} from './close-day/components/close-day.component';
 import {SettingsComponent} from './settings/components/settings.component';
 import {VerificationComponent} from './verification/components/verification.component';
-import {ForgotPasswordComponent} from './login/components/forgot-password.component';
+import {MpinComponent} from './login/components/mpin.component';
 import {ModalComponent} from './shared/components/modal.component';
 import {RetailerRouteComponent} from './my-transaction/components/retailer-route.component';
 import {ModalService} from './shared/services/modal.service';
@@ -24,6 +24,8 @@ import {RetailerService} from './shared/services/retailer.service';
 import {RetailerSalesOrderComponent} from './basic-call-procedure/components/retailer-sales-order.component';
 import {DetailRetailerComponent} from './basic-call-procedure/components/detail-retailer.component';
 import {SalesOrderPaymentComponent} from './basic-call-procedure/components/sales-order-payment.component';
+import {LeftMenuComponent} from './shared/components/left-menu.component';
+
 
 declare var FastClick: FastClickStatic;
 declare var configChannel: any;
@@ -31,20 +33,23 @@ declare var configChannel: any;
 @Component({
     selector: 'idsp-app',
     template: `
-    	<div id="content"
-            (window:resize)="OnResize()">
+        <div id="content"
+            (window:resize)="OnResize()"
+            onhashchange="OnHashChange()">
             <idsp-header></idsp-header>
             <my-modal></my-modal>
-    		<router-outlet></router-outlet>
+            <left-menu></left-menu>
+            <router-outlet></router-outlet>
             <idsp-footer-menu></idsp-footer-menu>
-    	</div>
+        </div>
     `,
 
     directives: [
         HeaderComponent,
         FooterMenuComponent,
         ModalComponent,
-        ROUTER_DIRECTIVES
+        ROUTER_DIRECTIVES,
+        LeftMenuComponent
     ],
     providers: [
         ROUTER_PROVIDERS,
@@ -76,9 +81,9 @@ declare var configChannel: any;
         component: MainPageComponent
     },
     {
-        path: '/forgotPassword',
-        name: 'ForgotPassword',
-        component: ForgotPasswordComponent
+        path: '/mPin',
+        name: 'Mpin',
+        component: MpinComponent
     },
     {
         path: '/retailerRoute',
@@ -99,36 +104,45 @@ declare var configChannel: any;
         path: '/salesOrderPayment',
         name: 'SalesOrderPayment',
         component: SalesOrderPaymentComponent
+    },
+    {
+        path: '/**',
+        redirectTo: ['Starter', 'Login']
     }
 
 ])
 export class IDSPComponent implements OnInit {
 
-	constructor ( private _matchMediaService: MatchMediaService,
+    constructor ( private _matchMediaService: MatchMediaService,
     private _router: Router,
     private _layoutService: LayoutService) {
         new FastClick(document.body);
     }
 
-    ngOnInit(){
-    	this.OnResize();
-        if(configChannel === 'app'){
+    ngOnInit() {
+        this.OnResize();
+        if (configChannel === 'app') {
             this._router.navigate(['Starter', 'Login']);
         }
     }
 
-    OnResize(){
+    OnResize() {
         this._matchMediaService.OnResize();
     }
 
-     isFullScreen() {
-         let vCurrentPage: string = this._layoutService.getCurrentPage();
-         return !vCurrentPage || vCurrentPage === 'GetStarted' || vCurrentPage === 'Login' ||
-         vCurrentPage === 'Register';
-     }
- 
-     isSmallScreen() {
-         return !this._matchMediaService.getMm().largeUp;
-     }
+    isFullScreen() {
+        let vCurrentPage: string = this._layoutService.getCurrentPage();
+        return !vCurrentPage || vCurrentPage === 'GetStarted' || vCurrentPage === 'Login' ||
+        vCurrentPage === 'Register';
+    }
+
+    isSmallScreen() {
+        return !this._matchMediaService.getMm().largeUp;
+    }
+
+    OnHashChange() {
+        console.log('anjayy');
+    }
+
 }
 

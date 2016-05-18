@@ -1,60 +1,121 @@
-<div class="detail-retailer-container">
-    <div class="container-body">
+    <div class="container-body" *ngIf="getSelectedRetailer()">
         <div class="item-container">
-            <div class="item-identifier">
-                <div class="item-title"><div *ngIf="getRetailerAll()">{{getRetailerAll().storeName}}</div></div>
+            <div class="container">
+                <div class='cell'>
+                    <div class='container'><div class='cell left title bold'>{{getSelectedRetailer().retailer_name}}</div></div>
+                </div>
+                <div class='cell'>
+                    <div class='container'>
+                        <div class='cell right bold deep-cyan' *ngIf="vSelectedRetailSeq"># Route {{vSelectedRetailSeq}}</div>
+                        <div class='cell right' *ngIf="!vSelectedRetailSeq"></div>
+                    </div>
+                </div>
+                <div class='cell icon'></div>
             </div>
         </div>
-        <div class="item-container">
-            <div class="item-identifier">Retailer Owner</div>
-            <div class="item-value"><div *ngIf="getRetailerAll()">{{getRetailerAll().ownerName}}</div></div>
-            <a (click)="subMenuShow()"><div class="item-icon open-sub-item selected" [ngClass] = "{selected: vArrowMap}"></div></a>
-
-         <div *ngIf="vMenuShow">
-            <div class="item-sub-container">
-               <div class="item-identifier">Civil Status</div>
-                <div class="item-value"><div *ngIf="getRetailerAll()">{{getRetailerAll().serviceNumber}}</div></div>
-            </div>
-             <div class="item-sub-container">
-               <div class="item-identifier">Email</div>
-                <div class="item-value"><div *ngIf="getRetailerAll()">{{getRetailerAll().email}}</div></div>
-            </div>
-             <div class="item-sub-container">
-               <div class="item-identifier">Gender</div>
-                <div class="item-value"><div *ngIf="getRetailerAll()">{{getRetailerAll().gender}}</div></div>
-            </div>
-             <div class="item-sub-container">
-               <div class="item-identifier">Birthday</div>
-                <div class="item-value"><div *ngIf="getRetailerAll()">{{getRetailerAll().birthday}}</div></div>
+        <div class="item-container" (click)="subMenuShow()" id="retailer-sub-menu-btn">
+            <div class="container">
+                <div class='cell'>
+                    <div class='container'><div class='cell single grey'>Retailer Owner</div></div>
+                    <div class='container'><div class='cell single'>{{getSelectedRetailer().owner_name}}</div></div>
+                </div>
+                <div class='cell icon arrow-down' [ngClass]="{selected: vSubMenuShow}"></div>
             </div>
         </div>
 
+        <div class="item-container sub" *ngIf="vMenuShow">
+            <div class="container border">
+                <div class='cell'>
+                    <div class='container'><div class='cell single grey'>Civil Status</div></div>
+                    <div class='container'><div class='cell single'>{{getSelectedRetailer().civil_status}}</div></div>
+                </div>
+                <div class='cell icon'></div>
+            </div>
+            <div class="container border">
+                <div class='cell'>
+                    <div class='container'><div class='cell single grey'>Email Address</div></div>
+                    <div class='container'><div class='cell single'>{{getSelectedRetailer().email}}</div></div>
+                </div>
+                <div class='cell icon'></div>
+            </div>
+            <div class="container border">
+                <div class='cell'>
+                    <div class='container'><div class='cell single grey'>Gender</div></div>
+                    <div class='container'><div class='cell single'>{{getSelectedRetailer().gender}}</div></div>
+                </div>
+                <div class='cell icon'></div>
+            </div>
+            <div class="container">
+                <div class='cell'>
+                    <div class='container'><div class='cell single grey'>BOD</div></div>
+                    <div class='container'><div class='cell single'>{{getSelectedRetailer().birthday | date:'yyyy-MM-dd HH:mm:ss' }}</div></div>
+                </div>
+                <div class='cell icon'></div>
+            </div>
         </div>
-        <div class="item-container" >
-            <div class="item-identifier">Mobile Number</div>
-            <div class="item-value"><div *ngIf="getRetailerAll()">{{getRetailerAll().serviceNumber}}</div></div>
-            <div class="item-icon call"></div>
-        </div>
-        <div class="item-container" >
-            <div class="item-identifier">Address</div>
-            <div class="item-value"><div *ngIf="getRetailerAll()">{{getRetailerAll().storeAddress}}</div></div>
-        </div>
-        <div class="item-container" >
-            <div class="item-identifier">Amount Receivable</div>
-            <div class="item-value">100000</div>
+
+
+        <div class="item-container">
+            <div class="container">
+                <div class='cell'>
+                    <div class='container'><div class='cell single grey'>Mobile Number (MIN)</div></div>
+                    <div class='container'><div class='cell single'>{{getSelectedRetailer().retailer_min}}</div></div>
+                </div>
+                <a href="tel:1234566" class='cell icon call'></a>
+            </div>
         </div>
         <div class="item-container">
-            <div class="item-identifier">Retailer Load Wallet </div>
-            <div class="item-value"></div>
+            <div class="container">
+                <div class='cell'>
+                    <div class='container'><div class='cell single grey'>Address</div></div>
+                    <div class='container'><div class='cell single'>{{getSelectedRetailer().retailer_address}}</div></div>
+                </div>
+                <div class='cell icon'></div>
+            </div>
         </div>
         <div class="item-container">
-            <div class="item-identifier">Value</div>
-            <div class="item-value"></div>
-          
+            <div class="container">
+                <div class='cell'>
+                    <div class='container'><div class='cell single grey'>Amount Receivable</div></div>
+                    <div class='container'><div class='cell single'>{{getSelectedRetailer().total_ar | number}} ₱</div></div>
+                </div>
+                <div class='cell icon'></div>
+            </div>
+        </div>        
+        <div class="item-container">
+            <div class="container">
+                <div class='cell'>
+                    <div class='container'><div class='cell single grey'>Value Segment</div></div>
+                    <div class='container'><div class='cell single' *ngIf="getSelectedRetailer().value_segment" >{{getSelectedRetailer().value_segment}}</div></div>
+                    <div class='container'><div class='cell single' *ngIf="!getSelectedRetailer().value_segment" ></div></div>
+                </div>
+                <div class='cell icon'></div>
+            </div>
         </div>
         <div class="item-container">
-            <div class="item-identifier">Threshold</div>
-            <div class="item-value"></div>
+            <div class="container">
+                <div class='cell'>
+                    <div class='container'><div class='cell single grey'>Threshold</div></div>
+                    <div class='container'><div class='cell single' *ngIf="getSelectedRetailer().threshold_hit" >{{getSelectedRetailer().threshold_hit | number }} ₱</div></div>
+                    <div class='container'><div class='cell single' *ngIf="!getSelectedRetailer().threshold_hit" ></div></div>
+                </div>
+                <div class='cell icon'></div>
+            </div>
         </div>
+
+        <div class="item-container">
+            <div class="container" (click)='goToInventoryRetailer(1)' id="inventory-retailer-btn">
+                <div class='cell'>
+                    <div class='container' ><div class='cell single-large grey'>Inventory</div></div>
+                </div>
+                <div class='cell icon arrow-right'></div>
+            </div>
+        </div>
+        
+        <div class ="no-divider">
+            <div class="button" (click)="gotoBCPActivityStep()">
+                <div class="button-identifier" >START</div>
+            </div>
+        </div>
+
     </div>
-</div>

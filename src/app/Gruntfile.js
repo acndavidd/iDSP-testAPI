@@ -56,6 +56,20 @@ module.exports = function(grunt) {
             }
         },
 
+// ---------------------------
+// tslint Configuration
+// ---------------------------
+        tslint: {
+            options: {
+                // can be a configuration object or a filepath to tslint.json
+                configuration: "tslint.json"
+            },
+            files: {
+                src: [
+                    "app/**/*.ts"
+                ]
+            }
+        },
 
 // ---------------------------
 // Concatenation Configuration
@@ -77,7 +91,7 @@ module.exports = function(grunt) {
                 jshintrc: '.jshintrc',
                 reporter: require('jshint-stylish'),
             },            
-            files: ['.../debug/js/**.js'
+            files: ['../../debug/app/**/**.js'
                     // 'dev/js/*.js'
                     ],
         },
@@ -152,7 +166,7 @@ module.exports = function(grunt) {
                             'node_modules/angular2/bundles/http.dev.js',
                             'node_modules/requirejs/require.js',
                             'node_modules/nouislider/distribute/nouislider.js',
-                            'node_modules/angular2/es6/dev/src/testing/shims_for_IE.js'
+                            'node_modules/angular2/es6/dev/src/testing/shims_for_IE.js',
                         ],
                         dest:'../../debug/scripts',
                         expand: true, 
@@ -168,6 +182,21 @@ module.exports = function(grunt) {
                         dest:'../../debug/',
                         expand: true,
                     },
+                    {
+                        src:['res/**/*.*'],
+                        dest:'../../debug/',
+                        expand: true,                        
+                    }
+                ]
+            },
+
+            fonts: {
+                files: [
+                    {
+                        src:['fonts/*.*'],
+                        dest:'../../debug/',
+                        expand: true
+                    }
                 ]
             },
             
@@ -226,13 +255,21 @@ module.exports = function(grunt) {
 							'app/**/*.*',
 							'config/*.*',
 							'css/*.*',
+							'fonts/*.*',
 							'img/**/*.*',
-							'js/*.*',
-							'scripts/*.*',
+                            'js/*.*',
+                            'res/**/*.*',
+                            'scripts/*.*',
 							'services/**/*.json',
 							'init.js', 'tsconfig.json'
 						],
                         dest:'../cordova/www/',
+                        expand: true
+                    },
+                    {
+                        cwd: '../../debug/',
+                        src:['res/**/*.*'],
+                        dest:'../cordova/',
                         expand: true
                     },
 					{
@@ -315,27 +352,21 @@ module.exports = function(grunt) {
         'watch'
         ]);
 
-    //grunt without watch for jenkins
-    grunt.registerTask('build-h1',[
-        'concat',
-        'sass',
-        'cssmin',
-        'uglify'
-        ]);
-
-//Debug
+    //Debug
     grunt.registerTask('debug',[      
         'clean:debug',
         'copy:dependencies',
         'copy:resources',
         'copy:html',
         'copy:css',
+        'copy:fonts',
+        'tslint',
         'ts',
         'copy:js',
         'concat',
         'sass',
         'clean:sasscache',
-        'jshint',
+        // 'jshint',
         'cssmin',
         'uglify',
         'cachebreaker',
@@ -343,13 +374,29 @@ module.exports = function(grunt) {
         ]); 
 
     grunt.registerTask('cordova',[      
+        'clean:debug',
+        'copy:dependencies',
+        'copy:resources',
+        'copy:html',
+        'copy:css',
+        'copy:fonts',
+        'tslint',
+        'ts',
+        'copy:js',
+        'concat',
+        'sass',
+        'clean:sasscache',
+        // 'jshint',
+        'cssmin',
+        'uglify',
+        'cachebreaker',
         'clean:cordova',
         'copy:cordova'
         ]); 
 
 
     grunt.registerTask('default',[
-        'jshint'
+        'tslint'
         ]);               
 
     grunt.registerTask('wp',[      
@@ -367,14 +414,17 @@ module.exports = function(grunt) {
         'copy:resources',
         'copy:html',
         'copy:css',
+        'copy:fonts',
+        'tslint',
         'ts',
         'copy:js',
         'concat',
         'sass',
         'clean:sasscache',
-        'jshint',
+        // 'jshint',
         'cssmin',
-        'uglify'
+        'uglify',
+        'cachebreaker',
         ]); 
 
 };

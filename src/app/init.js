@@ -14,7 +14,7 @@ if(navigator.userAgent.match(/(iOS|iPhone|iPod|iPad|Android|blackberry|Windows P
     script.src = 'cordova.js';
     document.head.appendChild(script);
     document.addEventListener("deviceready", bootstrapApp, false);
-    console.log("device ready event listenter activated");
+    console.log("device ready event listener activated");
     configChannel = 'app';
 }else{
     configChannel = 'web';
@@ -60,4 +60,13 @@ function bootstrapApp() {
     ga('create', 'UA-75852872-2', {'storage': 'none','clientId':device.uuid});
     ga('set','checkProtocolTask',null);
     ga('set','checkStorageTask',null);
+    //document.addEventListener("backbutton", onBackKeyDown, false);
+    console.log("this device is :" + device.cordova);
+}
+
+function onBackKeyDown() {
+    // window.location.href = '/login';
+    alert('back key pressed');
+    console.log('back key pressed');
+    // Handle the back button
 }

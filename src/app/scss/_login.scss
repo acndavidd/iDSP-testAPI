@@ -1,13 +1,20 @@
 $container-login-height: 100%;
 
 .container-login {
+	background: url("../img/login_bg.png") no-repeat center center;
 	z-index: 50;
 	position: fixed;
     left: 0;
     right: 0;
-    background-color: #005A5B;
 	height: 100%;
 	text-align :center;
+
+	.anti-spy {
+                width: 100%;
+                position: absolute;
+                background-color: rgba(0, 0, 0, 0.4);
+                height : 100%;
+            }
 
     ::-webkit-input-placeholder {
 		color:    #FFF;
@@ -22,23 +29,19 @@ $container-login-height: 100%;
 		color:    #FFF;
 	}
 	.outer-box {
-		max-width : 320px;
-		margin: 70px auto 0px;
+		max-width : 75vw;
+		margin: 20vw auto -3vw;
 		.header {
 			color: #FFF;
-			font-size: 28px;
-			line-height: 40px;
-			padding-right: 20px;
-			margin-bottom: 10px;
+			font-size: 10vw;
+			line-height: 0vw;
+			margin-bottom: 20vw;
 			text-align: center;
-			font-weight: lighter;
 		}
 		.inner-box {
 			background-color: rgba(0, 0, 0, 0);
 			border: 0;
 			text-align: center;
-			padding: 0;
-
 			.button {
 				width: 100%;
 				margin: 60px auto 18px;
@@ -68,19 +71,18 @@ $container-login-height: 100%;
             }
 			input {
 				width: 100%;
-				margin: 2px auto;
+				margin: 2vw auto;
 				display: block;
-				height: 35px;
+				height: 10vw;
 				border: none;
-				line-height: 50px - 20px;
 				font-size: medium;
-				margin-bottom: 5px;
-				background-color: #63DFDC;
+				margin-top: 10px;
+				margin-bottom: 10px;
+				background-color: rgba(199, 195, 184, 0.5);
 				outline: 0;
 				color : #000;
 				text-align: center;
 				font-style: italic;
-                border-bottom: 1px solid #000;
 			}
 			p {
 				a {
@@ -93,10 +95,10 @@ $container-login-height: 100%;
 		.login-button
 		{
 			height: 35px;
-			background-color: #00C2BA;
+			background-color: $apple;
 			text-align: center;
 			vertical-align: center;
-			font-size: 15pt;
+			font-size: 13pt;
     		padding-top: 7px;
     		color : #FFF;
 		}
@@ -112,17 +114,16 @@ $container-login-height: 100%;
 	.smart-logo
 	{
 		display: block;
-        height: 30px;
+        //height: 30px;
         width: 100%;
-        margin-top: 2px;
         background: 
         url("../img/smart-logo.png")
         no-repeat;
         background-position-x: center;
         background-position-y: center;
-        background-size: 100px;
         z-index: 90;
 		position: fixed;
-		bottom: 20px;
+		padding-top: 90vw;
+
 	}
 }

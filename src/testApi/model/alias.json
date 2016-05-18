@@ -1,12 +1,12 @@
 {
-    "public.profile": {
+    "public.mstProduct": {
         "belongsTo": {
-            "user": null
+            "category": null
         }
     },
-    "public.users": {
+    "public.mstProductCategory": {
         "hasMany": {
-            "userProfiles": null
+            "categoryIdForeignIdxes": null
         }
     }
 }

@@ -6,26 +6,25 @@ import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
-	selector: 'sales-order-payment',
+    selector: 'sales-order-payment',
     templateUrl: './app/basic-call-procedure/components/sales-order-payment.component.html',
-	directives: [
-		NgModel,
-		ROUTER_DIRECTIVES
+    directives: [
+        NgModel,
+        ROUTER_DIRECTIVES
     ]
 })
 
 export class SalesOrderPaymentComponent {
-	
 
-	constructor (
-		private _layoutService: LayoutService,
-		private _matchMediaService: MatchMediaService,
-		private _headerService: HeaderService,
-		private _router: Router
-		) 
-	{
-		this._layoutService.setCurrentPage('SalesOrderPayment');
-		this._headerService.setTitle("Sales Order Payment");
+
+    constructor (
+        private _layoutService: LayoutService,
+        private _matchMediaService: MatchMediaService,
+        private _headerService: HeaderService,
+        private _router: Router
+        ) {
+        this._layoutService.setCurrentPage('SalesOrderPayment');
+        this._headerService.setTitle('Sales Order Payment');
     }
 
 }
