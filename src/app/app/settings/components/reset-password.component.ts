@@ -14,21 +14,21 @@ import {NgModel} from 'angular2/common';
 })
 
 export class ResetPasswordComponent {
-	
 
-	constructor (
+
+    constructor (
         private _layoutService: LayoutService,
         private _router: Router,
         private _matchMediaService: MatchMediaService,
         private _headerService: HeaderService
         ) {
 
-		this._layoutService.setCurrentPage('ResetPassword');
-        this._headerService.setTitle("Reset Password");
+        this._layoutService.setCurrentPage('ResetPassword');
+        this._headerService.setTitle('Reset Password');
     }
-	
-	getResize(){
-        return this._matchMediaService.getMm();  
+
+    getResize() {
+        return this._matchMediaService.getMm();
     }
 
 }

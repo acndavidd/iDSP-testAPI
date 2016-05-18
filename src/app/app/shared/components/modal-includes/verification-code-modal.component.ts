@@ -6,12 +6,12 @@ import {ModalService} from '../../services/modal.service';
     templateUrl: 'app/shared/components/modal-includes/verification-code-modal.component.html'
 })
 export class VerificationCodeModalComponent {
-    
-    constructor(private _modalService: ModalService){
+
+    constructor(private _modalService: ModalService) {
     }
-    
-    close(){
+
+    close() {
         this._modalService.toggleVerificationCodeModal();
     }
-    
+
 }

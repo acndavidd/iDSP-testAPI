@@ -38,12 +38,12 @@ vApp.use(function(pRequest, pResponse, pNext) {
         vAllow = 'http://localhost:3000';
     }
     if(vAllow) {
-         pResponse.header("Access-Control-Allow-Origin", vAllow);
+         pResponse.header('Access-Control-Allow-Origin', vAllow);
     }
-    pResponse.header("Access-Control-Allow-Credentials", "true");
-    pResponse.header("Access-Control-Allow-Headers", 
-        "Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept,Authorization,Proxy-Authorization,X-session");
-    pResponse.header("Access-Control-Allow-Methods","GET,PUT,DELETE,POST");
+    pResponse.header('Access-Control-Allow-Credentials', 'true');
+    pResponse.header('Access-Control-Allow-Headers', 
+        'Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept,Authorization,Proxy-Authorization,X-session');
+    pResponse.header('Access-Control-Allow-Methods','GET,PUT,DELETE,POST');
 
     if(
         pRequest.path !== '/service/login' && 
@@ -68,7 +68,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
                 pRequest.json(vResult);
             }
         }catch(err){
-            console.log("error : " + err);
+            console.log('error : ' + err);
             //pResponse.sendStatus(403);
         }      
     }
@@ -78,7 +78,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
 //vRouter.post('/login',vLoginCtrl.login);
 vRouter.get('/login',function(pRequest,pResponse){
     /*var vUrl = './wsdl/CurrencyConvertor.asmx.xml';
-    var vArgs = { "FromCurrency" : "AFA","ToCurrency" : "IDR"};
+    var vArgs = { 'FromCurrency' : 'AFA','ToCurrency' : 'IDR'};
     vSOAP.createClient(vUrl,function(pErr,pClient){
         pClient.ConversionRate(vArgs, function(pErr, pResult) {
             pResponse.json(pResult);
@@ -139,7 +139,8 @@ vRouter.get('/getAccountsReceivables',vAcc.getAccountsReceivables);
 
 vRouter.get('/getProductCategory',vTargetsActualsCtrl.getProdCat);
 vRouter.get('/getProductSubCategory',vTargetsActualsCtrl.getProdSubCat);
-vRouter.get('/getProduct',vTargetsActualsCtrl.getProduct);
+
+vRouter.post('/getProduct',vTargetsActualsCtrl.getProduct);
 
 vRouter.get('/getCategory',vTargetsActualsCtrl.getCategory);
 

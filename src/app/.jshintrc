@@ -9,5 +9,8 @@
   "onecase":   true,
   "lastsemic": true,
   "maxerr" : 300,
-  "predef": ["angular"]
+  "globals" : {
+  "System"  : true,
+  "Reflect" : true
+  }
 }
