@@ -68,7 +68,6 @@ class TargetsActualsController {
             var sales_order = orm.getModel("trx_sales_order");
             var prd_order = orm.getModel("trx_saleord_prd_det");
             var load_order = orm.getModel("trx_saleord_load_det");
-            //today yyyy-mm-dd
             var dateFormat = require('dateformat');
             var now = new Date();
             var vtoday = dateFormat(now, "yyyy-mm-dd");
@@ -81,9 +80,9 @@ class TargetsActualsController {
             var vLastOfMonth = new Date(vyear, vmonth, 0, 11, 59, 59, 59);
             var used = vFirstOfMonth.getDay() + vLastOfMonth.getDate();
             var vWeeksInMonth = Math.ceil(used / 7);
-            var curr = new Date(); // get current date
-            var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
-            var last = first + 6; // last day is the first day + 6
+            var curr = new Date();
+            var first = curr.getDate() - curr.getDay();
+            var last = first + 6;
             var firstday = new Date(curr.setDate(first)).toUTCString();
             var lastday = new Date(curr.setDate(last)).toUTCString();
             firstday;

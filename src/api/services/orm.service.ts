@@ -43,7 +43,7 @@ export class ORMService{
 		//this.vAssociatedModels = {};
 	}
 
-	public async sp(pSPName:string,pParams:any):string{
+	public async sp(pSPName: string,pParams: any): Promise<string>{
 		let vSequelize = this.getSequelize();
 		return new Promise<string>(
 			function (pResolve,pReject){
