@@ -15,19 +15,19 @@ import {HeaderService} from '../../shared/services/header.service';
 
 export class CollectionComponent {
 
-	constructor (
-	private _router: Router,
-	private _layoutService: LayoutService,
+    constructor (
+    private _router: Router,
+    private _layoutService: LayoutService,
     private _matchMediaService: MatchMediaService,
-	private _modalService: ModalService,
+    private _modalService: ModalService,
     private _headerService: HeaderService
     ) {
 
-		this._layoutService.setCurrentPage('Collection');
-        this._headerService.setTitle("Collection");
+        this._layoutService.setCurrentPage('Collection');
+        this._headerService.setTitle('Collection');
     }
-	
-	getResize(){
-        return this._matchMediaService.getMm();  
+
+    getResize() {
+        return this._matchMediaService.getMm();
     }
 }

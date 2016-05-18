@@ -8,53 +8,49 @@ import {HeaderService} from '../../shared/services/header.service';
 
 @Component({
     templateUrl: './app/close-day/components/close-day.component.html',
-	directives: [
-		ROUTER_DIRECTIVES
+    directives: [
+        ROUTER_DIRECTIVES
     ]
 })
 
 export class CloseDayComponent {
 
 
-	constructor (
-	private _router: Router,
-	private _layoutService: LayoutService,
+    constructor (
+    private _router: Router,
+    private _layoutService: LayoutService,
     private _matchMediaService: MatchMediaService,
-	private _modalService: ModalService,
-	private _headerService: HeaderService
-    ){
-		this._layoutService.setCurrentPage('CloseDay');
-        this._headerService.setTitle("Close Day");
-    }
-	
-	getResize(){
-        return this._matchMediaService.getMm();  
+    private _modalService: ModalService,
+    private _headerService: HeaderService
+    ) {
+        this._layoutService.setCurrentPage('CloseDay');
+        this._headerService.setTitle('Close Day');
     }
 
-    toggleCollection(){
+    getResize() {
+        return this._matchMediaService.getMm();
+    }
+
+    toggleCollection() {
         this._router.navigate(['Collection']);
     }
 
-    goToTargetsActuals()
-    {
+    goToTargetsActuals() {
         console.log('TA');
         this._router.navigate(['CDTargetsActuals']);
     }
 
-    goToVisitedRetailer()
-    {
+    goToVisitedRetailer() {
         console.log('VR');
         this._router.navigate(['VisitedRetail']);
     }
 
-    goToCollection()
-    {
+    goToCollection() {
         console.log('C');
          this._router.navigate(['Collection']);
     }
 
-    goToStockReturn()
-    {
+    goToStockReturn() {
         console.log('SR');
     }
 }

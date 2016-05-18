@@ -16,9 +16,9 @@ import {NgModel} from 'angular2/common';
 })
 
 export class SettingsComponent {
-	
 
-	constructor (
+
+    constructor (
         private _layoutService: LayoutService,
         private _router: Router,
         private _matchMediaService: MatchMediaService,
@@ -30,13 +30,13 @@ export class SettingsComponent {
         this._layoutService.setCurrentPage('Settings');
         this._headerService.setTitle('Settings');
     }
-	
-    goToResetPassword(){
+
+    goToResetPassword() {
         console.log('RESET');
         this._router.navigate(['ResetPassword']);
     }
 
-    sync(){
+    sync() {
         console.log('Sync');
         this._router.navigate(['Sync']);
     }
@@ -45,13 +45,13 @@ export class SettingsComponent {
         this._modalService.toggleVerificationCodeModal();
     }
 
-	getResize(){
-        return this._matchMediaService.getMm();  
+    getResize() {
+        return this._matchMediaService.getMm();
     }
 
-    logout(){
+    logout() {
         console.log('logout');
-    	this._router.parent.navigate(['Starter']);
+        this._router.parent.navigate(['Starter']);
     }
 
 }

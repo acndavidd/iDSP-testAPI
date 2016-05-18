@@ -9,124 +9,123 @@ import {AuthenticationService} from '../../shared/services/authentication.servic
 import {ModalService} from '../../shared/services/modal.service';
 import {RetailerService} from '../../shared/services/retailer.service';
 
-declare var ga:any;
-declare var Camera:any;
-declare var navigator:any;
-declare var configChannel:any;
+declare var ga: any;
+declare var Camera: any;
+declare var navigator: any;
+declare var configChannel: any;
 
 @Component({
     selector: 'left-menu',
     templateUrl: 'app/shared/components/left-menu.component.html'
 })
 export class LeftMenuComponent implements OnInit  {
-    
+
     image;
     vCurrentPage;
     vGoToPage;
-    
-    constructor(private _layoutService : LayoutService,
+
+    constructor(private _layoutService: LayoutService,
     private _router: Router,
     private _matchMediaService: MatchMediaService,
     private _authenticationService: AuthenticationService,
     private _headerService: HeaderService,
     private _pageNavigationService: PageNavigationService
-    ){
+    ) {
         this.image = null;
     }
-    
+
     ngOnInit() {
 
     }
 
-    toggleLeftMenu() { 
-        this._layoutService.toggleLeftMenu(); 
-    } 
-    
-    getLeftMenuState() { 
-        return this._layoutService.getLeftMenuState(); 
+    toggleLeftMenu() {
+        this._layoutService.toggleLeftMenu();
     }
 
-    checkCurrentPage(pGoToPage : string) {
-        this.vCurrentPage = this._layoutService.getCurrentPage();
-        console.log(pGoToPage + " - " + this.vCurrentPage);
+    getLeftMenuState() {
+        return this._layoutService.getLeftMenuState();
+    }
 
-        if(pGoToPage === this.vCurrentPage) {
+    checkCurrentPage(pGoToPage: string) {
+        this.vCurrentPage = this._layoutService.getCurrentPage();
+        console.log(pGoToPage + ' - ' + this.vCurrentPage);
+
+        if (pGoToPage === this.vCurrentPage) {
             this.toggleLeftMenu();
-        }
-        else {
+        } else {
             this._pageNavigationService.navigate(pGoToPage, null, null);
         }
     }
-    
+
     goToMyDashboard() {
-        this.vGoToPage = "MyTransaction";
+        this.vGoToPage = 'MyTransaction';
         this.checkCurrentPage(this.vGoToPage);
     }
-    
+
     goToTargets() {
-        this.vGoToPage = "TargetsActuals";
+        this.vGoToPage = 'TargetsActuals';
         this.checkCurrentPage(this.vGoToPage);
     }
-    
+
     goToInventory() {
-        this.vGoToPage = "Inventory";
+        this.vGoToPage = 'Inventory';
         this.checkCurrentPage(this.vGoToPage);
     }
 
     goToRetailerRoute() {
-        this.vGoToPage = "RetailerRoute";
+        this.vGoToPage = 'RetailerRoute';
         this.checkCurrentPage(this.vGoToPage);
     }
 
     goToAccountReceivables() {
-        this.vGoToPage = "AccountsReceivables";
+        this.vGoToPage = 'AccountsReceivables';
         this.checkCurrentPage(this.vGoToPage);
     }
 
     goToThresholdAlerts() {
-        this.vGoToPage = "DSPAlerts";
+        this.vGoToPage = 'DSPAlerts';
         this.checkCurrentPage(this.vGoToPage);
     }
 
     goToBasicCallProcedure() {
-        this.vGoToPage = "BasicCallProcedure";
+        this.vGoToPage = 'BasicCallProcedure';
         this.checkCurrentPage(this.vGoToPage);
     }
 
     goToCloseOfTheDay() {
-        this.vGoToPage = "CloseDay";
+        this.vGoToPage = 'CloseDay';
         this.checkCurrentPage(this.vGoToPage);
     }
 
     goToTargetsActuals() {
-        this.vGoToPage = "CDTargetsActuals";
+        this.vGoToPage = 'CDTargetsActuals';
         this.checkCurrentPage(this.vGoToPage);
     }
 
     goToVisitedRetailerRoute() {
-        this.vGoToPage = "VisitedRetail";
+        this.vGoToPage = 'VisitedRetail';
         this.checkCurrentPage(this.vGoToPage);
     }
 
     goToCollection() {
-        this.vGoToPage = "Collection";
+        this.vGoToPage = 'Collection';
         this.checkCurrentPage(this.vGoToPage);
     }
 
     goToRemittance() {
-        // this.vGoToPage = "Remittance";
+        // this.vGoToPage = 'Remittance';
         // this.checkCurrentPage(this.vGoToPage);
     }
 
     goToStockReturn() {
-        // this.vGoToPage = "StockReturn";
+        // this.vGoToPage = 'StockReturn';
         // this.checkCurrentPage(this.vGoToPage);
     }
 
     goToLogout() {
         this._layoutService.toggleLeftMenu();
         this._layoutService.toggleHeader();
-        this._router.navigate(['Starter','Login']);
+        this._router.navigate(['Starter', 'Login']);
     }
 
 }

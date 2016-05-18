@@ -21,26 +21,26 @@ export class MpinComponent {
     constructor (
         private _router: Router,
         private _layoutService: LayoutService,
-        private _authenticationService:AuthenticationService,
+        private _authenticationService: AuthenticationService,
         private _modalService: ModalService,
-        private _pageNavigationService : PageNavigationService
+        private _pageNavigationService: PageNavigationService
         ) {
-        
+
         this._layoutService.setCurrentPage('Mpin');
     }
 
     cancel(pEvent) {
         pEvent.preventDefault();
 
-        //For By Pass Directly without API
+        // For By Pass Directly without API
         this._router.navigate(['Starter']);
     }
 
     submit(pEvent) {
         pEvent.preventDefault();
 
-        //For By Pass Directly without API
-        this._pageNavigationService.navigate("MyTransaction", null, null);
+        // For By Pass Directly without API
+        this._pageNavigationService.navigate('MyTransaction', null, null);
     }
 
     ResendMpinModalComponent() {

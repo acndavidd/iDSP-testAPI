@@ -6,12 +6,9 @@ import {ModalService} from '../../services/modal.service';
     templateUrl: 'app/shared/components/modal-includes/resend-mpin-modal.component.html'
 })
 export class ResendMpinModalComponent {
-    
-    constructor(private _modalService: ModalService){
+    constructor(private _modalService: ModalService) {
     }
-    
-    close(){
+    close() {
         this._modalService.toggleResendMpinModal();
     }
-    
 }

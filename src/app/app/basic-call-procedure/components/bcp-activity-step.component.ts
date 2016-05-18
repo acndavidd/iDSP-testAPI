@@ -6,31 +6,30 @@ import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
-	selector: 'bcp-activity-step',
+    selector: 'bcp-activity-step',
     templateUrl: './app/basic-call-procedure/components/bcp-activity-step.html',
-	directives: [
-		NgModel,
-		ROUTER_DIRECTIVES
+    directives: [
+        NgModel,
+        ROUTER_DIRECTIVES
     ]
 })
 
 export class BCPActivityStepComponent {
-	
 
-	constructor (
-		private _layoutService: LayoutService,
-		private _matchMediaService: MatchMediaService,
-		private _headerService: HeaderService,
-		private _router: Router
-		) 
-	{
-		this._layoutService.setCurrentPage('BCPActivityStep');
-		this._headerService.setTitle("BCP Activities Step");
+
+    constructor (
+        private _layoutService: LayoutService,
+        private _matchMediaService: MatchMediaService,
+        private _headerService: HeaderService,
+        private _router: Router
+        ) {
+        this._layoutService.setCurrentPage('BCPActivityStep');
+        this._headerService.setTitle('BCP Activities Step');
     }
-	
-	goToSalesOrderPayment(){
-		console.log('Go to Sales Order Payment');
-		this._router.navigate(['SalesOrderPayment']);
-	}
+
+    goToSalesOrderPayment() {
+        console.log('Go to Sales Order Payment');
+        this._router.navigate(['SalesOrderPayment']);
+    }
 
 }
