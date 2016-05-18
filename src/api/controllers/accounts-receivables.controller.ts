@@ -11,13 +11,14 @@ export class AccController{
 
 	getAccountsReceivables(pRequest,pResponse){
 		try{
+			console.log('in getAccountsReceivables API');
 			let vOrmSvc = new ORMService();
 			let vAccModel = vOrmSvc.getModel('trx_sales_order');
 
 			let vResult = [];
 			var vPromises = [];
 			var vDate = new Date().getDay();
-			var vDspId = 'dsp1';
+			var vDspId = 'DSP00001';
 
 			vAccModel.findAll({
 				attributes : ['order_id'],
