@@ -17,45 +17,50 @@
 
 	<div *ngIf="vDayShow">
 		<div  >
-			<div class="item-container-md-ta" *ngFor="#prod_day of vShowProduct" >
+			<!-- <div class="item-container-md-ta" *ngFor="#prod_day of vShowProduct" > -->
+			<div class="item-container-md-ta" *ngFor="#cat_name of vCatNameList">
 		        <div class="container border">
 		        	<div class='cell category-icon call'></div>
 		            <div class='cell'>
-		                <div class='container'><div class='cell category-text green'>{{prod_day.category_name}}</div></div>
+		                <div class='container'><div class='cell category-text green'>{{cat_name}}</div></div>
 		            </div>
 		        </div>
-		        <div class="container border" *ngIf="prod_day.target_qty !== 0">
-		            <div class='cell'>
-		                <div class='container'>
-		                	<div class='cell content'>
-						        <div class="container">
-						            <div class='cell'>
-						                <div class='container'><div class='cell sub-category'>{{prod_day.sub_category_name}}</div></div>
-						                <div class='container'>
-						                	<div class='cell'>
-										        <div class="container">
-										            <div class='cell'>
-										                <div class='container'><div class='cell content-triple center'>{{prod_day.amountactual}}</div></div>
-										                <div class='container'><div class='cell content-triple center'>Actual</div></div>
-										            </div>
-										            <div class='cell'>
-										                <div class='container'><div class='cell content-triple center'>{{prod_day.target_qty}}</div></div>
-										                <div class='container'><div class='cell content-triple center'>Target</div></div>
-										            </div>
-										            <div class='cell'>
-										                <div class='container'><div class='cell content-triple center'>-115</div></div>
-										                <div class='container'><div class='cell content-triple center'>Balance</div></div>
-										            </div>
-										        </div>
-									    	</div>
-									    </div>
-						            </div>
-						        </div>
-							</div>
-						</div>
-		            </div>
-		            <div class='cell progress-bar'><div class="progress-radial progress-{{prod_day.amountactual/(prod_day.target_qty)*100 | number}}"><div class="overlay">{{prod_day.amountactual/(prod_day.target_qty)*100 | number}}<sup>%</sup></div></div></div>
-		        </div>
+		        <div *ngFor="#prod_day of vShowProduct">
+		        	<div *ngIf="cat_name === prod_day.category_name">
+				        <div class="container border" *ngIf="prod_day.target_qty !== 0">
+				            <div class='cell'>
+				                <div class='container'>
+				                	<div class='cell content'>
+								        <div class="container">
+								            <div class='cell'>
+								                <div class='container'><div class='cell sub-category'>{{prod_day.sub_category_name}}</div></div>
+								                <div class='container'>
+								                	<div class='cell'>
+												        <div class="container">
+												            <div class='cell'>
+												                <div class='container'><div class='cell content-triple center'>{{prod_day.amountactual}}</div></div>
+												                <div class='container'><div class='cell content-triple center'>Actual</div></div>
+												            </div>
+												            <div class='cell'>
+												                <div class='container'><div class='cell content-triple center'>{{prod_day.target_qty}}</div></div>
+												                <div class='container'><div class='cell content-triple center'>Target</div></div>
+												            </div>
+												            <div class='cell'>
+												                <div class='container'><div class='cell content-triple center'>-115</div></div>
+												                <div class='container'><div class='cell content-triple center'>Balance</div></div>
+												            </div>
+												        </div>
+											    	</div>
+											    </div>
+								            </div>
+								        </div>
+									</div>
+								</div>
+				            </div>
+				            <div class='cell progress-bar'><div class="progress-radial progress-{{prod_day.amountactual/(prod_day.target_qty)*100 | number}}"><div class="overlay">{{prod_day.amountactual/(prod_day.target_qty)*100 | number}}<sup>%</sup></div></div></div>
+				        </div>
+			    	</div>
+		    	</div>
 		    </div>
 		</div>
 	</div>
