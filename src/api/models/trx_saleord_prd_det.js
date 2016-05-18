@@ -10,15 +10,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     order_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: "trx_sales_order",
-      referencesKey: "order_id"
+      allowNull: false
     },
     product_id: {
       type: DataTypes.STRING(20),
-      allowNull: false,
-      references: "mst_product",
-      referencesKey: "product_id"
+      allowNull: false
     },
     quantity: DataTypes.INTEGER,
     price: DataTypes.DECIMAL(10,2)
@@ -28,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        trx_saleord_prd_det.belongsTo(models.trx_sales_order,{as: 'SalesOrder', foreignKey : 'order_id'});
+        trx_saleord_prd_det.belongsTo(models.trx_sales_order,{as: 'SalesOrderMain', foreignKey : 'order_id'});
         trx_saleord_prd_det.belongsTo(models.mst_product,{as: 'Product', foreignKey : 'product_id'});
         trx_saleord_prd_det.hasMany(models.trx_saleord_prd_sub_det,{as: 'SalesOrderPrdSubDet', foreignKey : 'order_det_id'});
       },

@@ -3,71 +3,83 @@
 <a (click)="showMenuMonth()"><div class="sub-tab triple" [ngClass] = "{active: vUnderlineMonth}"><div class="text" [ngClass] = "{active: vUnderlineMonth}">Month</div></div></a>
 <!--Container-->
 <div class="container-body">
-	
-	<!--<div *ngIf="getFilter().filterTargetsActuals" >-->
+
 	<div class="filter-container" *ngIf="getFilter().filterTargetsActuals">
 		<div class="filter-label">Brand</div>
-		<div class="filter-dropdown"><select name="brand" id="brand-lov">
-		  <option value="volvo">Volvo</option>
-		  <option value="saab">Saab</option>
-		  <option value="fiat">Fiat</option>
-		  <option value="audi">Audi</option>
-		</select></div>
+		<div class="filter-dropdown">
+			<select [(ngModel)]="vSelectedBrand"  (ngModelChange)="onChangeSelectBrand($event)">
+				<option  *ngFor="#each of getBrand()" [value]="each.brand" >
+				    {{each.brand}}
+				</option>
+			</select>
+		</div>
 	</div>
 
 	<div *ngIf="vDayShow" >
 		<div class="item-container-ta" id="ta-container">
-			<div class="item-title-ta">Broadband</div>
-				<div class="item-left">SIM</div>
-				<div class="item-mid">23.33%</div>
-				<div class="item-right">
-					25/150
-					<div class="target-text">Actual/Target</div>
-					<div class="balance">Balance : <div class="balace-number">200</div> </div>
+			<div>
+				<div *ngFor="#prod_cat of getProduct()">
+					<div class="item-title-ta">
+						{{prod_cat.category_name}}
+					</div>
+					<div *ngFor="#prod_sub of prod_cat.ProductSubCategory">
+						<div class="item-left">
+							{{prod_sub.sub_category_name}}
+						</div>
+						<div class="item-mid">
+							{{prod_sub.actual_sum/(prod_sub.target_sum_days)*100 | number}}%
+						</div>
+						<div class="item-right">
+								<div style="clear: right;">
+								{{prod_sub.actual_sum}}/{{prod_sub.target_sum_days}}
+								</div>
+							<div class="target-text">
+								Actual/Target
+							</div>
+							<div class="balance">
+								Balance : 
+								<div class="balance-number">
+									200
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="divider"></div>
 				</div>
-		</div>
-		<div class="divider"></div>
-		<div class="item-container-ta" id="ta-container">
-				<div class="item-left">SIM</div>
-				<div class="item-mid">23.33%</div>
-				<div class="item-right">
-					25/150
-					<div class="target-text">Actual/Target</div>
-					<div class="balance">Balance : <div class="balace-number">200</div> </div>
-				</div>
-		</div>
-		<div class="item-container-ta" id="ta-container">
-			<div class="item-title-ta">Broadband</div>
-				<div class="item-left">SIM</div>
-				<div class="item-mid">23.33%</div>
-				<div class="item-right">
-					25/150
-					<div class="target-text">Actual/Target</div>
-					<div class="balance">Balance : <div class="balace-number">200</div> </div>
-				</div>
-		</div>
-		<div class="item-container-ta" id="ta-container">
-			<div class="item-title-ta">SIM</div>
-				<div class="item-left">SmartSIM</div>
-				<div class="item-mid">23.33%</div>
-				<div class="item-right">
-					25/150
-					<div class="target-text">Actual/Target</div>
-					<div class="balance">Balance : <div class="balace-number">200</div> </div>
 			</div>
 		</div>
 	</div>
 
 	<div *ngIf="vWeekShow">
-		<div class="item-container-ta" id="ta-container">
-			<div class="item-title-ta">Airtime2</div>
-			<div class="item-body">
-				<div class="item-left">Submenu</div>
-				<div class="item-mid">50%</div>
-				<div class="item-right">
-					25/150
-					<div class="target-text">Actual/Target</div>
-					<div class="balance">Balance : <div class="balace-number">200</div> </div>
+				<div class="item-container-ta" id="ta-container">
+			<div>
+				<div *ngFor="#prod_cat of getProduct()">
+					<div class="item-title-ta">
+						{{prod_cat.category_name}}
+					</div>
+					<div *ngFor="#prod_sub of prod_cat.ProductSubCategory">
+						<div class="item-left">
+							{{prod_sub.sub_category_name}}
+						</div>
+						<div class="item-mid">
+							{{prod_sub.actual_sum/(prod_sub.target_sum_weeks)*100 | number}}%
+						</div>
+						<div class="item-right">
+								<div style="clear: right;">
+								{{prod_sub.actual_sum}}/{{prod_sub.target_sum_weeks}}
+								</div>
+							<div class="target-text">
+								Actual/Target
+							</div>
+							<div class="balance">
+								Balance : 
+								<div class="balance-number">
+									200
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="divider"></div>
 				</div>
 			</div>
 		</div>
@@ -75,18 +87,37 @@
 
 	<div *ngIf="vMonthShow">
 		<div class="item-container-ta" id="ta-container">
-			<div class="item-title-ta">Airtime3</div>
-			<div class="item-body">
-				<div class="item-left">Submenu</div>
-				<div class="item-mid">89%</div>
-				<div class="item-right">
-					25/150
-					<div class="target-text">Actual/Target</div>
-					<div class="balance">Balance : <div class="balace-number">200</div> </div>
+			<div>
+				<div *ngFor="#prod_cat of getProduct()">
+					<div class="item-title-ta">
+						{{prod_cat.category_name}}
+					</div>
+					<div *ngFor="#prod_sub of prod_cat.ProductSubCategory">
+						<div class="item-left">
+							{{prod_sub.sub_category_name}}
+						</div>
+						<div class="item-mid">
+							{{prod_sub.actual_sum/(prod_sub.target_sum)*100 | number}}%
+						</div>
+						<div class="item-right">
+								<div style="clear: right;">
+								{{prod_sub.actual_sum}}/{{prod_sub.target_sum}}
+								</div>
+							<div class="target-text">
+								Actual/Target
+							</div>
+							<div class="balance">
+								Balance : 
+								<div class="balance-number">
+									200
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="divider"></div>
 				</div>
 			</div>
-		</div> 
-	</div>
+		</div>
 </div>
 
 <!--End of Container-->

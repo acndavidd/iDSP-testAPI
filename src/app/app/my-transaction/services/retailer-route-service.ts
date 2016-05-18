@@ -16,73 +16,47 @@ export class RetailerRouteService{
 		this.vIsLoading = false;
 	}
 
-	//To query list of 
-	queryRetailerRoute(pSelectedDate){
+	//To query Route for Selected Day 
+	queryRetailerRoute(pSelectedDay){
+		console.log("Start hit login service to Query Retailer Route");
 		//Get Current Login User
+		let vData = {
+			salesPerson : 'DSP01',
+			day : pSelectedDay
+		};
 
+		var vSalesRoute;
 		//Hit Api with selectedDate and Login user
+		return this._http.post('/getSalesRoute',JSON.stringify(vData));
 
-		//Return
-		var vSampleObject = [
+		//Sample Hardcoded
+		/*
+		vSalesRoute = [
 			{
 				"retailer_id": "1",
-				"route_sequence": "1",
+				"route": [{RouteDay : [{sequence: 1}]}],
 				"retailer_name": "Gloria Cell",
 				"retailer_address": "Barangka Dr. Mandaluyong",
 				"owner_name": "Ms. Gloria"
 			},
 			{
 				"retailer_id": "2",
-				"route_sequence": "2",
+				"route": [{RouteDay : [{sequence: 2}]}],
 				"retailer_name": "Bird Cell",
-				"retailer_address": "Mr. Jaja",
-				"owner_name": "Barangka Dr. Sutrisno"
+				"retailer_address": "Barangka Dr. Sutrisno",
+				"owner_name": "Mr. Jaja"
 			},
 			{
 				"retailer_id": "3",
-				"route_sequence": "3",
+				"route": [{RouteDay : [{sequence: null}]}],
 				"retailer_name": "Rose Cell",
-				"retailer_address": "Ms. Rose",
-				"owner_name": "Matalang 56 Barangka"
+				"retailer_address": "Matalang 56 Barangka",
+				"owner_name": "Ms. Rose"
 			}];
-					
-		return vSampleObject;
+		*/
+		//console.log(vSalesRoute);	
+		//return vSalesRoute;
 	}
-
-	//To query list of retailer that will be visited pertoday for user that login
-	queryTodayCallPlan(){
-		this.vIsLoading = true;
- 
-		//To-Do : Query User ID or Username
-		let vUserId:string = '1';
-		let vCurrentDate = new Date();
-
-		console.log(vCurrentDate);
-
-		//Hit API with parameter user_id and current date
-		let data:string = 'user='+vUserId+'&date='+vCurrentDate;
-		this._http.post('/queryCallPlan',data,
-			<RequestOptionsArgs> {headers: new Headers(
-                {'Content-Type': 'application/x-www-form-urlencoded'})
-            }).subscribe(
-            	response => {
-            		this.vIsLoading = false;
-            		if(response.json().success == 1){//success login
-            			//Pass back the call plan result
-            			return response.json().resultCallPlan;
-            		}else{//failed login
-            			this.vErrorMsg = response.json().error;
-            		}
-            	},
-            	error => {
-            		console.log(error);
-            		this.vErrorMsg = 'Failed connecting to Retailer service';
-            	}
-            );
-       	return '';
-	}
-
-
 
 	getError():string{
 		return this.vErrorMsg;

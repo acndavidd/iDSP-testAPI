@@ -153,8 +153,6 @@ module.exports = function(grunt) {
                             'node_modules/requirejs/require.js',
                             'node_modules/nouislider/distribute/nouislider.js',
                             'node_modules/angular2/es6/dev/src/testing/shims_for_IE.js',
-                            'scripts/cordova.js',
-                            'scripts/cordova-ui-addon.js',
                         ],
                         dest:'../../debug/scripts',
                         expand: true, 
@@ -170,6 +168,11 @@ module.exports = function(grunt) {
                         dest:'../../debug/',
                         expand: true,
                     },
+                    {
+                        src:['res/**/*.*'],
+                        dest:'../../debug/',
+                        expand: true,                        
+                    }
                 ]
             },
 
@@ -238,13 +241,21 @@ module.exports = function(grunt) {
 							'app/**/*.*',
 							'config/*.*',
 							'css/*.*',
+							'fonts/*.*',
 							'img/**/*.*',
-							'js/*.*',
-							'scripts/*.*',
+                            'js/*.*',
+                            'res/**/*.*',
+                            'scripts/*.*',
 							'services/**/*.json',
 							'init.js', 'tsconfig.json'
 						],
                         dest:'../cordova/www/',
+                        expand: true
+                    },
+                    {
+                        cwd: '../../debug/',
+                        src:['res/**/*.*'],
+                        dest:'../cordova/',
                         expand: true
                     },
 					{
@@ -403,7 +414,8 @@ module.exports = function(grunt) {
         'clean:sasscache',
         'jshint',
         'cssmin',
-        'uglify'
+        'uglify',
+        'cachebreaker',
         ]); 
 
 };

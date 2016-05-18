@@ -9,19 +9,13 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true
     },
     order_id: {
-      type: DataTypes.INTEGER,
-      references: "trx_sales_order",
-      referencesKey: "order_id"
+      type: DataTypes.INTEGER
     },
     dsp_id: {
-      type: DataTypes.STRING(20),
-      references: "mst_dsp",
-      referencesKey: "dsp_id"
+      type: DataTypes.STRING(20)
     },
     retailer_id: {
-      type: DataTypes.STRING(20),
-      references: "mst_retailer",
-      referencesKey: "retailer_id"
+      type: DataTypes.STRING(20)
     },
     amount: DataTypes.DECIMAL(10,2),
     trans_date: DataTypes.DATE,
@@ -41,7 +35,7 @@ module.exports = function(sequelize, DataTypes) {
         trx_account_receivable.belongsTo(models.trx_sales_order,{as: 'SalesOrder', foreignKey : 'order_id'});
         trx_account_receivable.belongsTo(models.mst_dsp,{as: 'Dsp', foreignKey : 'dsp_id'});
         trx_account_receivable.belongsTo(models.mst_retailer,{as: 'Retailer', foreignKey : 'retailer_id'});
-        trx_account.receivable.hasMany(models.trx_collection_det,{as: 'Collection', foreignKey : 'coll_id'});
+        trx_account_receivable.hasMany(models.trx_collection_det,{as: 'CollectionDet', foreignKey : 'ar_id'});
       },
       getAssociatedModels : function(){
         return ['trx_sales_order','mst_dsp','mst_retailer','trx_collection_det'];

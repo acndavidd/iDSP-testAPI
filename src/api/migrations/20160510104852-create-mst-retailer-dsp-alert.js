@@ -2,9 +2,13 @@
 module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('mst_retailer_dsp_alert', {
-      retailer_id: {
+      alert_id: {
         allowNull: false,
         primaryKey: true,
+        autoIncrement : true,
+        type: Sequelize.INTEGER
+      },
+      retailer_id: {
         type: Sequelize.STRING(20)
       },
       retailer_name: {

@@ -8,10 +8,8 @@ module.exports = function(sequelize, DataTypes) {
       unique: true,
       autoIncrement: true
     },
-    route_id: : {
-      type: DataTypes.INTEGER,
-      references: "mst_route",
-      referencesKey: "mst_route"
+    route_id: {
+      type: DataTypes.INTEGER
     },
     route_day: DataTypes.INTEGER,
     call_sequence: DataTypes.INTEGER,

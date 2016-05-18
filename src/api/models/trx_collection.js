@@ -9,14 +9,10 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true
     },
     dsp_id: {
-      type: DataTypes.STRING(20),
-      references: "mst_dsp",
-      referencesKey: "dsp_id"
+      type: DataTypes.STRING(20)
     },
     retailer_id: {
-      type: DataTypes.STRING(20),
-      references: "mst_retailer",
-      referencesKey: "retailer_id"
+      type: DataTypes.STRING(20)
     },
     trans_date: DataTypes.DATE,
     amount: DataTypes.DECIMAL(10,2)
@@ -28,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
         // associations can be defined here
         trx_collection.belongsTo(models.mst_dsp,{as: 'Dsp', foreignKey : 'dsp_id'});
         trx_collection.belongsTo(models.mst_retailer,{as: 'Retailer', foreignKey : 'retailer_id'});
-        trx_collection.hasMany(models.trx_collection_det,{as: 'Collection', foreignKey : 'coll_id'});
+        trx_collection.hasMany(models.trx_collection_det,{as: 'CollectionDetail', foreignKey : 'coll_id'});
       },
       getAssociatedModels : function(){
         return ['mst_dsp','mst_retailer','trx_collection_det'];

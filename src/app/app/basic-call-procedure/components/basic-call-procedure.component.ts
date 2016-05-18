@@ -4,6 +4,7 @@ import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {RetailerService} from '../../shared/services/retailer.service';
+import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
@@ -20,6 +21,7 @@ export class BasicCallProcedureComponent {
 		private _matchMediaService: MatchMediaService,
 		private _headerService: HeaderService,
 		private _retailerService: RetailerService,
+        private _pageNavigationService: PageNavigationService,
 		private _router: Router
 		) 
 	{
@@ -34,8 +36,6 @@ export class BasicCallProcedureComponent {
 
     gotoDetailRetailer()
     {
-    	this._layoutService.setOldCurrentPage('BasicCallProcedure');
-    	this._router.navigate(['DetailRetailer']);
-    	//this._router.navigate(['RetailerSalesOrder']);
+        this._pageNavigationService.navigate('DetailRetailer', null, null);
     }
 }

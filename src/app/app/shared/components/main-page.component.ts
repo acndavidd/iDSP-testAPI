@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/router';
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
+import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {MyTransactionComponent} from '../../my-transaction/components/my-transaction.component';
 import {BasicCallProcedureComponent} from '../../basic-call-procedure/components/basic-call-procedure.component';
 import {CloseDayComponent} from '../../close-day/components/close-day.component';
@@ -15,10 +16,12 @@ import {DSPAlertsComponent} from '../../my-transaction/components/dsp-alerts.com
 import {ResetPasswordComponent} from '../../settings/components/reset-password.component';
 import {RetailerSalesOrderComponent} from '../../basic-call-procedure/components/retailer-sales-order.component';
 import {DetailRetailerComponent} from '../../basic-call-procedure/components/detail-retailer.component';
+import {RetailerInventoryComponent} from '../../basic-call-procedure/components/retailer-inventory.component';
 import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/sales-order-payment.component';
 import {CDTargetsActualsComponent} from '../../close-day/components/cd-targets-actuals.component';
 import {VisitedRetailComponent} from '../../close-day/components/visited-retail.component';
 import {BCPActivityStepComponent} from '../../basic-call-procedure/components/bcp-activity-step.component';
+
 
 
 @Component({
@@ -26,6 +29,9 @@ import {BCPActivityStepComponent} from '../../basic-call-procedure/components/bc
     templateUrl: './app/shared/components/main-page.component.html',
 	directives: [
 		ROUTER_DIRECTIVES
+    ],
+    providers : [
+        //PageNavigationService
     ]
 })
 
@@ -94,6 +100,11 @@ import {BCPActivityStepComponent} from '../../basic-call-procedure/components/bc
         path: '/detailRetailer',
         name: 'DetailRetailer',
         component: DetailRetailerComponent
+    },
+    {
+        path: '/retailerInventory',
+        name: 'RetailerInventory',
+        component: RetailerInventoryComponent
     },
 
     {

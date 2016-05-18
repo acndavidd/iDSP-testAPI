@@ -10,14 +10,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     order_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: "trx_sales_order",
-      referencesKey: "order_id"
+      allowNull: false
     },
-    load_id: {
+    product_id: {
       type: DataTypes.STRING(20),
-      allowNull: false,
-
+      allowNull: false
     },
     amount: DataTypes.DECIMAL(10,2),
     rrn: DataTypes.STRING(50),
@@ -28,10 +25,11 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         // associations can be defined here
-        trx_saleord_load_det.belongsTo(models.trx_sales_order,{as: 'SalesOrder', foreignKey : 'order_id'});
+        trx_saleord_load_det.belongsTo(models.trx_sales_order,{as: 'SalesOrderMain', foreignKey : 'order_id'});
+        trx_saleord_load_det.belongsTo(models.mst_product,{as: 'LoadOrder', foreignKey : 'product_id'});
       },
       getAssociatedModels : function(){
-        return ['trx_sales_order'];
+        return ['trx_sales_order','mst_prod_sub_cat'];
         //return '';
       }
     }

@@ -3,7 +3,6 @@ import {Router} from 'angular2/router';
 import {Response,RequestOptionsArgs,Headers,Http,Connection,RequestOptions} from 'angular2/http';
 
 @Injectable()
-
 export class AccountsReceivablesService{
 	private vServiceUrl:string;
 	private vErrorMsg:string;
@@ -29,7 +28,7 @@ export class AccountsReceivablesService{
 		return this.vIsLoading;
 	}
 
-	getTotalReceivable(){
-		return '35,000';
+	getAllRetailer(){
+	  return this._http.get('/getAccountsReceivables',null);
 	}
 }

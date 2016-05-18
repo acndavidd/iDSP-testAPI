@@ -1,13 +1,20 @@
 $container-login-height: 100%;
 
 .container-login {
+	background: url("../img/login_bg.png") no-repeat center center;
 	z-index: 50;
 	position: fixed;
     left: 0;
     right: 0;
-    background-color: #005A5B;
 	height: 100%;
 	text-align :center;
+
+	.anti-spy {
+                width: 100%;
+                position: absolute;
+                background-color: rgba(0, 0, 0, 0.4);
+                height : 100%;
+            }
 
     ::-webkit-input-placeholder {
 		color:    #FFF;
@@ -28,8 +35,7 @@ $container-login-height: 100%;
 			color: #FFF;
 			font-size: 28px;
 			line-height: 40px;
-			padding-right: 20px;
-			margin-bottom: 10px;
+			margin-bottom: 75px;
 			text-align: center;
 			font-weight: lighter;
 		}
@@ -75,12 +81,11 @@ $container-login-height: 100%;
 				line-height: 50px - 20px;
 				font-size: medium;
 				margin-bottom: 5px;
-				background-color: #63DFDC;
+				background-color: rgba(199, 195, 184, 0.5);
 				outline: 0;
 				color : #000;
 				text-align: center;
 				font-style: italic;
-                border-bottom: 1px solid #000;
 			}
 			p {
 				a {
@@ -93,10 +98,10 @@ $container-login-height: 100%;
 		.login-button
 		{
 			height: 35px;
-			background-color: #00C2BA;
+			background-color: $apple;
 			text-align: center;
 			vertical-align: center;
-			font-size: 15pt;
+			font-size: 13pt;
     		padding-top: 7px;
     		color : #FFF;
 		}
@@ -114,15 +119,14 @@ $container-login-height: 100%;
 		display: block;
         height: 30px;
         width: 100%;
-        margin-top: 2px;
         background: 
         url("../img/smart-logo.png")
         no-repeat;
         background-position-x: center;
         background-position-y: center;
-        background-size: 100px;
         z-index: 90;
 		position: fixed;
-		bottom: 20px;
+		padding-top: 90vw;
+
 	}
 }

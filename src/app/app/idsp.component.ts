@@ -24,6 +24,8 @@ import {RetailerService} from './shared/services/retailer.service';
 import {RetailerSalesOrderComponent} from './basic-call-procedure/components/retailer-sales-order.component';
 import {DetailRetailerComponent} from './basic-call-procedure/components/detail-retailer.component';
 import {SalesOrderPaymentComponent} from './basic-call-procedure/components/sales-order-payment.component';
+import {LeftMenuComponent} from './shared/components/left-menu.component';
+
 
 declare var FastClick: FastClickStatic;
 declare var configChannel: any;
@@ -35,6 +37,7 @@ declare var configChannel: any;
             (window:resize)="OnResize()">
             <idsp-header></idsp-header>
             <my-modal></my-modal>
+            <left-menu></left-menu>
     		<router-outlet></router-outlet>
             <idsp-footer-menu></idsp-footer-menu>
     	</div>
@@ -44,7 +47,8 @@ declare var configChannel: any;
         HeaderComponent,
         FooterMenuComponent,
         ModalComponent,
-        ROUTER_DIRECTIVES
+        ROUTER_DIRECTIVES,
+        LeftMenuComponent
     ],
     providers: [
         ROUTER_PROVIDERS,
@@ -99,6 +103,10 @@ declare var configChannel: any;
         path: '/salesOrderPayment',
         name: 'SalesOrderPayment',
         component: SalesOrderPaymentComponent
+    },
+    {
+        path: '/**',
+        redirectTo: ['Starter', 'Login'] 
     }
 
 ])
@@ -121,14 +129,15 @@ export class IDSPComponent implements OnInit {
         this._matchMediaService.OnResize();
     }
 
-     isFullScreen() {
-         let vCurrentPage: string = this._layoutService.getCurrentPage();
-         return !vCurrentPage || vCurrentPage === 'GetStarted' || vCurrentPage === 'Login' ||
-         vCurrentPage === 'Register';
-     }
- 
-     isSmallScreen() {
-         return !this._matchMediaService.getMm().largeUp;
-     }
+    isFullScreen() {
+        let vCurrentPage: string = this._layoutService.getCurrentPage();
+        return !vCurrentPage || vCurrentPage === 'GetStarted' || vCurrentPage === 'Login' ||
+        vCurrentPage === 'Register';
+    }
+
+    isSmallScreen() {
+        return !this._matchMediaService.getMm().largeUp;
+    }
+
 }
 

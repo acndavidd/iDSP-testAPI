@@ -6,19 +6,19 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey : true
     },
     sub_category_name: DataTypes.STRING(50),
-    category_id: DataTypes.STRING(20),
-    brand: DataTypes.STRING(20)
+    category_id: DataTypes.STRING(20)
   }, {
     underscored : true,
     timestamps : false,
     freezeTableName: true,
     classMethods: {
       associate: function(models) {
-        mst_prod_sub_category.hasMany(models.mst_product, {as : 'Product' , foreignKey : 'sub_category_id'});
-        mst_prod_sub_category.belongsTo(models.mst_product_cat, {as : 'ProductCategory' , foreignKey : 'category_id'});
+        mst_prod_sub_cat.hasMany(models.mst_product, {as : 'Product' , foreignKey : 'sub_category_id'});
+        mst_prod_sub_cat.belongsTo(models.mst_prod_cat, {as : 'ProductCategory' , foreignKey : 'category_id'});
+        //mst_prod_sub_cat.hasMany(models.mst_target, {as : 'Target', foreignKey:'sub_category_id'});
       },
       getAssociatedModels : function(){
-        return ['mst_product' , 'mst_product_cat'];
+        return ['mst_product' , 'mst_prod_cat','mst_target','trx_saleord_load_det'];
       }
     }
   });
