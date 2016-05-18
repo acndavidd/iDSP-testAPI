@@ -15,33 +15,34 @@
 		</div>
 	</div>
 
+
 	<div *ngIf="vDayShow">
 		<!-- <div class="item-container-md-ta" *ngFor="#prod_day of vShowProduct" > -->
-		<div class="item-container-md-ta" *ngFor="#cat_name of vCatNameList">
+		<div class="item-container-md-ta" *ngFor="#eachCat of vShowProduct">
 	        <div class="container border">
 	        	<div class='cell category-icon call'></div>
 	            <div class='cell'>
-	                <div class='container'><div class='cell category-text green'>{{cat_name}}</div></div>
+	                <div class='container'><div class='cell category-text green'>{{eachCat.category_name}}</div></div>
 	            </div>
 	        </div>
-	        <div *ngFor="#prod_day of vShowProduct">
-	        	<div *ngIf="cat_name === prod_day.category_name">
-			        <div class="container border" *ngIf="prod_day.target_qty !== 0">
+	        <div *ngFor="#eachSubCat of eachCat.sub_cat">
+	        	<!--<div *ngIf="cat_name === prod_day.category_name">-->
+			        <div class="container border" *ngIf="eachSubCat.ttarget !== 0">
 			            <div class='cell'>
 			                <div class='container'>
 			                	<div class='cell content'>
 							        <div class="container">
 							            <div class='cell'>
-							                <div class='container'><div class='cell sub-category'>{{prod_day.sub_category_name}}</div></div>
+							                <div class='container'><div class='cell sub-category'>{{eachSubCat.sub_category_name}}</div></div>
 							                <div class='container'>
 							                	<div class='cell'>
 											        <div class="container">
 											            <div class='cell'>
-											                <div class='container'><div class='cell content-triple center'>{{prod_day.amountactual}}</div></div>
+											                <div class='container'><div class='cell content-triple center'>{{eachSubCat.tactual}}</div></div>
 											                <div class='container'><div class='cell content-triple center'>Actual</div></div>
 											            </div>
 											            <div class='cell'>
-											                <div class='container'><div class='cell content-triple center'>{{prod_day.target_qty}}</div></div>
+											                <div class='container'><div class='cell content-triple center'>{{eachSubCat.ttarget}}</div></div>
 											                <div class='container'><div class='cell content-triple center'>Target</div></div>
 											            </div>
 											            <div class='cell'>
@@ -56,39 +57,47 @@
 								</div>
 							</div>
 			            </div>
-			            <div class='cell progress-bar'><div class="progress-radial progress-{{prod_day.amountactual/(prod_day.target_qty)*100 | number}}"><div class="overlay">{{prod_day.amountactual/(prod_day.target_qty)*100 | number}}<sup>%</sup></div></div></div>
+			            <!-- <div *ngFor="#roundTotal of vRoundRangeList"> -->
+			           		<!-- <div *ngIf="roundTotal.vCategory === prod_day.sub_category_name"> -->
+					            <div class='cell progress-bar'>
+						            <div class="progress-radial progress-{{eachSubCat.prc_round}}">
+						           	 	<div class="overlay">{{eachSubCat.prc_actual}}<sup>%</sup></div>
+					            	</div>
+					            </div>
+					       <!--  </div>		
+					    </div> -->
 			        </div>
-		    	</div>
+		    	<!-- </div> -->
 	    	</div>
 	    </div>
 	</div>
 
 	<div *ngIf="vWeekShow">
-		<div class="item-container-md-ta" *ngFor="#cat_name of vCatNameList">
+				<div class="item-container-md-ta" *ngFor="#eachCat of vShowProduct">
 	        <div class="container border">
 	        	<div class='cell category-icon call'></div>
 	            <div class='cell'>
-	                <div class='container'><div class='cell category-text green'>{{cat_name}}</div></div>
+	                <div class='container'><div class='cell category-text green'>{{eachCat.category_name}}</div></div>
 	            </div>
 	        </div>
-	        <div *ngFor="#prod_week of vShowProduct">
-	        	<div *ngIf="cat_name === prod_week.category_name">
-			        <div class="container border" *ngIf="prod_week.target_qty !== 0">
+	        <div *ngFor="#eachSubCat of eachCat.sub_cat">
+	        	<!--<div *ngIf="cat_name === prod_day.category_name">-->
+			        <div class="container border" *ngIf="eachSubCat.ttarget !== 0">
 			            <div class='cell'>
 			                <div class='container'>
 			                	<div class='cell content'>
 							        <div class="container">
 							            <div class='cell'>
-							                <div class='container'><div class='cell sub-category'>{{prod_week.sub_category_name}}</div></div>
+							                <div class='container'><div class='cell sub-category'>{{eachSubCat.sub_category_name}}</div></div>
 							                <div class='container'>
 							                	<div class='cell'>
 											        <div class="container">
 											            <div class='cell'>
-											                <div class='container'><div class='cell content-triple center'>{{prod_week.amountactual}}</div></div>
+											                <div class='container'><div class='cell content-triple center'>{{eachSubCat.tactual}}</div></div>
 											                <div class='container'><div class='cell content-triple center'>Actual</div></div>
 											            </div>
 											            <div class='cell'>
-											                <div class='container'><div class='cell content-triple center'>{{prod_week.target_qty}}</div></div>
+											                <div class='container'><div class='cell content-triple center'>{{eachSubCat.ttarget}}</div></div>
 											                <div class='container'><div class='cell content-triple center'>Target</div></div>
 											            </div>
 											            <div class='cell'>
@@ -103,39 +112,47 @@
 								</div>
 							</div>
 			            </div>
-			            <div class='cell progress-bar'><div class="progress-radial progress-{{prod_week.amountactual/(prod_week.target_qty)*100 | number}}"><div class="overlay">{{prod_week.amountactual/(prod_week.target_qty)*100 | number}}<sup>%</sup></div></div></div>
+			            <!-- <div *ngFor="#roundTotal of vRoundRangeList"> -->
+			           		<!-- <div *ngIf="roundTotal.vCategory === prod_day.sub_category_name"> -->
+					            <div class='cell progress-bar'>
+						            <div class="progress-radial progress-{{eachSubCat.prc_round}}">
+						           	 	<div class="overlay">{{eachSubCat.prc_actual}}<sup>%</sup></div>
+					            	</div>
+					            </div>
+					       <!--  </div>		
+					    </div> -->
 			        </div>
-		    	</div>
+		    	<!-- </div> -->
 	    	</div>
 	    </div>
 	</div>
 
 	<div *ngIf="vMonthShow">
-				<div class="item-container-md-ta" *ngFor="#cat_name of vCatNameList">
+				<div class="item-container-md-ta" *ngFor="#eachCat of vShowProduct">
 	        <div class="container border">
 	        	<div class='cell category-icon call'></div>
 	            <div class='cell'>
-	                <div class='container'><div class='cell category-text green'>{{cat_name}}</div></div>
+	                <div class='container'><div class='cell category-text green'>{{eachCat.category_name}}</div></div>
 	            </div>
 	        </div>
-	        <div *ngFor="#prod_month of vShowProduct">
-	        	<div *ngIf="cat_name === prod_month.category_name">
-			        <div class="container border" *ngIf="prod_month.target_qty !== 0">
+	        <div *ngFor="#eachSubCat of eachCat.sub_cat">
+	        	<!--<div *ngIf="cat_name === prod_day.category_name">-->
+			        <div class="container border" *ngIf="eachSubCat.ttarget !== 0">
 			            <div class='cell'>
 			                <div class='container'>
 			                	<div class='cell content'>
 							        <div class="container">
 							            <div class='cell'>
-							                <div class='container'><div class='cell sub-category'>{{prod_month.sub_category_name}}</div></div>
+							                <div class='container'><div class='cell sub-category'>{{eachSubCat.sub_category_name}}</div></div>
 							                <div class='container'>
 							                	<div class='cell'>
 											        <div class="container">
 											            <div class='cell'>
-											                <div class='container'><div class='cell content-triple center'>{{prod_month.amountactual}}</div></div>
+											                <div class='container'><div class='cell content-triple center'>{{eachSubCat.tactual}}</div></div>
 											                <div class='container'><div class='cell content-triple center'>Actual</div></div>
 											            </div>
 											            <div class='cell'>
-											                <div class='container'><div class='cell content-triple center'>{{prod_month.target_qty}}</div></div>
+											                <div class='container'><div class='cell content-triple center'>{{eachSubCat.ttarget}}</div></div>
 											                <div class='container'><div class='cell content-triple center'>Target</div></div>
 											            </div>
 											            <div class='cell'>
@@ -150,11 +167,20 @@
 								</div>
 							</div>
 			            </div>
-			            <div class='cell progress-bar'><div class="progress-radial progress-{{prod_month.amountactual/(prod_month.target_qty)*100 | number}}"><div class="overlay">{{prod_month.amountactual/(prod_month.target_qty)*100 | number}}<sup>%</sup></div></div></div>
+			            <!-- <div *ngFor="#roundTotal of vRoundRangeList"> -->
+			           		<!-- <div *ngIf="roundTotal.vCategory === prod_day.sub_category_name"> -->
+					            <div class='cell progress-bar'>
+						            <div class="progress-radial progress-{{eachSubCat.prc_round}}">
+						           	 	<div class="overlay">{{eachSubCat.prc_actual}}<sup>%</sup></div>
+					            	</div>
+					            </div>
+					       <!--  </div>		
+					    </div> -->
 			        </div>
-		    	</div>
+		    	<!-- </div> -->
 	    	</div>
 	    </div>
 	</div>
+	
 </div>
 <!--End of Container-->
