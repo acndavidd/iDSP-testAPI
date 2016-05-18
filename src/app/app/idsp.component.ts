@@ -16,7 +16,7 @@ import {BasicCallProcedureComponent} from './basic-call-procedure/components/bas
 import {CloseDayComponent} from './close-day/components/close-day.component';
 import {SettingsComponent} from './settings/components/settings.component';
 import {VerificationComponent} from './verification/components/verification.component';
-import {ForgotPasswordComponent} from './login/components/forgot-password.component';
+import {MpinComponent} from './login/components/mpin.component';
 import {ModalComponent} from './shared/components/modal.component';
 import {RetailerRouteComponent} from './my-transaction/components/retailer-route.component';
 import {ModalService} from './shared/services/modal.service';
@@ -81,9 +81,9 @@ declare var configChannel: any;
         component: MainPageComponent
     },
     {
-        path: '/forgotPassword',
-        name: 'ForgotPassword',
-        component: ForgotPasswordComponent
+        path: '/mPin',
+        name: 'Mpin',
+        component: MpinComponent
     },
     {
         path: '/retailerRoute',

@@ -88,7 +88,8 @@ export class TargetsActualsService{
             );
 
             return null;
-            */
+            */            
+   
             return this._http.get('/getProductCategory');
 	}
 
@@ -98,9 +99,17 @@ export class TargetsActualsService{
       }
 
 
-      queryProduct()
+      queryProduct(pSelectedTab)
       {
-            return this._http.get('/getProduct');
+                console.log("Start hit login service to Query Product");
+                console.log('selecteddd' +pSelectedTab);
+            //Get Current Login User
+            let vData = {
+                  salesPerson : 'DSP00001',
+                  actualType : pSelectedTab
+            };
+
+            return this._http.post('/getProduct',JSON.stringify(vData));
       }
 
       queryCategory()

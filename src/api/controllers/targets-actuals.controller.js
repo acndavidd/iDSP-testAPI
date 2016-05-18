@@ -68,6 +68,10 @@ class TargetsActualsController {
             var sales_order = orm.getModel("trx_sales_order");
             var prd_order = orm.getModel("trx_saleord_prd_det");
             var load_order = orm.getModel("trx_saleord_load_det");
+            //today yyyy-mm-dd
+            var dateFormat = require('dateformat');
+            var now = new Date();
+            var vtoday = dateFormat(now, "yyyy-mm-dd");
             var dateObj = new Date();
             var vmonth = dateObj.getMonth() + 1;
             var vyear = dateObj.getFullYear();
@@ -77,101 +81,68 @@ class TargetsActualsController {
             var vLastOfMonth = new Date(vyear, vmonth, 0, 11, 59, 59, 59);
             var used = vFirstOfMonth.getDay() + vLastOfMonth.getDate();
             var vWeeksInMonth = Math.ceil(used / 7);
-            console.log('aaaaaa' + vFirstOfMonth + 'bbb' + vLastOfMonth);
-            product_cat.findAll({
-                attributes: ['category_id', 'category_name', 'brand'],
-                include: [{
-                        model: product_sub,
-                        as: 'ProductSubCategory',
-                        attributes: ['sub_category_id', 'sub_category_name'],
-                        include: [{
-                                model: product,
-                                as: 'Product',
-                                attributes: ['product_id'],
-                                include: [{
-                                        model: load_order,
-                                        as: 'SalesOrderLoad',
-                                        required: false,
-                                        attribute: ['order_id', 'amount'],
-                                        include: [{
-                                                model: sales_order,
-                                                as: 'SalesOrderMain',
-                                                attribute: ['order_id'],
-                                                where: { order_date: { $between: [vFirstOfMonth, vLastOfMonth] } }
-                                            }]
-                                    },
-                                    {
-                                        model: prd_order,
-                                        as: 'SalesOrder',
-                                        required: false,
-                                        attributes: ['order_id', 'quantity'],
-                                        include: [{
-                                                model: sales_order,
-                                                as: 'SalesOrderMain',
-                                                attribute: ['order_id'],
-                                                where: { order_date: { $between: [vFirstOfMonth, vLastOfMonth] } }
-                                            }]
-                                    },
-                                    {
-                                        model: target,
-                                        as: 'Target',
-                                        attributes: ['target_qty'],
-                                        where: {
-                                            dsp_id: 'DSP00001',
-                                            target_month: vmonth,
-                                            target_year: vyear
-                                        }
-                                    }]
-                            }]
-                    }]
-            }).then(function (pProdCats) {
-                pResponse.json(pProdCats);
-                console.log(JSON.stringify(pProdCats));
-                pProdCats = JSON.parse(JSON.stringify(pProdCats));
-                pProdCats.map(function (pProdCat) {
-                    pProdCat.ProductSubCategory.map(function (pProdSubCat) {
-                        let vSumTarget = 0;
-                        let vSumActual = 0;
-                        let vSumTargetDays = 0;
-                        let vSumTargetWeek = 0;
-                        pProdSubCat.Product.map(function (pProd) {
-                            if ("SalesOrderLoad" in pProd && pProd.SalesOrderLoad.length !== 0) {
-                                pProd.SalesOrderLoad.map(function (pOrder) {
-                                    vSumActual += pOrder.amount;
-                                });
-                            }
-                            if ("SalesOrder" in pProd && pProd.SalesOrder.length !== 0) {
-                                pProd.SalesOrder.map(function (pOrder) {
-                                    vSumActual += pOrder.quantity;
-                                });
-                            }
-                            if ("Target" in pProd && pProd.Target.length !== 0) {
-                                pProd.Target.map(function (pTarget) {
-                                    vSumTarget += pTarget.target_qty;
-                                    vSumTargetDays = vSumTarget / vDaysInMonth;
-                                    vSumTargetWeek = vSumTarget / vWeeksInMonth;
-                                });
-                            }
-                        });
-                        pProdSubCat.target_sum = vSumTarget;
-                        pProdSubCat.actual_sum = vSumActual;
-                        pProdSubCat.target_sum_days = Math.ceil(vSumTargetDays);
-                        pProdSubCat.target_sum_weeks = Math.ceil(vSumTargetWeek);
-                        delete pProdSubCat.Product;
-                        delete pProdSubCat.SalesOrderLoad;
-                    });
+            var curr = new Date(); // get current date
+            var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+            var last = first + 6; // last day is the first day + 6
+            var firstday = new Date(curr.setDate(first)).toUTCString();
+            var lastday = new Date(curr.setDate(last)).toUTCString();
+            firstday;
+            "Sun, 06 Mar 2011 12:25:40 GMT";
+            lastday;
+            "Sat, 12 Mar 2011 12:25:40 GMT";
+            var vUserId = pRequest.body.salesPerson;
+            var vSelectedTab = pRequest.body.actualType;
+            console.log('isiss selected tab' + vSelectedTab);
+            console.log('senin ' + first + ' minggu ' + last);
+            if (vSelectedTab == "Day") {
+                console.log('masukkkk DAYYY');
+                ormS.query("SELECT mpc.brand, mpc.category_id,mpc.category_name, mpsc.sub_category_id, mpsc.sub_category_name, ceil(cast(mpt.target_qty as float)/" + vDaysInMonth + ") AS target_qty,COALESCE(SUM(transLoad.amount),0)+COALESCE(SUM(transProd.quantity),0) AS amountActual FROM mst_prod_cat AS mpc LEFT OUTER JOIN mst_prod_sub_cat mpsc ON mpc.category_id = mpsc.category_id LEFT OUTER JOIN mst_product AS mp ON mp.sub_category_id = mpsc.sub_category_id LEFT OUTER JOIN (SELECT ts.order_date, tsload.product_id,tsload.amount FROM trx_saleord_load_det AS tsload JOIN trx_sales_order ts ON ts.order_id = tsload.order_id WHERE ts.order_date = '" + vtoday + "') AS transLoad ON transload.product_id = mp.product_id LEFT OUTER JOIN ( SELECT ts.order_date, tsprod.product_id,tsprod.quantity FROM trx_saleord_prd_det AS tsprod JOIN trx_sales_order ts ON ts.order_id = tsprod.order_id WHERE ts.order_date = '" + vtoday + "')AS transProd ON transProd.product_id = mp.product_id LEFT OUTER JOIN mst_target AS mpt ON mp.product_id = mpt.product_id WHERE mpt.dsp_id = '" + vUserId + "' AND mpt.target_month = '" + vmonth + "' AND mpt.target_year = '" + vyear + "' GROUP BY mpc.category_id,mpsc.sub_category_id , mpt.target_qty ORDER BY mpc.category_id, mpsc.sub_category_id ASC;", { type: ormS.QueryTypes.SELECT })
+                    .then(function (pProdCats) {
+                    var vResult = {
+                        "status": "Success",
+                        "statusMessage": "",
+                        "error": "error",
+                        "ProdList": pProdCats
+                    };
+                    pResponse.json(vResult);
+                }).catch(function (err) {
+                    console.log(err);
+                    pResponse.send("Failed to Fetch Data Products" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
                 });
-                var vResult = {
-                    "status": "Success",
-                    "statusMessage": "",
-                    "error": "error",
-                    "ProdList": pProdCats
-                };
-                //pResponse.json(vResult);
-            }).catch(function (err) {
-                console.log(err);
-                pResponse.send("Failed to Fetch Data Products" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
-            });
+            }
+            else if (vSelectedTab == "Week") {
+                console.log('masukkkk WEEK');
+                ormS.query("SELECT mpc.brand, mpc.category_id,mpc.category_name, mpsc.sub_category_id, mpsc.sub_category_name, ceil(cast(mpt.target_qty as float)/" + vWeeksInMonth + ") AS target_qty ,COALESCE(SUM(transLoad.amount),0)+COALESCE(SUM(transProd.quantity),0) AS amountActual FROM mst_prod_cat AS mpc LEFT OUTER JOIN mst_prod_sub_cat mpsc ON mpc.category_id = mpsc.category_id LEFT OUTER JOIN mst_product AS mp ON mp.sub_category_id = mpsc.sub_category_id LEFT OUTER JOIN (SELECT ts.order_date, tsload.product_id,tsload.amount FROM trx_saleord_load_det AS tsload JOIN trx_sales_order ts ON ts.order_id = tsload.order_id WHERE extract(month from ts.order_date) = extract(month from current_date) AND  extract(day from ts.order_date) BETWEEN '" + first + "' AND '" + last + "' AND  extract(year from ts.order_date) = extract(year from current_date)) AS transLoad ON transload.product_id = mp.product_id LEFT OUTER JOIN ( SELECT ts.order_date, tsprod.product_id,tsprod.quantity FROM trx_saleord_prd_det AS tsprod JOIN trx_sales_order ts ON ts.order_id = tsprod.order_id WHERE extract(month from ts.order_date) = extract(month from current_date) AND  extract(day from ts.order_date) BETWEEN '" + first + "' AND '" + last + "' AND  extract(year from ts.order_date) = extract(year from current_date))AS transProd ON transProd.product_id = mp.product_id LEFT OUTER JOIN mst_target AS mpt ON mp.product_id = mpt.product_id WHERE mpt.dsp_id = '" + vUserId + "' AND mpt.target_month = '" + vmonth + "' AND mpt.target_year = '" + vyear + "' GROUP BY mpc.category_id,mpsc.sub_category_id , mpt.target_qty ORDER BY mpc.category_id, mpsc.sub_category_id ASC;", { type: ormS.QueryTypes.SELECT })
+                    .then(function (pProdCats) {
+                    var vResult = {
+                        "status": "Success",
+                        "statusMessage": "",
+                        "error": "error",
+                        "ProdList": pProdCats
+                    };
+                    pResponse.json(vResult);
+                }).catch(function (err) {
+                    console.log(err);
+                    pResponse.send("Failed to Fetch Data Products" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
+                });
+            }
+            else if (vSelectedTab == "Month") {
+                console.log('masukkkk MONTHHH');
+                ormS.query("SELECT mpc.brand, mpc.category_id,mpc.category_name, mpsc.sub_category_id, mpsc.sub_category_name,  COALESCE(mpt.target_qty,0) AS target_qty ,COALESCE(SUM(transLoad.amount),0)+COALESCE(SUM(transProd.quantity),0) AS amountActual FROM mst_prod_cat AS mpc LEFT OUTER JOIN mst_prod_sub_cat mpsc ON mpc.category_id = mpsc.category_id LEFT OUTER JOIN mst_product AS mp ON mp.sub_category_id = mpsc.sub_category_id LEFT OUTER JOIN (SELECT ts.order_date, tsload.product_id,tsload.amount FROM trx_saleord_load_det AS tsload JOIN trx_sales_order ts ON ts.order_id = tsload.order_id WHERE extract(month from ts.order_date) = extract(month from current_date)) AS transLoad ON transload.product_id = mp.product_id LEFT OUTER JOIN ( SELECT ts.order_date, tsprod.product_id,tsprod.quantity FROM trx_saleord_prd_det AS tsprod JOIN trx_sales_order ts ON ts.order_id = tsprod.order_id WHERE extract(month from ts.order_date) = extract(month from current_date) )AS transProd ON transProd.product_id = mp.product_id LEFT OUTER JOIN mst_target AS mpt ON mp.product_id = mpt.product_id WHERE mpt.dsp_id = '" + vUserId + "' AND mpt.target_month = '" + vmonth + "' AND mpt.target_year = '" + vyear + "' GROUP BY mpc.category_id,mpsc.sub_category_id , mpt.target_qty ORDER BY mpc.category_id, mpsc.sub_category_id ASC;", { type: ormS.QueryTypes.SELECT })
+                    .then(function (pProdCats) {
+                    var vResult = {
+                        "status": "Success",
+                        "statusMessage": "",
+                        "error": "error",
+                        "ProdList": pProdCats
+                    };
+                    pResponse.json(vResult);
+                }).catch(function (err) {
+                    console.log(err);
+                    pResponse.send("Failed to Fetch Data Products" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
+                });
+            }
+            return '';
         }
         catch (pErr) {
             console.log(pErr);
