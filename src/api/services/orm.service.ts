@@ -9,10 +9,12 @@ var vDebug = (vEnv === 'development') ? true : false;
 export class ORMService{
 	private vModels;
 	private vAssociatedModels;
+	private vSequelizeSvc:SequelizeService;
 	constructor(){
 		this.vModels = {};
 		let vOrmInstance = this;
-		let vSequelizeSvc:SequelizeService = new SequelizeService();
+		this.vSequelizeSvc = new SequelizeService();
+		let vSequelizeSvc = this.vSequelizeSvc;
 		if(vDebug)console.log('Begin loading models');
 		vFs.readdirSync(vPath.join(vSequelizeSvc.getModelPath())).forEach(function(pModel){
 			try{
@@ -41,9 +43,26 @@ export class ORMService{
 		//this.vAssociatedModels = {};
 	}
 
+	public async sp(pSPName:string,pParams:any):string{
+		let vSequelize = this.getSequelize();
+		return new Promise<string>(
+			function (pResolve,pReject){
+				//build params
+				let vParams = '(';
+				for(let vParam in pParams){
+					vParams += "'" + pParams[vParam] + "',";
+				}
+				vParams = vParams.substring(0,vParams.lastIndexOf(',')) + ');';
+				vSequelize.query('SELECT ' + pSPName + vParams).then(function(pResponse){
+					pResolve(pResponse[0][0][pSPName]);
+				});
+			});
+		//return this.getSequelize().query('SELECT ' + pSPName + "('"+pParams+"');").then();
+	}
+
 	public getSequelize(){
-		let vSequelizeSvc:SequelizeService = new SequelizeService();
-		return vSequelizeSvc.getInstance();
+		//let vSequelizeSvc:SequelizeService = new SequelizeService();
+		return this.vSequelizeSvc.getInstance();
 	}
 
 	public buildModels(pRequest,pResponse){

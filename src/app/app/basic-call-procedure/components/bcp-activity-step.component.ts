@@ -6,15 +6,15 @@ import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
-    selector: 'retailer-sales-order',
-    templateUrl: './app/basic-call-procedure/components/retailer-sales-order.component.html',
+    selector: 'bcp-activity-step',
+    templateUrl: './app/basic-call-procedure/components/bcp-activity-step.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
     ]
 })
 
-export class RetailerSalesOrderComponent {
+export class BCPActivityStepComponent {
 
 
     constructor (
@@ -23,8 +23,8 @@ export class RetailerSalesOrderComponent {
         private _headerService: HeaderService,
         private _router: Router
         ) {
-        this._layoutService.setCurrentPage('RetailerSalesOrder');
-        this._headerService.setTitle('Retailer Sales Order');
+        this._layoutService.setCurrentPage('BCPActivityStep');
+        this._headerService.setTitle('BCP Activities Step');
     }
 
     goToSalesOrderPayment() {

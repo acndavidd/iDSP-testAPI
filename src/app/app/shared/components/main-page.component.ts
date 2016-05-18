@@ -20,17 +20,19 @@ import {RetailerInventoryComponent} from '../../basic-call-procedure/components/
 import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/sales-order-payment.component';
 import {CDTargetsActualsComponent} from '../../close-day/components/cd-targets-actuals.component';
 import {VisitedRetailComponent} from '../../close-day/components/visited-retail.component';
+import {BCPActivityStepComponent} from '../../basic-call-procedure/components/bcp-activity-step.component';
+
 
 import {HomeComponent} from '../../shared/components/home.component';
 
 @Component({
     selector : 'main-page',
     templateUrl: './app/shared/components/main-page.component.html',
-	directives: [
-		ROUTER_DIRECTIVES
+    directives: [
+        ROUTER_DIRECTIVES
     ],
     providers : [
-        //PageNavigationService
+        // PageNavigationService
     ]
 })
 
@@ -60,7 +62,7 @@ import {HomeComponent} from '../../shared/components/home.component';
         name: 'Settings',
         component: SettingsComponent
     },
-    //UNDER MY TRANSACTION TAB - START
+    // UNDER MY TRANSACTION TAB - START
     {
         path: '/targetsActuals',
         name: 'TargetsActuals',
@@ -86,13 +88,18 @@ import {HomeComponent} from '../../shared/components/home.component';
         name: 'DSPAlerts',
         component: DSPAlertsComponent
     },
-    //UNDER MY TRANSACTION TAB - END
-    
-    //UNDER BCP TAB - START
+    // UNDER MY TRANSACTION TAB - END
+
+    // UNDER BCP TAB - START
     {
         path: '/retailerSalesOrder',
         name: 'RetailerSalesOrder',
         component: RetailerSalesOrderComponent
+    },
+    {
+        path: '/bcpActivityStep',
+        name: 'BCPActivityStep',
+        component: BCPActivityStepComponent
     },
 
     {
@@ -111,9 +118,9 @@ import {HomeComponent} from '../../shared/components/home.component';
         name: 'SalesOrderPayment',
         component: SalesOrderPaymentComponent
     },
-    //UNDER BCP TAB - END
-    
-    //UNDER CLOSE DAY TAB - START
+    // UNDER BCP TAB - END
+
+    // UNDER CLOSE DAY TAB - START
     {
         path: '/collection',
         name: 'Collection',
@@ -129,25 +136,25 @@ import {HomeComponent} from '../../shared/components/home.component';
         name: 'VisitedRetail',
         component: VisitedRetailComponent
     },
-    //UNDER SETTINGS TAB - END
-    
-    //UNDER SETTINGS TAB - START
+    // UNDER SETTINGS TAB - END
+
+    // UNDER SETTINGS TAB - START
     {
         path: '/resetPassword',
         name: 'ResetPassword',
         component: ResetPasswordComponent
     }
-    //UNDER SETTINGS TAB - END
-    
+    // UNDER SETTINGS TAB - END
+
 ])
 
 export class MainPageComponent {
 
-	constructor (private _layoutService: LayoutService,
+    constructor (private _layoutService: LayoutService,
     private _matchMediaService: MatchMediaService) {}
-	
-	getResize(){
-        return this._matchMediaService.getMm();  
+
+    getResize() {
+        return this._matchMediaService.getMm();
     }
 
 }

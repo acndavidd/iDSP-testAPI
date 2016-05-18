@@ -9,23 +9,23 @@ import { Pipe, PipeTransform } from 'angular2/core';
 
 
 @Component({
-	selector: 'targets-actuals',
-    //templateUrl: './app/my-transaction/components/targets-actuals.component.html',
+    selector: 'targets-actuals',
+    // templateUrl: './app/my-transaction/components/targets-actuals.component.html',
     templateUrl: './app/my-transaction/components/md-targets-actuals.component.html',
-	directives: [
-		NgModel,
-		ROUTER_DIRECTIVES
+    directives: [
+        NgModel,
+        ROUTER_DIRECTIVES
     ],
     providers: [
         TargetsActualsService
-    ]    
+    ]
 })
 
 export class TargetsActualsComponent {
-	
-	vDayShow = true;
-	vWeekShow = false;
-	vMonthShow = false;
+
+    vDayShow = true;
+    vWeekShow = false;
+    vMonthShow = false;
     vUnderlineDay = true;
     vUnderlineWeek = false;
     vUnderlineMonth = false;
@@ -47,23 +47,26 @@ export class TargetsActualsComponent {
     private vListTargets;
     private vShowTargets;
 
+    private vShowProductMonth;
+
+    private vSelectedTab;
 
 
-	constructor (
+
+    constructor (
         private _router: Router,
-		private _layoutService: LayoutService,
-    	private _matchMediaService: MatchMediaService,
-		private _headerService: HeaderService,
+        private _layoutService: LayoutService,
+        private _matchMediaService: MatchMediaService,
+        private _headerService: HeaderService,
         private _targetsActualsService: TargetsActualsService
-    	) 
-	{
-        this.vSelectedBrand = "SMART";
-
-		this._layoutService.setCurrentPage('TargetsActuals');
-		this._headerService.setTitle("Targets & Actuals");
+        ) {
+        this.vSelectedBrand = 'SMART';
+        this.vSelectedTab = 'Day';
+        this._layoutService.setCurrentPage('TargetsActuals');
+        this._headerService.setTitle('Targets & Actuals');
         this._targetsActualsService.queryBrand().subscribe(
              response => {
-                if(response.json().status == "Success"){
+                if (response.json().status === 'Success') {
                     this.vListBrands = response.json().brandList;
                 }
             },
@@ -72,7 +75,7 @@ export class TargetsActualsComponent {
 
         this._targetsActualsService.queryProdCat().subscribe(
              response => {
-                if(response.json().status == "Success"){
+                if (response.json().status === 'Success') {
                     this.vListProd = response.json().CatList;
                     this.vShowProd = this.vListProd;
                 }
@@ -80,81 +83,78 @@ export class TargetsActualsComponent {
             error => {}
         );
 
+        this.getProduct();
 
-        this._targetsActualsService.queryProduct().subscribe(
+    }
+
+    getBrand() {
+        return this.vListBrands;
+    }
+
+    getResize() {
+        return this._matchMediaService.getMm();
+    }
+
+    getFilter() {
+        return this._layoutService.getFilter();
+    }
+
+    getProduct() {
+         console.log('Refresh PRoduct ' + this.vSelectedTab);
+         this._targetsActualsService.queryProduct(this.vSelectedTab).subscribe(
              response => {
-                if(response.json().status == "Success"){
-                    this.vListProduct= response.json().ProdList;
+                if (response.json().status === 'Success') {
+                    this.vListProduct = response.json().ProdList;
                     this.vShowProduct = this.vListProduct.filter(
                         prod => {
-                            return prod.brand == this.vSelectedBrand 
+                            return prod.brand === this.vSelectedBrand;
                         });
                 }
             },
             error => {}
         );
-
     }
 
-    getBrand(){
-        return this.vListBrands;
-    }
-
-	getResize(){
-        return this._matchMediaService.getMm();  
-    }
-
-    getFilter()
-    {
-        return this._layoutService.getFilter();
-    }
-
-    showMenuDay()
-    {
+    showMenuDay() {
         this.vDayShow = true;
         this.vUnderlineDay = true;
         this.vUnderlineWeek = false;
-    	this.vUnderlineMonth = false;
-    	this.vWeekShow = false;
-		this.vMonthShow = false;
+        this.vUnderlineMonth = false;
+        this.vWeekShow = false;
+        this.vMonthShow = false;
+
+         this.vSelectedTab = 'Day';
+        this.getProduct();
     }
 
-    showMenuWeek()
-    {
-    	this.vWeekShow = true;
+    showMenuWeek() {
+        this.vWeekShow = true;
         this.vUnderlineWeek = true;
         this.vUnderlineDay = false;
-   		this.vUnderlineMonth = false;
-   		this.vDayShow = false;
-		this.vMonthShow = false;
+        this.vUnderlineMonth = false;
+        this.vDayShow = false;
+        this.vMonthShow = false;
+        this.vSelectedTab = 'Week';
+        console.log('selected Tab' + this.vSelectedTab );
+        this.getProduct();
     }
 
-    showMenuMonth()
-    {
-    	this.vMonthShow = true;
+    showMenuMonth() {
+        this.vMonthShow = true;
         this.vUnderlineMonth = true;
         this.vUnderlineWeek = false;
-    	this.vUnderlineDay = false;
-    	this.vWeekShow = false;
-		this.vDayShow = false;
+        this.vUnderlineDay = false;
+        this.vWeekShow = false;
+        this.vDayShow = false;
+        this.vSelectedTab = 'Month';
+        console.log('selected Tab' + this.vSelectedTab );
+        this.getProduct();
     }
 
-    onChangeSelectBrand(pSelectedBrand)
-    {
+    onChangeSelectBrand(pSelectedBrand) {
         this.vSelectedBrand = pSelectedBrand;
-        console.log(this.vSelectedBrand + " IS SELECTED");
-        this.vShowProd = this.vListProd.filter(prod => prod.brand == this.vSelectedBrand);
-        this.vShowProduct = this.vListProduct.filter(prod => prod.brand == this.vSelectedBrand);
-     }   
-
-    getProdCat()
-    {  
-        return this.vShowProd;
-    }
-
-    getProduct()
-    {
-        return this.vShowProduct;
-    }
-
+        console.log(this.vSelectedBrand + ' IS SELECTED');
+        this.vShowProd = this.vListProd.filter(prod => prod.brand === this.vSelectedBrand);
+        this.vShowProduct = this.vListProduct.filter(prod => prod.brand === this.vSelectedBrand);
+     }
 }

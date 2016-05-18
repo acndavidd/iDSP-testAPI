@@ -9,8 +9,8 @@ import {NgModel} from 'angular2/common';
 
 @Component({
     templateUrl: './app/basic-call-procedure/components/detail-retailer.component.html',
-	directives: [
-		ROUTER_DIRECTIVES
+    directives: [
+        ROUTER_DIRECTIVES
     ]
 })
 
@@ -22,72 +22,70 @@ export class DetailRetailerComponent {
     vMenuShow = false;
     vArrowMap = false;
 
-	constructor (
-		private _layoutService: LayoutService,
-		private _matchMediaService: MatchMediaService,
-		private _headerService: HeaderService,
-		private _retailerService: RetailerService,
+    constructor (
+        private _layoutService: LayoutService,
+        private _matchMediaService: MatchMediaService,
+        private _headerService: HeaderService,
+        private _retailerService: RetailerService,
         private _router: Router,
         private _params: RouteParams,
         private _pageNavigationService: PageNavigationService
-		) 
-
-	{
+        ) {
         console.log(this._pageNavigationService.getCurrentParams());
-        if(this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== ''){
+        if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
             this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
             this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
-        }
-        else
-        {
-            console.log("Retailer ID not found");
+        } else {
+            console.log('Retailer ID not found');
         }
         console.log('in detail retailer for retailer id ' +  this.vSelectedRetailId);
-        
-		this._retailerService.getRetailerSummary(this.vSelectedRetailId).subscribe(
+
+        this._retailerService.getRetailerSummary(this.vSelectedRetailId).subscribe(
             response => {
-                if(response.json().status == 'Success'){//success login
-                    console.log("Query Success" + JSON.stringify(response.json().result));
+                if (response.json().status === 'Success') {// success login
+                    console.log('Query Success' + JSON.stringify(response.json().result));
                     this.vSelectedRetail = response.json().result;
 
                     this.vSelectedRetail.retailer.birthday = new Date(this.vSelectedRetail.retailer.birthday);
-                    console.log("Abis format" + JSON.stringify(this.vSelectedRetail));
-                }else{//failed login
-                    console.log("Query Failed")
-                    //this.vErrorMsg = response.json().errorMessage;
+                    console.log('Abis format' + JSON.stringify(this.vSelectedRetail));
+                } else {// failed login
+                    console.log('Query Failed');
+                    // this.vErrorMsg = response.json().errorMessage;
                 }
             },
             error => {
                 console.log(error);
-                //this.vErrorMsg = 'Failed connecting to login service';
+                // this.vErrorMsg = 'Failed connecting to login service';
         });
-        //console.log(this.vSelectedRetail);
+        // console.log(this.vSelectedRetail);
 
-		this._layoutService.setCurrentPage('DetailRetailer');
-		this._headerService.setTitle("Detail Retailer");
-        
+        this._layoutService.setCurrentPage('DetailRetailer');
+        this._headerService.setTitle('Detail Retailer');
+
     }
 
-    getSelectedRetailer(){
+    getSelectedRetailer() {
         return this.vSelectedRetail;
     }
-	
-	getResize(){
-        return this._matchMediaService.getMm();  
+
+    getResize() {
+        return this._matchMediaService.getMm();
     }
 
-   getRetailer()
-    {
-    	return this.vSelectedRetail;
+   getRetailer() {
+        return this.vSelectedRetail;
     }
 
-    subMenuShow()
-    {
+    subMenuShow() {
         this.vMenuShow = !this.vMenuShow;
         this.vArrowMap = !this.vArrowMap;
     }
 
-    goToInventoryRetailer(pRetailerId){
+    gotoBCPActivityStep() {
+        // this._router.navigate(['BCPActivityStep']);
+    }
+
+    goToInventoryRetailer(pRetailerId) {
         console.log(pRetailerId);
 
         let vParamsOld = this._pageNavigationService.getCurrentParams();
@@ -99,8 +97,8 @@ export class DetailRetailerComponent {
         this._pageNavigationService.navigate('RetailerInventory', vParams, vParamsOld );
 
     }
-    //  getRetailerAddress()
-    // {
-    // 	return this._retailerService.getRetailerAddress();
-    // }
+    //   getRetailerAddress()
+    //  {
+    //   return this._retailerService.getRetailerAddress();
+    //  }
 }
