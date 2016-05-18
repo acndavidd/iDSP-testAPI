@@ -10,7 +10,7 @@ import {NgFor, NgModel} from 'angular2/common';
 
 @Component({
 	selector: 'accounts-receivables',
-    templateUrl: './app/my-transaction/components/accounts-receivables.component.html',
+    templateUrl: './app/my-transaction/components/hc-accounts-receivables.component.html',
 	directives: [
 		NgFor,NgModel, ROUTER_DIRECTIVES
     ],
@@ -42,12 +42,15 @@ export class AccountsReceivablesComponent{
                 this.setAllRetailerList(response.json());
                 console.log('response success');
                 console.log(response.json());
+                console.log('sukses isi vAllRetailerList: '+this.vAllRetailerList);
                 
                 var x = 0;
-                var vList = response.json();
                 console.log(response.json().length);
-                for (var i in response.json()){
-                    console.log('i : '+JSON.stringify(response.json()[i].AccountReceivable[0].amount));
+                for (var i = 0; i < response.json().length;i++){
+                    console.log('amount'+i+' :'+JSON.stringify(response.json()[i].AccountReceivable[0].amount));
+                    console.log('sequence'+i+' :'+JSON.stringify(response.json()[i].AccountReceivable[0].Retailer.Route[0].RouteDay[0].sequence));
+                    console.log('retailer_name'+i+' :'+JSON.stringify(response.json()[i].AccountReceivable[0].Retailer.retailer_name));
+                    console.log('retailer_min'+i+' :'+JSON.stringify(response.json()[i].AccountReceivable[0].Retailer.retailer_min));
                     x = x+parseInt(response.json()[i].AccountReceivable[0].amount);
                 }
                 console.log('get sum x: '+x)
@@ -71,6 +74,9 @@ export class AccountsReceivablesComponent{
     }
 
     getTotalReceivable(){
+        if (this.vSum == null){
+            this.setTotalReceivable(0);
+        }
         return this.vSum;
     }
 
@@ -88,6 +94,7 @@ export class AccountsReceivablesComponent{
 
     getAllRetailer(){
        this.vSearchedList = this.vAllRetailerList;
+       console.log('sukses isi vsearchlist: '+this.vSearchedList);
     }
 
     getAllRetailerList(){

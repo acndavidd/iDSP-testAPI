@@ -19,6 +19,7 @@ export class MyTransactionComponent {
 	
 	is_loading:boolean;	
 	error_msg:string;
+	private vDate: Date;
 
 	constructor (
 		private _http: Http,
@@ -30,7 +31,8 @@ export class MyTransactionComponent {
     	) 
 	{
 		this._layoutService.setCurrentPage('MyTransaction');
-		this._headerService.setTitle("My Transaction");
+		this._headerService.setTitle("My Dashboard");
+        this.vDate = new Date();
     }
 
     test(){
@@ -45,6 +47,10 @@ export class MyTransactionComponent {
             	}
             );
     }
+
+    getToday() {
+    	return this.vDate;
+    }
 	
 	getResize(){
         return this._matchMediaService.getMm();  
@@ -52,28 +58,27 @@ export class MyTransactionComponent {
 
 	goToTargetsActuals(){
 		console.log('PEGI KE TARGET ACTUAL');
-		this._router.navigate(['TargetsActuals']);
+		this._pageNavigationService.navigate("TargetsActuals", null, null);
 	}
 	
 	goToInventory(){
 		console.log('PEGI KE INVENTORY');
-		this._router.navigate(['Inventory']);
+		this._pageNavigationService.navigate("Inventory", null, null);
 	}
 	
 	goToRetailerRoute(){
 		console.log('PEGI KE RETAILER ROUTE');
-		this._router.navigate(['RetailerRoute']);
+		this._pageNavigationService.navigate("RetailerRoute", null, null);
 	}
 	
 	goToAccountsReceivables(){
 		console.log('Go to Account Receivables');
-		this._router.navigate(['AccountsReceivables']);
+		this._pageNavigationService.navigate("AccountsReceivables", null, null);
 	}
 	
 	goToDSPAlerts(){
 		console.log('PEGI KE DSP');
-		//this._pageNavigationService.navigate('DSPAlerts' , {id : 'anjayy'});
-		//this._router.navigate(['DSPAlerts']);
+		this._pageNavigationService.navigate("DSPAlerts", null, null);
 	}
 
     getLayout(){

@@ -38,11 +38,12 @@ SUBTAB
 */
 .sub-tab {
     display: block;
-    background-color: $smart-menu-color;
+    background-color: $apple;
     padding-top: 10px;
     padding-bottom: 10px;
     margin-top: -3px;
     float: left;
+    border-bottom: 2px solid $apple;
     &.double {
         width: 50%;
     }
@@ -50,7 +51,7 @@ SUBTAB
         width: 33%;
     }
     &.active {
-        border-bottom: 0.3em solid $menu-underline;
+        border-bottom: 2px solid $menu-underline;
     }
     .text {
         color: $inactive-tab-grey;
@@ -81,7 +82,11 @@ LIST VIEW - BUTTON
     width: 100%;
     height: 100%;
     margin-bottom: 50px;
-    overflow-x: hidden; 
+    overflow-x: hidden;
+
+    &.menu {
+        overflow-x: visible;
+    }
     .no-divider {
         width: 100%;
         float:left;
@@ -108,7 +113,184 @@ LIST VIEW - BUTTON
         }
     }
 
+    .parent {
+        width: 100%;
+    }
 
+    .cover {
+        display: block;
+        width: 100%;
+        height: auto;
+        position: relative;
+        overflow: hidden;
+        padding: 35.64% 0 0 0; /* 34.37% = 100 / (w / h) = 100 / (1038 / 370) */
+
+        .cover-photo {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: url("../img/dashboard.png")no-repeat center center;
+            background-size: cover;
+
+            .anti-spy {
+                width: 100%;
+                position: absolute;
+                background-color: rgba(0, 0, 0, 0.4);
+                padding: 10.64% 10% 25% 5%;
+            }
+            .cover-date {
+                height: 10%;
+                width: 100%;
+                position: absolute;
+                color: $white;
+                font-weight: bold;
+                font-size: 4vw;
+                padding: 1% 1% 0% 73%;
+            }
+            .profile-photo {
+                width: 6%;
+                background: url(../img/profpic.jpg) no-repeat;
+                background-position: center center;
+                border: 3px solid $white;
+                border-radius: 50%;
+                -webkit-transform: translateZ(0);
+                -webkit-backface-visibility: hidden;
+                background-size: cover;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 10.64% 10% 10% 5%;
+                margin-top: 5%;
+            }
+            .cover-name {
+                height: 20%;
+                width: 100%;
+                text-align:center;
+                position: absolute;
+                color: $white;
+                font-weight: bold;
+                font-size: 5vw;
+            }
+        }
+
+        
+    }
+
+
+    .square-button {
+        display: table;
+        width: 100%;
+        padding-bottom: 2vw;
+        padding-top: 2vw;
+
+        &.border-left {
+            border-left: 1px solid $white-smoke;
+        }
+        &.border-bottom {
+            border-bottom: 1px solid $white-smoke;
+        }
+
+        .icon {
+            height: 18vw;
+            width: 100%;
+
+            &.call {
+                background: url("../img/icon-idsp/phone-grey.png")no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.bcp {
+                background: url(#{$icon-round-grad-bcp})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.inventory {
+                background: url(#{$icon-round-grad-inventory})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.logout {
+                background: url(#{$icon-round-grad-logout})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.remittance {
+                background: url(#{$icon-round-grad-remittance})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.stock-return {
+                background: url(#{$icon-round-grad-stock-return})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.target {
+                background: url(#{$icon-round-grad-target})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.acc-receivable {
+                background: url(#{$icon-round-grad-acc-receivable})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.alert {
+                background: url(#{$icon-round-grad-alert})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.collection {
+                background: url(#{$icon-round-grad-collection})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.retailer-route {
+                background: url(#{$icon-round-grad-retailer-route})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.sync {
+                background: url(#{$icon-round-grad-sync})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.visited {
+                background: url(#{$icon-round-grad-visited})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+        }
+
+        .text {
+            height: 30%;
+            display: inline-block;
+            width: 100%;
+            font-weight: lighter;
+            text-align: center;
+            font-size: 4vw;
+            padding-bottom: 1vw;
+            padding-top: 1vw;
+        }
+    }
+
+    
 
 /*
 ===========================================================
@@ -120,6 +302,16 @@ LIST VIEW - TEXT
         width: 100%;
         border-bottom: 1px solid $border-line;
         cursor: pointer;
+        
+        .item-notification {   
+            font-size: $filter-select;
+            background-color: $apple;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            color: $white;
+            text-align: center;
+            opacity: 0.6;
+        }
 
         &.sub {
             background-color: $whisper;
@@ -159,6 +351,12 @@ LIST VIEW - TEXT
             &.icon {
                 width: 15%;
             }
+            &.logo {
+                width:30%;
+            }
+            &.content{
+                width:70%
+            }
 
             &.bold {
                 font-weight: bold;
@@ -172,6 +370,9 @@ LIST VIEW - TEXT
 
             &.grey {
                 color: $grey;
+            }
+            &.green {
+                color: $apple;
             }
             &.deep-cyan {
                 color: $deep-cyan;
@@ -219,6 +420,29 @@ LIST VIEW - ICON
                 background-position-y: center;
                 background-size: 20px;
             }
+            .profpic-purple {
+                border: 1px solid $black;
+                border-radius: 100%;
+                background-color:#E6E0EC;
+                padding: 10% 0% 40% 0%;
+                margin: 0% 25% 0% 25%;
+                color:$apple;
+                text-align: center;
+                line-height:0px;
+                font-size: 30px;
+            }
+            .profpic-pink {
+                border: 1px solid $black;
+                border-radius: 100%;
+                background-color:#FDEADA;
+                padding: 10% 0% 40% 0%;
+                margin: 0% 25% 0% 25%;
+                color:$apple;
+                text-align: center;
+                line-height:0px;
+                font-size: 30px;
+            }
+
         }
     }
       
