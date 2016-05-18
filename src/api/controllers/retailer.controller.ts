@@ -197,9 +197,11 @@ export class RetailerController{
 		let vOrmSvc = new ORMService();
 		var vCurrentDate = new Date();
 		let params = {
-			dsp_id : 1
+			dsp_id : '1',
+			first_name : 'an'
 		};
-		var result = await vOrmSvc.sp('test_sp', JSON.stringify(params));
+
+		var result = await vOrmSvc.sp('test_sp', params );
 		pResponse.json(result);
 		/*
 		let vDSPModel = vOrmSvc.getModel('mst_dsp');

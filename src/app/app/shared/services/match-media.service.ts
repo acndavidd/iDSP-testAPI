@@ -3,21 +3,21 @@ import {Injectable} from 'angular2/core';
 @Injectable()
 export class MatchMediaService {
 
-	vKey;
-	
+    vKey;
+
     vRules = {
-            print: "print",
-            screen : "screen",
-            small : "(max-width: 640px)",
-            medium : "(min-width: 640px) and (max-width: 1024px)",
-            large : "(min-width: 1024px)",
-            xlarge : "(min-width: 1920px)",
-            portrait : "(orientation: portrait)",
-            landscape : "(orientation: landscape)"
+            print: 'print',
+            screen : 'screen',
+            small : '(max-width: 640px)',
+            medium : '(min-width: 640px) and (max-width: 1024px)',
+            large : '(min-width: 1024px)',
+            xlarge : '(min-width: 1920px)',
+            portrait : '(orientation: portrait)',
+            landscape : '(orientation: landscape)'
         };
-        
-    vMmqry ={
-        	print: false,
+
+    vMmqry = {
+            print: false,
             screen : false,
             small : false,
             medium : false,
@@ -36,20 +36,20 @@ export class MatchMediaService {
             this.vMmqry[this.vKey] = window.matchMedia(this.vRules[this.vKey]).matches;
             }
         }
-        
-        if(this.vMmqry.large || this.vMmqry.xlarge){
+
+        if (this.vMmqry.large || this.vMmqry.xlarge) {
             this.vMmqry.largeUp = true;
-        } else{
+        } else {
             this.vMmqry.largeUp = false;
         }
-		if(this.vMmqry.medium || this.vMmqry.large || this.vMmqry.xlarge){
+        if (this.vMmqry.medium || this.vMmqry.large || this.vMmqry.xlarge) {
             this.vMmqry.mediumUp = true;
-        } else{
+        } else {
             this.vMmqry.mediumUp = false;
         }
     }
-    
-    getMm(){
+
+    getMm() {
         return this.vMmqry;
     }
 
