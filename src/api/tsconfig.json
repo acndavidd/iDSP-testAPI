@@ -12,7 +12,9 @@
     "node_modules",
     "typings",
     "models",
-    "js"
+    "js",
+    "typings/main",
+    "typings/main.d.ts"
   ]
 }
 
