@@ -6,7 +6,7 @@ import {LayoutService} from '../../shared/services/layout.service';
 import {ModalService} from '../../shared/services/modal.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {NgModel} from 'angular2/common';
-import {Response,RequestOptionsArgs,Headers,Http,Connection,RequestOptions} from 'angular2/http';
+import {Response, RequestOptionsArgs, Headers, Http, Connection, RequestOptions} from 'angular2/http';
 
 
 
@@ -25,11 +25,11 @@ export class CloseDayComponent {
     private _router: Router,
     private _layoutService: LayoutService,
     private _matchMediaService: MatchMediaService,
-	private _modalService: ModalService,
-	private _headerService: HeaderService
-    ){
-		this._layoutService.setCurrentPage('CloseDay');
-        this._headerService.setTitle("Close of The Day");
+    private _modalService: ModalService,
+    private _headerService: HeaderService
+    ) {
+        this._layoutService.setCurrentPage('CloseDay');
+        this._headerService.setTitle('Close of The Day');
     }
 
     getResize() {

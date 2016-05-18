@@ -10,8 +10,8 @@ import { Pipe, PipeTransform } from 'angular2/core';
 
 @Component({
     selector: 'targets-actuals',
-    // templateUrl: './app/my-transaction/components/targets-actuals.component.html',
-    templateUrl: './app/my-transaction/components/md-targets-actuals.component.html',
+    templateUrl: './app/my-transaction/components/targets-actuals.component.html',
+    // templateUrl: './app/my-transaction/components/md-targets-actuals.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
@@ -112,11 +112,12 @@ export class TargetsActualsComponent {
                         });
                     if (this.vShowProduct !== null) {
                         var vPrev;
+                        this.vCatNameList = [];
                         for (var i = 0; i < this.vShowProduct.length; i++) {
-                            if (this.vShowProduct[i].category_name !== vPrev) {
-                                vPrev = this.vShowProduct[i].category_name;
-                                console.log('dapet vPrev: ' + vPrev);
-                                 this.vCatNameList.push(vPrev);
+                        if (this.vShowProduct[i].category_name !== vPrev) {
+                            vPrev = this.vShowProduct[i].category_name;
+                            console.log('dapet vPrev: ' + vPrev);
+                             this.vCatNameList.push(vPrev);
                             }
                         }
                     }
@@ -172,11 +173,4 @@ export class TargetsActualsComponent {
     getCatNameList() {
         return this.vCatNameList;
     }
-
-
-    // getProduct()
-    // {
-    //     return this.vShowProduct;
-    // }
-
 }
