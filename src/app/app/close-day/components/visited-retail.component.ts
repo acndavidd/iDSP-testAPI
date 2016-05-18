@@ -15,6 +15,10 @@ import {HeaderService} from '../../shared/services/header.service';
 
 export class VisitedRetailComponent {
 
+
+    vDetailShow = false;
+    vArrowMap   = false;
+
 	constructor (
 	private _router: Router,
 	private _layoutService: LayoutService,
@@ -24,10 +28,16 @@ export class VisitedRetailComponent {
     ) {
 
 		this._layoutService.setCurrentPage('VisitedRetail');
-        this._headerService.setTitle("Visited Today");
+        this._headerService.setTitle("Visited Retailer Route");
     }
 	
 	getResize(){
         return this._matchMediaService.getMm();  
+    }
+
+    detailShow()
+    {
+        this.vDetailShow = !this.vDetailShow;
+        this.vArrowMap = !this.vArrowMap;
     }
 }
