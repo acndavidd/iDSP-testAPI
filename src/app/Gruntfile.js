@@ -56,6 +56,20 @@ module.exports = function(grunt) {
             }
         },
 
+// ---------------------------
+// tslint Configuration
+// ---------------------------
+        tslint: {
+            options: {
+                // can be a configuration object or a filepath to tslint.json
+                configuration: "tslint.json"
+            },
+            files: {
+                src: [
+                    "app/**/*.ts"
+                ]
+            }
+        },
 
 // ---------------------------
 // Concatenation Configuration
@@ -77,7 +91,7 @@ module.exports = function(grunt) {
                 jshintrc: '.jshintrc',
                 reporter: require('jshint-stylish'),
             },            
-            files: ['.../debug/js/**.js'
+            files: ['../../debug/app/**/**.js'
                     // 'dev/js/*.js'
                     ],
         },
@@ -338,15 +352,7 @@ module.exports = function(grunt) {
         'watch'
         ]);
 
-    //grunt without watch for jenkins
-    grunt.registerTask('build-h1',[
-        'concat',
-        'sass',
-        'cssmin',
-        'uglify'
-        ]);
-
-//Debug
+    //Debug
     grunt.registerTask('debug',[      
         'clean:debug',
         'copy:dependencies',
@@ -354,12 +360,13 @@ module.exports = function(grunt) {
         'copy:html',
         'copy:css',
         'copy:fonts',
+        'tslint',
         'ts',
         'copy:js',
         'concat',
         'sass',
         'clean:sasscache',
-        'jshint',
+        // 'jshint',
         'cssmin',
         'uglify',
         'cachebreaker',
@@ -373,12 +380,13 @@ module.exports = function(grunt) {
         'copy:html',
         'copy:css',
         'copy:fonts',
+        'tslint',
         'ts',
         'copy:js',
         'concat',
         'sass',
         'clean:sasscache',
-        'jshint',
+        // 'jshint',
         'cssmin',
         'uglify',
         'cachebreaker',
@@ -388,7 +396,7 @@ module.exports = function(grunt) {
 
 
     grunt.registerTask('default',[
-        'jshint'
+        'tslint'
         ]);               
 
     grunt.registerTask('wp',[      
@@ -407,12 +415,13 @@ module.exports = function(grunt) {
         'copy:html',
         'copy:css',
         'copy:fonts',
+        'tslint',
         'ts',
         'copy:js',
         'concat',
         'sass',
         'clean:sasscache',
-        'jshint',
+        // 'jshint',
         'cssmin',
         'uglify',
         'cachebreaker',

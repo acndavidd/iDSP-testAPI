@@ -7,14 +7,14 @@ import {Http} from 'angular2/http';
 import {NgModel} from 'angular2/common';
 
 @Component({
-	selector: 'dsp-alerts',
+    selector: 'dsp-alerts',
     templateUrl: './app/my-transaction/components/hc-dsp-alerts.component.html',
-	directives: [
-		NgModel,
-		ROUTER_DIRECTIVES
+    directives: [
+        NgModel,
+        ROUTER_DIRECTIVES
     ],
     providers : [
-    	
+
     ]
 })
 
@@ -22,51 +22,50 @@ export class DSPAlertsComponent {
     private vRetailerAlert;
     private vAllRetailerAlert;
     private vValueSegmentFilter;
-	constructor (
-        private _http:Http,
-		private _layoutService: LayoutService,
-    	private _matchMediaService: MatchMediaService,
-		private _headerService: HeaderService
-    	) 
-	{
-		this._layoutService.setCurrentPage('DSPAlerts');
-		this._headerService.setTitle("Alert & Threshold");
+    constructor (
+        private _http: Http,
+        private _layoutService: LayoutService,
+        private _matchMediaService: MatchMediaService,
+        private _headerService: HeaderService
+        ) {
+        this._layoutService.setCurrentPage('DSPAlerts');
+        this._headerService.setTitle('Alert & Threshold');
         this.vValueSegmentFilter = '';
-		this.loadAlert();
+        this.loadAlert();
     }
 
-    loadAlert(){
-    	this._http.get('/getRetailerAlert',null).subscribe(
-    		response => {
-    			this.vRetailerAlert = this.vAllRetailerAlert = response.json().result;
-    		},
-    		error => {
+    loadAlert() {
+        this._http.get('/getRetailerAlert', null).subscribe(
+            response => {
+                this.vRetailerAlert = this.vAllRetailerAlert = response.json().result;
+            },
+            error => {
 
-    		}
-    	);
+            }
+        );
     }
 
-    onFilterValueSegment(pSelectedValueSegment){
+    onFilterValueSegment(pSelectedValueSegment) {
         this.vValueSegmentFilter = pSelectedValueSegment;
-        if(this.vValueSegmentFilter !== ''){
-            this.vRetailerAlert = this.vAllRetailerAlert.filter(alert => alert.value_segment == this.vValueSegmentFilter);
-        }else{
+        if (this.vValueSegmentFilter !== '') {
+            this.vRetailerAlert = this.vAllRetailerAlert.filter(alert => alert.value_segment === this.vValueSegmentFilter);
+        } else {
             this.vRetailerAlert = this.vAllRetailerAlert;
         }
     }
 
-    onFilterThreshold(pThresholdValue){
-        if(pThresholdValue != '')
+    onFilterThreshold(pThresholdValue) {
+        if (pThresholdValue !== '')
             this.vRetailerAlert = this.vAllRetailerAlert.filter(alert => alert.threshold_hit.indexOf(pThresholdValue) !== -1);
         else this.vRetailerAlert = this.vAllRetailerAlert;
     }
 
-    getRetailerAlert(){
-    	return this.vRetailerAlert;
+    getRetailerAlert() {
+        return this.vRetailerAlert;
     }
-	
-	getResize() {
-        return this._matchMediaService.getMm();  
+
+    getResize() {
+        return this._matchMediaService.getMm();
     }
 
     getFilter() {

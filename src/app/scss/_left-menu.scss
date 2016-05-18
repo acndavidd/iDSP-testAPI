@@ -90,7 +90,7 @@
         .cell {
             display:table-cell;
             font-size: 4vw;
-            height: 3vw;
+            height: 7vw;
             vertical-align:middle;
 
             &.single {
@@ -148,6 +148,42 @@
             }
             &.target {
                 background: url(#{$icon-round-grad-target})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 7vw;
+            }
+            &.acc-receivable {
+                background: url(#{$icon-round-grad-acc-receivable})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 7vw;
+            }
+            &.alert {
+                background: url(#{$icon-round-grad-alert})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 7vw;
+            }
+            &.collection {
+                background: url(#{$icon-round-grad-collection})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 7vw;
+            }
+            &.retailer-route {
+                background: url(#{$icon-round-grad-retailer-route})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 7vw;
+            }
+            &.sync {
+                background: url(#{$icon-round-grad-sync})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 7vw;
+            }
+            &.visited {
+                background: url(#{$icon-round-grad-visited})no-repeat;
                 background-position-x: center;
                 background-position-y: center;
                 background-size: 7vw;

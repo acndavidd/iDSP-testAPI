@@ -10,48 +10,44 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
     templateUrl: 'app/shared/components/footer-menu.component.html'
 })
 
-export class FooterMenuComponent{
-	constructor (
-		private _layoutService : LayoutService, 
+export class FooterMenuComponent {
+    constructor (
+        private _layoutService: LayoutService,
         private _router: Router,
-		private _matchMediaService: MatchMediaService,
-		private _pageNavigationService: PageNavigationService) {
-	}
-	
-	goToMyTransaction()
-	{
-		console.log("My Transaction");
-		this._router.navigate(['MainPage','MyTransaction']);
-	}
+        private _matchMediaService: MatchMediaService,
+        private _pageNavigationService: PageNavigationService) {
+    }
 
-	goToBasicCallProcedure()
-	{
-		console.log("Basic");
-		this._router.navigate(['MainPage','BasicCallProcedure']);
-	}
+    goToMyTransaction() {
+        console.log('My Transaction');
+        this._router.navigate(['MainPage', 'MyTransaction']);
+    }
 
-	goToCloseDay()
-	{
-		console.log("Close Day");
-		this._router.navigate(['MainPage','CloseDay']);
-	}
+    goToBasicCallProcedure() {
+        console.log('Basic');
+        this._router.navigate(['MainPage', 'BasicCallProcedure']);
+    }
 
-	goToSettings()
-	{
-		console.log("Settings");
-		this._router.navigate(['MainPage','Settings']);
-	}
-	
-	// getFooterItem(){
-	// 	console.log("Footer item");
-	// 	return this._layoutService.getFooterItem();
-	// }
+    goToCloseDay() {
+        console.log('Close Day');
+        this._router.navigate(['MainPage', 'CloseDay']);
+    }
 
-	// getFooterState(){
-	// 	return this._layoutService.getFooterState();
-	// }
+    goToSettings() {
+        console.log('Settings');
+        this._router.navigate(['MainPage', 'Settings']);
+    }
 
-    getLayout(){
-		return this._layoutService.getLayout();
-	}
+    // getFooterItem() {
+    //  console.log('Footer item');
+    //  return this._layoutService.getFooterItem();
+    // }
+
+    // getFooterState() {
+    //  return this._layoutService.getFooterState();
+    // }
+
+    getLayout() {
+        return this._layoutService.getLayout();
+    }
 }

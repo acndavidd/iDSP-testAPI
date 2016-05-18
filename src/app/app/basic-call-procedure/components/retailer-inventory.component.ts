@@ -7,8 +7,8 @@ import {NgModel} from 'angular2/common';
 
 @Component({
     templateUrl: './app/basic-call-procedure/components/retailer-inventory.component.html',
-	directives: [
-		ROUTER_DIRECTIVES
+    directives: [
+        ROUTER_DIRECTIVES
     ]
 })
 
@@ -16,28 +16,26 @@ export class RetailerInventoryComponent {
 
     vMenuShow = false;
     vArrowMap = false;
-	constructor (
-		private _layoutService: LayoutService,
-		private _matchMediaService: MatchMediaService,
-		private _headerService: HeaderService
-		) 
-	{
-		this._layoutService.setCurrentPage('RetailerInventory');
-		this._headerService.setTitle("Retailer Inventory");
-    }
-	
-	getResize(){
-        return this._matchMediaService.getMm();  
+    constructor (
+        private _layoutService: LayoutService,
+        private _matchMediaService: MatchMediaService,
+        private _headerService: HeaderService
+        ) {
+        this._layoutService.setCurrentPage('RetailerInventory');
+        this._headerService.setTitle('Retailer Inventory');
     }
 
-    subMenuShow()
-    {
+    getResize() {
+        return this._matchMediaService.getMm();
+    }
+
+    subMenuShow() {
         this.vMenuShow = !this.vMenuShow;
         this.vArrowMap = !this.vArrowMap;
     }
 
     //  getRetailerAddress()
     // {
-    // 	return this._retailerService.getRetailerAddress();
+    //  return this._retailerService.getRetailerAddress();
     // }
 }

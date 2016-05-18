@@ -1,5 +1,5 @@
 .modal-verification-code {
-    background-color: #E6E7E9;
+    background-color: #F2F2F2;
     margin-left: auto;
     margin-right: auto;
     width: 300px;
@@ -10,7 +10,7 @@
     .modal-body {
         display: inline-block;
         width: calc(100% - 20px);
-        padding: 20px 10px 0px 10px;
+        padding: 0px 0px 0px 10px;
         .item-header {
             font-size: 24px;
             margin-bottom: 30px;
@@ -20,12 +20,14 @@
         .item-title {
             font-size: 15px;
             font-weight: bold;
-            margin: 0px 0px 10px 30px;
+            margin: 0px 0px 20px 0px;
+            text-align:center;
         }
         .item-subtitle {
             font-size: 20px;
             color: #000;
-            margin: 0px 0px 10px 30px;
+            margin: 0px 0px 20px 0px;
+            text-align:center;
         }
         .item-row {
             margin-bottom: 5px;
@@ -70,20 +72,19 @@
     .modal-footer {
         display: inline-block;
         width: calc(100% - 20px);
-        text-align: right;
+        text-align: center;
         margin: 0px 10px 20px 10px;
         .button {
-            width: 35%;
-            line-height: 1.5rem;
+            width: 50%;
+            line-height: 5vh;
             margin-top: 5px;
             display: inline-block;
             color: #FFF;
             cursor: pointer;
             text-align: center;
         }
-        .red {
-            background-color: #FF0000;
-            margin-left: 10px;
+        .green {
+            background-color: #62BB47;
         }
     }
 }
