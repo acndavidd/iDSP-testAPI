@@ -23,32 +23,34 @@ export class LoginComponent {
     constructor (
         private _router: Router,
         private _layoutService: LayoutService,
-        private _authenticationService:AuthenticationService,
+        private _authenticationService: AuthenticationService,
         private _modalService: ModalService,
-        private _pageNavigationService : PageNavigationService
+        private _pageNavigationService: PageNavigationService
         ) {
-        
+
         this._layoutService.setCurrentPage('Login');
-	}
+    }
 
-	login(pEvent) {
+    login(pEvent) {
         pEvent.preventDefault();
+        // For Hit API
+        // this._authenticationService.login(this.vUsername,this.vPassword);
 
-        //For By Pass Directly without API
-        //this._pageNavigationService.navigate("Mpin", null, null);
+        // For By Pass Directly without API
+        // this._router.navigate(['MainPage','MyTransaction']);
         this._router.navigate(['Mpin']);
     }
 
-    getLoadingState(){
+    getLoadingState() {
         return this._authenticationService.getLoadingState();
     }
 
-    getErrorMessageText()
-    {
-    	return this._authenticationService.getError();
+    gotoForgetPassword() {
+        this._router.navigate(['ForgotPassword']);
     }
 
-    gotoForgotPassword(){
+    getErrorMessageText() {
+        return this._authenticationService.getError();
     }
 
     toggleVerificationCodeModal() {

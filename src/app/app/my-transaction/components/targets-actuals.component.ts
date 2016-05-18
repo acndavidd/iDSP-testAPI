@@ -9,23 +9,23 @@ import { Pipe, PipeTransform } from 'angular2/core';
 
 
 @Component({
-	selector: 'targets-actuals',
-    //templateUrl: './app/my-transaction/components/targets-actuals.component.html',
-    templateUrl: './app/my-transaction/components/md-targets-actuals.component.html',
-	directives: [
-		NgModel,
-		ROUTER_DIRECTIVES
+    selector: 'targets-actuals',
+    templateUrl: './app/my-transaction/components/targets-actuals.component.html',
+    // templateUrl: './app/my-transaction/components/md-targets-actuals.component.html',
+    directives: [
+        NgModel,
+        ROUTER_DIRECTIVES
     ],
     providers: [
         TargetsActualsService
-    ]    
+    ]
 })
 
 export class TargetsActualsComponent {
-	
-	vDayShow = true;
-	vWeekShow = false;
-	vMonthShow = false;
+
+    vDayShow = true;
+    vWeekShow = false;
+    vMonthShow = false;
     vUnderlineDay = true;
     vUnderlineWeek = false;
     vUnderlineMonth = false;
@@ -51,24 +51,23 @@ export class TargetsActualsComponent {
 
     private vSelectedTab;
 
+    vCatNameList: any = [];
 
 
-	constructor (
+    constructor (
         private _router: Router,
-		private _layoutService: LayoutService,
-    	private _matchMediaService: MatchMediaService,
-		private _headerService: HeaderService,
+        private _layoutService: LayoutService,
+        private _matchMediaService: MatchMediaService,
+        private _headerService: HeaderService,
         private _targetsActualsService: TargetsActualsService
-    	) 
-	{
-        this.vSelectedBrand = "SMART";
-        this.vSelectedTab = "Day";
-
-		this._layoutService.setCurrentPage('TargetsActuals');
-		this._headerService.setTitle("Targets & Actuals");
+        ) {
+        this.vSelectedBrand = 'SMART';
+        this.vSelectedTab = 'Day';
+        this._layoutService.setCurrentPage('TargetsActuals');
+        this._headerService.setTitle('Targets & Actuals');
         this._targetsActualsService.queryBrand().subscribe(
              response => {
-                if(response.json().status == "Success"){
+                if (response.json().status === 'Success') {
                     this.vListBrands = response.json().brandList;
                 }
             },
@@ -77,7 +76,7 @@ export class TargetsActualsComponent {
 
         this._targetsActualsService.queryProdCat().subscribe(
              response => {
-                if(response.json().status == "Success"){
+                if (response.json().status === 'Success') {
                     this.vListProd = response.json().CatList;
                     this.vShowProd = this.vListProd;
                 }
@@ -89,90 +88,89 @@ export class TargetsActualsComponent {
 
     }
 
-    getBrand(){
+    getBrand() {
         return this.vListBrands;
     }
 
-	getResize(){
-        return this._matchMediaService.getMm();  
+    getResize() {
+        return this._matchMediaService.getMm();
     }
 
-    getFilter()
-    {
+    getFilter() {
         return this._layoutService.getFilter();
     }
 
-    getProduct()
-    {
-         console.log("Refresh PRoduct "+ this.vSelectedTab);
+    getProduct() {
+         console.log('Refresh PRoduct ' + this.vSelectedTab);
          this._targetsActualsService.queryProduct(this.vSelectedTab).subscribe(
              response => {
-                if(response.json().status == "Success"){
-                    this.vListProduct= response.json().ProdList;
+                if (response.json().status === 'Success') {
+                    this.vListProduct = response.json().ProdList;
                     this.vShowProduct = this.vListProduct.filter(
                         prod => {
-                            return prod.brand == this.vSelectedBrand 
+                            return prod.brand === this.vSelectedBrand;
                         });
+                    if (this.vShowProduct !== null) {
+                        var vPrev;
+                        this.vCatNameList = [];
+                        for (var i = 0; i < this.vShowProduct.length; i++) {
+                        if (this.vShowProduct[i].category_name !== vPrev) {
+                            vPrev = this.vShowProduct[i].category_name;
+                            console.log('dapet vPrev: ' + vPrev);
+                             this.vCatNameList.push(vPrev);
+                            }
+                        }
+                    }
                 }
             },
             error => {}
         );
     }
 
-    showMenuDay()
-    {
+    showMenuDay() {
         this.vDayShow = true;
         this.vUnderlineDay = true;
         this.vUnderlineWeek = false;
-    	this.vUnderlineMonth = false;
-    	this.vWeekShow = false;
-		this.vMonthShow = false;
+        this.vUnderlineMonth = false;
+        this.vWeekShow = false;
+        this.vMonthShow = false;
 
-         this.vSelectedTab = "Day";
+         this.vSelectedTab = 'Day';
         this.getProduct();
     }
 
-    showMenuWeek()
-    {
-    	this.vWeekShow = true;
+    showMenuWeek() {
+        this.vWeekShow = true;
         this.vUnderlineWeek = true;
         this.vUnderlineDay = false;
-   		this.vUnderlineMonth = false;
-   		this.vDayShow = false;
-		this.vMonthShow = false;
-
-         this.vSelectedTab = "Week";
-          console.log('selected Tab'+this.vSelectedTab );
-          this.getProduct();
+        this.vUnderlineMonth = false;
+        this.vDayShow = false;
+        this.vMonthShow = false;
+        this.vSelectedTab = 'Week';
+        console.log('selected Tab' + this.vSelectedTab );
+        this.getProduct();
     }
 
-    showMenuMonth()
-    {
-    	this.vMonthShow = true;
+    showMenuMonth() {
+        this.vMonthShow = true;
         this.vUnderlineMonth = true;
         this.vUnderlineWeek = false;
-    	this.vUnderlineDay = false;
-    	this.vWeekShow = false;
-		this.vDayShow = false;
-
-         this.vSelectedTab = "Month";
-          console.log('selected Tab'+this.vSelectedTab );
-          this.getProduct();
-
+        this.vUnderlineDay = false;
+        this.vWeekShow = false;
+        this.vDayShow = false;
+        this.vSelectedTab = 'Month';
+        console.log('selected Tab' + this.vSelectedTab );
+        this.getProduct();
     }
 
-    onChangeSelectBrand(pSelectedBrand)
-    {
+    onChangeSelectBrand(pSelectedBrand) {
         this.vSelectedBrand = pSelectedBrand;
-        console.log(this.vSelectedBrand + " IS SELECTED");
-        this.vShowProd = this.vListProd.filter(prod => prod.brand == this.vSelectedBrand);
-        this.vShowProduct = this.vListProduct.filter(prod => prod.brand == this.vSelectedBrand);
-     }   
+        console.log(this.vSelectedBrand + ' IS SELECTED');
+        this.vShowProd = this.vListProd.filter(prod => prod.brand === this.vSelectedBrand);
+        this.vShowProduct = this.vListProduct.filter(prod => prod.brand === this.vSelectedBrand);
+    }
 
-
-    // getProduct()
-    // {
-    //     return this.vShowProduct;
-    // }
-
+    getCatNameList() {
+        return this.vCatNameList;
+    }
 }

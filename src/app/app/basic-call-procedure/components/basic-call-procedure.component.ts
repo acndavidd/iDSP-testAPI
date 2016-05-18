@@ -9,33 +9,31 @@ import {NgModel} from 'angular2/common';
 
 @Component({
     templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
-	directives: [
-		ROUTER_DIRECTIVES
+    directives: [
+        ROUTER_DIRECTIVES
     ]
 })
 
 export class BasicCallProcedureComponent {
 
-	constructor (
-		private _layoutService: LayoutService,
-		private _matchMediaService: MatchMediaService,
-		private _headerService: HeaderService,
-		private _retailerService: RetailerService,
+    constructor (
+        private _layoutService: LayoutService,
+        private _matchMediaService: MatchMediaService,
+        private _headerService: HeaderService,
+        private _retailerService: RetailerService,
         private _pageNavigationService: PageNavigationService,
-		private _router: Router
-		) 
-	{
-		this._retailerService.getRetailer(100);
-		this._layoutService.setCurrentPage('BasicCallProcedure');
+        private _router: Router
+        ) {
+        this._retailerService.getRetailer(100);
+        this._layoutService.setCurrentPage('BasicCallProcedure');
         this._headerService.setTitle('Basic Call Procedure');
     }
-	
-	getResize(){
-        return this._matchMediaService.getMm();  
+
+    getResize() {
+        return this._matchMediaService.getMm();
     }
 
-    gotoDetailRetailer()
-    {
+    gotoDetailRetailer() {
         this._pageNavigationService.navigate('DetailRetailer', null, null);
     }
 }
