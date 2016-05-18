@@ -1,20 +1,25 @@
+import {HeaderService} from '../../shared/services/header.service';
 import {Component} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/router';
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {ModalService} from '../../shared/services/modal.service';
-import {HeaderService} from '../../shared/services/header.service';
+import {PageNavigationService} from '../../shared/services/page-navigation.service';
+import {NgModel} from 'angular2/common';
+import {Response,RequestOptionsArgs,Headers,Http,Connection,RequestOptions} from 'angular2/http';
+
 
 
 @Component({
     templateUrl: './app/close-day/components/close-day.component.html',
 	directives: [
-		ROUTER_DIRECTIVES
+		NgModel,ROUTER_DIRECTIVES
     ]
 })
 
 export class CloseDayComponent {
 
+    private vDate: Date;
 
 	constructor (
 	private _router: Router,
@@ -24,7 +29,7 @@ export class CloseDayComponent {
 	private _headerService: HeaderService
     ){
 		this._layoutService.setCurrentPage('CloseDay');
-        this._headerService.setTitle("Close Day");
+        this._headerService.setTitle("Close of The Day");
     }
 	
 	getResize(){
@@ -56,5 +61,9 @@ export class CloseDayComponent {
     goToStockReturn()
     {
         console.log('SR');
+    }
+
+    getToday() {
+        return this.vDate;
     }
 }
