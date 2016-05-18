@@ -11,6 +11,7 @@ export class ModalService {
     vModalState = {
         info: false,
         verificationCode : false,
+        resendMpin : false,
         collection: false
     }
 
@@ -37,6 +38,18 @@ export class ModalService {
         }
         this.vMainModalState = !this.vMainModalState;
     }
+
+    toggleResendMpinModal() 
+    {
+        if(this.vMainModalState)
+        {
+            this.refreshModal();
+        }else
+        {
+            this.vModalState.resendMpin = !this.vModalState.resendMpin;
+        }
+        this.vMainModalState = !this.vMainModalState;
+    }
     
     toggleCollectionModal() 
     {
@@ -57,6 +70,7 @@ export class ModalService {
         this.vModalState.info = false;
         this.vModalState.collection = false;
         this.vModalState.verificationCode = false;
+        this.vModalState.resendMpin = false;
     }
 
 }
