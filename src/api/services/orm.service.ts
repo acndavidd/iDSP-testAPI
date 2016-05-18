@@ -43,11 +43,17 @@ export class ORMService{
 		//this.vAssociatedModels = {};
 	}
 
-	public async sp(pSPName:string,pParams:string):string{
+	public async sp(pSPName:string,pParams:any):string{
 		let vSequelize = this.getSequelize();
 		return new Promise<string>(
 			function (pResolve,pReject){
-				vSequelize.query('SELECT ' + pSPName + "('"+pParams+"');").then(function(pResponse){
+				//build params
+				let vParams = '(';
+				for(let vParam in pParams){
+					vParams += "'" + pParams[vParam] + "',";
+				}
+				vParams = vParams.substring(0,vParams.lastIndexOf(',')) + ');';
+				vSequelize.query('SELECT ' + pSPName + vParams).then(function(pResponse){
 					pResolve(pResponse[0][0][pSPName]);
 				});
 			});
