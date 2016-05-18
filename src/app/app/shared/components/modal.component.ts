@@ -10,17 +10,17 @@ import {ModalService} from '../services/modal.service';
     ]
 })
 export class ModalComponent {
-    
-    constructor(private _modalService: ModalService){
-        
+
+    constructor(private _modalService: ModalService) {
+
     }
-    
-    getModalStatus(){
+
+    getModalStatus() {
         return this._modalService.getModalState();
     }
-    
-    getMainModalStatus(){
+
+    getMainModalStatus() {
         return this._modalService.getMainModalState();
     }
-    
+
 }

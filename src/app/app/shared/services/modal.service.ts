@@ -10,50 +10,41 @@ export class ModalService {
 
     vModalState = {
         info: false,
-        verificationCode : false,
+        verificationCode: false,
         collection: false
-    }
+    };
 
     constructor() {}
 
-    getMainModalState()
-    {
+    getMainModalState() {
         return this.vMainModalState;
     }
 
-    getModalState() 
-    {
+    getModalState() {
         return this.vModalState;
     }
-    
-    toggleVerificationCodeModal() 
-    {
-        if(this.vMainModalState)
-        {
+
+    toggleVerificationCodeModal() {
+        if (this.vMainModalState) {
             this.refreshModal();
-        }else
-        {
+        } else {
             this.vModalState.verificationCode = !this.vModalState.verificationCode;
         }
         this.vMainModalState = !this.vMainModalState;
     }
-    
-    toggleCollectionModal() 
-    {
-        if(this.vMainModalState)
-        {
+
+    toggleCollectionModal() {
+        if (this.vMainModalState) {
             this.refreshModal();
-        }else
-        {
+        } else {
             this.vModalState.collection = !this.vModalState.collection;
         }
         this.vMainModalState = !this.vMainModalState;
-    }                
+    }
 
 
 
-    refreshModal()
-    {
+    refreshModal() {
         this.vModalState.info = false;
         this.vModalState.collection = false;
         this.vModalState.verificationCode = false;

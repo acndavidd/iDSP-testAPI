@@ -7,32 +7,31 @@ import {ModalService} from '../../shared/services/modal.service';
 
 @Component({
     templateUrl: './app/login/components/forgot-password.component.html',
-	directives: [
-		NgModel
+    directives: [
+        NgModel
     ]
 })
 
 export class ForgotPasswordComponent {
 
 
-	constructor (
-		private _router: Router,
-		private _layoutService: LayoutService,
-    	private _matchMediaService: MatchMediaService,
+    constructor (
+        private _router: Router,
+        private _layoutService: LayoutService,
+        private _matchMediaService: MatchMediaService,
         private _modalService: ModalService
-    	) {
+        ) {
 
-		this._layoutService.setCurrentPage('ForgotPassword');
-		
-    }
-    
-	getResize(){
-        return this._matchMediaService.getMm();  
+        this._layoutService.setCurrentPage('ForgotPassword');
+
     }
 
-    gotoLogin()
-    {
-    	this._router.navigate(['Starter', 'Login']);
+    getResize() {
+        return this._matchMediaService.getMm();
+    }
+
+    gotoLogin() {
+        this._router.navigate(['Starter', 'Login']);
     }
 
     toggleVerificationCodeModal() {

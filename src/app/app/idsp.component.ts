@@ -33,14 +33,14 @@ declare var configChannel: any;
 @Component({
     selector: 'idsp-app',
     template: `
-    	<div id="content"
+        <div id="content"
             (window:resize)="OnResize()">
             <idsp-header></idsp-header>
             <my-modal></my-modal>
             <left-menu></left-menu>
-    		<router-outlet></router-outlet>
+            <router-outlet></router-outlet>
             <idsp-footer-menu></idsp-footer-menu>
-    	</div>
+        </div>
     `,
 
     directives: [
@@ -106,26 +106,26 @@ declare var configChannel: any;
     },
     {
         path: '/**',
-        redirectTo: ['Starter', 'Login'] 
+        redirectTo: ['Starter', 'Login']
     }
 
 ])
 export class IDSPComponent implements OnInit {
 
-	constructor ( private _matchMediaService: MatchMediaService,
+    constructor ( private _matchMediaService: MatchMediaService,
     private _router: Router,
     private _layoutService: LayoutService) {
         new FastClick(document.body);
     }
 
-    ngOnInit(){
-    	this.OnResize();
-        if(configChannel === 'app'){
+    ngOnInit() {
+        this.OnResize();
+        if (configChannel === 'app') {
             this._router.navigate(['Starter', 'Login']);
         }
     }
 
-    OnResize(){
+    OnResize() {
         this._matchMediaService.OnResize();
     }
 

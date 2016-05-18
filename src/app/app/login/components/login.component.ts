@@ -21,35 +21,33 @@ export class LoginComponent {
     constructor (
         private _router: Router,
         private _layoutService: LayoutService,
-        private _authenticationService:AuthenticationService
+        private _authenticationService: AuthenticationService
         ) {
-        
-        //this._layoutService.setCurrentPage('Login');
-	}
 
-	login(pEvent) {
-        pEvent.preventDefault();
-        //For Hit API
-        //this._authenticationService.login(this.vUsername,this.vPassword);
-
-        //For By Pass Directly without API
-        this._router.navigate(['MainPage','MyTransaction']);
+        // this._layoutService.setCurrentPage('Login');
     }
 
-    getLoadingState(){
+    login(pEvent) {
+        pEvent.preventDefault();
+        // For Hit API
+        // this._authenticationService.login(this.vUsername,this.vPassword);
+
+        // For By Pass Directly without API
+        this._router.navigate(['MainPage', 'MyTransaction']);
+    }
+
+    getLoadingState() {
         return this._authenticationService.getLoadingState();
     }
 
-    gotoForgetPassword()
-    {
+    gotoForgetPassword() {
         this._router.navigate(['ForgotPassword']);
     }
 
-    getErrorMessageText()
-    {
-    	return this._authenticationService.getError();
+    getErrorMessageText() {
+        return this._authenticationService.getError();
     }
 
-    gotoForgotPassword(){
+    gotoForgotPassword() {
     }
 }
