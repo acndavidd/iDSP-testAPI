@@ -23,6 +23,7 @@ import {VisitedRetailComponent} from '../../close-day/components/visited-retail.
 import {BCPActivityStepComponent} from '../../basic-call-procedure/components/bcp-activity-step.component';
 
 
+import {HomeComponent} from '../../shared/components/home.component';
 
 @Component({
     selector : 'main-page',
@@ -36,6 +37,11 @@ import {BCPActivityStepComponent} from '../../basic-call-procedure/components/bc
 })
 
 @RouteConfig([
+    {
+        path: '/home',
+        name: 'Home',
+        component: HomeComponent
+    },
     {
         path: '/myTransaction',
         name: 'MyTransaction',
