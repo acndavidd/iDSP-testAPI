@@ -18,6 +18,8 @@ import {DetailRetailerComponent} from '../../basic-call-procedure/components/det
 import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/sales-order-payment.component';
 import {CDTargetsActualsComponent} from '../../close-day/components/cd-targets-actuals.component';
 import {VisitedRetailComponent} from '../../close-day/components/visited-retail.component';
+import {BCPActivityStepComponent} from '../../basic-call-procedure/components/bcp-activity-step.component';
+
 
 @Component({
     selector : 'main-page',
@@ -81,6 +83,11 @@ import {VisitedRetailComponent} from '../../close-day/components/visited-retail.
         path: '/retailerSalesOrder',
         name: 'RetailerSalesOrder',
         component: RetailerSalesOrderComponent
+    },
+    {
+        path: '/bcpActivityStep',
+        name: 'BCPActivityStep',
+        component: BCPActivityStepComponent
     },
 
     {

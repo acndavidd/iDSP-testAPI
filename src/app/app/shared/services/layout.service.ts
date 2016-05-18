@@ -379,6 +379,28 @@ export class LayoutService {
                 search: false
             }
     }
+    else if(pCurrent=='BCPActivityStep' )
+     {
+         this._pageNavigationService.setPreviousPage('DetailRetailer');
+            
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: true
+            };
+            this.vFooterState = 
+            {
+                myTransaction : false,
+                basicCallProcedure : false,
+                closeDay : true,
+                settings : false
+            };    
+            this.vHeaderItem = {
+                back: true,
+                filter: false,
+                edit: false,
+                search: false
+            }
+    }
 
 
     }

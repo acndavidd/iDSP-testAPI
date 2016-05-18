@@ -21,7 +21,8 @@ export class DetailRetailerComponent {
 		private _layoutService: LayoutService,
 		private _matchMediaService: MatchMediaService,
 		private _headerService: HeaderService,
-		private _retailerService: RetailerService
+		private _retailerService: RetailerService,
+        private _router: Router
 		) 
 
 	{
@@ -51,6 +52,12 @@ export class DetailRetailerComponent {
     {
         this.vMenuShow = !this.vMenuShow;
         this.vArrowMap = !this.vArrowMap;
+    }
+
+    gotoBCPActivityStep()
+    {
+        //this._layoutService.setOldCurrentPage('DetailRetailer');
+        this._router.navigate(['BCPActivityStep']);
     }
 
     //  getRetailerAddress()
