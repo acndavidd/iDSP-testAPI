@@ -137,12 +137,15 @@ export class LayoutService {
                 appFooter: false,
                 leftMenu: false
             };
-        } else if (
+        }
+        else if (
             pCurrent === 'MyTransaction' ||
             pCurrent === 'BasicCallProcedure' ||
             pCurrent === 'CloseDay' ||
             pCurrent === 'Remittance' ||
-            pCurrent === 'StockReturn') {
+            pCurrent === 'StockReturn' ||
+            pCurrent === 'Home') {
+
             this._pageNavigationService.resetListPreviousData();
 
             this.vLayoutState = {

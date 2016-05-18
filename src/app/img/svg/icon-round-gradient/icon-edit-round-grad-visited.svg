@@ -13,7 +13,10 @@
    id="svg13038"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="footprints.svg">
+   sodipodi:docname="icon-edit-round-grad-visited.svg"
+   inkscape:export-filename="C:\Users\a.saraswati\Documents\IDSP\Design\assets\icon-idsp\icon-edit-round-gradient\icon-edit-round-grad-visited.png"
+   inkscape:export-xdpi="8.3999996"
+   inkscape:export-ydpi="8.3999996">
   <metadata
      id="metadata13047">
     <rdf:RDF>
@@ -47,14 +50,14 @@
      fit-margin-bottom="0"
      inkscape:zoom="0.21728802"
      inkscape:cx="0.65836813"
-     inkscape:cy="16.950316"
+     inkscape:cy="-22.16827"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg13038" />
   <path
      sodipodi:type="arc"
-     style="fill:#e67e22;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+     style="fill:#729fcf;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
      id="path4337-1-5-7"
      sodipodi:cx="409.11179"
      sodipodi:cy="498.79858"
@@ -63,7 +66,7 @@
      d="m 443.45697,498.79858 a 34.345188,34.345188 0 1 1 -68.69037,0 34.345188,34.345188 0 1 1 68.69037,0 z"
      transform="matrix(10.906392,0,0,10.909145,-4086.5157,-5066.1429)" />
   <path
-     style="fill:#e66b0a;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+     style="fill:#728bcf;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
      d="M 374.85225,0 C 167.97632,0 0,167.44344 0,374.37161 0,461.41438 30.452784,541.65873 80.23378,605.26746 L 668.18698,142.1411 C 599.57382,55.57815 493.87123,0 374.85225,0 z"
      id="path4337-1-9-9-0-9-1-3-4-0-5-9-4-1"
      inkscape:connector-curvature="0" />

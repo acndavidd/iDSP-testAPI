@@ -43,8 +43,9 @@ export class MpinComponent {
         this._pageNavigationService.navigate('MyTransaction', null, null);
     }
 
-    toggleVerificationCodeModal() {
-        this._modalService.toggleVerificationCodeModal();
+    ResendMpinModalComponent() {
+        console.log('masuk com ts');
+        this._modalService.toggleResendMpinModal();
     }
 
 }

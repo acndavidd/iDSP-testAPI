@@ -68,7 +68,6 @@ $container-mpin-height: 100%;
 		.mpin-message{
 			color: #FFF;
 			clear: both;
-			margin-bottom: 10px;
 	        margin-right: 20px;
 	        margin-left: 20px;
 	        font-size: 12px;
@@ -82,9 +81,10 @@ $container-mpin-height: 100%;
 		       .mpin-field-item {
 			        float: left;
 			        margin-right: 5px;
-			        margin-bottom:2px;
+			        margin-bottom:5px;
 			        height: 51px;
 			        line-height: 51px;
+			        color: #FFF;
       			}
       .last-child {
           margin-right: 0 !important;
