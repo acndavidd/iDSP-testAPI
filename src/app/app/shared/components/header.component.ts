@@ -12,47 +12,44 @@ import {Layout} from '../../../models/layout';
 })
 
 export class HeaderComponent implements OnInit {
-	constructor (
-		private _layoutService : LayoutService, 
+    constructor (
+        private _layoutService: LayoutService,
         private _router: Router,
-		private _matchMediaService: MatchMediaService,
-		private _pageNavigationService: PageNavigationService,
-		private _headerService: HeaderService){}
+        private _matchMediaService: MatchMediaService,
+        private _pageNavigationService: PageNavigationService,
+        private _headerService: HeaderService) {}
 
-	vTitle :string;
+    vTitle: string;
 
-	ngOnInit() 
-	{
-		
-	}
-	
-	toggleLeftMenu(){
-		this._layoutService.toggleLeftMenu();
-	}
+    ngOnInit() {
 
-	getTitle(){
-		return this._headerService.getTitle();
-	}
+    }
 
-	getLayout(){
-		return this._layoutService.getLayout();
-	}
-	
-	getHeaderLayout(){
+    toggleLeftMenu() {
+        this._layoutService.toggleLeftMenu();
+    }
+
+    getTitle() {
+        return this._headerService.getTitle();
+    }
+
+    getLayout() {
+        return this._layoutService.getLayout();
+    }
+
+    getHeaderLayout() {
         return this._layoutService.getHeaderLayout();
     }
-	
-	goToPreviousPage(){
-		this._pageNavigationService.gotoPreviousPage();
-	}
 
-	toggleSearch()
-	{
-		this._layoutService.setSearch();
-	}   
+    goToPreviousPage() {
+        this._pageNavigationService.gotoPreviousPage();
+    }
 
-	toggleFilter()
-	{
-		this._layoutService.setFilter();
-	}
+    toggleSearch() {
+        this._layoutService.setSearch();
+    }
+
+    toggleFilter() {
+        this._layoutService.setFilter();
+    }
 }

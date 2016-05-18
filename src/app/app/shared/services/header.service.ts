@@ -2,25 +2,25 @@ import {Injectable} from 'angular2/core';
 
 @Injectable()
 
-export class HeaderService{
-	vHeaderCaption:string;
-	vTitle:string;
+export class HeaderService {
+    vHeaderCaption: string;
+    vTitle: string;
 
-	constructor(){}
+    constructor() {}
 
-	setHeaderCaption(pCaption:string){
-		this.vHeaderCaption = pCaption;
-	}
+    setHeaderCaption(pCaption: string) {
+        this.vHeaderCaption = pCaption;
+    }
 
-	getHeaderCaption(){
-		return this.vHeaderCaption;
-	}
-	
-	setTitle(pTitle:string){
-		this.vTitle = pTitle;
-	}
+    getHeaderCaption() {
+        return this.vHeaderCaption;
+    }
 
-	getTitle(){
-		return this.vTitle;
-	}
+    setTitle(pTitle: string) {
+        this.vTitle = pTitle;
+    }
+
+    getTitle() {
+        return this.vTitle;
+    }
 }

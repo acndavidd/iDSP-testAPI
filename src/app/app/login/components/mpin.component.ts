@@ -6,20 +6,18 @@ import {NgModel} from 'angular2/common';
 import {AuthenticationService} from '../../shared/services/authentication.service';
 import {Layout} from '../../../models/layout';
 import {LayoutService} from '../../shared/services/layout.service';
-import {ModalService} from '../../shared/services/modal.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
+import {ModalService} from '../../shared/services/modal.service';
 
 @Component({
-    selector: 'login',
-    templateUrl: './app/login/components/login.component.html',
+    selector: 'mpin',
+    templateUrl: './app/login/components/mpin.component.html',
     directives: [
         NgModel
     ],
 })
 
-export class LoginComponent {
-    vUsername: string;
-    vPassword: string;
+export class MpinComponent {
     constructor (
         private _router: Router,
         private _layoutService: LayoutService,
@@ -28,32 +26,26 @@ export class LoginComponent {
         private _pageNavigationService: PageNavigationService
         ) {
 
-        this._layoutService.setCurrentPage('Login');
+        this._layoutService.setCurrentPage('Mpin');
     }
 
-    login(pEvent) {
+    cancel(pEvent) {
         pEvent.preventDefault();
-        // For Hit API
-        // this._authenticationService.login(this.vUsername,this.vPassword);
 
         // For By Pass Directly without API
-        // this._router.navigate(['MainPage','MyTransaction']);
-        this._router.navigate(['Mpin']);
+        this._router.navigate(['Starter']);
     }
 
-    getLoadingState() {
-        return this._authenticationService.getLoadingState();
+    submit(pEvent) {
+        pEvent.preventDefault();
+
+        // For By Pass Directly without API
+        this._pageNavigationService.navigate('MyTransaction', null, null);
     }
 
-    gotoForgetPassword() {
-        this._router.navigate(['ForgotPassword']);
+    ResendMpinModalComponent() {
+        console.log('masuk com ts');
+        this._modalService.toggleResendMpinModal();
     }
 
-    getErrorMessageText() {
-        return this._authenticationService.getError();
-    }
-
-    toggleVerificationCodeModal() {
-        this._modalService.toggleVerificationCodeModal();
-    }
 }

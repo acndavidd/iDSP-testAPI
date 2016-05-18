@@ -12,8 +12,8 @@ import {Response,RequestOptionsArgs,Headers,Http,Connection,RequestOptions} from
 
 @Component({
     templateUrl: './app/close-day/components/close-day.component.html',
-	directives: [
-		NgModel,ROUTER_DIRECTIVES
+    directives: [
+        ROUTER_DIRECTIVES
     ]
 })
 
@@ -21,9 +21,9 @@ export class CloseDayComponent {
 
     private vDate: Date;
 
-	constructor (
-	private _router: Router,
-	private _layoutService: LayoutService,
+    constructor (
+    private _router: Router,
+    private _layoutService: LayoutService,
     private _matchMediaService: MatchMediaService,
 	private _modalService: ModalService,
 	private _headerService: HeaderService
@@ -31,35 +31,31 @@ export class CloseDayComponent {
 		this._layoutService.setCurrentPage('CloseDay');
         this._headerService.setTitle("Close of The Day");
     }
-	
-	getResize(){
-        return this._matchMediaService.getMm();  
+
+    getResize() {
+        return this._matchMediaService.getMm();
     }
 
-    toggleCollection(){
+    toggleCollection() {
         this._router.navigate(['Collection']);
     }
 
-    goToTargetsActuals()
-    {
+    goToTargetsActuals() {
         console.log('TA');
         this._router.navigate(['CDTargetsActuals']);
     }
 
-    goToVisitedRetailer()
-    {
+    goToVisitedRetailer() {
         console.log('VR');
         this._router.navigate(['VisitedRetail']);
     }
 
-    goToCollection()
-    {
+    goToCollection() {
         console.log('C');
          this._router.navigate(['Collection']);
     }
 
-    goToStockReturn()
-    {
+    goToStockReturn() {
         console.log('SR');
     }
 
