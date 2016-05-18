@@ -49,14 +49,31 @@ export class RetailerController{
 		});
 	}
 
-	getRetailerSummary(pRequest, pResponse){
+	async getRetailerSummary(pRequest, pResponse){
 		try{
-			console.log("Start getting retailer detail");
+			console.log("Start getting Retailer Summary");
 			var vSelectedRetailId = pRequest.body.retailerId;
+			var vSalesPerson = pRequest.body.salesPerson;
+			var vOrmSvc = new ORMService();
+
+			let vParams = {
+				selected_ret_id : vSelectedRetailId,
+				sales_person : vSalesPerson
+			};
+
+			var vResult = await vOrmSvc.sp('query_retailer_summary', vParams );
+			console.log("Query Done with result : "+ JSON.stringify(vResponse));
+			var vResponse = {
+						"status" : "Success",
+						"errorMessage" : "",
+						"result" : vResult
+					};
+			
+			pResponse.json(vResponse);
+
+			/*
 			var vCurrentDate = new Date().setHours(0,0,0,0);
 			var vArStatusPaid = 'Paid';
-
-		    var vOrmSvc = new ORMService();
 		    var vSequelize = vOrmSvc.getSequelize(); 
 			var vRetailer = vOrmSvc.getModel("mst_retailer");
 			var vDspAlert = vOrmSvc.getModel("mst_retailer_dsp_alert");
@@ -139,21 +156,45 @@ export class RetailerController{
 				console.log(pErr)		        
 		        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + pErr);
 			});
+			*/
 			
 		}
 		catch(pErr){
-			console.log(pErr);
-			pResponse.send("Failed to Hit");
+			console.log("Failed to Query Retailer Summary with error message" + pErr);
+
+			var vError = {
+						"status" : "Error",
+						"errorMessage" : pErr,
+						"result" : null
+					};
+			pResponse.json(vError);
 		}
 	}
 
-	getSalesRoute(pRequest, pResponse){
+	async getSalesRoute(pRequest, pResponse){
 		try{
 			console.log("Start getting sales route");
 			var vSelectedDay = pRequest.body.day;
 			var vSalesPerson = pRequest.body.salesPerson;
+			let vOrmSvc = new ORMService();
+			
+			let vParams = {
+				selected_day : vSelectedDay,
+				sales_person : vSalesPerson
+			};
 
-		    var vOrmSvc = new ORMService();
+			var vResult = await vOrmSvc.sp('query_retailer_route', vParams );
+			console.log("Query Done with result : "+ JSON.stringify(vResponse));
+			var vResponse = {
+						"status" : "Success",
+						"errorMessage" : "",
+						"result" : vResult
+					};
+			
+			pResponse.json(vResponse);
+
+			/* Query Using Model Sequelize
+			var vCurrentDate = new Date();	    
 		    var vSequelize = vOrmSvc.getSequelize(); 
 		    var vRoute = vOrmSvc.getModel("mst_route");	
 			var vRouteDay = vOrmSvc.getModel("mst_route_day");
@@ -186,16 +227,31 @@ export class RetailerController{
 				console.log(pErr)		        
 		        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + pErr);
 			});
+			*/
 		}
 		catch(pErr){
-			console.log(pErr);
-			pResponse.send("Failed to Hit");
+			console.log("Failed to Query Sales Route with error message" + pErr);
+
+			var vError = {
+						"status" : "Error",
+						"errorMessage" : pErr,
+						"result" : null
+					};
+			pResponse.json(vError);
 		}
 	}
 
-	getAllRetailerAlert(pRequest,pResponse){
+	async getAllRetailerAlert(pRequest,pResponse){
 		let vOrmSvc = new ORMService();
 		var vCurrentDate = new Date();
+		let params = {
+			dsp_id : '1',
+			first_name : 'an'
+		};
+
+		var result = await vOrmSvc.sp('test_sp', params );
+		pResponse.json(result);
+		/*
 		let vDSPModel = vOrmSvc.getModel('mst_dsp');
 		let vDSPID = 'DSP00001';
 		let vResult;
@@ -216,11 +272,15 @@ export class RetailerController{
 					include : [{
 						model : vOrmSvc.getModel('mst_route_day'),
 						as : 'RouteDay',
-						attributes : ['sequence' , 'route_day']
+						attributes : ['sequence'],
+						where : {route_day : vCurrentDate.getDay()},
+						required : false,
+						limit : 10
 					}]
 				}],
 				order : [ [ vOrmSvc.getSequelize().col('sequence') , 'ASC NULLS LAST']]
 			}).then(function(pResult){
+				console.log(JSON.stringify(pResult));
 				pResult = JSON.parse(JSON.stringify(pResult));
 				pResult.map(function(pRetailer){
 					pRetailer.threshold_hit = pRetailer.RetailerDSPAlert[0].threshold_hit;
@@ -250,5 +310,6 @@ export class RetailerController{
 			}
 			pResponse.json(vResult);
 		});
+		*/
 	}
 }

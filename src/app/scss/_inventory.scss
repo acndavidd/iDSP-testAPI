@@ -1,25 +1,16 @@
 
-.container-body {
-    .item-container-i {
-        display: inline-block;
-        width: 100%;
-        cursor: pointer;
-
-        &.border {
-            border-bottom: 2px solid $border-line;
-        }
-    }
-    .filter-container-i{
+.inventory {
+    .filter-container{
         background-color: $white-smoke;
         width: 100%;
         display: block;
         clear: left;
 
         &.load {
-            height: 215px;
+            height: 45vw;
         }
         &.physical {
-            height: 260px;
+            height: 60vw;
         }
 
         .filter-label {
@@ -48,16 +39,37 @@
                     background-repeat: no-repeat;
                 }
             }
+        }
+
+        .filter-input{
+            padding-top: 7px;
+            padding-left: 24px;
+            top: 0;
+            
             input {
                 background: $white;
-                height: 26px;
+                height: 30px;
                 border: 1px solid $dark-grey;
-                width: 83%;
+                width: 90%;
                 -webkit-appearance: none;
                 border-radius: 7px;
                 padding-left: 15px;
                 font-size: $filter-select;
+                font-weight:lighter;
                 appearance: none;
+                cursor: pointer;
+                text-align: center;
+            }
+            .icon{
+                width:80px;
+                height:35px;
+                position: absolute;
+                right: 0;
+                z-index: 1;
+                background: url("../img/icon-idsp/search-black.png") no-repeat;
+                background-size: 25px;
+                background-position: center center;
+
             }
         }
     }

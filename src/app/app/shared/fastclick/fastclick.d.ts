@@ -1,4 +1,4 @@
-  // Type definitions for FastClick v1.0.3
+// Type definitions for FastClick v1.0.3
 // Project: https://github.com/ftlabs/fastclick
 // Definitions by: Shinnosuke Watanabe <https://github.com/shinnn>
 // Definitions: https://github.com/borisyankov/DefinitelyTyped
@@ -23,11 +23,11 @@ export interface FastClickObject {
 }
 
 export interface FastClickOptions {
-	touchBoundary?: number;
-	tapDelay?: number;
+  touchBoundary?: number;
+  tapDelay?: number;
 }
 
 export interface FastClickStatic {
-	new(layer: any, options?: FastClickOptions): FastClickObject;
-	attach(layer: any, options?: FastClickOptions): FastClickObject;
+  new(layer: any, options?: FastClickOptions): FastClickObject;
+  attach(layer: any, options?: FastClickOptions): FastClickObject;
 }

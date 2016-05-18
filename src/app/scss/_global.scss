@@ -50,11 +50,14 @@ SUBTAB
     &.triple {
         width: 33%;
     }
+    &.triple2 {
+        width: 34%;
+    }
     &.active {
-        border-bottom: 2px solid $menu-underline;
+        border-bottom: 2px solid $vivid-pink;
     }
     .text {
-        color: $inactive-tab-grey;
+        color: $gainsboro;
         text-align: center;
         font-size: $header-tab;
 
@@ -303,8 +306,8 @@ LIST VIEW - TEXT
         width: 100%;
         border-bottom: 1px solid $border-line;
         cursor: pointer;
-        padding-top: 2vw;
-        padding-bottom: 2vw;
+        //padding-top: 2vw;
+        //padding-bottom: 2vw;
         
         .item-notification {   
             font-size: $filter-select;
@@ -314,8 +317,6 @@ LIST VIEW - TEXT
             color: $white;
             text-align: center;
             opacity: 0.6;
-            padding-top: 0vw;
-            padding-bottom: 0vw;
         }
 
         &.sub {
@@ -340,8 +341,16 @@ LIST VIEW - TEXT
                 width: 45%;
                 padding-left:0.6em;
             }
+            &.left2 {
+                width: 40%;
+                padding-left:0.6em;
+            }
             &.right {
                 width: 40%;
+                text-align: right;
+            }
+            &.right2 {
+                width: 30%;
                 text-align: right;
             }
             &.single {
@@ -386,6 +395,15 @@ LIST VIEW - TEXT
                 text-align: center;
             }
 
+            &.dark-sea-green {
+                color: $dark-sea-green;
+            }
+            &.vivid-pink {
+                color: $vivid-pink;
+            }
+            &.gainsboro {
+                color: $gainsboro;
+            }
             &.grey {
                 color: $grey;
             }
@@ -405,6 +423,9 @@ LIST VIEW - TEXT
             &.title {
                 font-size: 1.1em;
                 height:2em;
+            }
+            &.title2 {
+                font-size: 1.2em;
             }
             &.header {
                 width: 100%;
@@ -441,29 +462,37 @@ LIST VIEW - ICON
                 background-position-y: center;
                 background-size: 20px;
             }
-            .profpic-purple {
-                border: 1px solid $black;
-                border-radius: 100%;
-                background-color:#E6E0EC;
-                padding: 10% 0% 40% 0%;
-                margin: 0% 25% 0% 25%;
-                color:$apple;
-                text-align: center;
-                line-height:0px;
-                font-size: 30px;
+            &.inventory-load {
+                background: url(#{$icon-inventory-load})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 6vw;
             }
-            .profpic-pink {
-                border: 1px solid $black;
-                border-radius: 100%;
-                background-color:#FDEADA;
-                padding: 10% 0% 40% 0%;
-                margin: 0% 25% 0% 25%;
-                color:$apple;
-                text-align: center;
-                line-height:0px;
-                font-size: 30px;
+            &.inventory-physical {
+                background: url(#{$icon-inventory-physical})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 6vw;
             }
+            .profpic {
+                width: 65px;
+                height: 65px;
+                background-color: $sugar-cane;
+                border-radius: 50%;
+                margin: 0% 0% 0% 9%;
+                text-align: center;
+                line-height: 63px;
+                font-size: 30px;
+                color : $apple;
+                border: 1px solid $gainsboro;
 
+                &.pink {
+                    background-color : $serenade;
+                }
+                &.purple {
+                    background-color : $violetish-white;
+                }
+            }
         }
     }
       
