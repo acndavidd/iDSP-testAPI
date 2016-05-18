@@ -3,7 +3,7 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet, RouteParams } from
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
-import {RetailerRouteService} from '../services/retailer-route-service';
+import {RetailerService} from '../../shared/services/retailer.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {NgModel} from 'angular2/common';
 
@@ -16,7 +16,7 @@ import {NgModel} from 'angular2/common';
         ROUTER_DIRECTIVES
     ],
     providers: [
-        RetailerRouteService
+        RetailerService
     ]
 })
 
@@ -33,7 +33,7 @@ export class RetailerRouteComponent {
         private _headerService: HeaderService,
         private _router: Router,
         private _params: RouteParams,
-        private _retailerRouteService: RetailerRouteService,
+        private _retailerService: RetailerService,
         private _pageNavigationService: PageNavigationService
         ) {
         this.vListDay = [
@@ -93,12 +93,14 @@ export class RetailerRouteComponent {
 
     refreshRetailerRoute() {
         console.log('Refresh retailer route for Day ' + this.vSelectedDay);
-        this._retailerRouteService.queryRetailerRoute(this.vSelectedDay).subscribe(
+        this._retailerService.queryRetailerRoute(this.vSelectedDay).subscribe(
                 response => {
+                    console.log('Hasil response ' + response.json());
                     if (response.json().status === 'Success') { // success login
                         console.log('Query Success');
                         this.vListRetailers = response.json().result;
                     } else { // failed login
+                         this.vListRetailers = null;
                         console.log('Query Failed');
                         // this.vErrorMsg = response.json().errorMessage;
                     }
@@ -126,7 +128,7 @@ export class RetailerRouteComponent {
 
         let vParams = {
             retailer_id: pSelectedRetailer.retailer_id,
-            route_sequence: pSelectedRetailer.Route[0].RouteDay[0].sequence
+            route_sequence: pSelectedRetailer.seq
         };
 
         this._pageNavigationService.navigate('DetailRetailer', vParams, vParamsOld);
