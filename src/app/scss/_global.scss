@@ -306,6 +306,8 @@ LIST VIEW - TEXT
         width: 100%;
         border-bottom: 1px solid $border-line;
         cursor: pointer;
+        //padding-top: 2vw;
+        //padding-bottom: 2vw;
         
         .item-notification {   
             font-size: $filter-select;
@@ -360,6 +362,19 @@ LIST VIEW - TEXT
                 width: 85%;
                 padding-left:0.6em;
             }
+
+            &.percent-100{
+                padding-left:0.6em;
+                width:100px;
+            }
+            &.percent-200{
+                width:200px; 
+            }
+            &.percent-300{
+                width:300px; 
+            }
+
+
             &.icon {
                 width: 15%;
             }
@@ -392,6 +407,9 @@ LIST VIEW - TEXT
             &.grey {
                 color: $grey;
             }
+            &.black {
+                color: $black;
+            }
             &.green {
                 color: $apple;
             }
@@ -403,8 +421,8 @@ LIST VIEW - TEXT
                 padding-left:2em;
             }
             &.title {
-                font-size: 1.2em;
-                height:2.5em;
+                font-size: 1.1em;
+                height:2em;
             }
             &.title2 {
                 font-size: 1.2em;

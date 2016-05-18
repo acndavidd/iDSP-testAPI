@@ -15,19 +15,27 @@ import {HeaderService} from '../../shared/services/header.service';
 
 export class VisitedRetailComponent {
 
+    vDetailShow = false;
+    vArrowMap   = false;
+
     constructor (
     private _router: Router,
     private _layoutService: LayoutService,
+
     private _matchMediaService: MatchMediaService,
     private _modalService: ModalService,
     private _headerService: HeaderService
     ) {
-
         this._layoutService.setCurrentPage('VisitedRetail');
         this._headerService.setTitle('Visited Retailer Route');
     }
 
     getResize() {
         return this._matchMediaService.getMm();
+    }
+
+    detailShow() {
+        this.vDetailShow = !this.vDetailShow;
+        this.vArrowMap = !this.vArrowMap;
     }
 }
