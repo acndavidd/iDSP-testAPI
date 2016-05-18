@@ -46,6 +46,10 @@ export class TargetsActualsComponent {
     private vListTargets;
     private vShowTargets;
 
+    private vShowProductMonth;
+
+    private vSelectedTab;
+
 
 
 	constructor (
@@ -57,6 +61,7 @@ export class TargetsActualsComponent {
     	) 
 	{
         this.vSelectedBrand = "SMART";
+        this.vSelectedTab = "Day";
 
 		this._layoutService.setCurrentPage('TargetsActuals');
 		this._headerService.setTitle("Targets & Actuals");
@@ -79,19 +84,7 @@ export class TargetsActualsComponent {
             error => {}
         );
 
-
-        this._targetsActualsService.queryProduct().subscribe(
-             response => {
-                if(response.json().status == "Success"){
-                    this.vListProduct= response.json().ProdList;
-                    this.vShowProduct = this.vListProduct.filter(
-                        prod => {
-                            return prod.brand == this.vSelectedBrand 
-                        });
-                }
-            },
-            error => {}
-        );
+        this.getProduct();
 
     }
 
@@ -108,6 +101,23 @@ export class TargetsActualsComponent {
         return this._layoutService.getFilter();
     }
 
+    getProduct()
+    {
+         console.log("Refresh PRoduct "+ this.vSelectedTab);
+         this._targetsActualsService.queryProduct(this.vSelectedTab).subscribe(
+             response => {
+                if(response.json().status == "Success"){
+                    this.vListProduct= response.json().ProdList;
+                    this.vShowProduct = this.vListProduct.filter(
+                        prod => {
+                            return prod.brand == this.vSelectedBrand 
+                        });
+                }
+            },
+            error => {}
+        );
+    }
+
     showMenuDay()
     {
         this.vDayShow = true;
@@ -116,6 +126,9 @@ export class TargetsActualsComponent {
     	this.vUnderlineMonth = false;
     	this.vWeekShow = false;
 		this.vMonthShow = false;
+
+         this.vSelectedTab = "Day";
+        this.getProduct();
     }
 
     showMenuWeek()
@@ -126,6 +139,10 @@ export class TargetsActualsComponent {
    		this.vUnderlineMonth = false;
    		this.vDayShow = false;
 		this.vMonthShow = false;
+
+         this.vSelectedTab = "Week";
+          console.log('selected Tab'+this.vSelectedTab );
+          this.getProduct();
     }
 
     showMenuMonth()
@@ -136,6 +153,11 @@ export class TargetsActualsComponent {
     	this.vUnderlineDay = false;
     	this.vWeekShow = false;
 		this.vDayShow = false;
+
+         this.vSelectedTab = "Month";
+          console.log('selected Tab'+this.vSelectedTab );
+          this.getProduct();
+
     }
 
     onChangeSelectBrand(pSelectedBrand)
@@ -146,14 +168,10 @@ export class TargetsActualsComponent {
         this.vShowProduct = this.vListProduct.filter(prod => prod.brand == this.vSelectedBrand);
      }   
 
-    getProdCat()
-    {  
-        return this.vShowProd;
-    }
 
-    getProduct()
-    {
-        return this.vShowProduct;
-    }
+    // getProduct()
+    // {
+    //     return this.vShowProduct;
+    // }
 
 }

@@ -18,68 +18,72 @@
 	<div *ngIf="vDayShow" >
 		<div class="item-container-ta" id="ta-container">
 			<div>
-				<div *ngFor="#prod_cat of getProduct()">
-					<div class="item-title-ta">
-						{{prod_cat.category_name}}
-					</div>
-					<div *ngFor="#prod_sub of prod_cat.ProductSubCategory">
-						<div class="item-left">
-							{{prod_sub.sub_category_name}}
+				<div *ngFor="#prod_day of vShowProduct">
+					<div *ngIf="prod_day.target_qty !== 0">
+						<div class="item-title-ta">
+							{{prod_day.category_name}}
 						</div>
-						<div class="item-mid">
-							{{prod_sub.actual_sum/(prod_sub.target_sum_days)*100 | number}}%
-						</div>
-						<div class="item-right">
-								<div style="clear: right;">
-								{{prod_sub.actual_sum}}/{{prod_sub.target_sum_days}}
-								</div>
-							<div class="target-text">
-								Actual/Target
+						<div>
+							<div class="item-left" >
+								{{prod_day.sub_category_name}}
 							</div>
-							<div class="balance">
-								Balance : 
-								<div class="balance-number">
-									200
+							<div class="item-mid">
+								{{prod_day.amountactual/(prod_day.target_qty)*100 | number}}%
+							</div>
+							<div class="item-right">
+									<div style="clear: right;">
+									{{prod_day.amountactual}}/{{prod_day.target_qty}}
+									</div>
+								<div class="target-text">
+									Actual/Target
+								</div>
+								<div class="balance">
+									Balance : 
+									<div class="balance-number">
+										200
+									</div>
 								</div>
 							</div>
 						</div>
+						<div class="divider"></div>
 					</div>
-					<div class="divider"></div>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div *ngIf="vWeekShow">
-				<div class="item-container-ta" id="ta-container">
+		<div class="item-container-ta" id="ta-container">
 			<div>
-				<div *ngFor="#prod_cat of getProduct()">
-					<div class="item-title-ta">
-						{{prod_cat.category_name}}
-					</div>
-					<div *ngFor="#prod_sub of prod_cat.ProductSubCategory">
-						<div class="item-left">
-							{{prod_sub.sub_category_name}}
+				<div *ngFor="#prod_week of vShowProduct">
+					<div *ngIf="prod_week.target_qty !== 0">
+						<div class="item-title-ta">
+							{{prod_week.category_name}}
 						</div>
-						<div class="item-mid">
-							{{prod_sub.actual_sum/(prod_sub.target_sum_weeks)*100 | number}}%
-						</div>
-						<div class="item-right">
-								<div style="clear: right;">
-								{{prod_sub.actual_sum}}/{{prod_sub.target_sum_weeks}}
-								</div>
-							<div class="target-text">
-								Actual/Target
+						<div>
+							<div class="item-left" >
+								{{prod_week.sub_category_name}}
 							</div>
-							<div class="balance">
-								Balance : 
-								<div class="balance-number">
-									200
+							<div class="item-mid">
+								{{prod_week.amountactual/(prod_week.target_qty)*100 | number}}%
+							</div>
+							<div class="item-right">
+									<div style="clear: right;">
+									{{prod_week.amountactual}}/{{prod_week.target_qty}}
+									</div>
+								<div class="target-text">
+									Actual/Target
+								</div>
+								<div class="balance">
+									Balance : 
+									<div class="balance-number">
+										200
+									</div>
 								</div>
 							</div>
 						</div>
+						<div class="divider"></div>
 					</div>
-					<div class="divider"></div>
 				</div>
 			</div>
 		</div>
@@ -88,33 +92,35 @@
 	<div *ngIf="vMonthShow">
 		<div class="item-container-ta" id="ta-container">
 			<div>
-				<div *ngFor="#prod_cat of getProduct()">
-					<div class="item-title-ta">
-						{{prod_cat.category_name}}
-					</div>
-					<div *ngFor="#prod_sub of prod_cat.ProductSubCategory">
-						<div class="item-left">
-							{{prod_sub.sub_category_name}}
+				<div *ngFor="#prod_month of vShowProduct" >
+					<div *ngIf="prod_month.target_qty !== 0">
+						<div class="item-title-ta">
+							{{prod_month.category_name}}
 						</div>
-						<div class="item-mid">
-							{{prod_sub.actual_sum/(prod_sub.target_sum)*100 | number}}%
-						</div>
-						<div class="item-right">
+						<div>
+							<div class="item-left" >
+								{{prod_month.sub_category_name}}
+							</div>
+							<div class="item-mid">
+								{{prod_month.amountactual/(prod_month.target_qty)*100 | number}}%
+							</div>
+							<div class="item-right">
 								<div style="clear: right;">
-								{{prod_sub.actual_sum}}/{{prod_sub.target_sum}}
+									{{prod_month.amountactual}}/{{prod_month.target_qty}}
 								</div>
-							<div class="target-text">
-								Actual/Target
-							</div>
-							<div class="balance">
-								Balance : 
-								<div class="balance-number">
-									200
+								<div class="target-text">
+									Actual/Target
+								</div>
+								<div class="balance">
+									Balance : 
+									<div class="balance-number">
+										200
+									</div>
 								</div>
 							</div>
 						</div>
+						<div class="divider"></div>
 					</div>
-					<div class="divider"></div>
 				</div>
 			</div>
 		</div>

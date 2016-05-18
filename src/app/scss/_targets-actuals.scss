@@ -9,7 +9,7 @@
     float: left;
     border-bottom: 2px solid $apple;
     &.active{
-	    border-bottom: 0.3em solid $menu-underline;
+	    border-bottom: 2px solid $menu-underline;
     	margin-left: 0;
         color: $white;
     }
