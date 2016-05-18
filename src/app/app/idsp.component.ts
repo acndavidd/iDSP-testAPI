@@ -34,7 +34,8 @@ declare var configChannel: any;
     selector: 'idsp-app',
     template: `
     	<div id="content"
-            (window:resize)="OnResize()">
+            (window:resize)="OnResize()"
+            onhashchange="OnHashChange()">
             <idsp-header></idsp-header>
             <my-modal></my-modal>
             <left-menu></left-menu>
@@ -137,6 +138,10 @@ export class IDSPComponent implements OnInit {
 
     isSmallScreen() {
         return !this._matchMediaService.getMm().largeUp;
+    }
+
+    OnHashChange(){
+        console.log('anjayy');
     }
 
 }

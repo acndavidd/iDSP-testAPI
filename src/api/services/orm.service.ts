@@ -9,10 +9,12 @@ var vDebug = (vEnv === 'development') ? true : false;
 export class ORMService{
 	private vModels;
 	private vAssociatedModels;
+	private vSequelizeSvc:SequelizeService;
 	constructor(){
 		this.vModels = {};
 		let vOrmInstance = this;
-		let vSequelizeSvc:SequelizeService = new SequelizeService();
+		this.vSequelizeSvc = new SequelizeService();
+		let vSequelizeSvc = this.vSequelizeSvc;
 		if(vDebug)console.log('Begin loading models');
 		vFs.readdirSync(vPath.join(vSequelizeSvc.getModelPath())).forEach(function(pModel){
 			try{
@@ -41,9 +43,20 @@ export class ORMService{
 		//this.vAssociatedModels = {};
 	}
 
+	public async sp(pSPName:string,pParams:string):string{
+		let vSequelize = this.getSequelize();
+		return new Promise<string>(
+			function (pResolve,pReject){
+				vSequelize.query('SELECT ' + pSPName + "('"+pParams+"');").then(function(pResponse){
+					pResolve(pResponse[0][0][pSPName]);
+				});
+			});
+		//return this.getSequelize().query('SELECT ' + pSPName + "('"+pParams+"');").then();
+	}
+
 	public getSequelize(){
-		let vSequelizeSvc:SequelizeService = new SequelizeService();
-		return vSequelizeSvc.getInstance();
+		//let vSequelizeSvc:SequelizeService = new SequelizeService();
+		return this.vSequelizeSvc.getInstance();
 	}
 
 	public buildModels(pRequest,pResponse){

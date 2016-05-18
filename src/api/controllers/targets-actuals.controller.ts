@@ -74,8 +74,7 @@ export class TargetsActualsController{
 	}
 
 	getProduct(pRequest,pResponse){
-	   try{
-	  
+	   try{	  
 		    var message = 'Insert start.';
 		    var orm = new ORMService();
 		    var ormS  = orm.getSequelize();

@@ -60,8 +60,7 @@ function bootstrapApp() {
     ga('create', 'UA-75852872-2', {'storage': 'none','clientId':device.uuid});
     ga('set','checkProtocolTask',null);
     ga('set','checkStorageTask',null);
-
-    document.addEventListener("backbutton", onBackKeyDown, false);
+    //document.addEventListener("backbutton", onBackKeyDown, false);
     console.log("this device is :" + device.cordova);
 }
 
