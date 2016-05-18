@@ -1,5 +1,114 @@
-.account-receivables {
-    //padding-bottom: 45px;
-    z-index: 1;
-    height: 100%;
+.accounts-receivables{
+  
+    .filter-container{
+            background-color: $white-smoke;
+            width: 100%;
+            display: block;
+            clear: left;
+            height: 50px;
+            position: center center;
+        .filter-label {
+            font-size: $filter-label;
+            color: #000;
+            padding-top: 20px;
+            padding-left: 10px;
+            float: left;
+        }
+        .filter-input{
+            padding-top: 7px;
+            padding-left: 24px;
+            top: 0;
+            
+            input {
+                background: $white;
+                height: 30px;
+                border: 1px solid $dark-grey;
+                width: 90%;
+                -webkit-appearance: none;
+                border-radius: 7px;
+                padding-left: 15px;
+                font-size: $filter-select;
+                font-weight:lighter;
+                appearance: none;
+                cursor: pointer;
+            }
+            .icon{
+                width:80px;
+                height:35px;
+                position: absolute;
+                right: 0;
+                z-index: 1;
+                background: url("../img/icon-idsp/search-black.png") no-repeat;
+                background-size: 25px;
+                background-position: center center;
+
+            }
+        }
+    }
+    .item-container {
+    width: 100%;
+    border-bottom: 1px solid $border-line;
+    cursor: pointer;
+
+        &.sub {
+            background-color: $whisper;
+        }
+
+        .container {
+            display: table;
+            width: 100%;
+
+            &.border {
+                border-bottom: 1px solid $border-line;
+            }
+        }
+        .cell {
+            display:table-cell;
+            font-size: $content-normal;
+            height:1.6em;
+            vertical-align:middle;
+
+            &.left {
+                width: 45%;
+                padding-left:0.6em;
+            }
+            &.right {
+                width: 40%;
+                text-align: right;
+            }
+            &.single {
+                width: 85%;
+                padding-left:0.6em;
+            }
+            &.icon {
+                width: 15%;
+            }
+
+            &.bold {
+                font-weight: bold;
+            }
+            &.italic {
+                font-style: italic;
+            }
+            &.center {
+                text-align: center;
+            }
+
+            &.grey {
+                color: $grey;
+            }
+            &.deep-cyan {
+                color: $deep-cyan;
+            }
+
+            &.sub-cell {
+                padding-left:2em;
+            }
+            &.title {
+                font-size: 1.2em;
+                height:2.5em;
+            }
+        }
+    }
+    
 }

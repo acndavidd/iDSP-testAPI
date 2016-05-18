@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="712.5"
+   viewBox="0 0 750 712.5"
+   width="750"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="icon-plain-color-bcp.svg"
+   style="fill:#000000">
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="692"
+     inkscape:window-height="480"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="0.30729167"
+     inkscape:cx="222.70463"
+     inkscape:cy="307.02966"
+     inkscape:window-x="555"
+     inkscape:window-y="82"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <path
+     d="m -62.5,56.25 h 750 v 750 h -750 z"
+     id="path4"
+     inkscape:connector-curvature="0"
+     style="fill:none" />
+  <path
+     d="M 675,150 H 562.5 V 75 c 0,-41.625 -33.375,-75 -75,-75 h -225 c -41.625,0 -75,33.375 -75,75 v 75 H 75 C 33.375,150 0,183.375 0,225 v 412.5 c 0,41.625 33.375,75 75,75 h 600 c 41.625,0 75,-33.375 75,-75 V 225 c 0,-41.625 -33.375,-75 -75,-75 z M 262.5,75 h 225 v 75 h -225 V 75 z M 675,637.5 H 75 v -75 h 600 v 75 z M 675,450 H 75 V 225 h 112.5 v 75 h 75 v -75 h 225 v 75 h 75 V 225 H 675 v 225 z"
+     id="path6"
+     style="fill:#729fcf;fill-opacity:1"
+     inkscape:connector-curvature="0" />
+</svg>

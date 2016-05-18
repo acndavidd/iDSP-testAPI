@@ -21,19 +21,18 @@ export class VerificationComponent {
     constructor (
         private _router: Router,
         private _layoutService: LayoutService,
-        private _authenticationService:AuthenticationService
+        private _authenticationService: AuthenticationService
         ) {
-        
         this._layoutService.setCurrentPage('AuthLogin');
-	}
+    }
 
-	login(pEvent) {
+    login(pEvent) {
         pEvent.preventDefault();
-        this._authenticationService.login(this.vUserId,this.vPassword);
+        this._authenticationService.login(this.vUserId, this.vPassword);
         this._router.navigate(['MyTransaction']);
     }
 
-    getErrorMessageText(){
-    	return "Error Bro";
+    getErrorMessageText() {
+        return 'Error Bro';
     }
 }

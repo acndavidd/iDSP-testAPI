@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/router';
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
+import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {MyTransactionComponent} from '../../my-transaction/components/my-transaction.component';
 import {BasicCallProcedureComponent} from '../../basic-call-procedure/components/basic-call-procedure.component';
 import {CloseDayComponent} from '../../close-day/components/close-day.component';
@@ -15,18 +16,32 @@ import {DSPAlertsComponent} from '../../my-transaction/components/dsp-alerts.com
 import {ResetPasswordComponent} from '../../settings/components/reset-password.component';
 import {RetailerSalesOrderComponent} from '../../basic-call-procedure/components/retailer-sales-order.component';
 import {DetailRetailerComponent} from '../../basic-call-procedure/components/detail-retailer.component';
+import {RetailerInventoryComponent} from '../../basic-call-procedure/components/retailer-inventory.component';
 import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/sales-order-payment.component';
+import {CDTargetsActualsComponent} from '../../close-day/components/cd-targets-actuals.component';
+import {VisitedRetailComponent} from '../../close-day/components/visited-retail.component';
+import {BCPActivityStepComponent} from '../../basic-call-procedure/components/bcp-activity-step.component';
 
+
+import {HomeComponent} from '../../shared/components/home.component';
 
 @Component({
     selector : 'main-page',
     templateUrl: './app/shared/components/main-page.component.html',
-	directives: [
-		ROUTER_DIRECTIVES
+    directives: [
+        ROUTER_DIRECTIVES
+    ],
+    providers : [
+        // PageNavigationService
     ]
 })
 
 @RouteConfig([
+    {
+        path: '/home',
+        name: 'Home',
+        component: HomeComponent
+    },
     {
         path: '/myTransaction',
         name: 'MyTransaction',
@@ -47,7 +62,7 @@ import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/
         name: 'Settings',
         component: SettingsComponent
     },
-    //UNDER MY TRANSACTION TAB - START
+    // UNDER MY TRANSACTION TAB - START
     {
         path: '/targetsActuals',
         name: 'TargetsActuals',
@@ -73,13 +88,18 @@ import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/
         name: 'DSPAlerts',
         component: DSPAlertsComponent
     },
-    //UNDER MY TRANSACTION TAB - END
-    
-    //UNDER BCP TAB - START
+    // UNDER MY TRANSACTION TAB - END
+
+    // UNDER BCP TAB - START
     {
         path: '/retailerSalesOrder',
         name: 'RetailerSalesOrder',
         component: RetailerSalesOrderComponent
+    },
+    {
+        path: '/bcpActivityStep',
+        name: 'BCPActivityStep',
+        component: BCPActivityStepComponent
     },
 
     {
@@ -87,39 +107,54 @@ import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/
         name: 'DetailRetailer',
         component: DetailRetailerComponent
     },
+    {
+        path: '/retailerInventory',
+        name: 'RetailerInventory',
+        component: RetailerInventoryComponent
+    },
 
     {
         path: '/salesOrderPayment',
         name: 'SalesOrderPayment',
         component: SalesOrderPaymentComponent
     },
-    //UNDER BCP TAB - END
-    
-    //UNDER CLOSE DAY TAB - START
+    // UNDER BCP TAB - END
+
+    // UNDER CLOSE DAY TAB - START
     {
         path: '/collection',
         name: 'Collection',
         component: CollectionComponent
     },
-    //UNDER SETTINGS TAB - END
-    
-    //UNDER SETTINGS TAB - START
+    {
+        path: '/closeDayTargetsActuals',
+        name: 'CDTargetsActuals',
+        component: CDTargetsActualsComponent
+    },
+    {
+        path: '/visitedRetail',
+        name: 'VisitedRetail',
+        component: VisitedRetailComponent
+    },
+    // UNDER SETTINGS TAB - END
+
+    // UNDER SETTINGS TAB - START
     {
         path: '/resetPassword',
         name: 'ResetPassword',
         component: ResetPasswordComponent
     }
-    //UNDER SETTINGS TAB - END
-    
+    // UNDER SETTINGS TAB - END
+
 ])
 
 export class MainPageComponent {
 
-	constructor (private _layoutService: LayoutService,
+    constructor (private _layoutService: LayoutService,
     private _matchMediaService: MatchMediaService) {}
-	
-	getResize(){
-        return this._matchMediaService.getMm();  
+
+    getResize() {
+        return this._matchMediaService.getMm();
     }
 
 }
