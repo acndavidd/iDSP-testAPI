@@ -81,6 +81,10 @@ export class DetailRetailerComponent {
         this.vArrowMap = !this.vArrowMap;
     }
 
+    gotoBCPActivityStep() {
+        // this._router.navigate(['BCPActivityStep']);
+    }
+
     goToInventoryRetailer(pRetailerId) {
         console.log(pRetailerId);
 

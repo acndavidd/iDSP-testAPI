@@ -139,7 +139,8 @@ vRouter.get('/getAccountsReceivables',vAcc.getAccountsReceivables);
 
 vRouter.get('/getProductCategory',vTargetsActualsCtrl.getProdCat);
 vRouter.get('/getProductSubCategory',vTargetsActualsCtrl.getProdSubCat);
-vRouter.get('/getProduct',vTargetsActualsCtrl.getProduct);
+
+vRouter.post('/getProduct',vTargetsActualsCtrl.getProduct);
 
 vRouter.get('/getCategory',vTargetsActualsCtrl.getCategory);
 

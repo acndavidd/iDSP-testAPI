@@ -193,9 +193,15 @@ export class RetailerController{
 		}
 	}
 
-	getAllRetailerAlert(pRequest,pResponse){
+	async getAllRetailerAlert(pRequest,pResponse){
 		let vOrmSvc = new ORMService();
 		var vCurrentDate = new Date();
+		let params = {
+			dsp_id : 1
+		};
+		var result = await vOrmSvc.sp('test_sp', JSON.stringify(params));
+		pResponse.json(result);
+		/*
 		let vDSPModel = vOrmSvc.getModel('mst_dsp');
 		let vDSPID = 'DSP00001';
 		let vResult;
@@ -216,11 +222,15 @@ export class RetailerController{
 					include : [{
 						model : vOrmSvc.getModel('mst_route_day'),
 						as : 'RouteDay',
-						attributes : ['sequence' , 'route_day']
+						attributes : ['sequence'],
+						where : {route_day : vCurrentDate.getDay()},
+						required : false,
+						limit : 10
 					}]
 				}],
 				order : [ [ vOrmSvc.getSequelize().col('sequence') , 'ASC NULLS LAST']]
 			}).then(function(pResult){
+				console.log(JSON.stringify(pResult));
 				pResult = JSON.parse(JSON.stringify(pResult));
 				pResult.map(function(pRetailer){
 					pRetailer.threshold_hit = pRetailer.RetailerDSPAlert[0].threshold_hit;
@@ -250,5 +260,6 @@ export class RetailerController{
 			}
 			pResponse.json(vResult);
 		});
+		*/
 	}
 }

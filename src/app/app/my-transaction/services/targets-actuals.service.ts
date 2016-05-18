@@ -8,6 +8,7 @@ export class TargetsActualsService {
       private vServiceUrl: string;
       private vErrorMsg: string;
       private vIsLoading: boolean;
+      private vSelectedTab;
       public vBrand;
       public vProdCat;
       public vProdCatBrand;
@@ -20,7 +21,7 @@ export class TargetsActualsService {
             this.queryBrand();
             this.queryProdCat();
             this.queryProdSubCat();
-            this.queryProduct();
+            this.queryProduct(this.vSelectedTab);
 
       }
 
@@ -85,9 +86,9 @@ export class TargetsActualsService {
                         this.vErrorMsg = 'Failed connecting to Retailer service';
                   }
             );
-
             return null;
             */
+
             return this._http.get('/getProductCategory');
       }
 
@@ -96,8 +97,15 @@ export class TargetsActualsService {
       }
 
 
-      queryProduct() {
-            return this._http.get('/getProduct');
+      queryProduct(pSelectedTab) {
+            console.log('Start hit login service to Query Product');
+            console.log('selecteddd' + pSelectedTab);
+            // Get Current Login User
+            let vData = {
+                  salesPerson : 'DSP00001',
+                  actualType : pSelectedTab
+            };
+            return this._http.post('/getProduct', JSON.stringify(vData));
       }
 
       queryCategory() {
