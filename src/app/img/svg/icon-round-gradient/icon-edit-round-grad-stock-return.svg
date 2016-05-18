@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="750"
+   height="749.99988"
+   id="svg3009"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="icon-edit-round-grad-stock-return.svg"
+   inkscape:export-filename="C:\Users\a.saraswati\Documents\IDSP\Design\assets\icon-idsp\icon-edit-round\icon-edit-round-stock-return.png"
+   inkscape:export-xdpi="148.05"
+   inkscape:export-ydpi="148.05">
+  <defs
+     id="defs3011" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="408.88815"
+     inkscape:cy="482.70849"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="706"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata3014">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-749.99998,447.63782)">
+    <path
+       sodipodi:type="arc"
+       style="fill:#f1c40f;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       id="path4337-1-9-9-0-4"
+       sodipodi:cx="409.11179"
+       sodipodi:cy="498.79858"
+       sodipodi:rx="34.345188"
+       sodipodi:ry="34.345188"
+       d="m 443.45697,498.79858 c 0,18.96833 -15.37686,34.34519 -34.34518,34.34519 -18.96833,0 -34.34519,-15.37686 -34.34519,-34.34519 0,-18.96832 15.37686,-34.34518 34.34519,-34.34518 18.96832,0 34.34518,15.37686 34.34518,34.34518 z"
+       transform="matrix(10.91856,0,0,10.8358,-3341.9116,-5474.6772)" />
+    <path
+       style="fill:#f1b10f;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       d="m 1125.9554,-440.49496 c -206.76251,0 -374.64685,166.22283 -374.64685,371.642558 0,86.408261 30.43612,166.067649 80.18984,229.212702 l 587.63111,-459.75033 c -68.5755,-85.93193 -174.2202,-141.10493 -293.1741,-141.10493 z"
+       id="path4337-1-9-9-0-9-1-3-4-0"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       d="m 1048.2993,58.678674 c -18.4459,0 -33.37,15.637077 -33.37,34.748989 0,19.111917 14.9241,34.748777 33.37,34.748777 18.4455,0 33.5375,-15.63686 33.5375,-34.748777 0,-19.111912 -15.092,-34.748989 -33.5375,-34.748989 z M 947.68744,-219.31324 v 34.74899 h 33.53735 l 60.36711,131.872429 -22.6377,42.567527 c -2.6829,4.864854 -4.1923,10.59836475 -4.1923,16.67938 0,19.112122 15.0915,34.748989 33.5374,34.748989 h 201.2239 V 6.555086 H 1055.342 c -2.3473,0 -4.1922,-1.9107503 -4.1922,-4.3437023 l 0.5046,-2.08502751 15.0918,-28.32046919 h 124.9266 c 12.5767,0 23.6437,-7.123319 29.3451,-17.895751 l 60.0319,-112.760306 c 1.3396,-2.43253 2.0124,-5.386 2.0124,-8.33969 0,-9.55606 -7.5458,-17.3746 -16.769,-17.3746 H 1018.285 l -15.763,-34.74899 H 947.68886 z M 1215.986,58.678674 c -18.4453,0 -33.3695,15.637077 -33.3695,34.748989 0,19.111917 14.9242,34.748777 33.3695,34.748777 18.4453,0 33.5372,-15.63686 33.5372,-34.748777 0,-19.111912 -15.0919,-34.748989 -33.5372,-34.748989 z"
+       id="path4"
+       style="fill:#ffffff;display:inline" />
+  </g>
+</svg>

@@ -28,7 +28,8 @@ export class LeftMenuComponent implements OnInit  {
     private _router: Router,
     private _matchMediaService: MatchMediaService,
     private _authenticationService: AuthenticationService,
-    private _headerService: HeaderService
+    private _headerService: HeaderService,
+    private _pageNavigationService: PageNavigationService
     ){
         this.image = null;
     }
@@ -53,7 +54,7 @@ export class LeftMenuComponent implements OnInit  {
             this.toggleLeftMenu();
         }
         else {
-            this._router.navigate(['MainPage', pGoToPage]);
+            this._pageNavigationService.navigate(pGoToPage, null, null);
         }
     }
     

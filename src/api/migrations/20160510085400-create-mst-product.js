@@ -7,6 +7,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING(20)
       },
+      sub_category_id: Sequelize.STRING(50),
       product_name: {
         type: Sequelize.STRING(50)
       },
