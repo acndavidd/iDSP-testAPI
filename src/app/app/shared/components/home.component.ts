@@ -72,8 +72,6 @@ export class HomeComponent {
     goToLogout() {
         console.log('PEGI KE Login');
         this._router.parent.navigate(['Starter', 'Login']);
-        //this._router.parent.navigate(['Login']);
-        //this._router.parent.navigate(['Starter']);
     }
     getLayout() {
         return this._layoutService.getLayout();
