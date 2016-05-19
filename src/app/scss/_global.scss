@@ -105,7 +105,7 @@ LIST VIEW - BUTTON
         padding-bottom: 2vw;
         padding-top: 2vw;
         margin-left: 15%;
-        //margin-top:8%;
+        margin-top:4%;
         background-color: $apple;
         border-radius: 2vw;
         .button-identifier {
@@ -335,7 +335,27 @@ LIST VIEW - TEXT
             font-size: $content-normal;
             height:1.6em;
             vertical-align:middle;
-
+            .filter-input{
+                padding-top: 7px;
+                padding-left: 24px;
+                top: 0;
+                
+                input {
+                    background: $white;
+                    height: 30px;
+                    border: 1px solid $dark-grey;
+                    width: 50%;
+                    -webkit-appearance: none;
+                    border-radius: 3px;
+                    padding-left: 15px;
+                    font-size: $filter-select;
+                    font-weight:lighter;
+                    appearance: none;
+                    cursor: pointer;
+                    text-align: center;
+                    margin: 0% 0% 5% 50%;
+                }
+            }
             &.left {
                 width: 45%;
                 padding-left:0.6em;
@@ -429,6 +449,9 @@ LIST VIEW - TEXT
             }
             &.header {
                 width: 100%;
+                &.padding-left{
+                    padding-left:0.6em;
+                }
             }
 
 
@@ -470,6 +493,18 @@ LIST VIEW - ICON
             }
             &.inventory-physical {
                 background: url(#{$icon-inventory-physical})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 6vw;
+            }
+            &.sales-view {
+                background: url(#{$icon-sales-view})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 6vw;
+            }
+            &.edit-gray {
+                background: url(#{$icon-edit-gray})no-repeat;
                 background-position-x: center;
                 background-position-y: center;
                 background-size: 6vw;
