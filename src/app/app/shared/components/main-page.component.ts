@@ -23,6 +23,7 @@ import {BCPActivityStepComponent} from '../../basic-call-procedure/components/bc
 import {RemittanceComponent} from '../../remittance/components/remittance.component';
 import {CallPreparationComponent} from '../../basic-call-procedure/components/call-preparation.component';
 import {StockReturnComponent} from '../../stock-return/components/stock-return.component';
+import {UnservedOrderComponent} from '../../basic-call-procedure/components/unserved-order.component';
 
 
 import {HomeComponent} from '../../shared/components/home.component';
@@ -124,6 +125,11 @@ import {HomeComponent} from '../../shared/components/home.component';
         path: '/salesOrderPayment',
         name: 'SalesOrderPayment',
         component: SalesOrderPaymentComponent
+    },
+    {
+        path: '/unservedOrder',
+        name: 'UnservedOrder',
+        component: UnservedOrderComponent
     },
     // UNDER BCP TAB - END
 
