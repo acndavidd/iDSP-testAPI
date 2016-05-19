@@ -364,6 +364,7 @@ LIST VIEW - TEXT
                 width: 40%;
                 padding-left:0.6em;
             }
+            
             &.right {
                 width: 40%;
                 text-align: right;
@@ -381,7 +382,7 @@ LIST VIEW - TEXT
                 width: 85%;
                 padding-left:0.6em;
             }
-
+            
             &.percent-100{
                 padding-left:0.6em;
                 width:100px;
@@ -445,6 +446,10 @@ LIST VIEW - TEXT
             }
             &.title2 {
                 font-size: 1.2em;
+            }
+            &.title3{
+                font-size:1.5em;
+                padding-left:0.4em;
             }
             &.header {
                 width: 100%;

@@ -130,7 +130,8 @@ export class LayoutService {
             pCurrent === 'GetStarted' ||
             pCurrent === 'Verification' ||
             pCurrent === 'Login' ||
-            pCurrent === 'Mpin') {
+            pCurrent === 'Mpin' ||
+            pCurrent === 'SkipSalesOrder') {
             this._pageNavigationService.resetListPreviousData();
             this.vLayoutState = {
                 appHeader: false,
@@ -251,6 +252,26 @@ export class LayoutService {
             };
         } else if (pCurrent === 'RetailerSalesOrder'
             || pCurrent === 'SalesOrderPayment') {
+            this._pageNavigationService.resetListPreviousData();
+            this.vOldCurrentPage = 'BasicCallProcedure';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
+
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+
+            this.vHeaderItem = {
+                hamburger: false,
+                back: true,
+                filter: false,
+                edit: false,
+                search: false
+            };
+        } else if (pCurrent === 'BCPCollection') {
             this._pageNavigationService.resetListPreviousData();
             this.vOldCurrentPage = 'BasicCallProcedure';
             this.vOldCurrentPageParams = null;
