@@ -40,16 +40,17 @@ export class DetailRetailerComponent {
         }
         console.log('in detail retailer for retailer id ' +  this.vSelectedRetailId);
 
-        this._retailerService.getRetailerSummary(this.vSelectedRetailId).subscribe(
+        this._retailerService.queryRetailerSummary(this.vSelectedRetailId).subscribe(
             response => {
                 if (response.json().status === 'Success') {// success login
                     console.log('Query Success' + JSON.stringify(response.json().result));
                     this.vSelectedRetail = response.json().result;
 
-                    this.vSelectedRetail.retailer.birthday = new Date(this.vSelectedRetail.retailer.birthday);
+                    this.vSelectedRetail.birthday = new Date(this.vSelectedRetail.birthday);
                     console.log('Abis format' + JSON.stringify(this.vSelectedRetail));
                 } else {// failed login
                     console.log('Query Failed');
+                    this.vSelectedRetail = null;
                     // this.vErrorMsg = response.json().errorMessage;
                 }
             },

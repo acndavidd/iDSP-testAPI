@@ -187,7 +187,6 @@ export class LayoutService {
             };
         } else if (
             pCurrent === 'Collection' ||
-            pCurrent === 'StockReturn' ||
             pCurrent === 'Sync') {
             // this._pageNavigationService.setPreviousPage('CloseDay');
             this._pageNavigationService.resetListPreviousData();

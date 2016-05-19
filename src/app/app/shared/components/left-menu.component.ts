@@ -118,8 +118,8 @@ export class LeftMenuComponent implements OnInit  {
     }
 
     goToStockReturn() {
-        // this.vGoToPage = 'StockReturn';
-        // this.checkCurrentPage(this.vGoToPage);
+        this.vGoToPage = 'StockReturn';
+        this.checkCurrentPage(this.vGoToPage);
     }
 
     goToLogout() {

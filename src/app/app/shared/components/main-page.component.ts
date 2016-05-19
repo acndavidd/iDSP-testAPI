@@ -22,6 +22,7 @@ import {VisitedRetailComponent} from '../../close-day/components/visited-retail.
 import {BCPActivityStepComponent} from '../../basic-call-procedure/components/bcp-activity-step.component';
 import {RemittanceComponent} from '../../remittance/components/remittance.component';
 import {CallPreparationComponent} from '../../basic-call-procedure/components/call-preparation.component';
+import {StockReturnComponent} from '../../stock-return/components/stock-return.component';
 
 
 import {HomeComponent} from '../../shared/components/home.component';
@@ -139,21 +140,29 @@ import {HomeComponent} from '../../shared/components/home.component';
     },
     // UNDER SETTINGS TAB - END
 
-    // UNDER SETTINGS TAB - START
+    // UNDER STOCK RETURN TAB - START
     {
-        path: '/resetPassword',
-        name: 'ResetPassword',
-        component: ResetPasswordComponent
+        path: '/stockReturn',
+        name: 'StockReturn',
+        component: StockReturnComponent
     },
-    // UNDER SETTINGS TAB - END
+    // UNDER STOCK RETURN TAB - END
 
-    // UNDER SETTINGS TAB - START
+    // UNDER RESET TAB - START
+    // {
+    //     path: '/resetPassword',
+    //     name: 'ResetPassword',
+    //     component: ResetPasswordComponent
+    // },
+    // UNDER RESET TAB - END
+
+    // UNDER REMITTANCE TAB - START
     {
         path: '/remittance',
         name: 'Remittance',
         component: RemittanceComponent
     }
-    // UNDER SETTINGS TAB - END
+    // UNDER REMITTANCE TAB - END
 
 ])
 
