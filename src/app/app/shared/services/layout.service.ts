@@ -130,7 +130,8 @@ export class LayoutService {
             pCurrent === 'GetStarted' ||
             pCurrent === 'Verification' ||
             pCurrent === 'Login' ||
-            pCurrent === 'Mpin') {
+            pCurrent === 'Mpin' ||
+            pCurrent === 'SkipSalesOrder') {
             this._pageNavigationService.resetListPreviousData();
             this.vLayoutState = {
                 appHeader: false,

@@ -12,7 +12,8 @@ export class ModalService {
         info: false,
         verificationCode : false,
         resendMpin : false,
-        collection: false
+        collection: false,
+        skipSalesOrder: false
     };
 
     constructor() {}
@@ -39,6 +40,14 @@ export class ModalService {
             this.refreshModal();
         }else {
             this.vModalState.resendMpin = !this.vModalState.resendMpin;
+        }
+        this.vMainModalState = !this.vMainModalState;
+    }
+    toggleSkipSalesOrderModal() {
+        if (this.vMainModalState) {
+            this.refreshModal();
+        }else {
+            this.vModalState.skipSalesOrder = !this.vModalState.skipSalesOrder;
         }
         this.vMainModalState = !this.vMainModalState;
     }
