@@ -17,6 +17,7 @@ import {ResetPasswordComponent} from '../../settings/components/reset-password.c
 import {RetailerSalesOrderComponent} from '../../basic-call-procedure/components/retailer-sales-order.component';
 import {DetailRetailerComponent} from '../../basic-call-procedure/components/detail-retailer.component';
 import {RetailerInventoryComponent} from '../../basic-call-procedure/components/retailer-inventory.component';
+import {BCPCollectionComponent} from '../../basic-call-procedure/components/bcp-collection.component';
 import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/sales-order-payment.component';
 import {CDTargetsActualsComponent} from '../../close-day/components/cd-targets-actuals.component';
 import {VisitedRetailComponent} from '../../close-day/components/visited-retail.component';
@@ -111,6 +112,11 @@ import {HomeComponent} from '../../shared/components/home.component';
         path: '/retailerInventory',
         name: 'RetailerInventory',
         component: RetailerInventoryComponent
+    },
+    {
+        path: 'bcpCollection',
+        name: 'BCPCollection',
+        component: BCPCollectionComponent
     },
 
     {

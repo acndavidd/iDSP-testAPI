@@ -8,13 +8,17 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {NgModel} from 'angular2/common';
 
 @Component({
-    templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
+    templateUrl: './app/basic-call-procedure/components/bcp-collection.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
 })
 
-export class BasicCallProcedureComponent {
+export class BCPCollectionComponent {
+
+    vOutstandingShow = false;
+    vArrowMap        = false;
+    vPaymentShow     = false;
 
     constructor (
         private _layoutService: LayoutService,
@@ -25,16 +29,21 @@ export class BasicCallProcedureComponent {
         private _router: Router
         ) {
         this._retailerService.getRetailer(100);
-        this._layoutService.setCurrentPage('BasicCallProcedure');
-        this._headerService.setTitle('Basic Call Procedure');
+        this._layoutService.setCurrentPage('BCPCollection');
+        this._headerService.setTitle('Collection');
     }
 
     getResize() {
         return this._matchMediaService.getMm();
     }
 
-    gotoDetailRetailer() {
-        this._pageNavigationService.navigate('DetailRetailer', null, null);
-        //this._pageNavigationService.navigate('BCPCollection', null, null);
+    outstandingShow() {
+        this.vOutstandingShow = !this.vOutstandingShow;
+        this.vArrowMap = !this.vArrowMap;
+    }
+
+    paymentShow() {
+        this.vPaymentShow = !this.vPaymentShow;
+        this.vArrowMap = !this.vArrowMap;
     }
 }
