@@ -24,7 +24,7 @@ export class CollectionComponent {
     ) {
 
         this._layoutService.setCurrentPage('Collection');
-        this._headerService.setTitle('Collection');
+        this._headerService.setTitle('Collection & Remittance');
     }
 
     getResize() {

@@ -1,23 +1,37 @@
- <div class="sub-main-menu">
-     <div class="container-body">
-         <div class="sub-main-button">
-             <div class="button-identifier" (click)="goToTargetsActuals()">Targets &amp; Actuals</div>
-         </div>
-          <div class="separator"></div>
-          <div class="sub-main-button">
-             <div class="button-identifier" (click)="goToVisitedRetailer()">Visited Retailer Today</div>
-         </div>
-          <div class="separator"></div>
-           <div class="sub-main-button">
-             <div class="button-identifier" (click)="goToCollection()">Collection &amp; Remittance</div>
-         </div>
-          <div class="separator"></div>
-           <div class="sub-main-button">
-             <div class="button-identifier" (click)="goToStockReturn()">Stock Return</div>
-         </div>
-          <div class="separator"></div>
-          <div class="sub-main-button">
-             <div class="button-identifier" (click)="toggleSync()">Sync</div>
-         </div>
-     </div>
- </div>
+<div class ="container-body menu">
+    <div class="parent">
+        <div class="cover">
+            <div class="cover-photo">
+                <div class="anti-spy"></div>
+                <div class="cover-date">{{getToday()  | date:'MMM, dd yyyy'}}</div>
+                <div class="profile-photo"></div>
+                <div class="cover-name">Hi, Tamara Josh</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="double-divider" (click)="goToTargetsActuals()" id="targets-actuals">
+        <div class= "square-button border-bottom">
+            <div class="icon target"></div>
+            <div class="text">Targets &amp; Actuals</div>
+        </div>      
+    </div>
+    <div class="double-divider" (click)="goToVisitedRetailer()" id="visited-retailer">
+        <div class= "square-button border-bottom border-left">
+            <div class="icon visited"></div>
+            <div class="text">Visited Retailer Route</div>
+        </div>      
+    </div>
+    <div class="double-divider" (click)="goToCollection()" id="collection">
+        <div class= "square-button border-bottom">
+            <div class="icon collection"></div>
+            <div class="text">Collection &amp; Remittance</div>
+        </div>      
+    </div>
+    <div class="double-divider">
+        <div class= "square-button border-bottom border-left">
+            <div class="icon sync"></div>
+            <div class="text">Sync</div>
+        </div>      
+    </div>
+</div>

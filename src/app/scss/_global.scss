@@ -50,11 +50,14 @@ SUBTAB
     &.triple {
         width: 33%;
     }
+    &.triple2 {
+        width: 34%;
+    }
     &.active {
-        border-bottom: 2px solid $menu-underline;
+        border-bottom: 2px solid $vivid-pink;
     }
     .text {
-        color: $inactive-tab-grey;
+        color: $gainsboro;
         text-align: center;
         font-size: $header-tab;
 
@@ -89,7 +92,7 @@ LIST VIEW - BUTTON
     }
     .no-divider {
         width: 100%;
-        float:left;
+        float:center;
     }
     .double-divider{
         width: 50%;
@@ -98,18 +101,18 @@ LIST VIEW - BUTTON
 
     .button {
         display: inline-block;
-        width: 80%;
-        padding-bottom: 15px;
-        padding-top: 15px;
-        background-color: $dark-sea-green;
-        margin: 10%;
-        border-radius: 5px;
+        width: 70%;
+        padding-bottom: 2vw;
+        padding-top: 2vw;
+        margin-left: 15%;
+        //margin-top:8%;
+        background-color: $apple;
+        border-radius: 2vw;
         .button-identifier {
             cursor: pointer;
             font-size: $button;
             text-align: center;
             width: 100%;
-            
             color: $white;
             font-weight: lighter;
         }
@@ -302,6 +305,8 @@ LIST VIEW - TEXT
         width: 100%;
         border-bottom: 1px solid $border-line;
         cursor: pointer;
+        //padding-top: 2vw;
+        //padding-bottom: 2vw;
         
         .item-notification {   
             font-size: $filter-select;
@@ -335,8 +340,16 @@ LIST VIEW - TEXT
                 width: 45%;
                 padding-left:0.6em;
             }
+            &.left2 {
+                width: 40%;
+                padding-left:0.6em;
+            }
             &.right {
                 width: 40%;
+                text-align: right;
+            }
+            &.right2 {
+                width: 30%;
                 text-align: right;
             }
             &.single {
@@ -348,6 +361,19 @@ LIST VIEW - TEXT
                 width: 85%;
                 padding-left:0.6em;
             }
+
+            &.percent-100{
+                padding-left:0.6em;
+                width:100px;
+            }
+            &.percent-200{
+                width:200px; 
+            }
+            &.percent-300{
+                width:300px; 
+            }
+
+
             &.icon {
                 width: 15%;
             }
@@ -355,6 +381,7 @@ LIST VIEW - TEXT
                 width:30%;
             }
             &.content{
+                padding-left:0.6em;
                 width:70%
             }
 
@@ -368,8 +395,20 @@ LIST VIEW - TEXT
                 text-align: center;
             }
 
+            &.dark-sea-green {
+                color: $dark-sea-green;
+            }
+            &.vivid-pink {
+                color: $vivid-pink;
+            }
+            &.gainsboro {
+                color: $gainsboro;
+            }
             &.grey {
                 color: $grey;
+            }
+            &.black {
+                color: $black;
             }
             &.green {
                 color: $apple;
@@ -382,8 +421,11 @@ LIST VIEW - TEXT
                 padding-left:2em;
             }
             &.title {
+                font-size: 1.1em;
+                height:2em;
+            }
+            &.title2 {
                 font-size: 1.2em;
-                height:2.5em;
             }
             &.header {
                 width: 100%;
@@ -420,29 +462,37 @@ LIST VIEW - ICON
                 background-position-y: center;
                 background-size: 20px;
             }
-            .profpic-purple {
-                border: 1px solid $black;
-                border-radius: 100%;
-                background-color:#E6E0EC;
-                padding: 10% 0% 40% 0%;
-                margin: 0% 25% 0% 25%;
-                color:$apple;
-                text-align: center;
-                line-height:0px;
-                font-size: 30px;
+            &.inventory-load {
+                background: url(#{$icon-inventory-load})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 6vw;
             }
-            .profpic-pink {
-                border: 1px solid $black;
-                border-radius: 100%;
-                background-color:#FDEADA;
-                padding: 10% 0% 40% 0%;
-                margin: 0% 25% 0% 25%;
-                color:$apple;
-                text-align: center;
-                line-height:0px;
-                font-size: 30px;
+            &.inventory-physical {
+                background: url(#{$icon-inventory-physical})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 6vw;
             }
+            .profpic {
+                width: 65px;
+                height: 65px;
+                background-color: $sugar-cane;
+                border-radius: 50%;
+                margin: 0% 0% 0% 9%;
+                text-align: center;
+                line-height: 63px;
+                font-size: 30px;
+                color : $apple;
+                border: 1px solid $gainsboro;
 
+                &.pink {
+                    background-color : $serenade;
+                }
+                &.purple {
+                    background-color : $violetish-white;
+                }
+            }
         }
     }
       

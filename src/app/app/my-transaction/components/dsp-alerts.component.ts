@@ -8,7 +8,7 @@ import {NgModel} from 'angular2/common';
 
 @Component({
     selector: 'dsp-alerts',
-    templateUrl: './app/my-transaction/components/dsp-alerts.component.html',
+    templateUrl: './app/my-transaction/components/hc-dsp-alerts.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
