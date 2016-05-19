@@ -9,7 +9,8 @@ export class RetailerService {
     private vErrorMsg: string;
     private vIsLoading: boolean;
     private vRetailer: any;
-    private vToday : Date;
+    private vToday: Date;
+
     constructor (
         private _http: Http,
         private _router: Router) {
@@ -166,22 +167,17 @@ export class RetailerService {
         */
     }
 
-   queryRetailerRouteBCP()
-   {
+    queryRetailerRouteBCP() {
         console.log('Start hit login service to Query Retailer Route for BCP');
         this.vToday = new Date();
-
-        console.log('tanggal hari ini'+this.vToday);
-
-
         let vData = {
             salesPerson: 'DSP00001',
             day: 1
         };
 
         var vSalesRoute;
-        return this._http.post('/getRetailerRouteBCP', JSON.stringify(vData));   
-   }
+        return this._http.post('/getRetailerRouteBCP', JSON.stringify(vData));
+    }
 
     getRetailerAll() {
         return this.vRetailer;

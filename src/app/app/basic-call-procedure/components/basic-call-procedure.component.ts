@@ -51,7 +51,7 @@ export class BasicCallProcedureComponent {
                     console.log('Hasil response ' + response.json());
                     if (response.json().status === 'Success') {
                         console.log('Query Success');
-                        this.vListRoute= response.json().result;
+                        this.vListRoute = response.json().result;
                     } else {
                         this.vListRoute = null;
                         console.log('Query Failed');
