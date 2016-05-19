@@ -1,17 +1,109 @@
-// <div class ="container-body menu">
-//     <div class="parent">
-//         <div class="cover">
-//             <div class="cover-photo">
-//                 <div class="anti-spy"></div>
-//                 <div class="cover-date">{{getToday()  | date:'MMM, dd yyyy'}}</div>
-//                 <div class="profile-photo"></div>
-//                 <div class="cover-name">Hi, Tamara Josh</div>
-//             </div>
-//         </div>
-//     </div>
+.home-container {
+    width: 100%;
 
-// </div>
+    .home-item-box {
+        
+        display: inline-block;
+        width: 100%;
+        .separator {
+            border-bottom: 1px solid $white-smoke;        
+        }
+        .home-table {
+            display: table;
+            width: 100%;
+            padding-top: 1vw;
+            padding-bottom: 1vw;
+        }
+        .cell {
+            display:table-cell;
+            font-size: 5vw;
+            height: 16vw;
+            vertical-align:middle;
 
+            &.single {
+                width: 70%;
+                padding-left: 3vw;
+            }
+
+            &.icon {
+                width: 30%;
+            }
+
+            &.bcp {
+                background: url(#{$icon-round-grad-bcp})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.inventory {
+                background: url(#{$icon-round-grad-inventory})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.logout {
+                background: url(#{$icon-round-grad-logout})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.remittance {
+                background: url(#{$icon-round-grad-remittance})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.stock-return {
+                background: url(#{$icon-round-grad-stock-return})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.target {
+                background: url(#{$icon-round-grad-target})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.acc-receivable {
+                background: url(#{$icon-round-grad-acc-receivable})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.alert {
+                background: url(#{$icon-round-grad-alert})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.collection {
+                background: url(#{$icon-round-grad-collection})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.retailer-route {
+                background: url(#{$icon-round-grad-retailer-route})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.sync {
+                background: url(#{$icon-round-grad-sync})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+            &.visited {
+                background: url(#{$icon-round-grad-visited})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 15vw;
+            }
+        }
+    }
+}
 
 
 
