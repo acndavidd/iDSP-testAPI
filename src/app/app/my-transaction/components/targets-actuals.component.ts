@@ -105,7 +105,7 @@ export class TargetsActualsComponent {
          this._targetsActualsService.queryProduct(this.vSelectedTab, this.vSelectedBrand).subscribe(
              response => {
                 if (response.json().status === 'Success') {
-                    console.log("Query sukses " + response.json());
+                    console.log('Query sukses ' + response.json());
                     this.vListProduct = response.json().result;
                      this.vShowProduct = this.vListProduct;
                 }
