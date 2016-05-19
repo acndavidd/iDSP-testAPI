@@ -57,7 +57,22 @@ export class HomeComponent {
         console.log('PEGI KE DSP');
         this._pageNavigationService.navigate('DSPAlerts', null, null);
     }
-
+    goToBasicCallProcedure() {
+        console.log('PEGI KE BCP');
+        this._pageNavigationService.navigate('BasicCallProcedure', null, null);
+    }
+    goToRemittance() {
+        console.log('PEGI KE Remittance');
+        this._pageNavigationService.navigate('Remittance', null, null);
+    }
+    goToStockReturn() {
+        console.log('PEGI KE StockReturn');
+        this._pageNavigationService.navigate('StockReturn', null, null);
+    }
+    goToLogout() {
+        console.log('PEGI KE Login');
+        this._router.parent.navigate(['Starter', 'Login']);
+    }
     getLayout() {
         return this._layoutService.getLayout();
     }

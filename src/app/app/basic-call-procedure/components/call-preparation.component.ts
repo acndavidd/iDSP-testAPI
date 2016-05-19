@@ -35,7 +35,7 @@ export class CallPreparationComponent {
     }
 
     gotoBCPActivityStep() {
-        this._pageNavigationService.navigate('BCPActivityStep', null, null);
+        this._pageNavigationService.navigate('RetailerSalesOrder', null, null);
     }
 
     subProfileMenuShow() {
