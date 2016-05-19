@@ -26,8 +26,7 @@ export class CloseDayComponent {
     private _layoutService: LayoutService,
     private _matchMediaService: MatchMediaService,
     private _modalService: ModalService,
-    private _headerService: HeaderService,
-    private _pageNavigationService: PageNavigationService
+    private _headerService: HeaderService
     ) {
         this._layoutService.setCurrentPage('CloseDay');
         this._headerService.setTitle('Close of The Day');
@@ -37,32 +36,19 @@ export class CloseDayComponent {
         return this._matchMediaService.getMm();
     }
 
-    toggleCollection() {
-        // this._router.navigate(['Collection']);
-        this._pageNavigationService.navigate('Collection', null, null);
-    }
-
     goToTargetsActuals() {
         console.log('TA');
-        // this._router.navigate(['CDTargetsActuals']);
-        this._pageNavigationService.navigate('TargetsActuals', null, null);
+        this._router.navigate(['CDTargetsActuals']);
     }
 
     goToVisitedRetailer() {
         console.log('VR');
-        // this._router.navigate(['VisitedRetail']);
-        this._pageNavigationService.navigate('VisitedRetail', null, null);
+        this._router.navigate(['VisitedRetail']);
     }
 
     goToCollection() {
         console.log('C');
-         // this._router.navigate(['Collection']);
-        this._pageNavigationService.navigate('Collection', null, null);
-    }
-
-    goToStockReturn() {
-        console.log('SR');
-        this._pageNavigationService.navigate('StockReturn', null, null);
+         this._router.navigate(['Collection']);
     }
 
     getToday() {
