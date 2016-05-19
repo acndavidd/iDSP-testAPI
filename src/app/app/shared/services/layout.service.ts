@@ -315,7 +315,7 @@ export class LayoutService {
 
             this.vLayoutState = {
                 appHeader: true,
-                appFooter: true,
+                appFooter: false,
                 leftMenu: false
             };
             this.vHeaderItem = {
