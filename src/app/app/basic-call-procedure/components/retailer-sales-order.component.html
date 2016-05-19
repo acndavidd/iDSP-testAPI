@@ -1,25 +1,123 @@
-<div class = "container-body">
-	<div class="item-container">
-        <div class="item-title left">Gloria Cell</div>
-        <div class="item-value green">Order No. 12345678</div>
-    </div> 	
+<div class="container-body">
     <div class="item-container">
-        <div class="item-center-identifier">Total Amount:</div>
+        <div class="container">
+            <div class='cell'>
+                <div class='container'><div class='cell single title'>Rose Cell</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell left italic'>(99999900003)</div></div>
+            </div>
+        </div>
     </div>
     <div class="item-container">
-        <div class="item-left-identifier">Transfer Load</div>
+        <div class="container">
+            <div class='cell'>
+                <div class='container'><div class='cell center title'>Total Amount :</div></div>
+                <div class='container'><div class='cell center title green'>3,950.00 ₱</div></div>
+            </div>
+        </div>
     </div>
     <div class="item-container">
-        <div class="item-left-identifier">Physical Order</div>
+        <div class="container">
+            <div class='cell'>
+                <div class='container'><div class='cell left'>Sub Total</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell right'>4,000.00 ₱</div></div>
+            </div>
+            <div class='cell icon'></div>
+        </div>
     </div>
-	<div class="double-divider">
-		<div class= "button" >
-			<div class="button-identifier">SKIP</div>
-		</div>		
-	</div>
-	<div class="double-divider">
-		<div class= "button" >
-			<div class="button-identifier" (click)="goToSalesOrderPayment()">CONFIRM</div>
-		</div>
-	</div>
+    <div class="item-container">
+        <div class="container">
+            <div class='cell'>
+                <div class='container'>
+                    <div class='cell'>
+                        <div class="container">
+                            <div class='cell'>
+                                <div class='container'><div class='cell header padding-left'>Promo Code</div></div>
+                            </div>
+                            <div class='cell'>
+                                <div class='container'><div class='cell left icon sales-view'></div></div>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+                <div class='container'><div class='cell left'>Promo Amount</div></div>
+            </div>
+            <div class='cell'>
+                <div class='filter-content'>
+                    <div class="filter-dropdown">
+                        <select class='green'>
+                            <option value="aa">MC00087PD</option>
+                            <option value="bb">MC00097PD</option>
+                            <option value="cc">XL1234567</option>
+                            <option value="dd">XL7654321</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='container'><div class="filter-input input"><input type="text"/></div>
+            </div>
+            </div>
+            <div class='cell icon'></div>
+        </div>
+    </div>
+    <div class="item-container">
+        <div class="container">
+            <div class='cell'>
+                <div class='container'><div class='cell left'>Transfer Load</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell right'>4,000.00 ₱</div></div>
+            </div>
+            <div class='cell icon edit-gray'></div>
+        </div>
+    </div>
+    <div class="item-container">
+        <div class="container">
+            <div class='cell'>
+                <div class='container'><div class='cell left'>DSP Sun Wallet Balance</div></div>
+                <div class='container'><div class='cell left grey'>Transfer Amount</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container'><div class='cell right'>2,000.00 ₱</div></div>
+            </div>
+            <div class='cell icon'></div>
+        </div>
+    </div>
+    <div class="item-container">
+        <div class="container">
+            <div class='cell'>
+                <div class='container'><div class='cell left'>DSP SMART Wallet Balance</div></div>
+                <div class='container'><div class='cell left grey'>Transfer Amount</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container'><div class='cell right'>2,000.00 ₱</div></div>
+            </div>
+            <div class='cell icon'></div>
+        </div>
+    </div>
+    <div class="item-container">
+        <div class="container">
+            <div class='cell'>
+                <div class='container'><div class='cell left'>Physical Order</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell right'>0.00 ₱</div></div>
+            </div>
+            <div class='cell icon edit-gray'></div>
+        </div>
+    </div>
+    <div class='double-divider'>
+        <div class='button'>
+            <div class='button-identifier'>SKIP</div>
+        </div>
+    </div>
+    <div class='double-divider'>
+        <div class='button' (click)="goToSalesOrderPayment()">
+            <div class='button-identifier'>CONFIRM</div>
+        </div>
+    </div>
 </div>
