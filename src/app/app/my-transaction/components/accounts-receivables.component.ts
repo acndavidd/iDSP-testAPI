@@ -38,9 +38,9 @@ export class AccountsReceivablesComponent {
 
         var vDspId = 'DSP00001';
         var vDate = new Date().getDay();
-        console.log('vDate: ' + vDate);
+        console.log( 'vDate: ' + vDate );
 
-        this._accountsReceivablesService.getAllRetailer(vDspId,vDate).subscribe (
+        this._accountsReceivablesService.getAllRetailer(vDspId,vDate).subscribe(
             response => {
                 this.setAllRetailerList(response.json().result);
                 console.log( 'response success' );
@@ -49,6 +49,7 @@ export class AccountsReceivablesComponent {
                 this.setTotalReceivable(parseInt(response.json().result[0].total_amount).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
                 this.getAllRetailer();
             },
+
             error => {
                 console.log(error.json());
             }
