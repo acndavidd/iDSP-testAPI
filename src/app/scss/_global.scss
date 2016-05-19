@@ -84,7 +84,7 @@ LIST VIEW - BUTTON
     background-color: $white;
     width: 100%;
     height: 100%;
-    margin-bottom: 50px;
+    // margin-bottom: 50px;
     overflow-x: hidden;
 
     &.menu {
@@ -92,26 +92,27 @@ LIST VIEW - BUTTON
     }
     .no-divider {
         width: 100%;
-        float:left;
+        float:center;
     }
     .double-divider{
         width: 50%;
         float:left;
     }
+
     .button {
         display: inline-block;
-        width: 80%;
-        padding-bottom: 15px;
-        padding-top: 15px;
-        background-color: $dark-sea-green;
-        margin: 10%;
-        border-radius: 5px;
+        width: 70%;
+        padding-bottom: 2vw;
+        padding-top: 2vw;
+        margin-left: 15%;
+        //margin-top:8%;
+        background-color: $apple;
+        border-radius: 2vw;
         .button-identifier {
             cursor: pointer;
             font-size: $button;
             text-align: center;
             width: 100%;
-            
             color: $white;
             font-weight: lighter;
         }
@@ -180,8 +181,6 @@ LIST VIEW - BUTTON
                 font-size: 5vw;
             }
         }
-
-        
     }
 
 
@@ -382,6 +381,7 @@ LIST VIEW - TEXT
                 width:30%;
             }
             &.content{
+                padding-left:0.6em;
                 width:70%
             }
 
