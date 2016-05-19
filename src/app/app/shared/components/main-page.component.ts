@@ -18,9 +18,10 @@ import {RetailerSalesOrderComponent} from '../../basic-call-procedure/components
 import {DetailRetailerComponent} from '../../basic-call-procedure/components/detail-retailer.component';
 import {RetailerInventoryComponent} from '../../basic-call-procedure/components/retailer-inventory.component';
 import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/sales-order-payment.component';
-import {CDTargetsActualsComponent} from '../../close-day/components/cd-targets-actuals.component';
 import {VisitedRetailComponent} from '../../close-day/components/visited-retail.component';
 import {BCPActivityStepComponent} from '../../basic-call-procedure/components/bcp-activity-step.component';
+import {RemittanceComponent} from '../../remittance/components/remittance.component';
+import {CallPreparationComponent} from '../../basic-call-procedure/components/call-preparation.component';
 
 
 import {HomeComponent} from '../../shared/components/home.component';
@@ -92,6 +93,11 @@ import {HomeComponent} from '../../shared/components/home.component';
 
     // UNDER BCP TAB - START
     {
+        path: '/callPreparation',
+        name: 'CallPreparation',
+        component: CallPreparationComponent
+    },
+    {
         path: '/retailerSalesOrder',
         name: 'RetailerSalesOrder',
         component: RetailerSalesOrderComponent
@@ -127,11 +133,6 @@ import {HomeComponent} from '../../shared/components/home.component';
         component: CollectionComponent
     },
     {
-        path: '/closeDayTargetsActuals',
-        name: 'CDTargetsActuals',
-        component: CDTargetsActualsComponent
-    },
-    {
         path: '/visitedRetail',
         name: 'VisitedRetail',
         component: VisitedRetailComponent
@@ -143,6 +144,14 @@ import {HomeComponent} from '../../shared/components/home.component';
         path: '/resetPassword',
         name: 'ResetPassword',
         component: ResetPasswordComponent
+    },
+    // UNDER SETTINGS TAB - END
+
+    // UNDER SETTINGS TAB - START
+    {
+        path: '/remittance',
+        name: 'Remittance',
+        component: RemittanceComponent
     }
     // UNDER SETTINGS TAB - END
 
