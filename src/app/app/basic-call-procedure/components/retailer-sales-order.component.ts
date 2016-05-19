@@ -34,7 +34,7 @@ export class RetailerSalesOrderComponent {
         this._router.navigate(['SalesOrderPayment']);
     }
 
-    skipSalesOrderModalComponent(){
+    skipSalesOrderModalComponent() {
         console.log('Skip Sales Order');
         this._modalService.toggleSkipSalesOrderModal();
     }
