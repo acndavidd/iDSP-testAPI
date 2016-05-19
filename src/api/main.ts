@@ -146,6 +146,8 @@ vRouter.get('/getCategory',vTargetsActualsCtrl.getCategory);
 
 
 vRouter.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
+vRouter.post('/getRetailerRouteBCP',vRetailerCtrl.getRetailerRouteBCP);
+
 vRouter.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
 vApp.use('/service',vRouter);
 vApp.listen(PORT);

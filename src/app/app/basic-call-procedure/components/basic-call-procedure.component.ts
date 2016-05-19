@@ -11,11 +11,15 @@ import {NgModel} from 'angular2/common';
     templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
     directives: [
         ROUTER_DIRECTIVES
+    ],
+    providers: [
+        RetailerService
     ]
 })
 
 export class BasicCallProcedureComponent {
 
+    private vListRoute;
     constructor (
         private _layoutService: LayoutService,
         private _matchMediaService: MatchMediaService,
@@ -27,6 +31,8 @@ export class BasicCallProcedureComponent {
         this._retailerService.getRetailer(100);
         this._layoutService.setCurrentPage('BasicCallProcedure');
         this._headerService.setTitle('Basic Call Procedure');
+
+        this.refreshRetailerRouteBCP();
     }
 
     getResize() {
@@ -35,5 +41,24 @@ export class BasicCallProcedureComponent {
 
     gotoCallPreparation() {
         this._pageNavigationService.navigate('CallPreparation', null, null);
+    }
+
+     refreshRetailerRouteBCP() {
+        console.log('Get  retailer route for Day');
+        this._retailerService.queryRetailerRouteBCP().subscribe(
+                response => {
+                    console.log('Hasil response ' + response.json());
+                    if (response.json().status === 'Success') {
+                        console.log('Query Success');
+                        this.vListRoute= response.json().result;
+                    } else {
+                        this.vListRoute = null;
+                        console.log('Query Failed');
+                    }
+                },
+                error => {
+                    console.log(error);
+                }
+        );
     }
 }
