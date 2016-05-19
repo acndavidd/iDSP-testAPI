@@ -46,7 +46,16 @@
                 <div class='container'><div class='cell left'>Promo Amount</div></div>
             </div>
             <div class='cell'>
-                <div class='container'><div class='cell right green'>XL123456</div></div>
+                <div class='filter-content'>
+                    <div class="filter-dropdown">
+                        <select class='green'>
+                            <option value="aa">MC00087PD</option>
+                            <option value="bb">MC00097PD</option>
+                            <option value="cc">XL1234567</option>
+                            <option value="dd">XL7654321</option>
+                        </select>
+                    </div>
+                </div>
                 <div class='container'><div class="filter-input input"><input type="text"/></div>
             </div>
             </div>
@@ -102,12 +111,12 @@
         </div>
     </div>
     <div class='double-divider'>
-        <div class='button'>
+        <div class='button' id='skip' (click)='skipSalesOrderModalComponent()'>
             <div class='button-identifier'>SKIP</div>
         </div>
     </div>
-    <div class='double-divider'>
-        <div class='button'>
+    <div class='double-divider' id='confirm'>
+        <div class='button' (click)="goToSalesOrderPayment()">
             <div class='button-identifier'>CONFIRM</div>
         </div>
     </div>

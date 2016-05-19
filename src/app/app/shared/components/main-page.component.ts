@@ -17,12 +17,14 @@ import {ResetPasswordComponent} from '../../settings/components/reset-password.c
 import {RetailerSalesOrderComponent} from '../../basic-call-procedure/components/retailer-sales-order.component';
 import {DetailRetailerComponent} from '../../basic-call-procedure/components/detail-retailer.component';
 import {RetailerInventoryComponent} from '../../basic-call-procedure/components/retailer-inventory.component';
+import {BCPCollectionComponent} from '../../basic-call-procedure/components/bcp-collection.component';
 import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/sales-order-payment.component';
 import {VisitedRetailComponent} from '../../close-day/components/visited-retail.component';
 import {BCPActivityStepComponent} from '../../basic-call-procedure/components/bcp-activity-step.component';
 import {RemittanceComponent} from '../../remittance/components/remittance.component';
 import {CallPreparationComponent} from '../../basic-call-procedure/components/call-preparation.component';
 import {StockReturnComponent} from '../../stock-return/components/stock-return.component';
+// import {UnservedOrderComponent} from '../../basic-call-procedure/components/unserved-order.component';
 
 
 import {HomeComponent} from '../../shared/components/home.component';
@@ -119,12 +121,22 @@ import {HomeComponent} from '../../shared/components/home.component';
         name: 'RetailerInventory',
         component: RetailerInventoryComponent
     },
+    {
+        path: 'bcpCollection',
+        name: 'BCPCollection',
+        component: BCPCollectionComponent
+    },
 
     {
         path: '/salesOrderPayment',
         name: 'SalesOrderPayment',
         component: SalesOrderPaymentComponent
     },
+    // {
+    //     path: '/unservedOrder',
+    //     name: 'UnservedOrder',
+    //     component: UnservedOrderComponent
+    // },
     // UNDER BCP TAB - END
 
     // UNDER CLOSE DAY TAB - START
