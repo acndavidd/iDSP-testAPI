@@ -10,53 +10,19 @@
                 <div class='cell icon'></div>
             </div>
         </div>
-    <div class="item-container" (click)="gotoCallPreparation()">
+    <div class="item-container" *ngFor="#each of vListRoute" (click)="gotoCallPreparation()">
         <div class="container">
             <div class='cell'>
-                <div class='container'><div class='cell left'>Rose Cell</div></div>
-                <div class='container'><div class='cell left italic'>99999900003</div></div>
+                <div class='container'><div class='cell left'>{{each.retailer_name}}</div></div>
+                <div class='container'><div class='cell left italic'>{{each.retailer_min}}</div></div>
                 <div class='container'><div class='cell left grey'>Amount payable (5)</div></div>
                 <div class='container'><div class='cell left grey'>Status</div></div>
             </div>
             <div class='cell'>
-                <div class='container'><div class='cell right green'>Route #2</div></div>
+                <div class='container'><div class='cell right green'>Route #{{each.seq}}</div></div>
                 <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'>3,000.00 ₱</div></div>
-                <div class='container'><div class='cell right bold dark-sea-green'>In Progress</div></div>
-            </div>
-            <div class='cell icon arrow-right'></div>
-        </div>
-    </div>
-    <div class="item-container" (click)="gotoCallPreparation()">
-        <div class="container">
-            <div class='cell'>
-                <div class='container'><div class='cell left'>Bird Cell</div></div>
-                <div class='container'><div class='cell left italic'>99999900002</div></div>
-                <div class='container'><div class='cell left grey'>Amount payable (2)</div></div>
-                <div class='container'><div class='cell left grey'>Status</div></div>
-            </div>
-            <div class='cell'>
-                <div class='container'><div class='cell right green'>Route #3</div></div>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'>8,000.00 ₱</div></div>
-                <div class='container'><div class='cell right bold vivid-pink'>Not Visited</div></div>
-            </div>
-            <div class='cell icon arrow-right'></div>
-        </div>
-    </div>
-    <div class="item-container" (click)="gotoCallPreparation()">
-        <div class="container">
-            <div class='cell'>
-                <div class='container'><div class='cell left'>Gloria Cell</div></div>
-                <div class='container'><div class='cell left italic'>99999900001</div></div>
-                <div class='container'><div class='cell left grey'>Amount payable</div></div>
-                <div class='container'><div class='cell left grey'>Status</div></div>
-            </div>
-            <div class='cell'>
-                <div class='container'><div class='cell right green'>Route #1</div></div>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'>5,000.00 ₱</div></div>
-                <div class='container'><div class='cell right bold green'>Visited</div></div>
+                <div class='container'><div class='cell right'>{{each.total_acr}} ₱</div></div>
+                <div class='container'><div ng-class="each.call_status==='Visited'? 'cell right bold red' : 'cell right bold green'">{{each.call_status}}</div></div>
             </div>
             <div class='cell icon arrow-right'></div>
         </div>

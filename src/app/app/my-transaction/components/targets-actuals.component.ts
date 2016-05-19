@@ -10,8 +10,10 @@ import { Pipe, PipeTransform } from 'angular2/core';
 
 @Component({
     selector: 'targets-actuals',
+    // to be uncommented for actual api
     // templateUrl: './app/my-transaction/components/targets-actuals.component.html',
-    templateUrl: './app/my-transaction/components/targets-actuals.component.html',
+    // to be uncommented for hardcoded values
+    templateUrl: './app/my-transaction/components/md-targets-actuals.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
