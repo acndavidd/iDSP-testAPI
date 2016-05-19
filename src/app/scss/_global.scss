@@ -346,14 +346,14 @@ LIST VIEW - TEXT
                     border: 1px solid $dark-grey;
                     width: 50%;
                     -webkit-appearance: none;
-                    border-radius: 3px;
+                    border-radius: 2vw;
                     padding-left: 15px;
                     font-size: $filter-select;
                     font-weight:lighter;
                     appearance: none;
                     cursor: pointer;
                     text-align: center;
-                    margin: 0% 0% 5% 50%;
+                    margin: 0% 0% 5% 40%;
                 }
             }
             &.left {
@@ -567,6 +567,48 @@ LIST VIEW - FILTER
                     background-image: url(#{$select-arrow});
                     background-position: right 0 top 50%;
                     background-repeat: no-repeat;
+                    .green{
+                    color: $apple;
+                    }
+                }
+            }
+        }
+    }
+
+        .filter-content{
+        background-color: $white;
+        width: 100%;
+        display: block;
+        clear: left;
+        height: 60px;
+        .filter-label {
+            font-size: $filter-label;
+            color: #000;
+            padding-top: 20px;
+            padding-left: 10px;
+            float: left;
+        }
+        .filter-dropdown {
+            padding-top: 15px;
+            // padding-left: 70px;
+            select {
+                background: $white;
+                height: 35px;
+                border: 1px solid $dark-grey;
+                width: 90%;
+                -webkit-appearance: none;
+                border-radius: 2vw;
+                padding-left: 15px;
+                font-size: $filter-select;
+                appearance: none;
+                margin: 0% 0% 5% 15%;
+                @media screen and (-webkit-min-device-pixel-ratio: 0) {
+                    background-image: url(#{$select-arrow});
+                    background-position: right 0 top 50%;
+                    background-repeat: no-repeat;
+                    &.green{
+                    color: $apple;
+                    }
                 }
             }
         }
