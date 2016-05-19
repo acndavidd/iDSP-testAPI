@@ -209,7 +209,7 @@ export class LayoutService {
                 search: false
             };
         } else if (
-            pCurrent === 'Call Preparation') {
+            pCurrent === 'CallPreparation') {
             // this._pageNavigationService.setPreviousPage('CloseDay');
             this._pageNavigationService.resetListPreviousData();
             this.vOldCurrentPage = 'BasicCallProcedure';
