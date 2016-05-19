@@ -15,8 +15,11 @@ import {NgModel} from 'angular2/common';
 
 export class CallPreparationComponent {
 
-    vMenuShow = false;
-    vArrowMap = false;
+    vProfileMenuShow = false;
+    vCollectionMenuShow = false;
+    vLoadMenuShow = false;
+    vPhysicalMenuShow = false;
+
     constructor (
         private _layoutService: LayoutService,
         private _matchMediaService: MatchMediaService,
@@ -33,5 +36,21 @@ export class CallPreparationComponent {
 
     gotoBCPActivityStep() {
         this._pageNavigationService.navigate('BCPActivityStep', null, null);
+    }
+
+    subProfileMenuShow() {
+        this.vProfileMenuShow = !this.vProfileMenuShow;
+    }
+
+    subCollectionMenuShow() {
+        this.vCollectionMenuShow = !this.vCollectionMenuShow;
+    }
+
+    subLoadMenuShow() {
+        this.vLoadMenuShow = !this.vLoadMenuShow;
+    }
+
+    subPhysicalMenuShow() {
+        this.vPhysicalMenuShow = !this.vPhysicalMenuShow;
     }
 }
