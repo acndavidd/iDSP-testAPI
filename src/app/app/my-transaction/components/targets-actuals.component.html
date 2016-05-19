@@ -20,7 +20,7 @@
 		<!-- <div class="item-container-md-ta" *ngFor="#prod_day of vShowProduct" > -->
 		<div class="item-container-md-ta" *ngFor="#eachCat of vShowProduct">
 	        <div class="container border">
-	        	<div class='cell category-icon call'></div>
+	        	<div class='cell category-icon targets-{{eachCat.category_name|lowercase}}'></div>
 	            <div class='cell'>
 	                <div class='container'><div class='cell category-text green'>{{eachCat.category_name}}</div></div>
 	            </div>
@@ -75,7 +75,7 @@
 	<div *ngIf="vWeekShow">
 				<div class="item-container-md-ta" *ngFor="#eachCat of vShowProduct">
 	        <div class="container border">
-	        	<div class='cell category-icon call'></div>
+	        	<div class='cell category-icon targets-{{eachCat.category_name|lowercase}}'></div>
 	            <div class='cell'>
 	                <div class='container'><div class='cell category-text green'>{{eachCat.category_name}}</div></div>
 	            </div>
@@ -130,7 +130,7 @@
 	<div *ngIf="vMonthShow">
 				<div class="item-container-md-ta" *ngFor="#eachCat of vShowProduct">
 	        <div class="container border">
-	        	<div class='cell category-icon call'></div>
+	        	<div class='cell category-icon targets-{{eachCat.category_name|lowercase}}'></div>
 	            <div class='cell'>
 	                <div class='container'><div class='cell category-text green'>{{eachCat.category_name}}</div></div>
 	            </div>
