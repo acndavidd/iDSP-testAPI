@@ -61,7 +61,7 @@ export class RetailerController{
 				sales_person : vSalesPerson
 			};
 
-			var vResult = await vOrmSvc.sp('query_retailer_summary', vParams );
+			var vResult = await vOrmSvc.sp('get_retailer_summary', vParams );
 			console.log("Query Done with result : "+ JSON.stringify(vResponse));
 			var vResponse = {
 						"status" : "Success",
@@ -183,7 +183,7 @@ export class RetailerController{
 				sales_person : vSalesPerson
 			};
 
-			var vResult = await vOrmSvc.sp('query_retailer_route', vParams );
+			var vResult = await vOrmSvc.sp('get_retailer_route', vParams );
 			console.log("Query Done with result : "+ JSON.stringify(vResponse));
 			var vResponse = {
 						"status" : "Success",

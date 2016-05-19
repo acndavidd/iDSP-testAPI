@@ -80,12 +80,19 @@
 				<div class="container">
 					<div class='cell icon inventory-load'></div>
 					<div class='cell'>
-				        <div class='container'><div class='cell left2 bold' [ngClass]="{title: vSubLoadMenuShow[i]}">Smartload</div></div>
-				        <div class='container'><div class='cell left2 grey' *ngIf="!vSubLoadMenuShow[i]">Ending Balance</div></div>
-				    </div>
-					<div class='cell'>
-				        <div class='container'><div class='cell right2'></div></div>
-				        <div class='container'><div class='cell right2 bold' *ngIf="!vSubLoadMenuShow[i]">700</div></div>
+				        <div class='container'><div class='cell content bold' [ngClass]="{title: vSubLoadMenuShow[i]}">Smartload</div></div>
+				        <div class='container' *ngIf="!vSubLoadMenuShow[i]">
+				        	<div class='cell'>
+				        		<div class="container">
+									<div class='cell'>
+								        <div class='container'><div class='cell left2'>Ending Balance</div></div>
+								    </div>
+									<div class='cell'>
+								        <div class='container'><div class='cell right2 bold'>700</div></div>
+								    </div>
+								</div>
+							</div>
+						</div>
 				    </div>
 				    <div class='cell icon arrow-down' [ngClass]="{selected: vSubLoadMenuShow[i]}"></div>
 				</div>
@@ -125,17 +132,23 @@
 				<div class="container">
 					<div class='cell icon inventory-physical'></div>
 					<div class='cell'>
-				        <div class='container'><div class='cell left2 bold' [ngClass]="{title: vSubPhysicalMenuShow[i]}">SKU1</div></div>
-				        <div class='container'><div class='cell left2 grey' *ngIf="!vSubPhysicalMenuShow[i]">Ending Balance</div></div>
-				    </div>
-					<div class='cell'>
-				        <div class='container'><div class='cell right2'></div></div>
-				        <div class='container'><div class='cell right2 bold' *ngIf="!vSubPhysicalMenuShow[i]">1,300</div></div>
+				        <div class='container'><div class='cell content bold' [ngClass]="{title: vSubPhysicalMenuShow[i]}">SKU1</div></div>
+				        <div class='container' *ngIf="!vSubPhysicalMenuShow[i]">
+				        	<div class='cell'>
+				        		<div class="container">
+									<div class='cell'>
+								        <div class='container'><div class='cell left2'>Ending Balance</div></div>
+								    </div>
+									<div class='cell'>
+								        <div class='container'><div class='cell right2 bold'>1,300</div></div>
+								    </div>
+								</div>
+							</div>
+						</div>
 				    </div>
 				    <div class='cell icon arrow-down' [ngClass]="{selected: vSubPhysicalMenuShow[i]}"></div>
 				</div>
 			</div>
-
 			<div class="item-container sub" *ngIf="vSubPhysicalMenuShow[i]">
 				<div class="container">
 					<div class='cell'>

@@ -10,7 +10,9 @@ import { Pipe, PipeTransform } from 'angular2/core';
 
 @Component({
     selector: 'targets-actuals',
+    // to be uncommented for actual api
     // templateUrl: './app/my-transaction/components/targets-actuals.component.html',
+    // to be uncommented for hardcoded values
     templateUrl: './app/my-transaction/components/md-targets-actuals.component.html',
     directives: [
         NgModel,
@@ -102,25 +104,12 @@ export class TargetsActualsComponent {
 
     getProduct() {
          console.log('Refresh PRoduct ' + this.vSelectedTab);
-         this._targetsActualsService.queryProduct(this.vSelectedTab).subscribe(
+         this._targetsActualsService.queryProduct(this.vSelectedTab, this.vSelectedBrand).subscribe(
              response => {
                 if (response.json().status === 'Success') {
-                    this.vListProduct = response.json().ProdList;
-                    this.vShowProduct = this.vListProduct.filter(
-                        prod => {
-                            return prod.brand === this.vSelectedBrand;
-                        });
-                    if (this.vShowProduct !== null) {
-                        var vPrev;
-                        this.vCatNameList = [];
-                        for (var i = 0; i < this.vShowProduct.length; i++) {
-                        if (this.vShowProduct[i].category_name !== vPrev) {
-                            vPrev = this.vShowProduct[i].category_name;
-                            console.log('dapet vPrev: ' + vPrev);
-                             this.vCatNameList.push(vPrev);
-                            }
-                        }
-                    }
+                    console.log('Query sukses ' + response.json());
+                    this.vListProduct = response.json().result;
+                     this.vShowProduct = this.vListProduct;
                 }
             },
             error => {}
@@ -166,8 +155,7 @@ export class TargetsActualsComponent {
     onChangeSelectBrand(pSelectedBrand) {
         this.vSelectedBrand = pSelectedBrand;
         console.log(this.vSelectedBrand + ' IS SELECTED');
-        this.vShowProd = this.vListProd.filter(prod => prod.brand === this.vSelectedBrand);
-        this.vShowProduct = this.vListProduct.filter(prod => prod.brand === this.vSelectedBrand);
+        this.getProduct();
     }
 
     getCatNameList() {

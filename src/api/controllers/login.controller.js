@@ -63,7 +63,11 @@ class LoginController {
                     ]);
                 });
             }).then(function (result) {
+                // Transaction has been committed
+                // result is whatever the result of the promise chain returned to the transaction callback
+                //console.log(t.)
                 pResponse.send("Success Transaction" + ' Time :' + new Date().toLocaleString() + " with ID : " + vOrder_id);
+                //Sample query and get Children and get 
                 var so = orm.getModel("trx_sales_order");
                 so.find({
                     where: { order_id: vOrder_id }
@@ -83,6 +87,9 @@ class LoginController {
                     });
                 });
             }).catch(function (err) {
+                // Transaction has been rolled back
+                // err is whatever rejected the promise chain returned to the transaction callback
+                //t.rollback();
                 pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
             });
         }

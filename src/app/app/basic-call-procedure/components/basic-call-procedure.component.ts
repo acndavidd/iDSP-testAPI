@@ -33,8 +33,8 @@ export class BasicCallProcedureComponent {
         return this._matchMediaService.getMm();
     }
 
-    gotoDetailRetailer() {
-        this._pageNavigationService.navigate('DetailRetailer', null, null);
+    gotoCallPreparation() {
+        this._pageNavigationService.navigate('CallPreparation', null, null);
         //this._pageNavigationService.navigate('BCPCollection', null, null);
     }
 }

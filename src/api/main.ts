@@ -21,7 +21,7 @@ var vRetailerCtrl:RetailerController = new RetailerController();
 var vLoginCtrl:LoginController = new LoginController();
 var vInventoryCtrl:InventoryController = new InventoryController();
 var vTargetsActualsCtrl:TargetsActualsController = new TargetsActualsController();
-var vAcc:AccController = new AccController();
+var vAccCtrl:AccController = new AccController();
 var vTokenSvc:TokenService = new TokenService();
 var vOrmSvc:ORMService = new ORMService();
 
@@ -135,7 +135,7 @@ vRouter.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
 vRouter.get('/logout',vLoginCtrl.logout);
 vRouter.get('/targetsActuals',vTargetsActualsCtrl.getBrand);
 vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
-vRouter.get('/getAccountsReceivables',vAcc.getAccountsReceivables);
+vRouter.post('/getAccountsReceivables',vAccCtrl.getAccountsReceivables);
 
 vRouter.get('/getProductCategory',vTargetsActualsCtrl.getProdCat);
 vRouter.get('/getProductSubCategory',vTargetsActualsCtrl.getProdSubCat);

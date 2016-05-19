@@ -102,11 +102,6 @@ export class LeftMenuComponent implements OnInit  {
         this.checkCurrentPage(this.vGoToPage);
     }
 
-    goToTargetsActuals() {
-        this.vGoToPage = 'CDTargetsActuals';
-        this.checkCurrentPage(this.vGoToPage);
-    }
-
     goToVisitedRetailerRoute() {
         this.vGoToPage = 'VisitedRetail';
         this.checkCurrentPage(this.vGoToPage);
@@ -118,13 +113,13 @@ export class LeftMenuComponent implements OnInit  {
     }
 
     goToRemittance() {
-        // this.vGoToPage = 'Remittance';
-        // this.checkCurrentPage(this.vGoToPage);
+        this.vGoToPage = 'Remittance';
+        this.checkCurrentPage(this.vGoToPage);
     }
 
     goToStockReturn() {
-        // this.vGoToPage = 'StockReturn';
-        // this.checkCurrentPage(this.vGoToPage);
+        this.vGoToPage = 'StockReturn';
+        this.checkCurrentPage(this.vGoToPage);
     }
 
     goToLogout() {

@@ -130,7 +130,8 @@ export class LayoutService {
             pCurrent === 'GetStarted' ||
             pCurrent === 'Verification' ||
             pCurrent === 'Login' ||
-            pCurrent === 'Mpin') {
+            pCurrent === 'Mpin' ||
+            pCurrent === 'SkipSalesOrder') {
             this._pageNavigationService.resetListPreviousData();
             this.vLayoutState = {
                 appHeader: false,
@@ -187,7 +188,6 @@ export class LayoutService {
             };
         } else if (
             pCurrent === 'Collection' ||
-            pCurrent === 'StockReturn' ||
             pCurrent === 'Sync') {
             // this._pageNavigationService.setPreviousPage('CloseDay');
             this._pageNavigationService.resetListPreviousData();
@@ -205,6 +205,28 @@ export class LayoutService {
             this.vHeaderItem = {
                 hamburger: true,
                 back: false,
+                filter: false,
+                edit: false,
+                search: false
+            };
+        } else if (
+            pCurrent === 'CallPreparation') {
+            // this._pageNavigationService.setPreviousPage('CloseDay');
+            this._pageNavigationService.resetListPreviousData();
+            this.vOldCurrentPage = 'BasicCallProcedure';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
+
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+
+            this.vHeaderItem = {
+                hamburger: false,
+                back: true,
                 filter: false,
                 edit: false,
                 search: false
@@ -291,26 +313,6 @@ export class LayoutService {
                 edit: false,
                 search: false
             };
-        } else if (pCurrent === 'CDTargetsActuals') {
-            // this._pageNavigationService.setPreviousPage('CloseDay');
-            this._pageNavigationService.resetListPreviousData();
-            this.vOldCurrentPage = 'CloseDay';
-            this.vOldCurrentPageParams = null;
-            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
-
-            this.vLayoutState = {
-                appHeader: true,
-                appFooter: false,
-                leftMenu: false
-            };
-
-            this.vHeaderItem = {
-                hamburger: true,
-                back: false,
-                filter: true,
-                edit: false,
-                search: false
-            };
         } else if (pCurrent === 'VisitedRetail') {
             // this._pageNavigationService.setPreviousPage('CloseDay');
             this._pageNavigationService.resetListPreviousData();
@@ -334,11 +336,11 @@ export class LayoutService {
 
             this.vLayoutState = {
                 appHeader: true,
-                appFooter: true,
+                appFooter: false,
                 leftMenu: false
             };
             this.vHeaderItem = {
-                hamburger: true,
+                hamburger: false,
                 back: true,
                 filter: false,
                 edit: false,
