@@ -101,7 +101,7 @@ export class TargetsActualsComponent {
     }
 
     getProduct() {
-         console.log('Refresh PRoduct ' + this.vSelectedTab);
+         console.log ('Refresh PRoduct ' + this.vSelectedTab);
          this._targetsActualsService.queryProduct(this.vSelectedTab).subscribe(
              response => {
                 if (response.json().status === 'Success') {
@@ -110,15 +110,14 @@ export class TargetsActualsComponent {
                         prod => {
                             return prod.brand === this.vSelectedBrand;
                         });
-                    if(this.vShowProduct !== null){
+                    if (this.vShowProduct !== null) {
                         var vPrev;
                         for (var i = 0; i < this.vShowProduct.length; i++) {
-                        if(this.vShowProduct[i].category_name !== vPrev){
+                        if (this.vShowProduct[i].category_name !== vPrev) {
                             vPrev = this.vShowProduct[i].category_name;
-                            console.log('dapet vPrev: '+vPrev);
+                            console.log ('dapet vPrev: ' + vPrev);
                              this.vCatNameList.push(vPrev);
                         }
-                           
                         }
                     }
                 }
@@ -165,15 +164,13 @@ export class TargetsActualsComponent {
 
     onChangeSelectBrand(pSelectedBrand) {
         this.vSelectedBrand = pSelectedBrand;
-        console.log(this.vSelectedBrand + " IS SELECTED");
-        this.vShowProd = this.vListProd.filter(prod => prod.brand == this.vSelectedBrand);
-        this.vShowProduct = this.vListProduct.filter(prod => prod.brand == this.vSelectedBrand);
-    } 
-
-    getCatNameList(){
+        console.log(this.vSelectedBrand + ' IS SELECTED');
+        this.vShowProd = this.vListProd.filter(prod => prod.brand === this.vSelectedBrand);
+        this.vShowProduct = this.vListProduct.filter(prod => prod.brand === this.vSelectedBrand);
+    }
+    getCatNameList() {
         return this.vCatNameList;
-    } 
-
+    }
 
     // getProduct()
     // {
