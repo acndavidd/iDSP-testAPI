@@ -35,7 +35,7 @@ function bootstrapWeb() {
     });
     System.import('app/main')
     .then(null, console.error.bind(console));
-    ga('create', 'UA-75852872-3', 'auto');
+    ga('create', 'UA-75852872-3', 'auto');    
 }
 
 function bootstrapApp() {
@@ -61,6 +61,7 @@ function bootstrapApp() {
     ga('set','checkProtocolTask',null);
     ga('set','checkStorageTask',null);
     //document.addEventListener("backbutton", onBackKeyDown, false);
+
     console.log("this device is :" + device.cordova);
 }
 
