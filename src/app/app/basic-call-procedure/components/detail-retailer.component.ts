@@ -73,7 +73,7 @@ export class DetailRetailerComponent {
         return this._matchMediaService.getMm();
     }
 
-	getRetailer() {
+    getRetailer() {
         return this.vSelectedRetail;
     }
 
