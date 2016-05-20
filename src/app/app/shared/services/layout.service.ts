@@ -22,7 +22,8 @@ export class LayoutService {
         filterDSPAlerts: false,
         filterAccReceivables: false,
         filterRetailerRoute: false,
-        filterRetailerInventory: false
+        filterRetailerInventory: false,
+        filterRetailerBCP: false
     };
 
     vLayoutState = {
@@ -141,7 +142,6 @@ export class LayoutService {
         }
         else if (
             pCurrent === 'MyTransaction' ||
-            pCurrent === 'BasicCallProcedure' ||
             pCurrent === 'CloseDay' ||
             pCurrent === 'Remittance' ||
             pCurrent === 'StockReturn' ||
@@ -348,6 +348,23 @@ export class LayoutService {
                 search: false
             };
         }
+        else if( pCurrent === 'BasicCallProcedure'){
+            this._pageNavigationService.resetListPreviousData();
+
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+
+            this.vHeaderItem = {
+                hamburger: true,
+                back: false,
+                filter: true,
+                edit: false,
+                search: false
+            };
+        }
 
         console.log('In Layout Current Page ' + pCurrent);
         this._pageNavigationService.setCurrentPage(pCurrent);
@@ -361,6 +378,7 @@ export class LayoutService {
         this.vFilter.filterDSPAlerts = !this.vFilter.filterDSPAlerts;
         this.vFilter.filterRetailerRoute = !this.vFilter.filterRetailerRoute;
         this.vFilter.filterRetailerInventory = !this.vFilter.filterRetailerInventory;
+        this.vFilter.filterRetailerBCP = !this.vFilter.filterRetailerBCP;
     }
 
     setSearch() {

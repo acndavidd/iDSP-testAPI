@@ -7,190 +7,195 @@
 			    <div class='cell icon arrow-down' [ngClass]="{selected: vProfileMenuShow}"></div>
 			</div>
 		</div>
-		<div class="item-container sub" *ngIf="vProfileMenuShow">
-			<div class="container border">
-				<div class='cell'>
-			        <div class='container'><div class='cell single sub-cell grey'>Retailer Owner</div></div>
-			        <div class='container'><div class='cell single sub-cell'>Rose May Shu</div></div>
-			    </div>
-			    <div class='cell icon'></div>
+		<div *ngFor="#each of getRetailerDetails()">
+			<div class="item-container sub" *ngIf="vProfileMenuShow">
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell single sub-cell grey'>Retailer Owner</div></div>
+				        <div class='container'><div class='cell single sub-cell'>{{each.owner_name}}</div></div>
+				    </div>
+				    <div class='cell icon'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell single sub-cell grey'>Civil Status</div></div>
+				        <div class='container'><div class='cell single sub-cell'>{{each.civil_status}}</div></div>
+				    </div>
+				    <div class='cell icon'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell single sub-cell grey'>Email Address</div></div>
+				        <div class='container'><div class='cell single sub-cell'>{{each.email}}</div></div>
+				    </div>
+				    <div class='cell icon'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell single sub-cell grey'>Gender</div></div>
+				        <div class='container'><div class='cell single sub-cell'>{{each.gender}}</div></div>
+				    </div>
+				    <div class='cell icon'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell single sub-cell grey'>Birthday</div></div>
+				        <div class='container'><div class='cell single sub-cell'>{{each.birthday}}</div></div>
+				    </div>
+				    <div class='cell icon'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell single sub-cell grey'>Mobile Number (MIN)</div></div>
+				        <div class='container'><div class='cell single sub-cell'>{{each.retailer_min}}</div></div>
+				    </div>
+				    <a href="tel:99999900089" class='cell icon call'></a>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell single sub-cell grey'>Address</div></div>
+				        <div class='container'><div class='cell single sub-cell'>{{each.retailer_address}}</div></div>
+				    </div>
+				    <div class='cell icon'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell single sub-cell grey'>Amount Receivables</div></div>
+				        <div class='container'><div class='cell single sub-cell'>{{each.total_ar}} ₱</div></div>
+				    </div>
+				    <div class='cell icon'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell single sub-cell grey'>Value Segment</div></div>
+				        <div class='container'><div class='cell single sub-cell'>{{each.value_segment}}</div></div>
+				    </div>
+				    <div class='cell icon'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell single sub-cell grey'>Threshold</div></div>
+				        <div class='container'><div class='cell single sub-cell'>{{each.threshold_hit}} ₱ </div></div>
+				    </div>
+				    <div class='cell icon'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell single sub-cell grey'>Status</div></div>
+				        <div class='container'><div class='cell single sub-cell'>In Progress</div></div>
+				    </div>
+				    <div class='cell icon'></div>
+				</div>
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell single sub-cell grey'>Last Visit</div></div>
+				        <div class='container'><div class='cell single sub-cell'>{{each.last_visit}}</div></div>
+				    </div>
+				    <div class='cell icon'></div>
+				</div>
 			</div>
-			<div class="container border">
-				<div class='cell'>
-			        <div class='container'><div class='cell single sub-cell grey'>Civil Status</div></div>
-			        <div class='container'><div class='cell single sub-cell'>Married</div></div>
-			    </div>
-			    <div class='cell icon'></div>
-			</div>
-			<div class="container border">
-				<div class='cell'>
-			        <div class='container'><div class='cell single sub-cell grey'>Email Address</div></div>
-			        <div class='container'><div class='cell single sub-cell'>rose_cell@yahoo.com</div></div>
-			    </div>
-			    <div class='cell icon'></div>
-			</div>
-			<div class="container border">
-				<div class='cell'>
-			        <div class='container'><div class='cell single sub-cell grey'>Gender</div></div>
-			        <div class='container'><div class='cell single sub-cell'>Female</div></div>
-			    </div>
-			    <div class='cell icon'></div>
-			</div>
-			<div class="container border">
-				<div class='cell'>
-			        <div class='container'><div class='cell single sub-cell grey'>Birthday</div></div>
-			        <div class='container'><div class='cell single sub-cell'>12 October 2016</div></div>
-			    </div>
-			    <div class='cell icon'></div>
-			</div>
-			<div class="container border">
-				<div class='cell'>
-			        <div class='container'><div class='cell single sub-cell grey'>Mobile Number (MIN)</div></div>
-			        <div class='container'><div class='cell single sub-cell'>99999900089</div></div>
-			    </div>
-			    <a href="tel:99999900089" class='cell icon call'></a>
-			</div>
-			<div class="container border">
-				<div class='cell'>
-			        <div class='container'><div class='cell single sub-cell grey'>Address</div></div>
-			        <div class='container'><div class='cell single sub-cell'>Maduluyong 10 Road</div></div>
-			    </div>
-			    <div class='cell icon'></div>
-			</div>
-			<div class="container border">
-				<div class='cell'>
-			        <div class='container'><div class='cell single sub-cell grey'>Amount Receivables</div></div>
-			        <div class='container'><div class='cell single sub-cell'>3,000.00 ₱</div></div>
-			    </div>
-			    <div class='cell icon'></div>
-			</div>
-			<div class="container border">
-				<div class='cell'>
-			        <div class='container'><div class='cell single sub-cell grey'>Value Segment</div></div>
-			        <div class='container'><div class='cell single sub-cell'>High</div></div>
-			    </div>
-			    <div class='cell icon'></div>
-			</div>
-			<div class="container border">
-				<div class='cell'>
-			        <div class='container'><div class='cell single sub-cell grey'>Threshold</div></div>
-			        <div class='container'><div class='cell single sub-cell'>1,000.00 ₱ </div></div>
-			    </div>
-			    <div class='cell icon'></div>
-			</div>
-			<div class="container border">
-				<div class='cell'>
-			        <div class='container'><div class='cell single sub-cell grey'>Status</div></div>
-			        <div class='container'><div class='cell single sub-cell'>In Progress</div></div>
-			    </div>
-			    <div class='cell icon'></div>
-			</div>
-			<div class="container">
-				<div class='cell'>
-			        <div class='container'><div class='cell single sub-cell grey'>Last Visit</div></div>
-			        <div class='container'><div class='cell single sub-cell'>04/12/2016 03.16 PM</div></div>
-			    </div>
-			    <div class='cell icon'></div>
-			</div>
-		</div>
 
-        <div class="item-container" (click)="subCollectionMenuShow()">
-			<div class="container">
-				<div class='cell'>
-			        <div class='container'><div class='cell title single green'>Collection</div></div>
-			    </div>
-			    <div class='cell icon arrow-down' [ngClass]="{selected: vCollectionMenuShow}"></div>
+	        <div class="item-container" (click)="subCollectionMenuShow()">
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell title single green'>Collection</div></div>
+				    </div>
+				    <div class='cell icon arrow-down' [ngClass]="{selected: vCollectionMenuShow}"></div>
+				</div>
 			</div>
-		</div>
-		<div class="item-container sub" *ngIf="vCollectionMenuShow">
-			<div class="container">
-				<div class='cell'>
-			        <div class='container'><div class='cell left sub-cell'>Date</div></div>
-			        <div class='container'><div class='cell left sub-cell'>04/03/2016</div></div>
-			        <div class='container'><div class='cell left sub-cell'>04/02/2016</div></div>
-			        <div class='container'><div class='cell left sub-cell'>04/01/2016</div></div>
-			    </div>
-				<div class='cell'>
-			        <div class='container'><div class='cell right'>Amount</div></div>
-			        <div class='container'><div class='cell right'>800 ₱</div></div>
-			        <div class='container'><div class='cell right'>1,200 ₱</div></div>
-			        <div class='container'><div class='cell right'>400 ₱</div></div>
-			    </div>
-			    <div class='cell icon'></div>
+			<div class="item-container sub" *ngIf="vCollectionMenuShow">
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell left sub-cell'>Date</div></div>
+				        <div *ngFor="#date of each.coll_date">
+			        		<div class='container'>
+			        		<div class='cell left sub-cell'>{{date.trans_date}}</div>
+				        	</div>
+				        </div>
+				    </div>
+					<div class='cell'>
+				        <div class='container'><div class='cell right'>Amount</div></div>
+				        <div *ngFor="#amount of each.coll_amount">
+				        	<div class='container'>
+				        	<div class='cell right'>{{amount.amount}} ₱</div></div>
+				        </div>
+				    </div>
+				    <div class='cell icon'></div>
+				</div>
 			</div>
-		</div>
 
-        <div class="item-container" (click)="subLoadMenuShow()">
-			<div class="container">
-				<div class='cell'>
-			        <div class='container'><div class='cell title single green'>Load Wallet</div></div>
-			    </div>
-			    <div class='cell icon arrow-down' [ngClass]="{selected: vLoadMenuShow}"></div>
+	        <div class="item-container" (click)="subLoadMenuShow()">
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell title single green'>Load Wallet</div></div>
+				    </div>
+				    <div class='cell icon arrow-down' [ngClass]="{selected: vLoadMenuShow}"></div>
+				</div>
 			</div>
-		</div>
-		<div class="item-container sub" *ngIf="vLoadMenuShow">
-			<div class="container">
-				<div class='cell'>
-			        <div class='container'><div class='cell single sub-cell title bold'>SmartLoad</div></div>
-			        <div class='container'>
-			        	<div class='cell single sub-cell'>
-							<div class="container">
-								<div class='cell'>
-							        <div class='container'><div class='cell left'>Drop Size</div></div>
-							        <div class='container'><div class='cell left'>Last Amount Transferred</div></div>
-							        <div class='container'><div class='cell left'>Transaction Date</div></div>
-							        <div class='container'><div class='cell left'>Latest Balance</div></div>
-							    </div>
-								<div class='cell'>
-							        <div class='container'><div class='cell right'>350</div></div>
-							        <div class='container'><div class='cell right'>1,200 ₱</div></div>
-							        <div class='container'><div class='cell right'>04/01/2016</div></div>
-							        <div class='container'><div class='cell right'>1,000 ₱</div></div>
-							    </div>
-							</div>
-			        	</div>
-			        </div>
-			    </div>
-			    <div class='cell icon'></div>
+			<div class="item-container sub" *ngIf="vLoadMenuShow">
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell single sub-cell title bold'>SmartLoad</div></div>
+				        <div class='container'>
+				        	<div class='cell single sub-cell'>
+								<div class="container">
+									<div class='cell'>
+								        <div class='container'><div class='cell left'>Drop Size</div></div>
+								        <div class='container'><div class='cell left'>Last Amount Transferred</div></div>
+								        <div class='container'><div class='cell left'>Transaction Date</div></div>
+								        <div class='container'><div class='cell left'>Latest Balance</div></div>
+								    </div>
+									<div class='cell'>
+								        <div class='container'><div class='cell right'>350</div></div>
+								        <div class='container'><div class='cell right'>1,200 ₱</div></div>
+								        <div class='container'><div class='cell right'>04/01/2016</div></div>
+								        <div class='container'><div class='cell right'>1,000 ₱</div></div>
+								    </div>
+								</div>
+				        	</div>
+				        </div>
+				    </div>
+				    <div class='cell icon'></div>
+				</div>
 			</div>
-		</div>
 
-        <div class="item-container" (click)="subPhysicalMenuShow()">
-			<div class="container">
-				<div class='cell'>
-			        <div class='container'><div class='cell title single green'>Physical Inventory</div></div>
-			    </div>
-			    <div class='cell icon arrow-down' [ngClass]="{selected: vPhysicalMenuShow}"></div>
+	        <div class="item-container" (click)="subPhysicalMenuShow()">
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell title single green'>Physical Inventory</div></div>
+				    </div>
+				    <div class='cell icon arrow-down' [ngClass]="{selected: vPhysicalMenuShow}"></div>
+				</div>
 			</div>
-		</div>
-		<div class="item-container sub" *ngIf="vPhysicalMenuShow">
-			<div class="container">
-				<div class='cell'>
-			        <div class='container'><div class='cell single sub-cell title bold'>SKU1</div></div>
-			        <div class='container'>
-			        	<div class='cell single sub-cell'>
-							<div class="container">
-								<div class='cell'>
-							        <div class='container'><div class='cell left'>Last Quantity Sold</div></div>
-							        <div class='container'><div class='cell left'>Transaction Date</div></div>
-							        <div class='container'><div class='cell left'>Beginning Balance</div></div>
-							    </div>
-								<div class='cell'>
-							        <div class='container'><div class='cell right'>600</div></div>
-							        <div class='container'><div class='cell right'>04/01/2016</div></div>
-							        <div class='container'><div class='cell right'>1,100</div></div>
-							    </div>
-							</div>
-			        	</div>
-			        </div>
-			    </div>
-			    <div class='cell icon'></div>
+			<div class="item-container sub" *ngIf="vPhysicalMenuShow">
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell single sub-cell title bold'>SKU1</div></div>
+				        <div class='container'>
+				        	<div class='cell single sub-cell'>
+								<div class="container">
+									<div class='cell'>
+								        <div class='container'><div class='cell left'>Last Quantity Sold</div></div>
+								        <div class='container'><div class='cell left'>Transaction Date</div></div>
+								        <div class='container'><div class='cell left'>Beginning Balance</div></div>
+								    </div>
+									<div class='cell'>
+								        <div class='container'><div class='cell right'>600</div></div>
+								        <div class='container'><div class='cell right'>04/01/2016</div></div>
+								        <div class='container'><div class='cell right'>1,100</div></div>
+								    </div>
+								</div>
+				        	</div>
+				        </div>
+				    </div>
+				    <div class='cell icon'></div>
+				</div>
 			</div>
-		</div>
 
-	    <div class="no-divider">
-	        <div class= "button" (click)="gotoBCPActivityStep()">
-	            <div class="button-identifier">START</div>
-	        </div>      
+		    <div class="no-divider">
+		        <div class= "button" (click)="gotoBCPActivityStep()">
+		            <div class="button-identifier">START</div>
+		        </div>      
+		    </div>
 	    </div>
     </div>
