@@ -46,4 +46,8 @@ export class BCPCollectionComponent {
         this.vPaymentShow = !this.vPaymentShow;
         this.vArrowMap = !this.vArrowMap;
     }
+
+    gotoBCPActivityStep() {
+        this._pageNavigationService.navigate('BCPActivityStep', null, null);
+    }
 }

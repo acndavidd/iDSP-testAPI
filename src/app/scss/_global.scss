@@ -382,7 +382,7 @@ LIST VIEW - TEXT
                 width: 85%;
                 padding-left:0.6em;
             }
-            
+
             &.percent-100{
                 padding-left:0.6em;
                 width:100px;
@@ -512,6 +512,12 @@ LIST VIEW - ICON
             }
             &.edit-gray {
                 background: url(#{$icon-edit-gray})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 6vw;
+            }
+            &.add {
+                background: url(#{$icon-add)no-repeat;
                 background-position-x: center;
                 background-position-y: center;
                 background-size: 6vw;
