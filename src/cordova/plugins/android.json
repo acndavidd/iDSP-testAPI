@@ -1,0 +1,24 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "ph.com.smart.idsp"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "ph.com.smart.idsp"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "ph.com.smart.idsp"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "ph.com.smart.idsp"
+        }
+    },
+    "dependent_plugins": {}
+}

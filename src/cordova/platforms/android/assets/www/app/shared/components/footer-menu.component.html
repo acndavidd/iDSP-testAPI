@@ -1,0 +1,21 @@
+ <div class="footer-menu" *ngIf="getLayout().appFooter">
+    <div class="column" (click)="goToMyTransaction()">
+      <div class="my-transaction" [ngClass]="{ active : getFooterState().myTransaction}"></div>
+      <div class="text"[ngClass]="{ active : getFooterState().myTransaction}">My Transaction</div>
+   </div>
+ 
+   <div class="column" (click)="goToBasicCallProcedure()">
+      <div class="basic-procedure" [ngClass]="{ active : getFooterState().basicCallProcedure}"></div>
+      <div class="text" [ngClass]="{ active : getFooterState().basicCallProcedure}">Basic Procedure</div>
+   </div>
+ 
+   <div class="column" (click)="goToCloseDay()">
+      <div class="close-day" [ngClass]="{ active : getFooterState().closeDay}"></div>
+      <div class="text" [ngClass]="{ active : getFooterState().closeDay}">Close Day</div> 
+   </div>
+ 
+   <div class="column" (click)="goToSettings()">
+      <div class="settings" [ngClass]="{ active : getFooterState().settings}"></div>
+      <div class="text" [ngClass]="{ active : getFooterState().settings}">Settings</div>
+   </div>
+ </div>

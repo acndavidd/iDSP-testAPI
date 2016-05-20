@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg5858"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="icon-edit-round-flat-bcp.svg"
+   inkscape:export-filename="C:\Users\a.saraswati\Documents\IDSP\Design\assets\icon-idsp\icon-edit-round-flat\icon-edit-round-flat-bcp.png"
+   inkscape:export-xdpi="148.05"
+   inkscape:export-ydpi="148.05">
+  <defs
+     id="defs5860" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="557.33618"
+     inkscape:cy="385.09781"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="553"
+     inkscape:window-height="464"
+     inkscape:window-x="485"
+     inkscape:window-y="95"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5863">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       style="display:inline"
+       transform="matrix(0.44330266,0,0,0.44330266,548.68408,658.73371)"
+       id="g4823-9-4-6-5">
+      <path
+         style="fill:#ffffff"
+         inkscape:connector-curvature="0"
+         id="path1-7-9-6-4-2"
+         transform="matrix(0.8125,0,0,0.8125,11.141782,11)"
+         d="m 11.623993,16.419998 0,1.830002 1.559996,0 c 1.877991,0 3.354004,-0.610001 4.428009,-1.830002 z m 0,-5.86499 0,2.610001 7.924987,0 c 0.101013,-0.475007 0.151001,-0.960007 0.151001,-1.450013 0,-0.36 -0.04199,-0.744995 -0.125,-1.159988 z m 0,-5.0250092 0,1.7649994 6.213988,0 C 16.764983,6.1200027 15.213988,5.5299988 13.183989,5.5299988 z M 3.4979857,0 14.592986,0 c 3.588989,0 6.436005,0.625 8.541992,1.8850021 2.105011,1.2549973 3.552002,3.0599976 4.339997,5.4099961 l 4.176025,0 0,3.2799988 -3.522003,0 c 0.017,0.105011 0.03299,0.255005 0.04999,0.460007 0.017,0.199997 0.02499,0.375 0.02499,0.524994 0,0.294998 -0.01199,0.565002 -0.03799,0.800003 -0.02499,0.240005 -0.05399,0.505004 -0.08798,0.805008 l 3.572998,0 0,3.254989 -4.705017,0 c -0.53598,1.13501 -1.233002,2.154999 -2.087982,3.070007 -0.855011,0.914994 -1.845002,1.694993 -2.969025,2.330002 -1.122986,0.644989 -2.360992,1.134995 -3.710999,1.485001 -1.350982,0.349991 -2.787994,0.524994 -4.315002,0.524994 l -2.238982,0 0,8.169998 -8.1260073,0 0,-15.580002 -3.4979857,0 0,-3.254989 3.4979857,0 0,-2.610001 -3.4979857,0 0,-3.2600098 3.4979857,0 z" />
+    </g>
+    <path
+       sodipodi:type="arc"
+       style="fill:#73d216;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       id="path4337-1-9-9-0-4-4-0"
+       sodipodi:cx="409.11179"
+       sodipodi:cy="498.79858"
+       sodipodi:rx="34.345188"
+       sodipodi:ry="34.345188"
+       d="m 443.45697,498.79858 a 34.345188,34.345188 0 1 1 -68.69037,0 34.345188,34.345188 0 1 1 68.69037,0 z"
+       transform="matrix(0.53098696,0,0,0.51085861,341.63388,415.20389)" />
+    <path
+       inkscape:connector-curvature="0"
+       d="M 566.86694,662.31259 H 550.8669 c -1.11,0 -1.99,0.89 -1.99,2 l -0.01,12 c 0,1.11 0.89,2 2,2 h 16.00004 c 1.11,0 2,-0.89 2,-2 v -12 c 0,-1.11 -0.89,-2 -2,-2 z m 0,14 H 550.8669 v -6 h 16.00004 v 6 z m 0,-10 H 550.8669 v -2 h 16.00004 v 2 z"
+       id="path6-8-7-3"
+       style="fill:#ffffff;display:inline" />
+  </g>
+</svg>

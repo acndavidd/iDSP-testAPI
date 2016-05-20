@@ -1,0 +1,99 @@
+<div class="accounts-receivables">	
+	<div class="filter-container" *ngIf="getFilter().filterAccReceivables">
+		<div class="filter-input input">
+			<div class="icon"></div>
+			<input type="text" #listFilter (keyup)="onKey(listFilter.value)" id="RetailerSearchBox" placeholder="Input Retailer Name or MIN" />
+		</div>	
+	</div>
+</div>
+<div class="container-body">
+    <div class="item-container">
+        <div class='container'>
+            <div class='cell'>
+            	<div class='container'><div class='cell header bold center title'>Total Receivables : 12,400.00 ₱</div></div>
+            </div>
+        </div>
+    </div>
+	<div class="item-container">
+	    <div class="container">
+	        <div class='cell'>
+                <div class='container' id ="accSeq"><div class='cell left green'># Route 2</div></div>
+                <div class='container' id ="accRetName"><div class='cell left'>Bird cell</div></div>
+                <div class='container' id ="accRetMin"><div class='cell left italic'>99999900002</div></div>
+	        </div>
+	        <div class='cell'>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container' id ="accAmount"><div class='cell right'>3,000.00 ₱</div></div>
+                <div class='container'><div class='cell right'></div></div>
+	        </div>
+	            <div class='cell icon'></div>
+	    </div>
+	</div>
+	<div class="item-container">
+	    <div class="container">
+	        <div class='cell'>
+                <div class='container' id ="accSeq"><div class='cell left green'># Route 3</div></div>
+                <div class='container' id ="accRetName"><div class='cell left'>Rose cell</div></div>
+                <div class='container' id ="accRetMin"><div class='cell left italic'>99999900003</div></div>
+	        </div>
+	        <div class='cell'>
+                <div class='container'><div class='cell right'></div></div>
+                <div class='container' id ="accAmount"><div class='cell right'>2,000.00 ₱</div></div>
+                <div class='container'><div class='cell right'></div></div>
+	        </div>
+	            <div class='cell icon'></div>
+	    </div>
+	</div>
+	<div class="item-container">
+	    <div class="container">
+	        <div class='cell'>
+                <div class='container' id ="accRetName"><div class='cell left'>ABC cell</div></div>
+                <div class='container' id ="accRetMin"><div class='cell left italic'>99999900004</div></div>
+	        </div>
+	        <div class='cell'>
+                <div class='container' id ="accAmount"><div class='cell right'>1,400.00 ₱</div></div>
+                <div class='container'><div class='cell right'></div></div>
+	        </div>
+	            <div class='cell icon'></div>
+	    </div>
+	</div>
+	<div class="item-container">
+	    <div class="container">
+	        <div class='cell'>
+                <div class='container' id ="accRetName"><div class='cell left'>Lova cell</div></div>
+                <div class='container' id ="accRetMin"><div class='cell left italic'>99999900005</div></div>
+	        </div>
+	        <div class='cell'>
+                <div class='container' id ="accAmount"><div class='cell right'>6,000.00 ₱</div></div>
+                <div class='container'><div class='cell right'></div></div>
+	        </div>
+	            <div class='cell icon'></div>
+	    </div>
+	</div>
+	<div class="item-container">
+	    <div class="container">
+	        <div class='cell'>
+                <div class='container' id ="accRetName"><div class='cell left'>Mama cell</div></div>
+                <div class='container' id ="accRetMin"><div class='cell left italic'>99999900006</div></div>
+	        </div>
+	        <div class='cell'>
+                <div class='container' id ="accAmount"><div class='cell right'>7,000.00 ₱</div></div>
+                <div class='container'><div class='cell right'></div></div>
+	        </div>
+	            <div class='cell icon'></div>
+	    </div>
+	</div>
+				<div class="item-container">
+	    <div class="container">
+	        <div class='cell'>
+                <div class='container' id ="accRetName"><div class='cell left'>Nano cell</div></div>
+                <div class='container' id ="accRetMin"><div class='cell left italic'>99999900007</div></div>
+	        </div>
+	        <div class='cell'>
+                <div class='container' id ="accAmount"><div class='cell right'>4,500.00 ₱</div></div>
+                <div class='container'><div class='cell right'></div></div>
+	        </div>
+	            <div class='cell icon'></div>
+	    </div>
+	</div>
+</div>
