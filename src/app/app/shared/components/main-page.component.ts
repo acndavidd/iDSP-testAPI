@@ -26,6 +26,8 @@ import {CallPreparationComponent} from '../../basic-call-procedure/components/ca
 import {StockReturnComponent} from '../../stock-return/components/stock-return.component';
 // import {UnservedOrderComponent} from '../../basic-call-procedure/components/unserved-order.component';
 import {OfferComponent} from '../../basic-call-procedure/components/bcp-offer.component';
+import {MpinComponent} from '../../login/components/mpin.component';
+import {LoginComponent} from '../../login/components/login.component';
 
 import {HomeComponent} from '../../shared/components/home.component';
 
@@ -45,6 +47,11 @@ import {HomeComponent} from '../../shared/components/home.component';
         path: '/home',
         name: 'Home',
         component: HomeComponent
+    },
+    {
+        path: '/Mpin',
+        name: 'Mpin',
+        component: MpinComponent
     },
     {
         path: '/myTransaction',
