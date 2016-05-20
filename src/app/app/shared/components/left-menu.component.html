@@ -1,21 +1,9 @@
 <div class="left-menu-container" [ngClass]="{active : getLeftMenuState()}">
-    <!-- <div class="menu-header">
-        <div class="header-container">
-            <div class="header-cell pic">
-                <img src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif" class="menu-pic" id="menuPic" (click)="takepic()"/>
-            </div>
-            <div class="header-cell text">
-                Tamara Josh Honey Panda
-            </div>
-        </div>
-    </div> -->
-
-
     <div class="menu-header">
         <div class="header-container">
             <div class="header-cell pic">
                 <!--<input type="file" />-->
-                <img src="/img/Transparent.gif" class="menu-pic" id="menuPic" (click)="takepic()"/>
+                <img class="menu-pic" id="menuPic" (click)="takepic()"/>
             </div>
             <div class="header-cell">
                 <div class="header-container">
@@ -135,7 +123,7 @@
 
         <div class="container" (click)="goToLogout()">
             <div class='cell'>
-                <div class='container'><div class='cell single'>Logout</div></div>
+                <div class='container'><div id='logout-btn' class='cell single'>Logout</div></div>
             </div>
             <div class='cell icon arrow-right'></div>
         </div>

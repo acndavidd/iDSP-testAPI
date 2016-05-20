@@ -81,7 +81,29 @@
                 padding-left:0.6em;
             }
             &.icon {
-                width: 15%;
+                height: 30px;
+                position: center;
+                text-align: center;
+                color: #006600;
+                
+                .src{
+                    width: 30px;
+                    position: center;
+                    transform: rotate(-90deg);
+                    text-align: center; 
+                    font-size: 12px;
+                    font-weight: bold;
+                } 
+                &.sulu{
+                        background-color: $sulu;
+
+                }
+                &.serenade{
+                    background-color: $serenade;
+                }
+            }
+            &.ws{
+                width: 7%;
             }
 
             &.bold {

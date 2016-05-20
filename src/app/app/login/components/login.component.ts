@@ -8,7 +8,10 @@ import {Layout} from '../../../models/layout';
 import {LayoutService} from '../../shared/services/layout.service';
 import {ModalService} from '../../shared/services/modal.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
+import {SQLiteService} from '../../shared/services/sqlite.service';
 
+var dbSqlite;
+var configChannel;
 @Component({
     selector: 'login',
     templateUrl: './app/login/components/login.component.html',
@@ -25,10 +28,17 @@ export class LoginComponent {
         private _layoutService: LayoutService,
         private _authenticationService: AuthenticationService,
         private _modalService: ModalService,
-        private _pageNavigationService: PageNavigationService
-        ) {
+        private _pageNavigationService: PageNavigationService,
+        private _sqliteService: SQLiteService ) {
 
         this._layoutService.setCurrentPage('Login');
+        if (configChannel === 'app') {
+            dbSqlite.openDatabase({name: 'idsp.db', location: 'default'}, function(){
+                console.log('success');
+            }, function(error){
+                console.log('error bro : ' + error);
+            });
+        }
     }
 
     login(pEvent) {

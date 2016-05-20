@@ -105,7 +105,8 @@ LIST VIEW - BUTTON
         padding-bottom: 2vw;
         padding-top: 2vw;
         margin-left: 15%;
-        //margin-top:8%;
+        margin-top:4%;
+        margin-bottom:4%;
         background-color: $apple;
         border-radius: 2vw;
         .button-identifier {
@@ -190,8 +191,8 @@ LIST VIEW - BUTTON
         padding-bottom: 2vw;
         padding-top: 2vw;
 
-        &.border-left {
-            border-left: 1px solid $white-smoke;
+        &.border-right {
+            border-right: 1px solid $white-smoke;
         }
         &.border-bottom {
             border-bottom: 1px solid $white-smoke;
@@ -335,6 +336,56 @@ LIST VIEW - TEXT
             font-size: $content-normal;
             height:1.6em;
             vertical-align:middle;
+            input {
+                background: $white;
+                height: 30px;
+                border: 1px solid $dark-grey;
+                width: 75%;
+                text-align: -webkit-right;
+                -webkit-appearance: none;
+                border-radius: 7px;
+                padding-left: 15px;
+                padding-right: 15px;
+                font-size: $filter-select;
+                font-weight:lighter;
+                appearance: none;
+                cursor: pointer;
+            }
+            textarea {
+                background: $white;
+                height: 50px;
+                border: 1px solid $dark-grey;
+                width: 80%;
+                -webkit-appearance: none;
+                border-radius: 7px;
+                padding-left: 15px;
+                font-size: $filter-select;
+                font-weight:lighter;
+                appearance: none;
+                cursor: pointer;
+            }
+
+            .filter-input{
+                padding-top: 7px;
+                padding-left: 24px;
+                top: 0;
+                
+                input {
+                    background: $white;
+                    height: 30px;
+                    border: 1px solid $dark-grey;
+                    width: 50%;
+                    -webkit-appearance: none;
+                    border-radius: 2vw;
+                    padding-left: 15px;
+                    font-size: $filter-select;
+                    font-weight:lighter;
+                    appearance: none;
+                    cursor: pointer;
+                    text-align: center;
+                    margin: 0% 0% 5% 40%;
+                }
+            }
 
             &.left {
                 width: 45%;
@@ -344,6 +395,7 @@ LIST VIEW - TEXT
                 width: 40%;
                 padding-left:0.6em;
             }
+            
             &.right {
                 width: 40%;
                 text-align: right;
@@ -372,7 +424,6 @@ LIST VIEW - TEXT
             &.percent-300{
                 width:300px; 
             }
-
 
             &.icon {
                 width: 15%;
@@ -416,6 +467,9 @@ LIST VIEW - TEXT
             &.deep-cyan {
                 color: $deep-cyan;
             }
+            &.red {
+                color: $red;
+            }
 
             &.sub-cell {
                 padding-left:2em;
@@ -427,8 +481,15 @@ LIST VIEW - TEXT
             &.title2 {
                 font-size: 1.2em;
             }
+            &.title3{
+                font-size:1.5em;
+                padding-left:0.4em;
+            }
             &.header {
                 width: 100%;
+                &.padding-left{
+                    padding-left:0.6em;
+                }
             }
 
 
@@ -474,6 +535,26 @@ LIST VIEW - ICON
                 background-position-y: center;
                 background-size: 6vw;
             }
+            &.sales-view {
+                background: url(#{$icon-sales-view})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 6vw;
+            }
+            &.edit-gray {
+                background: url(#{$icon-edit-gray})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 6vw;
+            }
+            /* COMMENTED DUE ERRORS ON THIS ICON
+            &.add {
+                background: url(#{$icon-add)no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 6vw;
+            }
+            */
             .profpic {
                 width: 65px;
                 height: 65px;
@@ -532,6 +613,48 @@ LIST VIEW - FILTER
                     background-image: url(#{$select-arrow});
                     background-position: right 0 top 50%;
                     background-repeat: no-repeat;
+                    .green{
+                    color: $apple;
+                    }
+                }
+            }
+        }
+    }
+
+        .filter-content{
+        background-color: $white;
+        width: 100%;
+        display: block;
+        clear: left;
+        height: 60px;
+        .filter-label {
+            font-size: $filter-label;
+            color: #000;
+            padding-top: 20px;
+            padding-left: 10px;
+            float: left;
+        }
+        .filter-dropdown {
+            padding-top: 15px;
+            // padding-left: 70px;
+            select {
+                background: $white;
+                height: 35px;
+                border: 1px solid $dark-grey;
+                width: 90%;
+                -webkit-appearance: none;
+                border-radius: 2vw;
+                padding-left: 15px;
+                font-size: $filter-select;
+                appearance: none;
+                margin: 0% 0% 5% 15%;
+                @media screen and (-webkit-min-device-pixel-ratio: 0) {
+                    background-image: url(#{$select-arrow});
+                    background-position: right 0 top 50%;
+                    background-repeat: no-repeat;
+                    &.green{
+                    color: $apple;
+                    }
                 }
             }
         }

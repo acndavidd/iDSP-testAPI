@@ -10,7 +10,8 @@ import {NgFor, NgModel} from 'angular2/common';
 
 @Component({
     selector: 'accounts-receivables',
-    templateUrl: './app/my-transaction/components/hc-accounts-receivables.component.html',
+    // templateUrl: './app/my-transaction/components/hc-accounts-receivables.component.html',
+     templateUrl: './app/my-transaction/components/accounts-receivables.component.html',
     directives: [
         NgFor, NgModel, ROUTER_DIRECTIVES
     ],
@@ -36,26 +37,20 @@ export class AccountsReceivablesComponent {
         this._layoutService.setCurrentPage('AccountsReceivables');
         this._headerService.setTitle('Accounts Receivables');
 
-        this._accountsReceivablesService.getAllRetailer().subscribe(
-            response => {
-                this.setAllRetailerList(response.json());
-                console.log('response success');
-                console.log(response.json());
-                console.log('sukses isi vAllRetailerList: ' + this.vAllRetailerList);
+        var vDspId = 'DSP00001';
+        var vDate = new Date().getDay();
+        console.log( 'vDate: ' + vDate );
 
-                var x = 0;
-                console.log(response.json().length);
-                for (var i = 0; i < response.json().length; i++) {
-                    console.log('amount' + i + ' :' + JSON.stringify(response.json()[i].AccountReceivable[0].amount));
-                    console.log('sequence' + i + ' :' + JSON.stringify(response.json()[i].AccountReceivable[0].Retailer.Route[0].RouteDay[0].sequence));
-                    console.log('retailer_name' + i + ' :' + JSON.stringify(response.json()[i].AccountReceivable[0].Retailer.retailer_name));
-                    console.log('retailer_min' + i + ' :' + JSON.stringify(response.json()[i].AccountReceivable[0].Retailer.retailer_min));
-                    x = x + parseInt(response.json()[i].AccountReceivable[0].amount);
-                }
-                console.log('get sum x: ' + x);
-                this.setTotalReceivable(x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+        this._accountsReceivablesService.getAllRetailer( vDspId, vDate ).subscribe(
+            response => {
+                this.setAllRetailerList(response.json().result);
+                console.log( 'response success dapet source ' + response.json().result[0].source);
+                console.log(JSON.stringify(response.json()));
+                console.log(response.json().result.length);
+                this.setTotalReceivable(response.json().result[0].total_amount);
                 this.getAllRetailer();
             },
+
             error => {
                 console.log(error.json());
             }
@@ -72,7 +67,7 @@ export class AccountsReceivablesComponent {
     }
 
     getTotalReceivable() {
-        if (this.vSum == null) {
+        if ( this.vSum === null ) {
             this.setTotalReceivable(0);
         }
         return this.vSum;
@@ -85,8 +80,8 @@ export class AccountsReceivablesComponent {
     onKey(pInputText: any) {
         console.log(pInputText);
         this.vSearchedList = this.vAllRetailerList.filter(retailer => {
-             return retailer.AccountReceivable[0].Retailer.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
-             retailer.AccountReceivable[0].Retailer.retailer_min.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1;
+             return retailer.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
+             retailer.retailer_min.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1;
         });
     }
 
