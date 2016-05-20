@@ -65,6 +65,7 @@ export class ModalService {
         this.vModalState.collection = false;
         this.vModalState.verificationCode = false;
         this.vModalState.resendMpin = false;
+        this.vModalState.skipSalesOrder = false;
     }
 
 }
