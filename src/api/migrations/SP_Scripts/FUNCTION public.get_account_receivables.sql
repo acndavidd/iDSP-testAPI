@@ -8,8 +8,8 @@ BEGIN
 	
 	select array_to_json(array_agg(row_to_json(temp))) INTO v_result
 	from (
-		select a.order_Id,b.amount,b.dsp_id,c.retailer_name,c.retailer_min,c.retailer_id,e.route_day,e.sequence, 
-			(select sum(amount) as v_total_amount from trx_account_receivable
+		select a.order_Id,to_char(b.amount, '999,999,999,990D00 FM₱'),b.dsp_id,c.retailer_name,c.retailer_min,c.retailer_id,e.route_day,e.sequence,a.source,
+			(select to_char(sum(amount), '999,999,999,990D00 FM₱') as v_total_amount from trx_account_receivable
 				where dsp_id = v_dsp_id and retailer_id in(
 				select retailer_id from mst_route where route_id in(
 				select route_id from mst_route_day where route_day = v_date

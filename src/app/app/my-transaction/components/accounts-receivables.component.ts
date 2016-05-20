@@ -10,8 +10,8 @@ import {NgFor, NgModel} from 'angular2/common';
 
 @Component({
     selector: 'accounts-receivables',
-    templateUrl: './app/my-transaction/components/hc-accounts-receivables.component.html',
-    // templateUrl: './app/my-transaction/components/accounts-receivables.component.html',
+    // templateUrl: './app/my-transaction/components/hc-accounts-receivables.component.html',
+     templateUrl: './app/my-transaction/components/accounts-receivables.component.html',
     directives: [
         NgFor, NgModel, ROUTER_DIRECTIVES
     ],
@@ -41,13 +41,13 @@ export class AccountsReceivablesComponent {
         var vDate = new Date().getDay();
         console.log( 'vDate: ' + vDate );
 
-        this._accountsReceivablesService.getAllRetailer(vDspId, vDate).subscribe(
+        this._accountsReceivablesService.getAllRetailer( vDspId, vDate ).subscribe(
             response => {
                 this.setAllRetailerList(response.json().result);
                 console.log( 'response success dapet source ' + response.json().result[0].source);
                 console.log(JSON.stringify(response.json()));
                 console.log(response.json().result.length);
-                this.setTotalReceivable(parseInt(response.json().result[0].total_amount).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+                this.setTotalReceivable(response.json().result[0].total_amount);
                 this.getAllRetailer();
             },
 
