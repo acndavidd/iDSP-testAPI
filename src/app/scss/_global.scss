@@ -50,11 +50,14 @@ SUBTAB
     &.triple {
         width: 33%;
     }
+    &.triple2 {
+        width: 34%;
+    }
     &.active {
-        border-bottom: 2px solid $menu-underline;
+        border-bottom: 2px solid $vivid-pink;
     }
     .text {
-        color: $inactive-tab-grey;
+        color: $gainsboro;
         text-align: center;
         font-size: $header-tab;
 
@@ -81,7 +84,7 @@ LIST VIEW - BUTTON
     background-color: $white;
     width: 100%;
     height: 100%;
-    margin-bottom: 50px;
+    // margin-bottom: 50px;
     overflow-x: hidden;
 
     &.menu {
@@ -89,26 +92,27 @@ LIST VIEW - BUTTON
     }
     .no-divider {
         width: 100%;
-        float:left;
+        float:center;
     }
     .double-divider{
         width: 50%;
         float:left;
     }
+
     .button {
         display: inline-block;
-        width: 80%;
-        padding-bottom: 15px;
-        padding-top: 15px;
-        background-color: $dark-sea-green;
-        margin: 10%;
-        border-radius: 5px;
+        width: 70%;
+        padding-bottom: 2vw;
+        padding-top: 2vw;
+        margin-left: 15%;
+        margin-top:4%;
+        background-color: $apple;
+        border-radius: 2vw;
         .button-identifier {
             cursor: pointer;
             font-size: $button;
             text-align: center;
             width: 100%;
-            
             color: $white;
             font-weight: lighter;
         }
@@ -177,8 +181,6 @@ LIST VIEW - BUTTON
                 font-size: 5vw;
             }
         }
-
-        
     }
 
 
@@ -303,6 +305,8 @@ LIST VIEW - TEXT
         width: 100%;
         border-bottom: 1px solid $border-line;
         cursor: pointer;
+        //padding-top: 2vw;
+        //padding-bottom: 2vw;
         
         .item-notification {   
             font-size: $filter-select;
@@ -331,13 +335,42 @@ LIST VIEW - TEXT
             font-size: $content-normal;
             height:1.6em;
             vertical-align:middle;
-
+            .filter-input{
+                padding-top: 7px;
+                padding-left: 24px;
+                top: 0;
+                
+                input {
+                    background: $white;
+                    height: 30px;
+                    border: 1px solid $dark-grey;
+                    width: 50%;
+                    -webkit-appearance: none;
+                    border-radius: 2vw;
+                    padding-left: 15px;
+                    font-size: $filter-select;
+                    font-weight:lighter;
+                    appearance: none;
+                    cursor: pointer;
+                    text-align: center;
+                    margin: 0% 0% 5% 40%;
+                }
+            }
             &.left {
                 width: 45%;
                 padding-left:0.6em;
             }
+            &.left2 {
+                width: 40%;
+                padding-left:0.6em;
+            }
+            
             &.right {
                 width: 40%;
+                text-align: right;
+            }
+            &.right2 {
+                width: 30%;
                 text-align: right;
             }
             &.single {
@@ -349,6 +382,18 @@ LIST VIEW - TEXT
                 width: 85%;
                 padding-left:0.6em;
             }
+
+            &.percent-100{
+                padding-left:0.6em;
+                width:100px;
+            }
+            &.percent-200{
+                width:200px; 
+            }
+            &.percent-300{
+                width:300px; 
+            }
+
             &.icon {
                 width: 15%;
             }
@@ -356,6 +401,7 @@ LIST VIEW - TEXT
                 width:30%;
             }
             &.content{
+                padding-left:0.6em;
                 width:70%
             }
 
@@ -369,8 +415,20 @@ LIST VIEW - TEXT
                 text-align: center;
             }
 
+            &.dark-sea-green {
+                color: $dark-sea-green;
+            }
+            &.vivid-pink {
+                color: $vivid-pink;
+            }
+            &.gainsboro {
+                color: $gainsboro;
+            }
             &.grey {
                 color: $grey;
+            }
+            &.black {
+                color: $black;
             }
             &.green {
                 color: $apple;
@@ -378,16 +436,29 @@ LIST VIEW - TEXT
             &.deep-cyan {
                 color: $deep-cyan;
             }
+            &.red {
+                color: $red;
+            }
 
             &.sub-cell {
                 padding-left:2em;
             }
             &.title {
+                font-size: 1.1em;
+                height:2em;
+            }
+            &.title2 {
                 font-size: 1.2em;
-                height:2.5em;
+            }
+            &.title3{
+                font-size:1.5em;
+                padding-left:0.4em;
             }
             &.header {
                 width: 100%;
+                &.padding-left{
+                    padding-left:0.6em;
+                }
             }
 
 
@@ -421,29 +492,55 @@ LIST VIEW - ICON
                 background-position-y: center;
                 background-size: 20px;
             }
-            .profpic-purple {
-                border: 1px solid $black;
-                border-radius: 100%;
-                background-color:#E6E0EC;
-                padding: 10% 0% 40% 0%;
-                margin: 0% 25% 0% 25%;
-                color:$apple;
-                text-align: center;
-                line-height:0px;
-                font-size: 30px;
+            &.inventory-load {
+                background: url(#{$icon-inventory-load})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 6vw;
             }
-            .profpic-pink {
-                border: 1px solid $black;
-                border-radius: 100%;
-                background-color:#FDEADA;
-                padding: 10% 0% 40% 0%;
-                margin: 0% 25% 0% 25%;
-                color:$apple;
-                text-align: center;
-                line-height:0px;
-                font-size: 30px;
+            &.inventory-physical {
+                background: url(#{$icon-inventory-physical})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 6vw;
             }
+            &.sales-view {
+                background: url(#{$icon-sales-view})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 6vw;
+            }
+            &.edit-gray {
+                background: url(#{$icon-edit-gray})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 6vw;
+            }
+            &.add {
+                background: url(#{$icon-add)no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 6vw;
+            }
+            .profpic {
+                width: 65px;
+                height: 65px;
+                background-color: $sugar-cane;
+                border-radius: 50%;
+                margin: 0% 0% 0% 9%;
+                text-align: center;
+                line-height: 63px;
+                font-size: 30px;
+                color : $apple;
+                border: 1px solid $gainsboro;
 
+                &.pink {
+                    background-color : $serenade;
+                }
+                &.purple {
+                    background-color : $violetish-white;
+                }
+            }
         }
     }
       
@@ -483,6 +580,48 @@ LIST VIEW - FILTER
                     background-image: url(#{$select-arrow});
                     background-position: right 0 top 50%;
                     background-repeat: no-repeat;
+                    .green{
+                    color: $apple;
+                    }
+                }
+            }
+        }
+    }
+
+        .filter-content{
+        background-color: $white;
+        width: 100%;
+        display: block;
+        clear: left;
+        height: 60px;
+        .filter-label {
+            font-size: $filter-label;
+            color: #000;
+            padding-top: 20px;
+            padding-left: 10px;
+            float: left;
+        }
+        .filter-dropdown {
+            padding-top: 15px;
+            // padding-left: 70px;
+            select {
+                background: $white;
+                height: 35px;
+                border: 1px solid $dark-grey;
+                width: 90%;
+                -webkit-appearance: none;
+                border-radius: 2vw;
+                padding-left: 15px;
+                font-size: $filter-select;
+                appearance: none;
+                margin: 0% 0% 5% 15%;
+                @media screen and (-webkit-min-device-pixel-ratio: 0) {
+                    background-image: url(#{$select-arrow});
+                    background-position: right 0 top 50%;
+                    background-repeat: no-repeat;
+                    &.green{
+                    color: $apple;
+                    }
                 }
             }
         }

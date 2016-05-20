@@ -1,0 +1,41 @@
+<div class="stock-return">
+	<div class="item-container">
+		<div><b>SKU1</b></div>
+		<div class="container">
+			<div class="cell left">Ending Balance</div>
+			<div class="cell">1,300</div>
+		</div>
+		<div class="container">	
+			<div class="cell left">Amount Return</div>
+			<div class="cell">
+					<div class="container"><div class="cell right"> <input id="amount" type="number" pattern="[0-9]+([,\.][0-9]+)?"/> </div></div>
+			</div>
+		</div>	
+	</div>
+	<div class="item-container">
+		<div><b>SKU2</b></div>
+		<div class="container">
+			<div class="cell left">Ending Balance</div>
+			<div class="cell">900</div>
+		</div>
+		<div class="container">	
+			<div class="cell left">Amount Return</div>
+			<div class="cell">
+					<div class="container"><div class="cell right"> <input id="amount" type="number" pattern="[0-9]+([,\.][0-9]+)?"/> </div></div>
+			</div>
+		</div>	
+	</div>
+
+	<div class="item-container1">
+		<div class="container">Acknowledgement</div>
+		<div class="long-textfield"><input id="code" type="password"/></div>
+	</div>
+</div>
+
+<div class="container-body">
+	<div class="no-divider">
+		<div class="button">
+			<a (click)="save($event)" id="save-link"><div class="button-identifier">SAVE</div></a>
+		</div>
+	</div>
+</div>

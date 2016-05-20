@@ -35,9 +35,9 @@
             .icon{
                 width:80px;
                 height:35px;
-                position: fixed;
+                position: absolute;
                 right: 0;
-                z-index: 1200;
+                z-index: 1;
                 background: url("../img/icon-idsp/search-black.png") no-repeat;
                 background-size: 25px;
                 background-position: center center;
@@ -81,7 +81,23 @@
                 padding-left:0.6em;
             }
             &.icon {
-                width: 15%;
+                height: 30px;
+                position: center;
+                text-align: center;
+                background-color: #00FF00;
+
+                .src{
+                    width: 30px;
+                    position: center;
+                    transform: rotate(-90deg);
+                    text-align: center; 
+                    font-size: 12px;
+                    color: #006600;
+                    font-weight: bold;
+                }
+            }
+            &.ws{
+                width: 7%;
             }
 
             &.bold {

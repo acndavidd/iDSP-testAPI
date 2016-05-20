@@ -1,4 +1,4 @@
-import {Component, OnInit} from 'angular2/core';
+import {Component, Renderer, OnInit} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {FastClickStatic} from './shared/fastclick/fastclick.d';
@@ -113,10 +113,19 @@ declare var configChannel: any;
 ])
 export class IDSPComponent implements OnInit {
 
+    globalListenFunc: Function;
+
     constructor ( private _matchMediaService: MatchMediaService,
     private _router: Router,
-    private _layoutService: LayoutService) {
+    private _layoutService: LayoutService,
+    private _pageNavigationService: PageNavigationService,
+    private _renderer: Renderer) {
         new FastClick(document.body);
+        this.globalListenFunc = _renderer.listenGlobal('document', 'backbutton', (event) => {
+            // put pageNavigationService
+            this._pageNavigationService.gotoPreviousPage();
+            console.log('angular back button');
+        });
     }
 
     ngOnInit() {
@@ -144,5 +153,8 @@ export class IDSPComponent implements OnInit {
         console.log('anjayy');
     }
 
+    ngOnDestroy() {
+        this.globalListenFunc();
+    }
 }
 

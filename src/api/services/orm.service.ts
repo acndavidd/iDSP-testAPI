@@ -43,7 +43,7 @@ export class ORMService{
 		if(vDebug)console.log('Finished loading association');
 	}
 
-	public async sp(pSPName:string,pParams:any){
+	public async sp(pSPName:string,pParams:any) {
 		let vSequelize = this.getSequelize();
 		return new Promise<string>(
 			function (pResolve,pReject){

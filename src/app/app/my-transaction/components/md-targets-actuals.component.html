@@ -1,16 +1,15 @@
-<a (click)="showMenuDay()"><div class="sub-tab triple" [ngClass] = "{active: vUnderlineDay}"><div class="text" [ngClass] = "{active: vUnderlineDay}">Day</div></div></a>
-<a (click)="showMenuWeek()"><div class="sub-menu-week" [ngClass] = "{active: vUnderlineWeek}"><div class="text" [ngClass] = "{active: vUnderlineWeek}">Week</div></div></a>
-<a (click)="showMenuMonth()"><div class="sub-tab triple" [ngClass] = "{active: vUnderlineMonth}"><div class="text" [ngClass] = "{active: vUnderlineMonth}">Month</div></div></a>
+<a (click)="showMenuDay()"><div class="sub-tab triple" [ngClass] = "{active: vUnderlineDay}"><div id="day-btn" class="text" [ngClass] = "{active: vUnderlineDay}">Day</div></div></a>
+<a (click)="showMenuWeek()"><div class="sub-tab triple2" [ngClass] = "{active: vUnderlineWeek}"><div id="week-btn" class="text" [ngClass] = "{active: vUnderlineWeek}">Week</div></div></a>
+<a (click)="showMenuMonth()"><div class="sub-tab triple" [ngClass] = "{active: vUnderlineMonth}"><div id="month-btn" class="text" [ngClass] = "{active: vUnderlineMonth}">Month</div></div></a>
 <!--Container-->
 <div class="container-body">
 
-	<div class="filter-container" *ngIf="getFilter().filterTargetsActuals">
+	<div id="filter-btn" class="filter-container" *ngIf="getFilter().filterTargetsActuals">
 		<div class="filter-label">Brand</div>
 		<div class="filter-dropdown">
-			<select [(ngModel)]="vSelectedBrand"  (ngModelChange)="onChangeSelectBrand($event)">
-				<option  *ngFor="#each of getBrand()" [value]="each.brand" >
-				    {{each.brand}}
-				</option>
+			<select name="cars">
+				<option value="volvo">Smart</option>
+				<option value="saab">Sun</option>
 			</select>
 		</div>
 	</div>
@@ -18,7 +17,7 @@
 	<div *ngIf="vDayShow">
 		<div class="item-container-md-ta">
 	        <div class="container border">
-	        	<div class='cell category-icon call'></div>
+	        	<div class='cell category-icon targets-airtime'></div>
 	            <div class='cell'>
 	                <div class='container'><div class='cell category-text green'>Airtime</div></div>
 	            </div>
@@ -58,7 +57,7 @@
 	    </div>
 		<div class="item-container-md-ta">
 	        <div class="container border">
-	        	<div class='cell category-icon call'></div>
+	        	<div class='cell category-icon targets-broadband'></div>
 	            <div class='cell'>
 	                <div class='container'><div class='cell category-text green'>Broadband</div></div>
 	            </div>
@@ -98,7 +97,7 @@
 	    </div>
 		<div class="item-container-md-ta">
 	        <div class="container border">
-	        	<div class='cell category-icon call'></div>
+	        	<div class='cell category-icon targets-sim'></div>
 	            <div class='cell'>
 	                <div class='container'><div class='cell category-text green'>SIM</div></div>
 	            </div>
@@ -141,7 +140,7 @@
 	<div *ngIf="vWeekShow">
 		<div class="item-container-md-ta">
 	        <div class="container border">
-	        	<div class='cell category-icon call'></div>
+	        	<div class='cell category-icon targets-airtime'></div>
 	            <div class='cell'>
 	                <div class='container'><div class='cell category-text green'>Airtime</div></div>
 	            </div>
@@ -213,7 +212,7 @@
 	    </div>
 		<div class="item-container-md-ta">
 	        <div class="container border">
-	        	<div class='cell category-icon call'></div>
+	        	<div class='cell category-icon targets-broadband'></div>
 	            <div class='cell'>
 	                <div class='container'><div class='cell category-text green'>Broadband</div></div>
 	            </div>
@@ -253,7 +252,7 @@
 	    </div>
 		<div class="item-container-md-ta">
 	        <div class="container border">
-	        	<div class='cell category-icon call'></div>
+	        	<div class='cell category-icon targets-sim'></div>
 	            <div class='cell'>
 	                <div class='container'><div class='cell category-text green'>SIM</div></div>
 	            </div>
@@ -296,7 +295,7 @@
 	<div *ngIf="vMonthShow">
 		<div class="item-container-md-ta">
 	        <div class="container border">
-	        	<div class='cell category-icon call'></div>
+	        	<div class='cell category-icon targets-airtime'></div>
 	            <div class='cell'>
 	                <div class='container'><div class='cell category-text green'>Airtime</div></div>
 	            </div>
@@ -304,7 +303,7 @@
 	    </div>
 		<div class="item-container-md-ta">
 	        <div class="container border">
-	        	<div class='cell category-icon call'></div>
+	        	<div class='cell category-icon targets-broadband'></div>
 	            <div class='cell'>
 	                <div class='container'><div class='cell category-text green'>Broadband</div></div>
 	            </div>
@@ -312,7 +311,7 @@
 	    </div>
 		<div class="item-container-md-ta">
 	        <div class="container border">
-	        	<div class='cell category-icon call'></div>
+	        	<div class='cell category-icon targets-sim'></div>
 	            <div class='cell'>
 	                <div class='container'><div class='cell category-text green'>SIM</div></div>
 	            </div>

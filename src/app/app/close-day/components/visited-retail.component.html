@@ -1,1 +1,187 @@
-visited
+<div class="container-body">
+	
+
+	<div class="item-container">
+		<div class="container">
+			<div class='cell left title black'>Retailers Visited</div>
+		</div>
+		<div class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell left grey'>Route Visited</div>
+				</div>
+			</div>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell right green '>2 of 3</div>
+				</div>
+			</div>
+			<div class='cell icon'></div>
+		</div>
+
+		<div class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell left grey'>Route not Visited</div>
+				</div>
+			</div>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell right green'>1</div>
+				</div>
+			</div>
+			<div class='cell icon'></div>
+		</div>
+
+		<div class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell left grey'>Percentage</div>
+				</div>
+			</div>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell right green'>67%</div>
+				</div>
+			</div>
+			<div class='cell icon'></div>
+		</div>
+	</div>
+
+	<div class="item-container">
+		<div class="container">
+			<div class='cell left title black'>Productive Calls</div>
+		</div>
+		<div class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell left grey'>Productive Calls</div>
+				</div>
+			</div>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell right green'>1</div>
+				</div>
+			</div>
+			<div class='cell icon'></div>
+		</div>
+
+		<div class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell left grey'>Not Productive Calls</div>
+				</div>
+			</div>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell right green'>1</div>
+				</div>
+			</div>
+			<div class='cell icon'></div>
+		</div>
+
+		<div class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell left grey'>Percentage</div>
+				</div>
+			</div>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell right green'>50%</div>
+				</div>
+			</div>
+			<div class='cell icon'></div>
+		</div>
+	</div>
+
+	<div class="item-container" (click)="detailShow()" id="retailer-sub-menu-btn">
+            <div class="container">
+                <div class='cell'>
+                    <div class='container'><div class='cell single title black'>View Details</div></div>
+                </div>
+               	<div class='cell icon arrow-down' [ngClass]="{selected: vDetailShow}"></div>
+            </div>
+    </div>
+
+    <div class="item-container-sub-full" *ngIf="vDetailShow">
+		
+    	<div class="item-container">
+	    	<div class="container">
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell percent-100 grey'>1.</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell percent-200 grey'>Gloria Cell</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell percent-300 grey'>Not Visited</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell percent-300 grey'>Not Productive</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="item-container">
+			<div class="container">
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell percent-100 grey'>2.</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell percent-200 grey'>Bird Cell</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell percent-300 grey'>Visited</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell percent-300 grey'>Productive</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="item-container">
+			<div class="container">
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell percent-100 grey'>3.</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell percent-200 grey'>Rose Cell</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell percent-300 grey'>Not Visited</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell percent-300 grey'>Productive</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+    </div>
+
+    
+</div>

@@ -4,6 +4,7 @@ import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
+import {ModalService} from '../../shared/services/modal.service';
 
 @Component({
     selector: 'retailer-sales-order',
@@ -21,6 +22,7 @@ export class RetailerSalesOrderComponent {
         private _layoutService: LayoutService,
         private _matchMediaService: MatchMediaService,
         private _headerService: HeaderService,
+        private _modalService: ModalService,
         private _router: Router
         ) {
         this._layoutService.setCurrentPage('RetailerSalesOrder');
@@ -30,6 +32,11 @@ export class RetailerSalesOrderComponent {
     goToSalesOrderPayment() {
         console.log('Go to Sales Order Payment');
         this._router.navigate(['SalesOrderPayment']);
+    }
+
+    skipSalesOrderModalComponent() {
+        console.log('Skip Sales Order');
+        this._modalService.toggleSkipSalesOrderModal();
     }
 
 }

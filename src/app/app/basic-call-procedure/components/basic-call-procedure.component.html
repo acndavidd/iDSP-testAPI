@@ -1,5 +1,8 @@
 <div class="container-body">
     <div class="item-container">
+        <div class="item-notification">UPDATED AS OF 04/17/2016 02.00 PM</div>
+    </div>
+    <div class="item-container">
             <div class="container">
                 <div class='cell'>
                     <div class='container'><div class='cell single title bold'>Today's Route</div></div>
@@ -7,19 +10,34 @@
                 <div class='cell icon'></div>
             </div>
         </div>
-    <div class="item-container" (click)="gotoDetailRetailer()">
+    <div class="item-container" (click)="gotoCallPreparation()">
+            <div class="container">
+                <div class='cell'>
+                    <div class='container'><div class='cell single title bold'>Today's Route</div></div>
+                </div>
+                <div class='cell icon'></div>
+            </div>
+        </div>
+    <div class="item-container" *ngFor="#each of vListRoute" (click)="gotoCallPreparation()">
         <div class="container">
             <div class='cell'>
-                <div class='container'><div class='cell left bold'>Rose Cell</div></div>
-                <div class='container'><div class='cell left italic'>99999900003</div></div>
-                <div class='container'><div class='cell left grey'>Amount payable (5)</div></div>
+                <div class='container'><div class='cell left'>{{each.retailer_name}}</div></div>
+                <div class='container'><div class='cell left italic'>{{each.retailer_min}}</div></div>
+                <div class='container'><div class='cell left grey'>Amount payable ({{each.total_count}})</div></div>
                 <div class='container'><div class='cell left grey'>Status</div></div>
             </div>
             <div class='cell'>
-                <div class='container'><div class='cell right'>Route #2</div></div>
+                <div class='container'><div class='cell right green'>Route #{{each.seq}}</div></div>
                 <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'>3,000.00 ₱</div></div>
-                <div class='container'><div class='cell right'>In Progress</div></div>
+                <div class='container'><div class='cell right'>{{each.total_acr}} ₱</div></div>
+                <div class='container'>
+                <div *ngIf="each.call_status === 'Visited'">
+                    <div class="cell right bold green">{{each.call_status}}</div>
+                </div>
+                <div *ngIf="each.call_status === 'Not Visited'">
+                    <div class="cell right bold red">{{each.call_status}}</div>
+                </div>
+                </div>
             </div>
             <div class='cell icon arrow-right'></div>
         </div>

@@ -36,10 +36,6 @@ export class CloseDayComponent {
         return this._matchMediaService.getMm();
     }
 
-    toggleCollection() {
-        this._router.navigate(['Collection']);
-    }
-
     goToTargetsActuals() {
         console.log('TA');
         this._router.navigate(['CDTargetsActuals']);
@@ -53,10 +49,6 @@ export class CloseDayComponent {
     goToCollection() {
         console.log('C');
          this._router.navigate(['Collection']);
-    }
-
-    goToStockReturn() {
-        console.log('SR');
     }
 
     getToday() {

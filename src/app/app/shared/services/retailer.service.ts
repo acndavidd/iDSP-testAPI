@@ -9,18 +9,63 @@ export class RetailerService {
     private vErrorMsg: string;
     private vIsLoading: boolean;
     private vRetailer: any;
+    private vToday: Date;
+
     constructor (
         private _http: Http,
         private _router: Router) {
         this.vIsLoading = false;
     }
 
-    getRetailerSummary(pRetailerID) {
+    queryRetailerRoute(pSelectedDay) {
+        console.log('Start hit login service to Query Retailer Route');
+        // Get Current Login User
+        let vData = {
+            salesPerson: 'DSP01',
+            day: pSelectedDay
+        };
+
+        var vSalesRoute;
+        // Hit Api with selectedDate and Login user
+        return this._http.post('/getSalesRoute', JSON.stringify(vData));
+
+        // Sample Hardcoded
+        /*
+        vSalesRoute = [
+            {
+                'retailer_id': '1',
+                'route': [{RouteDay: [{sequence: 1}]}],
+                'retailer_name': 'Gloria Cell',
+                'retailer_address': 'Barangka Dr. Mandaluyong',
+                'owner_name': 'Ms. Gloria'
+            },
+            {
+                'retailer_id': '2',
+                'route': [{RouteDay: [{sequence: 2}]}],
+                'retailer_name': 'Bird Cell',
+                'retailer_address': 'Barangka Dr. Sutrisno',
+                'owner_name': 'Mr. Jaja'
+            },
+            {
+                'retailer_id': '3',
+                'route': [{RouteDay: [{sequence: null}]}],
+                'retailer_name': 'Rose Cell',
+                'retailer_address': 'Matalang 56 Barangka',
+                'owner_name': 'Ms. Rose'
+            }];
+        */
+        // console.log(vSalesRoute); 
+        // return vSalesRoute;
+    }
+
+
+    queryRetailerSummary(pRetailerID) {
 
         console.log('Start hit login service to Query Retailer Summary');
         // Get Current Login User
         let vData = {
-            retailerId : pRetailerID
+            retailerId : pRetailerID,
+            salesPerson: 'DSP01'
         };
 
 
@@ -120,6 +165,18 @@ export class RetailerService {
             );
         return false;
         */
+    }
+
+    queryRetailerRouteBCP() {
+        console.log('Start hit login service to Query Retailer Route for BCP');
+        this.vToday = new Date();
+        let vData = {
+            salesPerson: 'DSP00001',
+            day: 1
+        };
+
+        var vSalesRoute;
+        return this._http.post('/getRetailerRouteBCP', JSON.stringify(vData));
     }
 
     getRetailerAll() {
