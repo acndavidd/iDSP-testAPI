@@ -25,7 +25,6 @@ export class BasicCallProcedureComponent {
 
     private vListRoute;
     private vFilteredListRoute;
-    
     constructor (
         private _layoutService: LayoutService,
         private _matchMediaService: MatchMediaService,
