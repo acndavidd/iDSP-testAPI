@@ -5,10 +5,13 @@ import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {RetailerService} from '../../shared/services/retailer.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
-import {NgModel,NgClass} from 'angular2/common';
+import {NgModel, NgClass} from 'angular2/common';
 
 @Component({
-    templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
+    // FOR HIT API
+    // templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
+    // FOR HARDCODE UI
+    templateUrl: './app/basic-call-procedure/components/hc-basic-call-procedure.component.html',
     directives: [
         ROUTER_DIRECTIVES,
         NgClass
@@ -57,6 +60,7 @@ export class BasicCallProcedureComponent {
         //this._pageNavigationService.navigate('CallPreparation', null, null);
         // this._pageNavigationService.navigate('UnservedOrder', null, null);
         // this._pageNavigationService.navigate('BCPCollection', null, null);
+        // this._pageNavigationService.navigate('SalesOrderPayment', null, null);
     }
 
     getFilter() {

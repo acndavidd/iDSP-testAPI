@@ -1,45 +1,3 @@
-<!-- <div class="sub-main-menu">
-    <div class="container-body">
-        <div class="sub-main-button">
-            <div class="button-identifier" (click)="goToTargetsActuals()" id="targets-actuals">
-                Targets &amp; Actuals
-            </div>
-        </div>
-
-        <div class="separator"></div>
-        
-        <div class="sub-main-button">
-            <div class="button-identifier" (click)="goToInventory()" id="inventory">
-                Inventory
-            </div>
-        </div>
-        
-        <div class="separator"></div>
-        
-        <div class="sub-main-button">
-            <div class="button-identifier" (click)="goToRetailerRoute()" id="retailer-route">
-                    Retailer Route
-            </div>
-        </div>
-        
-        <div class="separator"></div>
-        
-        <div class="sub-main-button">
-            <div class="button-identifier" (click)="goToAccountsReceivables()" id="account-receivables">
-                Account Receivables
-            </div>
-        </div>
-        
-        <div class="separator"></div>
-        
-        <div class="sub-main-button">
-            <div class="button-identifier" (click)="goToDSPAlerts()" id="dsp-alerts">
-                Alerts & Threshold
-            </div>
-        </div>
-    </div>
-</div> -->
-
 <div class ="container-body menu">
     <div class="parent">
         <div class="cover">
@@ -53,37 +11,37 @@
     </div>
     
     <div class="double-divider" (click)="goToTargetsActuals()" id="targets-actuals">
-        <div class= "square-button border-bottom">
+        <div class= "square-button border-bottom border-right">
             <div class="icon target"></div>
             <div class="text">Targets &amp; Actuals</div>
         </div>      
     </div>
     <div class="double-divider" (click)="goToInventory()" id="inventory">
-        <div class= "square-button border-bottom border-left">
+        <div class= "square-button border-bottom">
             <div class="icon inventory"></div>
             <div class="text">Inventory</div>
         </div>      
     </div>
     <div class="double-divider" (click)="goToRetailerRoute()" id="retailer-route">
-        <div class= "square-button border-bottom">
+        <div class= "square-button border-bottom border-right">
             <div class="icon retailer-route"></div>
             <div class="text">Retailer Route</div>
         </div>      
     </div>
     <div class="double-divider" (click)="goToAccountsReceivables()" id="account-receivables">
-        <div class= "square-button border-bottom border-left">
+        <div class= "square-button border-bottom">
             <div class="icon acc-receivable"></div>
             <div class="text">Account Receivables</div>
         </div>      
     </div>
     <div class="double-divider" (click)="goToDSPAlerts()" id="dsp-alerts">
-        <div class= "square-button border-bottom">
+        <div class= "square-button border-bottom border-right">
             <div class="icon alert"></div>
             <div class="text">Threshold &amp; Alerts</div>
         </div>      
     </div>
-    <div class="double-divider">
-        <div class= "square-button border-bottom border-left" >
+    <div class="double-divider" hidden>
+        <div class= "square-button border-bottom" >
             <div class="icon sync"></div>
             <div class="text">Sync</div>
         </div>      

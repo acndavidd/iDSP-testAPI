@@ -319,73 +319,13 @@ export class RetailerController{
 
 	async getAllRetailerAlert(pRequest,pResponse){
 		let vOrmSvc = new ORMService();
-		var vCurrentDate = new Date();
 		let params = {
-			dsp_id : '1',
-			first_name : 'an'
+			dsp_id : 'DSP00001'
 		};
-
-		var result = await vOrmSvc.sp('test_sp', params );
-		pResponse.json(result);
-		/*
-		let vDSPModel = vOrmSvc.getModel('mst_dsp');
-		let vDSPID = 'DSP00001';
-		let vResult;
-		vDSPModel.findById(vDSPID).then(function(dsp){
-			dsp.getRetailer({
-				attributes : ['retailer_name', 'retailer_min'],
-				include : [{
-					model : vOrmSvc.getModel('mst_retailer_dsp_alert'),
-					as : 'RetailerDSPAlert',
-					attributes : ['value_segment' , 'threshold_hit'],
-					where : { 
-						date : { $gte : vCurrentDate.setHours(0,0,0,0) }
-					}
-				},{
-					model : vOrmSvc.getModel('mst_route'),
-					as : 'Route',
-					attributes : ['route_id'],
-					include : [{
-						model : vOrmSvc.getModel('mst_route_day'),
-						as : 'RouteDay',
-						attributes : ['sequence'],
-						where : {route_day : vCurrentDate.getDay()},
-						required : false,
-						limit : 10
-					}]
-				}],
-				order : [ [ vOrmSvc.getSequelize().col('sequence') , 'ASC NULLS LAST']]
-			}).then(function(pResult){
-				console.log(JSON.stringify(pResult));
-				pResult = JSON.parse(JSON.stringify(pResult));
-				pResult.map(function(pRetailer){
-					pRetailer.threshold_hit = pRetailer.RetailerDSPAlert[0].threshold_hit;
-					pRetailer.value_segment = pRetailer.RetailerDSPAlert[0].value_segment;
-					if( pRetailer.Route.length > 0 
-						&& "RouteDay" in pRetailer.Route[0] 
-						&& pRetailer.Route[0].RouteDay.length > 0  
-						&& pRetailer.Route[0].RouteDay[0].route_day == vCurrentDate.getDay()
-					  ){
-						pRetailer.sequence = pRetailer.Route[0].RouteDay[0].sequence;
-					}else{
-						pRetailer.sequence = 0;
-					}
-					delete pRetailer.Route;
-					delete pRetailer.RetailerDSPAlert;
-				});
-				vResult = {
-					success : 1,
-					result : pResult
-				};
-				pResponse.json(vResult);
-			});
-		}).catch(function(pErr){
-			var vResult = {
-				success : 0,
-				error : pErr
-			}
-			pResponse.json(vResult);
-		});
-		*/
+		var vResult = {
+			success : 1,
+			result : await vOrmSvc.sp('get_retailer_alert', params)
+		};
+		pResponse.json(vResult);
 	}
 }

@@ -6,6 +6,7 @@ import {MatchMediaService} from './shared/services/match-media.service';
 import {LayoutService} from './shared/services/layout.service';
 import {HeaderService} from './shared/services/header.service';
 import {PageNavigationService} from './shared/services/page-navigation.service';
+import {SQLiteService} from './shared/services/sqlite.service';
 import {AuthenticationService} from './shared/services/authentication.service';
 import {LoginComponent} from './login/components/login.component';
 import {HeaderComponent} from './shared/components/header.component';
@@ -56,6 +57,7 @@ declare var configChannel: any;
         MatchMediaService,
         LayoutService,
         PageNavigationService,
+        SQLiteService,
         AuthenticationService,
         ModalService,
         HeaderService,
@@ -119,7 +121,8 @@ export class IDSPComponent implements OnInit {
     private _router: Router,
     private _layoutService: LayoutService,
     private _pageNavigationService: PageNavigationService,
-    private _renderer: Renderer) {
+    private _renderer: Renderer,
+    private _sqliteService: SQLiteService ) {
         new FastClick(document.body);
         this.globalListenFunc = _renderer.listenGlobal('document', 'backbutton', (event) => {
             // put pageNavigationService
