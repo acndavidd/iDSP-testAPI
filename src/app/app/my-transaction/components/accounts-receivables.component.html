@@ -6,30 +6,34 @@
 		</div>	
 	</div>
 
-<div class='container-body'>
-    <div class='item-container'>
-        <div class='container'>
-            <div class='cell'>
-            	<div class='container'><div class='cell header bold center title'>Total Receivables : {{getTotalReceivable()}} ₱</div></div>
-            </div>
-        </div>
-    </div>
+	<div class='container-body'>
+	    <div class='item-container'>
+	        <div class='container'>
+	            <div class='cell'>
+	            	<div class='container'><div class='cell header bold center title'>Total Receivables : {{getTotalReceivable()}} ₱</div></div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 
-    <div *ngFor='#FilteredSearch of vSearchedList'>
-			<div class='item-container'>
-			    <div class='container'>
-			        <div class='cell'>
-		                <div class='container' id ='accSeq' *ngIf='FilteredSearch.sequence'><div class='cell left grey'># Route {{FilteredSearch.sequence}}</div></div>
-		                <div class='container' id ='accRetName'><div class='cell left'>{{FilteredSearch.retailer_name}}</div></div>
-		                <div class='container' id ='accRetMin'><div class='cell left italic'>{{FilteredSearch.retailer_min}}</div></div>
-			        </div>
-			        <div class='cell'>
-		                <div class='container'><div class='cell right'></div></div>
-		                <div class='container' id ='accAmount'><div class='cell right'>{{FilteredSearch.amount | number}} ₱</div></div>
-		                <div class='container'><div class='cell right'></div></div>
-			        </div>
-			            <div class='cell icon'></div>
-			    </div>
-			</div>
+	 <div *ngFor='#FilteredSearch of vSearchedList'>
+		<div class='item-container'>
+		    <div class='container'>
+		    	<div class='cell icon'>
+		            	<div class='src'>{{FilteredSearch.source}}</div>
+		            </div>
+		        <div class='cell'>
+	                <div class='container' id ='accSeq' *ngIf='FilteredSearch.sequence'><div class='cell left grey'># Route {{FilteredSearch.sequence}}</div></div>
+	                <div class='container' id ='accRetName'><div class='cell left'>{{FilteredSearch.retailer_name}}</div></div>
+	                <div class='container' id ='accRetMin'><div class='cell left italic'>{{FilteredSearch.retailer_min}}</div></div>
+		        </div>
+		        <div class='cell'>
+	                <div class='container'><div class='cell right'></div></div>
+	                <div class='container' id ='accAmount'><div class='cell right'>{{FilteredSearch.amount | number}} ₱</div></div>
+	                <div class='container'><div class='cell right'></div></div> 
+		        </div>
+		            <div class='cell ws'></div> 
+		    </div>
 		</div>
+	</div>
 </div>

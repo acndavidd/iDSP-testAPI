@@ -364,6 +364,7 @@ LIST VIEW - TEXT
                 width: 40%;
                 padding-left:0.6em;
             }
+            
             &.right {
                 width: 40%;
                 text-align: right;
@@ -392,7 +393,6 @@ LIST VIEW - TEXT
             &.percent-300{
                 width:300px; 
             }
-
 
             &.icon {
                 width: 15%;
@@ -436,6 +436,9 @@ LIST VIEW - TEXT
             &.deep-cyan {
                 color: $deep-cyan;
             }
+            &.red {
+                color: $red;
+            }
 
             &.sub-cell {
                 padding-left:2em;
@@ -446,6 +449,10 @@ LIST VIEW - TEXT
             }
             &.title2 {
                 font-size: 1.2em;
+            }
+            &.title3{
+                font-size:1.5em;
+                padding-left:0.4em;
             }
             &.header {
                 width: 100%;
