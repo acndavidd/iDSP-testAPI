@@ -278,6 +278,45 @@ export class RetailerController{
 		}
 	}
 
+	async getRetailerCallPrep(pRequest,pResponse) {
+		try{
+			console.log("Start getting Retailer Preparation");
+
+			var vSalesPerson = pRequest.body.salesPerson;
+			var vSelectedRetailId = pRequest.body.retailerId;
+
+			console.log(vSelectedRetailId+'retailer id');
+
+			var vOrmSvc = new ORMService();
+
+			let vParams = {
+				sales_person : vSalesPerson,
+				selected_ret_id : vSelectedRetailId
+				
+			};
+
+			var vResult = await vOrmSvc.sp('get_retailer_call_prep', vParams );
+			console.log("Query Done with result : "+ JSON.stringify(vResponse));
+			var vResponse = {
+						"status" : "Success",
+						"errorMessage" : "",
+						"result" : vResult
+					};
+			
+			pResponse.json(vResponse);
+		}
+		catch(pErr) {
+			console.log("Failed to Query Retailer Summary with error message" + pErr);
+
+			var vError = {
+						"status" : "Error",
+						"errorMessage" : pErr,
+						"result" : null
+					};
+			pResponse.json(vError);
+		}
+	} 
+
 	async getAllRetailerAlert(pRequest,pResponse){
 		let vOrmSvc = new ORMService();
 		let params = {

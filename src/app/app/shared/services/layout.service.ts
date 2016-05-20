@@ -24,7 +24,7 @@ export class LayoutService {
         filterAccReceivables: false,
         filterRetailerRoute: false,
         filterRetailerInventory: false,
-        filterBasicCallProcedure: false
+        filterRetailerBCP: false
     };
 
     vLayoutState = {
@@ -399,6 +399,14 @@ export class LayoutService {
         }
         // UNDER CLOSE OF THE DAY - END
 
+        // UNDER REMITTANCE - START
+        // UNDER REMITTANCE - END
+
+        // UNDER STOCK RETURN - START
+        // UNDER STOCK RETURN - END
+
+
+
         // UNUSED PAGE - START
         // else if (pCurrent === 'ResetPassword') {
         //     // this._pageNavigationService.setPreviousPage('Settings');
@@ -456,7 +464,7 @@ export class LayoutService {
         this.vFilter.filterDSPAlerts = !this.vFilter.filterDSPAlerts;
         this.vFilter.filterRetailerRoute = !this.vFilter.filterRetailerRoute;
         this.vFilter.filterRetailerInventory = !this.vFilter.filterRetailerInventory;
-        this.vFilter.filterBasicCallProcedure = !this.vFilter.filterBasicCallProcedure;
+        this.vFilter.filterRetailerBCP = !this.vFilter.filterRetailerBCP;
     }
 
     setSearch() {
