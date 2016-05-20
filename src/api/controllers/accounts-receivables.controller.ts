@@ -15,7 +15,7 @@ export class AccController{
 			let vOrmSvc = new ORMService();
 			// let vAccModel = vOrmSvc.getModel('trx_sales_order');
 			var vDspId = pRequest.body.vDspId;
-			var vDate = parseInt(pRequest.body.vDate);
+			var vDate = pRequest.body.vDate;
 
 			let vParams = {
 				dsp_id : vDspId,

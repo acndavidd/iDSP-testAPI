@@ -131,7 +131,6 @@ export class LayoutService {
             pCurrent === 'GetStarted' ||
             pCurrent === 'Verification' ||
             pCurrent === 'Login' ||
-            pCurrent === 'Mpin' ||
             pCurrent === 'SkipSalesOrder') {
             this._pageNavigationService.resetListPreviousData();
             this.vLayoutState = {
@@ -139,8 +138,12 @@ export class LayoutService {
                 appFooter: false,
                 leftMenu: false
             };
-        }
-        else if (
+        } else if ( pCurrent === 'Mpin' ) {
+            this._pageNavigationService.resetListPreviousData();
+            this.vOldCurrentPage = 'Login';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+        } else if (
             pCurrent === 'MyTransaction' ||
             pCurrent === 'BasicCallProcedure' ||
             pCurrent === 'CloseDay' ||
@@ -252,7 +255,6 @@ export class LayoutService {
                 search: false
             };
         } else if (pCurrent === 'RetailerSalesOrder'
-            || pCurrent === 'SalesOrderPayment'
             || pCurrent === 'UnservedOrder') {
             this._pageNavigationService.resetListPreviousData();
             this.vOldCurrentPage = 'BasicCallProcedure';
@@ -361,6 +363,27 @@ export class LayoutService {
             this.vOldCurrentPageParams = null;
             this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
             this.vCurrentPointer = '3';
+
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+            this.vHeaderItem = {
+                hamburger: false,
+                back: true,
+                filter: false,
+                edit: false,
+                search: false
+            };
+        } else if (pCurrent === 'SalesOrderPayment') {
+            // this._pageNavigationService.setPreviousPage('DetailRetailer');
+
+            this._pageNavigationService.resetListPreviousData();
+            // this.vOldCurrentPage = 'CloseDay';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+            
 
             this.vLayoutState = {
                 appHeader: true,
