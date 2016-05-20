@@ -41,7 +41,7 @@ export class AccountsReceivablesComponent {
         var vDate = new Date().getDay();
         console.log( 'vDate: ' + vDate );
 
-        this._accountsReceivablesService.getAllRetailer( vDspId, vDate ).subscribe(
+        this._accountsReceivablesService.getAllRetailer(vDspId, vDate).subscribe(
             response => {
                 this.setAllRetailerList(response.json().result);
                 console.log( 'response success dapet source ' + response.json().result[0].source);

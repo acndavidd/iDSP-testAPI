@@ -9,6 +9,8 @@ export class RetailerService {
     private vErrorMsg: string;
     private vIsLoading: boolean;
     private vRetailer: any;
+    private vToday: Date;
+
     constructor (
         private _http: Http,
         private _router: Router) {
@@ -163,6 +165,18 @@ export class RetailerService {
             );
         return false;
         */
+    }
+
+    queryRetailerRouteBCP() {
+        console.log('Start hit login service to Query Retailer Route for BCP');
+        this.vToday = new Date();
+        let vData = {
+            salesPerson: 'DSP00001',
+            day: 1
+        };
+
+        var vSalesRoute;
+        return this._http.post('/getRetailerRouteBCP', JSON.stringify(vData));
     }
 
     getRetailerAll() {

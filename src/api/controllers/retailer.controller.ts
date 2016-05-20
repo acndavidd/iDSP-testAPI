@@ -241,6 +241,43 @@ export class RetailerController{
 		}
 	}
 
+	async getRetailerRouteBCP(pRequest, pResponse){
+		try{
+			console.log("Start getting retailer route for BCP");
+			var vSelectedDay = pRequest.body.day;
+			var vSalesPerson = pRequest.body.salesPerson;
+			let vOrmSvc = new ORMService();
+
+			console.log('apaaa'+vSelectedDay+vSalesPerson);
+			
+			let vParams = {
+				sales_person : vSalesPerson,
+				selected_day : vSelectedDay
+				
+			};
+
+			var vResult = await vOrmSvc.sp('get_retailer_route_bcp', vParams );
+			console.log("Query Done with result : "+ JSON.stringify(vResponse));
+			var vResponse = {
+						"status" : "Success",
+						"errorMessage" : "",
+						"result" : vResult
+					};
+			
+			pResponse.json(vResponse);
+		}
+		catch(pErr){
+			console.log("Failed to Query Sales Route with error message" + pErr);
+
+			var vError = {
+						"status" : "Error",
+						"errorMessage" : pErr,
+						"result" : null
+					};
+			pResponse.json(vError);
+		}
+	}
+
 	async getAllRetailerAlert(pRequest,pResponse){
 		let vOrmSvc = new ORMService();
 		var vCurrentDate = new Date();

@@ -24,7 +24,8 @@ export class CallPreparationComponent {
         private _layoutService: LayoutService,
         private _matchMediaService: MatchMediaService,
         private _headerService: HeaderService,
-        private _pageNavigationService: PageNavigationService
+        private _pageNavigationService: PageNavigationService,
+        private _router: Router
         ) {
         this._layoutService.setCurrentPage('CallPreparation');
         this._headerService.setTitle('Call Preparation');
@@ -35,7 +36,7 @@ export class CallPreparationComponent {
     }
 
     gotoBCPActivityStep() {
-        this._pageNavigationService.navigate('RetailerSalesOrder', null, null);
+        this._pageNavigationService.navigate('BCPActivityStep', null, null);
     }
 
     subProfileMenuShow() {
