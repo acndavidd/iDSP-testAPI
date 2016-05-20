@@ -5,12 +5,13 @@ import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {RetailerService} from '../../shared/services/retailer.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
-import {NgModel} from 'angular2/common';
+import {NgModel,NgClass} from 'angular2/common';
 
 @Component({
     templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
     directives: [
-        ROUTER_DIRECTIVES
+        ROUTER_DIRECTIVES,
+        NgClass
     ],
     providers: [
         RetailerService
@@ -41,6 +42,7 @@ export class BasicCallProcedureComponent {
 
     gotoCallPreparation() {
         this._pageNavigationService.navigate('CallPreparation', null, null);
+        // this._pageNavigationService.navigate('UnservedOrder', null, null);
         // this._pageNavigationService.navigate('BCPCollection', null, null);
     }
 
