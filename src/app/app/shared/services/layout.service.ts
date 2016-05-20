@@ -251,7 +251,8 @@ export class LayoutService {
                 search: false
             };
         } else if (pCurrent === 'RetailerSalesOrder'
-            || pCurrent === 'SalesOrderPayment') {
+            || pCurrent === 'SalesOrderPayment'
+            || pCurrent === 'UnservedOrder') {
             this._pageNavigationService.resetListPreviousData();
             this.vOldCurrentPage = 'BasicCallProcedure';
             this.vOldCurrentPageParams = null;
@@ -266,7 +267,7 @@ export class LayoutService {
 
             this.vHeaderItem = {
                 hamburger: false,
-                back: true,
+                back: false,
                 filter: false,
                 edit: false,
                 search: false

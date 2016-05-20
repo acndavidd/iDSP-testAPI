@@ -35,5 +35,6 @@ export class BasicCallProcedureComponent {
 
     gotoCallPreparation() {
         this._pageNavigationService.navigate('CallPreparation', null, null);
+        // this._pageNavigationService.navigate('UnservedOrder', null, null);
     }
 }
