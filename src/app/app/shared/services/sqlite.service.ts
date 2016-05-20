@@ -9,8 +9,9 @@ import {Injectable} from 'angular2/core';
 
 export class SQLiteService {
     constructor() {
+        console.log(configChannel);
         if (this.isApp()) {
-            vDbSqlite = vDbSqlite.openDatabase({name: vDbName, location: vDbLocation}, function(pDb) {
+            vDbSqlite = vDbSqlite.openDatabase({name: vDbName, location: vDbLocation}, function(pDb){
                 console.log('Success Bro');
             }, function(pErr) {
                 console.log('Error Bro : ' + pErr);
@@ -18,7 +19,7 @@ export class SQLiteService {
         }
     }
 
-    isApp(): boolean {
+    isApp() {
         return (configChannel === 'app');
     }
 }

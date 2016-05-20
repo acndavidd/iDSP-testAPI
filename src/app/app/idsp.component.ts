@@ -88,26 +88,6 @@ declare var configChannel: any;
         component: MpinComponent
     },
     {
-        path: '/retailerRoute',
-        name: 'RetailerRoute',
-        component: RetailerRouteComponent
-    },
-    {
-        path: '/retailerSalesOrder',
-        name: 'RetailerSalesOrder',
-        component: RetailerSalesOrderComponent
-    },
-    {
-        path: '/detailRetailer',
-        name: 'DetailRetailer',
-        component: DetailRetailerComponent
-    },
-    {
-        path: '/salesOrderPayment',
-        name: 'SalesOrderPayment',
-        component: SalesOrderPaymentComponent
-    },
-    {
         path: '/**',
         redirectTo: ['Starter', 'Login']
     }
@@ -121,7 +101,8 @@ export class IDSPComponent implements OnInit {
     private _router: Router,
     private _layoutService: LayoutService,
     private _pageNavigationService: PageNavigationService,
-    private _renderer: Renderer) {
+    private _renderer: Renderer,
+    private _sqliteService: SQLiteService ) {
         new FastClick(document.body);
         this.globalListenFunc = _renderer.listenGlobal('document', 'backbutton', (event) => {
             // put pageNavigationService

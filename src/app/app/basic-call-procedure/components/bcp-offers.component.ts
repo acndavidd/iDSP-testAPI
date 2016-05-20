@@ -8,7 +8,7 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {NgModel} from 'angular2/common';
 
 @Component({
-    templateUrl: './app/basic-call-procedure/components/bcp-offer.component.html',
+    templateUrl: './app/basic-call-procedure/components/bcp-offers.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ],
@@ -17,7 +17,7 @@ import {NgModel} from 'angular2/common';
     ]
 })
 
-export class OfferComponent {
+export class OffersComponent {
 
     private vListRoute;
     constructor (
@@ -29,8 +29,8 @@ export class OfferComponent {
         private _router: Router
         ) {
         this._retailerService.getRetailer(100);
-        this._layoutService.setCurrentPage('Offer');
-        this._headerService.setTitle('Offer');
+        this._layoutService.setCurrentPage('Offers');
+        this._headerService.setTitle('Offers');
 
     }
 

@@ -5,6 +5,7 @@ import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
 import {ModalService} from '../../shared/services/modal.service';
+import {PageNavigationService} from '../../shared/services/page-navigation.service';
 
 @Component({
     selector: 'unserved-order',
@@ -23,10 +24,14 @@ export class UnservedOrderComponent {
         private _matchMediaService: MatchMediaService,
         private _headerService: HeaderService,
         private _modalService: ModalService,
-        private _router: Router
+        private _router: Router,
+        private _pageNavigationService: PageNavigationService
         ) {
         this._layoutService.setCurrentPage('UnservedOrder');
         this._headerService.setTitle('Unserved Order');
     }
 
+    gotoBCPActivityStep() {
+        this._pageNavigationService.navigate('BCPActivityStep', null, null);
+    }
 }

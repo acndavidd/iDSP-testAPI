@@ -139,6 +139,17 @@ export class RetailerService {
         */
     }
 
+    queryRetailerCallPrep(pRetailerID) {
+        console.log('Start hit login service to Query Retailer Summary');
+
+        let vData = {
+            salesPerson: 'DSP00001',
+            retailerId : pRetailerID
+        };
+
+        return this._http.post('/getRetailerCallPrep', JSON.stringify(vData));
+    }
+
     getRetailer(pRetailerID) {
         /*
         let vData:string = 'retailerID='+pRetailerID;
