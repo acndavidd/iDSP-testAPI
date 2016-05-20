@@ -33,7 +33,6 @@ export class CallPreparationComponent {
         private _pageNavigationService: PageNavigationService,
         private _router: Router
         ) {
-
         console.log(this._pageNavigationService.getCurrentParams());
 
         if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
