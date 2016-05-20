@@ -102,6 +102,19 @@ function bootstrapApp() {
     }, function(){
         updateStatus('failed to stop watching');
     });
+
+    // fullscreen
+    AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+}
+
+function successFunction()
+{
+    console.info("It worked!");
+}
+
+function errorFunction(error)
+{
+    console.error(error);
 }
 
 function onBackKeyDown() {
