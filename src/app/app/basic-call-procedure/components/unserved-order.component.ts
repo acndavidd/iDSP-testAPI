@@ -7,15 +7,15 @@ import {NgModel} from 'angular2/common';
 import {ModalService} from '../../shared/services/modal.service';
 
 @Component({
-    selector: 'retailer-sales-order',
-    templateUrl: './app/basic-call-procedure/components/retailer-sales-order.component.html',
+    selector: 'unserved-order',
+    templateUrl: './app/basic-call-procedure/components/unserved-order.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
     ]
 })
 
-export class RetailerSalesOrderComponent {
+export class UnservedOrderComponent {
 
 
     constructor (
@@ -25,18 +25,8 @@ export class RetailerSalesOrderComponent {
         private _modalService: ModalService,
         private _router: Router
         ) {
-        this._layoutService.setCurrentPage('RetailerSalesOrder');
-        this._headerService.setTitle('Retailer Sales Order');
-    }
-
-    goToSalesOrderPayment() {
-        console.log('Go to Sales Order Payment');
-        this._router.navigate(['SalesOrderPayment']);
-    }
-
-    skipSalesOrderModalComponent() {
-        console.log('Skip Sales Order');
-        this._modalService.toggleSkipSalesOrderModal();
+        this._layoutService.setCurrentPage('UnservedOrder');
+        this._headerService.setTitle('Unserved Order');
     }
 
 }

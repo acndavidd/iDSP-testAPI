@@ -28,7 +28,11 @@ export class AccountsReceivablesService {
         return this.vIsLoading;
     }
 
-    getAllRetailer() {
-      return this._http.get('/getAccountsReceivables', null);
+    getAllRetailer(pDspId, pDate) {
+      let vData = {
+          vDspId : pDspId,
+          vDate : pDate
+      };
+      return this._http.post('/getAccountsReceivables', JSON.stringify(vData));
     }
 }

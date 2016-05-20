@@ -62,6 +62,14 @@ function bootstrapApp() {
     ga('set','checkStorageTask',null);
     //document.addEventListener("backbutton", onBackKeyDown, false);
     console.log("this device is :" + device.cordova);
+
+    window.sqlitePlugin.openDatabase({ name: 'hello-world.db', location: 'default' }, function (db) {
+    db.executeSql("select length('tenletters') as stringlength", [], function (res) {
+      var stringlength = res.rows.item(0).stringlength;
+      console.log('got stringlength: ' + stringlength);
+      document.getElementById('deviceready').querySelector('.received').innerHTML = 'stringlength: ' + stringlength;
+   });
+  });
 }
 
 function onBackKeyDown() {

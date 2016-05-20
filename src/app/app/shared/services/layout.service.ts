@@ -130,7 +130,8 @@ export class LayoutService {
             pCurrent === 'GetStarted' ||
             pCurrent === 'Verification' ||
             pCurrent === 'Login' ||
-            pCurrent === 'Mpin') {
+            pCurrent === 'Mpin' ||
+            pCurrent === 'SkipSalesOrder') {
             this._pageNavigationService.resetListPreviousData();
             this.vLayoutState = {
                 appHeader: false,
@@ -209,7 +210,7 @@ export class LayoutService {
                 search: false
             };
         } else if (
-            pCurrent === 'Call Preparation') {
+            pCurrent === 'CallPreparation') {
             // this._pageNavigationService.setPreviousPage('CloseDay');
             this._pageNavigationService.resetListPreviousData();
             this.vOldCurrentPage = 'BasicCallProcedure';
@@ -250,7 +251,28 @@ export class LayoutService {
                 search: false
             };
         } else if (pCurrent === 'RetailerSalesOrder'
-            || pCurrent === 'SalesOrderPayment') {
+            || pCurrent === 'SalesOrderPayment'
+            || pCurrent === 'UnservedOrder') {
+            this._pageNavigationService.resetListPreviousData();
+            this.vOldCurrentPage = 'BasicCallProcedure';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
+
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+
+            this.vHeaderItem = {
+                hamburger: false,
+                back: false,
+                filter: false,
+                edit: false,
+                search: false
+            };
+        } else if (pCurrent === 'BCPCollection') {
             this._pageNavigationService.resetListPreviousData();
             this.vOldCurrentPage = 'BasicCallProcedure';
             this.vOldCurrentPageParams = null;
