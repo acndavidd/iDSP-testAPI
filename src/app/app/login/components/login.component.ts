@@ -28,11 +28,11 @@ export class LoginComponent {
         private _layoutService: LayoutService,
         private _authenticationService: AuthenticationService,
         private _modalService: ModalService,
-        private _pageNavigationService: PageNavigationService
-        ) {
+        private _pageNavigationService: PageNavigationService,
+        private _sqliteService: SQLiteService ) {
 
         this._layoutService.setCurrentPage('Login');
-        if(configChannel === 'app') {
+        if (configChannel === 'app') {
             dbSqlite.openDatabase({name: 'idsp.db', location: 'default'}, function(){
                 console.log('success');
             }, function(error){

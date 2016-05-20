@@ -121,7 +121,8 @@ export class IDSPComponent implements OnInit {
     private _router: Router,
     private _layoutService: LayoutService,
     private _pageNavigationService: PageNavigationService,
-    private _renderer: Renderer) {
+    private _renderer: Renderer,
+    private _sqliteService: SQLiteService ) {
         new FastClick(document.body);
         this.globalListenFunc = _renderer.listenGlobal('document', 'backbutton', (event) => {
             // put pageNavigationService
