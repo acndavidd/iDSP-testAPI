@@ -131,7 +131,6 @@ export class LayoutService {
             pCurrent === 'GetStarted' ||
             pCurrent === 'Verification' ||
             pCurrent === 'Login' ||
-            pCurrent === 'Mpin' ||
             pCurrent === 'SkipSalesOrder') {
             this._pageNavigationService.resetListPreviousData();
             this.vLayoutState = {
@@ -139,8 +138,12 @@ export class LayoutService {
                 appFooter: false,
                 leftMenu: false
             };
-        }
-        else if (
+        } else if ( pCurrent === 'Mpin' ) {
+            this._pageNavigationService.resetListPreviousData();
+            this.vOldCurrentPage = 'Login';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+        } else if (
             pCurrent === 'MyTransaction' ||
             pCurrent === 'BasicCallProcedure' ||
             pCurrent === 'CloseDay' ||
