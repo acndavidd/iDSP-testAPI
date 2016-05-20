@@ -20,10 +20,10 @@
 		<div class='item-container'>
 		    <div class='container'>
 		    	<div class='cell icon' [ngClass]="{'sulu': (FilteredSearch.source === 'BCP') , 'serenade': (FilteredSearch.source === 'SELF')}">
-		            	<div class='src'>
-		            		{{FilteredSearch.source}}
-		            	</div>
-		            </div>
+	            	<div class='src'>
+	            		{{FilteredSearch.source}}
+	            	</div>
+	            </div>
 		        <div class='cell'>
 	                <div class='container' id ='accSeq' *ngIf='FilteredSearch.sequence'><div class='cell left grey'># Route {{FilteredSearch.sequence}}</div></div>
 	                <div class='container' id ='accRetName'><div class='cell left'>{{FilteredSearch.retailer_name}}</div></div>

@@ -1,0 +1,58 @@
+.container-body-offers {
+    background-color: $white;
+    width: 100%;
+    height: 100%;
+
+    .item-container  {
+	    width: 100%;
+	    cursor: pointer;
+	}
+
+
+    .cover {
+        display: block;
+        width: 100%;
+        height: 35vh;
+        position: relative;
+        overflow: hidden;
+        background-size: cover;
+
+        .pic {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: url("../img/offer.jpg")no-repeat center center;
+            background-size: cover;
+        }
+    }
+
+    .no-divider {
+        width: 100%;
+        float:center;
+    }
+
+    .button {
+        display: inline-block;
+        width: 70%;
+        padding-bottom: 2vw;
+        padding-top: 2vw;
+        margin-left: 15%;
+        margin-top:4%;
+        margin-bottom:4%;
+        background-color: $apple;
+        border-radius: 2vw;
+        .button-identifier {
+            cursor: pointer;
+            font-size: $button;
+            text-align: center;
+            width: 100%;
+            color: $white;
+            font-weight: lighter;
+        }
+    }
+}

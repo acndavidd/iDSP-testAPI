@@ -50,6 +50,10 @@ export class BasicCallProcedureComponent {
         // this._pageNavigationService.navigate('SalesOrderPayment', null, null);
     }
 
+    getFilter() {
+        return this._layoutService.getFilter();
+    }
+
      refreshRetailerRouteBCP() {
         console.log('Get  retailer route for Day');
         this._retailerService.queryRetailerRouteBCP().subscribe(

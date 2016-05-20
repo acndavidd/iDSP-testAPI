@@ -8,7 +8,7 @@ import {NgModel} from 'angular2/common';
 
 @Component({
     selector: 'bcp-activity-step',
-    templateUrl: './app/basic-call-procedure/components/bcp-activity-step.html',
+    templateUrl: './app/basic-call-procedure/components/bcp-activity-step.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]

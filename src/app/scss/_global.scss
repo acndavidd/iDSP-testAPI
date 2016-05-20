@@ -547,14 +547,13 @@ LIST VIEW - ICON
                 background-position-y: center;
                 background-size: 6vw;
             }
-            /* COMMENTED DUE ERRORS ON THIS ICON
             &.add {
-                background: url(#{$icon-add)no-repeat;
+                background: url(#{$icon-add})no-repeat;
                 background-position-x: center;
                 background-position-y: center;
                 background-size: 6vw;
             }
-            */
+            
             .profpic {
                 width: 65px;
                 height: 65px;
