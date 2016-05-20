@@ -8,7 +8,8 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {NgModel} from 'angular2/common';
 
 @Component({
-    templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
+    // templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
+    templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
@@ -33,31 +34,32 @@ export class CallPreparationComponent {
         private _pageNavigationService: PageNavigationService,
         private _router: Router
         ) {
-        console.log(this._pageNavigationService.getCurrentParams());
 
-        if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
-            this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
-            this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
-        } else {
-            console.log('Retailer ID not found');
-        }
-        console.log('in detail retailer for retailer id ' +  this.vSelectedRetailId);
+        // console.log(this._pageNavigationService.getCurrentParams());
 
-        this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
-        response => {
-            if (response.json().status === 'Success') {
-                console.log('Query Success' + JSON.stringify(response.json().result));
-                this.vSelectedRetail = response.json().result;
-                console.log( 'result : ' + this.vSelectedRetail );
+        // if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
+        //     this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
+        //     this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
+        // } else {
+        //     console.log('Retailer ID not found');
+        // }
+        // console.log('in detail retailer for retailer id ' +  this.vSelectedRetailId);
 
-            } else {
-                console.log( 'Query Failed' );
-                this.vSelectedRetail = null;
-            }
-        },
-        error => {
-            console.log(error);
-        });
+        // this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
+        // response => {
+        //     if (response.json().status === 'Success') {
+        //         console.log('Query Success' + JSON.stringify(response.json().result));
+        //         this.vSelectedRetail = response.json().result;
+        //         console.log( 'result : ' + this.vSelectedRetail );
+
+        //     } else {
+        //         console.log( 'Query Failed' );
+        //         this.vSelectedRetail = null;
+        //     }
+        // },
+        // error => {
+        //     console.log(error);
+        // });
 
         this._layoutService.setCurrentPage('CallPreparation');
         this._headerService.setTitle('Call Preparation');

@@ -11,7 +11,7 @@ import {NgModel, NgClass} from 'angular2/common';
     // FOR HIT API
     // templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
     // FOR HARDCODE UI
-    templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
+    templateUrl: './app/basic-call-procedure/components/hc-basic-call-procedure.component.html',
     directives: [
         ROUTER_DIRECTIVES,
         NgClass
@@ -45,11 +45,15 @@ export class BasicCallProcedureComponent {
         return this._matchMediaService.getMm();
     }
 
+    gotoCallPreparationHC() {
+        this._pageNavigationService.navigate('CallPreparation', null, null);
+    }
+
     gotoCallPreparation(pSelectedRetailer) {
         console.log( pSelectedRetailer );
 
         let vParamsOld = {};
-        
+
         let vParams = {
             retailer_id: pSelectedRetailer.retailer_id,
             route_sequence: pSelectedRetailer.seq
@@ -61,6 +65,7 @@ export class BasicCallProcedureComponent {
     getFilter() {
         return this._layoutService.getFilter();
     }
+
 
     onKey(pInputText: any) {
         console.log(pInputText);

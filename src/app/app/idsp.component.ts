@@ -88,26 +88,6 @@ declare var configChannel: any;
         component: MpinComponent
     },
     {
-        path: '/retailerRoute',
-        name: 'RetailerRoute',
-        component: RetailerRouteComponent
-    },
-    {
-        path: '/retailerSalesOrder',
-        name: 'RetailerSalesOrder',
-        component: RetailerSalesOrderComponent
-    },
-    {
-        path: '/detailRetailer',
-        name: 'DetailRetailer',
-        component: DetailRetailerComponent
-    },
-    {
-        path: '/salesOrderPayment',
-        name: 'SalesOrderPayment',
-        component: SalesOrderPaymentComponent
-    },
-    {
         path: '/**',
         redirectTo: ['Starter', 'Login']
     }
