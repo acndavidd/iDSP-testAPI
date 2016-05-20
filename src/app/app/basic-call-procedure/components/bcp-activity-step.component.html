@@ -50,7 +50,8 @@
 <div class="container-body">
     <div class="no-divider">
         <div class="button">
-            <a (click)="gotoBCPCollection()" id="next-link"><div class="button-identifier">Next</div></a>
+            <div class="button-identifier" *ngIf="!vFinishButton" (click)="gotoAnotherPage()" id="next-link">Next</div>
+            <div class="button-identifier" *ngIf="vFinishButton" (click)="gotoAnotherPage()" id="next-link">Finish</div>
         </div>
     </div>
 </div>

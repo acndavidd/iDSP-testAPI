@@ -271,7 +271,7 @@ export class LayoutService {
         else if (
             pCurrent === 'BCPCollection') {
             this._pageNavigationService.resetListPreviousData();
-            // this.vOldCurrentPage = 'BasicCallProcedure';
+            this.vOldCurrentPage = 'BasicCallProcedure';
             this.vOldCurrentPageParams = null;
             this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
             this.vCurrentPointer = '2';
@@ -292,7 +292,7 @@ export class LayoutService {
         } else if (
             pCurrent === 'Offers') {
             this._pageNavigationService.resetListPreviousData();
-            // this.vOldCurrentPage = 'CloseDay';
+            this.vOldCurrentPage = 'CloseDay';
             this.vOldCurrentPageParams = null;
             this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
             this.vCurrentPointer = '3';
@@ -315,6 +315,7 @@ export class LayoutService {
             this.vOldCurrentPage = 'BasicCallProcedure';
             this.vOldCurrentPageParams = null;
             this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+            this.vCurrentPointer = '4';
 
             this.vLayoutState = {
                 appHeader: true,
@@ -332,10 +333,10 @@ export class LayoutService {
         } else if (
             pCurrent === 'SalesOrderPayment') {
             this._pageNavigationService.resetListPreviousData();
-            // this.vOldCurrentPage = 'CloseDay';
+            this.vOldCurrentPage = 'BasicCallProcedure';
             this.vOldCurrentPageParams = null;
             this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
-            this.vCurrentPointer = '4';
+            this.vCurrentPointer = '5';
 
             this.vLayoutState = {
                 appHeader: true,
@@ -355,7 +356,7 @@ export class LayoutService {
             this.vOldCurrentPage = 'BasicCallProcedure';
             this.vOldCurrentPageParams = null;
             this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
-            this.vCurrentPointer = '5';
+            this.vCurrentPointer = '6';
 
             this.vLayoutState = {
                 appHeader: true,
