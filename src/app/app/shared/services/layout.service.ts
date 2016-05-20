@@ -416,7 +416,7 @@ export class LayoutService {
                 search: false
             };
         }
-        else if( pCurrent === 'BasicCallProcedure'){
+        else if ( pCurrent === 'BasicCallProcedure' ) {
             this._pageNavigationService.resetListPreviousData();
 
             this.vLayoutState = {

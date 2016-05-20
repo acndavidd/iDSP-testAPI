@@ -23,6 +23,7 @@ export class CallPreparationComponent {
     vSelectedRetailId;
     vSelectedRetailSeq;
     vSelectedRetail;
+    vSelectedRetailFirstChar;
 
     constructor (
         private _layoutService: LayoutService,
@@ -48,17 +49,15 @@ export class CallPreparationComponent {
             if (response.json().status === 'Success') {
                 console.log('Query Success' + JSON.stringify(response.json().result));
                 this.vSelectedRetail = response.json().result;
-                console.log('result : ' + this.vSelectedRetail);
-              
+                console.log( 'result : ' + this.vSelectedRetail );
+
             } else {
-                console.log('Query Failed');
+                console.log( 'Query Failed' );
                 this.vSelectedRetail = null;
-               
             }
         },
         error => {
             console.log(error);
-            // this.vErrorMsg = 'Failed connecting to login service';
         });
 
         this._layoutService.setCurrentPage('CallPreparation');
@@ -74,7 +73,6 @@ export class CallPreparationComponent {
     }
 
     getRetailerDetails() {
-        console.log('iniiii'+this.vSelectedRetail);
         return this.vSelectedRetail;
     }
 
