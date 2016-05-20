@@ -40,7 +40,7 @@ export class MpinComponent {
         pEvent.preventDefault();
 
         // For By Pass Directly without API
-        this._pageNavigationService.navigate('MyTransaction', null, null);
+        this._pageNavigationService.navigate('Home', null, null);
     }
 
     ResendMpinModalComponent() {
