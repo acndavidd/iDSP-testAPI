@@ -10,6 +10,7 @@ export class ORMService{
 	private vModels;
 	private vAssociatedModels;
 	private vSequelizeSvc:SequelizeService;
+
 	constructor(){
 		this.vModels = {};
 		let vOrmInstance = this;
@@ -40,64 +41,31 @@ export class ORMService{
 			}
 		};
 		if(vDebug)console.log('Finished loading association');
-		//this.vAssociatedModels = {};
 	}
 
 	public async sp(pSPName:string,pParams:any){
 		let vSequelize = this.getSequelize();
 		return new Promise<string>(
 			function (pResolve,pReject){
-				//build params
-				let vParams = '(';
-				for(let vParam in pParams){
-					vParams += "'" + pParams[vParam] + "',";
+				try{
+					//build params
+					let vParams = '(';
+					for(let vParam in pParams){
+						vParams += "'" + pParams[vParam] + "',";
+					}
+					vParams = vParams.substring(0,vParams.lastIndexOf(',')) + ');';
+					let vQuery = 'SELECT ' + pSPName + vParams;
+					vSequelize.query( vQuery, { type: vSequelize.QueryTypes.SELECT }).then(function(pResults){
+						pResolve(pResults[0][pSPName]);
+					});
+				}catch(pErr){
+					pReject(pErr);
 				}
-				vParams = vParams.substring(0,vParams.lastIndexOf(',')) + ');';
-				vSequelize.query('SELECT ' + pSPName + vParams).then(function(pResponse){
-					pResolve(pResponse[0][0][pSPName]);
-				});
 			});
-		//return this.getSequelize().query('SELECT ' + pSPName + "('"+pParams+"');").then();
 	}
 
 	public getSequelize(){
-		//let vSequelizeSvc:SequelizeService = new SequelizeService();
 		return this.vSequelizeSvc.getInstance();
-	}
-
-	public buildModels(pRequest,pResponse){
-		try{
-			let vPS = vExec('powershell.exe');
-			vPS.stdout.on('data',(data) => {
-				console.log('output : ' + data);
-			});
-			vPS.stderr.on('data', (error) => {
-				console.log('error : ' + error);
-			});
-			vFs.readFile('models/tables', 'UTF-8', 'r' , (err,data) => {
-				if(err)throw err;
-				data.split('\n').forEach(function(pLine){
-					console.log('execute ' + pLine);
-					vPS.stdin.write(pLine);
-				});
-			});
-			vPS.stdin.end();
-		}catch(err){
-			console.log(err);
-			pResponse.json(err);
-		}
-	}
-
-	public syncModel(pRequest,pResponse){
-		let vSequelizeSvc:SequelizeService = new SequelizeService();
-		try{
-			var vModel = vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),pRequest.query.model + vSequelizeSvc.getModelNaming()));
-			vModel.sync();
-			pResponse.send('success');
-		}catch(err){
-			console.log(err);
-			pResponse.send(err);
-		}
 	}
 
 	public getModel(pModelName:string){
@@ -137,17 +105,4 @@ export class ORMService{
 			throw pErr;
 		}*/
 	}
-	/*
-	public syncAllModel(pRequest,pResponse){
-		let vSequelizeSvc:SequelizeService = new SequelizeService();
-		try{
-			vFs.readdirSync(vPath.join(vSequelizeSvc.getModelPath()),function(file){
-				console.log(file);
-			});
-			//vSequelizeSvc.getInstance().import(vPath.join(vSequelizeSvc.getModelPath(),pModelName + vSequelizeSvc.getModelNaming()));
-		}catch(err){
-			console.log(err);
-			throw err;
-		}
-	}*/
 }
