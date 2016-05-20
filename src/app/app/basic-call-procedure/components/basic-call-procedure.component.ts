@@ -48,7 +48,6 @@ export class BasicCallProcedureComponent {
         console.log( pSelectedRetailer );
 
         let vParamsOld = {};
-        
         let vParams = {
             retailer_id: pSelectedRetailer.retailer_id,
             route_sequence: pSelectedRetailer.seq

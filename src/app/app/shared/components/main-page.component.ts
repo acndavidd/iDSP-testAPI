@@ -24,8 +24,8 @@ import {BCPActivityStepComponent} from '../../basic-call-procedure/components/bc
 import {RemittanceComponent} from '../../remittance/components/remittance.component';
 import {CallPreparationComponent} from '../../basic-call-procedure/components/call-preparation.component';
 import {StockReturnComponent} from '../../stock-return/components/stock-return.component';
-// import {UnservedOrderComponent} from '../../basic-call-procedure/components/unserved-order.component';
-import {OfferComponent} from '../../basic-call-procedure/components/bcp-offer.component';
+import {UnservedOrderComponent} from '../../basic-call-procedure/components/unserved-order.component';
+import {OffersComponent} from '../../basic-call-procedure/components/bcp-offers.component';
 import {MpinComponent} from '../../login/components/mpin.component';
 import {LoginComponent} from '../../login/components/login.component';
 
@@ -43,15 +43,11 @@ import {HomeComponent} from '../../shared/components/home.component';
 })
 
 @RouteConfig([
+    // PARENT PAGE - START
     {
         path: '/home',
         name: 'Home',
         component: HomeComponent
-    },
-    {
-        path: '/Mpin',
-        name: 'Mpin',
-        component: MpinComponent
     },
     {
         path: '/myTransaction',
@@ -69,16 +65,26 @@ import {HomeComponent} from '../../shared/components/home.component';
         component: CloseDayComponent
     },
     {
-        path: '/settings',
-        name: 'Settings',
-        component: SettingsComponent
+        path: '/remittance',
+        name: 'Remittance',
+        component: RemittanceComponent
     },
-    // UNDER MY TRANSACTION TAB - START
+    {
+        path: '/stockReturn',
+        name: 'StockReturn',
+        component: StockReturnComponent
+    },
+    // PARENT PAGE - END
+
+    // SHARED PAGE - START
     {
         path: '/targetsActuals',
         name: 'TargetsActuals',
         component: TargetsActualsComponent
     },
+    // SHARED PAGE - END
+
+    // UNDER MY TRANSACTION TAB - START
     {
         path: '/inventory',
         name: 'Inventory',
@@ -103,30 +109,14 @@ import {HomeComponent} from '../../shared/components/home.component';
 
     // UNDER BCP TAB - START
     {
-        path: '/callPreparation',
-        name: 'CallPreparation',
-        component: CallPreparationComponent
-    },
-    {
-        path: '/retailerSalesOrder',
-        name: 'RetailerSalesOrder',
-        component: RetailerSalesOrderComponent
-    },
-    {
         path: '/bcpActivityStep',
         name: 'BCPActivityStep',
         component: BCPActivityStepComponent
     },
-
     {
-        path: '/detailRetailer',
-        name: 'DetailRetailer',
-        component: DetailRetailerComponent
-    },
-    {
-        path: '/retailerInventory',
-        name: 'RetailerInventory',
-        component: RetailerInventoryComponent
+        path: '/callPreparation',
+        name: 'CallPreparation',
+        component: CallPreparationComponent
     },
     {
         path: 'bcpCollection',
@@ -134,23 +124,28 @@ import {HomeComponent} from '../../shared/components/home.component';
         component: BCPCollectionComponent
     },
     {
+        path: '/offer',
+        name: 'Offer',
+        component: OffersComponent
+    },
+    {
+        path: '/retailerSalesOrder',
+        name: 'RetailerSalesOrder',
+        component: RetailerSalesOrderComponent
+    },
+    {
         path: '/salesOrderPayment',
         name: 'SalesOrderPayment',
         component: SalesOrderPaymentComponent
     },
     {
-        path: '/offer',
-        name: 'Offer',
-        component: OfferComponent
+        path: '/unservedOrder',
+        name: 'UnservedOrder',
+        component: UnservedOrderComponent
     },
-    // {
-    //     path: '/unservedOrder',
-    //     name: 'UnservedOrder',
-    //     component: UnservedOrderComponent
-    // },
     // UNDER BCP TAB - END
 
-    // UNDER CLOSE DAY TAB - START
+    // UNDER CLOSE OF THE DAY TAB - START
     {
         path: '/collection',
         name: 'Collection',
@@ -160,32 +155,37 @@ import {HomeComponent} from '../../shared/components/home.component';
         path: '/visitedRetail',
         name: 'VisitedRetail',
         component: VisitedRetailComponent
-    },
-    // UNDER SETTINGS TAB - END
+    }
+    // UNDER CLOSE OF THE DAY TAB - END
 
     // UNDER STOCK RETURN TAB - START
-    {
-        path: '/stockReturn',
-        name: 'StockReturn',
-        component: StockReturnComponent
-    },
     // UNDER STOCK RETURN TAB - END
 
-    // UNDER RESET TAB - START
+    // UNDER REMITTANCE TAB - START
+    // UNDER REMITTANCE TAB - END
+
+    // UNUSED PAGE - START
     // {
     //     path: '/resetPassword',
     //     name: 'ResetPassword',
     //     component: ResetPasswordComponent
     // },
-    // UNDER RESET TAB - END
-
-    // UNDER REMITTANCE TAB - START
-    {
-        path: '/remittance',
-        name: 'Remittance',
-        component: RemittanceComponent
-    }
-    // UNDER REMITTANCE TAB - END
+    // {
+    //     path: '/detailRetailer',
+    //     name: 'DetailRetailer',
+    //     component: DetailRetailerComponent
+    // },
+    // {
+    //     path: '/retailerInventory',
+    //     name: 'RetailerInventory',
+    //     component: RetailerInventoryComponent
+    // },
+    // {
+    //     path: '/settings',
+    //     name: 'Settings',
+    //     component: SettingsComponent
+    // },
+    // UNUSED PAGE - END
 
 ])
 
