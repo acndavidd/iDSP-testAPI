@@ -5,7 +5,7 @@ import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {RetailerService} from '../../shared/services/retailer.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
-import {NgModel,NgClass} from 'angular2/common';
+import {NgModel, NgClass} from 'angular2/common';
 
 @Component({
     templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
