@@ -166,8 +166,11 @@ export class LayoutService {
                 edit: false,
                 search: false
             };
+            // ONLY BCP PAGE NEEDS FILTER
+            if (pCurrent === 'BasicCallProcedure') {
+                this.vHeaderItem.filter = true;
+            }
         } else if (
-            pCurrent === 'TargetsActuals' ||
             pCurrent === 'Inventory' ||
             pCurrent === 'RetailerRoute' ||
             pCurrent === 'AccountsReceivables' ||
@@ -178,6 +181,22 @@ export class LayoutService {
             this.vOldCurrentPageParams = null;
             this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
 
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+            this.vHeaderItem = {
+                hamburger: true,
+                back: false,
+                filter: true,
+                edit: false,
+                search: false
+            };
+        } else if (
+            pCurrent === 'TargetsActuals') {
+
+            // NO NEED TO SET PREVIOUS PAGE FOR TARGETS AND ACTUALS PAGE
             this.vLayoutState = {
                 appHeader: true,
                 appFooter: false,
@@ -260,7 +279,6 @@ export class LayoutService {
             this.vOldCurrentPage = 'BasicCallProcedure';
             this.vOldCurrentPageParams = null;
             this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
-            this.vCurrentPointer = '4';
 
             this.vLayoutState = {
                 appHeader: true,
@@ -383,7 +401,7 @@ export class LayoutService {
             // this.vOldCurrentPage = 'CloseDay';
             this.vOldCurrentPageParams = null;
             this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
-            
+            this.vCurrentPointer = '4';
 
             this.vLayoutState = {
                 appHeader: true,

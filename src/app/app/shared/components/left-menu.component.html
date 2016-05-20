@@ -1,9 +1,21 @@
 <div class="left-menu-container" [ngClass]="{active : getLeftMenuState()}">
+    <!-- <div class="menu-header">
+        <div class="header-container">
+            <div class="header-cell pic">
+                <img src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif" class="menu-pic" id="menuPic" (click)="takepic()"/>
+            </div>
+            <div class="header-cell text">
+                Tamara Josh Honey Panda
+            </div>
+        </div>
+    </div> -->
+
+
     <div class="menu-header">
         <div class="header-container">
             <div class="header-cell pic">
                 <!--<input type="file" />-->
-                <img class="menu-pic" id="menuPic" (click)="takepic()"/>
+                <img src="/img/Transparent.gif" class="menu-pic" id="menuPic" (click)="takepic()"/>
             </div>
             <div class="header-cell">
                 <div class="header-container">
@@ -29,7 +41,7 @@
             <div class='cell icon arrow-right'></div>
         </div>
         <div class="separator"></div>
-            <div class="container" (click)="goToTargets()">
+            <div class="container" (click)="goToTargetsActualsMD()">
                 <div class='cell icon target'></div>
                 <div class='cell'>
                     <div class='container'><div id='targets-actuals-btn' class='cell single'>Targets &amp; Actuals</div></div>
@@ -80,7 +92,7 @@
             <div class='cell icon arrow-right'></div>
         </div>
         <div class="separator"></div>
-            <div class="container" (click)="goToTargets()">
+            <div class="container" (click)="goToTargetsActualsCD()">
                 <div class='cell icon target'></div>
                 <div class='cell'>
                     <div class='container'><div id='targets-actuals-btn' class='cell single'>Targets &amp; Actuals</div></div>
