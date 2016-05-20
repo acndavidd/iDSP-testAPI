@@ -25,7 +25,7 @@ import {RemittanceComponent} from '../../remittance/components/remittance.compon
 import {CallPreparationComponent} from '../../basic-call-procedure/components/call-preparation.component';
 import {StockReturnComponent} from '../../stock-return/components/stock-return.component';
 // import {UnservedOrderComponent} from '../../basic-call-procedure/components/unserved-order.component';
-
+import {OfferComponent} from '../../basic-call-procedure/components/bcp-offer.component';
 
 import {HomeComponent} from '../../shared/components/home.component';
 
@@ -126,11 +126,15 @@ import {HomeComponent} from '../../shared/components/home.component';
         name: 'BCPCollection',
         component: BCPCollectionComponent
     },
-
     {
         path: '/salesOrderPayment',
         name: 'SalesOrderPayment',
         component: SalesOrderPaymentComponent
+    },
+    {
+        path: '/offer',
+        name: 'Offer',
+        component: OfferComponent
     },
     // {
     //     path: '/unservedOrder',
