@@ -5,6 +5,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
 var configChannel = 'web'; //possible values: app, web
+var vDbSqlite;;
 
 var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
 
@@ -62,7 +63,7 @@ function bootstrapApp() {
     ga('set','checkStorageTask',null);
     //document.addEventListener("backbutton", onBackKeyDown, false);
     console.log("this device is :" + device.cordova);
-
+    vDbSqlite = window.sqlitePlugin;
     window.sqlitePlugin.openDatabase({ name: 'hello-world.db', location: 'default' }, function (db) {
     db.executeSql("select length('tenletters') as stringlength", [], function (res) {
       var stringlength = res.rows.item(0).stringlength;

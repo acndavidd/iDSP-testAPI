@@ -8,7 +8,10 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {NgModel, NgClass} from 'angular2/common';
 
 @Component({
-    templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
+    // FOR HIT API
+    // templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
+    // FOR HARDCODE UI
+    templateUrl: './app/basic-call-procedure/components/hc-basic-call-procedure.component.html',
     directives: [
         ROUTER_DIRECTIVES,
         NgClass
