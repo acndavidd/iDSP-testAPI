@@ -12,6 +12,12 @@ module.exports = {
       },
       brand: {
         type: Sequelize.STRING(20)
+      },
+      sync_status:{
+        type : Sequelize.STRING(1)
+      },
+      sync_version:{
+        type : Sequelize.DATE
       }
     });
   },

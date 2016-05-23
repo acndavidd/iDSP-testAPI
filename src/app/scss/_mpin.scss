@@ -1,0 +1,133 @@
+$container-mpin-height: 100%;
+
+.container-mpin {
+	background: url("../img/login_bg.png") no-repeat center center;
+	z-index: 50;
+	position: fixed;
+    left: 0;
+    right: 0;
+	height: 100%;
+	text-align :center;
+
+	.anti-spy {
+                width: 100%;
+                position: absolute;
+                background-color: rgba(0, 0, 0, 0.4);
+                height : 100%;
+            }
+
+    ::-webkit-input-placeholder {
+		color:    #FFF;
+	}
+	:-moz-placeholder {
+		color:    #FFF;
+	}
+	::-moz-placeholder {
+		color:    #FFF;
+	}
+	:-ms-input-placeholder {
+		color:    #FFF;
+	}
+
+	.smart-logo
+	{
+		display: block;
+        // height: 30px;
+        width: 100%;
+        background: 
+        url("../img/smart-logo.png")
+        no-repeat;
+        background-position-x: center;
+        background-position-y: center;
+        background-size: 30vw;
+        z-index: 90;
+		position: fixed;
+		padding-top: 40vw;
+
+	}
+
+	.outer-box{
+		max-width : 80%;
+		margin: 20vw auto -3vw;
+		.header {
+			color: #FFF;
+			font-size: 10vw;
+			line-height: 5vw;
+			margin-bottom: 10vw;
+			text-align: center;
+			font-weight: lighter;
+		}
+
+		.mpin-title{
+			color: #FFF;
+			font-size: 5vw;
+			line-height: 12vw;
+			text-align: center;
+			//font-weight: lighter;
+		}
+
+		.mpin-message{
+			color: #FFF;
+			clear: both;
+	        margin-right: 4vw;
+	        margin-left: 4vw;
+	        font-size: 3.5vw;
+	        font-style: italic;
+	        text-align: center;
+		}
+
+		.mpin-field {
+			clear: both;
+			display: inline-flex;
+			width: 100%;
+			
+			margin: 0% 0% 3% 0%;
+		       .mpin-field-item {
+			        // float: left;
+			        margin-bottom:2.5vw;
+			        height: 12vw;
+			        line-height: 12vw;
+			        font-size: 4vw;
+    				font-weight: bold;
+			        color: #FFF;
+      			}
+      .last-child {
+          margin-right: 0 !important;
+        }
+        	input {
+	        border: 1px solid #ddd;
+	        width: 75%;
+	        height: 7vh;
+	        background-color: rgba(199, 195, 184, 0.5);
+	        font-size: 4vw;
+	        text-align: center;
+	        font-style: italic;
+	        font-weight: 600;
+	       	color: $white;
+      }
+		}
+
+		a {
+			color: #FFF;
+			//text-decoration: underline;
+			cursor: pointer;
+			padding:2%;
+			}
+
+		.link{
+			text-decoration: underline;
+			font-size: 4vw;
+		}
+		
+
+		.submit-button
+		{
+			background-color: $apple;
+			text-align: center;
+			vertical-align: center;
+			padding: 3% 0% 3% 0%;
+			font-size: 4vw;
+    		color : #FFF;
+		}
+	}
+}

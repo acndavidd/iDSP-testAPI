@@ -5,7 +5,9 @@ module.exports = function(sequelize, DataTypes) {
       type : DataTypes.STRING(20),
       primaryKey  : true
     }, 
-    dist_name: DataTypes.STRING(50)
+    dist_name: DataTypes.STRING(50),
+    sync_status:DataTypes.STRING(1),
+    sync_version:DataTypes.DATE
   }, {
     timestamps : false,
     freezeTableName: true,

@@ -11,9 +11,6 @@ module.exports = {
       dsp_id: {
         type: Sequelize.STRING(20)
       },
-      product_id: {
-        type: Sequelize.STRING(20)
-      },
       sub_category_id:{
         type : Sequelize.STRING(20)
       },
@@ -25,6 +22,12 @@ module.exports = {
       },
       target_qty: {
         type: Sequelize.INTEGER
+      },
+      sync_status:{
+        type : Sequelize.STRING(1)
+      },
+      sync_version:{
+        type : Sequelize.DATE
       }
     });
   },

@@ -215,7 +215,14 @@
 		</div>
 
 	    <div class="no-divider">
+<<<<<<< HEAD
 	        <div class= "button" (click)="gotoBCPActivityStep()">
+=======
+	        <div class= "button" (click)="gotoBCPActivityStep()" *ngIf="vStartEnabled" >
+	            <div class="button-identifier">START</div>
+	        </div>      
+	        <div class= "button-disabled" *ngIf="!vStartEnabled" >
+>>>>>>> 7fe2ed37c53414f731b9654cf8d6fa46e95232cd
 	            <div class="button-identifier">START</div>
 	        </div>      
 	    </div>
