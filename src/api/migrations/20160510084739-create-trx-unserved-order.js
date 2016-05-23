@@ -3,13 +3,12 @@ module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('trx_unserved_order', {
       order_det_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING(50),
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
+        primaryKey: true
       },
       order_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING(50),
         allowNull: false,
       },
       product_id: {
@@ -21,6 +20,12 @@ module.exports = {
       },
       remarks: {
         type: Sequelize.STRING(50)
+      },
+      sync_status: {
+        type: Sequelize.STRING(1)
+      },
+      sync_version: {
+        type: Sequelize.DATE
       }
     });
   },
