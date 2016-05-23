@@ -112,8 +112,8 @@ export class CallPreparationComponent {
     }
 
     getStartStatus() {
-        switch (this._pageNavigationService.getCurrentParams()) {
-            case 'visited':
+        switch (this._pageNavigationService.getCurrentParams().status) {
+            case 'Visited':
                 this.vStartEnabled = false;
                 break;
             default:

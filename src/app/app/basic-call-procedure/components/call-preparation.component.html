@@ -109,7 +109,7 @@
 				<div class="container border">
 					<div class='cell'>
 				        <div class='container'><div class='cell single sub-cell grey'>Status</div></div>
-				        <div class='container'><div class='cell single sub-cell'>In Progress</div></div>
+				        <div class='container'><div class='cell single sub-cell'>{{each.call_status}}</div></div>
 				    </div>
 				    <div class='cell icon'></div>
 				</div>
@@ -220,9 +220,16 @@
 			</div>
 
 	    <div class="no-divider">
-	        <div class= "button" (click)="gotoBCPActivityStep(each)">
+	        <div class= "button" (click)="gotoBCPActivityStep(each)" *ngIf="vStartEnabled" >
 	            <div class="button-identifier">START</div>
 	        </div>      
+	        <div class= "button-disabled" *ngIf="!vStartEnabled" >
+	            <div class="button-identifier">START</div>
+	        </div>      
+
+<!-- 	        <div class= "button" (click)="gotoBCPActivityStep(each)">
+	            <div class="button-identifier">START</div>
+	        </div>     -->  
 	    </div>
     </div>
 </div>
