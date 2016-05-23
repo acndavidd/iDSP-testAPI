@@ -2,14 +2,13 @@
 module.exports = function(sequelize, DataTypes) {
   var trx_unserved_order = sequelize.define('trx_unserved_order', {
     order_det_id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.STRING(50),
       primaryKey: true,
       allowNull: false,
       unique: true
     },
     order_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(50),
       allowNull: false
     },
     product_id: {
@@ -17,7 +16,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     quantity: DataTypes.INTEGER,
-    remarks: DataTypes.STRING(50)
+    remarks: DataTypes.STRING(50),
+    sync_status: DataTypes.STRING(1),
+    sync_version: DataTypes.DATE
   }, {
     timestamps: false,
     freezeTableName: true,

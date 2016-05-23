@@ -10,6 +10,7 @@ module.exports = function(sequelize, DataTypes) {
     owner_first_name: DataTypes.STRING(20),
     owner_middle_name: DataTypes.STRING(20),
     owner_last_name: DataTypes.STRING(20),
+    retailer_type: DataTypes.STRING(20),
     retailer_address: DataTypes.STRING(100),
     civil_status: DataTypes.STRING(20),
     email: DataTypes.STRING(100),
@@ -19,6 +20,8 @@ module.exports = function(sequelize, DataTypes) {
     dsp_id: DataTypes.STRING(20),
     created_date: DataTypes.DATE,
     created_by: DataTypes.STRING(20),
+    updated_date: DataTypes.DATE,
+    updated_by: DataTypes.STRING(20),
     updated_date: DataTypes.DATE,
     updated_by: DataTypes.STRING(20)
   }, {

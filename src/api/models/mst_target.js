@@ -3,15 +3,17 @@ module.exports = function(sequelize, DataTypes) {
   var mst_target = sequelize.define('mst_target', {
     target_id: {
       type : DataTypes.INTEGER,
-      primaryKey : true
+      primaryKey : true,
+      autoIncrement: true,
+      allowNull: false,
     },
     dsp_id: DataTypes.STRING(20),
     sub_category_id: DataTypes.STRING(20),
-    product_id: DataTypes.STRING(20),
     target_month: DataTypes.INTEGER,
     target_year: DataTypes.INTEGER,
     target_qty: DataTypes.INTEGER,
-    sub_category_id: DataTypes.STRING(20)
+    sync_status:DataTypes.STRING(1),
+    sync_version:DataTypes.DATE
   }, {
     timestamps : false,
     freezeTableName: true,

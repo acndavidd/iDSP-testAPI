@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      dsp_id: {
+        type: Sequelize.STRING(20),
+      }
       retailer_id: {
         type: Sequelize.STRING(20)
       },
@@ -25,6 +28,12 @@ module.exports = {
       },
       updated_by: {
         type: Sequelize.STRING(20)
+      },
+      sync_status:{
+        type : Sequelize.STRING(1)
+      },
+      sync_version:{
+        type : Sequelize.DATE
       }
     });
   },

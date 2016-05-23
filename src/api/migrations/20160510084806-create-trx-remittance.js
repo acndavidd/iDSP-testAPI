@@ -3,9 +3,8 @@ module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('trx_remittance', {
       remit_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING(50),
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true
       },
       dsp_id: {
@@ -16,6 +15,12 @@ module.exports = {
       },
       remit_amount: {
         type: Sequelize.INTEGER
+      },
+      sync_status: {
+        type: Sequelize.STRING(1)
+      },
+      sync_version: {
+        type: Sequelize.DATE
       }
     });
   },
