@@ -230,10 +230,6 @@ export class LayoutService {
         // UNDER BASIC CALL PROCEDURE - START
         else if (
             pCurrent === 'BCPActivityStep') {
-            this._pageNavigationService.resetListPreviousData();
-            this.vOldCurrentPage = 'CallPreparation';
-            this.vOldCurrentPageParams = null;
-            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
             this.vLayoutState = {
                 appHeader: true,
                 appFooter: false,
@@ -248,10 +244,6 @@ export class LayoutService {
             };
         } else if (
             pCurrent === 'CallPreparation') {
-            this._pageNavigationService.resetListPreviousData();
-            this.vOldCurrentPage = 'BasicCallProcedure';
-            this.vOldCurrentPageParams = null;
-            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
             this.vCurrentPointer = '1';
 
             this.vLayoutState = {
@@ -270,10 +262,6 @@ export class LayoutService {
         }
         else if (
             pCurrent === 'BCPCollection') {
-            this._pageNavigationService.resetListPreviousData();
-            this.vOldCurrentPage = 'BasicCallProcedure';
-            this.vOldCurrentPageParams = null;
-            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
             this.vCurrentPointer = '2';
 
             this.vLayoutState = {

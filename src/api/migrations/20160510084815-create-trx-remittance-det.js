@@ -10,7 +10,7 @@ module.exports = {
       remit_id: {
         type: Sequelize.STRING(50),
         allowNull: false
-      }
+      },
       remit_type: {
         type: Sequelize.INTEGER
       },
