@@ -11,7 +11,7 @@
 			    <div class='cell icon'></div>
 			</div>
 	        <div class="container">
-	        	<div class='cell logo'><div class="profpic pink">{{each.first_car}}</div></div>
+	        	<div class='cell logo'><div class="profpic pink">{{each.first_char}}</div></div>
 	        	<div class='cell'>
 	        		<div class='container'>
 	        			<div class='cell content title bold green'>{{each.retailer_name}}</div>
@@ -220,7 +220,7 @@
 			</div>
 
 	    <div class="no-divider">
-	        <div class= "button" (click)="gotoBCPActivityStep()">
+	        <div class= "button" (click)="gotoBCPActivityStep(each)">
 	            <div class="button-identifier">START</div>
 	        </div>      
 	    </div>
