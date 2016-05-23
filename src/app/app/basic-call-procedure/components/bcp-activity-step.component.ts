@@ -3,6 +3,7 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet, RouteParams } from
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
+import {RetailerService} from '../../shared/services/retailer.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {NgModel} from 'angular2/common';
 
@@ -20,14 +21,45 @@ export class BCPActivityStepComponent {
     vOffersFlag = false;
     vSalesFlag = false;
     vFinishButton = false;
+    vSelectedRetailId;
+    vSelectedRetailSeq;
+    vSelectedRetail;
 
     constructor (
         private _layoutService: LayoutService,
         private _matchMediaService: MatchMediaService,
+        private _retailerService: RetailerService,
         private _headerService: HeaderService,
         private _pageNavigationService: PageNavigationService,
         private _router: Router
         ) {
+
+        console.log(this._pageNavigationService.getCurrentParams());
+
+        if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
+            this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
+            this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
+        } else {
+            console.log('Retailer ID not found');
+        }
+        console.log('in BCP activity for retailer id ' +  this.vSelectedRetailId);
+
+        this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
+        response => {
+            if (response.json().status === 'Success') {
+                console.log('Query Success' + JSON.stringify(response.json().result));
+                this.vSelectedRetail = response.json().result;
+                console.log( 'result : ' + this.vSelectedRetail );
+
+            } else {
+                console.log( 'Query Failed' );
+                this.vSelectedRetail = null;
+            }
+        },
+        error => {
+            console.log(error);
+        });
+
         this._layoutService.setCurrentPage('BCPActivityStep');
         this._headerService.setTitle('BCP Activities Step');
         this.vCurrentPointer = this._layoutService.getCurrentPointer();
@@ -74,4 +106,9 @@ export class BCPActivityStepComponent {
         }
         console.log('current pointer : ' + this.vCurrentPointer + ' | vFinishButton : ' + this.vFinishButton);
     }
+
+    getRetailerDetails() {
+        return this.vSelectedRetail;
+    }
+
 }

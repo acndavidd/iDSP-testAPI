@@ -1,34 +1,37 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('mst_promo', {
-      promo_id: {
+    return queryInterface.createTable('mst_offer', {
+      offer_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      product_id: {
+      offer_name: {
         type: Sequelize.STRING(20)
       },
-      promo_name: {
-        type: Sequelize.STRING(50)
-      },
-      promo_description: {
+      offer_description: {
         type: Sequelize.STRING(2500)
       },
-      promo_pict: {
-        type: Sequelize.STRING(50)
+      offer_picture: {
+        type: Sequelize.BLOB
       },
       start_date: {
         type: Sequelize.DATE
       },
       end_date: {
         type: Sequelize.DATE
+      },
+      sync_status: {
+        type: Sequelize.STRING(1)
+      },
+      sync_version: {
+        type: Sequelize.DATE
       }
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('mst_promo');
+    return queryInterface.dropTable('mst_offer');
   }
 };

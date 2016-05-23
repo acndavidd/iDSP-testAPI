@@ -2,19 +2,21 @@
 module.exports = function(sequelize, DataTypes) {
   var trx_collection_det = sequelize.define('trx_collection_det', {
     coll_det_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(50),
       primaryKey: true,
       allowNull: false,
-      unique: true,
+      unique: true
     },
     coll_id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING(50)
     },
     ar_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(50)
     },
     ar_type: DataTypes.STRING(20),
-    amount: DataTypes.DECIMAL(10,2)
+    amount: DataTypes.DECIMAL(10,2),
+    sync_status: DataTypes.STRING(1),
+    sync_version: DataTypes.DATE
   }, {
     classMethods: {
       associate: function(models) {

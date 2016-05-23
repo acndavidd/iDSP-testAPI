@@ -11,7 +11,7 @@ import {NgModel, NgClass} from 'angular2/common';
     // FOR HIT API
     // templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
     // FOR HARDCODE UI
-    templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
+    templateUrl: './app/basic-call-procedure/components/hc-basic-call-procedure.component.html',
     directives: [
         ROUTER_DIRECTIVES,
         NgClass
@@ -54,7 +54,8 @@ export class BasicCallProcedureComponent {
         let vParamsOld = {};
         let vParams = {
             retailer_id: pSelectedRetailer.retailer_id,
-            route_sequence: pSelectedRetailer.seq
+            route_sequence: pSelectedRetailer.seq,
+            status: pSelectedRetailer.call_status
         };
 
         this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);

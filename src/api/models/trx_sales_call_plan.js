@@ -2,11 +2,10 @@
 module.exports = function(sequelize, DataTypes) {
   var trx_sales_call_plan = sequelize.define('trx_sales_call_plan', {
     call_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(50),
       primaryKey: true,
       allowNull: false,
-      unique: true,
-      autoIncrement: true
+      unique: true
     },
     route_id: {
       type: DataTypes.INTEGER
@@ -21,7 +20,9 @@ module.exports = function(sequelize, DataTypes) {
     end_offer_date: DataTypes.DATE,
     start_sales_date: DataTypes.DATE,
     end_sales_date: DataTypes.DATE,
-    sales_remarks: DataTypes.STRING(30)
+    sales_remarks: DataTypes.STRING(30),
+    sync_status: DataTypes.STRING(1),
+    sync_version: DataTypes.DATE
   }, {
     timestamps: false,
     freezeTableName: true,
