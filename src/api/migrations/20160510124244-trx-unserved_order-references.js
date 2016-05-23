@@ -20,7 +20,7 @@ module.exports = {
         .changeColumn('trx_unserved_order',
         'order_id',
           {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
             references: {
               model: 'trx_sales_order',
               key: 'order_id'
