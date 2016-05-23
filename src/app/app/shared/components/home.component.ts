@@ -33,44 +33,39 @@ export class HomeComponent {
         return this._matchMediaService.getMm();
     }
 
+    goToMyDashboard() {
+        this._pageNavigationService.navigate('MyTransaction', null, null);
+    }
+
     goToTargetsActuals() {
-        console.log('PEGI KE TARGET ACTUAL');
         this._pageNavigationService.navigate('TargetsActuals', null, null);
     }
 
     goToInventory() {
-        console.log('PEGI KE INVENTORY');
         this._pageNavigationService.navigate('Inventory', null, null);
     }
 
     goToRetailerRoute() {
-        console.log('PEGI KE RETAILER ROUTE');
         this._pageNavigationService.navigate('RetailerRoute', null, null);
     }
 
     goToAccountsReceivables() {
-        console.log('Go to Account Receivables');
         this._pageNavigationService.navigate('AccountsReceivables', null, null);
     }
 
     goToDSPAlerts() {
-        console.log('PEGI KE DSP');
         this._pageNavigationService.navigate('DSPAlerts', null, null);
     }
     goToBasicCallProcedure() {
-        console.log('PEGI KE BCP');
         this._pageNavigationService.navigate('BasicCallProcedure', null, null);
     }
     goToRemittance() {
-        console.log('PEGI KE Remittance');
         this._pageNavigationService.navigate('Remittance', null, null);
     }
     goToStockReturn() {
-        console.log('PEGI KE StockReturn');
         this._pageNavigationService.navigate('StockReturn', null, null);
     }
     goToLogout() {
-        console.log('PEGI KE Login');
         this._router.parent.navigate(['Starter', 'Login']);
     }
     getLayout() {

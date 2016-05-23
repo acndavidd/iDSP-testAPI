@@ -413,6 +413,27 @@ module.exports = function(grunt) {
         'exec:run'
         ]); 
 
+    grunt.registerTask('cordova-jenkins',[      
+        'clean:debug',
+        'copy:dependencies',
+        'copy:resources',
+        'copy:html',
+        'copy:css',
+        'copy:fonts',
+        'tslint',
+        'ts',
+        'copy:js',
+        'concat',
+        'sass',
+        'clean:sasscache',
+        // 'jshint',
+        'cssmin',
+        'uglify',
+        'cachebreaker',
+        'clean:cordova',
+        'copy:cordova'
+        ]); 
+
 
     grunt.registerTask('default',[
         'tslint'

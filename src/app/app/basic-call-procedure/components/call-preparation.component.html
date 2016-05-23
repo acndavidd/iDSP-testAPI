@@ -1,4 +1,4 @@
-    <div class="container-body">
+<div class="container-body">
     <div *ngFor="#each of getRetailerDetails()">
     	<div class="item-container">
 	        <div class="container">
@@ -8,10 +8,8 @@
 	        	<div class='cell'>
 	        		<div class='container'><div class='cell right green'>Route #{{vSelectedRetailSeq}}</div></div>
 			    </div>
-			    <div class='cell icon'>
+			    <div class='cell icon'></div>
 			</div>
-	    </div>
-    	<div class="item-container">
 	        <div class="container">
 	        	<div class='cell logo'><div class="profpic pink">{{each.first_car}}</div></div>
 	        	<div class='cell'>
@@ -35,6 +33,13 @@
 					<div class='cell'>
 				        <div class='container'><div class='cell single sub-cell grey'>Retailer Owner</div></div>
 				        <div class='container'><div class='cell single sub-cell'>{{each.owner_name}}</div></div>
+				    </div>
+				    <div class='cell icon'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell single sub-cell grey'>Outlet Type</div></div>
+				        <div class='container'><div class='cell single sub-cell'>{{each.outlet_type}}</div></div>
 				    </div>
 				    <div class='cell icon'></div>
 				</div>
@@ -117,14 +122,14 @@
 				</div>
 			</div>
 
-	        <div class="item-container" (click)="subCollectionMenuShow()">
-				<div class="container">
-					<div class='cell'>
-				        <div class='container'><div class='cell title single green'>Collection</div></div>
-				    </div>
-				    <div class='cell icon arrow-down' [ngClass]="{selected: vCollectionMenuShow}"></div>
-				</div>
+        <div class="item-container" (click)="subCollectionMenuShow()">
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell title single green'>Collection</div></div>
+			    </div>
+			    <div class='cell icon arrow-down' [ngClass]="{selected: vCollectionMenuShow}"></div>
 			</div>
+		</div>
 			<div class="item-container sub" *ngIf="vCollectionMenuShow">
 				<div class="container">
 					<div class='cell'>
@@ -146,14 +151,14 @@
 				</div>
 			</div>
 
-	        <div class="item-container" (click)="subLoadMenuShow()">
-				<div class="container">
-					<div class='cell'>
-				        <div class='container'><div class='cell title single green'>Load Wallet</div></div>
-				    </div>
-				    <div class='cell icon arrow-down' [ngClass]="{selected: vLoadMenuShow}"></div>
-				</div>
+        <div class="item-container" (click)="subLoadMenuShow()">
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell title single green'>Load Wallet</div></div>
+			    </div>
+			    <div class='cell icon arrow-down' [ngClass]="{selected: vLoadMenuShow}"></div>
 			</div>
+		</div>
 			<div class="item-container sub" *ngIf="vLoadMenuShow">
 				<div class="container">
 					<div class='cell'>
@@ -181,14 +186,14 @@
 				</div>
 			</div>
 
-	        <div class="item-container" (click)="subPhysicalMenuShow()">
-				<div class="container">
-					<div class='cell'>
-				        <div class='container'><div class='cell title single green'>Physical Inventory</div></div>
-				    </div>
-				    <div class='cell icon arrow-down' [ngClass]="{selected: vPhysicalMenuShow}"></div>
-				</div>
+        <div class="item-container" (click)="subPhysicalMenuShow()">
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell title single green'>Physical Inventory</div></div>
+			    </div>
+			    <div class='cell icon arrow-down' [ngClass]="{selected: vPhysicalMenuShow}"></div>
 			</div>
+		</div>
 			<div class="item-container sub" *ngIf="vPhysicalMenuShow">
 				<div class="container">
 					<div class='cell'>
@@ -214,10 +219,10 @@
 				</div>
 			</div>
 
-		    <div class="no-divider">
-		        <div class= "button" (click)="gotoBCPActivityStep()">
-		            <div class="button-identifier">START</div>
-		        </div>      
-		    </div>
+	    <div class="no-divider">
+	        <div class= "button" (click)="gotoBCPActivityStep()">
+	            <div class="button-identifier">START</div>
+	        </div>      
 	    </div>
     </div>
+</div>

@@ -19,7 +19,7 @@ export class BCPActivityStepComponent {
     vCollectionFlag = false;
     vOffersFlag = false;
     vSalesFlag = false;
-
+    vFinishButton = false;
 
     constructor (
         private _layoutService: LayoutService,
@@ -31,13 +31,11 @@ export class BCPActivityStepComponent {
         this._layoutService.setCurrentPage('BCPActivityStep');
         this._headerService.setTitle('BCP Activities Step');
         this.vCurrentPointer = this._layoutService.getCurrentPointer();
-        this.changeCollectionColor();
-        this.changeOffersColor();
-        this.changeSalesColor();
+        this.changeColor();
     }
 
-    gotoBCPCollection() {
-        console.log('Go to Collection');
+    gotoAnotherPage() {
+        console.log('current pointer : ' + this.vCurrentPointer);
         if (this.vCurrentPointer === '1') {
           this._pageNavigationService.navigate('BCPCollection', null, null);
         }
@@ -47,30 +45,33 @@ export class BCPActivityStepComponent {
         else if (this.vCurrentPointer === '3') {
             this._pageNavigationService.navigate('RetailerSalesOrder', null, null);
         }
-
+        else if (this.vCurrentPointer === '6') {
+            this._pageNavigationService.navigate('BasicCallProcedure', null, null);
+        }
     }
 
-    changeCollectionColor() {
+    changeColor() {
         if (this.vCurrentPointer === '2') {
             this.vCollectionFlag = true;
             this.vOffersFlag = false;
             this.vSalesFlag = false;
         }
-    }
-
-    changeOffersColor() {
-        if (this.vCurrentPointer === '3') {
+        else if (this.vCurrentPointer === '3') {
             this.vCollectionFlag = true;
             this.vOffersFlag = true;
             this.vSalesFlag = false;
         }
-    }
-
-    changeSalesColor() {
-        if (this.vCurrentPointer === '4') {
+        else if (this.vCurrentPointer === '4') {
             this.vCollectionFlag = true;
             this.vOffersFlag = true;
             this.vSalesFlag = true;
         }
+        else if (this.vCurrentPointer === '6') {
+            this.vCollectionFlag = true;
+            this.vOffersFlag = true;
+            this.vSalesFlag = true;
+            this.vFinishButton = true;
+        }
+        console.log('current pointer : ' + this.vCurrentPointer + ' | vFinishButton : ' + this.vFinishButton);
     }
 }

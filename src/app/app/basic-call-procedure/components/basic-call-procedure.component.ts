@@ -54,11 +54,6 @@ export class BasicCallProcedureComponent {
         };
 
         this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);
-
-        // this._pageNavigationService.navigate('CallPreparation', null, null);
-        // this._pageNavigationService.navigate('UnservedOrder', null, null);
-        // this._pageNavigationService.navigate('BCPCollection', null, null);
-        // this._pageNavigationService.navigate('SalesOrderPayment', null, null);
     }
 
     getFilter() {
