@@ -1,12 +1,13 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var mst_sync_version = sequelize.define('mst_sync_version', {
+  var mst_sync_version = sequelize.define('mst_sync_opis', {
     table_name :  {
         type : DataTypes.STRING(50),
         primaryKey : true
     },
     table_description: DataTypes.STRING(200),
-    lastSync: DataTypes.DATE
+    download_sync_version: DataTypes.DATE,
+    upload_sync_version: DataTypes.DataTypes
   }, {
     timestamps : false,
     freezeTableName: true,

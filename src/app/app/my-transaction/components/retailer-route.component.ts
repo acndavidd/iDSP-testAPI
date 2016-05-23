@@ -10,7 +10,7 @@ import {NgModel} from 'angular2/common';
 
 @Component({
     selector: 'retailer-route',
-    templateUrl: './app/my-transaction/components/hc-retailer-route.component.html',
+    templateUrl: './app/my-transaction/components/retailer-route.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
@@ -115,6 +115,10 @@ export class RetailerRouteComponent {
     onChangeSelectDay (pSelectedDay) {
         this.vSelectedDay = pSelectedDay;
         this.refreshRetailerRoute();
+    }
+
+    getInitialName (pRetailerName) {
+        return pRetailerName.substring(0,1);
     }
 
 // each.retailer_id, each.route_sequence

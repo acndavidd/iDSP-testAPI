@@ -7,7 +7,7 @@ module.exports = {
         .changeColumn('trx_saleord_load_det',
         'order_id',
           {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
             references: {
               model: 'trx_sales_order',
               key: 'order_id'

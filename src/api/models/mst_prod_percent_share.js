@@ -4,7 +4,9 @@ module.exports = function(sequelize, DataTypes) {
     prod_percent_share_id: DataTypes.STRING(20),
     product_id: DataTypes.STRING(20),
     retailer_id: DataTypes.STRING(20),
-    percent_share: DataTypes.INTEGER
+    percent_share: DataTypes.INTEGER,
+    sync_status:DataTypes.STRING(1),
+    sync_version:DataTypes.DATE
   }, {
     classMethods: {
       associate: function(models) {

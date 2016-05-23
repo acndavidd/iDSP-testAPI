@@ -2,11 +2,10 @@
 module.exports = function(sequelize, DataTypes) {
   var trx_sales_order = sequelize.define('trx_sales_order', {
     order_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(50),
       primaryKey: true,
       allowNull: false,
-      unique: true,
-      autoIncrement: true
+      unique: true
     },
     dsp_id: {
       type: DataTypes.STRING(20)
@@ -17,10 +16,14 @@ module.exports = function(sequelize, DataTypes) {
     order_date: DataTypes.DATE,
     remarks: DataTypes.STRING(100),
     total_amount: DataTypes.DECIMAL(10,2),
+    promo_amount: DataTypes.DECIMAL(10,2),
+    net_amount: DataTypes.DECIMAL(10,2),
     payment_amount: DataTypes.DECIMAL(10,2),
     balance: DataTypes.DECIMAL(10,2),
     payment_status: DataTypes.STRING(20),
-    order_status: DataTypes.STRING(1)
+    order_status: DataTypes.STRING(1),
+    sync_status: DataTypes.STRING(1),
+    sync_version: DataTypes.DATE
   }, {
     timestamps: false,
     freezeTableName: true,

@@ -2,11 +2,13 @@
         <div class="item-container">
             <div class="container">
                 <div class="cell">
-                    <div class="container">
-                        <div class="cell center header title2">Rose Cell</div>
-                    </div>
-                    <div class="container">
-                        <div class="cell center header italic">9999999999</div>
+                    <div *ngFor="#each of getRetailerDetails()">
+                        <div class="container">
+                            <div class="cell center header title2" >{{each.retailer_name}}</div>
+                        </div>
+                        <div class="container">
+                            <div class="cell center header italic">{{each.retailer_min}}</div>
+                        </div>
                     </div>
                 </div>
             </div>

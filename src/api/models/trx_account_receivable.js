@@ -2,14 +2,13 @@
 module.exports = function(sequelize, DataTypes) {
   var trx_account_receivable = sequelize.define('trx_account_receivable', {
     ar_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(50),
       primaryKey: true,
       allowNull: false,
-      unique: true,
-      autoIncrement: true
+      unique: true
     },
     order_id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING(50)
     },
     dsp_id: {
       type: DataTypes.STRING(20)
@@ -25,7 +24,9 @@ module.exports = function(sequelize, DataTypes) {
     created_date: DataTypes.DATE,
     created_by: DataTypes.STRING(30),
     updated_date: DataTypes.DATE,
-    updated_by: DataTypes.STRING(30)
+    updated_by: DataTypes.STRING(30),
+    sync_status: DataTypes.STRING(1),
+    sync_version: DataTypes.DATE
   }, {
     timestamps: false,
     freezeTableName: true,

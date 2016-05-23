@@ -1,21 +1,27 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('mst_sync_version', {
-      table_name: {
+    return queryInterface.createTable('mst_config', {
+      name: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING(50)
       },
-      table_description: {
+      description: {
         type: Sequelize.STRING(200)
       },
-      lastSync: {
+      value: {
+        type: Sequelize.STRING(200)
+      },
+      sync_status: {
+        type: Sequelize.STRING(1)
+      },
+      sync_version: {
         type: Sequelize.DATE
       }
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('mst_sync_version');
+    return queryInterface.dropTable('mst_config');
   }
 };

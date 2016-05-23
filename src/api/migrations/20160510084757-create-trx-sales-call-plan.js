@@ -3,9 +3,8 @@ module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('trx_sales_call_plan', {
       call_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING(50),
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true
       },
       route_id: {
@@ -22,6 +21,12 @@ module.exports = {
       },
       call_status: {
         type: Sequelize.STRING(30)
+      },
+      start_call_prep_date: {
+        type: Sequelize.DATE
+      },
+      end_call_prep_date: {
+        type: Sequelize.DATE
       },
       start_coll_date: {
         type: Sequelize.DATE
@@ -41,8 +46,20 @@ module.exports = {
       end_sales_date: {
         type: Sequelize.DATE
       },
+      start_unserved_date: {
+        type: Sequelize.DATE
+      },
+      end_unserved_date: {
+        type: Sequelize.DATE
+      },
       sales_remarks: {
         type: Sequelize.STRING(30)
+      },
+      sync_status: {
+        type: Sequelize.STRING(1)
+      },
+      sync_version: {
+        type: Sequelize.DATE
       }
     });
   },

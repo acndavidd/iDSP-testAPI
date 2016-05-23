@@ -2,14 +2,13 @@
 module.exports = function(sequelize, DataTypes) {
   var trx_remittance_det = sequelize.define('trx_remittance_det', {
     remit_det_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(50),
       primaryKey: true,
       allowNull: false,
-      unique: true,
-      autoIncrement: true
+      unique: true
     },
     remit_id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING(50)
     },
     remit_type: DataTypes.INTEGER,
     bank_name: DataTypes.STRING(30),
@@ -17,7 +16,9 @@ module.exports = function(sequelize, DataTypes) {
     transfer_date: DataTypes.DATE,
     account_no: DataTypes.STRING(20),
     rrn: DataTypes.STRING(20),
-    remit_amount: DataTypes.DECIMAL(10,2)
+    remit_amount: DataTypes.DECIMAL(10,2),
+    sync_status: DataTypes.STRING(1),
+    sync_version: DataTypes.DATE
   }, {
     timestamps: false,
     freezeTableName: true,

@@ -119,6 +119,26 @@ LIST VIEW - BUTTON
         }
     }
 
+    .button-disabled {
+        display: inline-block;
+        width: 70%;
+        padding-bottom: 2vw;
+        padding-top: 2vw;
+        margin-left: 15%;
+        margin-top:4%;
+        margin-bottom:4%;
+        background-color: $grey;
+        border-radius: 2vw;
+        .button-identifier {
+            cursor: pointer;
+            font-size: $button;
+            text-align: center;
+            width: 100%;
+            color: $white;
+            font-weight: lighter;
+        }
+    }
+
     .parent {
         width: 100%;
     }

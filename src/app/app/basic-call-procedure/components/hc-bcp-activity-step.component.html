@@ -1,0 +1,57 @@
+    <div class="container-body bcp-steps">
+        <div class="item-container">
+            <div class="container">
+                <div class="cell">
+                    <div class="container">
+                        <div class="cell center header title2">Rose Cell</div>
+                    </div>
+                    <div class="container">
+                        <div class="cell center header italic">9999999999</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="step-container">
+        <div class="step">
+            <div class="left">
+                <div class='circle' [ngClass]="{'circle-green': vCollectionFlag}">1</div>
+                <div class="line" [ngClass]="{'line-green': vCollectionFlag}"></div>
+            </div>
+            <div class="right">
+                <div class="title">Collection</div>
+                <div class="body" *ngIf="vCollectionFlag">10:00 - 13:00</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="left">
+                <div class='circle' [ngClass]="{'circle-green': vOffersFlag}">2</div>
+                <div class="line" [ngClass]="{'line-green': vOffersFlag}"></div>
+            </div>
+            <div class="right">
+                <div class="title">Offers</div>
+                <div class="body" *ngIf="vOffersFlag">10:00 - 13:00</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="left">
+                <div class='circle' [ngClass]="{'circle-green': vSalesFlag}">3</div>
+            </div>
+            <div class="right">
+                <div class="title">Sales Order</div>
+                <div class="body" *ngIf="vSalesFlag">10:00 - 13:00</div>
+            </div>
+        </div>
+  </div>
+
+<div class="container-body">
+    <div class="no-divider">
+        <div class="button">
+            <div class="button-identifier" *ngIf="!vFinishButton" (click)="gotoAnotherPage()" id="next-link">Next</div>
+            <div class="button-identifier" *ngIf="vFinishButton" (click)="gotoAnotherPage()" id="next-link">Finish</div>
+        </div>
+    </div>
+</div>

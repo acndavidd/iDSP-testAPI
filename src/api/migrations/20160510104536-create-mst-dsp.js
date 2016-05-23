@@ -21,6 +21,12 @@ module.exports = {
       },
       dealer_min_sun: {
         type: Sequelize.STRING(20)
+      },
+      sync_status:{
+        type : Sequelize.STRING(1)
+      },
+      sync_version:{
+        type : Sequelize.DATE
       }
     });
   },
