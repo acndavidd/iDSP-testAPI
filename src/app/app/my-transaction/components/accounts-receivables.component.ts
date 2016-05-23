@@ -10,8 +10,8 @@ import {NgFor, NgModel} from 'angular2/common';
 
 @Component({
     selector: 'accounts-receivables',
-     templateUrl: './app/my-transaction/components/hc-accounts-receivables.component.html',
-    // templateUrl: './app/my-transaction/components/accounts-receivables.component.html',
+    // templateUrl: './app/my-transaction/components/hc-accounts-receivables.component.html',
+     templateUrl: './app/my-transaction/components/accounts-receivables.component.html',
     directives: [
         NgFor, NgModel, ROUTER_DIRECTIVES
     ],
@@ -22,9 +22,11 @@ import {NgFor, NgModel} from 'angular2/common';
 
 export class AccountsReceivablesComponent {
 
-    vAllRetailerList: any;
-    vSearchedList: any;
+    vReceivablesRouteList: any;
+    vSearchedReceivablesRouteList: any;
+    vAllReceivablesRouteList: any;
     vSum: any;
+    vFlag = 0;
 
     constructor (
         private _layoutService: LayoutService,
@@ -39,23 +41,23 @@ export class AccountsReceivablesComponent {
 
         var vDspId = 'DSP00001';
         var vDate = new Date().getDay();
-        console.log( 'vDate: ' + vDate );
 
-        this._accountsReceivablesService.getAllRetailer( vDspId, vDate ).subscribe(
+        this._accountsReceivablesService.getAllReceivablesRoute( vDspId, vDate ).subscribe(
             response => {
-                this.setAllRetailerList(response.json().result);
-                console.log( 'response success dapet source ' + response.json().result[0].source);
+                this.setReceivablesRouteList(response.json().result[0].v_receivables);
+                this.setAllReceivablesRouteList(response.json().result[0].v_receivables_all);
+                console.log( 'TEMP 1 ' + this.vReceivablesRouteList + ' length: ' + this.vReceivablesRouteList.length );
+                console.log( 'TEMP 2 ' + this.vAllReceivablesRouteList + ' length: ' + this.vAllReceivablesRouteList.length );
                 console.log(JSON.stringify(response.json()));
                 console.log(response.json().result.length);
-                this.setTotalReceivable(response.json().result[0].total_amount);
-                this.getAllRetailer();
+                this.setTotalReceivable(response.json().result[0].v_receivables[0].ret_total_amount);
+                this.setSearchedReceivablesRoute(this.vReceivablesRouteList);
             },
 
             error => {
                 console.log(error.json());
             }
         );
-
     }
 
     getResize() {
@@ -78,24 +80,46 @@ export class AccountsReceivablesComponent {
     }
 
     onKey(pInputText: any) {
-        console.log(pInputText);
-        this.vSearchedList = this.vAllRetailerList.filter(retailer => {
-             return retailer.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
-             retailer.retailer_min.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1;
-        });
+        if (this.vFlag === 0) {
+            this.setSearchedReceivablesRoute(this.vReceivablesRouteList);
+            this.setTotalReceivable(this.vReceivablesRouteList[0].ret_total_amount);
+            this.setSearchedReceivablesRoute(this.vReceivablesRouteList.filter(pFilter => {
+                 return pFilter.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
+                 pFilter.retailer_min.indexOf(pInputText) !== -1;
+            }));
+        } else {
+            this.setSearchedReceivablesRoute(this.vAllReceivablesRouteList);
+            this.setTotalReceivable(this.vAllReceivablesRouteList[0].total_amount);
+            this.setSearchedReceivablesRoute(this.vAllReceivablesRouteList.filter(pFilter => {
+                return pFilter.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
+                pFilter.retailer_min.indexOf(pInputText) !== -1;
+            }));
+        }
     }
 
-    getAllRetailer() {
-       this.vSearchedList = this.vAllRetailerList;
-       console.log('sukses isi vsearchlist: ' + this.vSearchedList);
+    setSearchedReceivablesRoute(pSearchedReceivablesRoute) {
+       this.vSearchedReceivablesRouteList = pSearchedReceivablesRoute;
+       console.log('sukses isi vSearchedReceivablesRouteList: ' + this.vReceivablesRouteList);
     }
 
-    getAllRetailerList() {
-        return this.vAllRetailerList;
+    setReceivablesRouteList(pReceivablesRouteList) {
+        this.vReceivablesRouteList = pReceivablesRouteList;
     }
 
-    setAllRetailerList(vAllRetailerList) {
-        this.vAllRetailerList = vAllRetailerList;
+    setAllReceivablesRouteList(pAllReceivablesRouteList) {
+        this.vAllReceivablesRouteList = pAllReceivablesRouteList;
     }
 
+    getAllReceivables(pInputText: any) {
+        console.log('in get AllReceivables : ' + pInputText);
+        this.vFlag = 1;
+        this.setSearchedReceivablesRoute(this.vAllReceivablesRouteList);
+        this.setTotalReceivable(this.vAllReceivablesRouteList[0].total_amount);
+        if (pInputText.length > 0) {
+            this.setSearchedReceivablesRoute(this.vAllReceivablesRouteList.filter(pFilter => {
+                return pFilter.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
+                pFilter.retailer_min.indexOf(pInputText) !== -1;
+            }));
+        }
+    }
 }
