@@ -25,6 +25,7 @@ export class CallPreparationComponent {
     vSelectedRetailSeq;
     vSelectedRetail;
     vSelectedRetailFirstChar;
+    vStartEnabled = false;
 
     constructor (
         private _layoutService: LayoutService,
@@ -61,6 +62,7 @@ export class CallPreparationComponent {
         //     console.log(error);
         // });
 
+        this.getStartStatus();
         this._layoutService.setCurrentPage('CallPreparation');
         this._headerService.setTitle('Call Preparation');
     }
@@ -91,5 +93,16 @@ export class CallPreparationComponent {
 
     subPhysicalMenuShow() {
         this.vPhysicalMenuShow = !this.vPhysicalMenuShow;
+    }
+
+    getStartStatus() {
+        switch (this._pageNavigationService.getCurrentParams()) {
+            case 'visited':
+                this.vStartEnabled = false;
+                break;
+            default:
+                this.vStartEnabled = true;
+                break;
+        }
     }
 }

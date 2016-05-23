@@ -5,8 +5,10 @@ module.exports = function(sequelize, DataTypes) {
       type : DataTypes.STRING(20),
       primaryKey : true
     },
-    sub_category_name: DataTypes.STRING(50),
-    category_id: DataTypes.STRING(20)
+    sub_category_name: DataTypes.STRING(20),
+    category_id: DataTypes.STRING(20),
+    sync_status:DataTypes.STRING(1),
+    sync_version:DataTypes.DATE
   }, {
     underscored : true,
     timestamps : false,

@@ -44,6 +44,10 @@ export class BasicCallProcedureComponent {
         return this._matchMediaService.getMm();
     }
 
+    gotoCallPreparationHC(pStatus) {
+        this._pageNavigationService.navigate('CallPreparation', pStatus, null);
+    }
+
     gotoCallPreparation(pSelectedRetailer) {
         console.log( pSelectedRetailer );
 

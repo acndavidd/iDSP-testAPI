@@ -9,7 +9,9 @@ module.exports = function(sequelize, DataTypes) {
       type : DataTypes.INTEGER,
       primaryKey : true
     },
-    sequence: DataTypes.INTEGER
+    sequence: DataTypes.INTEGER,
+    sync_status:DataTypes.STRING(1),
+    sync_version:DataTypes.DATE
   }, {
     timestamps : false,
     freezeTableName: true,

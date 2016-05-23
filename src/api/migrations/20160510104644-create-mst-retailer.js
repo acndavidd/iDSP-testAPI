@@ -22,6 +22,9 @@ module.exports = {
       owner_last_name: {
         type: Sequelize.STRING(20)
       },
+      retailer_type: {
+        type: Sequelize.STRING(20)
+      },
       retailer_address: {
         type: Sequelize.STRING(100)
       },
@@ -54,6 +57,12 @@ module.exports = {
       },
       updated_by: {
         type: Sequelize.STRING(20)
+      },
+      sync_status:{
+        type : Sequelize.STRING(1)
+      },
+      sync_version:{
+        type : Sequelize.DATE
       }
     });
   },

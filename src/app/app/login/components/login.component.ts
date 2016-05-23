@@ -10,8 +10,6 @@ import {ModalService} from '../../shared/services/modal.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {SQLiteService} from '../../shared/services/sqlite.service';
 
-var dbSqlite;
-var configChannel;
 @Component({
     selector: 'login',
     templateUrl: './app/login/components/login.component.html',
@@ -32,13 +30,6 @@ export class LoginComponent {
         private _sqliteService: SQLiteService ) {
 
         this._layoutService.setCurrentPage('Login');
-        if (configChannel === 'app') {
-            dbSqlite.openDatabase({name: 'idsp.db', location: 'default'}, function(){
-                console.log('success');
-            }, function(error){
-                console.log('error bro : ' + error);
-            });
-        }
     }
 
     login(pEvent) {
@@ -48,7 +39,21 @@ export class LoginComponent {
 
         // For By Pass Directly without API
         // this._router.navigate(['MainPage','MyTransaction']);
-        this._router.navigate(['Mpin']);
+        let vCurrentContext = this;
+        vCurrentContext._sqliteService.executeQuery('CREATE TABLE IF NOT EXISTS test_table(anjay varchar(100))').subscribe( response => {
+            vCurrentContext._sqliteService.executeQuery('INSERT INTO test_table VALUES (?)', ['anjay']).subscribe( response => {
+                vCurrentContext._sqliteService.executeQuery('SELECT anjay FROM test_table').subscribe( response => {
+                    console.log(response.rows.item(0).anjay);
+                    vCurrentContext._router.navigate(['Mpin']);
+                });
+            }, error => {
+                console.log(error);
+            });
+        }, error => {
+            console.log(error);
+        });
+
+        // this._router.navigate(['Mpin']);
     }
 
     getLoadingState() {

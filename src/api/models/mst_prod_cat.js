@@ -6,7 +6,9 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey : true
     },
     category_name: DataTypes.STRING(50),
-    brand: DataTypes.STRING(20)
+    brand: DataTypes.STRING(20),
+    sync_status:DataTypes.STRING(1),
+    sync_version:DataTypes.DATE
   }, {
     timestamps : false,
     freezeTableName: true,

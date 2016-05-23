@@ -7,7 +7,9 @@ module.exports = function(sequelize, DataTypes) {
     },
     dist_id: DataTypes.STRING(20),
     first_name: DataTypes.STRING(50),
-    last_name: DataTypes.STRING(50)
+    last_name: DataTypes.STRING(50),
+    sync_status:DataTypes.STRING(1),
+    sync_version:DataTypes.DATE
   },{
     timestamps : false,
     freezeTableName: true,
