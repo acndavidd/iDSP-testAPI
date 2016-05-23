@@ -12,7 +12,7 @@
         "no-conditional-assignment": true,
         "no-duplicate-variable": true,
         "no-eval": true,
-        "no-internal-module": true,
+        "no-internal-module": false,
         "no-trailing-whitespace": false,
         "no-use-before-declare" : true,
         "no-var-keyword": false,

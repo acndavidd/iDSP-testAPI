@@ -20,7 +20,7 @@ import {VerificationComponent} from './verification/components/verification.comp
 import {MpinComponent} from './login/components/mpin.component';
 import {ModalComponent} from './shared/components/modal.component';
 import {RetailerRouteComponent} from './my-transaction/components/retailer-route.component';
-import {ModalService} from './shared/services/modal.service';
+import {Modal} from './shared/services/modal.service';
 import {RetailerService} from './shared/services/retailer.service';
 import {RetailerSalesOrderComponent} from './basic-call-procedure/components/retailer-sales-order.component';
 import {DetailRetailerComponent} from './basic-call-procedure/components/detail-retailer.component';
@@ -59,7 +59,7 @@ declare var configChannel: any;
         PageNavigationService,
         SQLiteService,
         AuthenticationService,
-        ModalService,
+        Modal.ModalService,
         HeaderService,
         RetailerService
     ]
@@ -102,7 +102,7 @@ export class IDSPComponent implements OnInit {
     private _layoutService: LayoutService,
     private _pageNavigationService: PageNavigationService,
     private _renderer: Renderer,
-    private _sqliteService: SQLiteService ) {
+    private _modalService: Modal.ModalService ) {
         new FastClick(document.body);
         this.globalListenFunc = _renderer.listenGlobal('document', 'backbutton', (event) => {
             // put pageNavigationService

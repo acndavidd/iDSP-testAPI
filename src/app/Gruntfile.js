@@ -300,7 +300,7 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['js/**/*.js', 'js/**/*.js.map', 'Gruntfile.js', 'tsconfig.json','init.js'],
-                tasks: ['copy:js', 'jshint', ''],
+                tasks: ['copy:js'],
             },
             ts: {
                 files: ['app/**/*.ts'],

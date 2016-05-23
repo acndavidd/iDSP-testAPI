@@ -6,7 +6,7 @@ import {HeaderService} from '../../shared/services/header.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {AuthenticationService} from '../../shared/services/authentication.service';
 
-import {ModalService} from '../../shared/services/modal.service';
+import {Modal} from '../../shared/services/modal.service';
 import {RetailerService} from '../../shared/services/retailer.service';
 
 declare var ga: any;

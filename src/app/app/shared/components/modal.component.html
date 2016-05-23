@@ -1,7 +1,24 @@
-<div class="modal-outer-box" *ngIf='getMainModalStatus()'>
-        <div class="modal-internal">
-                <info-modal *ngIf='getModalStatus().info'></info-modal>
-                <verification-code-modal *ngIf='getModalStatus().verificationCode'></verification-code-modal>
-                <resend-mpin-modal *ngIf='getModalStatus().resendMpin'></resend-mpin-modal>
-        </div>
+<!--<div class="modal-outer-box" *ngIf='getMainModalStatus()'>
+    <div class="modal-internal">
+
+    	<error-modal *ngIf='getModalStatus().error'></error-modal>
+        <info-modal *ngIf='getModalStatus().info'></info-modal>
+        <verification-code-modal *ngIf='getModalStatus().verificationCode'></verification-code-modal>
+        <resend-mpin-modal *ngIf='getModalStatus().resendMpin'></resend-mpin-modal>
+    </div>
+</div>-->
+<div class="modal-outer-box" *ngIf="getModalState()">
+    <div class="modal-internal">
+    	<div class="modal-verification-code">
+    		<div class="modal-body">
+		    	<div class="item-header"></div>
+		        <div class="item-title" [innerHTML]="getModalMessage()">
+		        </div>
+	    	</div>
+		    <div class="modal-footer">
+		        <div class="button green" id="ok-btn" (click)="callOKCallBack()">OK</div>
+		        <div *ngIf="(getModalType() === getModalEnum().OK_CANCEL)" class="button green" id="cancel-btn" (click)="callCANCELCallBack()" >CANCEL</div>
+		    </div>
+		</div>
+	</div>
 </div>
