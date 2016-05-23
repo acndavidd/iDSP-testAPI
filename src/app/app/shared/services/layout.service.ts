@@ -385,9 +385,6 @@ export class LayoutService {
             this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
 <<<<<<< HEAD
 =======
-<<<<<<< HEAD
-=======
->>>>>>> 7fe2ed37c53414f731b9654cf8d6fa46e95232cd
 
 >>>>>>> 40cd12606b776168cb8906f442fc6a6e6acbc192
             this.vLayoutState = {
