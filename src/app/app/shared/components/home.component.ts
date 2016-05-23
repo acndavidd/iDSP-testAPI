@@ -33,6 +33,10 @@ export class HomeComponent {
         return this._matchMediaService.getMm();
     }
 
+    goToMyDashboard() {
+        this._pageNavigationService.navigate('MyTransaction', null, null);
+    }
+
     goToTargetsActuals() {
         console.log('PEGI KE TARGET ACTUAL');
         this._pageNavigationService.navigate('TargetsActuals', null, null);
