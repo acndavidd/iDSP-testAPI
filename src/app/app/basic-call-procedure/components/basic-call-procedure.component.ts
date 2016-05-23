@@ -44,8 +44,8 @@ export class BasicCallProcedureComponent {
         return this._matchMediaService.getMm();
     }
 
-    gotoCallPreparationHC() {
-        this._pageNavigationService.navigate('CallPreparation', null, null);
+    gotoCallPreparationHC(pStatus) {
+        this._pageNavigationService.navigate('CallPreparation', pStatus, null);
     }
 
     gotoCallPreparation(pSelectedRetailer) {
