@@ -371,7 +371,7 @@ export class LayoutService {
             this.vOldCurrentPage = 'CloseDay';
             this.vOldCurrentPageParams = null;
             this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
-            
+
             this.vLayoutState = {
                 appHeader: true,
                 appFooter: false,
