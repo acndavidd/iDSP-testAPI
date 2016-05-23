@@ -7,20 +7,8 @@
 			</select>
 		</div>	
 	</div>
-<<<<<<< HEAD
-	<!--
-	<div class="item-container">
-        <div class="item-identifier">
-            <div class="item-title">
-            	<div>Mission for: {{vSelectedDate | date:'MMM, dd yyyy'}}</div>
-           </div>
-        </div>
-    </div>
-	-->
     <div class="item-container" *ngFor="#each of vListRetailers; #i = index" (click)='goToDetailRetailer(each)' id='each-retailer'>
-=======
-    <div class="item-container" *ngFor="#each of vListRetailers" (click)='goToDetailRetailer(each)' id='each-retailer'>
->>>>>>> 7fe2ed37c53414f731b9654cf8d6fa46e95232cd
+
         <div class="container">
         	<div class='cell logo' *ngIf="i%2==0"><div class="profpic pink">{{getInitialName(each.retailer_name)}}</div></div>
         	<div class='cell logo' *ngIf="i%2==1"><div class="profpic purple">{{getInitialName(each.retailer_name)}}</div></div>
