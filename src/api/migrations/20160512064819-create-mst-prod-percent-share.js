@@ -15,6 +15,12 @@ module.exports = {
       },
       percent_share: {
         type: Sequelize.INTEGER
+      },
+      sync_status:{
+        type : Sequelize.STRING(1)
+      },
+      sync_version:{
+        type : Sequelize.DATE
       }
     });
   },

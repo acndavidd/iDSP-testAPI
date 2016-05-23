@@ -27,6 +27,8 @@ module.exports = {
       return queryInterface.dropTable('users');
 
     */
-    queryInterface.sequelize.query('ALTER TABLE mst_route DROP CONSTRAINT freq_map_id_foreign_idx')
+    return [
+      queryInterface.sequelize.query('ALTER TABLE mst_route DROP CONSTRAINT freq_map_id_foreign_idx')
+    ];
   }
 };

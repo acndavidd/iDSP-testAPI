@@ -9,7 +9,9 @@ module.exports = function(sequelize, DataTypes) {
     first_name: DataTypes.STRING(50),
     last_name: DataTypes.STRING(50),
     dealer_min_smart: DataTypes.STRING(20),
-    dealer_min_sun: DataTypes.STRING(20)
+    dealer_min_sun: DataTypes.STRING(20),
+    sync_status:DataTypes.STRING(1),
+    sync_version:DataTypes.DATE
   }, {
     timestamps : false,
     freezeTableName: true,

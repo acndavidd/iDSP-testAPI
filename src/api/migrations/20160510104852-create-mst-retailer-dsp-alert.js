@@ -14,9 +14,6 @@ module.exports = {
       retailer_name: {
         type: Sequelize.STRING(50)
       },
-      retailer_min: {
-        type: Sequelize.STRING(20)
-      },
       date: {
         type: Sequelize.DATE
       },
@@ -25,6 +22,12 @@ module.exports = {
       },
       threshold_hit: {
         type: Sequelize.DECIMAL(10)
+      },
+      sync_status:{
+        type : Sequelize.STRING(1)
+      },
+      sync_version:{
+        type : Sequelize.DATE
       }
     });
   },
