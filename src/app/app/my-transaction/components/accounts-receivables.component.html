@@ -1,8 +1,8 @@
 <div class='accounts-receivables'>	
 	<div class='filter-container' *ngIf='getFilter().filterAccReceivables'>
 		<div class='filter-input input'>
-			<div class='icon'></div>
-			<input type='text' #listFilter (keyup)='onKey(listFilter.value)' id='RetailerSearchBox' placeholder='Input Retailer Name or MIN' />
+			<div class='icon' (click)="getAllReceivables(listFilter.value)"></div>
+			<input type='text' #listFilter (keyup)='onKey(listFilter.value)' id='RetailerSearchBox' placeholder='Input Retailer Name or MIN'/>		
 		</div>	
 	</div>
 
@@ -16,7 +16,7 @@
 	    </div>
 	</div>
 
-	 <div *ngFor='#FilteredSearch of vSearchedList'>
+	 <div *ngFor='#FilteredSearch of vSearchedReceivablesRouteList'>
 		<div class='item-container'>
 		    <div class='container'>
 		    	<div class='cell icon' [ngClass]="{'sulu': (FilteredSearch.source === 'BCP') , 'serenade': (FilteredSearch.source === 'SELF')}">

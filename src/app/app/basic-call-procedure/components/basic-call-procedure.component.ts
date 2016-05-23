@@ -11,7 +11,7 @@ import {NgModel, NgClass} from 'angular2/common';
     // FOR HIT API
     // templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
     // FOR HARDCODE UI
-    templateUrl: './app/basic-call-procedure/components/hc-basic-call-procedure.component.html',
+    templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
     directives: [
         ROUTER_DIRECTIVES,
         NgClass
@@ -52,7 +52,6 @@ export class BasicCallProcedureComponent {
         console.log( pSelectedRetailer );
 
         let vParamsOld = {};
-
         let vParams = {
             retailer_id: pSelectedRetailer.retailer_id,
             route_sequence: pSelectedRetailer.seq
@@ -65,7 +64,6 @@ export class BasicCallProcedureComponent {
         return this._layoutService.getFilter();
     }
 
-
     onKey(pInputText: any) {
         console.log(pInputText);
         this.vFilteredListRoute = this.vListRoute.filter(retailer => {
@@ -73,6 +71,7 @@ export class BasicCallProcedureComponent {
              retailer.retailer_min.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1;
         });
     }
+
 
     refreshRetailerRouteBCP() {
         console.log('Get  retailer route for Day');
