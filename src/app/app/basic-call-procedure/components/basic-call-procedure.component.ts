@@ -54,7 +54,8 @@ export class BasicCallProcedureComponent {
         let vParamsOld = {};
         let vParams = {
             retailer_id: pSelectedRetailer.retailer_id,
-            route_sequence: pSelectedRetailer.seq
+            route_sequence: pSelectedRetailer.seq,
+            status: pSelectedRetailer.call_status
         };
 
         this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);
