@@ -17,6 +17,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     quantity: DataTypes.INTEGER,
     price: DataTypes.DECIMAL(10,2),
+    promo_code: DataTypes.STRING(20),
+    promo_price: DataTypes.DECIMAL(10,2),
     sync_status: DataTypes.STRING(1),
     sync_version: DataTypes.DATE
   }, {

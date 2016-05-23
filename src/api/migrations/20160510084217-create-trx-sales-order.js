@@ -22,6 +22,12 @@ module.exports = {
       total_amount: {
         type: Sequelize.DECIMAL(10,2)
       },
+      promo_amount: {
+        type: Sequelize.DECIMAL(10,2)
+      },
+      net_amount: {
+        type: Sequelize.DECIMAL(10,2)
+      },
       payment_amount: {
         type: Sequelize.DECIMAL(10,2)
       },
