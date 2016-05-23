@@ -44,15 +44,14 @@ export class BasicCallProcedureComponent {
         return this._matchMediaService.getMm();
     }
 
-    gotoCallPreparationHC() {
-        this._pageNavigationService.navigate('CallPreparation', null, null);
+    gotoCallPreparationHC(pStatus) {
+        this._pageNavigationService.navigate('CallPreparation', pStatus, null);
     }
 
     gotoCallPreparation(pSelectedRetailer) {
         console.log( pSelectedRetailer );
 
         let vParamsOld = {};
-
         let vParams = {
             retailer_id: pSelectedRetailer.retailer_id,
             route_sequence: pSelectedRetailer.seq
@@ -65,7 +64,6 @@ export class BasicCallProcedureComponent {
         return this._layoutService.getFilter();
     }
 
-
     onKey(pInputText: any) {
         console.log(pInputText);
         this.vFilteredListRoute = this.vListRoute.filter(retailer => {
@@ -73,6 +71,7 @@ export class BasicCallProcedureComponent {
              retailer.retailer_min.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1;
         });
     }
+
 
     refreshRetailerRouteBCP() {
         console.log('Get  retailer route for Day');

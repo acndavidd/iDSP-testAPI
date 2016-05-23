@@ -9,17 +9,14 @@
 
 <div class="container-body">
     <div class="item-container">
-        <div class="item-notification">UPDATED AS OF 04/17/2016 02.00 PM</div>
-    </div>
-    <div class="item-container">
-            <div class="container">
-                <div class='cell'>
-                    <div class='container'><div class='cell single title bold'>Today's Route</div></div>
-                </div>
-                <div class='cell icon'></div>
+        <div class="container">
+            <div class='cell'>
+                <div class='container'><div class='cell single title bold'>Today's Route</div></div>
+            </div>
+            <div class='cell icon'></div>
             </div>
         </div>
-    <div class="item-container" (click)="gotoCallPreparationHC()">
+    <div class="item-container" (click)="gotoCallPreparationHC('inprogress')">
         <div class="container">
             <div class='cell'>
                 <div class='container'><div class='cell left'>Rose Cell</div></div>
@@ -36,7 +33,7 @@
             <div class='cell icon arrow-right'></div>
         </div>
     </div>
-    <div class="item-container" (click)="gotoCallPreparationHC()">
+    <div class="item-container" (click)="gotoCallPreparationHC('notvisited')">
         <div class="container">
             <div class='cell'>
                 <div class='container'><div class='cell left'>Bird Cell</div></div>
@@ -53,7 +50,7 @@
             <div class='cell icon arrow-right'></div>
         </div>
     </div>
-    <div class="item-container" (click)="gotoCallPreparationHC()">
+    <div class="item-container" (click)="gotoCallPreparationHC('visited')">
         <div class="container">
             <div class='cell'>
                 <div class='container'><div class='cell left'>Gloria Cell</div></div>

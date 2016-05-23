@@ -3,14 +3,12 @@ module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('trx_saleord_prd_sub_det', {
       serial_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING(50),
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true
       },
       order_det_id: {
-        type: Sequelize.INTEGER,
-        unique: true,
+        type: Sequelize.STRING(50),
         allowNull: false
       },
       serial_number_start: {
@@ -19,8 +17,14 @@ module.exports = {
       serial_number_end: {
         type: Sequelize.STRING(30)
       },
-      qty: {
+      quantity: {
         type: Sequelize.INTEGER
+      },
+      sync_status: {
+        type: Sequelize.STRING(1)
+      },
+      sync_version: {
+        type: Sequelize.DATE
       }
     });
   },

@@ -16,6 +16,12 @@ module.exports = {
       },
       schedule_name: {
         type: Sequelize.STRING(100)
+      },
+      sync_status:{
+        type : Sequelize.STRING(1)
+      },
+      sync_version:{
+        type : Sequelize.DATE
       }
     });
   },

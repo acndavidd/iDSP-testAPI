@@ -2,18 +2,19 @@
 module.exports = function(sequelize, DataTypes) {
   var trx_saleord_prd_sub_det = sequelize.define('trx_saleord_prd_sub_det', {
     serial_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(50),
       primaryKey: true,
       allowNull: false,
-      unique: true,
-      autoIncrement: true
+      unique: true
     },
     order_det_id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING(50)
     },
     serial_number_start: DataTypes.STRING(30),
     serial_number_end: DataTypes.STRING(30),
-    qty: DataTypes.INTEGER
+    quantity: DataTypes.INTEGER,
+    sync_status: DataTypes.STRING(1),
+    sync_version: DataTypes.DATE
   }, {
     timestamps: false,
     freezeTableName: true,

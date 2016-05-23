@@ -28,7 +28,7 @@ export class AccountsReceivablesService {
         return this.vIsLoading;
     }
 
-    getAllRetailer(pDspId, pDate) {
+    getAllReceivablesRoute(pDspId, pDate) {
       let vData = {
           vDspId : pDspId,
           vDate : pDate

@@ -2,16 +2,15 @@
 module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('trx_remittance_det', {
-      remit_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
       remit_det_id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING(50)
       },
+      remit_id: {
+        type: Sequelize.STRING(50),
+        allowNull: false
+      }
       remit_type: {
         type: Sequelize.INTEGER
       },
@@ -32,6 +31,12 @@ module.exports = {
       },
       remit_amount: {
         type: Sequelize.DECIMAL(10,2)
+      },
+      sync_status: {
+        type: Sequelize.STRING(1)
+      },
+      sync_version: {
+        type: Sequelize.DATE
       }
     });
   },

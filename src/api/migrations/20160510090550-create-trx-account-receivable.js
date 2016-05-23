@@ -3,13 +3,12 @@ module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('trx_account_receivable', {
       ar_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING(50),
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true
       },
       order_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING(50)
       },
       dsp_id: {
         type: Sequelize.STRING(20)
@@ -43,6 +42,12 @@ module.exports = {
       },
       updated_by: {
         type: Sequelize.STRING(30)
+      },
+      sync_status: {
+        type: Sequelize.STRING(1)
+      },
+      sync_version: {
+        type: Sequelize.DATE
       }
     });
   },

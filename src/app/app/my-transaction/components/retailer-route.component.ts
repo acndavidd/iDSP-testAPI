@@ -117,6 +117,10 @@ export class RetailerRouteComponent {
         this.refreshRetailerRoute();
     }
 
+    getInitialName (pRetailerName) {
+        return pRetailerName.substring(0,1);
+    }
+
 // each.retailer_id, each.route_sequence
 // pSelectedRetailer, pRouteSequence
     goToDetailRetailer (pSelectedRetailer) {

@@ -9,6 +9,12 @@ module.exports = {
       },
       dist_name: {
         type: Sequelize.STRING(50)
+      },
+      sync_status:{
+        type : Sequelize.STRING(1)
+      },
+      sync_version:{
+        type : Sequelize.DATE
       }
     });
   },

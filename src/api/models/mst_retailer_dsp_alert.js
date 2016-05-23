@@ -9,10 +9,11 @@ module.exports = function(sequelize, DataTypes) {
       type : DataTypes.STRING(20)
     },
     retailer_name: DataTypes.STRING(50),
-    retailer_min: DataTypes.STRING(20),
     date: DataTypes.DATE,
     value_segment: DataTypes.STRING(10),
-    threshold_hit: DataTypes.DECIMAL(10)
+    threshold_hit: DataTypes.DECIMAL(10),
+    updated_date: DataTypes.DATE,
+    updated_by: DataTypes.STRING(20)
   }, {
     timestamps : false,
     freezeTableName: true,
