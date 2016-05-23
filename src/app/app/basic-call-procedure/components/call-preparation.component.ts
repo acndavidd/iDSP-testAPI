@@ -26,6 +26,7 @@ export class CallPreparationComponent {
     vSelectedRetail;
     vSelectedRetailFirstChar;
     vStartEnabled = false;
+    vLoadWallet;
 
     constructor (
         private _layoutService: LayoutService,
@@ -56,6 +57,22 @@ export class CallPreparationComponent {
             } else {
                 console.log( 'Query Failed' );
                 this.vSelectedRetail = null;
+            }
+        },
+        error => {
+            console.log(error);
+        });
+
+        this._retailerService.getLoadWallet(this.vSelectedRetailId).subscribe(
+        response => {
+            if (response.json().status === 'Success') {
+                console.log('Query Success to load wallet' + JSON.stringify(response.json().result));
+                this.vLoadWallet = response.json().result;
+                console.log( 'result : ' + this.vLoadWallet );
+
+            } else {
+                console.log( 'Query Failed' );
+                this.vLoadWallet = null;
             }
         },
         error => {
@@ -121,4 +138,9 @@ export class CallPreparationComponent {
                 break;
         }
     }
+
+    getLoadWallet() {
+       return this.vLoadWallet;
+    }
+
 }

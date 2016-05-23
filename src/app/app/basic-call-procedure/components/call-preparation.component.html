@@ -161,28 +161,32 @@
 		</div>
 			<div class="item-container sub" *ngIf="vLoadMenuShow">
 				<div class="container">
-					<div class='cell'>
-				        <div class='container'><div class='cell single sub-cell title bold'>SmartLoad</div></div>
-				        <div class='container'>
-				        	<div class='cell single sub-cell'>
-								<div class="container">
-									<div class='cell'>
-								        <div class='container'><div class='cell left'>Drop Size</div></div>
-								        <div class='container'><div class='cell left'>Last Amount Transferred</div></div>
-								        <div class='container'><div class='cell left'>Transaction Date</div></div>
-								        <div class='container'><div class='cell left'>Latest Balance</div></div>
-								    </div>
-									<div class='cell'>
-								        <div class='container'><div class='cell right'>350</div></div>
-								        <div class='container'><div class='cell right'>1,200 ₱</div></div>
-								        <div class='container'><div class='cell right'>04/01/2016</div></div>
-								        <div class='container'><div class='cell right'>1,000 ₱</div></div>
-								    </div>
-								</div>
-				        	</div>
-				        </div>
+					<div *ngFor="#each of getLoadWallet()">
+
+						<div class='cell'>
+					        <div class='container'><div class='cell single sub-cell title bold'>SmartLoad</div></div>
+					        <div class='container'>
+					        	<div class='cell single sub-cell'>
+									<div class="container">
+										<div class='cell'>
+									        <div class='container'><div class='cell left'>Drop Size</div></div>
+									        <div class='container'><div class='cell left'>Last Amount Transferred</div></div>
+									        <div class='container'><div class='cell left'>Transaction Date</div></div>
+									        <div class='container'><div class='cell left'>Latest Balance</div></div>
+									    </div>
+										<div class='cell'>
+									        <div class='container'><div class='cell right'>{{each.drop_size}}</div></div>
+									        <div class='container'><div class='cell right'>{{each.last_amount_transferred}} ₱</div></div>
+									        <div class='container'><div class='cell right'>{{each.transaction_date}}</div></div>
+									        <div class='container'><div class='cell right'>{{each.latest_balance}} ₱</div></div>
+									    </div>
+									</div>
+					        	</div>
+					        </div>
+					    </div>
+					    <div class='cell icon'></div>
+
 				    </div>
-				    <div class='cell icon'></div>
 				</div>
 			</div>
 
