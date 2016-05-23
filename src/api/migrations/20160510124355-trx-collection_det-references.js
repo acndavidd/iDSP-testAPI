@@ -7,7 +7,7 @@ module.exports = {
         .changeColumn('trx_collection_det',
         'ar_id',
           {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
             references: {
               model: 'trx_account_receivable',
               key: 'ar_id'
@@ -20,7 +20,7 @@ module.exports = {
         .changeColumn('trx_collection_det',
         'coll_id',
           {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
             references: {
               model: 'trx_collection',
               key: 'coll_id'
