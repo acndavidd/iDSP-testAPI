@@ -49,3 +49,6 @@ Run `lite-server` in the `debug/` directory.
 1. Run `grunt cordova` on /app folder
 2. Run `cordova build ios` or `cordova build android` on /cordova folder
 3. For ios, open `.xcodeproj` file under `/platforms/ios/`
+4. Building with keystore
+
+		cordova build android --release -- --keystore=./android-test.keystore --storePassword=password --alias=android-test --password=password
