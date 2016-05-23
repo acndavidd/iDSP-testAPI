@@ -8,8 +8,8 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {NgModel} from 'angular2/common';
 
 @Component({
-    // templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
-    templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
+     templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
+    // templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
@@ -36,31 +36,31 @@ export class CallPreparationComponent {
         private _router: Router
         ) {
 
-        // console.log(this._pageNavigationService.getCurrentParams());
+        console.log(this._pageNavigationService.getCurrentParams());
 
-        // if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
-        //     this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
-        //     this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
-        // } else {
-        //     console.log('Retailer ID not found');
-        // }
-        // console.log('in detail retailer for retailer id ' +  this.vSelectedRetailId);
+        if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
+            this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
+            this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
+        } else {
+            console.log('Retailer ID not found');
+        }
+        console.log('in detail retailer for retailer id ' +  this.vSelectedRetailId);
 
-        // this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
-        // response => {
-        //     if (response.json().status === 'Success') {
-        //         console.log('Query Success' + JSON.stringify(response.json().result));
-        //         this.vSelectedRetail = response.json().result;
-        //         console.log( 'result : ' + this.vSelectedRetail );
+        this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
+        response => {
+            if (response.json().status === 'Success') {
+                console.log('Query Success' + JSON.stringify(response.json().result));
+                this.vSelectedRetail = response.json().result;
+                console.log( 'result : ' + this.vSelectedRetail );
 
-        //     } else {
-        //         console.log( 'Query Failed' );
-        //         this.vSelectedRetail = null;
-        //     }
-        // },
-        // error => {
-        //     console.log(error);
-        // });
+            } else {
+                console.log( 'Query Failed' );
+                this.vSelectedRetail = null;
+            }
+        },
+        error => {
+            console.log(error);
+        });
 
         this.getStartStatus();
         this._layoutService.setCurrentPage('CallPreparation');
@@ -71,8 +71,24 @@ export class CallPreparationComponent {
         return this._matchMediaService.getMm();
     }
 
-    gotoBCPActivityStep() {
+    HCgotoBCPActivityStep() {
         this._pageNavigationService.navigate('BCPActivityStep', null, null);
+    }
+
+    gotoBCPActivityStep(pSelectedRetailer) {
+        console.log('all parameters' + pSelectedRetailer);
+
+        let vParamsOld = {
+             retailer_id: this.vSelectedRetailId,
+             route_sequence: this.vSelectedRetailSeq
+        };
+
+        let vParams = {
+            retailer_id: pSelectedRetailer.retailer_id,
+            route_sequence: this.vSelectedRetailSeq
+        };
+
+        this._pageNavigationService.navigate('BCPActivityStep', vParams, vParamsOld);
     }
 
     getRetailerDetails() {
