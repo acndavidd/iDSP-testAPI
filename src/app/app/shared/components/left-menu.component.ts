@@ -67,8 +67,9 @@ export class LeftMenuComponent implements OnInit  {
         this.checkCurrentPage(this.vGoToPage);
     }
 
-    goToTargets() {
+    goToTargetsActualsMD() {
         this.vGoToPage = 'TargetsActuals';
+        this._pageNavigationService.addListPreviousData('MyTransaction', null);
         this.checkCurrentPage(this.vGoToPage);
     }
 
@@ -99,6 +100,12 @@ export class LeftMenuComponent implements OnInit  {
 
     goToCloseOfTheDay() {
         this.vGoToPage = 'CloseDay';
+        this.checkCurrentPage(this.vGoToPage);
+    }
+
+    goToTargetsActualsCD() {
+        this.vGoToPage = 'TargetsActuals';
+        this._pageNavigationService.addListPreviousData('CloseDay', null);
         this.checkCurrentPage(this.vGoToPage);
     }
 
