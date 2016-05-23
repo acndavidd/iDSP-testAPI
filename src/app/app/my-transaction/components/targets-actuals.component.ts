@@ -38,23 +38,17 @@ export class TargetsActualsComponent {
     private vShowProdSubCat;
     public vSelectedBrand;
     public vSelectedProd;
-
     private vShowProductFirst;
-
     private vListProduct;
     private vListCategory;
     private vShowProduct;
-
     private vSubCatID;
     private vListTargets;
     private vShowTargets;
-
     private vShowProductMonth;
-
     private vSelectedTab;
 
     vCatNameList: any = [];
-
 
     constructor (
         private _router: Router,
@@ -123,8 +117,7 @@ export class TargetsActualsComponent {
         this.vUnderlineMonth = false;
         this.vWeekShow = false;
         this.vMonthShow = false;
-
-         this.vSelectedTab = 'Day';
+        this.vSelectedTab = 'Day';
         this.getProduct();
     }
 
@@ -136,7 +129,6 @@ export class TargetsActualsComponent {
         this.vDayShow = false;
         this.vMonthShow = false;
         this.vSelectedTab = 'Week';
-        console.log('selected Tab' + this.vSelectedTab );
         this.getProduct();
     }
 
@@ -148,7 +140,6 @@ export class TargetsActualsComponent {
         this.vWeekShow = false;
         this.vDayShow = false;
         this.vSelectedTab = 'Month';
-        console.log('selected Tab' + this.vSelectedTab );
         this.getProduct();
     }
 

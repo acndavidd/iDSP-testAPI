@@ -23,9 +23,13 @@
 		}
 		.line{
 			position: relative;
-		    border-left: 1px solid;
+		    border-left: 1px solid $grey;
 		    height: 38px;
 		    margin: 10px 0px 8px 15px;
+
+		    &.line-green{
+		    	border-left: 1px solid $apple;
+		    }
 		}
 		.title{
 			font-weight: bold;

@@ -57,7 +57,7 @@ export class DetailRetailerComponent {
             error => {
                 console.log(error);
                 // this.vErrorMsg = 'Failed connecting to login service';
-        });
+            });
         // console.log(this.vSelectedRetail);
 
         this._layoutService.setCurrentPage('DetailRetailer');

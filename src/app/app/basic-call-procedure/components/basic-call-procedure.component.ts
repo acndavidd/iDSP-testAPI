@@ -11,7 +11,7 @@ import {NgModel, NgClass} from 'angular2/common';
     // FOR HIT API
     // templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
     // FOR HARDCODE UI
-    templateUrl: './app/basic-call-procedure/components/hc-basic-call-procedure.component.html',
+    templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
     directives: [
         ROUTER_DIRECTIVES,
         NgClass
@@ -24,6 +24,7 @@ import {NgModel, NgClass} from 'angular2/common';
 export class BasicCallProcedureComponent {
 
     private vListRoute;
+    private vFilteredListRoute;
     constructor (
         private _layoutService: LayoutService,
         private _matchMediaService: MatchMediaService,
@@ -43,14 +44,36 @@ export class BasicCallProcedureComponent {
         return this._matchMediaService.getMm();
     }
 
-    gotoCallPreparation() {
-        this._pageNavigationService.navigate('CallPreparation', null, null);
-        // this._pageNavigationService.navigate('UnservedOrder', null, null);
-        // this._pageNavigationService.navigate('BCPCollection', null, null);
-        // this._pageNavigationService.navigate('SalesOrderPayment', null, null);
+    gotoCallPreparationHC(pStatus) {
+        this._pageNavigationService.navigate('CallPreparation', pStatus, null);
     }
 
-     refreshRetailerRouteBCP() {
+    gotoCallPreparation(pSelectedRetailer) {
+        console.log( pSelectedRetailer );
+
+        let vParamsOld = {};
+        let vParams = {
+            retailer_id: pSelectedRetailer.retailer_id,
+            route_sequence: pSelectedRetailer.seq
+        };
+
+        this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);
+    }
+
+    getFilter() {
+        return this._layoutService.getFilter();
+    }
+
+    onKey(pInputText: any) {
+        console.log(pInputText);
+        this.vFilteredListRoute = this.vListRoute.filter(retailer => {
+             return retailer.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
+             retailer.retailer_min.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1;
+        });
+    }
+
+
+    refreshRetailerRouteBCP() {
         console.log('Get  retailer route for Day');
         this._retailerService.queryRetailerRouteBCP().subscribe(
                 response => {
@@ -58,6 +81,7 @@ export class BasicCallProcedureComponent {
                     if (response.json().status === 'Success') {
                         console.log('Query Success');
                         this.vListRoute = response.json().result;
+                        this.vFilteredListRoute = this.vListRoute;
                     } else {
                         this.vListRoute = null;
                         console.log('Query Failed');

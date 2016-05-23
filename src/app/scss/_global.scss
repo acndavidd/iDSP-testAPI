@@ -119,6 +119,26 @@ LIST VIEW - BUTTON
         }
     }
 
+    .button-disabled {
+        display: inline-block;
+        width: 70%;
+        padding-bottom: 2vw;
+        padding-top: 2vw;
+        margin-left: 15%;
+        margin-top:4%;
+        margin-bottom:4%;
+        background-color: $grey;
+        border-radius: 2vw;
+        .button-identifier {
+            cursor: pointer;
+            font-size: $button;
+            text-align: center;
+            width: 100%;
+            color: $white;
+            font-weight: lighter;
+        }
+    }
+
     .parent {
         width: 100%;
     }
@@ -547,20 +567,19 @@ LIST VIEW - ICON
                 background-position-y: center;
                 background-size: 6vw;
             }
-            /* COMMENTED DUE ERRORS ON THIS ICON
             &.add {
-                background: url(#{$icon-add)no-repeat;
+                background: url(#{$icon-add})no-repeat;
                 background-position-x: center;
                 background-position-y: center;
                 background-size: 6vw;
             }
-            */
+            
             .profpic {
                 width: 65px;
                 height: 65px;
                 background-color: $sugar-cane;
                 border-radius: 50%;
-                margin: 0% 0% 0% 9%;
+                margin: 0% 0% 4% 9%;
                 text-align: center;
                 line-height: 63px;
                 font-size: 30px;
