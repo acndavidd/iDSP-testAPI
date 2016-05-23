@@ -22,6 +22,12 @@ module.exports = {
       call_status: {
         type: Sequelize.STRING(30)
       },
+      start_call_prep_date: {
+        type: Sequelize.DATE
+      },
+      end_call_prep_date: {
+        type: Sequelize.DATE
+      },
       start_coll_date: {
         type: Sequelize.DATE
       },
@@ -38,6 +44,12 @@ module.exports = {
         type: Sequelize.DATE
       },
       end_sales_date: {
+        type: Sequelize.DATE
+      },
+      start_unserved_date: {
+        type: Sequelize.DATE
+      },
+      end_unserved_date: {
         type: Sequelize.DATE
       },
       sales_remarks: {

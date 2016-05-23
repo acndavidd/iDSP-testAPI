@@ -326,8 +326,8 @@ LIST VIEW - TEXT
         width: 100%;
         border-bottom: 1px solid $border-line;
         cursor: pointer;
-        //padding-top: 2vw;
-        //padding-bottom: 2vw;
+        padding-top: 2vw;
+        padding-bottom: 2vw;
         
         .item-notification {   
             font-size: $filter-select;
@@ -407,6 +407,90 @@ LIST VIEW - TEXT
                 }
             }
 
+            // PLEASE PUT WIDTH HERE
+            &.width-10 { width: 10%; }
+            &.width-20 { width: 20%; }
+            &.width-30 { width: 30%; }
+            &.width-33 { width: 33%; }
+            &.width-34 { width: 34%; }
+            &.width-40 { width: 40%; }
+            &.width-45 { width: 45%; }
+            &.width-50 { width: 50%; }
+            &.width-70 { width: 70%; }
+            &.width-80 { width: 80%; }
+            &.width-90 { width: 90%; }
+            &.width-100 { width: 100%; }
+            
+            // PLEASE PUT STYLE HERE
+            &.padding-left-3 { padding-left: 3vw; }
+            &.padding-left-6 { padding-left: 6vw; }
+            &.padding-right-3 { padding-right: 3vw; }
+            
+            &.large { font-size: large; }
+            &.x-large { font-size: x-large; }
+            &.xx-large { font-size: xx-large; }
+            
+            &.align-center  { text-align: center; }
+            &.align-left    { text-align: left; }
+            &.align-right   { text-align: right; }
+            
+            &.bold { font-weight: bold; }
+            &.italic { font-style: italic; }
+            
+            //PLEASE PUT COLOR HERE
+            &.dark-sea-green    { color: $dark-sea-green; }
+            &.vivid-pink        { color: $vivid-pink; }
+            &.gainsboro         { color: $gainsboro; }
+            &.grey              { color: $grey; }
+            &.black             { color: $black; }
+            &.green             { color: $apple; }
+            &.deep-cyan         { color: $deep-cyan; }
+            &.red               { color: $red; }
+   
+            // ROUNDED PROGRESS BAR
+            .progress-radial {
+                float: left;
+                position: relative;
+                width: 76px;
+                height: 76px;
+                border-radius: 50%;
+                border: 1px solid $sugar-cane;
+                background-color: $apple;
+                margin: 0% 0% 0% -5%;
+            }
+
+            .overlay {
+                position: absolute;
+                width: 62px;
+                height: 62px;
+                background-color: $sugar-cane;
+                border: 1px solid $sugar-cane;
+                border-radius: 50%;
+                margin-left: 6px;
+                margin-top: 6px;
+                text-align: center;
+                line-height: 52px;
+                font-size: 16px;
+            }
+
+            $step: 1; // step of % for created classes
+
+            $loops: round(99 / $step);
+            $increment: 360 / $loops;
+            $half: round($loops / 2);
+            @for $i from 0 through $loops {
+                .progress-#{$i*$step} {
+                    @if $i < $half {
+                        $nextdeg: 90deg + ( $increment * $i );
+                        background-image: linear-gradient(90deg, $white 50%, transparent 50%, transparent), linear-gradient($nextdeg, $radical-red 50%, $white 50%, $white);
+                    }
+                    @else {
+                        $nextdeg: -90deg + ( $increment * ( $i - $half ) );
+                        background-image: linear-gradient($nextdeg, $radical-red 50%, transparent 50%, transparent), linear-gradient(270deg, $radical-red 50%, $white 50%, $white);
+                    }
+                }
+            }
+
             &.left {
                 width: 45%;
                 padding-left:0.6em;
@@ -453,7 +537,7 @@ LIST VIEW - TEXT
             }
             &.content{
                 padding-left:0.6em;
-                width:70%
+                width:70%;
             }
 
             &.bold {
@@ -543,6 +627,24 @@ LIST VIEW - ICON
                 background-position-y: center;
                 background-size: 20px;
             }
+            &.targets-airtime {
+                background: url(#{$icon-targets-airtime})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 6vw;
+            }
+            &.targets-broadband {
+                background: url(#{$icon-targets-broadband})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 6vw;
+            }
+            &.targets-sim {
+                background: url(#{$icon-targets-sim})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 5vw;
+            }
             &.inventory-load {
                 background: url(#{$icon-inventory-load})no-repeat;
                 background-position-x: center;
@@ -579,7 +681,6 @@ LIST VIEW - ICON
                 height: 65px;
                 background-color: $sugar-cane;
                 border-radius: 50%;
-                margin: 0% 0% 4% 9%;
                 text-align: center;
                 line-height: 63px;
                 font-size: 30px;

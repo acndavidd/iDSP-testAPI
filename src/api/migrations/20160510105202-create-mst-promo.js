@@ -20,6 +20,12 @@ module.exports = {
       promo_pict: {
         type: Sequelize.STRING(50)
       },
+      promo_type: {
+        type: Sequelize.STRING(20)
+      },
+      promo_value: {
+        type: Sequelize.DECIMAL(10,2)
+      },
       start_date: {
         type: Sequelize.DATE
       },

@@ -6,15 +6,17 @@
 		</div>	
 	</div>
 
-	<div class='container-body'>
-	    <div class='item-container'>
-	        <div class='container'>
-	            <div class='cell'>
-	            	<div class='container'><div class='cell header bold center title'>Total Receivables : {{getTotalReceivable()}}</div></div>
-	            </div>
-	        </div>
-	    </div>
-	</div>
+    <div class="item-container">
+        <div class='container'>
+            <div class='cell'>
+            	<div class='container'><div class='cell bold left title'>Total Receivables :</div></div>
+            </div>
+            <div class='cell'>
+            	<div class='container'><div class='cell bold right title'>{{getTotalReceivable()}}</div></div>
+            </div>
+            <div class='cell ws'></div>
+        </div>
+    </div>
 
 	 <div *ngFor='#FilteredSearch of vSearchedReceivablesRouteList'>
 		<div class='item-container'>
