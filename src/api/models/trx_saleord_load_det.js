@@ -16,6 +16,8 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     amount: DataTypes.DECIMAL(10,2),
+    promo_code: DataTypes.STRING(20),
+    promo_amount: DataTypes.DECIMAL(10,2),
     rrn: DataTypes.STRING(50),
     status: DataTypes.STRING(1),
     sync_status: DataTypes.STRING(1),

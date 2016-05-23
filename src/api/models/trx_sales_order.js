@@ -16,6 +16,8 @@ module.exports = function(sequelize, DataTypes) {
     order_date: DataTypes.DATE,
     remarks: DataTypes.STRING(100),
     total_amount: DataTypes.DECIMAL(10,2),
+    promo_amount: DataTypes.DECIMAL(10,2),
+    net_amount: DataTypes.DECIMAL(10,2),
     payment_amount: DataTypes.DECIMAL(10,2),
     balance: DataTypes.DECIMAL(10,2),
     payment_status: DataTypes.STRING(20),

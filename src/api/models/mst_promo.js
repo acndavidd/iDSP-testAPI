@@ -10,6 +10,8 @@ module.exports = function(sequelize, DataTypes) {
     promo_name: DataTypes.STRING(50),
     promo_description: DataTypes.STRING(2500),
     target_outlet: DataTypes.STRING(20),
+    promo_type: DataTypes.STRING(20),
+    promo_value: DataTypes.DECIMAL(10,2),     
     promo_pict: DataTypes.STRING(50),
     start_date: DataTypes.DATE,
     end_date: DataTypes.DATE,

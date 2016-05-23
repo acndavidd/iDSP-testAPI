@@ -18,6 +18,12 @@ module.exports = {
       amount: {
         type: Sequelize.DECIMAL(10,2)
       },
+      promo_code: {
+        type: Sequelize.STRING(20)
+      },
+      promo_amount: {
+        type: Sequelize.DECIMAL(10,2)
+      },
       rrn: {
         type: Sequelize.STRING(50)
       },

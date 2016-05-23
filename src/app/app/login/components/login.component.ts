@@ -38,7 +38,9 @@ export class LoginComponent {
         // this._authenticationService.login(this.vUsername,this.vPassword);
 
         // For By Pass Directly without API
-        // this._router.navigate(['MainPage','MyTransaction']);
+        this._router.navigate(['Mpin']);
+        /* this._router.navigate(['MainPage','MyTransaction']);
+         
         let vCurrentContext = this;
         vCurrentContext._sqliteService.executeQuery('CREATE TABLE IF NOT EXISTS test_table(anjay varchar(100))').subscribe( response => {
             vCurrentContext._sqliteService.executeQuery('INSERT INTO test_table VALUES (?)', ['anjay']).subscribe( response => {
@@ -53,7 +55,7 @@ export class LoginComponent {
             console.log(error);
         });
 
-        // this._router.navigate(['Mpin']);
+        */
     }
 
     getLoadingState() {
