@@ -1,0 +1,13 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/api/mytest2",
+        "bodyPatterns" : [
+            { "equalToJson" : "{ \"dsp_id\": \"DSP00002\" }", "jsonCompareMode": "LENIENT" }
+        ]
+    },
+    "response": {
+        "status": 201,        
+        "bodyFileName": "sample/error.json"
+    }
+}

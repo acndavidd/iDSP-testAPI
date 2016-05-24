@@ -1,7 +1,0 @@
-node_modules
-typings
-js
-.tscache
-*.tmp.txt
-*.js.map
-*.js

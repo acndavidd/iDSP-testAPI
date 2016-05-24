@@ -14,6 +14,10 @@ BEGIN
 		and b.route_id = c.route_id
 		and c.route_day = pSelectedDay
 		and a.dsp_id = pSales
+		and c.route_Sequence is not null
+		and a.sync_status != 'D'
+		and b.sync_status != 'D'
+		and c.sync_status != 'D'
 		order by c.sequence DESC NULLS LAST
 	)temp;
 	RETURN _result;
