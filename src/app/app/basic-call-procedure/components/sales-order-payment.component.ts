@@ -29,7 +29,7 @@ export class SalesOrderPaymentComponent {
         this._headerService.setTitle('Sales Order Payment');
     }
 
-    gotoUnservedOrder() {
-        this._pageNavigationService.navigate('UnservedOrder', null, null);
+    gotoBCPActivityStep() {
+        this._pageNavigationService.navigate('BCPActivityStep', null, null);
     }
 }

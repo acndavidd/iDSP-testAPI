@@ -1,15 +1,15 @@
+<div *ngFor="#each of getRetailerDetails()">
     <div class="container-body bcp-steps">
         <div class="item-container">
             <div class="container">
                 <div class="cell">
-                    <div *ngFor="#each of getRetailerDetails()">
+
                         <div class="container">
                             <div class="cell center header title2" >{{each.retailer_name}}</div>
                         </div>
                         <div class="container">
                             <div class="cell center header italic">{{each.retailer_min}}</div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -48,12 +48,12 @@
             </div>
         </div>
   </div>
-
-<div class="container-body">
-    <div class="no-divider">
-        <div class="button">
-            <div class="button-identifier" *ngIf="!vFinishButton" (click)="gotoAnotherPage()" id="next-link">Next</div>
-            <div class="button-identifier" *ngIf="vFinishButton" (click)="gotoAnotherPage()" id="next-link">Finish</div>
+    <div class="container-body">
+        <div class="no-divider">
+            <div class="button">
+                <div class="button-identifier" *ngIf="!vFinishButton" (click)="gotoAnotherPage(each)" id="next-link">Next</div>
+                <div class="button-identifier" *ngIf="vFinishButton" (click)="gotoAnotherPage()" id="next-link">Finish</div>
+            </div>
         </div>
     </div>
 </div>

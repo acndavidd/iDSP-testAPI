@@ -13,23 +13,25 @@ BEGIN
 
 select array_to_json(array_agg(row_to_json(temp))) INTO _result
 from (
-select a.retailer_id retailer_id,
+select 	a.retailer_id retailer_id,
 	a.retailer_name retailer_name,
+	a.retailer_type outlet_type,
+	substring(a.retailer_name from 1 for 1) first_char,
 	a.owner_first_name owner_name,
 	a.civil_status civil_status, 
 	a.email email,
 	a.gender gender, 
-	a.birthday birthday,
+	to_char(a.birthday,'dd/mm/yyyy') birthday,
 	a.retailer_min retailer_min,
 	coalesce(SUM(c.AMOUNT), 0) total_ar,
 	coalesce(b.value_segment, '') value_segment,
 	coalesce(b.threshold_hit , 0) threshold_hit,
 	a.retailer_address retailer_address,
 	x.call_status call_status,
-	x.end_Coll_Date last_visit,(
+	to_char(x.end_Coll_Date,'dd/mm/yyyy') last_visit,(
 		select array_to_json(array_agg(row_to_json(e)))from
 		(
-			select cl.Trans_Date::date from TRX_COLLECTION cl, MST_RETAILER a
+			select to_char(cl.Trans_Date,'dd/mm/yyyy') trans_date from TRX_COLLECTION cl, MST_RETAILER a
 			where a.retailer_id=cl.retailer_id
 		)e)coll_date,(
 		select array_to_json(array_agg(row_to_json(d)))

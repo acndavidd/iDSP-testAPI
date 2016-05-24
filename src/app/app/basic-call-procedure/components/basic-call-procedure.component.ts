@@ -11,7 +11,7 @@ import {NgModel, NgClass} from 'angular2/common';
     // FOR HIT API
     // templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
     // FOR HARDCODE UI
-    templateUrl: './app/basic-call-procedure/components/hc-basic-call-procedure.component.html',
+     templateUrl: './app/basic-call-procedure/components/hc-basic-call-procedure.component.html',
     directives: [
         ROUTER_DIRECTIVES,
         NgClass
@@ -44,21 +44,24 @@ export class BasicCallProcedureComponent {
         return this._matchMediaService.getMm();
     }
 
-    gotoCallPreparationHC(pStatus) {
-        this._pageNavigationService.navigate('CallPreparation', pStatus, null);
+    gotoAnotherPage() {
+        this._pageNavigationService.navigate('BCPActivityStep', null, null);
     }
 
-    gotoCallPreparation(pSelectedRetailer) {
-        console.log( pSelectedRetailer );
+    gotoCallPreparation(pSelectedRetailer,pCallId) {
+        console.log('Go to Call Preparation' + pSelectedRetailer + pCallId );
 
         let vParamsOld = {};
         let vParams = {
             retailer_id: pSelectedRetailer.retailer_id,
             route_sequence: pSelectedRetailer.seq,
+            call_id: pSelectedRetailer.call_id,
             status: pSelectedRetailer.call_status
+            // retailer_id : 'RTL00001',
+            // route_sequence : '1',
+            // status : pSelectedRetailer,
+            // retailer_name : 'Rose Cell'
         };
-
-        this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);
     }
 
     getFilter() {
