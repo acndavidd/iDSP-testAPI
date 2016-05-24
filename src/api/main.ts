@@ -148,8 +148,10 @@ vRouter.get('/getCategory',vTargetsActualsCtrl.getCategory);
 vRouter.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
 vRouter.post('/getRetailerRouteBCP',vRetailerCtrl.getRetailerRouteBCP);
 vRouter.post('/getRetailerCallPrep',vRetailerCtrl.getRetailerCallPrep);
-
 vRouter.post('/getLoadWallet',vRetailerCtrl.getLoadWallet);
+vRouter.post('/getPhysicalInventory',vRetailerCtrl.getPhysicalInventory);
+vRouter.post('/getPaymentHistory',vRetailerCtrl.getPaymentHistory);
+
 
 vRouter.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
 vApp.use('/service',vRouter);

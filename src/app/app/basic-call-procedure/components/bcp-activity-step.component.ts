@@ -24,6 +24,7 @@ export class BCPActivityStepComponent {
     vSelectedRetailId;
     vSelectedRetailSeq;
     vSelectedRetail;
+    vSelectedRetailCallId;
 
     constructor (
         private _layoutService: LayoutService,
@@ -39,6 +40,7 @@ export class BCPActivityStepComponent {
         if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
             this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
             this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
+            this.vSelectedRetailCallId = this._pageNavigationService.getCurrentParams().call_id;
         } else {
             console.log('Retailer ID not found');
         }
@@ -66,19 +68,39 @@ export class BCPActivityStepComponent {
         this.changeColor();
     }
 
-    gotoAnotherPage() {
+    gotoAnotherPage(pSelectedRetailer,pCallId) {
         console.log('current pointer : ' + this.vCurrentPointer);
+
+         console.log('Go to Call Preparation' + pSelectedRetailer + pCallId );
+
+        let vParamsOld = {
+             retailer_id: this.vSelectedRetailId,
+            route_sequence: this.vSelectedRetailSeq,
+            call_id: this.vSelectedRetailCallId
+        };
+        let vParams = {
+            retailer_id: pSelectedRetailer.retailer_id,
+            route_sequence: pSelectedRetailer.seq,
+            call_id: pSelectedRetailer.call_id,
+            status: pSelectedRetailer.call_status
+        };
+
         if (this.vCurrentPointer === '1') {
-          this._pageNavigationService.navigate('BCPCollection', null, null);
+        //  this._pageNavigationService.navigate('BCPCollection', null, null);
+            this._pageNavigationService.navigate('BCPCollection', vParams, vParamsOld);
         }
         else if (this.vCurrentPointer === '2') {
-            this._pageNavigationService.navigate('Offer', null, null);
+           // this._pageNavigationService.navigate('Offer', null, null);
+           this._pageNavigationService.navigate('Offer', vParams, vParamsOld);
+
         }
         else if (this.vCurrentPointer === '3') {
-            this._pageNavigationService.navigate('RetailerSalesOrder', null, null);
+           // this._pageNavigationService.navigate('RetailerSalesOrder', null, null);
+            this._pageNavigationService.navigate('RetailerSalesOrder', vParams, vParamsOld);
         }
         else if (this.vCurrentPointer === '6') {
-            this._pageNavigationService.navigate('BasicCallProcedure', null, null);
+           // this._pageNavigationService.navigate('BasicCallProcedure', null, null);
+            this._pageNavigationService.navigate('BasicCallProcedure', vParams, vParamsOld);
         }
     }
 

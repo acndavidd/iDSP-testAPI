@@ -8,8 +8,8 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {NgModel} from 'angular2/common';
 
 @Component({
-    // templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
-    templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
+     templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
+    // templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
@@ -27,6 +27,7 @@ export class CallPreparationComponent {
     vSelectedRetailFirstChar;
     vStartEnabled = false;
     vLoadWallet;
+    vPhysicalInventory;
 
     constructor (
         private _layoutService: LayoutService,
@@ -66,13 +67,29 @@ export class CallPreparationComponent {
         this._retailerService.getLoadWallet(this.vSelectedRetailId).subscribe(
         response => {
             if (response.json().status === 'Success') {
-                console.log('Query Success to load wallet' + JSON.stringify(response.json().result));
+                console.log('Query Success to Load Wallet' + JSON.stringify(response.json().result));
                 this.vLoadWallet = response.json().result;
                 console.log( 'result : ' + this.vLoadWallet );
 
             } else {
                 console.log( 'Query Failed' );
                 this.vLoadWallet = null;
+            }
+        },
+        error => {
+            console.log(error);
+        });
+
+        this._retailerService.getPhysicalInventory(this.vSelectedRetailId).subscribe(
+        response => {
+            if (response.json().status === 'Success') {
+                console.log('Query Success to Get Physical Inventory' + JSON.stringify(response.json().result));
+                this.vPhysicalInventory = response.json().result;
+                console.log( 'result : ' + this.vPhysicalInventory );
+
+            } else {
+                console.log( 'Query Failed to Get Physical Inventory' );
+                this.vPhysicalInventory = null;
             }
         },
         error => {
@@ -141,6 +158,10 @@ export class CallPreparationComponent {
 
     getLoadWallet() {
        return this.vLoadWallet;
+    }
+
+    getPhysicalInventory() {
+       return this.vPhysicalInventory;
     }
 
 }

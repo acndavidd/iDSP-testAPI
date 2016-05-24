@@ -330,7 +330,7 @@ export class RetailerController{
 	}
 
 
-	async getLoadWallet(pRequest,pResponse){
+	async getLoadWallet(pRequest,pResponse) {
 		try{
 			console.log("Start getting Load Wallet");
 
@@ -367,7 +367,7 @@ export class RetailerController{
 		}
 		catch(pErr)
 		{
-			console.log("Failed to Query Retailer Summary with error message" + pErr);
+			console.log("Failed to Query Load Wallet with error message" + pErr);
 
 			var vError = {
 						"status" : "Error",
@@ -378,4 +378,91 @@ export class RetailerController{
 		}
 	}
 
+	async getPhysicalInventory(pRequest,pResponse) {
+		try{
+			console.log("Start getting Physical Inventory");
+
+			var vSalesPerson = pRequest.body.salesPerson;
+			var vSelectedRetailId = pRequest.body.retailerId;
+
+			console.log(vSelectedRetailId+'retailer id');
+
+			var vOrmSvc = new ORMService();
+
+			let vParams = {
+				sales_person : vSalesPerson,
+				selected_ret_id : vSelectedRetailId
+				
+			};
+
+			var vResult = [{
+				"brand":"SKU1",
+				"last_qty_sold":"650",
+				"transaction_date":"04/01/2016",
+				"beginning_balance":"1000",
+				"retailer_id":"RTL00001"
+			}]
+
+			console.log("Query Done with result : "+ JSON.stringify(vResponse));
+			var vResponse = {
+						"status" : "Success",
+						"errorMessage" : "",
+						"result" : vResult
+					};
+			
+			pResponse.json(vResponse);
+		}
+		catch(pErr)
+		{
+			console.log("Failed to Query Physical Inventory with error message" + pErr);
+
+			var vError = {
+						"status" : "Error",
+						"errorMessage" : pErr,
+						"result" : null
+					};
+			pResponse.json(vError);
+		}
+	}
+
+	async getPaymentHistory(pRequest,pResponse) {
+		try{
+
+			console.log("Start getting Physical Inventory");
+
+			var vSelectedRetailId = pRequest.body.retailerId;
+
+			console.log(vSelectedRetailId+'retailer id');
+
+			var vOrmSvc = new ORMService();
+
+			let vParams = {
+				selected_ret_id : vSelectedRetailId,
+				interval_days : 30
+				
+			};
+
+			var vResult = await vOrmSvc.sp('get_payment_history', vParams );
+			console.log("Query Done with result : "+ JSON.stringify(vResponse));
+			var vResponse = {
+						"status" : "Success",
+						"errorMessage" : "",
+						"result" : vResult
+					};
+			
+			pResponse.json(vResponse);
+
+		}
+		catch(pErr)
+		{
+			console.log("Failed to Query Payment History" + pErr);
+
+			var vError = {
+						"status" : "Error",
+						"errorMessage" : pErr,
+						"result" : null
+					};
+			pResponse.json(vError);
+		}
+	}
 }

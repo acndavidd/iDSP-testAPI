@@ -162,7 +162,6 @@
 			<div class="item-container sub" *ngIf="vLoadMenuShow">
 				<div class="container">
 					<div *ngFor="#each of getLoadWallet()">
-
 						<div class='cell'>
 					        <div class='container'><div class='cell single sub-cell title bold'>SmartLoad</div></div>
 					        <div class='container'>
@@ -185,7 +184,6 @@
 					        </div>
 					    </div>
 					    <div class='cell icon'></div>
-
 				    </div>
 				</div>
 			</div>
@@ -200,29 +198,30 @@
 		</div>
 			<div class="item-container sub" *ngIf="vPhysicalMenuShow">
 				<div class="container">
-					<div class='cell'>
-				        <div class='container'><div class='cell single sub-cell title bold'>SKU1</div></div>
-				        <div class='container'>
-				        	<div class='cell single sub-cell'>
-								<div class="container">
-									<div class='cell'>
-								        <div class='container'><div class='cell left'>Last Quantity Sold</div></div>
-								        <div class='container'><div class='cell left'>Transaction Date</div></div>
-								        <div class='container'><div class='cell left'>Beginning Balance</div></div>
-								    </div>
-									<div class='cell'>
-								        <div class='container'><div class='cell right'>600</div></div>
-								        <div class='container'><div class='cell right'>04/01/2016</div></div>
-								        <div class='container'><div class='cell right'>1,100</div></div>
-								    </div>
-								</div>
-				        	</div>
-				        </div>
+				<div *ngFor="#each of getPhysicalInventory()">
+						<div class='cell'>
+					        <div class='container'><div class='cell single sub-cell title bold'>SKU1</div></div>
+					        <div class='container'>
+					        	<div class='cell single sub-cell'>
+									<div class="container">
+										<div class='cell'>
+									        <div class='container'><div class='cell left'>Last Quantity Sold</div></div>
+									        <div class='container'><div class='cell left'>Transaction Date</div></div>
+									        <div class='container'><div class='cell left'>Beginning Balance</div></div>
+									    </div>
+										<div class='cell'>
+									        <div class='container'><div class='cell right'>{{each.last_qty_sold}}</div></div>
+									        <div class='container'><div class='cell right'>{{each.transaction_date}}</div></div>
+									        <div class='container'><div class='cell right'></div>{{each.beginning_balance}} ₱</div>
+									    </div>
+									</div>
+					        	</div>
+					        </div>
+					    </div>
+					    <div class='cell icon'></div>
 				    </div>
-				    <div class='cell icon'></div>
 				</div>
 			</div>
-
 	    <div class="no-divider">
 	        <div class= "button" (click)="gotoBCPActivityStep(each)" *ngIf="vStartEnabled" >
 	            <div class="button-identifier">START</div>
