@@ -4,9 +4,13 @@ import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
+<<<<<<< HEAD
 import {ModalService} from '../../shared/services/modal.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {RetailerSalesOrderService} from '../services/retailer-sales-order-service';
+=======
+import {Modal} from '../../shared/services/modal.service';
+>>>>>>> 71e4320f0ce0be496d0ce53a25d5e68d37db2a13
 
 @Component({
     selector: 'retailer-sales-order',
@@ -68,7 +72,7 @@ export class RetailerSalesOrderComponent {
 
     skipSalesOrderModalComponent() {
         console.log('Skip Sales Order');
-        this._modalService.toggleSkipSalesOrderModal();
+        // this._modalService.toggleSkipSalesOrderModal();
     }
 
     getTransferLoadList() {

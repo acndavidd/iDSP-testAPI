@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {ModalService} from '../../services/modal.service';
+import {Modal} from '../../services/modal.service';
 
 @Component({
     selector: 'verification-code-modal',
@@ -7,11 +7,11 @@ import {ModalService} from '../../services/modal.service';
 })
 export class VerificationCodeModalComponent {
 
-    constructor(private _modalService: ModalService) {
+    constructor(private _modalService: Modal.ModalService) {
     }
 
     close() {
-        this._modalService.toggleVerificationCodeModal();
+        // this._modalService.toggleVerificationCodeModal();
     }
 
 }

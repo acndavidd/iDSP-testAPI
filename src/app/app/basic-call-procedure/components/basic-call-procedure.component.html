@@ -8,14 +8,14 @@
 </div>
 <div class="container-body">
     <div class="item-container">
-            <div class="container">
-                <div class='cell'>
-                    <div class='container'><div class='cell single title bold'>Today's Route</div></div>
-                </div>
-                <div class='cell icon'></div>
+        <div class="container">
+            <div class='cell'>
+                <div class='container'><div class='cell single title bold'>Today's Route</div></div>
+            </div>
+            <div class='cell icon'></div>
             </div>
         </div>
-    <div class="item-container" *ngFor="#each of vFilteredListRoute" (click)="gotoCallPreparation(each.call_status)">
+    <div class="item-container" *ngFor="#each of vFilteredListRoute" (click)="gotoCallPreparation(each)">
         <div class="container">
             <div class='cell'>
                 <div class='container'><div class='cell left'>{{each.retailer_name}}</div></div>
@@ -27,14 +27,13 @@
                 <div class='container'><div class='cell right green'>Route #{{each.seq}}</div></div>
                 <div class='container'><div class='cell right'></div></div>
                 <div class='container'><div class='cell right'>{{each.total_acr}} ₱</div></div>
-                <div class='container'>
                 <div *ngIf="each.call_status === 'Visited'">
-                    <div class="cell right bold green">{{each.call_status}}</div>
+                    <div class='container'><div class='cell right bold dark-sea-green'>{{each.call_status}}</div></div>
                 </div>
-                <div *ngIf="each.call_status === 'Not Visited'">
-                    <div class="cell right bold red">{{each.call_status}}</div>
-                </div>
-                </div>
+                 <div *ngIf="each.call_status !== 'Visited'">
+                     <div class='container'><div class='cell right bold vivid-pink'>{{each.call_status}}</div></div>
+                 </div>
+
             </div>
             <div class='cell icon arrow-right'></div>
         </div>

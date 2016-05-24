@@ -71,9 +71,11 @@
 
 <div class="container-body">
     <div class="no-divider">
-        <div class="button">
-            <div class="button-identifier" *ngIf="!vFinishButton" (click)="gotoAnotherPage()" id="next-link">Next</div>
-            <div class="button-identifier" *ngIf="vFinishButton" (click)="gotoAnotherPage()" id="next-link">Finish</div>
+        <div class="button" *ngIf="vNextEnabled">
+            <div class="button-identifier" (click)="gotoAnotherPage()" id="next-link">NEXT</div>
+        </div>
+        <div class= "button-disabled" *ngIf="!vNextEnabled" id="disabled-next-link">
+            <div class="button-identifier">NEXT</div>
         </div>
     </div>
 </div>

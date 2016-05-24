@@ -2,9 +2,11 @@ import {Component} from 'angular2/core';
 import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/router';
 import {LayoutService} from '../services/layout.service';
 import {Layout} from '../../../models/layout';
+import {Modal} from '../services/modal.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
+import {AuthenticationService} from '../services/authentication.service';
 
 @Component({
     selector: 'home',
@@ -19,7 +21,9 @@ export class HomeComponent {
         private _router: Router,
         private _matchMediaService: MatchMediaService,
         private _headerService: HeaderService,
-        private _pageNavigationService: PageNavigationService) {
+        private _pageNavigationService: PageNavigationService,
+        private _modalService: Modal.ModalService,
+        private _authenticationService: AuthenticationService) {
         this._layoutService.setCurrentPage('Home');
         this._headerService.setTitle('Home');
         this.vDate = new Date();
@@ -65,8 +69,8 @@ export class HomeComponent {
     goToStockReturn() {
         this._pageNavigationService.navigate('StockReturn', null, null);
     }
-    goToLogout() {
-        this._router.parent.navigate(['Starter', 'Login']);
+    toggleLogout() {
+        this._authenticationService.logout();
     }
     getLayout() {
         return this._layoutService.getLayout();
