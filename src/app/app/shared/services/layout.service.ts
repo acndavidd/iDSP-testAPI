@@ -18,7 +18,6 @@ export class LayoutService {
 
     vFilter = {
         filterTargetsActuals: false,
-        filterInventoryLoad: false,
         filterInventoryPhysical: false,
         filterDSPAlerts: false,
         filterAccReceivables: false,
@@ -175,6 +174,7 @@ export class LayoutService {
             };
             // ONLY BCP PAGE NEEDS FILTER
             if (pCurrent === 'BasicCallProcedure') {
+                this.vCurrentPointer = '0';
                 this.vHeaderItem.filter = true;
             }
         }
@@ -447,7 +447,6 @@ export class LayoutService {
 
     setFilter() {
         this.vFilter.filterTargetsActuals = !this.vFilter.filterTargetsActuals;
-        this.vFilter.filterInventoryLoad = !this.vFilter.filterInventoryLoad;
         this.vFilter.filterInventoryPhysical = !this.vFilter.filterInventoryPhysical;
         this.vFilter.filterAccReceivables = !this.vFilter.filterAccReceivables;
         this.vFilter.filterDSPAlerts = !this.vFilter.filterDSPAlerts;
@@ -467,6 +466,16 @@ export class LayoutService {
     toggleHeader() {
         // FOR LOGOUT ONLY
         this.vLayoutState.appHeader = false;
+    }
+
+    toggleFilterInventory(pLoadTab: boolean, pInventoryTab: boolean) {
+        // FOR INVENTORY ONLY
+        if (pLoadTab) {
+            this.vHeaderItem.filter = false;
+        }
+        if (pInventoryTab) {
+            this.vHeaderItem.filter = true;
+        }
     }
 
     getLeftMenuState() {

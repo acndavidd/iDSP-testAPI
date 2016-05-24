@@ -290,7 +290,7 @@ module.exports = function(grunt) {
         clean:{
             options: { force: true },
             debug: ["../../debug/", "!../../debug/node_modules/"],
-            cordova: ["../../cordova/www/**", "../../cordova/res/**"],
+            cordova: ["../cordova/www/**", "../cordova/res/**"],
             sasscache: [".sass-cache/"]  
         },
 

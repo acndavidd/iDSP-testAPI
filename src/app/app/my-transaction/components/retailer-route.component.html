@@ -8,26 +8,24 @@
 		</div>	
 	</div>
     <div class="item-container" *ngFor="#each of vListRetailers; #i = index" (click)='goToDetailRetailer(each)' id='each-retailer'>
-
         <div class="container">
-        	<div class='cell logo' *ngIf="i%2==0"><div class="profpic pink">{{getInitialName(each.retailer_name)}}</div></div>
-        	<div class='cell logo' *ngIf="i%2==1"><div class="profpic purple">{{getInitialName(each.retailer_name)}}</div></div>
+        	<div class='cell width-20 padding-left-5' *ngIf="i%2==0"><div class="profpic pink">{{getInitialName(each.retailer_name)}}</div></div>
+        	<div class='cell width-20 padding-left-5' *ngIf="i%2==1"><div class="profpic purple">{{getInitialName(each.retailer_name)}}</div></div>
         	<div class='cell'>
         		<div class='container'>
-        			<div class='cell content bold green' *ngIf="each.seq"># {{each.seq}}</div>
-        			<div class='cell content bold green' *ngIf="!each.seq"></div>
+        			<div class='cell width-80 bold green' *ngIf="each.seq"># {{each.seq}}</div>
+        			<div class='cell width-80 bold green' *ngIf="!each.seq"></div>
         		</div>
 		        <div class='container'>
-	        		<div class='cell content bold'>{{each.retailer_name}}</div>
+	        		<div class='cell width-80 bold'>{{each.retailer_name}}</div>
 		        </div>
 		        <div class='container'>
-		        	<div class='cell content'>{{each.owner_name}}</div>
+		        	<div class='cell width-80'>{{each.owner_name}}</div>
 		        </div>
 		        <div class='container'>
-		        	<div class='cell content'>{{each.retailer_address}}</div>
+		        	<div class='cell width-80'>{{each.retailer_address}}</div>
 		    	</div>
 		    </div>
-		    <!-- <div class='cell icon arrow-right'></div> -->
 		</div>
     </div>        
 </div>
