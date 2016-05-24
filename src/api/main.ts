@@ -2,6 +2,7 @@
 'use strict';
 
 import {LoginController} from './controllers/login.controller';
+import {SchedulerController} from './controllers/scheduler.controller';
 import {InventoryController} from './controllers/inventory.controller';
 import {TargetsActualsController} from './controllers/targets-actuals.controller';
 import {RetailerController} from './controllers/retailer.controller';
@@ -19,6 +20,7 @@ const PORT:number = process.env.PORT || 8080;
 
 var vRetailerCtrl:RetailerController = new RetailerController();
 var vLoginCtrl:LoginController = new LoginController();
+var vSchedCtrl:SchedulerController = new SchedulerController();
 var vInventoryCtrl:InventoryController = new InventoryController();
 var vTargetsActualsCtrl:TargetsActualsController = new TargetsActualsController();
 var vAccCtrl:AccController = new AccController();
@@ -47,7 +49,8 @@ vApp.use(function(pRequest, pResponse, pNext) {
 
     if(
         pRequest.path !== '/service/login' && 
-        pRequest.path !== '/service/logout'
+        pRequest.path !== '/service/logout' && 
+        pRequest.path !== '/service/generateCallPlan'
 
     ){//all request to service will validate token except login
         var vToken = '';
@@ -154,6 +157,18 @@ vRouter.post('/getPaymentHistory',vRetailerCtrl.getPaymentHistory);
 
 
 vRouter.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
+
 vApp.use('/service',vRouter);
 vApp.listen(PORT);
+
+var CronJob = require('cron').CronJob;
+    var job = new CronJob('* * 0 * * *', function() {
+        console.log('Start Running scheduler for generate call plan');
+        vSchedCtrl.generateCallPlan();
+    }, function () {
+
+    }, true, 'Asia/Manila');
+
+
+
 console.log('http://127.0.0.1:' + PORT + '/service');

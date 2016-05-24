@@ -385,7 +385,6 @@ LIST VIEW - TEXT
                     background: $white;
                     height: 30px;
                     border: 1px solid $dark-grey;
-                    width: 50%;
                     -webkit-appearance: none;
                     border-radius: 2vw;
                     padding-left: 15px;
@@ -417,6 +416,8 @@ LIST VIEW - TEXT
             &.padding-left-5 { padding-left: 5vw; }
             &.padding-left-10 { padding-left: 10vw; }
             &.padding-right-5 { padding-right: 5vw; }
+            &.padding-left-2 { padding-left: 2vw; }
+            .margin-right-7 { margin-right: 7vw; }
             
             &.small { font-size: small; }
             &.large { font-size: large; }
@@ -439,7 +440,7 @@ LIST VIEW - TEXT
             &.green             { color: $apple; }
             &.deep-cyan         { color: $deep-cyan; }
             &.red               { color: $red; }
-   
+            
             // ROUNDED PROGRESS BAR
             .progress-radial {
                 float: left;
@@ -492,7 +493,10 @@ LIST VIEW - TEXT
                 width: 40%;
                 padding-left:0.6em;
             }
-            
+            &.left3 {
+                width: 40%;
+                text-align: left;
+            }
             &.right {
                 width: 40%;
                 text-align: right;
@@ -505,12 +509,15 @@ LIST VIEW - TEXT
                 width: 85%;
                 padding-left:0.6em;
             }
+            &.single1 {
+                width: 100%;
+                padding-left:0.6em;
+            }
             &.single-large {
                 height:3.2em;
                 width: 85%;
                 padding-left:0.6em;
             }
-
             &.percent-100{
                 padding-left:0.6em;
                 width:100px;
@@ -521,7 +528,6 @@ LIST VIEW - TEXT
             &.percent-300{
                 width:300px; 
             }
-
             &.icon {
                 width: 15%;
             }
@@ -532,7 +538,6 @@ LIST VIEW - TEXT
                 padding-left:0.6em;
                 width:70%;
             }
-
             &.bold {
                 font-weight: bold;
             }
@@ -563,7 +568,6 @@ LIST VIEW - TEXT
                     padding-left:0.6em;
                 }
             }
-
 
 /*
 ===========================================================

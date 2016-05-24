@@ -50,7 +50,6 @@ export class BasicCallProcedureComponent {
 
     // gotoAnotherPage(pSelectedRetailer) {
     //     console.log('Go to Call Preparation' + pSelectedRetailer );
-
     //     let vParamsOld = {};
     //     let vParams = {
     //         retailer_id: pSelectedRetailer.retailer_id,
@@ -58,7 +57,6 @@ export class BasicCallProcedureComponent {
     //         call_id: pSelectedRetailer.call_id,
     //         status: pSelectedRetailer.call_status
     //     };
-
     //      this._pageNavigationService.navigate('BCPActivityStep', vParams, vParamsOld);
     // }
 

@@ -117,7 +117,6 @@ export class CallPreparationComponent {
         //      route_sequence: this.vSelectedRetailSeq,
         //      call_id: this.vSelectedRetailCallId
         // };
-
         // let vParams = {
         //     retailer_id: pSelectedRetailer.retailer_id,
         //     route_sequence: pSelectedRetailer.seq,

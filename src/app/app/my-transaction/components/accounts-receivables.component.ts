@@ -10,8 +10,8 @@ import {NgFor, NgModel} from 'angular2/common';
 
 @Component({
     selector: 'accounts-receivables',
-     templateUrl: './app/my-transaction/components/hc-accounts-receivables.component.html',
-    // templateUrl: './app/my-transaction/components/accounts-receivables.component.html',
+    // templateUrl: './app/my-transaction/components/hc-accounts-receivables.component.html',
+     templateUrl: './app/my-transaction/components/accounts-receivables.component.html',
     directives: [
         NgFor, NgModel, ROUTER_DIRECTIVES
     ],
@@ -27,6 +27,8 @@ export class AccountsReceivablesComponent {
     vAllReceivablesRouteList: any;
     vSum: any;
     vFlag = 0;
+    vTotalReceivablesInRoute: number = 0;
+    vTotalReceivablesAll: number = 0;
 
     constructor (
         private _layoutService: LayoutService,
@@ -50,7 +52,8 @@ export class AccountsReceivablesComponent {
                 console.log( 'TEMP 2 ' + this.vAllReceivablesRouteList + ' length: ' + this.vAllReceivablesRouteList.length );
                 console.log(JSON.stringify(response.json()));
                 console.log(response.json().result.length);
-                this.setTotalReceivable(response.json().result[0].v_receivables[0].ret_total_amount);
+                this.vTotalReceivablesInRoute = this.vReceivablesRouteList[0].ret_total_amount;
+                this.vTotalReceivablesAll = this.vAllReceivablesRouteList[0].total_amount;
                 this.setSearchedReceivablesRoute(this.vReceivablesRouteList);
             },
 
@@ -68,28 +71,26 @@ export class AccountsReceivablesComponent {
         return this._layoutService.getFilter();
     }
 
-    getTotalReceivable() {
-        if ( this.vSum === null ) {
-            this.setTotalReceivable(0);
-        }
-        return this.vSum;
-    }
+    // getTotalReceivable() {
+    //     if ( this.vSum === null ) {
+    //         this.setTotalReceivable(0);
+    //     }
+    //     return this.vSum;
+    // }
 
-    setTotalReceivable(vTotal) {
-        this.vSum = vTotal;
-    }
+    // setTotalReceivable(vTotal) {
+    //     this.vSum = vTotal;
+    // }
 
     onKey(pInputText: any) {
         if (this.vFlag === 0) {
-            this.setSearchedReceivablesRoute(this.vReceivablesRouteList);
-            this.setTotalReceivable(this.vReceivablesRouteList[0].ret_total_amount);
+            this.setSearchedReceivablesRoute(this.vReceivablesRouteList);          
             this.setSearchedReceivablesRoute(this.vReceivablesRouteList.filter(pFilter => {
                  return pFilter.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
                  pFilter.retailer_min.indexOf(pInputText) !== -1;
             }));
         } else {
             this.setSearchedReceivablesRoute(this.vAllReceivablesRouteList);
-            this.setTotalReceivable(this.vAllReceivablesRouteList[0].total_amount);
             this.setSearchedReceivablesRoute(this.vAllReceivablesRouteList.filter(pFilter => {
                 return pFilter.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
                 pFilter.retailer_min.indexOf(pInputText) !== -1;
@@ -114,7 +115,7 @@ export class AccountsReceivablesComponent {
         console.log('in get AllReceivables : ' + pInputText);
         this.vFlag = 1;
         this.setSearchedReceivablesRoute(this.vAllReceivablesRouteList);
-        this.setTotalReceivable(this.vAllReceivablesRouteList[0].total_amount);
+        // this.setTotalReceivable(this.vAllReceivablesRouteList[0].total_amount);
         if (pInputText.length > 0) {
             this.setSearchedReceivablesRoute(this.vAllReceivablesRouteList.filter(pFilter => {
                 return pFilter.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
