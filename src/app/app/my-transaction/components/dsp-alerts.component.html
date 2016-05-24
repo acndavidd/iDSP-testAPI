@@ -33,18 +33,18 @@
     <div class="item-container" *ngFor="#retailer of getRetailerAlert()">
         <div class="container">
             <div class='cell'>
-                <div class='container'><div class='cell padding-left-3 width-50 bold grey' *ngIf="retailer.sequence > 0"># Route {{retailer.sequence}}</div></div>
-                <div class='container'><div class='cell padding-left-3 width-50 bold'>{{retailer.retailer_name}}</div></div>
-                <div class='container'><div class='cell padding-left-3 width-50 italic'>{{retailer.retailer_min}}</div></div>
-                <div class='container'><div class='cell padding-left-3 width-50 grey'>Value Segment</div></div>
-                <div class='container'><div class='cell padding-left-3 width-50 grey'>Threshold hit</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 bold grey' *ngIf="retailer.sequence > 0"># Route {{retailer.sequence}}</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 bold'>{{retailer.retailer_name}}</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 italic'>{{retailer.retailer_min}}</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 grey'>Value Segment</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 grey'>Threshold hit</div></div>
             </div>
             <div class='cell'>
-                <div class='container'><div class='cell padding-right-3 width-50 align-right'></div></div>
-                <div class='container'><div class='cell padding-right-3 width-50 align-right'></div></div>
-                <div class='container'><div class='cell padding-right-3 width-50 align-right'></div></div>
-                <div class='container'><div class='cell padding-right-3 width-50 align-right'>{{retailer.value_segment}}</div></div>
-                <div class='container'><div class='cell padding-right-3 width-50 align-right'>{{retailer.threshold_hit}} &nbsp; &#8369; </div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'></div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'></div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'></div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'>{{retailer.value_segment}}</div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'>{{retailer.threshold_hit}} &nbsp; &#8369; </div></div>
             </div>
         </div>
     </div>

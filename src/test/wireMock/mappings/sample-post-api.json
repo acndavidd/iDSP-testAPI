@@ -1,0 +1,17 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/api/mytest2",
+        "bodyPatterns" : [
+            { "equalToJson" : "{ \"retailer_id\": \"DSP00001\" }", "jsonCompareMode": "LENIENT" }
+        ]
+    },
+    "response": {
+        "status": 200,
+        "headers":
+        {
+            "Content-Type" : "application/json"
+        },            
+        "body": "{ \"status\": \"Data Found\", \"retailer_id\":\"DSP00001\", \"retailer_name\": \"YO MAMEN\" }"
+    }
+}

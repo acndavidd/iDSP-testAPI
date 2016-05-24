@@ -357,19 +357,10 @@ LIST VIEW - TEXT
             height:1.6em;
             vertical-align:middle;
             input {
-                background: $white;
-                height: 30px;
-                border: 1px solid $dark-grey;
-                width: 75%;
-                text-align: -webkit-right;
-                -webkit-appearance: none;
-                border-radius: 7px;
-                padding-left: 15px;
-                padding-right: 15px;
-                font-size: $filter-select;
-                font-weight:lighter;
-                appearance: none;
-                cursor: pointer;
+                height: 6vw;
+                &.width-30 {
+                    width: 30vw;
+                }
             }
             textarea {
                 background: $white;
@@ -416,16 +407,18 @@ LIST VIEW - TEXT
             &.width-40 { width: 40%; }
             &.width-45 { width: 45%; }
             &.width-50 { width: 50%; }
+            &.width-60 { width: 60%; }
             &.width-70 { width: 70%; }
             &.width-80 { width: 80%; }
             &.width-90 { width: 90%; }
             &.width-100 { width: 100%; }
             
             // PLEASE PUT STYLE HERE
-            &.padding-left-3 { padding-left: 3vw; }
-            &.padding-left-6 { padding-left: 6vw; }
-            &.padding-right-3 { padding-right: 3vw; }
+            &.padding-left-5 { padding-left: 5vw; }
+            &.padding-left-10 { padding-left: 10vw; }
+            &.padding-right-5 { padding-right: 5vw; }
             
+            &.small { font-size: small; }
             &.large { font-size: large; }
             &.x-large { font-size: x-large; }
             &.xx-large { font-size: xx-large; }

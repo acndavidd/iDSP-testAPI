@@ -19,6 +19,7 @@ BEGIN
 		LEFT JOIN TRX_ACCOUNT_RECEIVABLE c on a.RETAILER_ID = c.RETAILER_ID and c.status != 'Paid'
 		where a.retailer_id = pRetailerId
 		and a.dsp_id = pSales
+		and a.sync_status != 'D'
 		group by a.retailer_id ,a.retailer_name, a.owner_first_name, a.retailer_min,
 		a.civil_status, a.email, a.gender, a.birthday, 
 		a.retailer_address, b.threshold_hit, b.value_segment
