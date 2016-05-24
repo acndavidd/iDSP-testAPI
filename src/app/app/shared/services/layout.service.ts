@@ -174,6 +174,7 @@ export class LayoutService {
             };
             // ONLY BCP PAGE NEEDS FILTER
             if (pCurrent === 'BasicCallProcedure') {
+                this.vCurrentPointer = '0';
                 this.vHeaderItem.filter = true;
             }
         }

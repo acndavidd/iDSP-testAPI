@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     table_description: DataTypes.STRING(200),
     download_sync_version: DataTypes.DATE,
-    upload_sync_version: DataTypes.DataTypes
+    upload_sync_version: DataTypes.DATE
   }, {
     timestamps : false,
     freezeTableName: true,
