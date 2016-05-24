@@ -42,7 +42,7 @@ export class SettingsComponent {
     }
 
     toggleVerificationCodeModal() {
-        //this._modalService.toggleVerificationCodeModal();
+        // this._modalService.toggleVerificationCodeModal();
     }
 
     getResize() {

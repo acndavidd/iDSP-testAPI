@@ -9,6 +9,6 @@ export class SkipSalesOrderModalComponent {
     constructor(private _modalService: Modal.ModalService) {
     }
     close() {
-        //this._modalService.toggleSkipSalesOrderModal();
+        // this._modalService.toggleSkipSalesOrderModal();
     }
 }

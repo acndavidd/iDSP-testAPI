@@ -2,34 +2,25 @@
 
 import {TokenService} from '../services/token.service';
 import {ORMService} from '../services/orm.service';
+import {APIService} from '../services/api.service';
+
 
 export class LoginController{
 	
 	constructor(){
 	}
 
-	login(pRequest,pResponse){
-		try{
-			let vTokenSvc = new TokenService();
-			var vTokenObj = {
-				user : {
-					name : pRequest.body.username,
-					password : pRequest.body.password
-				}
-			};
-			var vResult = {
-				success : 1,
-				token : vTokenSvc.generateToken(vTokenObj)
-			};
-			pResponse.cookie('accessToken',vResult.token,{httpOnly:true});
-		}catch(err){
-			var vResult = {
-				success : 0,
-				token   : ''
-			};
-		}
+	async login(pRequest,pResponse) {
+		let vHttpSvc = new APIService.HTTPService();
+		let vPath:string = '/OPISNET/services/idsp/userValidation';
+		let vData = {
+			Username : pRequest.body.Username,
+			Password : pRequest.body.Password
+		};
+		let vResult = await vHttpSvc.post(APIService.APIType.OPISNET, vPath, null, vData);
 		pResponse.json(vResult);
 	}
+
 	logout(pRequest,pResponse){
 		try{
 			var message = 'Insert start.';

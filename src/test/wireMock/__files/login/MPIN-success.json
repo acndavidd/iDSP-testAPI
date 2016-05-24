@@ -1,0 +1,6 @@
+{ 
+	"Status": 200,
+	"StatusMessage" : "OK",
+	"AccessToken" : "1234567890-Anjay-0987654321",
+	"AccessTokenExpiryDate" : "20171231235959"
+}

@@ -25,7 +25,7 @@ export module Modal {
         private vButtons;
         private vFootNote;
 
-        constructor(_layoutServie : LayoutService) {
+        constructor(_layoutServie: LayoutService) {
             this.vShowModal = false;
             this.vButtons = [];
             this.vFootNote = '';
@@ -64,7 +64,7 @@ export module Modal {
             this.setModalState(true);
             this.vModalType = Modal.ModalType.ERROR;
             this.vButtons = [];
-            this.vButtons.push({ id : 'ok-button', display: 'OK' , color_style : 'green' , callback : this.closeModal });
+            this.vButtons.push({ id : 'ok-button', display: 'OK' , color_style : 'green' , callback : this.closeModal, param : this });
         }
 
         toggleModal(pModalMessage:string, pModalType?:number, pArgs?:any) {
@@ -85,18 +85,18 @@ export module Modal {
                 this.vModalType = Modal.ModalType.INFO;// default
             else 
                 this.vModalType = pModalType;
-            if(pModalType === Modal.ModalType.INFO || pModalType === Modal.ModalType.ERROR){
+            if(pModalType === Modal.ModalType.INFO || pModalType === Modal.ModalType.ERROR) {
                 this.vButtons.push({ id : 'ok-button', display: 'OK' , color_style : 'green' , callback : this.closeModal, param : this });
-            }else if(pModalType === Modal.ModalType.CONFIRMATION){
-                if(pArgs.ModalButton === Modal.ModalButton.OK_CANCEL){
+            }else if(pModalType === Modal.ModalType.CONFIRMATION) {
+                if(pArgs.ModalButton === Modal.ModalButton.OK_CANCEL) {
                     this.vButtons.push({ id : 'ok-button', display: 'OK' , color_style : 'green' , callback : pArgs.callback, param : pArgs.param });
                     this.vButtons.push({ id : 'cancel-button', display: 'CANCEL' , color_style : 'red' , callback : this.closeModal });
-                }else if(pArgs.ModalButton === Modal.ModalButton.YES_NO){
+                }else if(pArgs.ModalButton === Modal.ModalButton.YES_NO) {
                     this.vButtons.push({ id : 'ok-button', display: 'YES' , color_style : 'green' , callback : pArgs.callback, param : pArgs.param });
                     this.vButtons.push({ id : 'cancel-button', display: 'NO' , color_style : 'red' , callback : this.closeModal, param : this });
                 }
             }else {
-                for(var vButton in pArgs.Buttons){
+                for(var vButton in pArgs.Buttons) {
                     this.vButtons.push(pArgs.Buttons[vButton]);
                 }
             }

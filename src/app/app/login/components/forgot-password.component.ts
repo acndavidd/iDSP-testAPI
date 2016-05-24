@@ -35,7 +35,7 @@ export class ForgotPasswordComponent {
     }
 
     toggleVerificationCodeModal() {
-        //this._modalService.toggleVerificationCodeModal();
+        // this._modalService.toggleVerificationCodeModal();
     }
 
 }

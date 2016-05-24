@@ -36,7 +36,7 @@ export class RetailerSalesOrderComponent {
 
     skipSalesOrderModalComponent() {
         console.log('Skip Sales Order');
-        //this._modalService.toggleSkipSalesOrderModal();
+        // this._modalService.toggleSkipSalesOrderModal();
     }
 
 }

@@ -12,6 +12,8 @@ export class ORMService{
 	private vSequelizeSvc:SequelizeService;
 
 	constructor(){
+		this.vSequelizeSvc = new SequelizeService();
+		/*
 		this.vModels = {};
 		let vOrmInstance = this;
 		this.vSequelizeSvc = new SequelizeService();
@@ -40,7 +42,7 @@ export class ORMService{
 				console.log('Error occurred while loading association for model : ' + model,'\nError : ' + pErr);
 			}
 		};
-		if(vDebug)console.log('Finished loading association');
+		if(vDebug)console.log('Finished loading association');*/
 	}
 
 	public async sp(pSPName:string,pParams:any) {
