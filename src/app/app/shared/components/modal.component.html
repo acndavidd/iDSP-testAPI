@@ -9,15 +9,18 @@
 </div>-->
 <div class="modal-outer-box" *ngIf="getModalState()">
     <div class="modal-internal">
-    	<div class="modal-verification-code">
+    	<div class="modal-container">
     		<div class="modal-body">
 		    	<div class="item-header"></div>
 		        <div class="item-title" [innerHTML]="getModalMessage()">
 		        </div>
 	    	</div>
 		    <div class="modal-footer">
-		        <div class="button green" id="ok-btn" (click)="callOKCallBack()">OK</div>
-		        <div *ngIf="(getModalType() === getModalEnum().OK_CANCEL)" class="button green" id="cancel-btn" (click)="callCANCELCallBack()" >CANCEL</div>
+	    		<div [ngClass]="{one:getButtons().length === 1 , two:getButtons().length === 2}">
+		        	<div *ngFor="#button of getButtons()" class="button {{button.color_style}}" id="{{button.id}}" (click)="callBack(button)">{{button.display}}</div>
+	        	</div>
+		    </div>
+		    <div class="foot-note" [innerHTML]="getFootNote()">
 		    </div>
 		</div>
 	</div>

@@ -2,6 +2,8 @@ import {Component} from 'angular2/core';
 import {VerificationCodeModalComponent} from './modal-includes/verification-code-modal.component';
 import {ResendMpinModalComponent} from './modal-includes/resend-mpin-modal.component';
 import {Modal} from '../services/modal.service';
+import {LayoutService} from '../services/layout.service';
+import {Router} from 'angular2/router';
 
 @Component({
     selector: 'my-modal',
@@ -13,7 +15,9 @@ import {Modal} from '../services/modal.service';
 })
 export class ModalComponent {
 
-    constructor(private _modalService: Modal.ModalService) {
+    constructor(private _modalService: Modal.ModalService, 
+        private _layoutService: LayoutService,
+        private _router: Router) {
 
     }
 
@@ -29,29 +33,15 @@ export class ModalComponent {
         return this._modalService.getModalMessage();
     }
 
-    callOKCallBack() {
-        if(this.getModalType() === Modal.ModalType.ERROR) {
-            this._modalService.toggleModal('');
-        }
-        let vOKCallBack = this._modalService.getOKCallBack();
-        vOKCallBack();
+    getFootNote() {
+        return this._modalService.getFootNote();
     }
 
-    callCANCELCallBack() {
-        let vCANCELCallBack = this._modalService.getCANCELCallBack();
-        vCANCELCallBack();
+    getButtons() {
+        return this._modalService.getButtons();
     }
 
-    getModalEnum() {
-        return Modal.ModalType;
+    callBack(button) {
+        button.callback(button.param);
     }
-
-    getModalStatus() {
-        return this._modalService.getModalState();
-    }
-
-    getMainModalStatus() {
-        return this._modalService.getMainModalState();
-    }
-
 }

@@ -80,8 +80,6 @@ export class MyHttp {
             vRequestOptions.headers = this._createAuthHeaders(pMethod);
         }
 
-        ;
-
         return Observable.create((pObserver) => {
             const CONFIG_URL = 'config/service.json';
             if (this.vServiceBaseUrl === '') {
@@ -96,9 +94,6 @@ export class MyHttp {
                    this.vServiceBaseUrl = vConfig.baseUrl;
                    this.vTimeout = Number(vConfig.timeout);
                    vRequestOptions.url = this.vServiceBaseUrl + pUrl;
-
-                   console.log('Start request to ' + this.vServiceBaseUrl + pUrl);
-
                    this.executeRequest(pObserver, vRequestOptions);
                });
             } else {
@@ -109,6 +104,7 @@ export class MyHttp {
     }
 
     public executeRequest(pObserver, pOpt: RequestOptions) {
+        console.log('Start request to ' + pOpt.url);
         this._http.request(new Request(pOpt))
             .timeout(this.vTimeout, {status: 408})
             .subscribe(
@@ -119,9 +115,11 @@ export class MyHttp {
                 (err) => {
                     switch (err.status) {
                         case 403:
+                            // try access once again usig refresh token
                             pObserver.error(err);
                             break;
                         default:
+                            // throw error
                             pObserver.error(err);
                             break;
                     }

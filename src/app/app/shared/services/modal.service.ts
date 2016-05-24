@@ -1,125 +1,105 @@
 import { Injectable } from 'angular2/core';
 import { Layout } from '../../../models/layout';
+import { LayoutService } from './layout.service';
 
 export module Modal {
     export var ModalType = {
         ERROR : 1,
-        OK : 2,
-        OK_CANCEL : 3
+        INFO : 2,
+        CONFIRMATION : 3,
+        CUSTOM: 4
     };
+
+    export var ModalButton = {
+        OK_CANCEL : 1,
+        YES_NO : 2
+    };
+
     @Injectable()
     export class ModalService {
         
-        vModalMessage: string;
-        vCurrentPage: string;
-        vModalType: number;
-        vMainModalState = false;
-        vShowModal = false;
-        vOKCallBack;
-        vCANCELCallBack;
-        
-        vModalState = {
-            error: false,
-            info: false,
-            verificationCode : false,
-            resendMpin : false,
-            collection: false,
-            skipSalesOrder: false
-        };
+        private vModalMessage: string;
+        private vCurrentPage: string;
+        private vModalType: number;
+        private vShowModal: boolean;
+        private vButtons;
+        private vFootNote;
 
-        constructor() {}
+        constructor(_layoutServie : LayoutService) {
+            this.vShowModal = false;
+            this.vButtons = [];
+            this.vFootNote = '';
+        }
 
         getModalType() {
             return this.vModalType;
         }
 
-        getMainModalState() {
-            return this.vMainModalState;
-        }
-
         getModalState() {
             return this.vShowModal;
-            // return this.vModalState;
         }
 
-        setModalMessage(pMessage: string) {
-            this.vModalMessage = pMessage;
+        setModalState(pState:boolean) {
+            this.vShowModal = pState;
         }
 
         getModalMessage() {
             return this.vModalMessage;
         }
 
-        getOKCallBack() {
-            return this.vOKCallBack;
+        getFootNote() {
+            return this.vFootNote;
         }
 
-        getCANCELCallBack() {
-            return this.vCANCELCallBack;
+        getButtons() {
+            return this.vButtons;
         }
 
-        toggleModal(pModalMessage:string, pModalType?:number, pOKCallBack?:any, pCANCELCallBack?:any) {
+        closeModal(pParam) {
+            pParam.vShowModal = false;
+        }
+
+        showErrorModal(pModalMessage:string) {
             this.vModalMessage = pModalMessage;
-            this.vShowModal = !this.vShowModal;
+            this.setModalState(true);
+            this.vModalType = Modal.ModalType.ERROR;
+            this.vButtons = [];
+            this.vButtons.push({ id : 'ok-button', display: 'OK' , color_style : 'green' , callback : this.closeModal });
+        }
+
+        toggleModal(pModalMessage:string, pModalType?:number, pArgs?:any) {
+            this.vModalMessage = pModalMessage;
+            this.setModalState(true);
+            this.vButtons = [];
+            let vCurrentContext = this;
+            this.vFootNote = '';
+            if(pArgs) {
+                if(pArgs.footNote)this.vFootNote = pArgs.footNote;
+                if(pArgs.param) {
+                    if(pArgs.param._modalService) {
+                        pArgs.param._modalService = this;
+                    }
+                }
+            }
             if(pModalType === null)
-                this.vModalType = Modal.ModalType.OK;// default
+                this.vModalType = Modal.ModalType.INFO;// default
             else 
                 this.vModalType = pModalType;
-            if(pOKCallBack)this.vOKCallBack = pOKCallBack;
-            if(pCANCELCallBack)this.vCANCELCallBack = pCANCELCallBack;
-        }
-
-        toggleVerificationCodeModal() {
-            if (this.vMainModalState) {
-                this.refreshModal();
-            } else {
-                this.vModalState.verificationCode = !this.vModalState.verificationCode;
-            }
-            this.vMainModalState = !this.vMainModalState;
-        }
-
-        toggleResendMpinModal() {
-            if (this.vMainModalState) {
-                this.refreshModal();
+            if(pModalType === Modal.ModalType.INFO || pModalType === Modal.ModalType.ERROR){
+                this.vButtons.push({ id : 'ok-button', display: 'OK' , color_style : 'green' , callback : this.closeModal, param : this });
+            }else if(pModalType === Modal.ModalType.CONFIRMATION){
+                if(pArgs.ModalButton === Modal.ModalButton.OK_CANCEL){
+                    this.vButtons.push({ id : 'ok-button', display: 'OK' , color_style : 'green' , callback : pArgs.callback, param : pArgs.param });
+                    this.vButtons.push({ id : 'cancel-button', display: 'CANCEL' , color_style : 'red' , callback : this.closeModal });
+                }else if(pArgs.ModalButton === Modal.ModalButton.YES_NO){
+                    this.vButtons.push({ id : 'ok-button', display: 'YES' , color_style : 'green' , callback : pArgs.callback, param : pArgs.param });
+                    this.vButtons.push({ id : 'cancel-button', display: 'NO' , color_style : 'red' , callback : this.closeModal, param : this });
+                }
             }else {
-                this.vModalState.resendMpin = !this.vModalState.resendMpin;
+                for(var vButton in pArgs.Buttons){
+                    this.vButtons.push(pArgs.Buttons[vButton]);
+                }
             }
-            this.vMainModalState = !this.vMainModalState;
-        }
-
-        toggleSkipSalesOrderModal() {
-            if (this.vMainModalState) {
-                this.refreshModal();
-            }else {
-                this.vModalState.skipSalesOrder = !this.vModalState.skipSalesOrder;
-            }
-            this.vMainModalState = !this.vMainModalState;
-        }
-
-        toggleCollectionModal() {
-            if (this.vMainModalState) {
-                this.refreshModal();
-            } else {
-                this.vModalState.collection = !this.vModalState.collection;
-            }
-            this.vMainModalState = !this.vMainModalState;
-        }
-
-        toggleErrorModal() {
-            if (this.vMainModalState) {
-                this.refreshModal();
-            } else {
-                this.vModalState.error = !this.vModalState.error;
-            }
-            this.vMainModalState = !this.vMainModalState;
-        }
-
-        refreshModal() {
-            this.vModalState.info = false;
-            this.vModalState.collection = false;
-            this.vModalState.verificationCode = false;
-            this.vModalState.resendMpin = false;
-            this.vModalState.skipSalesOrder = false;
         }
     }
 

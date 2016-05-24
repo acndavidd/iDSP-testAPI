@@ -45,7 +45,7 @@ export class MpinComponent {
 
     ResendMpinModalComponent() {
         console.log('masuk com ts');
-        this._modalService.toggleResendMpinModal();
+        //this._modalService.toggleResendMpinModal();
     }
 
 }

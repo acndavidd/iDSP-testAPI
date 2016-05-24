@@ -51,16 +51,7 @@ export class LoginComponent {
             console.log(error);
         });
         */
-        this._modalService.toggleModal('<h1>anjay<h1>', Modal.ModalType.ERROR, this.ok, this.cancel);
-        // this._router.navigate(['Mpin']);
-    }
-
-    ok() {
-        console.log('testing pass ok callback');
-    }
-
-    cancel() {
-        console.log('cancel callback');
+        this._router.navigate(['Mpin']);
     }
 
     getLoadingState() {
@@ -75,7 +66,7 @@ export class LoginComponent {
         return this._authenticationService.getError();
     }
 
-    toggleVerificationCodeModal() {
-        this._modalService.toggleVerificationCodeModal();
+    toggleForgotPassword() {
+        this._modalService.toggleModal('Please Contact your Distributor<br/>Admin for Password Reset<br/>(+63-9228888899).', Modal.ModalType.INFO);
     }
 }

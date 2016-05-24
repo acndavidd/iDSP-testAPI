@@ -36,7 +36,6 @@ enableProdMode();
 bootstrap(IDSPComponent, [
     ROUTER_PROVIDERS,
     provide(LocationStrategy, { useClass: HashLocationStrategy }),
-    ROUTER_PROVIDERS,
     provide(APP_BASE_HREF, { useValue: getPath() }),
     HTTP_PROVIDERS,
     provide(Http, {

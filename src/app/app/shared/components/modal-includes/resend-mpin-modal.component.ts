@@ -9,6 +9,6 @@ export class ResendMpinModalComponent {
     constructor(private _modalService: Modal.ModalService) {
     }
     close() {
-        this._modalService.toggleResendMpinModal();
+        //this._modalService.toggleResendMpinModal();
     }
 }
