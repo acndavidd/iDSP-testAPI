@@ -10,13 +10,16 @@ import {AccController} from './controllers/accounts-receivables.controller';
 import {TokenService} from './services/token.service';
 import {ORMService} from './services/orm.service';
 
+var vPath = require("path");
+var vEnv = process.env.NODE_ENV || "development";
+var vConfig = require(vPath.join(__dirname, '.', 'config', 'config.json'))[vEnv];
 var vExpress = require('express');
 var vApp = vExpress();
 var vBodyParser = require('body-parser');
 var vCookieParser = require('cookie-parser');
 var vSOAP = require('soap');
 var vRouter = vExpress.Router();
-const PORT:number = process.env.PORT || 8080;
+const PORT: number = process.env.PORT || vConfig.port || 8080;
 
 var vRetailerCtrl:RetailerController = new RetailerController();
 var vLoginCtrl:LoginController = new LoginController();

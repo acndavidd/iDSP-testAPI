@@ -1,42 +1,63 @@
 <div class='accounts-receivables'>	
 	<div class='filter-container' *ngIf='getFilter().filterAccReceivables'>
-		<div class='filter-input input'>
-			<div class='icon' (click)="getAllReceivables(listFilter.value)"></div>
-			<input type='text' #listFilter (keyup)='onKey(listFilter.value)' id='RetailerSearchBox' placeholder='Input Retailer Name or MIN'/>		
+		<div class='filter-input input padding-right-5'>
+			<div class='icon' (click)='searchFilter(listFilter.value)'></div>
+			<input type='text' #listFilter (keyup)='onKey(listFilter.value)' id='RetailerSearchBox' class='align-center' placeholder='Input Retailer Name or MIN'/>
+		<div class='filter-label align-center width-30'>In Route</div>
+		<div class='filter-dropdown width-40 padding-right-5 align-center'>
+			<select id='inRouteAcc' name='route' [(ngModel)]='vSelectedRoute' (ngModelChange)='getRoute($event)'>
+				<option value='allRoute'>All</option>
+				<option value='inRoute'>Yes</option>
+			</select>
+		</div>		
 		</div>	
 	</div>
 
     <div class="item-container">
         <div class='container'>
             <div class='cell'>
-            	<div class='container'><div class='cell bold left title'>Total Receivables :</div></div>
+            	<div class='container'><div class='cell bold align-center title padding-top-3'>Total Receivables (In Route):</div></div>
             </div>
-            <div class='cell'>
-            	<div class='container'><div class='cell bold right title'>{{getTotalReceivable()}}</div></div>
+        </div>
+        <div class='container'>
+	        <div class='cell'>
+            	<div class='container'><div class='cell bold align-center title padding-bottom-3'>{{vTotalReceivablesInRoute}}</div></div>
             </div>
-            <div class='cell ws'></div>
         </div>
     </div>
+
+        <div class="item-container">
+        <div class='container'>
+            <div class='cell'>
+            	<div class='container'><div class='cell bold align-center title padding-top-3'>Total Receivables (All):</div></div>
+            </div>
+        </div>
+        <div class='container'>
+	        <div class='cell'>
+            	<div class='container'><div class='cell bold align-center title padding-bottom-3'>{{vTotalReceivablesAll}}</div></div>
+            </div>
+        </div>
+    </div>
+
 
 	 <div *ngFor='#FilteredSearch of vSearchedReceivablesRouteList'>
 		<div class='item-container'>
 		    <div class='container'>
-		    	<div class='cell icon' [ngClass]="{'sulu': (FilteredSearch.source === 'BCP') , 'serenade': (FilteredSearch.source === 'SELF')}">
+		    	<div class='cell icon green' [ngClass]="{'sulu': (FilteredSearch.source === 'BCP') , 'serenade': (FilteredSearch.source === 'SELF')}">
 	            	<div class='src'>
 	            		{{FilteredSearch.source}}
 	            	</div>
 	            </div>
 		        <div class='cell'>
-	                <div class='container' id ='accSeq' *ngIf='FilteredSearch.sequence'><div class='cell left grey'># Route {{FilteredSearch.sequence}}</div></div>
-	                <div class='container' id ='accRetName'><div class='cell left'>{{FilteredSearch.retailer_name}}</div></div>
-	                <div class='container' id ='accRetMin'><div class='cell left italic'>{{FilteredSearch.retailer_min}}</div></div>
+	                <div class='container' id ='accSeq' *ngIf='FilteredSearch.sequence'><div class='cell left padding-top-1 padding-left-5 green'># Route {{FilteredSearch.sequence}}</div></div>
+	                <div class='container' id ='accRetName'><div class='cell width-85 padding-top-3 padding-left-5'>{{FilteredSearch.retailer_name}}</div></div>
+	                <div class='container' id ='accRetMin'><div class='cell width-85 italic padding-top-1 padding-bottom-2  padding-left-5'>{{FilteredSearch.retailer_min}}</div></div>
 		        </div>
 		        <div class='cell'>
 	                <div class='container'><div class='cell right'></div></div>
-	                <div class='container' id ='accAmount'><div class='cell right'>{{FilteredSearch.amount}}</div></div>
+	                <div class='container' id ='accAmount'><div class='cell align-right width-40 padding-right-5'>{{FilteredSearch.amount}}</div></div>
 	                <div class='container'><div class='cell right'></div></div> 
 		        </div>
-		            <div class='cell ws'></div> 
 		    </div>
 		</div>
 	</div>
