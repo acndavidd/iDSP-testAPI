@@ -5,7 +5,7 @@
             width: 100%;
             display: block;
             clear: left;
-            height: 50px;
+            height: 100px;
             position: center center;
         .filter-label {
             font-size: $filter-label;
@@ -25,12 +25,13 @@
                 border: 1px solid $dark-grey;
                 width: 90%;
                 -webkit-appearance: none;
-                border-radius: 7px;
+                border-radius: 2px;
                 padding-left: 15px;
                 font-size: $filter-select;
                 font-weight:lighter;
                 appearance: none;
                 cursor: pointer;
+                text-align: center;
             }
             .icon{
                 width:80px;
@@ -41,9 +42,42 @@
                 background: url("../img/icon-idsp/search-black.png") no-repeat;
                 background-size: 25px;
                 background-position: center center;
-
             }
         }
+        .filter-label {
+            font-size: $filter-label;
+            color: #000;
+            padding-top: 20px;
+            padding-left: 10px;
+            float: left;
+            text-align: center;
+        }
+        .filter-dropdown {
+            padding-top: 15px;
+            padding-left: 150px;
+            select {
+                background: $white;
+                height: 31px;
+                border: 1px solid $dark-grey;
+                width: 90%;
+                -webkit-appearance: none;
+                text-align: center;
+                border-radius: 2px;
+                padding-left: 15px;
+                font-size: $filter-select;
+                appearance: none;
+                @media screen and (-webkit-min-device-pixel-ratio: 0) {
+                    background-image: url(#{$select-arrow});
+                    background-position: right 0 top 50%;
+                    background-repeat: no-repeat;
+                }
+            }
+        }
+
+        &.width-30 { width: 30%; }
+        &.width-40 { width: 40%; }
+        &.align-right { text-align: right; }
+        &.padding-right-5 { padding-right: 5vw; }
     }
     .item-container {
     width: 100%;
@@ -72,7 +106,7 @@
                 height: 15px;
                 position: center;
                 text-align: center;
-                color: #006600;
+                font-size: 9px;
                 
                 .src{
                     width: 15px;
@@ -112,7 +146,7 @@
             }
 
             &.padding-top-1 { padding-top: 1vw; }
-            &.padding-top-2 { padding-top: 2vw; }
+            &.padding-top-3 { padding-top: 3vw; }
             &.padding-left-5 { padding-left: 5vw; }
             &.padding-right-5 { padding-right: 5vw; }
             &.padding-bottom-1 { padding-bottom: 1vw; }
@@ -126,8 +160,10 @@
             &.width-85 { width: 85%; }
             &.width-100 { width: 100%; }
 
-            &.align-right { text-align: right };
+            &.align-right { text-align: right; }
             &.align-center { text-align: center; }
+
+            &.green { color: $apple; }
         }
     }
     
