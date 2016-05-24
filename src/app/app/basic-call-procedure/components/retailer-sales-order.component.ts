@@ -4,9 +4,9 @@ import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
-import {ModalService} from '../../shared/services/modal.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {RetailerSalesOrderService} from '../services/retailer-sales-order-service';
+import {Modal} from '../../shared/services/modal.service';
 
 @Component({
     selector: 'retailer-sales-order',
@@ -37,7 +37,7 @@ export class RetailerSalesOrderComponent {
         private _layoutService: LayoutService,
         private _matchMediaService: MatchMediaService,
         private _headerService: HeaderService,
-        private _modalService: ModalService,
+        private _modalService: Modal.ModalService,
         private _router: Router,
         private _pageNavigationService: PageNavigationService,
         private _retailerSalesOrderService: RetailerSalesOrderService

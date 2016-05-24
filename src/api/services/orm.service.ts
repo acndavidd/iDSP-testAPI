@@ -48,12 +48,18 @@ export class ORMService{
 		return new Promise<string>(
 			function (pResolve,pReject){
 				try{
+					let vParams;
 					//build params
-					let vParams = '(';
-					for(let vParam in pParams){
-						vParams += "'" + pParams[vParam] + "',";
+					if (pParams.length > 0) {
+						vParams = '(';
+						for(let vParam in pParams){
+							vParams += "'" + pParams[vParam] + "',";
+						}
+						vParams = vParams.substring(0,vParams.lastIndexOf(',')) + ');';
 					}
-					vParams = vParams.substring(0,vParams.lastIndexOf(',')) + ');';
+					else{
+						vParams = '()';
+					}
 					let vQuery = 'SELECT ' + pSPName + vParams;
 					vSequelize.query( vQuery, { type: vSequelize.QueryTypes.SELECT }).then(function(pResults){
 						pResolve(pResults[0][pSPName]);
