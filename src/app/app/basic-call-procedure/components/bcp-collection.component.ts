@@ -8,7 +8,8 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {NgModel} from 'angular2/common';
 
 @Component({
-    templateUrl: './app/basic-call-procedure/components/bcp-collection.component.html',
+    // templateUrl: './app/basic-call-procedure/components/bcp-collection.component.html',
+    templateUrl: './app/basic-call-procedure/components/hc-bcp-collection.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
@@ -19,6 +20,11 @@ export class BCPCollectionComponent {
     vOutstandingShow = false;
     vArrowMap        = false;
     vPaymentShow     = false;
+    vSelectedRetailId;
+    vSelectedRetailCallId;
+    vSelectedRetail;
+    vPaymentHistory;
+    vSelectedRetailSeq;
 
     constructor (
         private _layoutService: LayoutService,
@@ -28,6 +34,52 @@ export class BCPCollectionComponent {
         private _pageNavigationService: PageNavigationService,
         private _router: Router
         ) {
+
+
+        // console.log(this._pageNavigationService.getCurrentParams());
+
+        // if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
+        //     this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
+        //     this.vSelectedRetailCallId = this._pageNavigationService.getCurrentParams().call_id;
+        //     this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
+        // } else {
+        //     console.log('Retailer ID not found');
+        // }
+        // console.log('in BCP collection for retailer id ' +  this.vSelectedRetailId +' Call_ID : '+ this.vSelectedRetailCallId);
+
+
+        // this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
+        // response => {
+        //     if (response.json().status === 'Success') {
+        //         console.log('Query Success' + JSON.stringify(response.json().result));
+        //         this.vSelectedRetail = response.json().result;
+        //         console.log( 'result : ' + this.vSelectedRetail );
+
+        //     } else {
+        //         console.log( 'Query Failed' );
+        //         this.vSelectedRetail = null;
+        //     }
+        // },
+        // error => {
+        //     console.log(error);
+        // });
+
+        // this._retailerService.getPaymentHistory(this.vSelectedRetailId).subscribe(
+        // response => {
+        //     if (response.json().status === 'Success') {
+        //         console.log('Query Success' + JSON.stringify(response.json().result));
+        //         this.vPaymentHistory = response.json().result;
+        //         console.log( 'result : ' + this.vPaymentHistory );
+
+        //     } else {
+        //         console.log( 'Query Failed' );
+        //         this.vPaymentHistory = null;
+        //     }
+        // },
+        // error => {
+        //     console.log(error);
+        // });
+
         this._retailerService.getRetailer(100);
         this._layoutService.setCurrentPage('BCPCollection');
         this._headerService.setTitle('Collection');
@@ -47,7 +99,39 @@ export class BCPCollectionComponent {
         this.vArrowMap = !this.vArrowMap;
     }
 
-    gotoBCPActivityStep() {
+    gotoBCPActivityStep(pSelectedRetailer) {
+
+        // console.log('all parameters' + pSelectedRetailer);
+
+        // let vParamsOld = {
+        //      retailer_id: this.vSelectedRetailId,
+        //      route_sequence: this.vSelectedRetailSeq,
+        //      call_id: this.vSelectedRetailCallId
+        // };
+
+        // let vParams = {
+        //     retailer_id: pSelectedRetailer.retailer_id,
+        //     route_sequence: this.vSelectedRetailSeq,
+        //     call_id: this.vSelectedRetailCallId
+        // };
+
+        // this._pageNavigationService.navigate('BCPActivityStep', vParams, vParamsOld);
         this._pageNavigationService.navigate('BCPActivityStep', null, null);
     }
+
+    getRetailerDetails() {
+        return this.vSelectedRetail;
+    }
+
+    getAmountReceivables() {
+        
+    }
+
+    getPaymentHistory() {
+
+        console.log('masuk get payment history');
+        return this.vPaymentHistory;
+    }
+
+  
 }

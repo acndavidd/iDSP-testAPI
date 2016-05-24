@@ -11,7 +11,7 @@ import {NgModel, NgClass} from 'angular2/common';
     // FOR HIT API
     // templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
     // FOR HARDCODE UI
-    templateUrl: './app/basic-call-procedure/components/hc-basic-call-procedure.component.html',
+     templateUrl: './app/basic-call-procedure/components/hc-basic-call-procedure.component.html',
     directives: [
         ROUTER_DIRECTIVES,
         NgClass
@@ -48,21 +48,16 @@ export class BasicCallProcedureComponent {
         this._pageNavigationService.navigate('BCPActivityStep', null, null);
     }
 
-    // gotoCallPreparationHC(pStatus) {
-    //     this._pageNavigationService.navigate('CallPreparation', pStatus, null);
-    // }
-
-    // gotoCallPreparation(pSelectedRetailer) {
-    //     console.log( pSelectedRetailer );
-
+    // gotoAnotherPage(pSelectedRetailer) {
+    //     console.log('Go to Call Preparation' + pSelectedRetailer );
     //     let vParamsOld = {};
     //     let vParams = {
     //         retailer_id: pSelectedRetailer.retailer_id,
     //         route_sequence: pSelectedRetailer.seq,
+    //         call_id: pSelectedRetailer.call_id,
     //         status: pSelectedRetailer.call_status
     //     };
-
-    //     this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);
+    //      this._pageNavigationService.navigate('BCPActivityStep', vParams, vParamsOld);
     // }
 
     getFilter() {

@@ -9,7 +9,8 @@ import {NgModel} from 'angular2/common';
 
 @Component({
     selector: 'bcp-activity-step',
-    templateUrl: './app/basic-call-procedure/components/hc-bcp-activity-step.component.html',
+     templateUrl: './app/basic-call-procedure/components/hc-bcp-activity-step.component.html',
+    // templateUrl: './app/basic-call-procedure/components/bcp-activity-step.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
@@ -26,6 +27,8 @@ export class BCPActivityStepComponent {
     vSelectedRetailId;
     vSelectedRetailSeq;
     vSelectedRetail;
+    vSelectedRetailCallId;
+    vSelectedStatus;
 
     constructor (
         private _layoutService: LayoutService,
@@ -36,11 +39,13 @@ export class BCPActivityStepComponent {
         private _router: Router
         ) {
 
-        console.log(this._pageNavigationService.getCurrentParams());
+        // console.log(this._pageNavigationService.getCurrentParams());
 
         // if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
         //     this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
         //     this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
+        //     this.vSelectedRetailCallId = this._pageNavigationService.getCurrentParams().call_id;
+        //     this.vSelectedStatus = this._pageNavigationService.getCurrentParams().status;
         // } else {
         //     console.log('Retailer ID not found');
         // }
@@ -68,25 +73,49 @@ export class BCPActivityStepComponent {
         this.changeColor();
     }
 
-    gotoAnotherPage() {
-        console.log('current pointer : ' + this.vCurrentPointer);
+   //  gotoAnotherPage(pSelectedRetailer) {
+        // console.log('current pointer : ' + this.vCurrentPointer);
+        // console.log('bcp activity step Go to Call Preparation' + pSelectedRetailer );
+
+        // let vParamsOld = {
+        //     retailer_id: this.vSelectedRetailId,
+        //     route_sequence: this.vSelectedRetailSeq,
+        //     call_id: this.vSelectedRetailCallId,
+        //     status: this.vSelectedStatus
+        // };
+        // let vParams = {
+        //     retailer_id: pSelectedRetailer.retailer_id,
+        //     route_sequence: pSelectedRetailer.seq,
+        //     call_id: pSelectedRetailer.call_id,
+        //     status: pSelectedRetailer.call_status
+        // };
+        gotoAnotherPage() {
+        if (this.vCurrentPointer === '1') {
+             this._pageNavigationService.navigate('BCPCollection', null, null);
+            // this._pageNavigationService.navigate('BCPCollection', vParams, vParamsOld);
+        }
         if (this.vCurrentPointer === '0') {
-          this._pageNavigationService.navigate('CallPreparation', null, null);
+           this._pageNavigationService.navigate('CallPreparation', null, null);
+          // this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);
         }
         else if (this.vCurrentPointer === '1') {
-          this._pageNavigationService.navigate('BCPCollection', null, null);
+           this._pageNavigationService.navigate('BCPCollection', null, null);
+           // this._pageNavigationService.navigate('BCPCollection', vParams, vParamsOld);
         }
         else if (this.vCurrentPointer === '2') {
             this._pageNavigationService.navigate('Offer', null, null);
+           // this._pageNavigationService.navigate('Offer', vParams, vParamsOld);
         }
         else if (this.vCurrentPointer === '3') {
             this._pageNavigationService.navigate('RetailerSalesOrder', null, null);
+           // this._pageNavigationService.navigate('RetailerSalesOrder', vParams, vParamsOld);
         }
         else if (this.vCurrentPointer === '5') {
             this._pageNavigationService.navigate('UnservedOrder', null, null);
         }
         else if (this.vCurrentPointer === '6') {
             this._pageNavigationService.navigate('BasicCallProcedure', null, null);
+           // this._pageNavigationService.navigate('BasicCallProcedure', vParams, vParamsOld);
         }
     }
 
@@ -160,5 +189,6 @@ export class BCPActivityStepComponent {
     getRetailerDetails() {
         return this.vSelectedRetail;
     }
+
 
 }
