@@ -143,4 +143,5 @@ export class AccountsReceivablesComponent {
         } else {
             this.vFlag = 0;
         }
+    }
 }
