@@ -24,3 +24,4 @@ Purpose : As simulator to simulate response from SMART or External System web se
 
 ##Source Code :
 http://wiremock.org/running-standalone.html
+https://smarttechie.org/2016/02/28/wiremock-mock-your-rest-apis/
