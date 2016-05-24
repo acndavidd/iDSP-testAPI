@@ -25,7 +25,6 @@ export class CallPreparationComponent {
     vSelectedRetailSeq;
     vSelectedRetail;
     vSelectedRetailFirstChar;
-    vStartEnabled = false;
 
     constructor (
         private _layoutService: LayoutService,
@@ -38,31 +37,31 @@ export class CallPreparationComponent {
 
         console.log(this._pageNavigationService.getCurrentParams());
 
-        if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
-            this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
-            this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
-        } else {
-            console.log('Retailer ID not found');
-        }
-        console.log('in detail retailer for retailer id ' +  this.vSelectedRetailId);
+        // if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
+        //     this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
+        //     this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
+        // } else {
+        //     console.log('Retailer ID not found');
+        // }
+        // console.log('in detail retailer for retailer id ' +  this.vSelectedRetailId);
 
-        this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
-        response => {
-            if (response.json().status === 'Success') {
-                console.log('Query Success' + JSON.stringify(response.json().result));
-                this.vSelectedRetail = response.json().result;
-                console.log( 'result : ' + this.vSelectedRetail );
+        // this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
+        // response => {
+        //     if (response.json().status === 'Success') {
+        //         console.log('Query Success' + JSON.stringify(response.json().result));
+        //         this.vSelectedRetail = response.json().result;
+        //         console.log( 'result : ' + this.vSelectedRetail );
 
-            } else {
-                console.log( 'Query Failed' );
-                this.vSelectedRetail = null;
-            }
-        },
-        error => {
-            console.log(error);
-        });
+        //     } else {
+        //         console.log( 'Query Failed' );
+        //         this.vSelectedRetail = null;
+        //     }
+        // },
+        // error => {
+        //     console.log(error);
+        // });
 
-        this.getStartStatus();
+        // this.getStartStatus();
         this._layoutService.setCurrentPage('CallPreparation');
         this._headerService.setTitle('Call Preparation');
     }
@@ -110,15 +109,15 @@ export class CallPreparationComponent {
     subPhysicalMenuShow() {
         this.vPhysicalMenuShow = !this.vPhysicalMenuShow;
     }
-
-    getStartStatus() {
-        switch (this._pageNavigationService.getCurrentParams().status) {
-            case 'Visited':
-                this.vStartEnabled = false;
-                break;
-            default:
-                this.vStartEnabled = true;
-                break;
-        }
-    }
+    
+    // getStartStatus() {
+    //     switch (this._pageNavigationService.getCurrentParams().status) {
+    //         case 'Visited':
+    //             this.vStartEnabled = false;
+    //             break;
+    //         default:
+    //             this.vStartEnabled = true;
+    //             break;
+    //     }
+    // }
 }
