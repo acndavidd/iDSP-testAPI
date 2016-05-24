@@ -1,0 +1,39 @@
+{
+	"Status" : 200,
+	"StatusMessage" : "OK",
+	"RecordCount" : 4,
+	"RetailerList": [
+		{
+			"DistributorID" : "DST00001",
+			"DistributorFirstName" : "Distributor 1",
+			"DistributorLastName" : "Ciao",
+			"MIN" : "243234123",
+			"Dealer_MIN_Smart" : "111111111",
+			"Dealer_MIN_Sun" : "2222222222"
+		},
+		{
+			"DistributorID" : "DST00001",
+			"DistributorFirstName" : "Distributor 2",
+			"DistributorLastName" : "Ciao",
+			"MIN" : "243234123",
+			"Dealer_MIN_Smart" : "55555555",
+			"Dealer_MIN_Sun" : "1111111"
+		},
+		{
+			"DistributorID" : "DST00003",
+			"DistributorFirstName" : "Distributor 3",
+			"DistributorLastName" : "Ciao",
+			"MIN" : "243234123",
+			"Dealer_MIN_Smart" : "77777777",
+			"Dealer_MIN_Sun" : "88888888"
+		},
+		{
+			"DistributorID" : "DST00004",
+			"DistributorFirstName" : "Distributor 4",
+			"DistributorLastName" : "Ciao",
+			"MIN" : "243234123",
+			"Dealer_MIN_Smart" : "9999999",
+			"Dealer_MIN_Sun" : "00000000"
+		}
+	]
+}
