@@ -160,6 +160,7 @@ vRouter.post('/getPaymentHistory',vRetailerCtrl.getPaymentHistory);
 
 
 vRouter.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
+vRouter.get('/testSync',vSchedCtrl.syncTableMaster);
 
 vApp.use('/service',vRouter);
 vApp.listen(PORT);
