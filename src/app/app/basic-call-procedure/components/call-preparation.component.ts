@@ -38,65 +38,65 @@ export class CallPreparationComponent {
         private _router: Router
         ) {
 
-        console.log(this._pageNavigationService.getCurrentParams());
+        // console.log(this._pageNavigationService.getCurrentParams());
+        // if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
+        //     this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
+        //     this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
+        // } else {
+        //     console.log('Retailer ID not found');
+        // }
+        // console.log('in detail retailer for retailer id ' +  this.vSelectedRetailId);
 
-        if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
-            this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
-            this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
-        } else {
-            console.log('Retailer ID not found');
-        }
-        console.log('in detail retailer for retailer id ' +  this.vSelectedRetailId);
+        // this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
+        // response => {
+        //     if (response.json().status === 'Success') {
+        //         console.log('Query Success' + JSON.stringify(response.json().result));
+        //         this.vSelectedRetail = response.json().result;
+        //         console.log( 'result : ' + this.vSelectedRetail );
 
-        this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
-        response => {
-            if (response.json().status === 'Success') {
-                console.log('Query Success' + JSON.stringify(response.json().result));
-                this.vSelectedRetail = response.json().result;
-                console.log( 'result : ' + this.vSelectedRetail );
+        //     } else {
+        //         console.log( 'Query Failed' );
+        //         this.vSelectedRetail = null;
+        //     }
+        // },
+        // error => {
+        //     console.log(error);
+        // });
 
-            } else {
-                console.log( 'Query Failed' );
-                this.vSelectedRetail = null;
-            }
-        },
-        error => {
-            console.log(error);
-        });
+        // this._retailerService.getLoadWallet(this.vSelectedRetailId).subscribe(
+        // response => {
+        //     if (response.json().status === 'Success') {
+        //         console.log('Query Success to Load Wallet' + JSON.stringify(response.json().result));
+        //         this.vLoadWallet = response.json().result;
+        //         console.log( 'result : ' + this.vLoadWallet );
 
-        this._retailerService.getLoadWallet(this.vSelectedRetailId).subscribe(
-        response => {
-            if (response.json().status === 'Success') {
-                console.log('Query Success to Load Wallet' + JSON.stringify(response.json().result));
-                this.vLoadWallet = response.json().result;
-                console.log( 'result : ' + this.vLoadWallet );
+        //     } else {
+        //         console.log( 'Query Failed' );
+        //         this.vLoadWallet = null;
+        //     }
+        // },
+        // error => {
+        //     console.log(error);
+        // });
 
-            } else {
-                console.log( 'Query Failed' );
-                this.vLoadWallet = null;
-            }
-        },
-        error => {
-            console.log(error);
-        });
+        // this._retailerService.getPhysicalInventory(this.vSelectedRetailId).subscribe(
+        // response => {
+        //     if (response.json().status === 'Success') {
+        //         console.log('Query Success to Get Physical Inventory' + JSON.stringify(response.json().result));
+        //         this.vPhysicalInventory = response.json().result;
+        //         console.log( 'result : ' + this.vPhysicalInventory );
 
-        this._retailerService.getPhysicalInventory(this.vSelectedRetailId).subscribe(
-        response => {
-            if (response.json().status === 'Success') {
-                console.log('Query Success to Get Physical Inventory' + JSON.stringify(response.json().result));
-                this.vPhysicalInventory = response.json().result;
-                console.log( 'result : ' + this.vPhysicalInventory );
+        //     } else {
+        //         console.log( 'Query Failed to Get Physical Inventory' );
+        //         this.vPhysicalInventory = null;
+        //     }
+        // },
+        // error => {
+        //     console.log(error);
+        // });
 
-            } else {
-                console.log( 'Query Failed to Get Physical Inventory' );
-                this.vPhysicalInventory = null;
-            }
-        },
-        error => {
-            console.log(error);
-        });
+        // this.getStartStatus();
 
-        this.getStartStatus();
         this._layoutService.setCurrentPage('CallPreparation');
         this._headerService.setTitle('Call Preparation');
     }
@@ -143,17 +143,6 @@ export class CallPreparationComponent {
 
     subPhysicalMenuShow() {
         this.vPhysicalMenuShow = !this.vPhysicalMenuShow;
-    }
-
-    getStartStatus() {
-        switch (this._pageNavigationService.getCurrentParams().status) {
-            case 'Visited':
-                this.vStartEnabled = false;
-                break;
-            default:
-                this.vStartEnabled = true;
-                break;
-        }
     }
 
     getLoadWallet() {

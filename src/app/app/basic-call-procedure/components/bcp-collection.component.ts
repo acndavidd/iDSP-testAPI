@@ -8,7 +8,8 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {NgModel} from 'angular2/common';
 
 @Component({
-    templateUrl: './app/basic-call-procedure/components/bcp-collection.component.html',
+    // templateUrl: './app/basic-call-procedure/components/bcp-collection.component.html',
+    templateUrl: './app/basic-call-procedure/components/hc-bcp-collection.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
@@ -100,22 +101,22 @@ export class BCPCollectionComponent {
 
     gotoBCPActivityStep(pSelectedRetailer) {
 
-        console.log('all parameters' + pSelectedRetailer);
+        // console.log('all parameters' + pSelectedRetailer);
 
-        let vParamsOld = {
-             retailer_id: this.vSelectedRetailId,
-             route_sequence: this.vSelectedRetailSeq,
-             call_id: this.vSelectedRetailCallId
-        };
+        // let vParamsOld = {
+        //      retailer_id: this.vSelectedRetailId,
+        //      route_sequence: this.vSelectedRetailSeq,
+        //      call_id: this.vSelectedRetailCallId
+        // };
 
-        let vParams = {
-            retailer_id: pSelectedRetailer.retailer_id,
-            route_sequence: this.vSelectedRetailSeq,
-            call_id: this.vSelectedRetailCallId
-        };
+        // let vParams = {
+        //     retailer_id: pSelectedRetailer.retailer_id,
+        //     route_sequence: this.vSelectedRetailSeq,
+        //     call_id: this.vSelectedRetailCallId
+        // };
 
-        this._pageNavigationService.navigate('BCPActivityStep', vParams, vParamsOld);
-        // this._pageNavigationService.navigate('BCPActivityStep', null, null);
+        // this._pageNavigationService.navigate('BCPActivityStep', vParams, vParamsOld);
+        this._pageNavigationService.navigate('BCPActivityStep', null, null);
     }
 
     getRetailerDetails() {

@@ -7,7 +7,7 @@ import {AuthenticationService} from '../../shared/services/authentication.servic
 import {Layout} from '../../../models/layout';
 import {LayoutService} from '../../shared/services/layout.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
-import {ModalService} from '../../shared/services/modal.service';
+import {Modal} from '../../shared/services/modal.service';
 
 @Component({
     selector: 'mpin',
@@ -22,7 +22,7 @@ export class MpinComponent {
         private _router: Router,
         private _layoutService: LayoutService,
         private _authenticationService: AuthenticationService,
-        private _modalService: ModalService,
+        private _modalService: Modal.ModalService,
         private _pageNavigationService: PageNavigationService
         ) {
 
@@ -45,7 +45,7 @@ export class MpinComponent {
 
     ResendMpinModalComponent() {
         console.log('masuk com ts');
-        this._modalService.toggleResendMpinModal();
+        // this._modalService.toggleResendMpinModal();
     }
 
 }

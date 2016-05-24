@@ -44,8 +44,8 @@ export class BasicCallProcedureComponent {
         return this._matchMediaService.getMm();
     }
 
-    gotoCallPreparationHC(pStatus) {
-        this._pageNavigationService.navigate('CallPreparation', pStatus, null);
+    gotoAnotherPage() {
+        this._pageNavigationService.navigate('BCPActivityStep', null, null);
     }
 
     gotoCallPreparation(pSelectedRetailer,pCallId) {
@@ -58,8 +58,6 @@ export class BasicCallProcedureComponent {
             call_id: pSelectedRetailer.call_id,
             status: pSelectedRetailer.call_status
         };
-
-        this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);
     }
 
     getFilter() {
