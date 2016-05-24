@@ -10,7 +10,8 @@ import {RetailerSalesOrderService} from '../services/retailer-sales-order-servic
 
 @Component({
     selector: 'retailer-sales-order',
-    templateUrl: './app/basic-call-procedure/components/retailer-sales-order.component.html',
+    // templateUrl: './app/basic-call-procedure/components/retailer-sales-order.component.html',
+    templateUrl: './app/basic-call-procedure/components/cd-retailer-sales-order.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
@@ -21,15 +22,16 @@ import {RetailerSalesOrderService} from '../services/retailer-sales-order-servic
 })
 
 export class RetailerSalesOrderComponent {
-    vTotalAmount;
-    vPromoAmount;
-    vSubTotal;
-    vTransferLoad;
-    vPhysicalOrder;
+    vTotalAmount: number = 0;
+    vPromoAmount: number = 0;
+    vSubTotal: number = 0;
+    vTransferLoad: number = 0;
+    vPhysicalOrder: number = 0;
     vSelectedRetailId: any;
     vSelectedRetailName: any;
     vSelectedRetailMIN: any;
     vAllDataList: any = [];
+    vTransferLoadList: any = [];
 
     constructor (
         private _layoutService: LayoutService,
@@ -56,8 +58,6 @@ export class RetailerSalesOrderComponent {
 
         this._layoutService.setCurrentPage('RetailerSalesOrder');
         this._headerService.setTitle('Retailer Sales Order');
-        this.vTransferLoad = 2000;
-        this.vPhysicalOrder = 3000;
         this.vSubTotal = (this.vTransferLoad + this.vPhysicalOrder);
     }
 
@@ -80,10 +80,14 @@ export class RetailerSalesOrderComponent {
         if (!this.vPromoAmount) {
             this.vTotalAmount = this.vSubTotal;
         } else {
-            this.vTotalAmount = (parseInt(this.vSubTotal) - parseInt(this.vPromoAmount));
+            this.vTotalAmount = (this.vSubTotal - this.vPromoAmount);
         }
         var q = this.vTotalAmount;
         return q.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+    }
+
+    goToTransferLoadPage() {
+        
     }
 
 }

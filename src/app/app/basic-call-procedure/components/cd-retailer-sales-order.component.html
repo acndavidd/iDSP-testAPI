@@ -2,10 +2,10 @@
     <div class='item-container'>
         <div class='container'>
             <div class='cell'>
-                <div class='container'><div class='cell single1 title'>{{vSelectedRetailName}}</div></div>
+                <div class='container'><div class='cell width-100 large padding-left-5'>{{vSelectedRetailName}}</div></div>
             </div>
             <div class='cell'>
-                <div class='container'><div class='cell left3 italic'>({{vSelectedRetailMIN}})</div></div>
+                <div class='container'><div class='cell width-40 italic'>({{vSelectedRetailMIN}})</div></div>
             </div>
         </div>
     </div>
@@ -13,102 +13,97 @@
         <div class='container'>
             <div class='cell'>
                 <div class='container'><div class='cell center title bold'>Price After Promo:</div></div>
-                <div class='container'><div class='cell center title green' [ngClass]="{'red': (vTotalAmount < 0)}">{{getTotalAmount()}} ₱</div></div>
+                <div class='container'>
+                    <div class='cell center title green' [ngClass]="{'red': (vTotalAmount < 0)}">{{getTotalAmount()}} ₱</div>
+                </div>
             </div>
         </div>
     </div>
     <div class='item-container'>
         <div class='container'>
             <div class='cell'>
-                <div class='container'><div class='cell left'>Price Before Promo</div></div>
+                <div class='container'><div class='cell width-100 align-center'>Price Before Promo</div></div>
+                <div class='container'>
+                    <div class='cell width-100 align-center'>{{vSubTotal | number}}.00 ₱</div>
+                </div>
             </div>
-            <div class='cell'>
-                <div class='container'><div class='cell right'>{{vSubTotal}} ₱</div></div>
-            </div>
-            <div class='cell icon'></div>
         </div>
     </div>
     <div class='item-container'>
         <div class='container'>
             <div class='cell'>
-                <!-- <div class='container'>
-                    <div class='cell'>
-                        <div class="container">
-                            <div class='cell'>
-                                <div class='container'><div class='cell header padding-left'>Promo Code</div></div>
-                            </div>
-                            <div class='cell'>
-                                <div class='container'><div class='cell left icon sales-view'></div></div>
-                            </div>
-                        </div>    
+                <div class='container'>
+                    <div class='cell width-40 padding-left-5'>Promo Amount</div>
+                </div>
+            </div>
+            <div class='cell'>
+                <div class='container'>
+                    <div class='cell width-100'><input class='width-30 margin-right-7 align-right' type='number' [(ngModel)]='vPromoAmount' placeholder='₱'/>
                     </div>
-                </div> -->
-                <div class='container'><div class='cell left'>Promo Amount</div></div>
+                </div> 
             </div>
-            <div class='cell'>
-               <!--  <div class='filter-content'>
-                    <div class="filter-dropdown">
-                        <select class='green'>
-                            <option value="aa">MC00087PD</option>
-                            <option value="bb">MC00097PD</option>
-                            <option value="cc">XL1234567</option>
-                            <option value="dd">XL7654321</option>
-                        </select>
-                    </div>
-                </div>-->
-                <div class='container'><div class='filter-input input'><input type='text' [(ngModel)]='vPromoAmount'></div></div> 
-            </div>
-            <div class='cell icon'></div>
         </div>
     </div>
     <div class='item-container'>
         <div class='container'>
-            <div class='cell'>
-                <div class='container'><div class='cell left'>Transfer Load</div></div>
+            <div class='cell width-30'>
+                <div class='container'><div class='cell width-100 padding-left-5'>Transfer Load</div></div>
             </div>
             <div class='cell'>
-                <div class='container'><div class='cell right'>{{vTransferLoad}} ₱</div></div>
+                <div class='container'>
+                    <div class='cell width-100 align-right'>{{vTransferLoad | number}}.00</div>
+                    <div class='cell grey padding-left-2'>₱</div>
+                </div>
             </div>
-            <div class='cell icon edit-gray'></div>
+            <div class='cell width-10 edit-gray' (click)='goToTransferLoadPage()'></div>
         </div>
     </div>
-    <div *ngIf='vAllDataList'>
+    <div *ngIf='vTransferLoadList'>
         <div class='item-container'>
             <div class='container'>
                 <div class='cell'>
-                    <div class='container'><div class='cell left'>DSP Sun Wallet Balance</div></div>
-                    <div class='container'><div class='cell left grey'>Transfer Amount</div></div>
+                    <div class='container'><div class='cell width-40 padding-left-5'>DSP Sun Wallet Balance</div></div>
+                    <div class='container'><div class='cell width-40 padding-left-5'>Transfer Amount</div></div>
                 </div>
-                <div class='cell'>
-                    <div class='container'><div class='cell right'></div></div>
-                    <div class='container'><div class='cell right'>2,000.00 ₱</div></div>
+                <div class='cell width-30'>
+                    <div class='container'><div class='cell width-50 align-right'></div></div>
+                    <div class='container'>
+                        <div class='cell width-100 align-right'>2,000.00</div>
+                        <div class='cell grey padding-left-2'>₱</div>
+                    </div>
                 </div>
-                <div class='cell icon'></div>
+                <div class='cell width-10'></div>
             </div>
         </div>
         <div class='item-container'>
             <div class='container'>
                 <div class='cell'>
-                    <div class='container'><div class='cell left'>DSP SMART Wallet Balance</div></div>
-                    <div class='container'><div class='cell left grey'>Transfer Amount</div></div>
+                    <div class='container'><div class='cell width-40 padding-left-5'>DSP SMART Wallet Balance</div></div>
+                    <div class='container'><div class='cell width-40 padding-left-5'>Transfer Amount</div></div>
                 </div>
-                <div class='cell'>
-                    <div class='container'><div class='cell right'></div></div>
-                    <div class='container'><div class='cell right'>2,000.00 ₱</div></div>
+                <div class='cell width-30'>
+                    <div class='container'><div class='cell width-50 align-right'></div></div>
+                    <div class='container'>
+                        <div class='cell width-100 align-right'>2,000.00</div>
+                        <div class='cell grey padding-left-2'>₱</div>
+                    </div>
                 </div>
-                <div class='cell icon'></div>
+                <div class='cell width-10'></div>
             </div>
         </div>
     </div>
     <div class='item-container'>
         <div class='container'>
             <div class='cell'>
-                <div class='container'><div class='cell left'>Physical Order</div></div>
+                <div class='container'><div class='cell width-40 padding-left-5'>Physical Order</div></div>
             </div>
-            <div class='cell'>
-                <div class='container'><div class='cell right'>{{vPhysicalOrder}} ₱</div></div>
+            <div class='cell width-30'>
+                <div class='container'>
+                    <div class='cell width-100 align-right'>{{vPhysicalOrder | number}}.00</div>
+                    <div class='cell grey padding-left-2'>₱</div>
+                </div>
             </div>
-            <div class='cell icon edit-gray'></div>
+            <div class='cell width-10 edit-gray'></div>
         </div>
     </div>
     <div class='double-divider'>
