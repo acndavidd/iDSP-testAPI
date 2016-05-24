@@ -86,6 +86,8 @@ export class CallPreparationComponent {
         let vParams = {
             retailer_id: pSelectedRetailer.retailer_id,
             route_sequence: this.vSelectedRetailSeq
+            // retailer_id : 'RTL00001',
+            // route_sequence : '1'
         };
 
         this._pageNavigationService.navigate('BCPActivityStep', vParams, vParamsOld);

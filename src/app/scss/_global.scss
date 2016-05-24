@@ -415,7 +415,10 @@ LIST VIEW - TEXT
                 width: 40%;
                 padding-left:0.6em;
             }
-            
+            &.left3 {
+                width: 40%;
+                text-align: left;
+            }
             &.right {
                 width: 40%;
                 text-align: right;
@@ -428,12 +431,15 @@ LIST VIEW - TEXT
                 width: 85%;
                 padding-left:0.6em;
             }
+            &.single1 {
+                width: 100%;
+                padding-left:0.6em;
+            }
             &.single-large {
                 height:3.2em;
                 width: 85%;
                 padding-left:0.6em;
             }
-
             &.percent-100{
                 padding-left:0.6em;
                 width:100px;
@@ -444,7 +450,6 @@ LIST VIEW - TEXT
             &.percent-300{
                 width:300px; 
             }
-
             &.icon {
                 width: 15%;
             }
@@ -455,7 +460,6 @@ LIST VIEW - TEXT
                 padding-left:0.6em;
                 width:70%
             }
-
             &.bold {
                 font-weight: bold;
             }
@@ -511,7 +515,6 @@ LIST VIEW - TEXT
                     padding-left:0.6em;
                 }
             }
-
 
 /*
 ===========================================================

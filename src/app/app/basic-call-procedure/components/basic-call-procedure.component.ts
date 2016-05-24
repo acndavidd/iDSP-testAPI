@@ -56,6 +56,10 @@ export class BasicCallProcedureComponent {
             retailer_id: pSelectedRetailer.retailer_id,
             route_sequence: pSelectedRetailer.seq,
             status: pSelectedRetailer.call_status
+            // retailer_id : 'RTL00001',
+            // route_sequence : '1',
+            // status : pSelectedRetailer,
+            // retailer_name : 'Rose Cell'
         };
 
         this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);
