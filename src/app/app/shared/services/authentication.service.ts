@@ -5,6 +5,8 @@ import {Modal} from './modal.service';
 import {LayoutService} from './layout.service';
 import {PageNavigationService} from './page-navigation.service';
 
+declare var configChannel: any;
+
 @Injectable()
 
 export class AuthenticationService {
@@ -65,7 +67,7 @@ export class AuthenticationService {
         };
         this._http.post('/login', JSON.stringify(vData)).subscribe(
             response => {
-                let vResponse = JSON.parse(response.json());
+                let vResponse = response.json();
                 if(vResponse.Status === 200) {
                     this.vDSPID = pUsername;
                     alert('MPIN : ' + vResponse.MPIN);
@@ -89,7 +91,17 @@ export class AuthenticationService {
         };
         this._http.post('/submitMPIN', JSON.stringify(vData)).subscribe(
             response => {
-                console.log(response);
+                let vResponse = response.json();
+                if(vResponse.Status === 200) {
+                    // Set accessToken to localstorage for mobile apps
+                    if(configChannel === 'app') {
+                        localStorage.setItem('accessToken', vResponse.accessToken);
+                    }
+                    this._pageNavigationService.navigate('Home', null, null);
+                }else {
+                    this.vErrorMsg = vResponse.StatusMessage;
+                    this._modalService.showErrorModal(this.vErrorMsg);
+                }
             },
             error => {
                 this.vErrorMsg = 'failed connecting to login service';
@@ -98,19 +110,52 @@ export class AuthenticationService {
         );
     }
 
+    test() {
+        this._http.get('/verifyToken').subscribe(
+            response => {
+                let vResponse = response.json();
+                if(vResponse.Status === 200) {
+                   alert(vResponse.TokenObject.body.DSP_ID);
+                }
+            },
+            error => {
+
+            }
+        );
+    }
+
     logoutCallBack(pParams) {
-        // trigger logout service and remove localstorage data for mobile
-        pParams._layoutService.toggleLeftMenu();
-        pParams._layoutService.toggleHeader();
-        pParams._modalService.vShowModal = false;
-        pParams._router.navigate(['Starter', 'Login']);
+        // trigger logout service to clear session cookies and remove localstorage data for mobile
+        pParams._http.get('/logout').subscribe(
+            response => {
+                let vResponse = response.json();
+                if(vResponse.Status === 200) {
+                    // remove accessToken from localstorage for mobile apps
+                    if(configChannel === 'app') {
+                        localStorage.removeItem('accessToken');
+                    }
+                    pParams._layoutService.toggleLeftMenu();
+                    pParams._layoutService.toggleHeader();
+                    pParams._modalService.vShowModal = false;
+                    pParams._router.navigate(['Starter', 'Login']);
+                }else {
+                    this.vErrorMsg = vResponse.StatusMessage;
+                    this._modalService.showErrorModal(this.vErrorMsg);
+                }
+            },
+            error => {
+                this.vErrorMsg = 'failed connecting to login service';
+                this._modalService.showErrorModal(this.vErrorMsg);
+            }
+        );
     } 
 
     logout() {
         let params = {
             _layoutService : this._layoutService,
             _router : this._router,
-            _modalService : this._modalService
+            _modalService : this._modalService,
+            _http : this._http
         };
         this._modalService.toggleModal('Are you sure you<br/>want to Logout ?', Modal.ModalType.CONFIRMATION, { ModalButton : Modal.ModalButton.OK_CANCEL, callback : this.logoutCallBack, param : params });
     }
