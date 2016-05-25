@@ -28,7 +28,7 @@ import {UnservedOrderComponent} from '../../basic-call-procedure/components/unse
 import {OffersComponent} from '../../basic-call-procedure/components/bcp-offers.component';
 import {MpinComponent} from '../../login/components/mpin.component';
 import {LoginComponent} from '../../login/components/login.component';
-
+import {BCPAddRetailerRouteComponent} from '../../basic-call-procedure/components/bcp-add-retailer-route.component';
 import {HomeComponent} from '../../shared/components/home.component';
 
 @Component({
@@ -112,6 +112,11 @@ import {HomeComponent} from '../../shared/components/home.component';
         path: '/bcpActivityStep',
         name: 'BCPActivityStep',
         component: BCPActivityStepComponent
+    },
+    {
+        path: '/bcpAddRetailerRoute',
+        name: 'BCPAddRetailerRoute',
+        component: BCPAddRetailerRouteComponent
     },
     {
         path: '/callPreparation',

@@ -1,4 +1,91 @@
 $select-arrow: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4IiB3aWR0aD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE0LjgzIDE2LjQybDkuMTcgOS4xNyA5LjE3LTkuMTcgMi44MyAyLjgzLTEyIDEyLTEyLTEyeiIvPjxwYXRoIGQ9Ik0wLS43NWg0OHY0OGgtNDh6IiBmaWxsPSJub25lIi8+PC9zdmc+';
+
+.mydashboard {
+    background: url(#{$icon-round-grad-mydashboard})no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 15vw;
+}
+
+&.call {
+    background: url("../img/icon-idsp/phone-grey.png")no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 15vw;
+}
+&.bcp {
+    background: url(#{$icon-round-grad-bcp})no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 15vw;
+}
+&.inventory {
+    background: url(#{$icon-round-grad-inventory})no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 15vw;
+}
+&.logout {
+    background: url(#{$icon-round-grad-logout})no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 15vw;
+}
+&.remittance {
+    background: url(#{$icon-round-grad-remittance})no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 15vw;
+}
+&.stock-return {
+    background: url(#{$icon-round-grad-stock-return})no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 15vw;
+}
+&.target {
+    background: url(#{$icon-round-grad-target})no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 15vw;
+}
+&.acc-receivable {
+    background: url(#{$icon-round-grad-acc-receivable})no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 15vw;
+}
+&.alert {
+    background: url(#{$icon-round-grad-alert})no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 15vw;
+}
+&.collection {
+    background: url(#{$icon-round-grad-collection})no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 15vw;
+}
+&.retailer-route {
+    background: url(#{$icon-round-grad-retailer-route})no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 15vw;
+}
+&.sync {
+    background: url(#{$icon-round-grad-sync})no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 15vw;
+}
+&.visited {
+    background: url(#{$icon-round-grad-visited})no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 15vw;
+}
+
 /*
 ===========================================================
 SUBMENU
@@ -39,27 +126,30 @@ SUBTAB
 .sub-tab {
     display: block;
     background-color: $apple;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-top: -3px;
+    // padding-top: 10px;
+    // padding-bottom: 10px;
+    // margin-top: -3px;
     float: left;
-    border-bottom: 2px solid $apple;
+    border-bottom: 1vw solid $apple;
     &.double {
         width: 50%;
+        padding: 2% 0% 2% 0%;
     }
     &.triple {
         width: 33%;
+        padding: 2% 0% 2% 0%;
     }
     &.triple2 {
         width: 34%;
+        padding: 2% 0% 2% 0%;
     }
     &.active {
-        border-bottom: 2px solid $vivid-pink;
+        border-bottom: 1vw solid $vivid-pink;
     }
     .text {
-        color: $gainsboro;
+        color: $white-smoke;
         text-align: center;
-        font-size: $header-tab;
+        font-size: 4vw;
 
         &.active {
             color: $white;
@@ -222,84 +312,7 @@ LIST VIEW - BUTTON
             height: 18vw;
             width: 100%;
 
-            &.call {
-                background: url("../img/icon-idsp/phone-grey.png")no-repeat;
-                background-position-x: center;
-                background-position-y: center;
-                background-size: 15vw;
-            }
-            &.bcp {
-                background: url(#{$icon-round-grad-bcp})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
-                background-size: 15vw;
-            }
-            &.inventory {
-                background: url(#{$icon-round-grad-inventory})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
-                background-size: 15vw;
-            }
-            &.logout {
-                background: url(#{$icon-round-grad-logout})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
-                background-size: 15vw;
-            }
-            &.remittance {
-                background: url(#{$icon-round-grad-remittance})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
-                background-size: 15vw;
-            }
-            &.stock-return {
-                background: url(#{$icon-round-grad-stock-return})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
-                background-size: 15vw;
-            }
-            &.target {
-                background: url(#{$icon-round-grad-target})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
-                background-size: 15vw;
-            }
-            &.acc-receivable {
-                background: url(#{$icon-round-grad-acc-receivable})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
-                background-size: 15vw;
-            }
-            &.alert {
-                background: url(#{$icon-round-grad-alert})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
-                background-size: 15vw;
-            }
-            &.collection {
-                background: url(#{$icon-round-grad-collection})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
-                background-size: 15vw;
-            }
-            &.retailer-route {
-                background: url(#{$icon-round-grad-retailer-route})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
-                background-size: 15vw;
-            }
-            &.sync {
-                background: url(#{$icon-round-grad-sync})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
-                background-size: 15vw;
-            }
-            &.visited {
-                background: url(#{$icon-round-grad-visited})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
-                background-size: 15vw;
-            }
+
         }
 
         .text {
@@ -397,6 +410,50 @@ LIST VIEW - TEXT
                     margin: 0% 0% 5% 40%;
                 }
             }
+
+            /* .squaredThree */
+            .squaredThree {
+            width: 20px;
+            position: relative;
+            margin: 20px auto;
+                label {
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: linear-gradient(top, #222 0%, #45484d 100%);
+                border-radius: 4px;
+                box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,.4);
+                    &:after {
+                        content: '';
+                        width: 9px;
+                        height: 5px;
+                        position: absolute;
+                        top: 4px;
+                        left: 4px;
+                        border: 3px solid #fcfff4;
+                        border-top: none;
+                        border-right: none;
+                        background: transparent;
+                        opacity: 0;
+                        transform: rotate(-45deg);
+                    }
+                    &:hover::after {
+                        opacity: 0.3;
+                    }
+                }
+                input[type=checkbox] {
+                    visibility: hidden;
+                    &:checked + label:after {
+                        opacity: 1;
+                    }    
+                }
+            }
+            /* end .squaredThree */
+
+
 
             // PLEASE PUT WIDTH HERE
             &.width-10 { width: 10%; }
@@ -670,13 +727,13 @@ LIST VIEW - ICON
             }
             
             .profpic {
-                width: 65px;
-                height: 65px;
+                width: 18vw;
+                height: 18vw;
                 background-color: $sugar-cane;
                 border-radius: 50%;
                 text-align: center;
-                line-height: 63px;
-                font-size: 30px;
+                line-height: 18vw;
+                font-size: 10vw;
                 color : $apple;
                 border: 1px solid $gainsboro;
 
