@@ -55,7 +55,7 @@
                     <div class='cell grey padding-left-2'>₱</div>
                 </div>
             </div>
-            <div class='cell width-10 edit-gray' (click)='goToTransferLoadPage()'></div>
+            <div class='cell width-10 edit-gray' (click)='gotoAddEditLoadTransfer()'></div>
         </div>
     </div>
     <div *ngIf='vTransferLoadList'>
@@ -103,7 +103,7 @@
                     <div class='cell grey padding-left-2'>₱</div>
                 </div>
             </div>
-            <div class='cell width-10 edit-gray'></div>
+            <div class='cell width-10 edit-gray' (click)="gotoAddEditPhysicalOrder()"></div>
         </div>
     </div>
     <div class='double-divider'>
