@@ -71,6 +71,15 @@ export class RetailerSalesOrderComponent {
         // this._modalService.toggleSkipSalesOrderModal();
     }
 
+
+    gotoAddEditLoadTransfer() {
+        this._pageNavigationService.navigate('AddEditLoadTransfer', null, null);
+    }
+
+    gotoAddEditPhysicalOrder() {
+        this._pageNavigationService.navigate('AddEditPhysicalOrder', null, null);
+    }
+
     getTransferLoadList() {
         console.log('lalallaa');
         return this.vAllDataList;
@@ -85,9 +94,4 @@ export class RetailerSalesOrderComponent {
         var q = this.vTotalAmount;
         return q.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
     }
-
-    goToTransferLoadPage() {
-        
-    }
-
 }

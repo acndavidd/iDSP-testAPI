@@ -28,6 +28,9 @@ import {UnservedOrderComponent} from '../../basic-call-procedure/components/unse
 import {OffersComponent} from '../../basic-call-procedure/components/bcp-offers.component';
 import {MpinComponent} from '../../login/components/mpin.component';
 import {LoginComponent} from '../../login/components/login.component';
+import {AddEditLoadTransferComponent} from '../../basic-call-procedure/components/add-edit-load-transfer.component';
+import {AddEditPhysicalOrderComponent} from '../../basic-call-procedure/components/add-edit-physical-order.component';
+import {AddSalesOrderPhysicalComponent} from '../../basic-call-procedure/components/add-sales-order-physical.component';
 import {BCPAddRetailerRouteComponent} from '../../basic-call-procedure/components/bcp-add-retailer-route.component';
 import {HomeComponent} from '../../shared/components/home.component';
 
@@ -137,6 +140,21 @@ import {HomeComponent} from '../../shared/components/home.component';
         path: '/retailerSalesOrder',
         name: 'RetailerSalesOrder',
         component: RetailerSalesOrderComponent
+    },
+    {
+        path: '/addEditLoadTransfer',
+        name: 'AddEditLoadTransfer',
+        component: AddEditLoadTransferComponent
+    },
+    {
+        path: '/addSalesOrderPhysical',
+        name: 'AddSalesOrderPhysical',
+        component: AddSalesOrderPhysicalComponent
+    },
+    {
+        path: '/addEditPhysicalOrder',
+        name: 'AddEditPhysicalOrder',
+        component: AddEditPhysicalOrderComponent
     },
     {
         path: '/salesOrderPayment',
