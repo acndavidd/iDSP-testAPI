@@ -1,6 +1,6 @@
 'use strict';
 import {ORMService} from '../services/orm.service';
-import {ErrHandlerService} from '../services/err.handler.service';
+//import {ErrHandlerService} from '../services/err.handler.service';
 
 export interface RetailerInterface{
 	getProduct(pRequest, pResponse):void;
@@ -83,7 +83,7 @@ export class RetailerController implements RetailerInterface{
 				vResult = {
 						"status" : vResult.status,
 						"errorType": vResult.errorType,
-						"errorCode": this.errService.getErrorMessage(vResult.errorCode),
+						//"errorCode": this.errService.getErrorMessage(vResult.errorCode),
 						"result" : null
 				};
 			}
@@ -96,7 +96,7 @@ export class RetailerController implements RetailerInterface{
 			var vError = {
 						"status" : "Error",
 						"errorType": "Internal Exception",
-						"errorCode": this.errService.getErrorMessage("ERR_INTERNAL_SYSTEM"),
+						//"errorCode": this.errService.getErrorMessage("ERR_INTERNAL_SYSTEM"),
 						"result" : null
 					};
 			pResponse.json(vError);
