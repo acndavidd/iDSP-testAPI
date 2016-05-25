@@ -50,7 +50,6 @@ class LoginController {
     }
     verifyToken(pRequest, pResponse) {
         let vTokenSvc = new token_service_1.TokenService();
-        console.log(pResponse.locals.jwt);
         let vResult = {
             Status: 200,
             StatusMessage: "Success Bro",
