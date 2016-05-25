@@ -1,33 +1,73 @@
 'use strict';
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator.throw(value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments)).next());
+    });
+};
 const token_service_1 = require('../services/token.service');
 const orm_service_1 = require('../services/orm.service');
+const api_service_1 = require('../services/api.service');
 class LoginController {
     constructor() {
     }
     login(pRequest, pResponse) {
-        try {
+        return __awaiter(this, void 0, void 0, function* () {
+            let vHttpSvc = new api_service_1.APIService.HTTPService();
+            let vPath = '/OPISNET/services/idsp/userValidation';
+            let vData = {
+                Username: pRequest.body.Username,
+                Password: pRequest.body.Password
+            };
+            let vResult = JSON.parse(yield vHttpSvc.post(api_service_1.APIService.APIType.OPISNET, vPath, null, vData));
+            pResponse.json(vResult);
+        });
+    }
+    submitMPIN(pRequest, pResponse) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let vHttpSvc = new api_service_1.APIService.HTTPService();
             let vTokenSvc = new token_service_1.TokenService();
-            var vTokenObj = {
-                user: {
-                    name: pRequest.body.username,
-                    password: pRequest.body.password
-                }
+            let vPath = '/OPISNET/services/idsp/userAuthorization';
+            let vData = {
+                Username: pRequest.body.Username,
+                MPIN: pRequest.body.MPIN
             };
-            var vResult = {
-                success: 1,
-                token: vTokenSvc.generateToken(vTokenObj)
-            };
-            pResponse.cookie('accessToken', vResult.token, { httpOnly: true });
-        }
-        catch (err) {
-            var vResult = {
-                success: 0,
-                token: ''
-            };
-        }
+            let vResult = JSON.parse(yield vHttpSvc.post(api_service_1.APIService.APIType.OPISNET, vPath, null, vData));
+            // If success login , generate token for services
+            if (vResult.Status === 200) {
+                let vTokenObj = {
+                    DSP_ID: pRequest.body.Username,
+                    AccessToken: vResult.AccessToken
+                };
+                vResult.accessToken = vTokenSvc.generateToken(vTokenObj);
+                // Set Cookie session for web access
+                pResponse.cookie('accessToken', vResult.accessToken, { httpOnly: true });
+            }
+            pResponse.json(vResult);
+        });
+    }
+    verifyToken(pRequest, pResponse) {
+        let vTokenSvc = new token_service_1.TokenService();
+        let vResult = {
+            Status: 200,
+            StatusMessage: "Success Bro",
+            TokenObject: pResponse.locals.jwt
+        };
         pResponse.json(vResult);
     }
     logout(pRequest, pResponse) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let vResult = {
+                Status: 200,
+                StatusMessage: "Success Bro"
+            };
+            pResponse.clearCookie('accessToken');
+            pResponse.json(vResult);
+        });
+    }
+    test(pRequest, pResponse) {
         try {
             var message = 'Insert start.';
             console.log("mw Init");

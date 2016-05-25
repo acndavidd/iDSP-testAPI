@@ -14,9 +14,9 @@ declare var configAppType: any;
 
 class MyOptions extends BaseRequestOptions {
     headers = new Headers({
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem('accessToken'))
-            });
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + JSON.parse(sessionStorage.getItem('accessToken'))
+    });
 }
 
 @Injectable()

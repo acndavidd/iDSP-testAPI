@@ -12,6 +12,8 @@ export class ORMService{
 	private vSequelizeSvc:SequelizeService;
 
 	constructor(){
+		this.vSequelizeSvc = new SequelizeService();
+		/*
 		this.vModels = {};
 		let vOrmInstance = this;
 		this.vSequelizeSvc = new SequelizeService();
@@ -40,7 +42,7 @@ export class ORMService{
 				console.log('Error occurred while loading association for model : ' + model,'\nError : ' + pErr);
 			}
 		};
-		if(vDebug)console.log('Finished loading association');
+		if(vDebug)console.log('Finished loading association');*/
 	}
 
 	public async sp(pSPName:string,pParams:any) {
@@ -48,12 +50,18 @@ export class ORMService{
 		return new Promise<string>(
 			function (pResolve,pReject){
 				try{
+					let vParams;
 					//build params
-					let vParams = '(';
-					for(let vParam in pParams){
-						vParams += "'" + pParams[vParam] + "',";
+					if (pParams.length > 0) {
+						vParams = '(';
+						for(let vParam in pParams){
+							vParams += "'" + pParams[vParam] + "',";
+						}
+						vParams = vParams.substring(0,vParams.lastIndexOf(',')) + ');';
 					}
-					vParams = vParams.substring(0,vParams.lastIndexOf(',')) + ');';
+					else{
+						vParams = '()';
+					}
 					let vQuery = 'SELECT ' + pSPName + vParams;
 					vSequelize.query( vQuery, { type: vSequelize.QueryTypes.SELECT }).then(function(pResults){
 						pResolve(pResults[0][pSPName]);

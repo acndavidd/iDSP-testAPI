@@ -8,7 +8,7 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {NgModel} from 'angular2/common';
 
 @Component({
-    // templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
+     // templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
      templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
     directives: [
         ROUTER_DIRECTIVES
@@ -28,6 +28,7 @@ export class CallPreparationComponent {
     vStartEnabled = false;
     vLoadWallet;
     vPhysicalInventory;
+    vSelectedRetailCallId;
 
     constructor (
         private _layoutService: LayoutService,
@@ -42,6 +43,7 @@ export class CallPreparationComponent {
         // if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
         //     this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
         //     this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
+        //     this.vSelectedRetailCallId = this._pageNavigationService.getCurrentParams().call_id;
         // } else {
         //     console.log('Retailer ID not found');
         // }
@@ -95,8 +97,6 @@ export class CallPreparationComponent {
         //     console.log(error);
         // });
 
-        // this.getStartStatus();
-
         this._layoutService.setCurrentPage('CallPreparation');
         this._headerService.setTitle('Call Preparation');
     }
@@ -109,20 +109,23 @@ export class CallPreparationComponent {
         this._pageNavigationService.navigate('BCPActivityStep', null, null);
     }
 
-    gotoBCPActivityStep(pSelectedRetailer) {
-        console.log('all parameters' + pSelectedRetailer);
+    // gotoBCPActivityStep(pSelectedRetailer) {
+        // console.log('all parameters' + pSelectedRetailer);
 
-        let vParamsOld = {
-             retailer_id: this.vSelectedRetailId,
-             route_sequence: this.vSelectedRetailSeq
-        };
+        // let vParamsOld = {
+        //      retailer_id: this.vSelectedRetailId,
+        //      route_sequence: this.vSelectedRetailSeq,
+        //      call_id: this.vSelectedRetailCallId
+        // };
+        // let vParams = {
+        //     retailer_id: pSelectedRetailer.retailer_id,
+        //     route_sequence: pSelectedRetailer.seq,
+        //     call_id : pSelectedRetailer.call_id
+        // };
 
-        let vParams = {
-            retailer_id: pSelectedRetailer.retailer_id,
-            route_sequence: this.vSelectedRetailSeq
-        };
-
-        this._pageNavigationService.navigate('BCPActivityStep', vParams, vParamsOld);
+        // this._pageNavigationService.navigate('BCPActivityStep', vParams, vParamsOld);
+    gotoBCPActivityStep() {
+        this._pageNavigationService.navigate('BCPActivityStep', null, null);
     }
 
     getRetailerDetails() {

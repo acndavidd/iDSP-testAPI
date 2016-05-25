@@ -33,11 +33,11 @@ export class BasicCallProcedureComponent {
         private _pageNavigationService: PageNavigationService,
         private _router: Router
         ) {
-        this._retailerService.getRetailer(100);
+        // this._retailerService.getRetailer(100);
         this._layoutService.setCurrentPage('BasicCallProcedure');
         this._headerService.setTitle('Basic Call Procedure');
 
-        this.refreshRetailerRouteBCP();
+        // this.refreshRetailerRouteBCP();
     }
 
     getResize() {
@@ -48,17 +48,17 @@ export class BasicCallProcedureComponent {
         this._pageNavigationService.navigate('BCPActivityStep', null, null);
     }
 
-    gotoCallPreparation(pSelectedRetailer,pCallId) {
-        console.log('Go to Call Preparation' + pSelectedRetailer + pCallId );
-
-        let vParamsOld = {};
-        let vParams = {
-            retailer_id: pSelectedRetailer.retailer_id,
-            route_sequence: pSelectedRetailer.seq,
-            call_id: pSelectedRetailer.call_id,
-            status: pSelectedRetailer.call_status
-        };
-    }
+    // gotoAnotherPage(pSelectedRetailer) {
+    //     console.log('Go to Call Preparation' + pSelectedRetailer );
+    //     let vParamsOld = {};
+    //     let vParams = {
+    //         retailer_id: pSelectedRetailer.retailer_id,
+    //         route_sequence: pSelectedRetailer.seq,
+    //         call_id: pSelectedRetailer.call_id,
+    //         status: pSelectedRetailer.call_status
+    //     };
+    //      this._pageNavigationService.navigate('BCPActivityStep', vParams, vParamsOld);
+    // }
 
     getFilter() {
         return this._layoutService.getFilter();

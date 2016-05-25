@@ -16,7 +16,7 @@ BEGIN
 	
 	select array_to_json(array_agg(row_to_json(temp1))) into v_receivables
 	from (
-		select a.order_Id,to_char(b.amount, '999,999,999,990D00 FM₱') amount,b.dsp_id,c.retailer_name,c.retailer_min,c.retailer_id,e.route_day,e.sequence,a.source,
+		select to_char(b.amount, '999,999,999,990D00 FM₱') amount,b.dsp_id,c.retailer_name,c.retailer_min,c.retailer_id,e.route_day,e.sequence,b.source,
 			(select to_char(sum(amount), '999,999,999,990D00 FM₱') from trx_account_receivable tr
 				where tr.dsp_id = v_dsp_id and retailer_id in(
 				select retailer_id from mst_route mr where mr.route_id in(
@@ -26,10 +26,8 @@ BEGIN
 				)group by dsp_id)
 			ret_total_amount
 		from (
-		trx_sales_order a join
-		trx_account_receivable b on a.order_id = b.order_id 
-		and b.dsp_id = v_dsp_id join
-		mst_retailer c on b.retailer_id = c.retailer_id join
+		trx_account_receivable b join
+		mst_retailer c on b.retailer_id = c.retailer_id and b.dsp_id = v_dsp_id join
 		mst_route d on c.retailer_id = d.retailer_id join
 		mst_route_day e on d.route_id = e.route_id and e.route_day = v_date
 		and e.sequence is not null)
@@ -38,7 +36,7 @@ BEGIN
 
 	select array_to_json(array_agg(row_to_json(temp2))) INTO v_receivables_all
 	from (
-		select a.order_Id,to_char(b.amount, '999,999,999,990D00 FM₱') amount,b.dsp_id,c.retailer_name,c.retailer_min,c.retailer_id,e.route_day,e.sequence,a.source,
+		select to_char(b.amount, '999,999,999,990D00 FM₱') amount,b.dsp_id,c.retailer_name,c.retailer_min,c.retailer_id,e.route_day,e.sequence,b.source,
 			(select to_char(sum(amount), '999,999,999,990D00 FM₱') from trx_account_receivable f join mst_retailer g
 			on f.retailer_id = g.retailer_id and f.dsp_id = v_dsp_id left join
 			mst_route h on g.retailer_id = h.retailer_id join
@@ -46,10 +44,8 @@ BEGIN
 			and i.route_day = v_date
 			group by f.dsp_id) total_amount
 		from (
-		trx_sales_order a join
-		trx_account_receivable b on a.order_id = b.order_id 
-		and b.dsp_id = v_dsp_id join
-		mst_retailer c on b.retailer_id = c.retailer_id left join
+		trx_account_receivable b join
+		mst_retailer c on b.retailer_id = c.retailer_id and b.dsp_id = v_dsp_id left join
 		mst_route d on c.retailer_id = d.retailer_id join
 		mst_route_day e on d.route_id = e.route_id and e.route_day = v_date)
 		order by e.sequence asc nulls last		

@@ -1,0 +1,13 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/OPISNET/services/idsp/userAuthorization",
+        "bodyPatterns" : [
+            { "doesNotMatch" : ".*DSP00001.*" }
+        ]
+    },
+    "response": {
+        "status": 200,   
+        "bodyFileName": "login/MPIN-error.json"
+    }
+}
