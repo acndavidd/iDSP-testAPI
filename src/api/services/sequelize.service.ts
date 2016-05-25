@@ -8,7 +8,13 @@ var vDate = new Date(vToday);
 var vDebugFile = vPath.join(__dirname,'..','debug', vDate.getDate() + '-' + (vDate.getMonth()+1) + '-' + vDate.getFullYear() + '.debug.js');
 var vDebugFD;
 
-export class SequelizeService{
+export interface SequelizeInterface {
+	getInstance(): any;
+	getModelPath(): string;
+	getModelNaming(): string; 
+}
+
+export class SequelizeService implements SequelizeInterface{
 	private vSeqInstance;
 	private vNaming;
 	private vModelPath;
