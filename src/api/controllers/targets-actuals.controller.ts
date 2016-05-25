@@ -8,7 +8,7 @@ export class TargetsActualsController{
 
     constructor(){}
    
-    getBrand(pRequest,pResponse){
+    brands(pRequest,pResponse){
 	   try{
 
 	   var message = 'Insert start.';
@@ -26,7 +26,7 @@ export class TargetsActualsController{
 			var vResult = {
 				"status" : "Success",
 				"statusMessage" : "",
-				"error":"error",
+				"error":"",
 				"brandList" : result
 
 			}
@@ -41,7 +41,7 @@ export class TargetsActualsController{
 		}
 	}
 
-	getProdCat(pRequest,pResponse){
+	productCategories(pRequest,pResponse){
 	   try{
 
 	   var message = 'Insert start.';
@@ -73,7 +73,7 @@ export class TargetsActualsController{
 		}
 	}
 
-	async getProduct(pRequest,pResponse){
+	async targetsActuals(pRequest,pResponse){
 	   try{	  
 		    var message = 'Insert start.';
 
@@ -207,7 +207,7 @@ export class TargetsActualsController{
 			}
 		}
 
-	getProdSubCat(pRequest,pResponse){
+	productSubCategories(pRequest,pResponse){
 		try{
 		var vmessage = 'Get Data Starts.';
 	    var vorm = new ORMService();

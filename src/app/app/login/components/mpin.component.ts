@@ -1,6 +1,6 @@
 'use strict';
 
-import {Component} from 'angular2/core';
+import {Component,ElementRef} from 'angular2/core';
 import { Router } from 'angular2/router';
 import {NgModel} from 'angular2/common';
 import {AuthenticationService} from '../../shared/services/authentication.service';
@@ -24,6 +24,7 @@ export class MpinComponent {
     private vMPIN4:string;
     private vMPIN5:string;
     constructor (
+        private myElement: ElementRef,
         private _router: Router,
         private _layoutService: LayoutService,
         private _authenticationService: AuthenticationService,
@@ -52,6 +53,13 @@ export class MpinComponent {
     ResendMpinModalComponent() {
         console.log('masuk com ts');
         // this._modalService.toggleResendMpinModal();
+    }
+
+    onChangeKey(pValue) {
+        console.log('onchange' + pValue);
+        if(pValue.length >=1 ) {
+            console.log('FULL');
+        }
     }
 
 }

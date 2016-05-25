@@ -81,14 +81,14 @@ vRouter.get('/verifyToken', vLoginCtrl.verifyToken);
 vRouter.get('/logout', vLoginCtrl.logout);
 
 vRouter.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
-vRouter.get('/targetsActuals',vTargetsActualsCtrl.getBrand);
+vRouter.get('/brands',vTargetsActualsCtrl.brands);
 vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
 vRouter.post('/getAccountsReceivables',vAccCtrl.getAccountsReceivables);
 
-vRouter.get('/getProductCategory',vTargetsActualsCtrl.getProdCat);
-vRouter.get('/getProductSubCategory',vTargetsActualsCtrl.getProdSubCat);
+vRouter.get('/productCategories',vTargetsActualsCtrl.productCategories);
+vRouter.get('/productSubCategories',vTargetsActualsCtrl.productSubCategories);
 
-vRouter.post('/getProduct',vTargetsActualsCtrl.getProduct);
+vRouter.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
 
 vRouter.get('/getCategory',vTargetsActualsCtrl.getCategory);
 

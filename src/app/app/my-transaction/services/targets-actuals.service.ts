@@ -68,7 +68,7 @@ export class TargetsActualsService {
                   }
             );
             */
-            return this._http.get('/targetsActuals');
+            return this._http.get('/brands');
       }
 
       queryProdCat() {
@@ -89,11 +89,11 @@ export class TargetsActualsService {
             return null;
             */
 
-            return this._http.get('/getProductCategory');
+            return this._http.get('/productCategories');
       }
 
       queryProdSubCat() {
-            return this._http.get('/getProductSubCategory');
+            return this._http.get('/productSubCategories');
       }
 
 
@@ -106,7 +106,7 @@ export class TargetsActualsService {
                   actualType : pSelectedTab,
                   brand : pSelectedBrand
             };
-            return this._http.post('/getProduct', JSON.stringify(vData));
+            return this._http.post('/targetsActuals', JSON.stringify(vData));
       }
 
       queryCategory() {

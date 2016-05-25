@@ -11,7 +11,7 @@ const orm_service_1 = require('../services/orm.service');
 class TargetsActualsController {
     constructor() {
     }
-    getBrand(pRequest, pResponse) {
+    brands(pRequest, pResponse) {
         try {
             var message = 'Insert start.';
             console.log("mw Init");
@@ -25,7 +25,7 @@ class TargetsActualsController {
                 var vResult = {
                     "status": "Success",
                     "statusMessage": "",
-                    "error": "error",
+                    "error": "",
                     "brandList": result
                 };
                 pResponse.json(vResult);
@@ -37,7 +37,7 @@ class TargetsActualsController {
             console.log(pErr);
         }
     }
-    getProdCat(pRequest, pResponse) {
+    productCategories(pRequest, pResponse) {
         try {
             var message = 'Insert start.';
             console.log("mw Init");
@@ -63,7 +63,7 @@ class TargetsActualsController {
             console.log(pErr);
         }
     }
-    getProduct(pRequest, pResponse) {
+    targetsActuals(pRequest, pResponse) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 var message = 'Insert start.';
@@ -91,7 +91,7 @@ class TargetsActualsController {
             }
         });
     }
-    getProdSubCat(pRequest, pResponse) {
+    productSubCategories(pRequest, pResponse) {
         try {
             var vmessage = 'Get Data Starts.';
             var vorm = new orm_service_1.ORMService();
