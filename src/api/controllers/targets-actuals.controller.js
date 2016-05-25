@@ -27,36 +27,16 @@ class TargetsActualsController {
                 pResponse.json(vResponse);
             }
             catch (pErr) {
-                console.log(pErr);
+                console.log("Failed to Query Payment History" + pErr);
+                var vError = {
+                    "status": "Error",
+                    "errorMessage": pErr,
+                    "result": null
+                };
+                pResponse.json(vError);
             }
         });
     }
-    // productCategories(pRequest,pResponse){
-    //    try{
-    //    var message = 'Insert start.';
-    // 			console.log("mw Init");
-    //     var orm = new ORMService();
-    //     var product = orm.getModel("mst_prod_cat");	
-    //     product.findAll({
-    // 	  attributes: ['category_name','category_id','brand'], 
-    //   			group: ['category_name','category_id']
-    // 	}).then(function(result){	
-    // 		console.log(result);
-    // 		var vResult = {
-    // 			"status" : "Success",
-    // 			"statusMessage" : "",
-    // 			"error":"error",
-    // 			"CatList" : result
-    // 		}
-    // 		pResponse.json(vResult);
-    // 	}).catch(function (err) {
-    // 	        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
-    // 		});
-    // 	}
-    // 	catch(pErr){
-    // 		console.log(pErr);
-    // 	}
-    // }
     targetsActuals(pRequest, pResponse) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -81,7 +61,13 @@ class TargetsActualsController {
                 pResponse.json(vResponse);
             }
             catch (pErr) {
-                console.log(pErr);
+                console.log("Failed to Query Payment History" + pErr);
+                var vError = {
+                    "status": "Error",
+                    "errorMessage": pErr,
+                    "result": null
+                };
+                pResponse.json(vError);
             }
         });
     }

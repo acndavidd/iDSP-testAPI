@@ -247,8 +247,6 @@ export class RetailerController{
 			var vSelectedDay = pRequest.body.day;
 			var vSalesPerson = pRequest.body.salesPerson;
 			let vOrmSvc = new ORMService();
-
-			console.log('apaaa'+vSelectedDay+vSalesPerson);
 			
 			let vParams = {
 				sales_person : vSalesPerson,

@@ -11,9 +11,9 @@ import { Pipe, PipeTransform } from 'angular2/core';
 @Component({
     selector: 'targets-actuals',
     // to be uncommented for actual api
-    // templateUrl: './app/my-transaction/components/targets-actuals.component.html',
+    templateUrl: './app/my-transaction/components/targets-actuals.component.html',
     // to be uncommented for hardcoded values
-     templateUrl: './app/my-transaction/components/md-targets-actuals.component.html',
+     // templateUrl: './app/my-transaction/components/md-targets-actuals.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
@@ -32,23 +32,10 @@ export class TargetsActualsComponent {
     vUnderlineWeek = false;
     vUnderlineMonth = false;
     private vListBrands;
-    private vListProd;
-    private vListProdSubCat;
-    private vShowProd;
-    private vShowProdSubCat;
     public vSelectedBrand;
-    public vSelectedProd;
-    private vShowProductFirst;
     private vListProduct;
-    private vListCategory;
     private vShowProduct;
-    private vSubCatID;
-    private vListTargets;
-    private vShowTargets;
-    private vShowProductMonth;
     private vSelectedTab;
-
-    // vCatNameList: any = [];
 
     constructor (
         private _router: Router,
@@ -141,7 +128,4 @@ export class TargetsActualsComponent {
         this.getTargetsActuals();
     }
 
-    // getCatNameList() {
-    //     return this.vCatNameList;
-    // }
 }
