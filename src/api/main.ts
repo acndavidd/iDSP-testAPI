@@ -10,13 +10,16 @@ import {AccController} from './controllers/accounts-receivables.controller';
 import {TokenService} from './services/token.service';
 import {ORMService} from './services/orm.service';
 
+var vPath = require("path");
+var vEnv = process.env.NODE_ENV || "development";
+var vConfig = require(vPath.join(__dirname, '.', 'config', 'config.json'))[vEnv];
 var vExpress = require('express');
 var vApp = vExpress();
 var vBodyParser = require('body-parser');
 var vCookieParser = require('cookie-parser');
 var vSOAP = require('soap');
 var vRouter = vExpress.Router();
-const PORT:number = process.env.PORT || 8080;
+const PORT: number = process.env.PORT || vConfig.port || 8080;
 
 var vRetailerCtrl:RetailerController = new RetailerController();
 var vLoginCtrl:LoginController = new LoginController();
@@ -78,61 +81,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
     pNext();
 });
 
-//vRouter.post('/login',vLoginCtrl.login);
-vRouter.get('/login',function(pRequest,pResponse){
-    /*var vUrl = './wsdl/CurrencyConvertor.asmx.xml';
-    var vArgs = { 'FromCurrency' : 'AFA','ToCurrency' : 'IDR'};
-    vSOAP.createClient(vUrl,function(pErr,pClient){
-        pClient.ConversionRate(vArgs, function(pErr, pResult) {
-            pResponse.json(pResult);
-        });
-    });
-    vOrmSvc.getModel('mst_dss').create({
-         dss_id : 'qqq',
-         dist_id: 'aaa',
-         first_name: 'firstname',
-         last_name : 'last_name'
-     }, {isNewRecord:true};*/
-     var prod = vOrmSvc.getModel('mst_product');
-     //var prod_sub_cat = vOrmSvc.getModel('mst_prod_sub_category');
-     //var prod_cat = vOrmSvc.getModel('mst_product_category');
-     
-     /*var p1 = prod.create({
-         product_id : '10',
-         product_name : 'anjay10'
-     },{isNewRecord:true}).then(function(res){
-
-     });
-
-     var p2 = prod.create({
-         product_id : '11',
-         product_name : 'anjay20'
-     },{isNewRecord:true});
-
-
-     prod_sub_cat.findById('1').then(function(psc){
-        /*prod.create({
-             product_id : '10',
-             product_name : 'anjay10'
-         },{isNewRecord:true}).then(function(res){
-             psc.addProducts(res).then(function(res2){
-                 res2.getProducts().then(function(prod){
-                    console.log(prod.length);
-                });
-             });
-
-         });
-
-         psc.createProduct({
-             product_id : '11',
-             product_name : 'anjay20'
-         }).then(function(prod){
-             console.log(prod);
-         });
-
-     });*/
-
-});
+vRouter.post('/login',vLoginCtrl.login);
 
 vRouter.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
 vRouter.get('/logout',vLoginCtrl.logout);
@@ -157,6 +106,7 @@ vRouter.post('/getPaymentHistory',vRetailerCtrl.getPaymentHistory);
 
 
 vRouter.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
+vRouter.get('/testSync',vSchedCtrl.syncTableMaster);
 
 vApp.use('/service',vRouter);
 vApp.listen(PORT);

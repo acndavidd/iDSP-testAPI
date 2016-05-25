@@ -32,7 +32,6 @@ export class LoginComponent {
     }
 
     login(pEvent) {
-        pEvent.preventDefault();
         // For Hit API
         // this._authenticationService.login(this.vUsername,this.vPassword);
 
@@ -51,7 +50,9 @@ export class LoginComponent {
             console.log(error);
         });
         */
-        this._router.navigate(['Mpin']);
+        // this._router.navigate(['Mpin']);
+        pEvent.preventDefault();
+        this._authenticationService.login(this.vUsername, this.vPassword);
     }
 
     getLoadingState() {
@@ -60,10 +61,6 @@ export class LoginComponent {
 
     gotoForgetPassword() {
         this._router.navigate(['ForgotPassword']);
-    }
-
-    getErrorMessageText() {
-        return this._authenticationService.getError();
     }
 
     toggleForgotPassword() {

@@ -64,7 +64,7 @@ export module Modal {
             this.setModalState(true);
             this.vModalType = Modal.ModalType.ERROR;
             this.vButtons = [];
-            this.vButtons.push({ id : 'ok-button', display: 'OK' , color_style : 'green' , callback : this.closeModal });
+            this.vButtons.push({ id : 'ok-button', display: 'OK' , color_style : 'green' , callback : this.closeModal, param : this });
         }
 
         toggleModal(pModalMessage:string, pModalType?:number, pArgs?:any) {
