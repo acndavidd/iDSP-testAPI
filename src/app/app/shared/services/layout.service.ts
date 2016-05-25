@@ -254,7 +254,7 @@ export class LayoutService {
 
             this.vHeaderItem = {
                 hamburger: false,
-                back: true,
+                back: false,
                 filter: false,
                 edit: false,
                 search: false
@@ -279,10 +279,6 @@ export class LayoutService {
             };
         } else if (
             pCurrent === 'Offers') {
-            this._pageNavigationService.resetListPreviousData();
-            this.vOldCurrentPage = 'CloseDay';
-            this.vOldCurrentPageParams = null;
-            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
             this.vCurrentPointer = '3';
 
             this.vLayoutState = {
@@ -299,10 +295,6 @@ export class LayoutService {
             };
         } else if (
             pCurrent === 'RetailerSalesOrder') {
-            this._pageNavigationService.resetListPreviousData();
-            this.vOldCurrentPage = 'BasicCallProcedure';
-            this.vOldCurrentPageParams = null;
-            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
             this.vCurrentPointer = '4';
 
             this.vLayoutState = {
@@ -320,10 +312,6 @@ export class LayoutService {
             };
         } else if (
             pCurrent === 'SalesOrderPayment') {
-            this._pageNavigationService.resetListPreviousData();
-            this.vOldCurrentPage = 'BasicCallProcedure';
-            this.vOldCurrentPageParams = null;
-            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
             this.vCurrentPointer = '5';
 
             this.vLayoutState = {
@@ -340,10 +328,6 @@ export class LayoutService {
             };
         } else if (
             pCurrent === 'UnservedOrder') {
-            this._pageNavigationService.resetListPreviousData();
-            this.vOldCurrentPage = 'BasicCallProcedure';
-            this.vOldCurrentPageParams = null;
-            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
             this.vCurrentPointer = '6';
 
             this.vLayoutState = {

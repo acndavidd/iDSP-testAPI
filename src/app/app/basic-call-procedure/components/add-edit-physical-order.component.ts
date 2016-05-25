@@ -4,19 +4,19 @@ import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
-import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {Modal} from '../../shared/services/modal.service';
+import {PageNavigationService} from '../../shared/services/page-navigation.service';
 
 @Component({
-    selector: 'retailer-sales-order',
-    templateUrl: './app/basic-call-procedure/components/retailer-sales-order.component.html',
+    selector: 'add-edit-physical-order',
+    templateUrl: './app/basic-call-procedure/components/add-edit-physical-order.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
     ]
 })
 
-export class RetailerSalesOrderComponent {
+export class AddEditPhysicalOrderComponent {
 
 
     constructor (
@@ -27,22 +27,11 @@ export class RetailerSalesOrderComponent {
         private _router: Router,
         private _pageNavigationService: PageNavigationService
         ) {
-        this._layoutService.setCurrentPage('RetailerSalesOrder');
-        this._headerService.setTitle('Retailer Sales Order');
+        this._layoutService.setCurrentPage('AddEditPhysicalOrder');
+        this._headerService.setTitle('Add / Edit Physical Order');
     }
 
-    goToSalesOrderPayment() {
-        console.log('Go to Sales Order Payment');
-        this._router.navigate(['SalesOrderPayment']);
+    gotoRetailerSalesOrder() {
+        this._pageNavigationService.navigate('RetailerSalesOrder', null, null);
     }
-
-    skipSalesOrderModalComponent() {
-        console.log('Skip Sales Order');
-        // this._modalService.toggleSkipSalesOrderModal();
-    }
-
-    gotoAddEditLoadTransfer() {
-        this._pageNavigationService.navigate('AddEditLoadTransfer', null, null);
-    }
-
 }
