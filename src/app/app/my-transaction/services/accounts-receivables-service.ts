@@ -33,6 +33,6 @@ export class AccountsReceivablesService {
           vDspId : pDspId,
           vDate : pDate
       };
-      return this._http.post('/getAccountsReceivables', JSON.stringify(vData));
+      return this._http.post('/AccountsReceivables', JSON.stringify(vData));
     }
 }
