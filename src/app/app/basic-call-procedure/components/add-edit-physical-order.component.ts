@@ -34,4 +34,8 @@ export class AddEditPhysicalOrderComponent {
     gotoRetailerSalesOrder() {
         this._pageNavigationService.navigate('RetailerSalesOrder', null, null);
     }
+
+    gotoAddSalesOrderPhysical() {
+        this._pageNavigationService.navigate('AddSalesOrderPhysical', null, null);
+    }
 }

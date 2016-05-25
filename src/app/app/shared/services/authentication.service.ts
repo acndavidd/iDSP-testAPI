@@ -85,8 +85,9 @@ export class AuthenticationService {
     }
 
     submitMPIN(pMPIN: string) {
+        console.log(this.vDSPID);
         let vData = {
-            Username : this.vDSPID,
+            Username : 'DSP00001',
             MPIN : pMPIN
         };
         this._http.post('/submitMPIN', JSON.stringify(vData)).subscribe(

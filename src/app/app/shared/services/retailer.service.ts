@@ -147,7 +147,7 @@ export class RetailerService {
             retailerId : pRetailerID
         };
 
-        return this._http.post('/getRetailerCallPrep', JSON.stringify(vData));
+        return this._http.post('/retailerCallPreparation', JSON.stringify(vData));
     }
 
     getLoadWallet(pRetailerID) {
@@ -158,7 +158,7 @@ export class RetailerService {
             retailerId : pRetailerID
         };
 
-        return this._http.post('/getLoadWallet', JSON.stringify(vData));
+        return this._http.post('/loadWallet', JSON.stringify(vData));
 
     }
 
@@ -170,7 +170,7 @@ export class RetailerService {
             retailerId : pRetailerID
         };
 
-        return this._http.post('/getPhysicalInventory', JSON.stringify(vData));
+        return this._http.post('/physicalInventory', JSON.stringify(vData));
 
     }
 
@@ -181,7 +181,7 @@ export class RetailerService {
             retailerId : pRetailerID
         };
 
-        return this._http.post('/getPaymentHistory', JSON.stringify(vData));
+        return this._http.post('/paymentHistory', JSON.stringify(vData));
 
     }
 
@@ -214,7 +214,7 @@ export class RetailerService {
         */
     }
 
-    queryRetailerRouteBCP() {
+    queryTodaysRetailerRoute() {
         console.log('Start hit login service to Query Retailer Route for BCP');
         this.vToday = new Date();
         let vData = {
@@ -223,7 +223,7 @@ export class RetailerService {
         };
 
         var vSalesRoute;
-        return this._http.post('/getRetailerRouteBCP', JSON.stringify(vData));
+        return this._http.post('/todaysRetailerRoute', JSON.stringify(vData));
     }
 
     getRetailerAll() {

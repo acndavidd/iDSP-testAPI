@@ -9,7 +9,7 @@ import {NgModel, NgClass} from 'angular2/common';
 
 @Component({
     // FOR HIT API
-    // templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
+     // templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
     // FOR HARDCODE UI
      templateUrl: './app/basic-call-procedure/components/hc-basic-call-procedure.component.html',
     directives: [
@@ -37,7 +37,7 @@ export class BasicCallProcedureComponent {
         this._layoutService.setCurrentPage('BasicCallProcedure');
         this._headerService.setTitle('Basic Call Procedure');
 
-        // this.refreshRetailerRouteBCP();
+         this.refreshRetailerRouteBCP();
     }
 
     getResize() {
@@ -72,10 +72,9 @@ export class BasicCallProcedureComponent {
         });
     }
 
-
     refreshRetailerRouteBCP() {
         console.log('Get  retailer route for Day');
-        this._retailerService.queryRetailerRouteBCP().subscribe(
+        this._retailerService.queryTodaysRetailerRoute().subscribe(
                 response => {
                     console.log('Hasil response ' + response.json());
                     if (response.json().status === 'Success') {
