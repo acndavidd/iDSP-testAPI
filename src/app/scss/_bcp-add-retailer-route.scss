@@ -1,0 +1,76 @@
+
+.inventory {
+    .filter-container{
+        background-color: $white-smoke;
+        width: 100%;
+        display: block;
+        clear: left;
+
+        &.load {
+            height: 45vw;
+        }
+        &.physical {
+            height: 60vw;
+        }
+
+        .filter-label {
+            font-size: $filter-label;
+            color: #000;
+            padding-top: 20px;
+            padding-left: 10px;
+            float: left;
+        }
+        .filter-dropdown {
+            padding-top: 15px;
+            padding-left: 150px;
+            select {
+                background: $white;
+                height: 31px;
+                border: 1px solid $dark-grey;
+                width: 90%;
+                -webkit-appearance: none;
+                border-radius: 7px;
+                padding-left: 15px;
+                font-size: $filter-select;
+                appearance: none;
+                @media screen and (-webkit-min-device-pixel-ratio: 0) {
+                    background-image: url(#{$select-arrow});
+                    background-position: right 0 top 50%;
+                    background-repeat: no-repeat;
+                }
+            }
+        }
+
+        .filter-input{
+            padding-top: 7px;
+            padding-left: 24px;
+            top: 0;
+            
+            input {
+                background: $white;
+                height: 30px;
+                border: 1px solid $dark-grey;
+                width: 90%;
+                -webkit-appearance: none;
+                border-radius: 7px;
+                padding-left: 15px;
+                font-size: $filter-select;
+                font-weight:lighter;
+                appearance: none;
+                cursor: pointer;
+                text-align: center;
+            }
+            .icon{
+                width:80px;
+                height:35px;
+                position: absolute;
+                right: 0;
+                z-index: 1;
+                background: url("../img/icon-idsp/search-black.png") no-repeat;
+                background-size: 25px;
+                background-position: center center;
+
+            }
+        }
+    }
+}
