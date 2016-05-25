@@ -9,7 +9,7 @@ export class AccController{
 	constructor(){ 		
 	}
 
-	async getAccountsReceivables(pRequest, pResponse){
+	async AccountsReceivables(pRequest, pResponse){
 		try{
 			console.log('in getAccountsReceivables API');
 			let vOrmSvc = new ORMService();
@@ -24,8 +24,8 @@ export class AccController{
 
 			var vResult = await vOrmSvc.sp( 'get_account_receivables', vParams );
 			var vResponse = {
-				"status" : "Success",
-				"errorMessage" : "",
+				"status" : "OK",
+				"errorMessage" : "Success",
 				"result" : vResult
 			};
 			console.log( "get_account_receivables response : " + JSON.stringify( vResponse ) );
@@ -64,7 +64,7 @@ export class AccController{
 
 		}catch(pErr){
 			var vError = {
-					"status" : "Error",
+					"status" : "NOK",
 					"errorMessage" : pErr,
 					"result" : null
 				};

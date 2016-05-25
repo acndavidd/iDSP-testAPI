@@ -84,7 +84,7 @@ vRouter.get('/logout', vLoginCtrl.logout);
 vRouter.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
 vRouter.get('/targetsActuals',vTargetsActualsCtrl.getBrand);
 vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
-vRouter.post('/getAccountsReceivables',vAccCtrl.getAccountsReceivables);
+vRouter.post('/AccountsReceivables',vAccCtrl.AccountsReceivables);
 
 vRouter.get('/getProductCategory',vTargetsActualsCtrl.getProdCat);
 vRouter.get('/getProductSubCategory',vTargetsActualsCtrl.getProdSubCat);
