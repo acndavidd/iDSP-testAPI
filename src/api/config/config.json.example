@@ -20,8 +20,8 @@
         "naming" : ".js"
     },
     "service" : {
-      "OPIS+" : "http://localhost:5678",
-      "ELP" : "http://localhost:5678",
+      "OPIS+" : "http://localhost:7777",
+      "ELP" : "http://localhost:7777", 
       "key" : "J@karta",
       "serviceURL" : "http://127:0:0:1/service/"
     }

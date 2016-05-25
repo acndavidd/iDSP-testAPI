@@ -6,18 +6,18 @@ export interface RetailerInterface{
 	getProduct(pRequest, pResponse):void;
 	getRetailerSummary(pRequest, pResponse):Promise<void>;
 	getSalesRoute(pRequest, pResponse):Promise<void>;
-	getRetailerRouteBCP(pRequest, pResponse):Promise<void>;
-	getRetailerCallPrep(pRequest, pResponse):Promise<void>;
+	todaysRetailerRoute(pRequest, pResponse):Promise<void>;
+	retailerCallPreparation(pRequest, pResponse):Promise<void>;
 	getAllRetailerAlert(pRequest, pResponse):Promise<void>;
-	getLoadWallet(pRequest, pResponse):Promise<void>;
-	getPhysicalInventory(pRequest, pResponse):Promise<void>;
-	getPaymentHistory(pRequest, pResponse):Promise<void>;
+	loadWallet(pRequest, pResponse):Promise<void>;
+	physicalInventory(pRequest, pResponse):Promise<void>;
+	paymentHistory(pRequest, pResponse):Promise<void>;
 }
 
 
 export class RetailerController implements RetailerInterface{
 
-	private errService:ErrHandlerService = new ErrHandlerService();
+	//private errService:ErrHandlerService = new ErrHandlerService();
 
 	constructor(){
 		
@@ -133,7 +133,7 @@ export class RetailerController implements RetailerInterface{
 		}
 	}
 
-	async getRetailerRouteBCP(pRequest, pResponse){
+	async todaysRetailerRoute(pRequest, pResponse){
 		try{
 			console.log("Start getting retailer route for BCP");
 			var vSelectedDay = pRequest.body.day;
@@ -170,7 +170,7 @@ export class RetailerController implements RetailerInterface{
 		}
 	}
 
-	async getRetailerCallPrep(pRequest,pResponse) {
+	async retailerCallPreparation(pRequest,pResponse) {
 		try{
 			console.log("Start getting Retailer Preparation");
 
@@ -222,7 +222,7 @@ export class RetailerController implements RetailerInterface{
 	}
 
 
-	async getLoadWallet(pRequest,pResponse) {
+	async loadWallet(pRequest,pResponse) {
 		try{
 			console.log("Start getting Load Wallet");
 
@@ -270,7 +270,7 @@ export class RetailerController implements RetailerInterface{
 		}
 	}
 
-	async getPhysicalInventory(pRequest,pResponse) {
+	async physicalInventory(pRequest,pResponse) {
 		try{
 			console.log("Start getting Physical Inventory");
 
@@ -317,7 +317,7 @@ export class RetailerController implements RetailerInterface{
 		}
 	}
 
-	async getPaymentHistory(pRequest,pResponse) {
+	async paymentHistory(pRequest,pResponse) {
 		try{
 
 			console.log("Start getting Physical Inventory");
