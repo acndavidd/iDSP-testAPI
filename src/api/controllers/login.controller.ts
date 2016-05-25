@@ -4,10 +4,17 @@ import {TokenService} from '../services/token.service';
 import {ORMService} from '../services/orm.service';
 import {APIService} from '../services/api.service';
 
+export interface LoginInterface {
+	login(pRequest, pResponse): Promise<void>;
+	submitMPIN(pRequest, pResponse): Promise<void>;
+	verifyToken(pRequest, pResponse): void;
+	logout(pRequest, pResponse): Promise<void>
+	test(pRequest, pResponse): Promise<void>;
+}
 
-export class LoginController{
+export class LoginController implements LoginInterface{
 	
-	constructor(){
+	constructor() {
 	}
 
 	async login(pRequest,pResponse) {
@@ -39,7 +46,7 @@ export class LoginController{
 			vResult.accessToken = vTokenSvc.generateToken(vTokenObj);
 			// Set Cookie session for web access
 			pResponse.cookie('accessToken', vResult.accessToken,{httpOnly:true});
-			console.log(pRequest.cookie.accessToken);
+			// console.log(pRequest.cookie.accessToken);
 		}
 		pResponse.json(vResult);
 	}
