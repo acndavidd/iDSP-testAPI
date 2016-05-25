@@ -39,6 +39,7 @@ export class LoginController{
 			vResult.accessToken = vTokenSvc.generateToken(vTokenObj);
 			// Set Cookie session for web access
 			pResponse.cookie('accessToken', vResult.accessToken,{httpOnly:true});
+			console.log(pRequest.cookie.accessToken);
 		}
 		pResponse.json(vResult);
 	}
