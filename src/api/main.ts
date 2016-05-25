@@ -54,6 +54,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
 
     ){
         if( pRequest.method !== 'OPTIONS') {
+            console.log(pRequest.cookies['accessToken']);
             // all request to service will validate token except login & logout
             var vToken = '';
             try{
@@ -90,16 +91,17 @@ vRouter.get('/productCategories',vTargetsActualsCtrl.productCategories);
 vRouter.get('/productSubCategories',vTargetsActualsCtrl.productSubCategories);
 
 vRouter.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
-
 vRouter.get('/getCategory',vTargetsActualsCtrl.getCategory);
 
 
 vRouter.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
-vRouter.post('/getRetailerRouteBCP',vRetailerCtrl.getRetailerRouteBCP);
-vRouter.post('/getRetailerCallPrep',vRetailerCtrl.getRetailerCallPrep);
-vRouter.post('/getLoadWallet',vRetailerCtrl.getLoadWallet);
-vRouter.post('/getPhysicalInventory',vRetailerCtrl.getPhysicalInventory);
-vRouter.post('/getPaymentHistory',vRetailerCtrl.getPaymentHistory);
+vRouter.post('/todaysRetailerRoute',vRetailerCtrl.todaysRetailerRoute);
+
+
+vRouter.post('/retailerCallPreparation',vRetailerCtrl.retailerCallPreparation);
+vRouter.post('/loadWallet',vRetailerCtrl.loadWallet);
+vRouter.post('/physicalInventory',vRetailerCtrl.physicalInventory);
+vRouter.post('/paymentHistory',vRetailerCtrl.paymentHistory);
 
 
 vRouter.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);

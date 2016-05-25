@@ -80,7 +80,7 @@ export class TargetsActualsComponent {
             error => {}
         );
 
-        this.getProduct();
+        this.getTargetsActuals();
 
     }
 
@@ -96,7 +96,7 @@ export class TargetsActualsComponent {
         return this._layoutService.getFilter();
     }
 
-    getProduct() {
+    getTargetsActuals() {
          console.log('Refresh PRoduct ' + this.vSelectedTab);
          this._targetsActualsService.queryProduct(this.vSelectedTab, this.vSelectedBrand).subscribe(
              response => {
@@ -118,7 +118,7 @@ export class TargetsActualsComponent {
         this.vWeekShow = false;
         this.vMonthShow = false;
         this.vSelectedTab = 'Day';
-        this.getProduct();
+        this.getTargetsActuals();
     }
 
     showMenuWeek() {
@@ -129,7 +129,7 @@ export class TargetsActualsComponent {
         this.vDayShow = false;
         this.vMonthShow = false;
         this.vSelectedTab = 'Week';
-        this.getProduct();
+        this.getTargetsActuals();
     }
 
     showMenuMonth() {
@@ -140,13 +140,13 @@ export class TargetsActualsComponent {
         this.vWeekShow = false;
         this.vDayShow = false;
         this.vSelectedTab = 'Month';
-        this.getProduct();
+        this.getTargetsActuals();
     }
 
     onChangeSelectBrand(pSelectedBrand) {
         this.vSelectedBrand = pSelectedBrand;
         console.log(this.vSelectedBrand + ' IS SELECTED');
-        this.getProduct();
+        this.getTargetsActuals();
     }
 
     getCatNameList() {

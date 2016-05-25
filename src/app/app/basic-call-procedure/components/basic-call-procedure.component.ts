@@ -75,7 +75,7 @@ export class BasicCallProcedureComponent {
 
     refreshRetailerRouteBCP() {
         console.log('Get  retailer route for Day');
-        this._retailerService.queryRetailerRouteBCP().subscribe(
+        this._retailerService.queryTodaysRetailerRoute().subscribe(
                 response => {
                     console.log('Hasil response ' + response.json());
                     if (response.json().status === 'Success') {

@@ -60,6 +60,8 @@ export class MpinComponent {
         if(pValue.length >=1 ) {
             console.log('FULL');
         }
+        // var curIndex = this.myElement.nativeElement.input();
+        // console.log('aaasek' + curIndex);
     }
 
 }

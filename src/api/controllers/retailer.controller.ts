@@ -241,7 +241,7 @@ export class RetailerController{
 		}
 	}
 
-	async getRetailerRouteBCP(pRequest, pResponse){
+	async todaysRetailerRoute(pRequest, pResponse){
 		try{
 			console.log("Start getting retailer route for BCP");
 			var vSelectedDay = pRequest.body.day;
@@ -278,7 +278,7 @@ export class RetailerController{
 		}
 	}
 
-	async getRetailerCallPrep(pRequest,pResponse) {
+	async retailerCallPreparation(pRequest,pResponse) {
 		try{
 			console.log("Start getting Retailer Preparation");
 
@@ -330,7 +330,7 @@ export class RetailerController{
 	}
 
 
-	async getLoadWallet(pRequest,pResponse) {
+	async loadWallet(pRequest,pResponse) {
 		try{
 			console.log("Start getting Load Wallet");
 
@@ -378,7 +378,7 @@ export class RetailerController{
 		}
 	}
 
-	async getPhysicalInventory(pRequest,pResponse) {
+	async physicalInventory(pRequest,pResponse) {
 		try{
 			console.log("Start getting Physical Inventory");
 
@@ -425,7 +425,7 @@ export class RetailerController{
 		}
 	}
 
-	async getPaymentHistory(pRequest,pResponse) {
+	async paymentHistory(pRequest,pResponse) {
 		try{
 
 			console.log("Start getting Physical Inventory");
