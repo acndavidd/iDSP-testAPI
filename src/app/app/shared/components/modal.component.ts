@@ -1,7 +1,9 @@
 import {Component} from 'angular2/core';
 import {VerificationCodeModalComponent} from './modal-includes/verification-code-modal.component';
 import {ResendMpinModalComponent} from './modal-includes/resend-mpin-modal.component';
-import {ModalService} from '../services/modal.service';
+import {Modal} from '../services/modal.service';
+import {LayoutService} from '../services/layout.service';
+import {Router} from 'angular2/router';
 
 @Component({
     selector: 'my-modal',
@@ -13,16 +15,33 @@ import {ModalService} from '../services/modal.service';
 })
 export class ModalComponent {
 
-    constructor(private _modalService: ModalService) {
+    constructor(private _modalService: Modal.ModalService, 
+        private _layoutService: LayoutService,
+        private _router: Router) {
 
     }
 
-    getModalStatus() {
+    getModalState() {
         return this._modalService.getModalState();
     }
 
-    getMainModalStatus() {
-        return this._modalService.getMainModalState();
+    getModalType() {
+        return this._modalService.getModalType();
     }
 
+    getModalMessage() {
+        return this._modalService.getModalMessage();
+    }
+
+    getFootNote() {
+        return this._modalService.getFootNote();
+    }
+
+    getButtons() {
+        return this._modalService.getButtons();
+    }
+
+    callBack(button) {
+        button.callback(button.param);
+    }
 }

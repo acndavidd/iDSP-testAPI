@@ -3,11 +3,10 @@
 	<div class="outer-box">
 		<div class="header">iDSP</div>
 		<div class="inner-box">
-			<div class="error-alert" id="error-alert">{{getErrorMessageText()}}</div>
 			<div><input placeholder="Username" [(ngModel)]="vUsername" id="username"/></div>
 			<div><input placeholder="Password" type="password" [(ngModel)]="vPassword" id="password"/></div>
 			<a (click)="login($event)" id="login-link"><div class="login-button" >SIGN IN</div></a>
-			<p><a (click)="toggleVerificationCodeModal()" id="forgot-password-link">Forgot your password?</a></p>
+			<p><a (click)="toggleForgotPassword()" id="forgot-password-link">Forgot your password?</a></p>
 		</div>
 	</div>
 	<div class="smart-logo"></div>

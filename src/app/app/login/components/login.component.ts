@@ -6,9 +6,8 @@ import {NgModel} from 'angular2/common';
 import {AuthenticationService} from '../../shared/services/authentication.service';
 import {Layout} from '../../../models/layout';
 import {LayoutService} from '../../shared/services/layout.service';
-import {ModalService} from '../../shared/services/modal.service';
+import {Modal} from '../../shared/services/modal.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
-import {SQLiteService} from '../../shared/services/sqlite.service';
 
 @Component({
     selector: 'login',
@@ -25,23 +24,19 @@ export class LoginComponent {
         private _router: Router,
         private _layoutService: LayoutService,
         private _authenticationService: AuthenticationService,
-        private _modalService: ModalService,
-        private _pageNavigationService: PageNavigationService,
-        private _sqliteService: SQLiteService ) {
+        private _modalService: Modal.ModalService,
+        private _pageNavigationService: PageNavigationService
+        ) {
 
         this._layoutService.setCurrentPage('Login');
     }
 
     login(pEvent) {
-        pEvent.preventDefault();
         // For Hit API
         // this._authenticationService.login(this.vUsername,this.vPassword);
 
         // For By Pass Directly without API
-        this._router.navigate(['Mpin']);
-        /* this._router.navigate(['MainPage','MyTransaction']);
-         
-        let vCurrentContext = this;
+        /*let vCurrentContext = this;
         vCurrentContext._sqliteService.executeQuery('CREATE TABLE IF NOT EXISTS test_table(anjay varchar(100))').subscribe( response => {
             vCurrentContext._sqliteService.executeQuery('INSERT INTO test_table VALUES (?)', ['anjay']).subscribe( response => {
                 vCurrentContext._sqliteService.executeQuery('SELECT anjay FROM test_table').subscribe( response => {
@@ -54,8 +49,10 @@ export class LoginComponent {
         }, error => {
             console.log(error);
         });
-
         */
+        // this._router.navigate(['Mpin']);
+        pEvent.preventDefault();
+        this._authenticationService.login(this.vUsername, this.vPassword);
     }
 
     getLoadingState() {
@@ -66,11 +63,7 @@ export class LoginComponent {
         this._router.navigate(['ForgotPassword']);
     }
 
-    getErrorMessageText() {
-        return this._authenticationService.getError();
-    }
-
-    toggleVerificationCodeModal() {
-        this._modalService.toggleVerificationCodeModal();
+    toggleForgotPassword() {
+        this._modalService.toggleModal('Please Contact your Distributor<br/>Admin for Password Reset<br/>(+63-9228888899).', Modal.ModalType.INFO);
     }
 }

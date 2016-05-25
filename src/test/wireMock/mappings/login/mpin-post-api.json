@@ -1,0 +1,13 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/OPISNET/services/idsp/userAuthorization",
+        "bodyPatterns" : [
+            { "equalToJson" : "{ \"Username\": \"DSP00001\" , \"MPIN\" : \"12345\"}", "jsonCompareMode": "LENIENT" }
+        ]
+    },
+    "response": {
+        "status": 200,       
+        "bodyFileName": "login/MPIN-success.json"
+    }
+}

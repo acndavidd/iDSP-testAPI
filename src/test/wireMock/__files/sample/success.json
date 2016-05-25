@@ -1,0 +1,13 @@
+{ 
+	"status": "Data Found",
+	"data": [
+		{
+			"retailer_id": "RET00001",
+			"retailer_name" : "YO MAMEN"
+		},
+		{
+			"retailer_id": "RET00002",
+			"retailer_name" : "YO MAMEN 2"
+		}
+	]
+}

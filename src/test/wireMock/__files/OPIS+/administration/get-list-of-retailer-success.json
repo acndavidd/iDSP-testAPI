@@ -1,0 +1,43 @@
+{
+	"Status" : 200,
+	"StatusMessage" : "OK",
+	"RecordCount" : 4,
+	"RetailerList": [
+		{
+			"RetailerID" : "RET000001",
+			"RetailerStoreName" : "Gloria Cell",
+			"Retailer MIN" : "123132131",
+			"Retailer Address" : "Jl. SUKA SUKA GUE",
+			"Retailer Outlet Type" : "KELONTONG",
+			"DSPID" : "DSP00001",
+			"DSPName" : "SIAPA AJA"
+		},
+		{
+			"RetailerID" : "RET000002",
+			"RetailerStoreName" : "Jaja Cell",
+			"Retailer MIN" : "321321321",
+			"Retailer Address" : "Jl. YG PENTING ADA",
+			"Retailer Outlet Type" : "SUPERMARKET",
+			"DSPID" : "DSP00001",
+			"DSPName" : "SIAPA AJA"
+		},
+		{
+			"RetailerID" : "RET000003",
+			"RetailerStoreName" : "Bird Cell",
+			"Retailer MIN" : "7879797",
+			"Retailer Address" : "Jl. TOK TOK WOW",
+			"Retailer Outlet Type" : "MINIMARKET",
+			"DSPID" : "DSP00001",
+			"DSPName" : "SIAPA AJA"
+		},
+		{
+			"RetailerID" : "RET000004",
+			"RetailerStoreName" : "Tata Cell",
+			"Retailer MIN" : "54445434",
+			"Retailer Address" : "Jl. CUIT CUIT",
+			"Retailer Outlet Type" : "SUPERMARKET",
+			"DSPID" : "DSP00001",
+			"DSPName" : "SIAPA AJA"
+		}
+	]
+}

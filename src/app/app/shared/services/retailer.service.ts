@@ -150,6 +150,42 @@ export class RetailerService {
         return this._http.post('/getRetailerCallPrep', JSON.stringify(vData));
     }
 
+    getLoadWallet(pRetailerID) {
+        console.log('Starts get load wallet for' + pRetailerID);
+
+          let vData = {
+            salesPerson: 'DSP00001',
+            retailerId : pRetailerID
+        };
+
+        return this._http.post('/getLoadWallet', JSON.stringify(vData));
+
+    }
+
+    getPhysicalInventory(pRetailerID) {
+        console.log('Starts get physical inventory' + pRetailerID);
+
+          let vData = {
+            salesPerson: 'DSP00001',
+            retailerId : pRetailerID
+        };
+
+        return this._http.post('/getPhysicalInventory', JSON.stringify(vData));
+
+    }
+
+    getPaymentHistory(pRetailerID) {
+        console.log('Starts get payment history of' + pRetailerID);
+
+          let vData = {
+            retailerId : pRetailerID
+        };
+
+        return this._http.post('/getPaymentHistory', JSON.stringify(vData));
+
+    }
+
+
     getRetailer(pRetailerID) {
         /*
         let vData:string = 'retailerID='+pRetailerID;
