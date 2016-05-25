@@ -67,7 +67,8 @@ export class HomeComponent {
         this._pageNavigationService.navigate('Remittance', null, null);
     }
     goToStockReturn() {
-        this._pageNavigationService.navigate('StockReturn', null, null);
+        this._authenticationService.test();
+        // this._pageNavigationService.navigate('StockReturn', null, null);
     }
     toggleLogout() {
         this._authenticationService.logout();

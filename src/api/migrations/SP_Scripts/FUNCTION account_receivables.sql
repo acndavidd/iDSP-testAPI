@@ -2,7 +2,7 @@
 
 -- DROP FUNCTION public.get_account_receivables(character varying, numeric);
 
-CREATE OR REPLACE FUNCTION public.get_account_receivables(
+CREATE OR REPLACE FUNCTION account_receivables(
     v_dsp_id character varying,
     v_date numeric)
   RETURNS json AS

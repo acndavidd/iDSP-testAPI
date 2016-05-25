@@ -4,10 +4,17 @@ import {TokenService} from '../services/token.service';
 import {ORMService} from '../services/orm.service';
 import {APIService} from '../services/api.service';
 
+export interface LoginInterface {
+	login(pRequest, pResponse): Promise<void>;
+	submitMPIN(pRequest, pResponse): Promise<void>;
+	verifyToken(pRequest, pResponse): void;
+	logout(pRequest, pResponse): Promise<void>
+	test(pRequest, pResponse): Promise<void>;
+}
 
-export class LoginController{
+export class LoginController implements LoginInterface{
 	
-	constructor(){
+	constructor() {
 	}
 
 	async login(pRequest,pResponse) {
@@ -17,11 +24,52 @@ export class LoginController{
 			Username : pRequest.body.Username,
 			Password : pRequest.body.Password
 		};
-		let vResult = await vHttpSvc.post(APIService.APIType.OPISNET, vPath, null, vData);
+		let vResult = JSON.parse(await vHttpSvc.post(APIService.APIType.OPISNET, vPath, null, vData));
 		pResponse.json(vResult);
 	}
 
-	logout(pRequest,pResponse){
+	async submitMPIN(pRequest, pResponse) {
+		let vHttpSvc = new APIService.HTTPService();
+		let vTokenSvc = new TokenService();
+		let vPath:string = '/OPISNET/services/idsp/userAuthorization';
+		let vData = {
+			Username : pRequest.body.Username,
+			MPIN : pRequest.body.MPIN
+		};
+		let vResult = JSON.parse(await vHttpSvc.post(APIService.APIType.OPISNET, vPath, null, vData));
+		// If success login , generate token for services
+		if(vResult.Status === 200) {
+			let vTokenObj = {
+				DSP_ID : pRequest.body.Username,
+				AccessToken : vResult.AccessToken
+			};
+			vResult.accessToken = vTokenSvc.generateToken(vTokenObj);
+			// Set Cookie session for web access
+			pResponse.cookie('accessToken', vResult.accessToken,{httpOnly:true});
+		}
+		pResponse.json(vResult);
+	}
+
+	verifyToken(pRequest, pResponse) {
+		let vTokenSvc = new TokenService();
+		let vResult = {
+			Status : 200,
+			StatusMessage : "Success Bro",
+			TokenObject : pResponse.locals.jwt
+		};
+		pResponse.json(vResult);
+	}
+
+	async logout(pRequest, pResponse) {
+		let vResult = {
+			Status : 200,
+			StatusMessage : "Success Bro"
+		};
+		pResponse.clearCookie('accessToken');
+		pResponse.json(vResult);
+	}
+
+	test(pRequest,pResponse){
 		try{
 			var message = 'Insert start.';
 			console.log("mw Init");

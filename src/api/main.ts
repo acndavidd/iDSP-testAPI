@@ -18,7 +18,6 @@ var vApp = vExpress();
 var vBodyParser = require('body-parser');
 var vCookieParser = require('cookie-parser');
 var vSOAP = require('soap');
-var vRouter = vExpress.Router();
 const PORT: number = process.env.PORT || vConfig.port || 8080;
 
 var vRetailerCtrl:RetailerController = new RetailerController();
@@ -34,9 +33,8 @@ vApp.use(vBodyParser.urlencoded({extended: true}));
 vApp.use(vBodyParser.json());
 vApp.use(vCookieParser());
 
-
 vApp.use(function(pRequest, pResponse, pNext) {
-    /*Allow access control origin*/
+    // Allow access control origin
     let vAllow: string;
     let vOrigin: string = pRequest.get('origin');
     if (vOrigin == 'http://localhost:3000') {
@@ -49,45 +47,44 @@ vApp.use(function(pRequest, pResponse, pNext) {
     pResponse.header('Access-Control-Allow-Headers', 
         'Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept,Authorization,Proxy-Authorization,X-session');
     pResponse.header('Access-Control-Allow-Methods','GET,PUT,DELETE,POST');
-
     if(
         pRequest.path !== '/service/login' && 
-        pRequest.path !== '/service/logout' && 
+        pRequest.path !== '/service/submitMPIN' &&
         pRequest.path !== '/service/generateCallPlan'
 
-    ){//all request to service will validate token except login
-        var vToken = '';
-        try{
-            if(pRequest.cookies['accessToken']){//accessed from web
-                vToken = vCookieParser.JSONCookies(pRequest.cookies).accessToken;
-            }else{//accessed from mobile
-                vToken = pRequest.get('Authorization');
-                vToken = vToken.replace('Bearer ','');
+    ){
+        if( pRequest.method !== 'OPTIONS') {
+            // all request to service will validate token except login & logout
+            var vToken = '';
+            try{
+                if(pRequest.cookies['accessToken']){//accessed from web
+                    vToken = vCookieParser.JSONCookies(pRequest.cookies).accessToken;
+                }else{ // accessed from mobile
+                    vToken = pRequest.get('Authorization');
+                    vToken = vToken.replace('Bearer ','');
+                }
+                var jwt = vTokenSvc.verifyToken(vToken);
+                pResponse.locals.jwt = jwt;
+            }catch(err){
+                console.log('error : ' + err);
+                pResponse.sendStatus(403);
             }
-            var jwt = vTokenSvc.verifyToken(vToken);
-            pRequest.locals.jwt = jwt;
-            if(pRequest.path === '/service/verifyToken'){
-                var vResult = {
-                    success : 1,
-                    token : jwt
-                };
-                pRequest.json(vResult);
-            }
-        }catch(err){
-            console.log('error : ' + err);
-            //pResponse.sendStatus(403);
-        }      
+        }     
     }
     pNext();
 });
 
+var vRouter = vExpress.Router();
+
 vRouter.post('/login',vLoginCtrl.login);
+vRouter.post('/submitMPIN', vLoginCtrl.submitMPIN);
+vRouter.post('/verifyToken', vLoginCtrl.verifyToken);
+vRouter.get('/logout', vLoginCtrl.logout);
 
 vRouter.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
-vRouter.get('/logout',vLoginCtrl.logout);
 vRouter.get('/targetsActuals',vTargetsActualsCtrl.getBrand);
 vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
-vRouter.post('/getAccountsReceivables',vAccCtrl.getAccountsReceivables);
+vRouter.post('/AccountsReceivables',vAccCtrl.AccountsReceivables);
 
 vRouter.get('/getProductCategory',vTargetsActualsCtrl.getProdCat);
 vRouter.get('/getProductSubCategory',vTargetsActualsCtrl.getProdSubCat);

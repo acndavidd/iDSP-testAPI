@@ -3,7 +3,7 @@
         "method": "POST",
         "url": "/OPISNET/services/idsp/userAuthorization",
         "bodyPatterns" : [
-            { "doesNotMatch" : "{ \"Username\": \"DSP00001\" , \"MPIN\" : \"12345\"}" }
+            { "doesNotMatch" : ".*DSP00001.*" }
         ]
     },
     "response": {

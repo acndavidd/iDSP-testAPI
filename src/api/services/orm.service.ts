@@ -6,6 +6,11 @@ var vEnv = process.env.NODE_ENV || "development";
 var vExec = require('child_process').spawn;
 var vDebug = (vEnv === 'development') ? true : false;
 
+export interface ORMInterface {
+	sp(pSPName, pParams): Promise<any>;
+	getSequelize(): any;
+}
+
 export class ORMService{
 	private vModels;
 	private vAssociatedModels;
@@ -52,7 +57,7 @@ export class ORMService{
 				try{
 					let vParams;
 					//build params
-					if (pParams.length > 0) {
+					if (pParams) {
 						vParams = '(';
 						for(let vParam in pParams){
 							vParams += "'" + pParams[vParam] + "',";
