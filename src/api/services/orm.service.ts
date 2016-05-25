@@ -52,7 +52,7 @@ export class ORMService{
 				try{
 					let vParams;
 					//build params
-					if (pParams.length > 0) {
+					if (pParams) {
 						vParams = '(';
 						for(let vParam in pParams){
 							vParams += "'" + pParams[vParam] + "',";

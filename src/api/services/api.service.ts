@@ -45,8 +45,22 @@ export module APIService {
 			});
 		}
 
-		get(pAPIType, pURL, pHeaders) {
+		get(pAPIType, pURL, pHeaders, pUrlParams?) {
 			console.log('GET ' + pAPIType + pURL);
+
+			let fullUrl = pAPIType + pURL;
+			if(pUrlParams) {
+				console.log("params is exist");
+				fullUrl = fullUrl + '?'
+
+				for(let vParam in pUrlParams){
+					fullUrl += vParam + "=" + pUrlParams[vParam] + "&";
+				}
+				fullUrl = fullUrl.substring(0,fullUrl.lastIndexOf('&'));
+			}
+
+			console.log("Here are the full urls" + fullUrl);
+
 			return new Promise<string>(function(pResolve, pReject){
 				let vReqHeaders;
 				if( !pHeaders) {
@@ -55,12 +69,14 @@ export module APIService {
 					vReqHeaders = pHeaders;
 				}
 				vRequest.get({
-					url : pAPIType + pURL,
+					url : fullUrl,
 					headers : vReqHeaders
 				}, function(pErr, pResponse, pBody){
-					pReject(pBody);
+					if(pErr)pReject(pErr);
+					else pResolve(pBody);
 				});
 			});
 		}
+
 	}
 }
