@@ -4,12 +4,14 @@ export module APIService {
 	var vRequest = require('request'); 
 	var vConfig = require('../config/config.json')[vEnv];
 	var vCurrentContext;
+
 	export var APIType = {
 		OPISNET : vConfig.service["OPIS+"],
 		ELP : vConfig.service["ELP"]	
 	}
-
+	
 	export class HTTPService {
+		
 		constructor() {
 			vCurrentContext = this;
 		}

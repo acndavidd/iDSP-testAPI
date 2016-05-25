@@ -57,7 +57,8 @@ export class LayoutService {
         back: false,
         filter: false,
         edit: false,
-        search: false
+        search: false,
+        add: false
     };
 
 
@@ -170,12 +171,14 @@ export class LayoutService {
                 back: false,
                 filter: false,
                 edit: false,
-                search: false
+                search: false,
+                add: false
             };
             // ONLY BCP PAGE NEEDS FILTER
             if (pCurrent === 'BasicCallProcedure') {
                 this.vCurrentPointer = '0';
                 this.vHeaderItem.filter = true;
+                this.vHeaderItem.add = true;
             }
         }
         // PARENT PAGE - END
@@ -194,7 +197,8 @@ export class LayoutService {
                 back: false,
                 filter: true,
                 edit: false,
-                search: false
+                search: false,
+                add: false
             };
         }
         // SHARED PAGE - END
@@ -221,7 +225,8 @@ export class LayoutService {
                 back: false,
                 filter: true,
                 edit: false,
-                search: false
+                search: false,
+                add: false
             };
         }
         // UNDER MY DASHBOARD - END
@@ -240,9 +245,27 @@ export class LayoutService {
                 back: true,
                 filter: false,
                 edit: false,
-                search: false
+                search: false,
+                add: false
             };
-        } else if (
+        }
+        else if (
+            pCurrent === 'BCPAddRetailerRoute') {
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+            this.vHeaderItem = {
+                hamburger: false,
+                back: true,
+                filter: false,
+                edit: false,
+                search: false,
+                add: false
+            };
+        }
+        else if (
             pCurrent === 'CallPreparation') {
             this.vCurrentPointer = '1';
 
@@ -254,10 +277,11 @@ export class LayoutService {
 
             this.vHeaderItem = {
                 hamburger: false,
-                back: true,
+                back: false,
                 filter: false,
                 edit: false,
-                search: false
+                search: false,
+                add: false
             };
         }
         else if (
@@ -275,14 +299,11 @@ export class LayoutService {
                 back: false,
                 filter: false,
                 edit: false,
-                search: false
+                search: false,
+                add: false
             };
         } else if (
             pCurrent === 'Offers') {
-            this._pageNavigationService.resetListPreviousData();
-            this.vOldCurrentPage = 'CloseDay';
-            this.vOldCurrentPageParams = null;
-            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
             this.vCurrentPointer = '3';
 
             this.vLayoutState = {
@@ -295,14 +316,11 @@ export class LayoutService {
                 back: false,
                 filter: false,
                 edit: false,
-                search: false
+                search: false,
+                add: false
             };
         } else if (
             pCurrent === 'RetailerSalesOrder') {
-            this._pageNavigationService.resetListPreviousData();
-            this.vOldCurrentPage = 'BasicCallProcedure';
-            this.vOldCurrentPageParams = null;
-            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
             this.vCurrentPointer = '4';
 
             this.vLayoutState = {
@@ -316,14 +334,11 @@ export class LayoutService {
                 back: false,
                 filter: false,
                 edit: false,
-                search: false
+                search: false,
+                add: false
             };
         } else if (
             pCurrent === 'SalesOrderPayment') {
-            this._pageNavigationService.resetListPreviousData();
-            this.vOldCurrentPage = 'BasicCallProcedure';
-            this.vOldCurrentPageParams = null;
-            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
             this.vCurrentPointer = '5';
 
             this.vLayoutState = {
@@ -336,14 +351,11 @@ export class LayoutService {
                 back: false,
                 filter: false,
                 edit: false,
-                search: false
+                search: false,
+                add: false
             };
         } else if (
             pCurrent === 'UnservedOrder') {
-            this._pageNavigationService.resetListPreviousData();
-            this.vOldCurrentPage = 'BasicCallProcedure';
-            this.vOldCurrentPageParams = null;
-            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
             this.vCurrentPointer = '6';
 
             this.vLayoutState = {
@@ -357,7 +369,8 @@ export class LayoutService {
                 back: false,
                 filter: false,
                 edit: false,
-                search: false
+                search: false,
+                add: false
             };
         }
         // UNDER BASIC CALL PROCEDURE - END
@@ -383,7 +396,8 @@ export class LayoutService {
                 back: false,
                 filter: false,
                 edit: false,
-                search: false
+                search: false,
+                add: false
             };
         }
         // UNDER CLOSE OF THE DAY - END
@@ -441,7 +455,7 @@ export class LayoutService {
         // }
         // UNUSED PAGE - END
 
-        console.log('In Layout Current Page ' + pCurrent);
+        console.log('In Layout Current Page ' + pCurrent + ' - ' + this.vHeaderItem.add);
         this._pageNavigationService.setCurrentPage(pCurrent);
     }
 
@@ -486,4 +500,9 @@ export class LayoutService {
         return this.vCurrentPointer;
     }
 
+    toggleAdd() {
+        if (this.vCurrentPage === 'BasicCallProcedure') {
+            this._pageNavigationService.navigate('BCPAddRetailerRoute', null, null);
+        }
+    }
 }

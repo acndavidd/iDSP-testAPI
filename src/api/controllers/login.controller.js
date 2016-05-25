@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments)).next());
     });
 };
+const token_service_1 = require('../services/token.service');
 const orm_service_1 = require('../services/orm.service');
 const api_service_1 = require('../services/api.service');
 class LoginController {
@@ -20,11 +21,53 @@ class LoginController {
                 Username: pRequest.body.Username,
                 Password: pRequest.body.Password
             };
-            let vResult = yield vHttpSvc.post(api_service_1.APIService.APIType.OPISNET, vPath, null, vData);
+            let vResult = JSON.parse(yield vHttpSvc.post(api_service_1.APIService.APIType.OPISNET, vPath, null, vData));
             pResponse.json(vResult);
         });
     }
+    submitMPIN(pRequest, pResponse) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let vHttpSvc = new api_service_1.APIService.HTTPService();
+            let vTokenSvc = new token_service_1.TokenService();
+            let vPath = '/OPISNET/services/idsp/userAuthorization';
+            let vData = {
+                Username: pRequest.body.Username,
+                MPIN: pRequest.body.MPIN
+            };
+            let vResult = JSON.parse(yield vHttpSvc.post(api_service_1.APIService.APIType.OPISNET, vPath, null, vData));
+            // If success login , generate token for services
+            if (vResult.Status === 200) {
+                let vTokenObj = {
+                    DSP_ID: pRequest.body.Username,
+                    AccessToken: vResult.AccessToken
+                };
+                vResult.accessToken = vTokenSvc.generateToken(vTokenObj);
+                // Set Cookie session for web access
+                pResponse.cookie('accessToken', vResult.accessToken, { httpOnly: true });
+            }
+            pResponse.json(vResult);
+        });
+    }
+    verifyToken(pRequest, pResponse) {
+        let vTokenSvc = new token_service_1.TokenService();
+        let vResult = {
+            Status: 200,
+            StatusMessage: "Success Bro",
+            TokenObject: pResponse.locals.jwt
+        };
+        pResponse.json(vResult);
+    }
     logout(pRequest, pResponse) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let vResult = {
+                Status: 200,
+                StatusMessage: "Success Bro"
+            };
+            pResponse.clearCookie('accessToken');
+            pResponse.json(vResult);
+        });
+    }
+    test(pRequest, pResponse) {
         try {
             var message = 'Insert start.';
             console.log("mw Init");

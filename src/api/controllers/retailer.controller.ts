@@ -1,5 +1,6 @@
 'use strict';
 import {ORMService} from '../services/orm.service';
+import {ErrHandlerService} from '../services/err.handler.service';
 
 export interface RetailerInterface{
 	getProduct(pRequest, pResponse):void;
@@ -15,6 +16,8 @@ export interface RetailerInterface{
 
 
 export class RetailerController implements RetailerInterface{
+
+	private errService:ErrHandlerService = new ErrHandlerService();
 
 	constructor(){
 		
@@ -72,8 +75,19 @@ export class RetailerController implements RetailerInterface{
 				selected_ret_id : vSelectedRetailId
 			};
 
-			var vResult = await vOrmSvc.sp('get_retailer_summary', vParams );     
+			var vResult = JSON.parse(await vOrmSvc.sp('get_retailer_summary', vParams ));     
 			console.log("Query Done with result : "+ JSON.stringify(vResult));
+
+			if (vResult.status == "Error")
+			{
+				vResult = {
+						"status" : vResult.status,
+						"errorType": vResult.errorType,
+						"errorCode": this.errService.getErrorMessage(vResult.errorCode),
+						"result" : null
+				};
+			}
+
 			pResponse.json(vResult);			
 		}
 		catch(pErr){
@@ -82,8 +96,8 @@ export class RetailerController implements RetailerInterface{
 			var vError = {
 						"status" : "Error",
 						"errorType": "Internal Exception",
-						"errorCode": "ERR_INTERNAL_SYSTEM",
-						"result" : ""
+						"errorCode": this.errService.getErrorMessage("ERR_INTERNAL_SYSTEM"),
+						"result" : null
 					};
 			pResponse.json(vError);
 		}
