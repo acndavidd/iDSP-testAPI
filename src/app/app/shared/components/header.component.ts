@@ -52,4 +52,8 @@ export class HeaderComponent implements OnInit {
     toggleFilter() {
         this._layoutService.setFilter();
     }
+
+    toggleAdd() {
+        this._layoutService.toggleAdd();
+    }
 }
