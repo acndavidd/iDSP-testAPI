@@ -1,4 +1,4 @@
-<div class="filter-container-dsp" *ngIf="getFilter().filterDSPAlerts">
+<!-- <div class="filter-container-dsp" *ngIf="getFilter().filterDSPAlerts">
 	<div class="two-col">
 	   <div class="two-col-child-40">
 			<div class="filter-label">Value Segment</div>
@@ -28,8 +28,58 @@
 	<div class="float-bottom">
 	</div>
 </div>
+ -->
+
 
 <div class="container-body">
+    <div class="filter-container" *ngIf="getFilter().filterDSPAlerts">
+
+        <div class="item-container">
+            <div class="container">
+                <div class='cell'>
+                    <div class="container">
+                        <div class="cell filter-label width-50 padding-top-1 padding-bottom-1">Value Segment</div>
+                    </div>
+
+                    <div class="container">
+                        <div class="cell filter-label width-50 padding-top-1 padding-bottom-1">Threshold</div>
+                    </div>
+                </div>
+
+                <div class='cell'>
+                    <div class="container">
+                        <div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
+                            <select name="value_segment_filter" [(ngModel)]="vValueSegmentFilter"  (ngModelChange)="onFilterValueSegment($event)">
+                                <option value="">All</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
+                            <select name="value_segment_filter">
+                                <option value="">500.00 &nbsp; &#8369;</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+            
+    </div>
+
+
+
+
+
+
     <div class="item-container">
         <div class="container">
             <div class='cell'>

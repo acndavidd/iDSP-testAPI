@@ -13,42 +13,74 @@
 	</div>
 </a>
 
-<div class="inventory">
-
-	<div class="filter-container physical" *ngIf="getFilter().filterInventoryPhysical && vPhysicalShow">
-		<div class="filter-input">
-			<input type="text" placeholder="Enter Brand, Category, Sub Category, or Item Code"/>
-		</div>
-		<div class="filter-label">Brand</div>
-		<div class="filter-dropdown">
-			<select name="cars">
-				<option value="volvo">SMART</option>
-				<option value="saab">SUN</option>
-			</select>
-		</div>
-		<div class="filter-label">Sub Category</div>
-		<div class="filter-dropdown">
-			<select name="cars">
-				<option value="volvo">Smart SIM</option>
-				<option value="saab">TNT CTC/TL</option>
-				<option value="fiat">Regular Cards</option>
-				<option value="audi">Smart CTC/TL</option>
-			</select>
-		</div>
-		<div class="filter-label">Item Code</div>
-		<div class="filter-dropdown">
-			<select name="cars">
-				<option value="volvo">MC00087PD</option>
-				<option value="saab">MC00087PD</option>
-				<option value="fiat">DC0002</option>
-				<option value="audi">19411</option>
-			</select>
-		</div>
-	</div>
-</div>
 
 
 <div class="container-body">
+
+	<div class="filter-container" *ngIf="getFilter().filterInventoryPhysical && vPhysicalShow">
+
+		<div class='filter-input input'>
+            <div class='icon'></div>
+            <input type='text' placeholder='Enter Brand, Category, Sub Category, or Item Code' />
+        </div>  
+
+
+        <div class="item-container">
+			<div class="container">
+				<div class='cell'>
+					<div class="container">
+						<div class="cell filter-label width-50 padding-top-1 padding-bottom-1">Brand</div>
+					</div>
+
+					<div class="container">
+						<div class="cell filter-label width-50 padding-top-1 padding-bottom-1">Sub Category</div>
+					</div>
+
+					<div class="container">
+						<div class="cell filter-label width-50 padding-top-1 padding-bottom-1">Item Code</div>
+					</div>
+
+				</div>
+				<div class='cell'>
+					<div class="container">
+						<div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
+							<select name="cars">
+								<option value="volvo">Smart</option>
+								<option value="saab">Sun</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="container">
+						<div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
+							<select name="cars">
+								<option value="volvo">Smart SIM</option>
+								<option value="saab">TNT CTC/TL</option>
+								<option value="fiat">Regular Cards</option>
+								<option value="audi">Smart CTC/TL</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="container">
+						<div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
+							<select name="cars">
+								<option value="volvo">MC00087PD</option>
+								<option value="saab">MC00087PD</option>
+								<option value="fiat">DC0002</option>
+								<option value="audi">19411</option>
+							</select>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+			
+	</div>
+
+
+
 	<div *ngIf="vLoadShow">
 		<div>
 			<div class="item-container" (click)="subLoadMenuShow(i)">
