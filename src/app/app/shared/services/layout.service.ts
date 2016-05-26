@@ -422,7 +422,8 @@ export class LayoutService {
         // UNDER CLOSE OF THE DAY - START
         else if (
             pCurrent === 'Collection' ||
-            pCurrent === 'VisitedRetail') {
+            pCurrent === 'VisitedRetail' ||
+            pCurrent === 'CDUnservedOrder') {
             // this._pageNavigationService.setPreviousPage('CloseDay');
             this._pageNavigationService.resetListPreviousData();
             this.vOldCurrentPage = 'CloseDay';
