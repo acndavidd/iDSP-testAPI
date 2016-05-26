@@ -51,7 +51,17 @@ CHECKBOX
 END OF CHECKBOX
 ===========================================================
 */
-
+//PLEASE PUT HEIGHT HERE
+&.height-1 { height: 1vw; }
+&.height-2 { height: 2vw; }
+&.height-3 { height: 3vw; }
+&.height-4 { height: 4vw; }
+&.height-5 { height: 5vw; }
+&.height-6 { height: 6vw; }
+&.height-7 { height: 7vw; }
+&.height-8 { height: 8vw; }
+&.height-9 { height: 9vw; }
+&.height-10 { height: 10vw; }
 
 // PLEASE PUT WIDTH HERE
 &.width-10 { width: 10%; }
@@ -262,37 +272,7 @@ LIST VIEW - ICON MENU
     background-size: 15vw;
 }
 
-/*
-===========================================================
-SUBMENU
-===========================================================
-*/
-.sub-main-menu {
-    z-index: 1;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-    .container-body {
-        background-color: $dark-cyan;
-        overflow-x: hidden;
-        position: relative;
-        .separator {
-            border-bottom: 0.1em solid $white;
-        }
-        .sub-main-button {
-            display: inline-block;
-            width: 100%;
-            padding-bottom: 0.8em;
-            padding-top: 0.8em;
-            background-color: $dark-cyan;
-            .button-identifier {
-                font-size: $content-heading-1;
-                text-align: center;
-                color: $white;
-            }
-        }
-    }
-}
+
 
 /*
 ===========================================================
