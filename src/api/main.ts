@@ -54,7 +54,6 @@ vApp.use(function(pRequest, pResponse, pNext) {
 
     ){
         if( pRequest.method !== 'OPTIONS') {
-            console.log(pRequest.cookies['accessToken']);
             // all request to service will validate token except login & logout
             var vToken = '';
             try{
@@ -81,19 +80,25 @@ vRouter.post('/login',vLoginCtrl.login);
 vRouter.post('/submitMPIN', vLoginCtrl.submitMPIN);
 vRouter.post('/verifyToken', vLoginCtrl.verifyToken);
 vRouter.get('/logout', vLoginCtrl.logout);
+
 vRouter.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
-vRouter.get('/brands',vTargetsActualsCtrl.brands);
 vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
-vRouter.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
 vRouter.post('/AccountsReceivables',vAccCtrl.AccountsReceivables);
-vRouter.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
-vRouter.post('/todaysRetailerRoute',vRetailerCtrl.todaysRetailerRoute);
-vRouter.post('/retailerCallPreparation',vRetailerCtrl.retailerCallPreparation);
-vRouter.post('/loadWallet',vRetailerCtrl.loadWallet);
-vRouter.post('/physicalInventory',vRetailerCtrl.physicalInventory);
-vRouter.post('/paymentHistory',vRetailerCtrl.paymentHistory);
-vRouter.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
+
 vRouter.get('/testSync',vSchedCtrl.syncTableMaster);
+
+//API BASED ON GUIDELINES
+ vRouter.post('/todaysRetailerRoute',vRetailerCtrl.todaysRetailerRoute);
+ vRouter.post('/retailerCallPreparation',vRetailerCtrl.retailerCallPreparation);
+ vRouter.post('/loadWallet',vRetailerCtrl.loadWallet);
+ vRouter.post('/physicalInventory',vRetailerCtrl.physicalInventory);
+ vRouter.post('/paymentHistory',vRetailerCtrl.paymentHistory);
+ vRouter.get('/brands',vTargetsActualsCtrl.brands);
+ vRouter.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
+ vRouter.post('/additionalRetailerRoute',vRetailerCtrl.additionalRetailerRoute);
+
+vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
+vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);
 
 vApp.use('/service',vRouter);
 vApp.listen(PORT);
