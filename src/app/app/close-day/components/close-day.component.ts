@@ -49,6 +49,10 @@ export class CloseDayComponent {
         this._pageNavigationService.navigate('Collection', null, null);
     }
 
+    goToUnservedOrder() {
+        this._pageNavigationService.navigate('CDUnservedOrder', null, null);
+    }
+
     getToday() {
         return this.vDate;
     }
