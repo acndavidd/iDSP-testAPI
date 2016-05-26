@@ -28,13 +28,12 @@ export class OffersComponent {
         private _pageNavigationService: PageNavigationService,
         private _router: Router
         ) {
-        this._retailerService.getRetailer(100);
         this._layoutService.setCurrentPage('Offers');
         this._headerService.setTitle('Offers');
 
     }
 
-    gotoBCPActivityStep() {
-        this._pageNavigationService.navigate('BCPActivityStep', null, null);
+    gotoRetailerSalesOrder() {
+        this._pageNavigationService.navigate('RetailerSalesOrder', null, null);
     }
 }

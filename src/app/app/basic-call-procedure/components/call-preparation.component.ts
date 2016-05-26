@@ -108,9 +108,13 @@ export class CallPreparationComponent {
         return this._matchMediaService.getMm();
     }
 
-    HCgotoBCPActivityStep() {
-        this._pageNavigationService.navigate('BCPActivityStep', null, null);
+    HCgotoCollection() {
+        this._pageNavigationService.navigate('BCPCollection', null, null);
     }
+
+    // HCgotoBCPActivityStep() {
+    //     this._pageNavigationService.navigate('BCPActivityStep', null, null);
+    // }
 
     // gotoBCPActivityStep(pSelectedRetailer) {
     //     console.log('all parameters' + pSelectedRetailer);
