@@ -30,6 +30,7 @@ export class AccountsReceivablesComponent {
     vTotalReceivablesInRoute: number = 0;
     vTotalReceivablesAll: number = 0;
     vSelectedRoute;
+    vRetailerSelfList: any;
 
     constructor (
         private _layoutService: LayoutService,
@@ -44,6 +45,7 @@ export class AccountsReceivablesComponent {
 
         var vDspId = 'DSP00001';
         var vDate = new Date().getDay();
+        var vSource = 'iDSP';
 
         // Initial Data
         this.vSelectedRoute = 'inRoute';
@@ -60,8 +62,17 @@ export class AccountsReceivablesComponent {
 
             error => {
                 console.log(error.json());
-            }
-        );
+            });
+
+        this._accountsReceivablesService.getRetailerSelf(vSource,vDspId).subscribe(
+            response => {
+                console.log('Get retailerSelf : ' + JSON.stringify(response.json()));
+                this.setRetailerSelfList(response.json());
+            },
+
+            error => {
+                console.log(error.json());
+            });
     }
 
     getResize() {
@@ -103,6 +114,14 @@ export class AccountsReceivablesComponent {
 
     setAllReceivablesRouteList(pAllReceivablesRouteList) {
         this.vAllReceivablesRouteList = pAllReceivablesRouteList;
+    }
+
+    setRetailerSelfList(pRetailerSelfList) {
+        this.vRetailerSelfList = pRetailerSelfList;
+    }
+
+    getRetailerSelfList() {
+        return this.vRetailerSelfList;
     }
 
     searchFilter(pInputText: any) {

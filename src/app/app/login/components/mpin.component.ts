@@ -34,6 +34,7 @@ export class MpinComponent {
 
         this._layoutService.setCurrentPage('Mpin');
         this.autofocus = false;
+        setTimeout( () => this.onchange, 1);
     }
 
     cancel(pEvent) {
@@ -45,9 +46,9 @@ export class MpinComponent {
 
     submit(pEvent) {
         pEvent.preventDefault();
-        // this._authenticationService.submitMPIN(this.vMPIN1 + this.vMPIN2 + this.vMPIN3 + this.vMPIN4 + this.vMPIN5);
+        this._authenticationService.submitMPIN(this.vMPIN1 + this.vMPIN2 + this.vMPIN3 + this.vMPIN4 + this.vMPIN5);
         // For By Pass Directly without API
-        this._pageNavigationService.navigate('Home', null, null);
+        // this._pageNavigationService.navigate('Home', null, null);
         // this._authenticationService.submitMPIN();
     }
 
@@ -66,30 +67,36 @@ export class MpinComponent {
                 }
                     break;
             case 2:
-                if (!this.vMPIN2) {
+                if (!this.vMPIN2 && this.vMPIN1 && this.vMPIN3) {
+                    document.getElementById('mpin2').focus();
+                } else if (!this.vMPIN2 && this.vMPIN1 && !this.vMPIN3) {
                     document.getElementById('mpin1').focus();
                 } else {
                     document.getElementById('mpin3').focus();
                 }
                 break;
             case 3:
-                if (!this.vMPIN3) {
+                if (!this.vMPIN3 && this.vMPIN2 && this.vMPIN4) {
+                    document.getElementById('mpin3').focus();
+                } else if (!this.vMPIN3 && this.vMPIN2 && !this.vMPIN4) {
                     document.getElementById('mpin2').focus();
                 } else {
                     document.getElementById('mpin4').focus();
                 }
                 break;
             case 4:
-                if (!this.vMPIN4) {
+                if (!this.vMPIN4 && this.vMPIN3 && this.vMPIN5) {
+                    document.getElementById('mpin4').focus();
+                } else if (!this.vMPIN4 && this.vMPIN3 && !this.vMPIN5) {
                     document.getElementById('mpin3').focus();
                 } else {
                     document.getElementById('mpin5').focus();
                 }
                 break;
             case 5:
-                if (!this.vMPIN5) {
+                if (!this.vMPIN5 && this.vMPIN4) {
                     document.getElementById('mpin4').focus();
-                }
+                } 
             default:
                 // code...
                 break;

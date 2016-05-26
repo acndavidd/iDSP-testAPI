@@ -33,6 +33,14 @@ export class AccountsReceivablesService {
           vDspId : pDspId,
           vDate : pDate
       };
-      return this._http.post('/AccountsReceivables', JSON.stringify(vData));
+      return this._http.post('/accountsReceivables', JSON.stringify(vData));
+    }
+
+    getRetailerSelf(pSource, pDspId) {
+        let vData = {
+            vSource : pSource,
+            vDspId : pDspId
+        };
+        return this._http.post('/retailerSelf', JSON.stringify(vData));
     }
 }

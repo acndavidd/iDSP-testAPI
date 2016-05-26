@@ -16,7 +16,7 @@ BEGIN
 	
 	select array_to_json(array_agg(row_to_json(temp1))) into v_receivables
 	from (
-		select to_char(b.amount, '999,999,999,990D00 FM₱') amount,b.dsp_id,c.retailer_name,c.retailer_min,c.retailer_id,e.route_day,e.sequence,b.source,
+		select to_char(b.amount, '999,999,999,990D00 FM₱') amount,b.dsp_id,c.retailer_name,c.retailer_min,c.retailer_id,e.route_day,e.sequence,'BCP' source,
 			(select to_char(sum(amount), '999,999,999,990D00 FM₱') from trx_account_receivable tr
 				where tr.dsp_id = v_dsp_id and retailer_id in(
 				select retailer_id from mst_route mr where mr.route_id in(
@@ -36,7 +36,7 @@ BEGIN
 
 	select array_to_json(array_agg(row_to_json(temp2))) INTO v_receivables_all
 	from (
-		select to_char(b.amount, '999,999,999,990D00 FM₱') amount,b.dsp_id,c.retailer_name,c.retailer_min,c.retailer_id,e.route_day,e.sequence,b.source,
+		select to_char(b.amount, '999,999,999,990D00 FM₱') amount,b.dsp_id,c.retailer_name,c.retailer_min,c.retailer_id,e.route_day,e.sequence,'BCP' source,
 			(select to_char(sum(amount), '999,999,999,990D00 FM₱') from trx_account_receivable f join mst_retailer g
 			on f.retailer_id = g.retailer_id and f.dsp_id = v_dsp_id left join
 			mst_route h on g.retailer_id = h.retailer_id join
