@@ -1,11 +1,10 @@
-<div class='accounts-receivables'>  
+<div class="container-body">
     <div class='filter-container' *ngIf='getFilter().filterRetailerBCP'>
         <div class='filter-input input'>
-            <div class='width-10'></div>
+            <div class='icon'></div>
             <input type='text' #listFilter (keyup)='onKey(listFilter.value)' id='RetailerSearchBox' placeholder='Input Retailer Name or MIN' />
         </div>  
     </div>
-</div>
 
 <div class="container-body">
     <!-- <div class="item-container" (click)="gotoCallPreparationHC({status: 'In Progress'})"> -->
