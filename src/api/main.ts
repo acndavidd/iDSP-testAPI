@@ -50,7 +50,8 @@ vApp.use(function(pRequest, pResponse, pNext) {
     if(
         pRequest.path !== '/service/login' && 
         pRequest.path !== '/service/submitMPIN' &&
-        pRequest.path !== '/service/generateCallPlan'
+        pRequest.path !== '/service/generateCallPlan' &&
+        pRequest.path.indexOf('/testing') !== -1 //bypass token for testing purpose
 
     ){
         if( pRequest.method !== 'OPTIONS') {
@@ -75,47 +76,64 @@ vApp.use(function(pRequest, pResponse, pNext) {
 });
 
 var vRouter = vExpress.Router();
-
 vRouter.post('/login',vLoginCtrl.login);
-vRouter.post('/submitMPIN', vLoginCtrl.submitMPIN);
-vRouter.post('/verifyToken', vLoginCtrl.verifyToken);
+vRouter.post('/login/MPIN', vLoginCtrl.submitMPIN);
 vRouter.get('/logout', vLoginCtrl.logout);
-
+vRouter.get('/success', vLoginCtrl.testSuccess);
+vRouter.get('/error', vLoginCtrl.testError);
 vRouter.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
 vRouter.get('/targetsActuals',vTargetsActualsCtrl.getBrand);
-vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
+vRouter.get('/retailer/alert',vRetailerCtrl.getAllRetailerAlert);
 vRouter.post('/getAccountsReceivables',vAccCtrl.getAccountsReceivables);
-
 vRouter.get('/getProductCategory',vTargetsActualsCtrl.getProdCat);
 vRouter.get('/getProductSubCategory',vTargetsActualsCtrl.getProdSubCat);
-
 vRouter.post('/getProduct',vTargetsActualsCtrl.getProduct);
-
 vRouter.get('/getCategory',vTargetsActualsCtrl.getCategory);
-
-
 vRouter.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
 vRouter.post('/getRetailerRouteBCP',vRetailerCtrl.getRetailerRouteBCP);
 vRouter.post('/getRetailerCallPrep',vRetailerCtrl.getRetailerCallPrep);
 vRouter.post('/getLoadWallet',vRetailerCtrl.getLoadWallet);
 vRouter.post('/getPhysicalInventory',vRetailerCtrl.getPhysicalInventory);
 vRouter.post('/getPaymentHistory',vRetailerCtrl.getPaymentHistory);
-
-
 vRouter.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/testSync',vSchedCtrl.syncTableMaster);
 
+
+var vTesting = vExpress.Router();
+vTesting.post('/login',vLoginCtrl.login);
+vTesting.post('/login/MPIN', vLoginCtrl.submitMPIN);
+vTesting.get('/logout', vLoginCtrl.logout);
+vTesting.get('/success', vLoginCtrl.testSuccess);
+vTesting.get('/error', vLoginCtrl.testError);
+vTesting.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
+vTesting.get('/targetsActuals',vTargetsActualsCtrl.getBrand);
+vTesting.get('/retailer/alert',vRetailerCtrl.getAllRetailerAlert);
+vTesting.post('/getAccountsReceivables',vAccCtrl.getAccountsReceivables);
+vTesting.get('/getProductCategory',vTargetsActualsCtrl.getProdCat);
+vTesting.get('/getProductSubCategory',vTargetsActualsCtrl.getProdSubCat);
+vTesting.post('/getProduct',vTargetsActualsCtrl.getProduct);
+vTesting.get('/getCategory',vTargetsActualsCtrl.getCategory);
+vTesting.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
+vTesting.post('/getRetailerRouteBCP',vRetailerCtrl.getRetailerRouteBCP);
+vTesting.post('/getRetailerCallPrep',vRetailerCtrl.getRetailerCallPrep);
+vTesting.post('/getLoadWallet',vRetailerCtrl.getLoadWallet);
+vTesting.post('/getPhysicalInventory',vRetailerCtrl.getPhysicalInventory);
+vTesting.post('/getPaymentHistory',vRetailerCtrl.getPaymentHistory);
+vTesting.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
+vTesting.get('/testSync',vSchedCtrl.syncTableMaster);
 vApp.use('/service',vRouter);
+vApp.use('/testing', vTesting);
 vApp.listen(PORT);
 
 var CronJob = require('cron').CronJob;
-    var job = new CronJob('* * 0 * * *', function() {
-        console.log('Start Running scheduler for generate call plan');
-        vSchedCtrl.generateCallPlan();
-    }, function () {
+var job = new CronJob('* * 0 * * *', function() {
+    console.log('Start Running scheduler for generate call plan');
+    vSchedCtrl.generateCallPlan();
+}, function () {
 
-    }, true, 'Asia/Manila');
+}, true, 'Asia/Manila');
 
 
 
 console.log('http://127.0.0.1:' + PORT + '/service');
+console.log('http://127.0.0.1:' + PORT + '/testing');

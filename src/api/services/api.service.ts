@@ -1,3 +1,5 @@
+import {ErrorHandling} from './error-handling.service';
+
 export module APIService {
 
 	var vEnv = process.env.NODE_ENV || "development";
@@ -9,60 +11,72 @@ export module APIService {
 		OPISNET : vConfig.service["OPIS+"],
 		ELP : vConfig.service["ELP"]	
 	}
+
+	export var RequestMethod = {
+		POST : 'POST',
+		GET : 'GET',
+		PUT : 'PUT',
+		DELETE : 'DELETE'
+	}
 	
-	export class HTTPService {
-		
+	export interface HTTPServiceInterface {
+		buildAuthHeaders(pMethod): any;
+	}
+
+	export class HTTPService implements HTTPServiceInterface{
+
 		constructor() {
 			vCurrentContext = this;
 		}
 
-		buildDefaultHeader() {
-			let vReqHeaders = {
-				'Content-Type' : 'application/json'
+		buildAuthHeaders(pMethod) {
+			let vReqHeaders;
+			if(pMethod === RequestMethod.POST) {
+				vReqHeaders = {
+					'Content-Type' : 'application/json'
+				}
+			}else {
+				vReqHeaders = {
+					'Content-Type' : 'application/x-www-form-urlencoded'
+				}
 			}
 			return vReqHeaders;
 		}
 
 		post(pAPIType, pURL, pHeaders, pData) {
 			console.log('POST ' + pAPIType + pURL);
-			return new Promise<string>(function(pResolve, pReject){
-				let vReqHeaders;
-				if( !pHeaders) {
-					vReqHeaders = vCurrentContext.buildDefaultHeader();
-				}else {
-					vReqHeaders = pHeaders;
-				}
-				try{
-					vRequest.post({
-						url : pAPIType + pURL,
-						headers : vReqHeaders,
-						form : JSON.stringify(pData)
-					}, function(pErr, pResponse, pBody) {
-						if(pErr)pReject(pErr);
-						else pResolve(pBody);
-					});
-				}catch(pErr){
-					console.log(pErr);
-				}
-			});
+			return this.request(RequestMethod.GET, pAPIType, pURL, pHeaders);
 		}
 
 		get(pAPIType, pURL, pHeaders) {
 			console.log('GET ' + pAPIType + pURL);
-			return new Promise<string>(function(pResolve, pReject){
-				let vReqHeaders;
-				if( !pHeaders) {
-					vReqHeaders = vCurrentContext.buildDefaultHeader();
-				}else {
-					vReqHeaders = pHeaders;
+			return this.request(RequestMethod.GET, pAPIType, pURL, pHeaders);
+		}
+
+		request(pRequestMethod, pAPIType, pURL, pHeaders) {
+			return new Promise<any>(
+				function(pResolve, pReject){
+					let vErrorHandlingSvc:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
+					let vReqHeaders;
+					if(!pHeaders) {
+						vReqHeaders = vCurrentContext.buildAuthHeaders(APIService.RequestMethod.GET);
+					}else {
+						vReqHeaders = pHeaders;
+					}
+					let vRequestObj = {
+						url : pAPIType + pURL,
+						method : pRequestMethod,
+						headers : vReqHeaders,
+						timeout : 5000
+					};
+					vRequest(vRequestObj, function(pErr, pResponse, pBody){
+						if(pErr) {
+							pReject(vErrorHandlingSvc.processHTTPError(pErr));
+						}
+						pResolve(vErrorHandlingSvc.processHTTPResult(pBody));
+					});
 				}
-				vRequest.get({
-					url : pAPIType + pURL,
-					headers : vReqHeaders
-				}, function(pErr, pResponse, pBody){
-					pReject(pBody);
-				});
-			});
+			)
 		}
 	}
 }
