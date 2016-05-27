@@ -28,12 +28,21 @@ export class AccountsReceivablesService {
         return this.vIsLoading;
     }
 
-    getAllReceivablesRoute(pDspId, pDate) {
-      let vData = {
-          vDspId : pDspId,
-          vDate : pDate
-      };
-      return this._http.post('/accountsReceivables', JSON.stringify(vData));
+    // getAllReceivablesRoute(pDspId, pDate) {
+    //   let vData = {
+    //       vDspId : pDspId,
+    //       vDate : pDate
+    //   };
+    //   return this._http.post('/accountsReceivables', JSON.stringify(vData));
+    // }
+    getAllReceivablesRoute(pDspId, pSource) {
+      try {
+      var vDspId = pDspId;
+      var vSource = pSource;
+      return this._http.get('/retailer/accountsReceivables?username=' + vDspId + '&source=' + vSource);
+      } catch(pErr) {
+          console.log('Error in get API: ' + pErr);
+      }
     }
 
     getRetailerSelf(pSource, pDspId) {

@@ -50,7 +50,8 @@ vApp.use(function(pRequest, pResponse, pNext) {
     if(
         pRequest.path !== '/service/login' && 
         pRequest.path !== '/service/submitMPIN' &&
-        pRequest.path !== '/service/generateCallPlan'
+        pRequest.path !== '/service/generateCallPlan' &&
+        pRequest.path.indexOf('/testing') === -1
 
     ){
         if( pRequest.method !== 'OPTIONS') {
@@ -75,7 +76,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
 });
 
 var vRouter = vExpress.Router();
-
+var vTesting = vExpress.Router();
 vRouter.post('/login',vLoginCtrl.login);
 vRouter.post('/submitMPIN', vLoginCtrl.submitMPIN);
 vRouter.post('/verifyToken', vLoginCtrl.verifyToken);
@@ -83,8 +84,10 @@ vRouter.get('/logout', vLoginCtrl.logout);
 
 vRouter.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
 vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
-vRouter.post('/accountsReceivables',vAccCtrl.accountsReceivables);
-vRouter.post('/retailerSelf',vAccCtrl.retailerSelf);
+// vRouter.post('/accountsReceivables',vAccCtrl.accountsReceivables);
+vRouter.get('/retailer/accountsReceivables',vAccCtrl.accountsReceivables);
+vTesting.get('/retailer/accountsReceivables',vAccCtrl.accountsReceivables);
+// vRouter.post('/retailerSelf',vAccCtrl.retailerSelf);
 
 vRouter.get('/testSync',vSchedCtrl.syncTableMaster);
 
@@ -103,6 +106,7 @@ vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);
 
 vApp.use('/service',vRouter);
+vApp.use('/testing',vTesting);
 vApp.listen(PORT);
 
 var CronJob = require('cron').CronJob;

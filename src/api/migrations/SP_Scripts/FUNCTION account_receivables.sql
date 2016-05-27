@@ -1,9 +1,10 @@
--- Function: public.get_account_receivables(character varying, numeric)
+-- Function: public.account_receivables(character varying, character varying, numeric)
 
--- DROP FUNCTION public.get_account_receivables(character varying, numeric);
+-- DROP FUNCTION public.account_receivables(character varying, character varying, numeric);
 
-CREATE OR REPLACE FUNCTION account_receivables(
+CREATE OR REPLACE FUNCTION public.account_receivables(
     v_dsp_id character varying,
+    v_source character varying,
     v_date numeric)
   RETURNS json AS
 $BODY$
@@ -16,7 +17,7 @@ BEGIN
 	
 	select array_to_json(array_agg(row_to_json(temp1))) into v_receivables
 	from (
-		select to_char(b.amount, '999,999,999,990D00 FM₱') amount,b.dsp_id,c.retailer_name,c.retailer_min,c.retailer_id,e.route_day,e.sequence,'BCP' source,
+		select to_char(b.amount, '999,999,999,990D00 FM₱') amount,b.dsp_id,c.retailer_name,c.retailer_min,c.retailer_id,e.route_day,e.sequence,(case when lower(v_source) = 'idsp' THEN 'BCP' ELSE v_source END) as source,
 			(select to_char(sum(amount), '999,999,999,990D00 FM₱') from trx_account_receivable tr
 				where tr.dsp_id = v_dsp_id and retailer_id in(
 				select retailer_id from mst_route mr where mr.route_id in(
@@ -36,7 +37,7 @@ BEGIN
 
 	select array_to_json(array_agg(row_to_json(temp2))) INTO v_receivables_all
 	from (
-		select to_char(b.amount, '999,999,999,990D00 FM₱') amount,b.dsp_id,c.retailer_name,c.retailer_min,c.retailer_id,e.route_day,e.sequence,'BCP' source,
+		select to_char(b.amount, '999,999,999,990D00 FM₱') amount,b.dsp_id,c.retailer_name,c.retailer_min,c.retailer_id,e.route_day,e.sequence,(case when lower(v_source) = 'idsp' THEN 'BCP' ELSE v_source END) as source,
 			(select to_char(sum(amount), '999,999,999,990D00 FM₱') from trx_account_receivable f join mst_retailer g
 			on f.retailer_id = g.retailer_id and f.dsp_id = v_dsp_id left join
 			mst_route h on g.retailer_id = h.retailer_id join
@@ -61,5 +62,5 @@ END
 $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION public.get_account_receivables(character varying, numeric)
+ALTER FUNCTION public.account_receivables(character varying, character varying, numeric)
   OWNER TO postgres;

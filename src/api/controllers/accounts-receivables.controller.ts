@@ -14,25 +14,64 @@ export class AccController {
 	constructor() { 		
 	}
 
+	// async accountsReceivables(pRequest, pResponse) {
+	// 	try{
+	// 		console.log('in accountsReceivables API');
+	// 		let vOrmSvc = new ORMService();
+	// 		var vDspId = pRequest.query.account;
+	// 		var vSource = pRequest.query.source;
+	// 		var vDate = new Date().getDay();
+
+	// 		let vParams = {
+	// 			dsp_id : vDspId,
+	// 			source : vSource,
+	// 			route_day : vDate
+	// 		};
+
+	// 		var vResult = await vOrmSvc.sp( 'account_receivables', vParams );
+	// 		var vResponse = {
+	// 			"status" : "200",
+	// 			"errorMessage" : "Success",
+	// 			"result" : vResult
+	// 		};
+	// 		console.log( "account_receivables response : " + JSON.stringify( vResponse ) );
+	// 		pResponse.json(vResponse);
+
+	// 	} catch(pErr) {
+	// 		var vError = {
+	// 				"status" : "100",
+	// 				"errorMessage" : pErr,
+	// 				"result" : null
+	// 			};
+	// 		console.log( "Error in get_account_receivables : " + vError);
+	// 		pResponse.json(vError);
+	// 	}
+	// }
 	async accountsReceivables(pRequest, pResponse) {
-		try{
+		try {
 			console.log('in accountsReceivables API');
 			let vOrmSvc = new ORMService();
-			var vDspId = pRequest.body.vDspId;
-			var vDate = pRequest.body.vDate;
+			var vUsername = pRequest.query.username;
+			var vSource = pRequest.query.source;
+			var vDate = new Date().getDay();
+			let vHttpSvc = new APIService.HTTPService();
+			let vPath:string = '/OPISNET/services/idsp/SELFTransactions?source=iDSP&username=' + vUsername;
 
 			let vParams = {
-				dsp_id : vDspId,
+				dsp_id : vUsername,
+				source : vSource,
 				route_day : vDate
 			};
 
-			var vResult = await vOrmSvc.sp( 'account_receivables', vParams );
+			var vResultBcp = await vOrmSvc.sp( 'account_receivables', vParams );
+			var vResultSelf = JSON.parse(await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null));
+			vResultSelf.push({"source" : "SELF"});
 			var vResponse = {
 				"status" : "200",
 				"errorMessage" : "Success",
-				"result" : vResult
+				"result" : vResultBcp.concat(vResultSelf)
 			};
-			console.log( "account_receivables response : " + JSON.stringify( vResponse ) );
+			console.log('Response API: ' + JSON.stringify(vResponse));
 			pResponse.json(vResponse);
 
 		} catch(pErr) {
@@ -41,30 +80,30 @@ export class AccController {
 					"errorMessage" : pErr,
 					"result" : null
 				};
-			console.log( "Error in get_account_receivables : " + vError);
-			pResponse.json(vError);
+			console.log( "Error in 	get_account_receivables : " + JSON.stringify(vError));
+			throw pResponse.json(vError);
 		}
 	}
 
-	async retailerSelf(pRequest, pResponse) {
-		try {
-			console.log('in retailerSelf API');
-			var source = pRequest.body.vSource;
-			var username = pRequest.body.vDspId;
-			let vHttpSvc = new APIService.HTTPService();
-			let vPath:string = '/OPISNET/services/idsp/SELFTransactions?source=' + source + '&username=' + username;
-			var vResult = JSON.parse(await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null));
+	// async retailerSelf(pRequest, pResponse) {
+	// 	try {
+	// 		console.log('in retailerSelf API');
+	// 		var vSource = pRequest.body.vSource;
+	// 		var vUsername = pRequest.body.vDspId;
+	// 		let vHttpSvc = new APIService.HTTPService();
+	// 		let vPath:string = '/OPISNET/services/idsp/SELFTransactions?source=' + vSource + '&username=' + vUsername;
+	// 		var vResult = JSON.parse(await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null));
 
-			pResponse.json(vResult);
-			console.log( "retailerSelf response : " + JSON.stringify( pResponse ) );
-		} catch (pErr){
-			var vError = {
-					"status" : "100",
-					"errorMessage" : pErr,
-					"result" : null
-			};
-			console.log( "Error in retailerSelf : " + vError);
-			pResponse.json(vError);
-		}
-	}
+	// 		pResponse.json(vResult);
+	// 		console.log( "retailerSelf response : " + JSON.stringify( pResponse ) );
+	// 	} catch (pErr){
+	// 		var vError = {
+	// 				"status" : "100",
+	// 				"errorMessage" : pErr,
+	// 				"result" : null
+	// 		};
+	// 		console.log( "Error in retailerSelf : " + vError);
+	// 		pResponse.json(vError);
+	// 	}
+	// }
 }

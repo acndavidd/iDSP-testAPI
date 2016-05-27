@@ -44,14 +44,13 @@ export class AccountsReceivablesComponent {
         this._headerService.setTitle('Accounts Receivables');
 
         var vDspId = 'DSP00001';
-        var vDate = new Date().getDay();
         var vSource = 'iDSP';
 
         // Initial Data
         this.vSelectedRoute = 'inRoute';
         this.vFlag = 0;
 
-        this._accountsReceivablesService.getAllReceivablesRoute( vDspId, vDate ).subscribe(
+        this._accountsReceivablesService.getAllReceivablesRoute(vDspId,vSource).subscribe(
             response => {
                 this.setReceivablesRouteList(response.json().result[0].v_receivables);
                 this.setAllReceivablesRouteList(response.json().result[0].v_receivables_all);
@@ -60,17 +59,16 @@ export class AccountsReceivablesComponent {
                 this.setSearchedReceivablesRoute(this.vReceivablesRouteList);
 
                 // start calling 2nd API
-                this._accountsReceivablesService.getRetailerSelf(vSource,vDspId).subscribe(
-                response => {
-                    console.log('Get retailerSelf : ' + JSON.stringify(response.json()));
-                    this.setRetailerSelfList(response.json());
-                },
+                // this._accountsReceivablesService.getRetailerSelf(vSource,vDspId).subscribe(
+                // response => {
+                //     console.log('Get retailerSelf : ' + JSON.stringify(response.json()));
+                //     this.setRetailerSelfList(response.json());
+                // },
 
-                error => {
-                    console.log(error.json());
-                });
+                // error => {
+                //     console.log(error.json());
+                // });
                 },
-
             error => {
                 console.log(error.json());
             });
