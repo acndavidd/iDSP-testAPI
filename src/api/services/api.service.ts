@@ -86,22 +86,6 @@ export module APIService {
 					});
 				}
 			)
-			
-			return new Promise<string>(function(pResolve, pReject){
-				let vReqHeaders;
-				if( !pHeaders) {
-					vReqHeaders = vCurrentContext.buildDefaultHeader();
-				}else {
-					vReqHeaders = pHeaders;
-				}
-				vRequest.get({
-					url : pUrl,
-					headers : vReqHeaders
-				}, function(pErr, pResponse, pBody){
-					if(pErr)pReject(pErr);
-					else pResolve(pBody);
-				});
-			});
 		}
 
 	}

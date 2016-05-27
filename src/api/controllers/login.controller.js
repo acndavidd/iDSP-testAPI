@@ -88,9 +88,9 @@ class LoginController {
                     vResult.accessToken = vTokenSvc.generateToken(vTokenObj);
                     // Set Cookie session for web access
                     pResponse.cookie('accessToken', vResult.accessToken, { httpOnly: true });
-                    console.log('anjayyy');
-                    console.log(pRequest.cookie.accessToken);
                 }
+                // Set Cookie session for web access
+                pResponse.cookie('accessToken', vResult.accessToken, { httpOnly: true });
             }
             catch (pErr) {
                 vResult = {

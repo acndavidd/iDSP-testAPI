@@ -76,8 +76,6 @@ export class ORMService{
 					});
 				}catch(pErr){
 					pReject(vErrService.processSequelizeError(pErr));
-						pResolve(pResults[0][pSPName]);
-					});
 				}
 			});
 	}
