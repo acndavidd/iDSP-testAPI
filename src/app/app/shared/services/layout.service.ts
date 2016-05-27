@@ -242,12 +242,15 @@ export class LayoutService {
             };
             this.vHeaderItem = {
                 hamburger: false,
-                back: true,
+                back: false,
                 filter: false,
                 edit: false,
                 search: false,
                 add: false
             };
+
+            if (this.vCurrentPointer === '0')
+                this.vHeaderItem.back = true;
         }
         else if (
             pCurrent === 'BCPAddRetailerRoute') {
@@ -372,13 +375,55 @@ export class LayoutService {
                 search: false,
                 add: false
             };
+        } else if (
+            pCurrent === 'AddEditLoadTransfer' ||
+            pCurrent === 'AddEditPhysicalOrder') {
+            this.vOldCurrentPage = 'RetailerSalesOrder';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+
+            this.vHeaderItem = {
+                hamburger: false,
+                back: true,
+                filter: false,
+                edit: false,
+                search: false,
+                add: false
+            };
+        } else if (
+            pCurrent === 'AddSalesOrderPhysical') {
+            this.vOldCurrentPage = 'AddEditPhysicalOrder';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+
+            this.vHeaderItem = {
+                hamburger: false,
+                back: true,
+                filter: false,
+                edit: false,
+                search: false,
+                add: false
+            };
         }
         // UNDER BASIC CALL PROCEDURE - END
 
         // UNDER CLOSE OF THE DAY - START
         else if (
             pCurrent === 'Collection' ||
-            pCurrent === 'VisitedRetail') {
+            pCurrent === 'VisitedRetail' ||
+            pCurrent === 'CDUnservedOrder') {
             // this._pageNavigationService.setPreviousPage('CloseDay');
             this._pageNavigationService.resetListPreviousData();
             this.vOldCurrentPage = 'CloseDay';
@@ -455,7 +500,7 @@ export class LayoutService {
         // }
         // UNUSED PAGE - END
 
-        console.log('In Layout Current Page ' + pCurrent + ' - ' + this.vHeaderItem.add);
+        console.log('In Layout Current Page ' + pCurrent + ' - ' + this.vHeaderItem.back);
         this._pageNavigationService.setCurrentPage(pCurrent);
     }
 

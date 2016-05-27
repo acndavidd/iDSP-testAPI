@@ -82,29 +82,25 @@ vRouter.post('/verifyToken', vLoginCtrl.verifyToken);
 vRouter.get('/logout', vLoginCtrl.logout);
 
 vRouter.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
-vRouter.get('/targetsActuals',vTargetsActualsCtrl.getBrand);
 vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
 vRouter.post('/accountsReceivables',vAccCtrl.accountsReceivables);
 vRouter.post('/retailerSelf',vAccCtrl.retailerSelf);
 
-vRouter.get('/getProductCategory',vTargetsActualsCtrl.getProdCat);
-vRouter.get('/getProductSubCategory',vTargetsActualsCtrl.getProdSubCat);
-
-vRouter.post('/getProduct',vTargetsActualsCtrl.getProduct);
-
-vRouter.get('/getCategory',vTargetsActualsCtrl.getCategory);
-
-
-vRouter.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
-vRouter.post('/getRetailerRouteBCP',vRetailerCtrl.getRetailerRouteBCP);
-vRouter.post('/getRetailerCallPrep',vRetailerCtrl.getRetailerCallPrep);
-vRouter.post('/getLoadWallet',vRetailerCtrl.getLoadWallet);
-vRouter.post('/getPhysicalInventory',vRetailerCtrl.getPhysicalInventory);
-vRouter.post('/getPaymentHistory',vRetailerCtrl.getPaymentHistory);
-
-
-vRouter.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/testSync',vSchedCtrl.syncTableMaster);
+
+//API BASED ON GUIDELINES
+ vRouter.post('/todaysRetailerRoute',vRetailerCtrl.todaysRetailerRoute);
+ vRouter.post('/retailerCallPreparation',vRetailerCtrl.retailerCallPreparation);
+ vRouter.post('/loadWallet',vRetailerCtrl.loadWallet);
+ vRouter.post('/physicalInventory',vRetailerCtrl.physicalInventory);
+ vRouter.post('/paymentHistory',vRetailerCtrl.paymentHistory);
+ vRouter.get('/brands',vTargetsActualsCtrl.brands);
+ vRouter.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
+
+
+
+vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
+vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);
 
 vApp.use('/service',vRouter);
 vApp.listen(PORT);

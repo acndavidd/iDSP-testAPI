@@ -9,7 +9,7 @@ import {NgModel} from 'angular2/common';
 
 @Component({
     selector: 'bcp-activity-step',
-     templateUrl: './app/basic-call-procedure/components/hc-bcp-activity-step.component.html',
+    templateUrl: './app/basic-call-procedure/components/hc-bcp-activity-step.component.html',
     // templateUrl: './app/basic-call-procedure/components/bcp-activity-step.component.html',
     directives: [
         ROUTER_DIRECTIVES
@@ -73,30 +73,30 @@ export class BCPActivityStepComponent {
         this.changeColor();
     }
 
-   //  gotoAnotherPage(pSelectedRetailer) {
-        // console.log('current pointer : ' + this.vCurrentPointer);
-        // console.log('bcp activity step Go to Call Preparation' + pSelectedRetailer );
+    // gotoAnotherPage(pSelectedRetailer) {
+    //     console.log('current pointer : ' + this.vCurrentPointer);
+    //     console.log('bcp activity step Go to Call Preparation' + pSelectedRetailer );
 
-        // let vParamsOld = {
-        //     retailer_id: this.vSelectedRetailId,
-        //     route_sequence: this.vSelectedRetailSeq,
-        //     call_id: this.vSelectedRetailCallId,
-        //     status: this.vSelectedStatus
-        // };
-        // let vParams = {
-        //     retailer_id: pSelectedRetailer.retailer_id,
-        //     route_sequence: pSelectedRetailer.seq,
-        //     call_id: pSelectedRetailer.call_id,
-        //     status: pSelectedRetailer.call_status
-        // };
-        gotoAnotherPage() {
+    //     let vParamsOld = {
+    //         retailer_id: this.vSelectedRetailId,
+    //         route_sequence: this.vSelectedRetailSeq,
+    //         call_id: this.vSelectedRetailCallId,
+    //         status: this.vSelectedStatus
+    //     };
+    //     let vParams = {
+    //         retailer_id: pSelectedRetailer.retailer_id,
+    //         route_sequence: pSelectedRetailer.seq,
+    //         call_id: pSelectedRetailer.call_id,
+    //         status: pSelectedRetailer.call_status
+    //     };
+     gotoAnotherPage() {
         if (this.vCurrentPointer === '1') {
              this._pageNavigationService.navigate('BCPCollection', null, null);
-            // this._pageNavigationService.navigate('BCPCollection', vParams, vParamsOld);
+             // this._pageNavigationService.navigate('BCPCollection', vParams, vParamsOld);
         }
         if (this.vCurrentPointer === '0') {
            this._pageNavigationService.navigate('CallPreparation', null, null);
-          // this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);
+           // this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);
         }
         else if (this.vCurrentPointer === '1') {
            this._pageNavigationService.navigate('BCPCollection', null, null);

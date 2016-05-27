@@ -119,6 +119,11 @@ export class LeftMenuComponent implements OnInit  {
         this.checkCurrentPage(this.vGoToPage);
     }
 
+    goToCDUnservedOrder() {
+        this.vGoToPage = 'CDUnservedOrder';
+        this.checkCurrentPage(this.vGoToPage);
+    }
+
     goToRemittance() {
         this.vGoToPage = 'Remittance';
         this.checkCurrentPage(this.vGoToPage);

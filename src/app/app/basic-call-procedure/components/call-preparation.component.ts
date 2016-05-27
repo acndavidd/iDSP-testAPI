@@ -8,8 +8,8 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {NgModel} from 'angular2/common';
 
 @Component({
-     // templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
-     templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
+      // templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
+      templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
@@ -97,6 +97,9 @@ export class CallPreparationComponent {
         //     console.log(error);
         // });
 
+        // console.log('update start date where call_id' + this.vSelectedRetailCallId);
+
+
         this._layoutService.setCurrentPage('CallPreparation');
         this._headerService.setTitle('Call Preparation');
     }
@@ -110,23 +113,27 @@ export class CallPreparationComponent {
     }
 
     // gotoBCPActivityStep(pSelectedRetailer) {
-        // console.log('all parameters' + pSelectedRetailer);
+    //     console.log('all parameters' + pSelectedRetailer);
 
-        // let vParamsOld = {
-        //      retailer_id: this.vSelectedRetailId,
-        //      route_sequence: this.vSelectedRetailSeq,
-        //      call_id: this.vSelectedRetailCallId
-        // };
-        // let vParams = {
-        //     retailer_id: pSelectedRetailer.retailer_id,
-        //     route_sequence: pSelectedRetailer.seq,
-        //     call_id : pSelectedRetailer.call_id
-        // };
+    //     let vParamsOld = {
+    //          retailer_id: this.vSelectedRetailId,
+    //          route_sequence: this.vSelectedRetailSeq,
+    //          call_id: this.vSelectedRetailCallId
+    //     };
+    //     let vParams = {
+    //         retailer_id: pSelectedRetailer.retailer_id,
+    //         route_sequence: pSelectedRetailer.seq,
+    //         call_id : pSelectedRetailer.call_id
+    //     };
 
-        // this._pageNavigationService.navigate('BCPActivityStep', vParams, vParamsOld);
+    //     this._pageNavigationService.navigate('BCPActivityStep', vParams, vParamsOld);
+
+    //  }
     gotoBCPActivityStep() {
         this._pageNavigationService.navigate('BCPActivityStep', null, null);
     }
+
+
 
     getRetailerDetails() {
         return this.vSelectedRetail;

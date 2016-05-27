@@ -13,7 +13,7 @@ import { Pipe, PipeTransform } from 'angular2/core';
     // to be uncommented for actual api
     // templateUrl: './app/my-transaction/components/targets-actuals.component.html',
     // to be uncommented for hardcoded values
-    templateUrl: './app/my-transaction/components/md-targets-actuals.component.html',
+     templateUrl: './app/my-transaction/components/hc-targets-actuals.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
@@ -48,7 +48,7 @@ export class TargetsActualsComponent {
     private vShowProductMonth;
     private vSelectedTab;
 
-    vCatNameList: any = [];
+    // vCatNameList: any = [];
 
     constructor (
         private _router: Router,
@@ -61,26 +61,18 @@ export class TargetsActualsComponent {
         this.vSelectedTab = 'Day';
         this._layoutService.setCurrentPage('TargetsActuals');
         this._headerService.setTitle('Targets & Actuals');
+
         this._targetsActualsService.queryBrand().subscribe(
              response => {
                 if (response.json().status === 'Success') {
                     this.vListBrands = response.json().brandList;
+                    console.log('brand result' + this.vListBrands);
                 }
             },
             error => {}
         );
 
-        this._targetsActualsService.queryProdCat().subscribe(
-             response => {
-                if (response.json().status === 'Success') {
-                    this.vListProd = response.json().CatList;
-                    this.vShowProd = this.vListProd;
-                }
-            },
-            error => {}
-        );
-
-        this.getProduct();
+        this.getTargetsActuals();
 
     }
 
@@ -96,7 +88,7 @@ export class TargetsActualsComponent {
         return this._layoutService.getFilter();
     }
 
-    getProduct() {
+    getTargetsActuals() {
          console.log('Refresh PRoduct ' + this.vSelectedTab);
          this._targetsActualsService.queryProduct(this.vSelectedTab, this.vSelectedBrand).subscribe(
              response => {
@@ -118,7 +110,7 @@ export class TargetsActualsComponent {
         this.vWeekShow = false;
         this.vMonthShow = false;
         this.vSelectedTab = 'Day';
-        this.getProduct();
+        this.getTargetsActuals();
     }
 
     showMenuWeek() {
@@ -129,7 +121,7 @@ export class TargetsActualsComponent {
         this.vDayShow = false;
         this.vMonthShow = false;
         this.vSelectedTab = 'Week';
-        this.getProduct();
+        this.getTargetsActuals();
     }
 
     showMenuMonth() {
@@ -140,16 +132,16 @@ export class TargetsActualsComponent {
         this.vWeekShow = false;
         this.vDayShow = false;
         this.vSelectedTab = 'Month';
-        this.getProduct();
+        this.getTargetsActuals();
     }
 
     onChangeSelectBrand(pSelectedBrand) {
         this.vSelectedBrand = pSelectedBrand;
         console.log(this.vSelectedBrand + ' IS SELECTED');
-        this.getProduct();
+        this.getTargetsActuals();
     }
 
-    getCatNameList() {
-        return this.vCatNameList;
-    }
+    // getCatNameList() {
+    //     return this.vCatNameList;
+    // }
 }

@@ -58,17 +58,18 @@ export class AccountsReceivablesComponent {
                 this.vTotalReceivablesInRoute = this.vReceivablesRouteList[0].ret_total_amount;
                 this.vTotalReceivablesAll = this.vAllReceivablesRouteList[0].total_amount;
                 this.setSearchedReceivablesRoute(this.vReceivablesRouteList);
-            },
 
-            error => {
-                console.log(error.json());
-            });
+                // start calling 2nd API
+                this._accountsReceivablesService.getRetailerSelf(vSource,vDspId).subscribe(
+                response => {
+                    console.log('Get retailerSelf : ' + JSON.stringify(response.json()));
+                    this.setRetailerSelfList(response.json());
+                },
 
-        this._accountsReceivablesService.getRetailerSelf(vSource,vDspId).subscribe(
-            response => {
-                console.log('Get retailerSelf : ' + JSON.stringify(response.json()));
-                this.setRetailerSelfList(response.json());
-            },
+                error => {
+                    console.log(error.json());
+                });
+                },
 
             error => {
                 console.log(error.json());

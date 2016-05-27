@@ -21,92 +21,33 @@ export class TargetsActualsService {
             this.queryBrand();
             this.queryProdCat();
             this.queryProdSubCat();
-
-
       }
 
 
       queryBrand() {
-            // this.vIsLoading = true;
-            // let vUserId: string = '1';
-            // let vCurrentDate = new Date();
-            // console.log(vCurrentDate);
-            // return this._http.get('/targetsActuals');
-            /*
-            this._http.get('/targetsActuals',
-                  <RequestOptionsArgs> {headers: new Headers(
-                {'Content-Type': 'application/x-www-form-urlencoded'})
-            }).subscribe(
-                  response => {
-                        this.vIsLoading = false;
-                        console.log(response.json());
-                        if(response.json().status == "Success") {
-                              this.vBrand = response.json().brandList;
-                        }else{
-                              this.vErrorMsg = response.json().error;
-                        }
-                  },
-                  error => {
-                        console.log(error);
-                        this.vErrorMsg = 'Failed connecting to Retailer service';
-                  }
-            );
-            */
-            /*
-            this._http.get('/targetsActuals').subscribe(
-                  response => {
-                        if(response.json().status == "Success") {
-                              this.vBrand = response.json().brandList;
-                              console.log('masukkk');
-                        }else{
-                              this.vErrorMsg = response.json().error;
-                        }
-                  },
-                  error => {
-                        console.log(error);
-                        this.vErrorMsg = 'Failed connecting to Retailer service';
-                  }
-            );
-            */
-            return this._http.get('/targetsActuals');
+            console.log('Start get brands');
+            return this._http.get('/brands');
       }
 
       queryProdCat() {
-            /* console.log('masuk service');
-             this._http.get('/getProductCategory').subscribe(
-                  response => {
-                        if(response.json().status == "Success") {
-                              this.vProdCat = response.json().CatList;
-                        }else{
-                              this.vErrorMsg = response.json().error;
-                        }
-                  },
-                  error => {
-                        console.log(error);
-                        this.vErrorMsg = 'Failed connecting to Retailer service';
-                  }
-            );
-            return null;
-            */
 
-            return this._http.get('/getProductCategory');
+            return this._http.get('/productCategories');
       }
 
       queryProdSubCat() {
-            return this._http.get('/getProductSubCategory');
+            return this._http.get('/productSubCategories');
       }
-
 
       queryProduct(pSelectedTab, pSelectedBrand) {
             console.log('Start hit login service to Query Product');
-            console.log('selecteddd' + pSelectedTab);
+            console.log('Selected tab: ' + pSelectedTab);
             // Get Current Login User
             let vData = {
                   salesPerson : 'DSP00001',
                   actualType : pSelectedTab,
                   brand : pSelectedBrand
             };
-            return this._http.post('/getProduct', JSON.stringify(vData));
+            return this._http.post('/targetsActuals', JSON.stringify(vData));
       }
 
       queryCategory() {
@@ -114,7 +55,6 @@ export class TargetsActualsService {
       }
 
       queryTargets(pSubCategoryID) {
-
             // To-Do : Query User ID or Username
             let vSubCategoryID: string = pSubCategoryID;
 
@@ -126,8 +66,7 @@ export class TargetsActualsService {
             });
 
       }
-
-
+      
       getBrand() {
             return this.vBrand;
       }

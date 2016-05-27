@@ -69,9 +69,14 @@ export class ORMService{
 					}
 					let vQuery = 'SELECT ' + pSPName + vParams;
 					vSequelize.query( vQuery, { type: vSequelize.QueryTypes.SELECT }).then(function(pResults){
+						
+
 						pResolve(pResults[0][pSPName]);
+
 					});
 				}catch(pErr){
+
+
 					pReject(pErr);
 				}
 			});
