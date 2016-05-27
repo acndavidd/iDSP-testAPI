@@ -1,4 +1,5 @@
 import {SequelizeService} from './sequelize.service';
+import {ErrorHandling} from './error-handling.service';
 
 var vPath = require("path");
 var vFs = require('fs');
@@ -52,11 +53,12 @@ export class ORMService{
 
 	public async sp(pSPName:string,pParams:any) {
 		let vSequelize = this.getSequelize();
-		return new Promise<string>(
+		let vErrService:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
+		return new Promise<any>(
 			function (pResolve,pReject){
 				try{
-					let vParams;
-					//build params
+					let vParams = '()';
+					// build params
 					if (pParams) {
 						vParams = '(';
 						for(let vParam in pParams){
@@ -64,20 +66,16 @@ export class ORMService{
 						}
 						vParams = vParams.substring(0,vParams.lastIndexOf(',')) + ');';
 					}
-					else{
-						vParams = '()';
-					}
 					let vQuery = 'SELECT ' + pSPName + vParams;
 					vSequelize.query( vQuery, { type: vSequelize.QueryTypes.SELECT }).then(function(pResults){
-						
-
-						pResolve(pResults[0][pSPName]);
-
+						try{
+							pResolve(vErrService.processSPResult(pResults[0][pSPName.toLowerCase()]));
+						}catch(pErr){
+							pReject(pErr);
+						}
 					});
 				}catch(pErr){
-
-
-					pReject(pErr);
+					pReject(vErrService.processSequelizeError(pErr));
 				}
 			});
 	}
