@@ -1,119 +1,210 @@
 <div class='container-body'>
-    <div class='item-container'>
+    <div class="item-container sub">
         <div class='container'>
             <div class='cell'>
-                <div class='container'><div class='cell width-100 large padding-left-5'>{{vSelectedRetailName}}</div></div>
+                <div class='container'><div class='cell width-100 padding-left-5 green'>Rose Cell</div></div>
             </div>
             <div class='cell'>
-                <div class='container'><div class='cell width-40 italic'>({{vSelectedRetailMIN}})</div></div>
+                <div class='container'><div class='cell width-50 italic green'>(99999900003)</div></div>
+            </div>
+        </div>
+    </div>
+    <div class="item-container">
+        <div class="bcp-step-container">
+            <div class="step-field">
+                <div class="step-field-item"><div class="step-circle">1</div></div>
+                <div class="step-field-item">-</div>
+                <div class="step-field-item"><div class="step-circle">2</div></div>
+                <div class="step-field-item">-</div>
+                <div class="step-field-item"><div class="step-circle">3</div></div>
+                <div class="step-field-item">-</div>
+                <div class="step-field-item"><div class="step-circle vivid-pink">4</div></div>
+                <div class="step-field-item">-</div>
+                <div class="step-field-item"><div class="step-circle">5</div></div>
             </div>
         </div>
     </div>
     <div class='item-container'>
         <div class='container'>
             <div class='cell'>
-                <div class='container'><div class='cell center title bold'>Price After Promo:</div></div>
-                <div class='container'>
-                    <div class='cell center title green' [ngClass]="{'red': (vTotalAmount < 0)}">{{getTotalAmount()}} ₱</div>
-                </div>
+                <div class='container'><div class='cell align-center width-100 bold'>Price After Discount:</div></div>
+                <div class='container'><div class='cell align-center width-100 bold green'>0.00 ₱</div></div>
             </div>
         </div>
     </div>
     <div class='item-container'>
         <div class='container'>
             <div class='cell'>
-                <div class='container'><div class='cell width-100 align-center'>Price Before Promo</div></div>
-                <div class='container'>
-                    <div class='cell width-100 align-center'>{{vSubTotal | number}}.00 ₱</div>
-                </div>
+                <div class='container'><div class='cell padding-left-5 width-50'>Price Before Discount</div></div>
             </div>
+            <div class='cell'>
+                <div class='container'><div class='cell align-right width-40'>0.00 ₱</div></div>
+            </div>
+            <div class='cell width-10'></div>
         </div>
     </div>
     <div class='item-container'>
         <div class='container'>
             <div class='cell'>
-                <div class='container'>
-                    <div class='cell width-40 padding-left-5'>Promo Amount</div>
-                </div>
+                <div class='container'><div class='cell padding-left-5 width-50'>Total Discount Amount</div></div>
             </div>
             <div class='cell'>
-                <div class='container'>
-                    <div class='cell width-100'><input class='width-30 margin-right-7 align-right' type='number' [(ngModel)]='vPromoAmount' placeholder='₱'/>
-                    </div>
-                </div> 
+                <div class='container'><div class='cell align-right width-40'>0.00 ₱</div></div>
             </div>
+            <div class='cell width-10'></div>
         </div>
     </div>
     <div class='item-container'>
         <div class='container'>
-            <div class='cell width-30'>
-                <div class='container'><div class='cell width-100 padding-left-5'>Transfer Load</div></div>
+            <div class='cell'>
+                <div class='container'><div class='cell padding-left-5 width-50'>Transfer Load</div></div>
             </div>
             <div class='cell'>
-                <div class='container'>
-                    <div class='cell width-100 align-right'>{{vTransferLoad | number}}.00</div>
-                    <div class='cell grey padding-left-2'>₱</div>
-                </div>
+                <div class='container'><div class='cell align-right width-40'>0.00 ₱</div></div>
             </div>
             <div class='cell width-10 edit-gray' (click)='gotoAddEditLoadTransfer()'></div>
         </div>
     </div>
-    <div *ngIf='vTransferLoadList'>
-        <div class='item-container'>
+    <div>
+        <div class='item-container sub'>
             <div class='container'>
                 <div class='cell'>
-                    <div class='container'><div class='cell width-40 padding-left-5'>DSP Sun Wallet Balance</div></div>
-                    <div class='container'><div class='cell width-40 padding-left-5'>Transfer Amount</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 bold'>SMART</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 grey'>Transfer Amount</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 grey'>Promo Code</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 grey'>Discount Amount</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 grey'>Total Amount</div></div>
                 </div>
-                <div class='cell width-30'>
-                    <div class='container'><div class='cell width-50 align-right'></div></div>
-                    <div class='container'>
-                        <div class='cell width-100 align-right'>2,000.00</div>
-                        <div class='cell grey padding-left-2'>₱</div>
-                    </div>
+                <div class='cell'>
+                    <div class='container'><div class='cell align-right width-40'>9000000003</div></div>
+                    <div class='container'><div class='cell align-right width-40'>2,000.00 ₱</div></div>
+                    <div class='container'><div class='cell align-right width-40 grey'>load111</div></div>
+                    <div class='container'><div class='cell align-right width-40'>100.00 ₱</div></div>
+                    <div class='container'><div class='cell align-right width-40'>1,900.00 ₱</div></div>
                 </div>
                 <div class='cell width-10'></div>
             </div>
         </div>
-        <div class='item-container'>
+        <div class='item-container sub'>
             <div class='container'>
                 <div class='cell'>
-                    <div class='container'><div class='cell width-40 padding-left-5'>DSP SMART Wallet Balance</div></div>
-                    <div class='container'><div class='cell width-40 padding-left-5'>Transfer Amount</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 bold'>SUN</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 grey'>Transfer Amount</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 grey'>Promo Code</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 grey'>Discount Amount</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 grey'>Total Amount</div></div>
                 </div>
-                <div class='cell width-30'>
-                    <div class='container'><div class='cell width-50 align-right'></div></div>
-                    <div class='container'>
-                        <div class='cell width-100 align-right'>2,000.00</div>
-                        <div class='cell grey padding-left-2'>₱</div>
-                    </div>
+                <div class='cell'>
+                    <div class='container'><div class='cell align-right width-40'>9000000003</div></div>
+                    <div class='container'><div class='cell align-right width-40'>2,000.00 ₱</div></div>
+                    <div class='container'><div class='cell align-right width-40 grey'>load111</div></div>
+                    <div class='container'><div class='cell align-right width-40'>100.00 ₱</div></div>
+                    <div class='container'><div class='cell align-right width-40'>1,900.00 ₱</div></div>
                 </div>
                 <div class='cell width-10'></div>
+            </div>
+            <div class='container'>
+                <div class='double-divider'>
+                    <div class='button button-small' id='cancel'>
+                        <div class='button-identifier'>CANCEL</div>
+                    </div>
+                </div>
+                <div class='double-divider'>
+                    <div class='button button-small' id='confirm'>
+                        <div class='button-identifier'>CONFIRM</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
     <div class='item-container'>
         <div class='container'>
             <div class='cell'>
-                <div class='container'><div class='cell width-40 padding-left-5'>Physical Order</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50'>Physical Order</div></div>
             </div>
-            <div class='cell width-30'>
-                <div class='container'>
-                    <div class='cell width-100 align-right'>{{vPhysicalOrder | number}}.00</div>
-                    <div class='cell grey padding-left-2'>₱</div>
-                </div>
+            <div class='cell'>
+                <div class='container'><div class='cell align-right width-40'>0.00 ₱</div></div>
             </div>
-            <div class='cell width-10 edit-gray' (click)="gotoAddEditPhysicalOrder()"></div>
+            <div class='cell width-10 edit-gray' (click)='gotoAddEditPhysicalOrder()'></div>
         </div>
     </div>
+
+    <div>
+        <div class='item-container sub'>
+            <div class='container'>
+                <div class='cell'>
+                    <div class='container'><div class='cell padding-left-10 width-90'>Pinoy SIM</div></div>
+                    <div class='container'>
+                        <div class='cell padding-left-10 width-90'>
+                            <div class='container'>
+                                <div class='cell'>
+                                    <div class='container'><div class='cell width-50 grey'>Suggested Order</div></div>
+                                </div>
+                                <div class='cell'>
+                                    <div class='container'><div class='cell align-right width-40'>500</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='cell width-10'></div>
+            </div>
+        </div>
+        <div class='item-container sub'>
+            <div class='container'>
+                <div class='cell'>
+                    <div class='container'><div class='cell padding-left-10 width-90'>SKU1</div></div>
+                    <div class='container'>
+                        <div class='cell padding-left-10 width-90'>
+                            <div class='container'>
+                                <div class='cell'>
+                                    <div class='container'><div class='cell width-50'>Unit Price</div></div>
+                                    <div class='container'><div class='cell width-50 grey'>Order Quantity</div></div>
+                                    <div class='container'><div class='cell width-50 grey'>Amount per SKU</div></div>
+                                    <div class='container'><div class='cell width-50 grey'>Promo Code</div></div>
+                                    <div class='container'><div class='cell width-50 grey'>Discount Amount</div></div>
+                                    <div class='container'><div class='cell width-50 grey'>Total Amount</div></div>
+                                </div>
+                                <div class='cell'>
+                                    <div class='container'><div class='cell align-right width-40'>0.00 ₱</div></div>
+                                    <div class='container'><div class='cell align-right width-40'>5</div></div>
+                                    <div class='container'><div class='cell align-right width-40'>1,000.00 ₱</div></div>
+                                    <div class='container'><div class='cell align-right width-40'>phy1234</div></div>
+                                    <div class='container'><div class='cell align-right width-40'>100.00 ₱</div></div>
+                                    <div class='container'><div class='cell align-right width-40'>900.00 ₱</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='cell width-10'></div>
+            </div>
+
+            <div class='container'>
+                <div class='double-divider'>
+                    <div class='button button-small' id='cancel'>
+                        <div class='button-identifier'>CANCEL</div>
+                    </div>
+                </div>
+                <div class='double-divider'>
+                    <div class='button button-small' id='confirm'>
+                        <div class='button-identifier'>CONFIRM</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class='double-divider'>
         <div class='button' id='skip' (click)='skipSalesOrderModalComponent()'>
             <div class='button-identifier'>SKIP</div>
         </div>
     </div>
-    <div class='double-divider' id='confirm'>
-        <div class='button' (click)="goToSalesOrderPayment()">
-            <div class='button-identifier'>CONFIRM</div>
+    <div class='double-divider'>
+        <div class='button' id='next' (click)="goToSalesOrderPayment()">
+            <div class='button-identifier'>NEXT</div>
         </div>
     </div>
 </div>

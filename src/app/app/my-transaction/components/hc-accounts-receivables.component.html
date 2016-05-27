@@ -1,10 +1,14 @@
+<div class="container-body">
+	<div class='filter-container' *ngIf="getFilter().filterAccReceivables">
+        <div class='filter-input input'>
+            <div class='icon'></div>
+            <input type='text' #listFilter (keyup)='onKey(listFilter.value)' id='RetailerSearchBox' placeholder='Input Retailer Name or MIN' />
+        </div>  
+    </div>
+</div>
+
+
 <div class="accounts-receivables">	
-	<div class="filter-container" *ngIf="getFilter().filterAccReceivables">
-		<div class="filter-input input">
-			<div class="icon"></div>
-			<input type="text" #listFilter (keyup)="onKey(listFilter.value)" id="RetailerSearchBox" placeholder="Input Retailer Name or MIN" />
-		</div>	
-	</div>
     <div class="item-container">
         <div class='container'>
             <div class='cell'>

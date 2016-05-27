@@ -20,7 +20,7 @@ export class RetailerService {
     queryRetailerRoute(pSelectedDay) {
         console.log('Start hit login service to Query Retailer Route');
         // Hit Api with selectedDate and Login user
-        return this._http.post('/salesRoute/'+ 'DSP00001' + '/' + pSelectedDay);        
+        return this._http.get('/salesRoute/'+ 'DSP00001' + '/' + pSelectedDay);        
     }
 
 

@@ -4,16 +4,31 @@
 <!--Container-->
 <div class="container-body">
 
-	<div class="filter-container" *ngIf="getFilter().filterTargetsActuals">
-		<div class="filter-label">Brand</div>
-		<div class="filter-dropdown">
-			<select id="filter-dropdown" name="cars" [(ngModel)]="vSelectedBrand"  (ngModelChange)="onChangeSelectBrand($event)">
-				<option *ngFor="#each of getBrand()" [value]="each.brand" >
-					{{each.brand}}
-				</option>
-			</select>
+	<div id="filter-btn" class="filter-container" *ngIf="getFilter().filterTargetsActuals">
+		<div class="item-container">
+			<div class="container">
+				<div class='cell'>
+					<div class="container">
+						<div class="cell filter-label width-50 padding-top-1 padding-bottom-1">Brand</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class="container">
+						<div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
+							<select name="cars" [(ngModel)]="vSelectedBrand"  (ngModelChange)="onChangeSelectBrand($event)">
+								<option *ngFor="#each of getBrand()" [value]="each.brand" >
+									{{each.brand}}
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
+	</div>	
+
+
+
 
 	<div *ngIf="vDayShow">
 		<div  *ngFor="#eachCat of vShowProduct">

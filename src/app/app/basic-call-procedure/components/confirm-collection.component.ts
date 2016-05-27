@@ -3,33 +3,39 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet } from 'angular2/ro
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
+import {RetailerService} from '../../shared/services/retailer.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
-    selector: 'sales-order-payment',
-    templateUrl: './app/basic-call-procedure/components/sales-order-payment.component.html',
+    templateUrl: './app/basic-call-procedure/components/confirm-collection.component.html',
     directives: [
-        NgModel,
         ROUTER_DIRECTIVES
     ]
 })
 
-export class SalesOrderPaymentComponent {
-
+export class ConfirmCollectionComponent {
 
     constructor (
         private _layoutService: LayoutService,
         private _matchMediaService: MatchMediaService,
         private _headerService: HeaderService,
-        private _router: Router,
-        private _pageNavigationService: PageNavigationService
+        private _retailerService: RetailerService,
+        private _pageNavigationService: PageNavigationService,
+        private _router: Router
         ) {
-        this._layoutService.setCurrentPage('SalesOrderPayment');
-        this._headerService.setTitle('Sales Order Payment');
+
+
+        this._layoutService.setCurrentPage('ConfirmCollection');
+        this._headerService.setTitle('Confirm Collection');
     }
 
-    gotoUnservedOrder() {
-        this._pageNavigationService.navigate('UnservedOrder', null, null);
+    getResize() {
+        return this._matchMediaService.getMm();
     }
+
+    gotoOffers() {
+        this._pageNavigationService.navigate('Offer', null, null);
+    }
+  
 }

@@ -31,7 +31,11 @@ export class UnservedOrderComponent {
         this._headerService.setTitle('Unserved Order');
     }
 
-    gotoBCPActivityStep() {
-        this._pageNavigationService.navigate('BCPActivityStep', null, null);
+    gotoAddUnservedOrder() {
+        this._pageNavigationService.navigate('AddUnservedOrder', null, null);
+    }
+
+    gotoBasicCallProcedure() {
+        this._pageNavigationService.navigate('BasicCallProcedure', null, null);
     }
 }
