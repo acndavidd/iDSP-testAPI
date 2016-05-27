@@ -1,5 +1,41 @@
-$select-arrow: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4IiB3aWR0aD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE0LjgzIDE2LjQybDkuMTcgOS4xNyA5LjE3LTkuMTcgMi44MyAyLjgzLTEyIDEyLTEyLTEyeiIvPjxwYXRoIGQ9Ik0wLS43NWg0OHY0OGgtNDh6IiBmaWxsPSJub25lIi8+PC9zdmc+';
+/*
+===========================================================
+FOR BCP STEPPER
+===========================================================
+*/
 
+.bcp-step-container {
+    width: 100%;
+    height: 100%;
+
+    .step-field {
+        clear: both;
+        display: flex;
+        width: 100%;
+        padding: 0% 0% 0% 25%;
+
+        .step-field-item {
+            line-height: 7vw;
+            font-size: 4vw;
+            font-weight: bold;
+            padding: 0% 0.5% 0% 0.5%;
+
+            .step-circle {
+                background: $dark-grey;
+                width: 7vw;
+                height: 7vw;
+                line-height: 7vw;
+                border-radius: 50%;
+                color: $white;
+                text-align: center;
+
+                &.vivid-pink {
+                    background: $vivid-pink;
+                }
+            }
+        }
+    }
+}
 
 /*
 ===========================================================
@@ -103,25 +139,25 @@ LIST VIEW - ICON BUTTON
     background: url("../img/icon-idsp/path-down-grey.png")no-repeat;
     background-position-x: center;
     background-position-y: center;
-    background-size: 20px;
+    background-size: 6vw;
 }
 &.arrow-right {
     background: url("../img/icon-idsp/path-right-grey.png")no-repeat;
     background-position-x: center;
     background-position-y: center;
-    background-size: 13px;
+    background-size: 3.5vw;
 }
 &.selected {   
     background: url("../img/icon-idsp/path-down-up.png")no-repeat;
     background-position-x: center;
     background-position-y: center;
-    background-size: 20px;
+    background-size: 6vw;
 }
 &.call {
     background: url("../img/icon-idsp/phone-grey.png")no-repeat;
     background-position-x: center;
     background-position-y: center;
-    background-size: 20px;
+    background-size: 6vw;
 }
 &.targets-airtime {
     background: url(#{$icon-targets-airtime})no-repeat;
@@ -187,12 +223,6 @@ LIST VIEW - ICON MENU
     background-size: 15vw;
 }
 
-&.call {
-    background: url("../img/icon-idsp/phone-grey.png")no-repeat;
-    background-position-x: center;
-    background-position-y: center;
-    background-size: 15vw;
-}
 &.bcp {
     background: url(#{$icon-round-grad-bcp})no-repeat;
     background-position-x: center;
@@ -355,6 +385,13 @@ LIST VIEW - BUTTON
         margin-bottom:4%;
         background-color: $apple;
         border-radius: 2vw;
+
+        &.button-small {
+            border-radius: 0vw;
+            padding-bottom: 0vw;
+            padding-top: 0vw;
+            font-size: 3vw;
+        }
         .button-identifier {
             cursor: pointer;
             font-size: $button;
@@ -735,6 +772,23 @@ LIST VIEW - TEXT
                 }
                 &.purple {
                     background-color : $violetish-white;
+                }
+            }
+
+            .sequence {
+                width: 10vw;
+                height: 10vw;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 10vw;
+                font-size: 6vw;
+                color : $white;
+
+                &.green {
+                    background-color : $apple;
+                }
+                &.vivid-pink {
+                    background-color : $vivid-pink;
                 }
             }
         }

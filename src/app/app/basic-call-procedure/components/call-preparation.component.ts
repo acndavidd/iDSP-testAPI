@@ -108,8 +108,8 @@ export class CallPreparationComponent {
         return this._matchMediaService.getMm();
     }
 
-    HCgotoBCPActivityStep() {
-        this._pageNavigationService.navigate('BCPActivityStep', null, null);
+    HCgotoCollection() {
+        this._pageNavigationService.navigate('BCPCollection', null, null);
     }
 
     gotoBCPActivityStep(pSelectedRetailer) {
@@ -133,8 +133,6 @@ export class CallPreparationComponent {
     // gotoBCPActivityStep() {
     //     this._pageNavigationService.navigate('BCPActivityStep', null, null);
     // }
-
-
 
     getRetailerDetails() {
         return this.vSelectedRetail;
