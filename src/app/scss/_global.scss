@@ -1,4 +1,103 @@
-$select-arrow: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4IiB3aWR0aD0iNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE0LjgzIDE2LjQybDkuMTcgOS4xNyA5LjE3LTkuMTcgMi44MyAyLjgzLTEyIDEyLTEyLTEyeiIvPjxwYXRoIGQ9Ik0wLS43NWg0OHY0OGgtNDh6IiBmaWxsPSJub25lIi8+PC9zdmc+';
+/*
+===========================================================
+FOR BCP STEPPER
+===========================================================
+*/
+
+.bcp-step-container {
+    width: 100%;
+    height: 100%;
+
+    .step-field {
+        clear: both;
+        display: flex;
+        width: 100%;
+        padding: 0% 0% 0% 25%;
+
+        .step-field-item {
+            line-height: 7vw;
+            font-size: 4vw;
+            font-weight: bold;
+            padding: 0% 0.5% 0% 0.5%;
+
+            .step-circle {
+                background: $dark-grey;
+                width: 7vw;
+                height: 7vw;
+                line-height: 7vw;
+                border-radius: 50%;
+                color: $white;
+                text-align: center;
+
+                &.vivid-pink {
+                    background: $vivid-pink;
+                }
+            }
+        }
+    }
+}
+
+/*
+===========================================================
+CHECKBOX
+===========================================================
+*/
+.checkbox-custom {
+    opacity: 0;
+    position: absolute;   
+}
+
+.checkbox-custom, .checkbox-custom-label {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 25%;
+    cursor: pointer;
+}
+
+.checkbox-custom-label {
+    position: relative;
+}
+
+.checkbox-custom + .checkbox-custom-label:before {
+    content: '';
+    background: #fff;
+    border: 3px solid #62BB47;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 20%;
+    width: 6vw;
+    height: 6vw;
+    padding: 1vw;
+    text-align: center;
+}
+
+.checkbox-custom:checked + .checkbox-custom-label:before {
+    content: "✓";
+    vertical-align: middle;
+    text-align: center;
+    background: #62BB47;
+    color: #fff;
+    font-weight: bolder;
+
+}
+
+
+/*
+===========================================================
+END OF CHECKBOX
+===========================================================
+*/
+//PLEASE PUT HEIGHT HERE
+&.height-1 { height: 1vw; }
+&.height-2 { height: 2vw; }
+&.height-3 { height: 3vw; }
+&.height-4 { height: 4vw; }
+&.height-5 { height: 5vw; }
+&.height-6 { height: 6vw; }
+&.height-7 { height: 7vw; }
+&.height-8 { height: 8vw; }
+&.height-9 { height: 9vw; }
+&.height-10 { height: 10vw; }
 
 // PLEASE PUT WIDTH HERE
 &.width-10 { width: 10%; }
@@ -40,25 +139,25 @@ LIST VIEW - ICON BUTTON
     background: url("../img/icon-idsp/path-down-grey.png")no-repeat;
     background-position-x: center;
     background-position-y: center;
-    background-size: 20px;
+    background-size: 6vw;
 }
 &.arrow-right {
     background: url("../img/icon-idsp/path-right-grey.png")no-repeat;
     background-position-x: center;
     background-position-y: center;
-    background-size: 13px;
+    background-size: 3.5vw;
 }
 &.selected {   
     background: url("../img/icon-idsp/path-down-up.png")no-repeat;
     background-position-x: center;
     background-position-y: center;
-    background-size: 20px;
+    background-size: 6vw;
 }
 &.call {
     background: url("../img/icon-idsp/phone-grey.png")no-repeat;
     background-position-x: center;
     background-position-y: center;
-    background-size: 20px;
+    background-size: 6vw;
 }
 &.targets-airtime {
     background: url(#{$icon-targets-airtime})no-repeat;
@@ -117,19 +216,13 @@ LIST VIEW - ICON MENU
 ===========================================================
 */
 
-.mydashboard {
+&.mydashboard {
     background: url(#{$icon-round-grad-mydashboard})no-repeat;
     background-position-x: center;
     background-position-y: center;
     background-size: 15vw;
 }
 
-&.call {
-    background: url("../img/icon-idsp/phone-grey.png")no-repeat;
-    background-position-x: center;
-    background-position-y: center;
-    background-size: 15vw;
-}
 &.bcp {
     background: url(#{$icon-round-grad-bcp})no-repeat;
     background-position-x: center;
@@ -202,38 +295,14 @@ LIST VIEW - ICON MENU
     background-position-y: center;
     background-size: 15vw;
 }
-
-/*
-===========================================================
-SUBMENU
-===========================================================
-*/
-.sub-main-menu {
-    z-index: 1;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-    .container-body {
-        background-color: $dark-cyan;
-        overflow-x: hidden;
-        position: relative;
-        .separator {
-            border-bottom: 0.1em solid $white;
-        }
-        .sub-main-button {
-            display: inline-block;
-            width: 100%;
-            padding-bottom: 0.8em;
-            padding-top: 0.8em;
-            background-color: $dark-cyan;
-            .button-identifier {
-                font-size: $content-heading-1;
-                text-align: center;
-                color: $white;
-            }
-        }
-    }
+&.unserved-order {
+    background: url(#{$icon-round-grad-unserved-order})no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 15vw;
 }
+
+
 
 /*
 ===========================================================
@@ -316,6 +385,13 @@ LIST VIEW - BUTTON
         margin-bottom:4%;
         background-color: $apple;
         border-radius: 2vw;
+
+        &.button-small {
+            border-radius: 0vw;
+            padding-bottom: 0vw;
+            padding-top: 0vw;
+            font-size: 3vw;
+        }
         .button-identifier {
             cursor: pointer;
             font-size: $button;
@@ -491,16 +567,13 @@ LIST VIEW - TEXT
         }
         .cell {
             display:table-cell;
-            font-size: $content-normal;
-            height:1.6em;
+            font-size: 4vw;
+            height:7vw;
             vertical-align:middle;
 
             input {
-                height: 6vw;
+                height: 7vw;
 
-                &.width-30 {
-                    width: 30vw;
-                }
                 &.input-peso {
                     text-align: right;
                     font-size: $content-normal;
@@ -514,17 +587,11 @@ LIST VIEW - TEXT
                 }
             }
             textarea {
-                background: $white;
-                height: 50px;
+                height: 10vw;
+                width: 100%;
                 border: 1px solid $dark-grey;
-                width: 80%;
-                -webkit-appearance: none;
                 border-radius: 7px;
-                padding-left: 15px;
-                font-size: $filter-select;
-                font-weight:lighter;
-                appearance: none;
-                cursor: pointer;
+                font-size: 4vw;
             }
 
 
@@ -542,26 +609,6 @@ LIST VIEW - TEXT
                 }
             }
 
-            .filter-input{
-                padding-top: 7px;
-                padding-left: 24px;
-                top: 0;
-                
-                input {
-                    background: $white;
-                    height: 30px;
-                    border: 1px solid $dark-grey;
-                    -webkit-appearance: none;
-                    border-radius: 2vw;
-                    padding-left: 15px;
-                    font-size: $filter-select;
-                    font-weight:lighter;
-                    appearance: none;
-                    cursor: pointer;
-                    text-align: center;
-                    margin: 0% 0% 5% 40%;
-                }
-            }
             
             // PLEASE PUT STYLE HERE
             &.padding-left-5 { padding-left: 5vw; }
@@ -569,7 +616,14 @@ LIST VIEW - TEXT
             &.padding-right-3 { padding-right: 3vw; }
             &.padding-right-5 { padding-right: 5vw; }
             &.padding-left-2 { padding-left: 2vw; }
+
+            &.padding-top-1 { padding-top: 1vw; }
+            &.padding-bottom-1 { padding-bottom: 1vw; }
+
             .margin-right-7 { margin-right: 7vw; }
+
+
+
             
             &.small { font-size: small; }
             &.large { font-size: large; }
@@ -660,16 +714,7 @@ LIST VIEW - TEXT
                 width: 85%;
                 padding-left:0.6em;
             }
-            &.percent-100{
-                padding-left:0.6em;
-                width:100px;
-            }
-            &.percent-200{
-                width:200px; 
-            }
-            &.percent-300{
-                width:300px; 
-            }
+
             &.icon {
                 width: 15%;
             }
@@ -729,6 +774,23 @@ LIST VIEW - TEXT
                     background-color : $violetish-white;
                 }
             }
+
+            .sequence {
+                width: 10vw;
+                height: 10vw;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 10vw;
+                font-size: 6vw;
+                color : $white;
+
+                &.green {
+                    background-color : $apple;
+                }
+                &.vivid-pink {
+                    background-color : $vivid-pink;
+                }
+            }
         }
     }
       
@@ -743,77 +805,67 @@ LIST VIEW - FILTER
         width: 100%;
         display: block;
         clear: left;
-        height: 60px;
         .filter-label {
-            font-size: $filter-label;
-            color: #000;
-            padding-top: 20px;
-            padding-left: 10px;
-            float: left;
+            display: table-cell;
+            font-size: 4vw;
+            padding: 2vw 0vw 0vw 7vw;
+            // float: left;
         }
         .filter-dropdown {
-            padding-top: 15px;
-            padding-left: 70px;
+            padding: 0vw 7vw 0vw 3vw;
+
             select {
                 background: $white;
-                height: 31px;
+                height: 8vw;
                 border: 1px solid $dark-grey;
-                width: 90%;
+                width: 100%;
                 -webkit-appearance: none;
-                border-radius: 7px;
-                padding-left: 15px;
-                font-size: $filter-select;
                 appearance: none;
+                border-radius: 5px;
+                font-size: 4vw;
+                padding: 0% 0% 0% 3%;
                 @media screen and (-webkit-min-device-pixel-ratio: 0) {
                     background-image: url(#{$select-arrow});
                     background-position: right 0 top 50%;
+                    background-size: 7vw;
                     background-repeat: no-repeat;
-                    .green{
-                    color: $apple;
-                    }
                 }
+            }
+        }
+        .filter-input{
+            padding: 2vw 7vw 2vw 7vw;
+            
+            input {
+                background: $white;
+                height: 8vw;
+                border: 1px solid $dark-grey;
+                width: 100%;
+                border-radius: 5px;
+                font-size: 3vw;
+                -webkit-appearance: none;
+                cursor: pointer;
+                text-align: center;
+            }
+            .icon{
+                padding: 9vw 0vw 0vw 15vw;
+                position: absolute;
+                right: 0;
+                z-index: 100;
+                background: url("../img/icon-idsp/search-black.png") no-repeat;
+                background-size: 7vw;
+                background-position: left;
             }
         }
     }
 
-    .filter-content{
-        background-color: $white;
-        width: 100%;
-        display: block;
-        clear: left;
-        height: 60px;
-        .filter-label {
-            font-size: $filter-label;
-            color: #000;
-            padding-top: 20px;
-            padding-left: 10px;
-            float: left;
-        }
-        .filter-dropdown {
-            padding-top: 15px;
-            // padding-left: 70px;
-            select {
-                background: $white;
-                height: 35px;
-                border: 1px solid $dark-grey;
-                width: 90%;
-                -webkit-appearance: none;
-                border-radius: 2vw;
-                padding-left: 15px;
-                font-size: $filter-select;
-                appearance: none;
-                margin: 0% 0% 5% 15%;
-                @media screen and (-webkit-min-device-pixel-ratio: 0) {
-                    background-image: url(#{$select-arrow});
-                    background-position: right 0 top 50%;
-                    background-repeat: no-repeat;
-                    &.green{
-                    color: $apple;
-                    }
-                }
-            }
-        }
-    }
+ /*
+===========================================================
+END OF LIST VIEW - FILTER
+===========================================================
+*/   
+
+
+
 }
 
 

@@ -32,6 +32,9 @@ import {AddEditLoadTransferComponent} from '../../basic-call-procedure/component
 import {AddEditPhysicalOrderComponent} from '../../basic-call-procedure/components/add-edit-physical-order.component';
 import {AddSalesOrderPhysicalComponent} from '../../basic-call-procedure/components/add-sales-order-physical.component';
 import {BCPAddRetailerRouteComponent} from '../../basic-call-procedure/components/bcp-add-retailer-route.component';
+import {CDUnservedOrderComponent} from '../../close-day/components/cd-unserved-order.component';
+import {ConfirmCollectionComponent} from '../../basic-call-procedure/components/confirm-collection.component';
+import {AddUnservedOrderComponent} from '../../basic-call-procedure/components/add-unserved-order.component';
 import {HomeComponent} from '../../shared/components/home.component';
 
 @Component({
@@ -132,6 +135,11 @@ import {HomeComponent} from '../../shared/components/home.component';
         component: BCPCollectionComponent
     },
     {
+        path: 'confirmCollection',
+        name: 'ConfirmCollection',
+        component: ConfirmCollectionComponent
+    },
+    {
         path: '/offer',
         name: 'Offer',
         component: OffersComponent
@@ -166,6 +174,11 @@ import {HomeComponent} from '../../shared/components/home.component';
         name: 'UnservedOrder',
         component: UnservedOrderComponent
     },
+    {
+        path: '/addUnservedOrder',
+        name: 'AddUnservedOrder',
+        component: AddUnservedOrderComponent
+    },
     // UNDER BCP TAB - END
 
     // UNDER CLOSE OF THE DAY TAB - START
@@ -178,6 +191,11 @@ import {HomeComponent} from '../../shared/components/home.component';
         path: '/visitedRetail',
         name: 'VisitedRetail',
         component: VisitedRetailComponent
+    },
+    {
+        path: '/cdUnservedOrder',
+        name: 'CDUnservedOrder',
+        component: CDUnservedOrderComponent
     }
     // UNDER CLOSE OF THE DAY TAB - END
 

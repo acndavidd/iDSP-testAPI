@@ -8,15 +8,15 @@ import {Modal} from '../../shared/services/modal.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
 
 @Component({
-    selector: 'add-edit-physical-order',
-    templateUrl: './app/basic-call-procedure/components/add-edit-physical-order.component.html',
+    selector: 'add-unserved-order',
+    templateUrl: './app/basic-call-procedure/components/add-unserved-order.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
     ]
 })
 
-export class AddEditPhysicalOrderComponent {
+export class AddUnservedOrderComponent {
 
 
     constructor (
@@ -27,15 +27,13 @@ export class AddEditPhysicalOrderComponent {
         private _router: Router,
         private _pageNavigationService: PageNavigationService
         ) {
-        this._layoutService.setCurrentPage('AddEditPhysicalOrder');
-        this._headerService.setTitle('Add / Edit Physical Order');
+        this._layoutService.setCurrentPage('AddUnservedOrder');
+        this._headerService.setTitle('Add Unserved Order');
     }
 
-    gotoRetailerSalesOrder() {
-        this._pageNavigationService.navigate('RetailerSalesOrder', null, null);
+    gotoUnservedOrder() {
+        this._pageNavigationService.navigate('UnservedOrder', null, null);
     }
 
-    gotoAddSalesOrderPhysical() {
-        this._pageNavigationService.navigate('AddSalesOrderPhysical', null, null);
-    }
+
 }

@@ -96,8 +96,21 @@ vRouter.post('/getLoadWallet',vRetailerCtrl.getLoadWallet);
 vRouter.post('/getPhysicalInventory',vRetailerCtrl.getPhysicalInventory);
 vRouter.post('/getPaymentHistory',vRetailerCtrl.getPaymentHistory);
 vRouter.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
+vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
+vRouter.post('/AccountsReceivables',vAccCtrl.AccountsReceivables);
 vRouter.get('/testSync',vSchedCtrl.syncTableMaster);
 
+//API BASED ON GUIDELINES
+ vRouter.post('/todaysRetailerRoute',vRetailerCtrl.todaysRetailerRoute);
+ vRouter.post('/retailerCallPreparation',vRetailerCtrl.retailerCallPreparation);
+ vRouter.post('/loadWallet',vRetailerCtrl.loadWallet);
+ vRouter.post('/physicalInventory',vRetailerCtrl.physicalInventory);
+ vRouter.post('/paymentHistory',vRetailerCtrl.paymentHistory);
+ vRouter.get('/brands',vTargetsActualsCtrl.brands);
+ vRouter.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
+
+vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
+vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);
 
 var vTesting = vExpress.Router();
 vTesting.post('/login',vLoginCtrl.login);
@@ -132,8 +145,6 @@ var job = new CronJob('* * 0 * * *', function() {
 }, function () {
 
 }, true, 'Asia/Manila');
-
-
 
 console.log('http://127.0.0.1:' + PORT + '/service');
 console.log('http://127.0.0.1:' + PORT + '/testing');

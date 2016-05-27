@@ -58,7 +58,7 @@ export class ORMService{
 			function (pResolve,pReject){
 				try{
 					let vParams = '()';
-					//build params
+					// build params
 					if (pParams) {
 						vParams = '(';
 						for(let vParam in pParams){
@@ -76,6 +76,8 @@ export class ORMService{
 					});
 				}catch(pErr){
 					pReject(vErrService.processSequelizeError(pErr));
+						pResolve(pResults[0][pSPName]);
+					});
 				}
 			});
 	}

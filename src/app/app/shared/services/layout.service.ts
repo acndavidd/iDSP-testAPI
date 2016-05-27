@@ -176,7 +176,6 @@ export class LayoutService {
             };
             // ONLY BCP PAGE NEEDS FILTER
             if (pCurrent === 'BasicCallProcedure') {
-                this.vCurrentPointer = '0';
                 this.vHeaderItem.filter = true;
                 this.vHeaderItem.add = true;
             }
@@ -231,26 +230,13 @@ export class LayoutService {
         }
         // UNDER MY DASHBOARD - END
 
-
         // UNDER BASIC CALL PROCEDURE - START
         else if (
-            pCurrent === 'BCPActivityStep') {
-            this.vLayoutState = {
-                appHeader: true,
-                appFooter: false,
-                leftMenu: false
-            };
-            this.vHeaderItem = {
-                hamburger: false,
-                back: true,
-                filter: false,
-                edit: false,
-                search: false,
-                add: false
-            };
-        }
-        else if (
             pCurrent === 'BCPAddRetailerRoute') {
+            this.vOldCurrentPage = 'BasicCallProcedure';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
             this.vLayoutState = {
                 appHeader: true,
                 appFooter: false,
@@ -267,7 +253,9 @@ export class LayoutService {
         }
         else if (
             pCurrent === 'CallPreparation') {
-            this.vCurrentPointer = '1';
+            this.vOldCurrentPage = 'BasicCallProcedure';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
 
             this.vLayoutState = {
                 appHeader: true,
@@ -277,7 +265,7 @@ export class LayoutService {
 
             this.vHeaderItem = {
                 hamburger: false,
-                back: false,
+                back: true,
                 filter: false,
                 edit: false,
                 search: false,
@@ -285,78 +273,11 @@ export class LayoutService {
             };
         }
         else if (
-            pCurrent === 'BCPCollection') {
-            this.vCurrentPointer = '2';
-
-            this.vLayoutState = {
-                appHeader: true,
-                appFooter: false,
-                leftMenu: false
-            };
-
-            this.vHeaderItem = {
-                hamburger: false,
-                back: false,
-                filter: false,
-                edit: false,
-                search: false,
-                add: false
-            };
-        } else if (
-            pCurrent === 'Offers') {
-            this.vCurrentPointer = '3';
-
-            this.vLayoutState = {
-                appHeader: true,
-                appFooter: false,
-                leftMenu: false
-            };
-            this.vHeaderItem = {
-                hamburger: false,
-                back: false,
-                filter: false,
-                edit: false,
-                search: false,
-                add: false
-            };
-        } else if (
-            pCurrent === 'RetailerSalesOrder') {
-            this.vCurrentPointer = '4';
-
-            this.vLayoutState = {
-                appHeader: true,
-                appFooter: false,
-                leftMenu: false
-            };
-
-            this.vHeaderItem = {
-                hamburger: false,
-                back: false,
-                filter: false,
-                edit: false,
-                search: false,
-                add: false
-            };
-        } else if (
-            pCurrent === 'SalesOrderPayment') {
-            this.vCurrentPointer = '5';
-
-            this.vLayoutState = {
-                appHeader: true,
-                appFooter: false,
-                leftMenu: false
-            };
-            this.vHeaderItem = {
-                hamburger: false,
-                back: false,
-                filter: false,
-                edit: false,
-                search: false,
-                add: false
-            };
-        } else if (
+            pCurrent === 'BCPCollection' ||
+            pCurrent === 'Offers' ||
+            pCurrent === 'RetailerSalesOrder' ||
+            pCurrent === 'SalesOrderPayment' ||
             pCurrent === 'UnservedOrder') {
-            this.vCurrentPointer = '6';
 
             this.vLayoutState = {
                 appHeader: true,
@@ -367,6 +288,87 @@ export class LayoutService {
             this.vHeaderItem = {
                 hamburger: false,
                 back: false,
+                filter: false,
+                edit: false,
+                search: false,
+                add: false
+            };
+        } else if (
+            pCurrent === 'ConfirmCollection') {
+            this.vOldCurrentPage = 'BCPCollection';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+
+            this.vHeaderItem = {
+                hamburger: false,
+                back: true,
+                filter: false,
+                edit: false,
+                search: false,
+                add: false
+            };
+        } else if (
+            pCurrent === 'AddEditLoadTransfer' ||
+            pCurrent === 'AddEditPhysicalOrder') {
+            this.vOldCurrentPage = 'RetailerSalesOrder';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+
+            this.vHeaderItem = {
+                hamburger: false,
+                back: true,
+                filter: false,
+                edit: false,
+                search: false,
+                add: false
+            };
+        } else if (
+            pCurrent === 'AddSalesOrderPhysical') {
+            this.vOldCurrentPage = 'AddEditPhysicalOrder';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+
+            this.vHeaderItem = {
+                hamburger: false,
+                back: true,
+                filter: false,
+                edit: false,
+                search: false,
+                add: false
+            };
+        } else if (
+            pCurrent === 'AddUnservedOrder') {
+            this.vOldCurrentPage = 'UnservedOrder';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+
+            this.vHeaderItem = {
+                hamburger: false,
+                back: true,
                 filter: false,
                 edit: false,
                 search: false,
@@ -378,7 +380,8 @@ export class LayoutService {
         // UNDER CLOSE OF THE DAY - START
         else if (
             pCurrent === 'Collection' ||
-            pCurrent === 'VisitedRetail') {
+            pCurrent === 'VisitedRetail' ||
+            pCurrent === 'CDUnservedOrder') {
             // this._pageNavigationService.setPreviousPage('CloseDay');
             this._pageNavigationService.resetListPreviousData();
             this.vOldCurrentPage = 'CloseDay';
@@ -411,6 +414,25 @@ export class LayoutService {
 
 
         // UNUSED PAGE - START
+        // else if (
+        //     pCurrent === 'BCPActivityStep') {
+        //     this.vLayoutState = {
+        //         appHeader: true,
+        //         appFooter: false,
+        //         leftMenu: false
+        //     };
+        //     this.vHeaderItem = {
+        //         hamburger: false,
+        //         back: false,
+        //         filter: false,
+        //         edit: false,
+        //         search: false,
+        //         add: false
+        //     };
+
+        //     if (this.vCurrentPointer === '0')
+        //         this.vHeaderItem.back = true;
+        // }
         // else if (pCurrent === 'ResetPassword') {
         //     // this._pageNavigationService.setPreviousPage('Settings');
         //     this._pageNavigationService.resetListPreviousData();
@@ -455,7 +477,7 @@ export class LayoutService {
         // }
         // UNUSED PAGE - END
 
-        console.log('In Layout Current Page ' + pCurrent + ' - ' + this.vHeaderItem.add);
+        console.log('In Layout Current Page ' + pCurrent + ' - ' + this.vHeaderItem.back);
         this._pageNavigationService.setCurrentPage(pCurrent);
     }
 

@@ -1,0 +1,35 @@
+<div class="container-body">
+	<div class="item-container" (click)="subMenuShow(i)">
+	    <div class="container">
+	        <div class='cell'>
+                <div class='container'><div class='cell padding-left-5 width-90'>SKU1</div></div>
+                <div class='container'><div class='cell padding-left-5 width-90 green'>Quantity: 200</div></div>
+	        </div>
+	        <div class='cell width-10 arrow-down'></div>
+	    </div>
+	</div>
+
+
+	<div class="item-container sub" *ngIf="vSubMenuShow[i]">
+		<div class="container">
+			<div class='cell'>
+		        <div class='container'><div class='cell width-90 padding-left-10 bold'>Gloria Cell</div></div>
+		        <div class='container'>
+		        	<div class='cell width-90 padding-left-10'>
+		        		<div class="container">
+	        				<div class='cell'>
+				                <div class='container'><div class='cell width-45 grey'>Order # 12345</div></div>
+					        </div>
+	        				<div class='cell'>
+				                <div class='container'><div class='cell width-45 align-right grey'>2016-05-23 08:22</div></div>
+					        </div>
+					    </div>
+					</div>
+				</div>
+		        <div class='container'><div class='cell width-90 padding-left-10 green'>Quantity : 100</div></div>
+		        <div class='container'><div class='cell width-90 padding-left-10 grey'>Not enough card brought by DSP</div></div>
+		    </div>
+		    <div class='cell width-10'></div>
+		</div>
+	</div>
+</div>

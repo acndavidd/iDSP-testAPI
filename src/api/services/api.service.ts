@@ -48,9 +48,18 @@ export module APIService {
 			return this.request(RequestMethod.GET, pAPIType, pURL, pHeaders);
 		}
 
-		get(pAPIType, pURL, pHeaders) {
-			console.log('GET ' + pAPIType + pURL);
-			return this.request(RequestMethod.GET, pAPIType, pURL, pHeaders);
+		get(pAPIType, pURL, pHeaders, pUrlParams?) {
+			let fullUrl = pAPIType + pURL;
+			// build params url
+			if(pUrlParams) {
+				fullUrl = fullUrl + '?'
+				for(let vParam in pUrlParams){
+					fullUrl += vParam + "=" + pUrlParams[vParam] + "&";
+				}
+				fullUrl = fullUrl.substring(0,fullUrl.lastIndexOf('&'));
+			}
+			console.log("GET " + fullUrl);
+			return this.request(RequestMethod.GET, pAPIType, fullUrl, pHeaders);
 		}
 
 		request(pRequestMethod, pAPIType, pURL, pHeaders) {
@@ -77,6 +86,23 @@ export module APIService {
 					});
 				}
 			)
+			
+			return new Promise<string>(function(pResolve, pReject){
+				let vReqHeaders;
+				if( !pHeaders) {
+					vReqHeaders = vCurrentContext.buildDefaultHeader();
+				}else {
+					vReqHeaders = pHeaders;
+				}
+				vRequest.get({
+					url : pUrl,
+					headers : vReqHeaders
+				}, function(pErr, pResponse, pBody){
+					if(pErr)pReject(pErr);
+					else pResolve(pBody);
+				});
+			});
 		}
+
 	}
 }

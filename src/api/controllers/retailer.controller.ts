@@ -1,13 +1,29 @@
+'use strict';
 import {ORMService} from '../services/orm.service';
+//import {ErrHandlerService} from '../services/err.handler.service';
+
+export interface RetailerInterface{
+	getProduct(pRequest, pResponse):void;
+	getRetailerSummary(pRequest, pResponse):Promise<void>;
+	getSalesRoute(pRequest, pResponse):Promise<void>;
+	todaysRetailerRoute(pRequest, pResponse):Promise<void>;
+	retailerCallPreparation(pRequest, pResponse):Promise<void>;
+	getAllRetailerAlert(pRequest, pResponse):Promise<void>;
+	loadWallet(pRequest, pResponse):Promise<void>;
+	physicalInventory(pRequest, pResponse):Promise<void>;
+	paymentHistory(pRequest, pResponse):Promise<void>;
+}
 
 
-export class RetailerController{
+export class RetailerController implements RetailerInterface{
+
+	//private errService:ErrHandlerService = new ErrHandlerService();
 
 	constructor(){
 		
 	}
 	
-	getProduct(pRequest,pResponse){
+	getProduct(pRequest,pResponse) {
 		let vOrmSvc = new ORMService();
 		let vProdCatModel = vOrmSvc.getModel('mst_prod_cat');
 		vProdCatModel.findAll({
@@ -52,130 +68,46 @@ export class RetailerController{
 	async getRetailerSummary(pRequest, pResponse){
 		try{
 			console.log("Start getting Retailer Summary");
-			var vSelectedRetailId = pRequest.body.retailerId;
-			var vSalesPerson = pRequest.body.salesPerson;
+			var vSelectedRetailId = pRequest.params.retailerId;
 			var vOrmSvc = new ORMService();
 
 			let vParams = {
-				selected_ret_id : vSelectedRetailId,
-				sales_person : vSalesPerson
+				selected_ret_id : vSelectedRetailId
 			};
 
-			var vResult = await vOrmSvc.sp('get_retailer_summary', vParams );     
-			console.log("Query Done with result : "+ JSON.stringify(vResponse));
-			var vResponse = {
-						"status" : "Success",
-						"errorMessage" : "",
-						"result" : vResult
-					};
-			
-			pResponse.json(vResponse);
+			var vResult = JSON.parse(await vOrmSvc.sp('get_retailer_summary', vParams ));     
+			console.log("Query Done with result : "+ JSON.stringify(vResult));
 
-			/*
-			var vCurrentDate = new Date().setHours(0,0,0,0);
-			var vArStatusPaid = 'Paid';
-		    var vSequelize = vOrmSvc.getSequelize(); 
-			var vRetailer = vOrmSvc.getModel("mst_retailer");
-			var vDspAlert = vOrmSvc.getModel("mst_retailer_dsp_alert");
-			var vAccountReceivable = vOrmSvc.getModel("trx_account_receivable");
+			if (vResult.status == "Error")
+			{
+				vResult = {
+						"status" : vResult.status,
+						"errorType": vResult.errorType,
+						//"errorCode": this.errService.getErrorMessage(vResult.errorCode),
+						"result" : null
+				};
+			}
 
-			//Query REtailer
-			vRetailer.findOne({
-				attributes:	['retailer_id','retailer_name','retailer_min',
-							 'owner_first_name',
-							 'retailer_address','civil_status','email',
-							 'gender','birthday'
-							],
-				where: {
-						retailer_id : vSelectedRetailId						
-				}				
-			}).then(function (pResRetailer){
-				
-				var listPromise=[];
-				var vResAr;
-				var vResAlert;
-
-				//Query Alert
-				listPromise.push(pResRetailer.getRetailerDSPAlert({
-						attributes : ['value_segment','threshold_hit'],
-						order : [['date','DESC']],
-						where : {
-							date : {
-								$gt: vCurrentDate
-							}
-						},	
-						limit : 1				
-					}).then(function (pResAlert)
-					{	
-						console.log("Alert is Found" + JSON.stringify(pResAlert));
-						 vResAlert = pResAlert;
-					})
-				);
-
-				//Query AR
-				listPromise.push(pResRetailer.getAccountReceivable({
-					attributes : ['amount'],
-					where : { 
-						status : {
-							$ne: vArStatusPaid
-						}
-					}
-					}).then(function (pResAccount)
-					{	
-						console.log("AR is Found" + JSON.stringify(pResAccount));
-						vResAr = pResAccount;
-					})
-				);
-
-				Promise.all(listPromise).then(function(){
-
-					var vttlAccountReceivable = 0;
-					for(var i = 0; i < vResAr.length; i++) {
-					    vttlAccountReceivable = vttlAccountReceivable + vResAr[i].amount;
-					}
-
-					if (vResAlert.length == 0)
-					{
-						vResAlert = null;
-					}
-
-					var vResult = {
-					"status" : "Success",
-					"errorMessage" : "",
-					"result" : {
-						retailer : pResRetailer,
-						alert : vResAlert,
-						total_ar : vttlAccountReceivable
-						}
-					};
-
-					console.log("Query Done with result : "+ JSON.stringify(vResult));
-					pResponse.json(vResult);
-				});
-			}).catch(function (pErr) {
-				console.log(pErr)		        
-		        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + pErr);
-			});
-			*/
-			
+			pResponse.json(vResult);			
 		}
 		catch(pErr){
 			console.log("Failed to Query Retailer Summary with error message" + pErr);
 
 			var vError = {
 						"status" : "Error",
-						"errorMessage" : pErr,
+						"errorType": "Internal Exception",
+						//"errorCode": this.errService.getErrorMessage("ERR_INTERNAL_SYSTEM"),
 						"result" : null
 					};
 			pResponse.json(vError);
 		}
 	}
-
+	
 	async getSalesRoute(pRequest, pResponse){
 		try{
 			console.log("Start getting sales route");
-			var vSelectedDay = pRequest.body.day;
-			var vSalesPerson = pRequest.body.salesPerson;
+			var vSalesPerson = pRequest.params.salesPerson;
+			var vSelectedDay = pRequest.params.day;			
 			let vOrmSvc = new ORMService();
 			
 			let vParams = {
@@ -184,64 +116,24 @@ export class RetailerController{
 			};
 
 			var vResult = await vOrmSvc.sp('get_retailer_route', vParams );
-			console.log("Query Done with result : "+ JSON.stringify(vResponse));
-			var vResponse = {
-						"status" : "Success",
-						"errorMessage" : "",
-						"result" : vResult
-					};
-			
-			pResponse.json(vResponse);
+			console.log("Query Done with result : "+ JSON.stringify(vResult));
 
-			/* Query Using Model Sequelize
-			var vCurrentDate = new Date();	    
-		    var vSequelize = vOrmSvc.getSequelize(); 
-		    var vRoute = vOrmSvc.getModel("mst_route");	
-			var vRouteDay = vOrmSvc.getModel("mst_route_day");
-			var vRetailer = vOrmSvc.getModel("mst_retailer");
-
-			vRetailer.findAll({
-				attributes:	['retailer_id','retailer_name','retailer_min',
-							 'owner_first_name',
-							 'retailer_address','civil_status','email',
-							 'gender','birthday'
-							],
-				where: {dsp_id : vSalesPerson},
-				include: [
-					{	model: vRoute, as: 'Route', attributes:['route_id'], required: true, 
-						include: [{model: vRouteDay, as: 'RouteDay', attributes:['sequence'], where : {route_day : vSelectedDay}}]
-					}					
-				],
-				order: [[vSequelize.col('sequence', 'Route.RouteDay'), 'DESC NULLS LAST']]				
-			}).then(function (pResult){
-				var vResult = {
-				"status" : "Success",
-				"errorMessage" : "",
-				"result" : pResult
-				};
-
-				console.log("Query Done with result : "+ JSON.stringify(pResult));
-
-				pResponse.json(vResult);
-			}).catch(function (pErr) {
-				console.log(pErr)		        
-		        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + pErr);
-			});
-			*/
+			pResponse.json(vResult);			
 		}
 		catch(pErr){
 			console.log("Failed to Query Sales Route with error message" + pErr);
-
 			var vError = {
 						"status" : "Error",
-						"errorMessage" : pErr,
-						"result" : null
+						"errorType": "Internal Exception",
+						"errorCode": "ERR_INTERNAL_SYSTEM",
+						"result" : ""
 					};
+
 			pResponse.json(vError);
 		}
 	}
 
-	async getRetailerRouteBCP(pRequest, pResponse){
+	async todaysRetailerRoute(pRequest, pResponse){
 		try{
 			console.log("Start getting retailer route for BCP");
 			var vSelectedDay = pRequest.body.day;
@@ -278,7 +170,7 @@ export class RetailerController{
 		}
 	}
 
-	async getRetailerCallPrep(pRequest,pResponse) {
+	async retailerCallPreparation(pRequest,pResponse) {
 		try{
 			console.log("Start getting Retailer Preparation");
 
@@ -330,7 +222,7 @@ export class RetailerController{
 	}
 
 
-	async getLoadWallet(pRequest,pResponse) {
+	async loadWallet(pRequest,pResponse) {
 		try{
 			console.log("Start getting Load Wallet");
 
@@ -378,7 +270,7 @@ export class RetailerController{
 		}
 	}
 
-	async getPhysicalInventory(pRequest,pResponse) {
+	async physicalInventory(pRequest,pResponse) {
 		try{
 			console.log("Start getting Physical Inventory");
 
@@ -425,7 +317,7 @@ export class RetailerController{
 		}
 	}
 
-	async getPaymentHistory(pRequest,pResponse) {
+	async paymentHistory(pRequest,pResponse) {
 		try{
 
 			console.log("Start getting Physical Inventory");
