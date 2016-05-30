@@ -69,7 +69,8 @@ export module ErrorHandling {
 		processModelValidationError(pValidationError) {
 			this.vError.status = RESPONSE_CODE.FUNCTIONAL_ERROR;
 			this.vError.errorCode = pValidationError.errorCode;
-			this.vError.description = pValidationError.errorMessage;
+			this.vError.description = pValidationError.errorMessage;	
+
 		}
 
 		processSequelizeError(pResult) {
@@ -91,14 +92,26 @@ export module ErrorHandling {
 			}
 		}
 
-		throwError(pHTTPResponse, pHTTPResponseStatus, pErrorCode, pErrorMessage) {
-			pErrorMessage = pErrorMessage.replace('TypeError: ','');
-			if(this.getErrorMessage(pErrorMessage))pErrorMessage = this.getErrorMessage(pErrorMessage);
+		throwError(pHTTPResponse, pHTTPResponseStatus, pErrorCode, pErrorMessage, pInputErrorList?) {
 			this.vError.status = pHTTPResponseStatus;
 			this.vError.errorCode = pErrorCode;
-			this.vError.payload = {
-				errorCode : pErrorCode,
-				description : pErrorMessage
+			let inputError;
+			if(pErrorMessage.indexOf('TypeError: ') !== -1) {
+				pErrorMessage = pErrorMessage.replace('TypeError: ','');
+			}else if(this.getErrorMessage(pErrorMessage)){
+				pErrorMessage = this.getErrorMessage(pErrorMessage);
+			}
+			if(pInputErrorList) {
+				this.vError.payload = {
+					errorCode : pErrorCode,
+					description : pErrorMessage,
+					inputErrors : pInputErrorList
+				}
+			}else {
+				this.vError.payload = {
+					errorCode : pErrorCode,
+					description : pErrorMessage
+				}
 			}
 			pHTTPResponse.status(this.vError.status).json(this.vError.payload);
 		}

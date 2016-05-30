@@ -7,15 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 const idsp_model_1 = require('../idsp.model');
 const class_validator_1 = require('class-validator');
-class LoginModel extends idsp_model_1.IDSPModel {
-    constructor(pUsername, pPassword) {
+class MPINModel extends idsp_model_1.IDSPModel {
+    constructor(pUsername, pMPIN) {
         super();
         this.Username = pUsername;
-        this.Password = pPassword;
+        this.MPIN = pMPIN;
     }
 }
 __decorate([
-    class_validator_1.IsLength(8, 8, { message: 'Invalid DSP ID' })
-], LoginModel.prototype, "Username", void 0);
-exports.LoginModel = LoginModel;
-//# sourceMappingURL=login.model.js.map
+    class_validator_1.IsLength(5, 5, { message: 'Invalid MPIN Format' })
+], MPINModel.prototype, "MPIN", void 0);
+exports.MPINModel = MPINModel;
+//# sourceMappingURL=mpin.model.js.map
