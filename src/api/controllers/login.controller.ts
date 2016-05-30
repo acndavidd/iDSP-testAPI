@@ -87,7 +87,9 @@ export class LoginController implements LoginInterface{
 				DSP_ID : pRequest.body.Username,
 				AccessToken : vResult.payload.AccessToken
 			};
+
 			vResult.payload.accessToken = vTokenSvc.generateToken(vTokenObj);
+
 			// Set Cookie session for web access
 			pResponse.cookie('accessToken', vResult.payload.accessToken,{httpOnly:true});
 			pResponse.status(vResult.status).json(vResult.payload);

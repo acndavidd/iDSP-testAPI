@@ -49,7 +49,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
     pResponse.header('Access-Control-Allow-Methods','GET,PUT,DELETE,POST');
     if(
         pRequest.path !== '/service/login' && 
-        pRequest.path !== '/service/submitMPIN' &&
+        pRequest.path !== '/service/login/MPIN' &&
         pRequest.path !== '/service/generateCallPlan' &&
         pRequest.path.indexOf('/testing') !== -1 //bypass token for testing purpose
 
