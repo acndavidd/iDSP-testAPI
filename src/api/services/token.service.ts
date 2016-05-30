@@ -17,7 +17,7 @@ export class TokenService{
 
 	verifyToken(pToken:string){
 		try{
-			return vNJwt.verify(pToken,vConfig.service.key);
+			return vNJwt.verify(pToken,vConfig.token.key);
 		}catch(pErr){
 			throw pErr;
 		}

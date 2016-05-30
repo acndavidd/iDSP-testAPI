@@ -122,7 +122,11 @@ export class MyHttp {
                             pObserver.error(err);
                             break;
                         case 400:
-                            this._modalService.showErrorModal(err.description);
+                            if(err.errorCode === 101) { //input error
+                                pObserver.error(err.inputError);
+                            }else {
+                                pObserver.error(err.body);
+                            }
                             break;
                         default:
                             // throw error

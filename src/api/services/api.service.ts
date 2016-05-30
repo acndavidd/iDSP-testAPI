@@ -81,17 +81,17 @@ export module APIService {
 					};
 					if(pRequestMethod === APIService.RequestMethod.POST) {
 						vRequestObj.body = JSON.stringify(pData);
-						console.log("Data : " + vRequestObj.body);
 					}
 					vRequest(vRequestObj, function(pErr, pResponse, pBody){
 						if(pErr) {
 							pReject(vErrorHandlingSvc.processHTTPError(pErr));
-						}
-						try{
-							pResolve(vErrorHandlingSvc.processHTTPResult(JSON.parse(pBody)));
-						}catch(pErr) {
-							console.log(pErr);
-							pReject(pErr);
+						}else {
+							try{
+								pResolve(vErrorHandlingSvc.processHTTPResult(JSON.parse(pBody)));
+							}catch(pErr) {
+								console.log(pErr);
+								pReject(pErr);
+							}
 						}
 					});
 				}
