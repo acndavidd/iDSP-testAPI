@@ -12,7 +12,7 @@ export interface ORMInterface {
 	getSequelize(): any;
 }
 
-export class ORMService{
+export class ORMService {
 	private vModels;
 	private vAssociatedModels;
 	private vSequelizeSvc:SequelizeService;
@@ -80,11 +80,11 @@ export class ORMService{
 			});
 	}
 
-	public getSequelize(){
+	public getSequelize() {
 		return this.vSequelizeSvc.getInstance();
 	}
 
-	public getModel(pModelName:string){
+	public getModel(pModelName:string) {
 		return this.vModels[pModelName];
 		/*
 		console.log('loading ' + pModelName + ' model');

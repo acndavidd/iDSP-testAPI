@@ -69,7 +69,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
                 console.log('error : ' + err);
                 pResponse.sendStatus(403);
             }
-        }     
+        }
     }
     pNext();
 });
@@ -84,7 +84,6 @@ vRouter.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
 vRouter.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
 // vRouter.post('/accountsReceivables',vAccCtrl.accountsReceivables);
-vRouter.get('/retailer/accountsReceivables',vAccCtrl.accountsReceivables);
 // vRouter.post('/retailerSelf',vAccCtrl.retailerSelf);
 vRouter.get('/testSync',vSchedCtrl.syncTableMaster);
 
@@ -99,6 +98,7 @@ vRouter.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
 vRouter.post('/additionalRetailerRoute',vRetailerCtrl.additionalRetailerRoute);
 vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);
+vRouter.get('/retailer/accountsReceivables',vAccCtrl.accountsReceivables);
 
 var vTesting = vExpress.Router();
 vTesting.post('/login',vLoginCtrl.login);
