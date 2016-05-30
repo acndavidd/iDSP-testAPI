@@ -10,8 +10,50 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const token_service_1 = require('../services/token.service');
 const orm_service_1 = require('../services/orm.service');
 const api_service_1 = require('../services/api.service');
+const error_handling_service_1 = require('../services/error-handling.service');
 class LoginController {
     constructor() {
+    }
+    testSuccess(pRequest, pResponse) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let vErrHandling = new error_handling_service_1.ErrorHandling.ErrorHandlingService();
+            try {
+                let vOrmService = new orm_service_1.ORMService();
+                try {
+                    let vResult = yield vOrmService.sp('SUCCESS_SP', null);
+                    pResponse.status(vResult.status).json(vResult.payload);
+                }
+                catch (pErr) {
+                    if (pErr.errorCode == error_handling_service_1.ErrorHandling.ERROR_TYPE.ERROR_SEQUELIZE) {
+                        vErrHandling.throwError(pResponse, 400, pErr.errorCode, "Error happened on sequelize");
+                    }
+                    else {
+                        //handle other error code
+                        switch (pErr.errorCode) {
+                            case 101:
+                                vErrHandling.throwError(pResponse, 400, 101, "Error b");
+                                break;
+                        }
+                    }
+                }
+            }
+            catch (pErr) {
+                vErrHandling.throwError(pResponse, 400, 101, "test message");
+            }
+        });
+    }
+    testError(pRequest, pResponse) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let vErrHandling = new error_handling_service_1.ErrorHandling.ErrorHandlingService();
+            try {
+                let vOrmService = new orm_service_1.ORMService();
+                let vResult = yield vOrmService.sp('ERROR_SP', null);
+                pResponse.status(vResult.status).json(vResult.payload);
+            }
+            catch (pErr) {
+                vErrHandling.throwError(pResponse, 400, 101, "Error SP");
+            }
+        });
     }
     login(pRequest, pResponse) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -27,23 +69,34 @@ class LoginController {
     }
     submitMPIN(pRequest, pResponse) {
         return __awaiter(this, void 0, void 0, function* () {
-            let vHttpSvc = new api_service_1.APIService.HTTPService();
-            let vTokenSvc = new token_service_1.TokenService();
-            let vPath = '/OPISNET/services/idsp/userAuthorization';
-            let vData = {
-                Username: pRequest.body.Username,
-                MPIN: pRequest.body.MPIN
-            };
-            let vResult = JSON.parse(yield vHttpSvc.post(api_service_1.APIService.APIType.OPISNET, vPath, null, vData));
-            // If success login , generate token for services
-            if (vResult.Status === 200) {
-                let vTokenObj = {
-                    DSP_ID: pRequest.body.Username,
-                    AccessToken: vResult.AccessToken
+            let vResult;
+            try {
+                let vHttpSvc = new api_service_1.APIService.HTTPService();
+                let vTokenSvc = new token_service_1.TokenService();
+                let vPath = '/OPISNET/services/idsp/userAuthorization';
+                let vData = {
+                    Username: pRequest.body.Username,
+                    MPIN: pRequest.body.MPIN
                 };
-                vResult.accessToken = vTokenSvc.generateToken(vTokenObj);
+                vResult = JSON.parse(yield vHttpSvc.post(api_service_1.APIService.APIType.OPISNET, vPath, null, vData));
+                // If success login , generate token for services
+                if (vResult.Status === 200) {
+                    let vTokenObj = {
+                        DSP_ID: pRequest.body.Username,
+                        AccessToken: vResult.AccessToken
+                    };
+                    vResult.accessToken = vTokenSvc.generateToken(vTokenObj);
+                    // Set Cookie session for web access
+                    pResponse.cookie('accessToken', vResult.accessToken, { httpOnly: true });
+                }
                 // Set Cookie session for web access
                 pResponse.cookie('accessToken', vResult.accessToken, { httpOnly: true });
+            }
+            catch (pErr) {
+                vResult = {
+                    ErrorCode: 400,
+                    ErrorStatus: pErr + ""
+                };
             }
             pResponse.json(vResult);
         });

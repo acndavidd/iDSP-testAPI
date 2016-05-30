@@ -535,6 +535,11 @@ LIST VIEW - TEXT
         padding-top: 2vw;
         padding-bottom: 2vw;
 
+        &.no-padding-item-container {
+            padding-top: 0vw;
+            padding-bottom: 0vw;
+        }
+
         &.fixed {
             position: fixed;
         }
@@ -679,6 +684,23 @@ LIST VIEW - TEXT
                         background-image: linear-gradient($nextdeg, $radical-red 50%, transparent 50%, transparent), linear-gradient(270deg, $radical-red 50%, $white 50%, $white);
                     }
                 }
+            }
+
+            // FOR VERTICAL TEXT
+            &.vertical {
+                position: center;
+                text-align: center;
+                
+                .vertical-text{
+                    width: 6.5vw;
+                    position: center;
+                    transform: rotate(-90deg);
+                    text-align: center; 
+                    font-size: 3vw;
+                    font-weight: bold;
+                }
+                &.sulu { background-color: $sulu; }
+                &.serenade { background-color: $serenade; }
             }
 
             &.left {

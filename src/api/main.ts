@@ -50,7 +50,8 @@ vApp.use(function(pRequest, pResponse, pNext) {
     if(
         pRequest.path !== '/service/login' && 
         pRequest.path !== '/service/submitMPIN' &&
-        pRequest.path !== '/service/generateCallPlan'
+        pRequest.path !== '/service/generateCallPlan' &&
+        pRequest.path.indexOf('/testing') !== -1 //bypass token for testing purpose
 
     ){
         if( pRequest.method !== 'OPTIONS') {
@@ -75,16 +76,14 @@ vApp.use(function(pRequest, pResponse, pNext) {
 });
 
 var vRouter = vExpress.Router();
-
 vRouter.post('/login',vLoginCtrl.login);
-vRouter.post('/submitMPIN', vLoginCtrl.submitMPIN);
-vRouter.post('/verifyToken', vLoginCtrl.verifyToken);
+vRouter.post('/login/MPIN', vLoginCtrl.submitMPIN);
 vRouter.get('/logout', vLoginCtrl.logout);
-
 vRouter.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
+vRouter.get('/retailer/alert',vRetailerCtrl.getAllRetailerAlert);
+vRouter.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
+vRouter.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
-vRouter.post('/AccountsReceivables',vAccCtrl.AccountsReceivables);
-
 vRouter.get('/testSync',vSchedCtrl.syncTableMaster);
 
 //API BASED ON GUIDELINES
@@ -96,21 +95,29 @@ vRouter.post('/paymentHistory',vRetailerCtrl.paymentHistory);
 vRouter.get('/brand',vTargetsActualsCtrl.brand);
 vRouter.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
 vRouter.post('/additionalRetailerRoute',vRetailerCtrl.additionalRetailerRoute);
-
 vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);
 
+var vTesting = vExpress.Router();
+vTesting.post('/login',vLoginCtrl.login);
+vTesting.post('/login/MPIN', vLoginCtrl.submitMPIN);
+vTesting.get('/logout', vLoginCtrl.logout);
+vTesting.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
+vTesting.get('/retailer/alert',vRetailerCtrl.getAllRetailerAlert);
+vTesting.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
+vTesting.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
+vTesting.get('/testSync',vSchedCtrl.syncTableMaster);
 vApp.use('/service',vRouter);
+vApp.use('/testing', vTesting);
 vApp.listen(PORT);
 
 var CronJob = require('cron').CronJob;
-    var job = new CronJob('* * 0 * * *', function() {
-        console.log('Start Running scheduler for generate call plan');
-        vSchedCtrl.generateCallPlan();
-    }, function () {
+var job = new CronJob('* * 0 * * *', function() {
+    console.log('Start Running scheduler for generate call plan');
+    vSchedCtrl.generateCallPlan();
+}, function () {
 
-    }, true, 'Asia/Manila');
-
-
+}, true, 'Asia/Manila');
 
 console.log('http://127.0.0.1:' + PORT + '/service');
+console.log('http://127.0.0.1:' + PORT + '/testing');
