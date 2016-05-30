@@ -34,12 +34,10 @@ export class RemittanceComponent {
     }
 
     gotoConfirm() {
-        console.log("CONFIRMMM");
         this._pageNavigationService.navigate('ConfirmRemittance', null, null);
     }
 
     gotoAdd() {
-        console.log("ADDDD");
         this._pageNavigationService.navigate('AddRemittance', null, null);        
     }
 }
