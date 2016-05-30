@@ -15,7 +15,7 @@ export class TargetsActualsController implements TargetsActualsInterface{
    
     async brand(pRequest,pResponse){
 	    try {	  
-		    var message = 'Insert start.';
+		    var message = 'Get brands start';
 
 		    console.log("Start getting brands");
 			var vOrmSvc = new ORMService();

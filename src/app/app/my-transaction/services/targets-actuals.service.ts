@@ -19,8 +19,8 @@ export class TargetsActualsService {
 
             this.vIsLoading = false;
             this.queryBrand();
-            this.queryProdCat();
-            this.queryProdSubCat();
+            // this.queryProdCat();
+            // this.queryProdSubCat();
       }
 
 
@@ -29,14 +29,14 @@ export class TargetsActualsService {
             return this._http.get('/brand');
       }
 
-      queryProdCat() {
+      // queryProdCat() {
 
-            return this._http.get('/productCategories');
-      }
+      //       return this._http.get('/productCategories');
+      // }
 
-      queryProdSubCat() {
-            return this._http.get('/productSubCategories');
-      }
+      // queryProdSubCat() {
+      //       return this._http.get('/productSubCategories');
+      // }
 
       queryProduct(pSelectedTab, pSelectedBrand) {
             console.log('Start hit login service to Query Product');
@@ -50,9 +50,9 @@ export class TargetsActualsService {
             return this._http.post('/targetsActuals', JSON.stringify(vData));
       }
 
-      queryCategory() {
-            return this._http.get('/getCategory');
-      }
+      // queryCategory() {
+      //       return this._http.get('/getCategory');
+      // }
 
       queryTargets(pSubCategoryID) {
             // To-Do : Query User ID or Username

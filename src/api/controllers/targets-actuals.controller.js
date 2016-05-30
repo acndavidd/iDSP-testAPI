@@ -14,7 +14,7 @@ class TargetsActualsController {
     brand(pRequest, pResponse) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                var message = 'Insert start.';
+                var message = 'Get brands start';
                 console.log("Start getting brands");
                 var vOrmSvc = new orm_service_1.ORMService();
                 var vResult = yield vOrmSvc.sp('get_brands', null);
