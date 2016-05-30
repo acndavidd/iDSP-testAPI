@@ -53,18 +53,23 @@ export class AccController {
 			let vOrmSvc = new ORMService();
 			var vUsername = pRequest.query.username;
 			var vSource = pRequest.query.source;
-			var vDate = new Date().getDay();
+			var vDay = new Date().getDay();
 			let vHttpSvc = new APIService.HTTPService();
-			let vPath:string = '/OPISNET/services/idsp/SELFTransactions?source=iDSP&username=' + vUsername;
+			let vPath:string = '/OPISNET/services/idsp/SELFTransactions?source=' +vSource + '&username=' + vUsername;
+
+			console.log('Hit URL : ' + vPath);
+			console.log('in account receivables controller, get day = ' + vDay);
 
 			let vParams = {
 				dsp_id : vUsername,
-				source : vSource,
-				route_day : vDate
+				// source : vSource,
+				route_day : vDay
 			};
-
+			console.log('sebelum hit API');
 			var vResultBcp = await vOrmSvc.sp( 'account_receivables', vParams );
-			var vResultSelf = JSON.parse(await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null));
+			console.log('Get result BCP: ' + JSON.stringify(vResultBcp));
+			var vResultSelf = JSON.parse(await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null));			
+			console.log('Get result Self: ' + JSON.stringify(vResultSelf));
 			vResultSelf.push({"source" : "SELF"});
 			var vResponse = {
 				"status" : "200",

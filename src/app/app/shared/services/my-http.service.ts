@@ -14,7 +14,8 @@ export class MyHttp {
     private vTimeout: number;
 
     constructor(private _http: Http,
-                private _router: Router) {
+                private _router: Router,
+                private _modalService: Modal.ModalService) {
                 // private _router: Router,
                 // private _modalService: Modal.ModalService) {
 

@@ -39,17 +39,17 @@ export class AccountsReceivablesService {
       try {
       var vDspId = pDspId;
       var vSource = pSource;
-      return this._http.get('/retailer/accountsReceivables?username=' + vDspId + '&source=' + vSource);
+      return this._http.get('/retailer/accountreceivable?source=' + vSource + '&username=' + vDspId);
       } catch(pErr) {
           console.log('Error in get API: ' + pErr);
       }
     }
 
-    getRetailerSelf(pSource, pDspId) {
-        let vData = {
-            vSource : pSource,
-            vDspId : pDspId
-        };
-        return this._http.post('/retailerSelf', JSON.stringify(vData));
-    }
+    // getRetailerSelf(pSource, pDspId) {
+    //     let vData = {
+    //         vSource : pSource,
+    //         vDspId : pDspId
+    //     };
+    //     return this._http.post('/retailerSelf', JSON.stringify(vData));
+    // }
 }

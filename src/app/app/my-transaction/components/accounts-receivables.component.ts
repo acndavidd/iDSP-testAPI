@@ -3,7 +3,7 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet, ROUTER_PROVIDERS }
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
-import {RetailerService} from '../../shared/services/retailer.service';
+// import {RetailerService} from '../../shared/services/retailer.service';
 import {AccountsReceivablesService} from '../services/accounts-receivables-service';
 import {NgFor, NgModel} from 'angular2/common';
 
@@ -115,13 +115,13 @@ export class AccountsReceivablesComponent {
         this.vAllReceivablesRouteList = pAllReceivablesRouteList;
     }
 
-    setRetailerSelfList(pRetailerSelfList) {
-        this.vRetailerSelfList = pRetailerSelfList;
-    }
+    // setRetailerSelfList(pRetailerSelfList) {
+    //     this.vRetailerSelfList = pRetailerSelfList;
+    // }
 
-    getRetailerSelfList() {
-        return this.vRetailerSelfList;
-    }
+    // getRetailerSelfList() {
+    //     return this.vRetailerSelfList;
+    // }
 
     searchFilter(pInputText: any) {
         console.log('in searchFilter : ' + pInputText.length);
