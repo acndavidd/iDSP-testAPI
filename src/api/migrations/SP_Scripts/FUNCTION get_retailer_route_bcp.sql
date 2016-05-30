@@ -13,7 +13,7 @@ BEGIN
 
 	select array_to_json(array_agg(row_to_json(temp))) INTO _result
 	from (
-		select a.retailer_id,a.retailer_name,a.retailer_min,
+		select a.retailer_id,a.retailer_name,a.retailer_min,a.retailer_type outlet_type,
 		a.owner_first_name owner_name, a.retailer_address retailer_address, 
 		c.sequence seq,
 			(
@@ -27,7 +27,11 @@ BEGIN
 			(
 				SELECT CASE WHEN call_status IS NULL THEN 'Not Visited' ELSE call_status END AS call_status
 				from trx_sales_call_plan s where s.route_id =c.route_id
-			)call_status
+			)call_status,
+			(
+				SELECT call_id
+				from trx_sales_call_plan s where s.route_id =c.route_id
+			)call_id
 		from MST_RETAILER a, MST_ROUTE b, MST_ROUTE_DAY c
 		where a.retailer_id = b.retailer_id
 		and b.route_id::integer = c.route_id

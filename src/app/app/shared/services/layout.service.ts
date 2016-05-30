@@ -521,8 +521,15 @@ export class LayoutService {
     getCurrentPointer() {
         return this.vCurrentPointer;
     }
+    // for hardcode
+    // toggleAdd() {
+    //     if (this.vCurrentPage === 'BasicCallProcedure') {
+    //         this._pageNavigationService.navigate('BCPAddRetailerRoute', null, null);
+    //     }
+    // }
 
-    toggleAdd() {
+    // for backend
+        toggleAdd() {
         if (this.vCurrentPage === 'BasicCallProcedure') {
             this._pageNavigationService.navigate('BCPAddRetailerRoute', null, null);
         }

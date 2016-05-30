@@ -139,8 +139,6 @@ export class RetailerController implements RetailerInterface{
 			var vSelectedDay = pRequest.body.day;
 			var vSalesPerson = pRequest.body.salesPerson;
 			let vOrmSvc = new ORMService();
-
-			console.log('apaaa'+vSelectedDay+vSalesPerson);
 			
 			let vParams = {
 				sales_person : vSalesPerson,
@@ -220,7 +218,6 @@ export class RetailerController implements RetailerInterface{
 		};
 		pResponse.json(vResult);
 	}
-
 
 	async loadWallet(pRequest,pResponse) {
 		try{
@@ -345,6 +342,49 @@ export class RetailerController implements RetailerInterface{
 			pResponse.json(vResponse);
 
 		}
+		catch(pErr)
+		{
+			console.log("Failed to Query Payment History" + pErr);
+
+			var vError = {
+						"status" : "Error",
+						"errorMessage" : pErr,
+						"result" : null
+					};
+			pResponse.json(vError);
+		}
+	}
+
+	async additionalRetailerRoute (pRequest,pResponse) {
+		try
+		{	
+
+			console.log("Start getting Physical Inventory");
+
+			var vSalesPerson = pRequest.body.salesPerson;
+			var vDay = pRequest.body.pDay;
+
+			console.log(vSalesPerson + 'DSP id');
+
+			var vOrmSvc = new ORMService();
+
+			let vParams = {
+				salesPerson : vSalesPerson,
+				pDay : vDay	
+				
+			};
+
+			var vResult = await vOrmSvc.sp('get_additional_retailer', vParams );
+			console.log("Query Done with result : "+ JSON.stringify(vResponse));
+			var vResponse = {
+						"status" : "Success",
+						"errorMessage" : "",
+						"result" : vResult
+					};
+			
+			pResponse.json(vResponse);
+
+		}	
 		catch(pErr)
 		{
 			console.log("Failed to Query Payment History" + pErr);
