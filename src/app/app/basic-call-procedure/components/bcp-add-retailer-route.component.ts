@@ -8,8 +8,8 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {NgModel} from 'angular2/common';
 
 @Component({
-    templateUrl: './app/basic-call-procedure/components/bcp-add-retailer-route.component.html',
-    // templateUrl: './app/basic-call-procedure/components/hc-bcp-add-retailer-route.component.html',
+    // templateUrl: './app/basic-call-procedure/components/bcp-add-retailer-route.component.html',
+    templateUrl: './app/basic-call-procedure/components/hc-bcp-add-retailer-route.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]

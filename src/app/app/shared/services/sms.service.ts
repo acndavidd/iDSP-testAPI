@@ -1,13 +1,13 @@
 declare var configChannel: any;
 
 export class SMSService {
-	constructor() {}
+    constructor() {}
 
-	public sendSMS() {
+    public sendSMS() {
 
-	}
+    }
 
-	public onSMSArriveHandler() {
+    public onSMSArriveHandler() {
 
-	}
+    }
 }
