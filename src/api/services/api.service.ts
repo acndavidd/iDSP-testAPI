@@ -76,13 +76,17 @@ export module APIService {
 						url : pAPIType + pURL,
 						method : pRequestMethod,
 						headers : vReqHeaders,
-						timeout : 5000
+						timeout : vConfig.service["timeout"]
 					};
 					vRequest(vRequestObj, function(pErr, pResponse, pBody){
 						if(pErr) {
 							pReject(vErrorHandlingSvc.processHTTPError(pErr));
 						}
-						pResolve(vErrorHandlingSvc.processHTTPResult(pBody));
+						try{
+							pResolve(vErrorHandlingSvc.processHTTPResult(pBody));
+						}catch(pErr) {
+							pReject(pErr);
+						}
 					});
 				}
 			)

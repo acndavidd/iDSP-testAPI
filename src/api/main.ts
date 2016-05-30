@@ -47,6 +47,9 @@ vApp.use(function(pRequest, pResponse, pNext) {
     pResponse.header('Access-Control-Allow-Headers', 
         'Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept,Authorization,Proxy-Authorization,X-session');
     pResponse.header('Access-Control-Allow-Methods','GET,PUT,DELETE,POST');
+    if(pRequest.path.indexOf('/testing') === -1) {
+        
+    }
     if(
         pRequest.path !== '/service/login' && 
         pRequest.path !== '/service/submitMPIN' &&
@@ -100,15 +103,8 @@ vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);
 vRouter.get('/retailer/accountsReceivables',vAccCtrl.accountsReceivables);
 
-var vTesting = vExpress.Router();
-vTesting.post('/login',vLoginCtrl.login);
-vTesting.post('/login/MPIN', vLoginCtrl.submitMPIN);
-vTesting.get('/logout', vLoginCtrl.logout);
-vTesting.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
-vTesting.get('/retailer/alert',vRetailerCtrl.getAllRetailerAlert);
-vTesting.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
-vTesting.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
-vTesting.get('/testSync',vSchedCtrl.syncTableMaster);
+// For testing purpose , can be hit outside app without token
+var vTesting = vRouter;
 vApp.use('/service',vRouter);
 vApp.use('/testing',vTesting);
 vApp.listen(PORT);

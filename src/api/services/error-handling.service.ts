@@ -35,18 +35,24 @@ export module ErrorHandling {
 		}
 
 		processHTTPError(pHTTPError) {
-			if(pHTTPError.code === 'ECONNREFUSED') {
-				this.vError.status = RESPONSE_CODE.ERROR;
-				this.vError.errorCode = 100;
-				this.vError.description = "ERR_CONN_REFUSED";
-			}else if(pHTTPError.code === '') {
-
+			switch (pHTTPError.code) {
+				case 'ECONNREFUSED' :
+					this.vError.status = RESPONSE_CODE.ERROR;
+					this.vError.errorCode = 100;
+					this.vError.description = "ERR_CONN_REFUSED";
+					break;
+				case '' : 
+					break;
 			}
 			return this.vError;
 		}
 
 		processHTTPResult(pHTTPResult) {
-			return this.vResult;
+			if(pHTTPResult.Status !== '200') {
+				throw this.vError;
+			}else {
+				return this.vResult;
+			}
 		}
 
 		processSequelizeError(pResult) {
