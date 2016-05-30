@@ -117,6 +117,7 @@ export class MyHttp {
                 (err) => {
                     switch (err.status) {
                         case 403:
+                            // caused by invalid token send to server
                             // try access once again using refresh token
                             pObserver.error(err);
                             break;
