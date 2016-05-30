@@ -9,13 +9,33 @@ CREATE OR REPLACE FUNCTION public.account_receivables(
 $BODY$
 DECLARE
 	v_result json;
+	result json;
 	v_receivables json;
 	v_receivables_all json;
 	v_total_amount numeric;
 	status numeric;
 	error_code numeric;
-	error_message varchar;
 BEGIN
+	--INITIATE DEFAULT RESPONSE
+	status = 0;
+	error_code= 0;
+	
+	---VALIDATE MANDATORY FIELD
+	IF (v_dsp_id is null or v_dsp_id = '')
+	THEN
+		status = 1;
+		select json_build_object('status',status,'error_code',101) into result;
+		return result;
+	END IF;
+
+	IF (v_day is null)
+	THEN
+		status = 1;
+		select json_build_object('status',status,'error_code',102) into result;
+		return result;
+	END IF;
+	
+
 	select array_to_json(array_agg(row_to_json(temp1))) into v_receivables
 	from (
 		select to_char(b.amount, '999,999,999,990D00 FM₱') amount,b.dsp_id,c.retailer_name,c.retailer_min,c.retailer_id,e.route_day,e.sequence,'BCP' as source,
@@ -53,16 +73,14 @@ BEGIN
 		order by e.sequence asc nulls last		
 	) temp2;
 	
-	status = 0;
-	error_code= 0;
-	error_message = 'Success';
-	
-	select array_to_json(array_agg(row_to_json(tempAll))) into v_result
+	select array_to_json(array_agg(row_to_json(temp3))) into v_result
 	from(
-		select status,error_code,error_message,v_receivables, v_receivables_all
-	) tempAll;
+		select v_receivables,v_receivables_all
+	) temp3;
 
-	RETURN v_result;
+	select json_build_object('status',status,'result', v_result) into result;
+
+	RETURN result;
 	
 END	
 $BODY$

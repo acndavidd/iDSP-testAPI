@@ -67,8 +67,8 @@ export class AccController {
 			};
 			console.log('sebelum hit API');
 			var vResultBcp = await vOrmSvc.sp( 'account_receivables', vParams );
-			console.log('Get result BCP: ' + JSON.stringify(vResultBcp));
-			var vResultSelf = JSON.parse(await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null));			
+			// console.log('Get result BCP: ' + JSON.stringify(vResultBcp));
+			var vResultSelf = await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null);			
 			console.log('Get result Self: ' + JSON.stringify(vResultSelf));
 			vResultSelf.push({"source" : "SELF"});
 			var vResponse = {

@@ -52,7 +52,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
     }
     if(
         pRequest.path !== '/service/login' && 
-        pRequest.path !== '/service/submitMPIN' &&
+        pRequest.path !== '/service/login/MPIN' &&
         pRequest.path !== '/service/generateCallPlan' &&
         pRequest.path.indexOf('/testing') !== -1 //bypass token for testing purpose
     ){
@@ -110,7 +110,7 @@ vRouter.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
 vRouter.post('/additionalRetailerRoute',vRetailerCtrl.additionalRetailerRoute);
 vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);
-vRouter.get('/retailer/accountsReceivables',vAccCtrl.accountsReceivables);
+vRouter.get('/retailer/accountreceivable',vAccCtrl.accountsReceivables);
 
 // For testing purpose , can be hit outside app without token
 var vTesting = vRouter;
