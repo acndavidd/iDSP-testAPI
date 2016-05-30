@@ -499,6 +499,10 @@ export class LayoutService {
         this.vLayoutState.leftMenu = !this.vLayoutState.leftMenu;
     }
 
+    hideLeftMenu() {
+        this.vLayoutState.leftMenu = false;
+    }
+
     toggleHeader() {
         // FOR LOGOUT ONLY
         this.vLayoutState.appHeader = false;
