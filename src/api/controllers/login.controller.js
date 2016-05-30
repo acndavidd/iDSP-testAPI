@@ -11,6 +11,7 @@ const token_service_1 = require('../services/token.service');
 const orm_service_1 = require('../services/orm.service');
 const api_service_1 = require('../services/api.service');
 const error_handling_service_1 = require('../services/error-handling.service');
+const login_model_1 = require('../models/input/login.model');
 class LoginController {
     constructor() {
     }
@@ -57,19 +58,30 @@ class LoginController {
     }
     login(pRequest, pResponse) {
         return __awaiter(this, void 0, void 0, function* () {
-            let vHttpSvc = new api_service_1.APIService.HTTPService();
-            let vPath = '/OPISNET/services/idsp/userValidation';
-            let vData = {
-                Username: pRequest.body.Username,
-                Password: pRequest.body.Password
-            };
-            let vResult = JSON.parse(yield vHttpSvc.post(api_service_1.APIService.APIType.OPISNET, vPath, null, vData));
-            pResponse.json(vResult);
+            let vErrHandling = new error_handling_service_1.ErrorHandling.ErrorHandlingService();
+            try {
+                let vHttpSvc = new api_service_1.APIService.HTTPService();
+                let vPath = '/OPISNET/services/idsp/userValidation';
+                let vLoginData = new login_model_1.LoginModel(pRequest.body.Username, pRequest.body.Password);
+                if (vLoginData.validate()) {
+                    let vResult = yield vHttpSvc.post(api_service_1.APIService.APIType.OPISNET, vPath, null, vLoginData);
+                    pResponse.status(vResult.status).json(vResult.payload);
+                }
+                else {
+                    vErrHandling.processModelValidationError(vLoginData.Errors);
+                }
+            }
+            catch (pErr) {
+                if (pErr.errorCode == 101) {
+                    vErrHandling.throwError(pResponse, 400, 101, "ERR_INVALID_CREDENTIAL");
+                }
+            }
+            // pResponse.json(vResult);
         });
     }
     submitMPIN(pRequest, pResponse) {
         return __awaiter(this, void 0, void 0, function* () {
-            let vResult;
+            let vErrHandling = new error_handling_service_1.ErrorHandling.ErrorHandlingService();
             try {
                 let vHttpSvc = new api_service_1.APIService.HTTPService();
                 let vTokenSvc = new token_service_1.TokenService();
@@ -78,27 +90,22 @@ class LoginController {
                     Username: pRequest.body.Username,
                     MPIN: pRequest.body.MPIN
                 };
-                vResult = JSON.parse(yield vHttpSvc.post(api_service_1.APIService.APIType.OPISNET, vPath, null, vData));
+                let vResult = yield vHttpSvc.post(api_service_1.APIService.APIType.OPISNET, vPath, null, vData);
                 // If success login , generate token for services
-                if (vResult.Status === 200) {
-                    let vTokenObj = {
-                        DSP_ID: pRequest.body.Username,
-                        AccessToken: vResult.AccessToken
-                    };
-                    vResult.accessToken = vTokenSvc.generateToken(vTokenObj);
-                    // Set Cookie session for web access
-                    pResponse.cookie('accessToken', vResult.accessToken, { httpOnly: true });
-                }
+                let vTokenObj = {
+                    DSP_ID: pRequest.body.Username,
+                    AccessToken: vResult.payload.AccessToken
+                };
+                vResult.payload.accessToken = vTokenSvc.generateToken(vTokenObj);
                 // Set Cookie session for web access
-                pResponse.cookie('accessToken', vResult.accessToken, { httpOnly: true });
+                pResponse.cookie('accessToken', vResult.payload.accessToken, { httpOnly: true });
+                pResponse.status(vResult.status).json(vResult.payload);
             }
             catch (pErr) {
-                vResult = {
-                    ErrorCode: 400,
-                    ErrorStatus: pErr + ""
-                };
+                if (pErr.errCode == 101) {
+                    vErrHandling.throwError(pResponse, 400, 101, "ERR_INVALID_MPIN");
+                }
             }
-            pResponse.json(vResult);
         });
     }
     verifyToken(pRequest, pResponse) {
