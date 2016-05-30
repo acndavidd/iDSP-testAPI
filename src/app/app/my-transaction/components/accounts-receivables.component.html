@@ -24,57 +24,56 @@
 				</div>
 			</div>
 		</div>
-    </div>	
-</div>
-
-
-
-<div class='accounts-receivables'>	
+    </div>
 
     <div class="item-container">
         <div class='container'>
             <div class='cell'>
-            	<div class='container'><div class='cell bold align-center title padding-top-3'>Total Receivables (In Route):</div></div>
+            	<div class='container'><div class='cell align-center width-100'>Total Receivables (In Route):</div></div>
             </div>
         </div>
         <div class='container'>
 	        <div class='cell'>
-            	<div class='container'><div class='cell bold align-center title padding-bottom-3'>{{vTotalReceivablesInRoute}}</div></div>
+            	<div class='container'><div class='cell align-center width-100'>{{vTotalReceivablesInRoute}}</div></div>
             </div>
         </div>
     </div>
 
-        <div class="item-container">
+    <div class="item-container">
         <div class='container'>
             <div class='cell'>
-            	<div class='container'><div class='cell bold align-center title padding-top-3'>Total Receivables (All):</div></div>
+            	<div class='container'><div class='cell align-center width-100'>Total Receivables (All):</div></div>
             </div>
         </div>
         <div class='container'>
 	        <div class='cell'>
-            	<div class='container'><div class='cell bold align-center title padding-bottom-3'>{{vTotalReceivablesAll}}</div></div>
+            	<div class='container'><div class='cell align-center width-100'>{{vTotalReceivablesAll}}</div></div>
             </div>
         </div>
     </div>
 
 
-	 <div *ngFor='#FilteredSearch of vSearchedReceivablesRouteList'>
-		<div class='item-container'>
-		    <div class='container'>
-		    	<div class='cell icon green' [ngClass]="{'sulu': (FilteredSearch.source === 'BCP') , 'serenade': (FilteredSearch.source === 'SELF')}">
-	            	<div class='src'>
-	            		{{FilteredSearch.source}}
-	            	</div>
+    <div *ngFor='#FilteredSearch of vSearchedReceivablesRouteList'>
+		<div class="item-container no-padding-item-container">
+		    <div class="container">
+		    	<div class='cell vertical  [ngClass]="{'sulu': (FilteredSearch.source === 'BCP') , 'serenade': (FilteredSearch.source === 'SELF')}"'>
+	            	<div class='vertical-text'>{{FilteredSearch.source}}</div>
 	            </div>
 		        <div class='cell'>
-	                <div class='container' id ='accSeq' *ngIf='FilteredSearch.sequence'><div class='cell left padding-top-1 padding-left-5 green'># Route {{FilteredSearch.sequence}}</div></div>
-	                <div class='container' id ='accRetName'><div class='cell width-85 padding-top-3 padding-left-5'>{{FilteredSearch.retailer_name}}</div></div>
-	                <div class='container' id ='accRetMin'><div class='cell width-85 italic padding-top-1 padding-bottom-2  padding-left-5'>{{FilteredSearch.retailer_min}}</div></div>
-		        </div>
-		        <div class='cell'>
-	                <div class='container'><div class='cell right'></div></div>
-	                <div class='container' id ='accAmount'><div class='cell align-right width-40 padding-right-5'>{{FilteredSearch.amount}}</div></div>
-	                <div class='container'><div class='cell right'></div></div> 
+	                <div class='container' id ="accSeq" *ngIf='FilteredSearch.sequence'><div class='cell width-100 padding-left-5 green'># Route {{FilteredSearch.sequence}}</div></div>
+	                <div class='container' id ="accRetName"><div class='cell width-100 padding-left-5'>{{FilteredSearch.retailer_name}}</div></div>
+	                <div class='container'>
+	                	<div class='cell width-100'>
+						    <div class="container">
+						        <div class='cell'>
+					                <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5 italic'>{{FilteredSearch.retailer_min}}</div></div>
+						        </div>
+						        <div class='cell'>
+					                <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>{{FilteredSearch.amount}}</div></div>
+						        </div>
+						    </div>
+	                	</div>
+	                </div>
 		        </div>
 		    </div>
 		</div>

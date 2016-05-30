@@ -14,8 +14,9 @@ export class MyHttp {
     private vTimeout: number;
 
     constructor(private _http: Http,
-                private _router: Router,
-                private _modalService: Modal.ModalService) {
+                private _router: Router) {
+                // private _router: Router,
+                // private _modalService: Modal.ModalService) {
 
         this.vServiceBaseUrl = '';
 
@@ -121,7 +122,7 @@ export class MyHttp {
                             pObserver.error(err);
                             break;
                         case 400:
-                            this._modalService.showErrorModal(err.description);
+                            // this._modalService.showErrorModal(err.description);
                             break;
                         default:
                             // throw error

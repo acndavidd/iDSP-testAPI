@@ -1,4 +1,11 @@
-CREATE OR REPLACE FUNCTION public.get_target_actuals(pSalesPerson varchar, pTargetType varchar, pBrand varchar)
+-- Function: public.get_target_actuals(character varying, character varying, character varying)
+
+-- DROP FUNCTION public.get_target_actuals(character varying, character varying, character varying);
+
+CREATE OR REPLACE FUNCTION public.get_target_actuals(
+    psalesperson character varying,
+    ptargettype character varying,
+    pbrand character varying)
   RETURNS json AS
 $BODY$
 DECLARE
@@ -41,28 +48,43 @@ BEGIN
 		(
 			select array_to_json(array_agg(row_to_json(d)))
 			from (
-				select p.sub_category_id, p.sub_category_name, p.ttarget, (p.tLoad + p.tPrd) tactual,
+				select 	p.sub_category_id, 
+					p.sub_category_name,
+					p.ttarget,
+					--(p.tLoad + p.tPrd) tactual,
+					p.tPrd tactual,
 				CASE 
 					WHEN ttarget = 0 THEN 100
-					ELSE round(cast((p.tLoad + p.tPrd)/ttarget*100 as numeric):: numeric, 2) 
+					ELSE 
+						round(
+							cast(
+								(
+									--p.tLoad + p.tPrd
+									p.tPrd
+								)/ttarget*100 as numeric):: numeric, 2) 
 				END prc_actual,
 				CASE 
 					WHEN ttarget = 0 THEN 100
-					ELSE ceil((p.tLoad + p.tPrd)/ttarget*100) 
+					ELSE 
+						ceil(
+							(
+								--p.tLoad + p.tPrd
+								p.tPrd
+							)/ttarget*100) 
 				END prc_round				  
 				from (
 					select a.*,
-					(
-						SELECT coalesce(SUM(x.amount),0) ttl_load 
-						FROM trx_saleord_load_det x, trx_sales_order y
-						WHERE x.order_id = y.order_id 
-						and y.DSP_ID = pSalesPerson
-						and y.order_date between vStartDate and	vEndDate
-						and x.product_id in (
-							select prd1.product_id from mst_product prd1
-							where prd1.sub_category_id = a.sub_category_id
-						) 
-					)tLoad,
+					--(
+					--	SELECT coalesce(SUM(x.amount),0) ttl_load 
+					--	FROM trx_saleord_load_det x, trx_sales_order y
+					--	WHERE x.order_id = y.order_id 
+					--	and y.DSP_ID = pSalesPerson
+					--	and y.order_date between vStartDate and	vEndDate
+					--	and x.product_id in (
+					--		select prd1.product_id from mst_product prd1
+					--		where prd1.sub_category_id = a.sub_category_id
+					--	) 
+					--)tLoad,
 					(
 						SELECT coalesce(SUM(h.quantity),0) ttl_prd 
 						FROM trx_saleord_prd_det h, trx_sales_order i
@@ -81,10 +103,7 @@ BEGIN
 						WHERE tgt.DSP_ID = pSalesPerson				
 						and extract(month from NOW()) = tgt.target_month
 						and extract(year from NOW()) = tgt.target_year
-						and tgt.product_id in (
-							select prd3.product_id from mst_product prd3
-							where prd3.sub_category_id = a.sub_category_id
-						) 
+						and tgt.sub_category_id = a.sub_category_id
 					)tTarget
 					from mst_prod_sub_cat a				
 					where category_id= mst_prod_cat.category_id
@@ -97,4 +116,7 @@ BEGIN
 	RETURN _result;
 END
 $BODY$
-  LANGUAGE plpgsql;
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
+ALTER FUNCTION public.get_target_actuals(character varying, character varying, character varying)
+  OWNER TO postgres;

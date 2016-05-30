@@ -9,8 +9,8 @@ import {NgModel} from 'angular2/common';
 
 @Component({
     selector: 'bcp-activity-step',
-    templateUrl: './app/basic-call-procedure/components/hc-bcp-activity-step.component.html',
-    // templateUrl: './app/basic-call-procedure/components/bcp-activity-step.component.html',
+    // templateUrl: './app/basic-call-procedure/components/hc-bcp-activity-step.component.html',
+    templateUrl: './app/basic-call-procedure/components/bcp-activity-step.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
@@ -39,33 +39,33 @@ export class BCPActivityStepComponent {
         private _router: Router
         ) {
 
-        // console.log(this._pageNavigationService.getCurrentParams());
+        console.log(this._pageNavigationService.getCurrentParams());
 
-        // if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
-        //     this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
-        //     this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
-        //     this.vSelectedRetailCallId = this._pageNavigationService.getCurrentParams().call_id;
-        //     this.vSelectedStatus = this._pageNavigationService.getCurrentParams().status;
-        // } else {
-        //     console.log('Retailer ID not found');
-        // }
-        // console.log('in BCP activity for retailer id ' +  this.vSelectedRetailId);
+        if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
+            this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
+            this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
+            this.vSelectedRetailCallId = this._pageNavigationService.getCurrentParams().call_id;
+            this.vSelectedStatus = this._pageNavigationService.getCurrentParams().status;
+        } else {
+            console.log('Retailer ID not found');
+        }
+        console.log('in BCP activity for retailer id ' +  this.vSelectedRetailId);
 
-        // this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
-        // response => {
-        //     if (response.json().status === 'Success') {
-        //         console.log('Query Success' + JSON.stringify(response.json().result));
-        //         this.vSelectedRetail = response.json().result;
-        //         console.log( 'result : ' + this.vSelectedRetail );
+        this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
+        response => {
+            if (response.json().status === 'Success') {
+                console.log('Query Success' + JSON.stringify(response.json().result));
+                this.vSelectedRetail = response.json().result;
+                console.log( 'result : ' + this.vSelectedRetail );
 
-        //     } else {
-        //         console.log( 'Query Failed' );
-        //         this.vSelectedRetail = null;
-        //     }
-        // },
-        // error => {
-        //     console.log(error);
-        // });
+            } else {
+                console.log( 'Query Failed' );
+                this.vSelectedRetail = null;
+            }
+        },
+        error => {
+            console.log(error);
+        });
 
         this._layoutService.setCurrentPage('BCPActivityStep');
         this._headerService.setTitle('BCP Activities Step');
@@ -73,34 +73,35 @@ export class BCPActivityStepComponent {
         this.changeColor();
     }
 
-    // gotoAnotherPage(pSelectedRetailer) {
-    //     console.log('current pointer : ' + this.vCurrentPointer);
-    //     console.log('bcp activity step Go to Call Preparation' + pSelectedRetailer );
+    gotoAnotherPage(pSelectedRetailer) {
+        console.log('current pointer : ' + this.vCurrentPointer);
+        console.log('bcp activity step Go to Call Preparation' + pSelectedRetailer );
 
-    //     let vParamsOld = {
-    //         retailer_id: this.vSelectedRetailId,
-    //         route_sequence: this.vSelectedRetailSeq,
-    //         call_id: this.vSelectedRetailCallId,
-    //         status: this.vSelectedStatus
-    //     };
-    //     let vParams = {
-    //         retailer_id: pSelectedRetailer.retailer_id,
-    //         route_sequence: pSelectedRetailer.seq,
-    //         call_id: pSelectedRetailer.call_id,
-    //         status: pSelectedRetailer.call_status
-    //     };
-     gotoAnotherPage() {
+        let vParamsOld = {
+            retailer_id: this.vSelectedRetailId,
+            route_sequence: this.vSelectedRetailSeq,
+            call_id: this.vSelectedRetailCallId,
+            status: this.vSelectedStatus
+        };
+        let vParams = {
+            retailer_id: pSelectedRetailer.retailer_id,
+            route_sequence: pSelectedRetailer.seq,
+            call_id: pSelectedRetailer.call_id,
+            status: pSelectedRetailer.call_status
+        };
+
+     // gotoAnotherPage() {
         if (this.vCurrentPointer === '1') {
-             this._pageNavigationService.navigate('BCPCollection', null, null);
-             // this._pageNavigationService.navigate('BCPCollection', vParams, vParamsOld);
+             // this._pageNavigationService.navigate('BCPCollection', null, null);
+             this._pageNavigationService.navigate('BCPCollection', vParams, vParamsOld);
         }
         if (this.vCurrentPointer === '0') {
-           this._pageNavigationService.navigate('CallPreparation', null, null);
-           // this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);
+           // this._pageNavigationService.navigate('CallPreparation', null, null);
+           this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);
         }
         else if (this.vCurrentPointer === '1') {
-           this._pageNavigationService.navigate('BCPCollection', null, null);
-           // this._pageNavigationService.navigate('BCPCollection', vParams, vParamsOld);
+           // this._pageNavigationService.navigate('BCPCollection', null, null);
+           this._pageNavigationService.navigate('BCPCollection', vParams, vParamsOld);
         }
         else if (this.vCurrentPointer === '2') {
             this._pageNavigationService.navigate('Offer', null, null);
