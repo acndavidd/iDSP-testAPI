@@ -10,13 +10,13 @@ import {Response, RequestOptionsArgs, Headers, Http, Connection, RequestOptions}
 
 
 @Component({
-    templateUrl: './app/remittance/components/remittance.component.html',
+    templateUrl: './app/remittance/components/confirm-remittance.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
 })
 
-export class RemittanceComponent {
+export class ConfirmRemittanceComponent {
 
     constructor (
     private _router: Router,
@@ -25,21 +25,16 @@ export class RemittanceComponent {
     private _headerService: HeaderService,
     private _pageNavigationService: PageNavigationService
     ) {
-        this._layoutService.setCurrentPage('Remittance');
-        this._headerService.setTitle('Remittance');
+        this._layoutService.setCurrentPage('ConfirmRemittance');
+        this._headerService.setTitle('Confirm Remittance');
     }
 
     getResize() {
         return this._matchMediaService.getMm();
     }
 
-    gotoConfirm() {
-        console.log("CONFIRMMM");
-        this._pageNavigationService.navigate('ConfirmRemittance', null, null);
+    gotoRemittance() {
+        this._pageNavigationService.navigate('Remittance', null, null);
     }
 
-    gotoAdd() {
-        console.log("ADDDD");
-        this._pageNavigationService.navigate('AddRemittance', null, null);        
-    }
 }
