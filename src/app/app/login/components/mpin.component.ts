@@ -47,8 +47,8 @@ export class MpinComponent {
         pEvent.preventDefault();
         // this._authenticationService.submitMPIN(this.vMPIN1 + this.vMPIN2 + this.vMPIN3 + this.vMPIN4 + this.vMPIN5);
         // For By Pass Directly without API
-        this._pageNavigationService.navigate('Home', null, null);
-        // this._authenticationService.submitMPIN(this.vMPIN1 + this.vMPIN2 + this.vMPIN3 + this.vMPIN4 + this.vMPIN5);
+        // this._pageNavigationService.navigate('Home', null, null);
+        this._authenticationService.submitMPIN(this.vMPIN1 + this.vMPIN2 + this.vMPIN3 + this.vMPIN4 + this.vMPIN5);
     }
 
     ResendMpinModalComponent() {
