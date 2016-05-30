@@ -124,7 +124,8 @@ export class RetailerService {
         console.log('Start hit login service to Query Retailer Route for BCP');
         this.vToday = new Date();
         let vData = {
-            salesPerson: 'DSP00001'
+            salesPerson: 'DSP00001',
+            pDay : 1
         };
 
         return this._http.post('/additionalRetailerRoute', JSON.stringify(vData));

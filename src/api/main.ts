@@ -88,14 +88,14 @@ vRouter.post('/AccountsReceivables',vAccCtrl.AccountsReceivables);
 vRouter.get('/testSync',vSchedCtrl.syncTableMaster);
 
 //API BASED ON GUIDELINES
- vRouter.post('/todaysRetailerRoute',vRetailerCtrl.todaysRetailerRoute);
- vRouter.post('/retailerCallPreparation',vRetailerCtrl.retailerCallPreparation);
- vRouter.post('/loadWallet',vRetailerCtrl.loadWallet);
- vRouter.post('/physicalInventory',vRetailerCtrl.physicalInventory);
- vRouter.post('/paymentHistory',vRetailerCtrl.paymentHistory);
- vRouter.get('/brands',vTargetsActualsCtrl.brands);
- vRouter.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
- vRouter.post('/additionalRetailerRoute',vRetailerCtrl.additionalRetailerRoute);
+vRouter.post('/todaysRetailerRoute',vRetailerCtrl.todaysRetailerRoute);
+vRouter.post('/retailerCallPreparation',vRetailerCtrl.retailerCallPreparation);
+vRouter.post('/loadWallet',vRetailerCtrl.loadWallet);
+vRouter.post('/physicalInventory',vRetailerCtrl.physicalInventory);
+vRouter.post('/paymentHistory',vRetailerCtrl.paymentHistory);
+vRouter.get('/brand',vTargetsActualsCtrl.brand);
+vRouter.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
+vRouter.post('/additionalRetailerRoute',vRetailerCtrl.additionalRetailerRoute);
 
 vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);

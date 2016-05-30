@@ -362,13 +362,15 @@ export class RetailerController implements RetailerInterface{
 			console.log("Start getting Physical Inventory");
 
 			var vSalesPerson = pRequest.body.salesPerson;
+			var vDay = pRequest.body.pDay;
 
 			console.log(vSalesPerson + 'DSP id');
 
 			var vOrmSvc = new ORMService();
 
 			let vParams = {
-				salesPerson : vSalesPerson
+				salesPerson : vSalesPerson,
+				pDay : vDay	
 				
 			};
 

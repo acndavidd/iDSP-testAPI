@@ -4,7 +4,7 @@ import {TokenService} from '../services/token.service';
 import {ORMService} from '../services/orm.service';
 
 export interface TargetsActualsInterface{
-	brands(pRequest,pResponse):void;
+	brand(pRequest,pResponse):void;
 	targetsActuals(pRequest,pResponse):void;
 }
 
@@ -13,7 +13,7 @@ export class TargetsActualsController implements TargetsActualsInterface{
 
     constructor(){}
    
-    async brands(pRequest,pResponse){
+    async brand(pRequest,pResponse){
 	    try {	  
 		    var message = 'Insert start.';
 

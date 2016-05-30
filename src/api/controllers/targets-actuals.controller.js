@@ -11,7 +11,7 @@ const orm_service_1 = require('../services/orm.service');
 class TargetsActualsController {
     constructor() {
     }
-    brands(pRequest, pResponse) {
+    brand(pRequest, pResponse) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 var message = 'Insert start.';

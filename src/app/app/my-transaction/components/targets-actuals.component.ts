@@ -44,7 +44,7 @@ export class TargetsActualsComponent {
         private _headerService: HeaderService,
         private _targetsActualsService: TargetsActualsService
         ) {
-        this.vSelectedBrand = 'SMART';
+        this.vSelectedBrand = 'Smart';
         this.vSelectedTab = 'Day';
         this._layoutService.setCurrentPage('TargetsActuals');
         this._headerService.setTitle('Targets & Actuals');
