@@ -36,6 +36,9 @@ import {CDUnservedOrderComponent} from '../../close-day/components/cd-unserved-o
 import {ConfirmCollectionComponent} from '../../basic-call-procedure/components/confirm-collection.component';
 import {AddUnservedOrderComponent} from '../../basic-call-procedure/components/add-unserved-order.component';
 import {HomeComponent} from '../../shared/components/home.component';
+import {AddStockReturnComponent} from '../../stock-return/components/add-stock-return.component';
+import {ConfirmStockReturnComponent} from '../../stock-return/components/confirm-stock-return.component';
+
 
 @Component({
     selector : 'main-page',
@@ -196,10 +199,21 @@ import {HomeComponent} from '../../shared/components/home.component';
         path: '/cdUnservedOrder',
         name: 'CDUnservedOrder',
         component: CDUnservedOrderComponent
-    }
+    },
     // UNDER CLOSE OF THE DAY TAB - END
 
     // UNDER STOCK RETURN TAB - START
+    {
+        path: '/addStockReturn',
+        name: 'AddStockReturn',
+        component: AddStockReturnComponent
+    },
+    {
+        path: '/confirmStockReturn',
+        name: 'ConfirmStockReturn',
+        component: ConfirmStockReturnComponent
+    }
+
     // UNDER STOCK RETURN TAB - END
 
     // UNDER REMITTANCE TAB - START
