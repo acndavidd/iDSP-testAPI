@@ -22,6 +22,8 @@ import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/
 import {VisitedRetailComponent} from '../../close-day/components/visited-retail.component';
 import {BCPActivityStepComponent} from '../../basic-call-procedure/components/bcp-activity-step.component';
 import {RemittanceComponent} from '../../remittance/components/remittance.component';
+import {AddRemittanceComponent} from '../../remittance/components/add-remittance.component';
+import {ConfirmRemittanceComponent} from '../../remittance/components/confirm-remittance.component';
 import {CallPreparationComponent} from '../../basic-call-procedure/components/call-preparation.component';
 import {StockReturnComponent} from '../../stock-return/components/stock-return.component';
 import {UnservedOrderComponent} from '../../basic-call-procedure/components/unserved-order.component';
@@ -201,6 +203,7 @@ import {DetailRemittanceComponent} from '../../close-day/components/detail-remit
         component: CDUnservedOrderComponent
     },
 
+
     {
         path: '/detailCollection',
         name: 'DetailCollection',
@@ -212,12 +215,23 @@ import {DetailRemittanceComponent} from '../../close-day/components/detail-remit
         name: 'DetailRemittance',
         component: DetailRemittanceComponent
     }
+
     // UNDER CLOSE OF THE DAY TAB - END
 
     // UNDER STOCK RETURN TAB - START
     // UNDER STOCK RETURN TAB - END
 
     // UNDER REMITTANCE TAB - START
+    {
+        path: '/addRemittance',
+        name: 'AddRemittance',
+        component: AddRemittanceComponent
+    },
+    {
+        path: '/confirmRemittance',
+        name: 'ConfirmRemittance',
+        component: ConfirmRemittanceComponent
+    }
     // UNDER REMITTANCE TAB - END
 
     // UNUSED PAGE - START

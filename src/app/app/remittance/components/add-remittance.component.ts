@@ -10,13 +10,15 @@ import {Response, RequestOptionsArgs, Headers, Http, Connection, RequestOptions}
 
 
 @Component({
-    templateUrl: './app/remittance/components/remittance.component.html',
+    templateUrl: './app/remittance/components/add-remittance.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
 })
 
-export class RemittanceComponent {
+export class AddRemittanceComponent {
+    
+    vSelectedRemittance;
 
     constructor (
     private _router: Router,
@@ -25,19 +27,17 @@ export class RemittanceComponent {
     private _headerService: HeaderService,
     private _pageNavigationService: PageNavigationService
     ) {
-        this._layoutService.setCurrentPage('Remittance');
-        this._headerService.setTitle('Remittance');
+        this._layoutService.setCurrentPage('AddRemittance');
+        this._headerService.setTitle('Add Remittance');
+
+        this.vSelectedRemittance = 'Cash';
     }
 
     getResize() {
         return this._matchMediaService.getMm();
     }
 
-    gotoConfirm() {
-        this._pageNavigationService.navigate('ConfirmRemittance', null, null);
-    }
-
-    gotoAdd() {
-        this._pageNavigationService.navigate('AddRemittance', null, null);        
+    gotoRemittance() {
+        this._pageNavigationService.navigate('Remittance', null, null);
     }
 }

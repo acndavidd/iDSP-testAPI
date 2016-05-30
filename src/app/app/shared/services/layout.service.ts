@@ -431,6 +431,29 @@ export class LayoutService {
         // UNDER CLOSE OF THE DAY - END
 
         // UNDER REMITTANCE - START
+        else if (
+            pCurrent === 'AddRemittance' ||
+            pCurrent === 'ConfirmRemittance') {
+
+            this.vOldCurrentPage = 'Remittance';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+
+            this.vHeaderItem = {
+                hamburger: false,
+                back: true,
+                filter: false,
+                edit: false,
+                search: false,
+                add: false
+            };
+        }
         // UNDER REMITTANCE - END
 
         // UNDER STOCK RETURN - START
@@ -546,8 +569,15 @@ export class LayoutService {
     getCurrentPointer() {
         return this.vCurrentPointer;
     }
+    // for hardcode
+    // toggleAdd() {
+    //     if (this.vCurrentPage === 'BasicCallProcedure') {
+    //         this._pageNavigationService.navigate('BCPAddRetailerRoute', null, null);
+    //     }
+    // }
 
-    toggleAdd() {
+    // for backend
+        toggleAdd() {
         if (this.vCurrentPage === 'BasicCallProcedure') {
             this._pageNavigationService.navigate('BCPAddRetailerRoute', null, null);
         }

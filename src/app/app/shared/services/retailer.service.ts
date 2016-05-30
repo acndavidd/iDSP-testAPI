@@ -120,6 +120,17 @@ export class RetailerService {
         return this._http.post('/todaysRetailerRoute', JSON.stringify(vData));
     }
 
+    queryAdditionalRetailerRoute() {
+        console.log('Start hit login service to Query Retailer Route for BCP');
+        this.vToday = new Date();
+        let vData = {
+            salesPerson: 'DSP00001',
+            pDay : 1
+        };
+
+        return this._http.post('/additionalRetailerRoute', JSON.stringify(vData));
+    }
+
     getRetailerAll() {
         return this.vRetailer;
     }
