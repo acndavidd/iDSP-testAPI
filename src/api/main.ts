@@ -52,8 +52,6 @@ vApp.use(function(pRequest, pResponse, pNext) {
         pRequest.path !== '/service/submitMPIN' &&
         pRequest.path !== '/service/generateCallPlan' &&
         pRequest.path.indexOf('/testing') !== -1 //bypass token for testing purpose
-
-
     ){
         if( pRequest.method !== 'OPTIONS') {
             // all request to service will validate token except login & logout
