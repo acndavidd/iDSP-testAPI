@@ -120,7 +120,7 @@ export class AuthenticationService {
                 }
             },
             error => {
-
+                
             }
         );
     }
@@ -138,17 +138,17 @@ export class AuthenticationService {
                     pParams._layoutService.toggleLeftMenu();
                     pParams._layoutService.toggleHeader();
                     pParams._modalService.vShowModal = false;
-                    pParams._router.navigate(['Starter', 'Login']);
                 }else {
                     this.vErrorMsg = vResponse.StatusMessage;
                     this._modalService.showErrorModal(this.vErrorMsg);
                 }
             },
             error => {
-                this.vErrorMsg = 'failed connecting to login service';
-                this._modalService.showErrorModal(this.vErrorMsg);
+                // this.vErrorMsg = 'failed connecting to login service';
+                // this._modalService.showErrorModal(this.vErrorMsg);
             }
         );
+        pParams._router.navigate(['Starter', 'Login']);
     } 
 
     logout() {
