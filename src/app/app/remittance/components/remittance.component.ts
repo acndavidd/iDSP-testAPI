@@ -33,4 +33,11 @@ export class RemittanceComponent {
         return this._matchMediaService.getMm();
     }
 
+    gotoConfirm() {
+        this._pageNavigationService.navigate('ConfirmRemittance', null, null);
+    }
+
+    gotoAdd() {
+        this._pageNavigationService.navigate('AddRemittance', null, null);        
+    }
 }

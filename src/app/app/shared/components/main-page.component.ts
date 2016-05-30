@@ -22,6 +22,8 @@ import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/
 import {VisitedRetailComponent} from '../../close-day/components/visited-retail.component';
 import {BCPActivityStepComponent} from '../../basic-call-procedure/components/bcp-activity-step.component';
 import {RemittanceComponent} from '../../remittance/components/remittance.component';
+import {AddRemittanceComponent} from '../../remittance/components/add-remittance.component';
+import {ConfirmRemittanceComponent} from '../../remittance/components/confirm-remittance.component';
 import {CallPreparationComponent} from '../../basic-call-procedure/components/call-preparation.component';
 import {StockReturnComponent} from '../../stock-return/components/stock-return.component';
 import {UnservedOrderComponent} from '../../basic-call-procedure/components/unserved-order.component';
@@ -38,7 +40,8 @@ import {AddUnservedOrderComponent} from '../../basic-call-procedure/components/a
 import {HomeComponent} from '../../shared/components/home.component';
 import {AddStockReturnComponent} from '../../stock-return/components/add-stock-return.component';
 import {ConfirmStockReturnComponent} from '../../stock-return/components/confirm-stock-return.component';
-
+import {DetailCollectionComponent} from '../../close-day/components/detail-collection.component';
+import {DetailRemittanceComponent} from '../../close-day/components/detail-remittance.component';
 
 @Component({
     selector : 'main-page',
@@ -195,10 +198,23 @@ import {ConfirmStockReturnComponent} from '../../stock-return/components/confirm
         name: 'VisitedRetail',
         component: VisitedRetailComponent
     },
+
     {
         path: '/cdUnservedOrder',
         name: 'CDUnservedOrder',
         component: CDUnservedOrderComponent
+    },
+
+    {
+        path: '/detailCollection',
+        name: 'DetailCollection',
+        component: DetailCollectionComponent
+    },
+
+    {
+        path: '/detailRemittance',
+        name: 'DetailRemittance',
+        component: DetailRemittanceComponent
     },
     // UNDER CLOSE OF THE DAY TAB - END
 
@@ -212,11 +228,21 @@ import {ConfirmStockReturnComponent} from '../../stock-return/components/confirm
         path: '/confirmStockReturn',
         name: 'ConfirmStockReturn',
         component: ConfirmStockReturnComponent
-    }
+    },
 
     // UNDER STOCK RETURN TAB - END
 
     // UNDER REMITTANCE TAB - START
+    {
+        path: '/addRemittance',
+        name: 'AddRemittance',
+        component: AddRemittanceComponent
+    },
+    {
+        path: '/confirmRemittance',
+        name: 'ConfirmRemittance',
+        component: ConfirmRemittanceComponent
+    }
     // UNDER REMITTANCE TAB - END
 
     // UNUSED PAGE - START
