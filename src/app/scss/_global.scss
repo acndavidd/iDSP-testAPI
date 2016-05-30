@@ -141,6 +141,20 @@ LIST VIEW - ICON BUTTON
     background-position-y: center;
     background-size: 6vw;
 }
+
+&.icon-yes{
+    background-image: url(#{$icon-peso});
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 6vw;
+}
+
+&.icon-no{
+    background-image: url(#{$icon-peso});
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 6vw;
+}
 &.arrow-right {
     background: url("../img/icon-idsp/path-right-grey.png")no-repeat;
     background-position-x: center;

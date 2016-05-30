@@ -36,6 +36,8 @@ import {CDUnservedOrderComponent} from '../../close-day/components/cd-unserved-o
 import {ConfirmCollectionComponent} from '../../basic-call-procedure/components/confirm-collection.component';
 import {AddUnservedOrderComponent} from '../../basic-call-procedure/components/add-unserved-order.component';
 import {HomeComponent} from '../../shared/components/home.component';
+import {DetailCollectionComponent} from '../../close-day/components/detail-collection.component';
+import {DetailRemittanceComponent} from '../../close-day/components/detail-remittance.component';
 
 @Component({
     selector : 'main-page',
@@ -192,10 +194,23 @@ import {HomeComponent} from '../../shared/components/home.component';
         name: 'VisitedRetail',
         component: VisitedRetailComponent
     },
+
     {
         path: '/cdUnservedOrder',
         name: 'CDUnservedOrder',
         component: CDUnservedOrderComponent
+    },
+
+    {
+        path: '/detailCollection',
+        name: 'DetailCollection',
+        component: DetailCollectionComponent
+    },
+
+    {
+        path: '/detailRemittance',
+        name: 'DetailRemittance',
+        component: DetailRemittanceComponent
     }
     // UNDER CLOSE OF THE DAY TAB - END
 

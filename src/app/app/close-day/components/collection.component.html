@@ -22,7 +22,7 @@
 	</div>
 
 
-	<div class="item-container">
+	<div class="item-container" (click)="gotoDetailRemittance()">
 	    <div class="container">
 	        <div class='cell'>
                 <div class='container'>
@@ -146,6 +146,28 @@
                 <!-- <div class='container'><div class='cell width-40 align-right'></div></div> -->
                 <div class='container'>
                 	<div class='cell width-40 align-right green'>3,000.00 ₱</div>
+                </div>
+	        </div>
+	        <div class='cell width-10 arrow-right'>
+	        </div>
+	    </div>
+	</div>
+
+
+	<div class="item-container"  (click)="gotoDetailCollection()">
+	    <div class="container">
+	        <div class='cell'>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50'>Total Collection</div>
+                </div>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50 italic small'>Total collected amount today</div>
+                </div>
+	        </div>
+	        <div class='cell'>
+                <!-- <div class='container'><div class='cell width-40 align-right'></div></div> -->
+                <div class='container'>
+                	<div class='cell width-40 align-right green'>8,000.00 ₱</div>
                 </div>
 	        </div>
 	        <div class='cell width-10 arrow-right'>
