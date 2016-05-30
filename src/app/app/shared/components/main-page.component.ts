@@ -38,6 +38,8 @@ import {CDUnservedOrderComponent} from '../../close-day/components/cd-unserved-o
 import {ConfirmCollectionComponent} from '../../basic-call-procedure/components/confirm-collection.component';
 import {AddUnservedOrderComponent} from '../../basic-call-procedure/components/add-unserved-order.component';
 import {HomeComponent} from '../../shared/components/home.component';
+import {AddStockReturnComponent} from '../../stock-return/components/add-stock-return.component';
+import {ConfirmStockReturnComponent} from '../../stock-return/components/confirm-stock-return.component';
 import {DetailCollectionComponent} from '../../close-day/components/detail-collection.component';
 import {DetailRemittanceComponent} from '../../close-day/components/detail-remittance.component';
 
@@ -203,7 +205,6 @@ import {DetailRemittanceComponent} from '../../close-day/components/detail-remit
         component: CDUnservedOrderComponent
     },
 
-
     {
         path: '/detailCollection',
         name: 'DetailCollection',
@@ -214,11 +215,21 @@ import {DetailRemittanceComponent} from '../../close-day/components/detail-remit
         path: '/detailRemittance',
         name: 'DetailRemittance',
         component: DetailRemittanceComponent
-    }
-
+    },
     // UNDER CLOSE OF THE DAY TAB - END
 
     // UNDER STOCK RETURN TAB - START
+    {
+        path: '/addStockReturn',
+        name: 'AddStockReturn',
+        component: AddStockReturnComponent
+    },
+    {
+        path: '/confirmStockReturn',
+        name: 'ConfirmStockReturn',
+        component: ConfirmStockReturnComponent
+    },
+
     // UNDER STOCK RETURN TAB - END
 
     // UNDER REMITTANCE TAB - START

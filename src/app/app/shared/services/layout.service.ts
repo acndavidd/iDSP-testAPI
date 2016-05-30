@@ -457,6 +457,27 @@ export class LayoutService {
         // UNDER REMITTANCE - END
 
         // UNDER STOCK RETURN - START
+        else if (
+            pCurrent === 'AddStockReturn' ||
+            pCurrent === 'ConfirmStockReturn') {
+            this.vOldCurrentPage = null;
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+            this.vHeaderItem = {
+                hamburger: false,
+                back: true,
+                filter: false,
+                edit: false,
+                search: false,
+                add: false
+            };
+        }
         // UNDER STOCK RETURN - END
 
 
