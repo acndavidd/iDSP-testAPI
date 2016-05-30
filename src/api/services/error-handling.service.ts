@@ -1,10 +1,11 @@
-var vError = require('../config/error.json');
+var vErrorConfig = require('../config/error.json');
 
 export module ErrorHandling {
 
 	export var RESPONSE_CODE = {
-		ERROR : 400,
+		FUNCTIONAL_ERROR : 400,
 		SUCCESS : 200,
+		SYSTEM_ERROR : 500
 	}
 
 	export var ERROR_TYPE = {
@@ -37,26 +38,42 @@ export module ErrorHandling {
 		processHTTPError(pHTTPError) {
 			switch (pHTTPError.code) {
 				case 'ECONNREFUSED' :
-					this.vError.status = RESPONSE_CODE.ERROR;
+					this.vError.status = RESPONSE_CODE.SYSTEM_ERROR;
 					this.vError.errorCode = 100;
 					this.vError.description = "ERR_CONN_REFUSED";
 					break;
 				case '' : 
 					break;
+				default :
+					this.vError.status = pHTTPError.code;
+					this.vError.errorCode = pHTTPError.code;
+					this.vError.description = "Unhandled error on HTTP Request";
+					break;
 			}
 			return this.vError;
 		}
 
-		processHTTPResult(pHTTPResult) {
-			if(pHTTPResult.Status !== '200') {
+		processHTTPResult(pHTTPResult) {	
+			if(pHTTPResult.Status !== 200) {
+				this.vError.status = RESPONSE_CODE.FUNCTIONAL_ERROR;
+				this.vError.errorCode = pHTTPResult.Status;
+				this.vError.description = pHTTPResult.StatusMessage;
 				throw this.vError;
 			}else {
+				this.vResult.status = RESPONSE_CODE.SUCCESS;
+				this.vResult.payload = pHTTPResult;
 				return this.vResult;
 			}
 		}
 
+		processModelValidationError(pValidationError) {
+			this.vError.status = RESPONSE_CODE.FUNCTIONAL_ERROR;
+			this.vError.errorCode = pValidationError.errorCode;
+			this.vError.description = pValidationError.errorMessage;
+		}
+
 		processSequelizeError(pResult) {
-			this.vError.status = RESPONSE_CODE.ERROR;
+			this.vError.status = RESPONSE_CODE.SYSTEM_ERROR;
 			this.vError.errorCode = ERROR_TYPE.ERROR_SEQUELIZE;
 			this.vError.description = pResult.toString();
 			return this.vError;
@@ -64,7 +81,7 @@ export module ErrorHandling {
 
 		processSPResult(pResult: any) {
 			if(pResult.status !== 0) {
-				this.vError.status = RESPONSE_CODE.ERROR;
+				this.vError.status = RESPONSE_CODE.FUNCTIONAL_ERROR;
 				this.vError.errorCode = pResult.error_code;
 				throw this.vError;
 			}else {
@@ -76,6 +93,7 @@ export module ErrorHandling {
 
 		throwError(pHTTPResponse, pHTTPResponseStatus, pErrorCode, pErrorMessage) {
 			pErrorMessage = pErrorMessage.replace('TypeError: ','');
+			if(this.getErrorMessage(pErrorMessage))pErrorMessage = this.getErrorMessage(pErrorMessage);
 			this.vError.status = pHTTPResponseStatus;
 			this.vError.errorCode = pErrorCode;
 			this.vError.payload = {
@@ -83,6 +101,10 @@ export module ErrorHandling {
 				description : pErrorMessage
 			}
 			pHTTPResponse.status(this.vError.status).json(this.vError.payload);
+		}
+
+		getErrorMessage(pErrMap) {
+			return vErrorConfig[pErrMap];
 		}
 	}
 }

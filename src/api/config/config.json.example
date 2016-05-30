@@ -1,5 +1,6 @@
 {
   "development": {
+    "port" : 8080,
     "db" : {
       "dialect"  : "postgres",
       "host"     : "localhost",
@@ -22,9 +23,10 @@
     "service" : {
       "OPIS+" : "http://localhost:7777",
       "ELP" : "http://localhost:7777",
-      "key" : "J@karta",
       "timeout" : 15000,
-      "port" : 8080
     },
+    "token" : {
+      "key" : "J@karta"
+    }
   }
 }
