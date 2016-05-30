@@ -4,6 +4,7 @@ import {Injectable} from 'angular2/core';
 import {Http, Request, RequestOptions, RequestMethod, RequestOptionsArgs, Headers} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import {Router} from 'angular2/router';
+import {Modal} from './modal.service';
 
 declare var configChannel: any;
 
@@ -14,6 +15,8 @@ export class MyHttp {
 
     constructor(private _http: Http,
                 private _router: Router) {
+                // private _router: Router,
+                // private _modalService: Modal.ModalService) {
 
         this.vServiceBaseUrl = '';
 
@@ -115,8 +118,11 @@ export class MyHttp {
                 (err) => {
                     switch (err.status) {
                         case 403:
-                            // try access once again usig refresh token
+                            // try access once again using refresh token
                             pObserver.error(err);
+                            break;
+                        case 400:
+                            // this._modalService.showErrorModal(err.description);
                             break;
                         default:
                             // throw error

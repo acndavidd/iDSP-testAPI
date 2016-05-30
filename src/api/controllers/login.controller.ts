@@ -1,20 +1,53 @@
 'use strict';
-
 import {TokenService} from '../services/token.service';
 import {ORMService} from '../services/orm.service';
 import {APIService} from '../services/api.service';
+import {ErrorHandling} from '../services/error-handling.service';
 
 export interface LoginInterface {
 	login(pRequest, pResponse): Promise<void>;
 	submitMPIN(pRequest, pResponse): Promise<void>;
 	verifyToken(pRequest, pResponse): void;
 	logout(pRequest, pResponse): Promise<void>
-	test(pRequest, pResponse): Promise<void>;
 }
 
 export class LoginController implements LoginInterface{
-	
 	constructor() {
+	}
+
+	async testSuccess(pRequest, pResponse) {
+		let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
+		try{
+			let vOrmService:ORMService = new ORMService();
+			try{
+				let vResult:ErrorHandling.Result = await vOrmService.sp('SUCCESS_SP', null);
+				pResponse.status(vResult.status).json(vResult.payload);
+			}catch(pErr) {
+				if(pErr.errorCode == ErrorHandling.ERROR_TYPE.ERROR_SEQUELIZE){
+					vErrHandling.throwError(pResponse, 400, pErr.errorCode, "Error happened on sequelize");
+				}else{
+					//handle other error code
+					switch (pErr.errorCode) {
+						case 101 :
+							vErrHandling.throwError(pResponse, 400, 101, "Error b");
+							break;
+					}
+				}
+			}
+		}catch(pErr) {
+			vErrHandling.throwError(pResponse, 400, 101, "test message");
+		}
+	}
+
+	async testError(pRequest, pResponse) {
+		let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
+		try{
+			let vOrmService:ORMService = new ORMService();
+			let vResult = await vOrmService.sp('ERROR_SP', null);
+			pResponse.status(vResult.status).json(vResult.payload);
+		}catch(pErr) {
+			vErrHandling.throwError(pResponse, 400, 101, "Error SP");
+		}
 	}
 
 	async login(pRequest,pResponse) {
@@ -29,24 +62,33 @@ export class LoginController implements LoginInterface{
 	}
 
 	async submitMPIN(pRequest, pResponse) {
-		let vHttpSvc = new APIService.HTTPService();
-		let vTokenSvc = new TokenService();
-		let vPath:string = '/OPISNET/services/idsp/userAuthorization';
-		let vData = {
-			Username : pRequest.body.Username,
-			MPIN : pRequest.body.MPIN
-		};
-		let vResult = JSON.parse(await vHttpSvc.post(APIService.APIType.OPISNET, vPath, null, vData));
-		// If success login , generate token for services
-		if(vResult.Status === 200) {
-			let vTokenObj = {
-				DSP_ID : pRequest.body.Username,
-				AccessToken : vResult.AccessToken
+		let vResult;
+		try{
+			let vHttpSvc = new APIService.HTTPService();
+			let vTokenSvc = new TokenService();
+			let vPath:string = '/OPISNET/services/idsp/userAuthorization';
+			let vData = {
+				Username : pRequest.body.Username,
+				MPIN : pRequest.body.MPIN
 			};
-			vResult.accessToken = vTokenSvc.generateToken(vTokenObj);
+			vResult = JSON.parse(await vHttpSvc.post(APIService.APIType.OPISNET, vPath, null, vData));
+			// If success login , generate token for services
+			if(vResult.Status === 200) {
+				let vTokenObj = {
+					DSP_ID : pRequest.body.Username,
+					AccessToken : vResult.AccessToken
+				};
+				vResult.accessToken = vTokenSvc.generateToken(vTokenObj);
+				// Set Cookie session for web access
+				pResponse.cookie('accessToken', vResult.accessToken,{httpOnly:true});
+			}
 			// Set Cookie session for web access
 			pResponse.cookie('accessToken', vResult.accessToken,{httpOnly:true});
-			// console.log(pRequest.cookie.accessToken);
+		}catch(pErr) {
+			vResult = {
+				ErrorCode : 400,
+				ErrorStatus : pErr + ""
+			};
 		}
 		pResponse.json(vResult);
 	}

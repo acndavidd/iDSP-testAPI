@@ -133,5 +133,11 @@ export class BCPCollectionComponent {
         return this.vPaymentHistory;
     }
 
-  
+    gotoSkipCollection() {
+        // nanti pegi ke SKIPP COLLECTION UI
+    }
+
+    gotoConfirmCollection() {
+        this._pageNavigationService.navigate('ConfirmCollection', null, null);
+    }
 }

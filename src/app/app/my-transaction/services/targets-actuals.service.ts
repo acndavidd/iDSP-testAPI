@@ -26,7 +26,7 @@ export class TargetsActualsService {
 
       queryBrand() {
             console.log('Start get brands');
-            return this._http.get('/brands');
+            return this._http.get('/brand');
       }
 
       queryProdCat() {
