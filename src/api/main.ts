@@ -89,17 +89,19 @@ vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
 vRouter.get('/testSync',vSchedCtrl.syncTableMaster);
 
 //API BASED ON GUIDELINES
- vRouter.post('/todaysRetailerRoute',vRetailerCtrl.todaysRetailerRoute);
- vRouter.post('/retailerCallPreparation',vRetailerCtrl.retailerCallPreparation);
- vRouter.get('/brands',vTargetsActualsCtrl.brands);
- vRouter.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
-
+vRouter.post('/todaysRetailerRoute',vRetailerCtrl.todaysRetailerRoute);
+vRouter.post('/retailerCallPreparation',vRetailerCtrl.retailerCallPreparation);
+vRouter.post('/loadWallet',vRetailerCtrl.loadWallet);
+vRouter.post('/physicalInventory',vRetailerCtrl.physicalInventory);
+vRouter.post('/paymentHistory',vRetailerCtrl.paymentHistory);
+vRouter.get('/brand',vTargetsActualsCtrl.brand);
+vRouter.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
+vRouter.post('/additionalRetailerRoute',vRetailerCtrl.additionalRetailerRoute);
 vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);
 
 // For testing purpose , can be hit outside app without token
 var vTesting = vRouter;
-
 vApp.use('/service',vRouter);
 vApp.use('/testing', vTesting);
 vApp.listen(PORT);

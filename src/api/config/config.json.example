@@ -26,30 +26,5 @@
       "timeout" : 15000,
       "port" : 8080
     },
-  },
-  "production":{
-    "db" : {
-      "dialect"  : "postgres",
-      "host"     : "localhost",
-      "schema"   : "public",
-      "username" : "postgres",
-      "password" : "admin",
-      "name"     : "idsp",
-      "port"     : 5432,
-      "pool"     : {
-          "min"  : 0,
-          "max"  : 5,
-          "idle" : 10000
-      }
-    },
-    "model" : {
-        "dir" : "models",
-        "naming" : ".js"
-    },
-    "service" : {
-      "key" : "J@karta",
-      "serviceURL" : "http://127:0:0:1/service/",
-      "port" : 8080
-    },
   }
 }
