@@ -17,6 +17,7 @@ var vExpress = require('express');
 var vApp = vExpress();
 var vBodyParser = require('body-parser');
 var vCookieParser = require('cookie-parser');
+
 var vSOAP = require('soap');
 const PORT: number = process.env.PORT || vConfig.port || 8080;
 
@@ -32,7 +33,6 @@ var vOrmSvc:ORMService = new ORMService();
 vApp.use(vBodyParser.urlencoded({extended: true}));
 vApp.use(vBodyParser.json());
 vApp.use(vCookieParser());
-
 vApp.use(function(pRequest, pResponse, pNext) {
     // Allow access control origin
     let vAllow: string;
@@ -72,6 +72,15 @@ vApp.use(function(pRequest, pResponse, pNext) {
             }
         }     
     }
+    /*
+    if(pRequest.method == 'POST') {
+        let vNewParams;
+        for(let param in pRequest.body) {
+            vNewParams[param] = pRequest.sanitize(pRequest.body[param]);
+        }
+        pRequest.body = vNewParams;
+        console.log(pRequest.body);
+    }*/
     pNext();
 });
 

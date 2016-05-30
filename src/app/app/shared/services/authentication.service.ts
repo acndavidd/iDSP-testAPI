@@ -90,7 +90,7 @@ export class AuthenticationService {
             Username : 'DSP00001',
             MPIN : pMPIN
         };
-        this._http.post('/submitMPIN', JSON.stringify(vData)).subscribe(
+        this._http.post('/login/MPIN', JSON.stringify(vData)).subscribe(
             response => {
                 let vResponse = response.json();
                 if(vResponse.Status === 200) {
