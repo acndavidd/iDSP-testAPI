@@ -24,7 +24,8 @@
       "ELP" : "http://localhost:7777", 
       "key" : "J@karta",
       "serviceURL" : "http://127:0:0:1/service/"
-    }
+    },
+    "port" : 8080
   },
   "production":{
     "db" : {
@@ -48,6 +49,7 @@
     "service" : {
       "key" : "J@karta",
       "serviceURL" : "http://127:0:0:1/service/"
-    }
+    },
+    "port" : 8080
   }
 }

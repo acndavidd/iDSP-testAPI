@@ -8,8 +8,8 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {NgModel} from 'angular2/common';
 
 @Component({
-      // templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
-      templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
+       templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
+      // templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
@@ -39,65 +39,65 @@ export class CallPreparationComponent {
         private _router: Router
         ) {
 
-        // console.log(this._pageNavigationService.getCurrentParams());
-        // if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
-        //     this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
-        //     this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
-        //     this.vSelectedRetailCallId = this._pageNavigationService.getCurrentParams().call_id;
-        // } else {
-        //     console.log('Retailer ID not found');
-        // }
-        // console.log('in detail retailer for retailer id ' +  this.vSelectedRetailId);
+        console.log(this._pageNavigationService.getCurrentParams());
+        if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
+            this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
+            this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
+            this.vSelectedRetailCallId = this._pageNavigationService.getCurrentParams().call_id;
+        } else {
+            console.log('Retailer ID not found');
+        }
+        console.log('in detail retailer for retailer id ' +  this.vSelectedRetailId);
 
-        // this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
-        // response => {
-        //     if (response.json().status === 'Success') {
-        //         console.log('Query Success' + JSON.stringify(response.json().result));
-        //         this.vSelectedRetail = response.json().result;
-        //         console.log( 'result : ' + this.vSelectedRetail );
+        this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
+        response => {
+            if (response.json().status === 'Success') {
+                console.log('Query Success' + JSON.stringify(response.json().result));
+                this.vSelectedRetail = response.json().result;
+                console.log( 'result : ' + this.vSelectedRetail );
 
-        //     } else {
-        //         console.log( 'Query Failed' );
-        //         this.vSelectedRetail = null;
-        //     }
-        // },
-        // error => {
-        //     console.log(error);
-        // });
+            } else {
+                console.log( 'Query Failed' );
+                this.vSelectedRetail = null;
+            }
+        },
+        error => {
+            console.log(error);
+        });
 
-        // this._retailerService.getLoadWallet(this.vSelectedRetailId).subscribe(
-        // response => {
-        //     if (response.json().status === 'Success') {
-        //         console.log('Query Success to Load Wallet' + JSON.stringify(response.json().result));
-        //         this.vLoadWallet = response.json().result;
-        //         console.log( 'result : ' + this.vLoadWallet );
+        this._retailerService.getLoadWallet(this.vSelectedRetailId).subscribe(
+        response => {
+            if (response.json().status === 'Success') {
+                console.log('Query Success to Load Wallet' + JSON.stringify(response.json().result));
+                this.vLoadWallet = response.json().result;
+                console.log( 'result : ' + this.vLoadWallet );
 
-        //     } else {
-        //         console.log( 'Query Failed' );
-        //         this.vLoadWallet = null;
-        //     }
-        // },
-        // error => {
-        //     console.log(error);
-        // });
+            } else {
+                console.log( 'Query Failed' );
+                this.vLoadWallet = null;
+            }
+        },
+        error => {
+            console.log(error);
+        });
 
-        // this._retailerService.getPhysicalInventory(this.vSelectedRetailId).subscribe(
-        // response => {
-        //     if (response.json().status === 'Success') {
-        //         console.log('Query Success to Get Physical Inventory' + JSON.stringify(response.json().result));
-        //         this.vPhysicalInventory = response.json().result;
-        //         console.log( 'result : ' + this.vPhysicalInventory );
+        this._retailerService.getPhysicalInventory(this.vSelectedRetailId).subscribe(
+        response => {
+            if (response.json().status === 'Success') {
+                console.log('Query Success to Get Physical Inventory' + JSON.stringify(response.json().result));
+                this.vPhysicalInventory = response.json().result;
+                console.log( 'result : ' + this.vPhysicalInventory );
 
-        //     } else {
-        //         console.log( 'Query Failed to Get Physical Inventory' );
-        //         this.vPhysicalInventory = null;
-        //     }
-        // },
-        // error => {
-        //     console.log(error);
-        // });
+            } else {
+                console.log( 'Query Failed to Get Physical Inventory' );
+                this.vPhysicalInventory = null;
+            }
+        },
+        error => {
+            console.log(error);
+        });
 
-        // console.log('update start date where call_id' + this.vSelectedRetailCallId);
+        console.log('update start date where call_id' + this.vSelectedRetailCallId);
 
 
         this._layoutService.setCurrentPage('CallPreparation');
@@ -112,32 +112,27 @@ export class CallPreparationComponent {
         this._pageNavigationService.navigate('BCPCollection', null, null);
     }
 
-    // HCgotoBCPActivityStep() {
+    gotoBCPActivityStep(pSelectedRetailer) {
+        console.log('all parameters' + pSelectedRetailer);
+
+        let vParamsOld = {
+             retailer_id: this.vSelectedRetailId,
+             route_sequence: this.vSelectedRetailSeq,
+             call_id: this.vSelectedRetailCallId
+        };
+        let vParams = {
+            retailer_id: pSelectedRetailer.retailer_id,
+            route_sequence: pSelectedRetailer.seq,
+            call_id : pSelectedRetailer.call_id
+        };
+
+        this._pageNavigationService.navigate('BCPActivityStep', vParams, vParamsOld);
+
+     }
+     
+    // gotoBCPActivityStep() {
     //     this._pageNavigationService.navigate('BCPActivityStep', null, null);
     // }
-
-    // gotoBCPActivityStep(pSelectedRetailer) {
-    //     console.log('all parameters' + pSelectedRetailer);
-
-    //     let vParamsOld = {
-    //          retailer_id: this.vSelectedRetailId,
-    //          route_sequence: this.vSelectedRetailSeq,
-    //          call_id: this.vSelectedRetailCallId
-    //     };
-    //     let vParams = {
-    //         retailer_id: pSelectedRetailer.retailer_id,
-    //         route_sequence: pSelectedRetailer.seq,
-    //         call_id : pSelectedRetailer.call_id
-    //     };
-
-    //     this._pageNavigationService.navigate('BCPActivityStep', vParams, vParamsOld);
-
-    //  }
-    gotoBCPActivityStep() {
-        this._pageNavigationService.navigate('BCPActivityStep', null, null);
-    }
-
-
 
     getRetailerDetails() {
         return this.vSelectedRetail;
