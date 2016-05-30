@@ -70,21 +70,21 @@
 	        		</div>
 	        		<div class='container'>
 	            		<div class='cell'>
-	               			 <div class='container'><div class='cell width-100 padding-left-5'>Acknowledgment</div><div>
+	               			 <div class='container'><div class='cell width-100 padding-left-5'>Acknowledgement</div></div>
 	            		</div>
 	            		<div class='cell'>
 	                		<div class='container'><div class='cell width-02 vivid-pink bold'>*</div></div>
 	            		</div>
 	        		</div>
 	        		<div class='container'>
-	        			<div class='cell width-100 padding-left-5 padding-right-5'>
-	        				<textarea name="textarea" placeholder="Distributor Name"></textarea>
+	        			<div class='cell width-100 padding-left-5 padding-right-5 padding-top-2 padding-bottom-2'>
+	        				<input class="width-100" type ="text" id ="distributor-name" placeholder="Distributor Name"/>
 	        			</div>
 	        		</div>
                 	<div class='container'>
-                		<div class='cell width-100 padding-left-5 padding-right-5'>
-                			<textarea name="textarea" placeholder="Distributor Password" type="password"></textarea>
-                		</div>
+                		<div class='cell width-100 padding-left-5 padding-right-5 padding-top-2 padding-bottom-2'>
+	        				<input class="width-100" type ="text" id ="distributor-name" placeholder="Distributor Password" type="password"/>
+	        			</div>
                 	</div>
 
             </div>
@@ -93,7 +93,8 @@
 
 	<div class="no-divider">
 		<div class="button">
-			<a (click)="confirm($event)" id="confirm-link"><div class="button-identifier">CONFIRM</div></a>
+			<!-- <a (click)="confirm($event)" id="confirm-link"><div class="button-identifier">CONFIRM</div></a> -->
+			<div class="button-identifier" (click)="goToStockReturn()">CONFIRM</div>
 		</div>
 	</div>
 

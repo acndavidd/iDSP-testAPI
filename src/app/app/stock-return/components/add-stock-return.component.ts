@@ -21,7 +21,7 @@ export class AddStockReturnComponent {
         private _matchMediaService: MatchMediaService,
         private _headerService: HeaderService,
         private _router: Router,
-         private _pageNavigationService: PageNavigationService
+        private _pageNavigationService: PageNavigationService
     ) {
         this._layoutService.setCurrentPage('AddStockReturn');
         this._headerService.setTitle('Add Stock Return');
