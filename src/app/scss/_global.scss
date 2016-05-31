@@ -597,6 +597,7 @@ LIST VIEW - TEXT
                 &.input-peso {
                     text-align: right;
                     font-size: $content-normal;
+                    //font-size: 4vw;
                     padding: 0% 11% 0% 0%;
                     @media screen and (-webkit-min-device-pixel-ratio: 0) {
                         background-image: url(#{$icon-peso});

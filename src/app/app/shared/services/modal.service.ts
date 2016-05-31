@@ -90,7 +90,7 @@ export module Modal {
             }else if(pModalType === Modal.ModalType.CONFIRMATION) {
                 if(pArgs.ModalButton === Modal.ModalButton.OK_CANCEL) {
                     this.vButtons.push({ id : 'ok-button', display: 'OK' , color_style : 'green' , callback : pArgs.callback, param : pArgs.param });
-                    this.vButtons.push({ id : 'cancel-button', display: 'CANCEL' , color_style : 'red' , callback : this.closeModal });
+                    this.vButtons.push({ id : 'cancel-button', display: 'CANCEL' , color_style : 'red' , callback : this.closeModal, param : this });
                 }else if(pArgs.ModalButton === Modal.ModalButton.YES_NO) {
                     this.vButtons.push({ id : 'ok-button', display: 'YES' , color_style : 'green' , callback : pArgs.callback, param : pArgs.param });
                     this.vButtons.push({ id : 'cancel-button', display: 'NO' , color_style : 'red' , callback : this.closeModal, param : this });

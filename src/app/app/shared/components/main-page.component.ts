@@ -214,7 +214,7 @@ import {DetailRemittanceComponent} from '../../close-day/components/detail-remit
         path: '/detailRemittance',
         name: 'DetailRemittance',
         component: DetailRemittanceComponent
-    }
+    },
 
     // UNDER CLOSE OF THE DAY TAB - END
 
