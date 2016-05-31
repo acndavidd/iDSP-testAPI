@@ -37,11 +37,14 @@ import {BCPAddRetailerRouteComponent} from '../../basic-call-procedure/component
 import {CDUnservedOrderComponent} from '../../close-day/components/cd-unserved-order.component';
 import {ConfirmCollectionComponent} from '../../basic-call-procedure/components/confirm-collection.component';
 import {AddUnservedOrderComponent} from '../../basic-call-procedure/components/add-unserved-order.component';
+import {SkipSalesOrderComponent} from '../../basic-call-procedure/components/skip-sales-order.component';
 import {HomeComponent} from '../../shared/components/home.component';
 import {AddStockReturnComponent} from '../../stock-return/components/add-stock-return.component';
 import {ConfirmStockReturnComponent} from '../../stock-return/components/confirm-stock-return.component';
 import {DetailCollectionComponent} from '../../close-day/components/detail-collection.component';
 import {DetailRemittanceComponent} from '../../close-day/components/detail-remittance.component';
+
+
 
 @Component({
     selector : 'main-page',
@@ -184,6 +187,11 @@ import {DetailRemittanceComponent} from '../../close-day/components/detail-remit
         path: '/addUnservedOrder',
         name: 'AddUnservedOrder',
         component: AddUnservedOrderComponent
+    },
+    {
+        path: '/skipSalesOrder',
+        name: 'SkipSalesOrder',
+        component: SkipSalesOrderComponent
     },
     // UNDER BCP TAB - END
 
