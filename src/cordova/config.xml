@@ -16,7 +16,7 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="Orientation" value="portrait" />
 
-    <preference name="android-windowSoftInputMode" value="stateVisible|adjustResize">
+    <preference name="android-windowSoftInputMode" value="stateVisible|adjustResize" />
 
     <feature name="SplashScreen">
         <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
