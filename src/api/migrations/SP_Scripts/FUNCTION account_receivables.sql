@@ -1,7 +1,3 @@
--- Function: public.get_account_receivables(character varying, numeric)
-
--- DROP FUNCTION public.get_account_receivables(character varying, numeric);
-
 CREATE OR REPLACE FUNCTION account_receivables(
     v_dsp_id character varying,
     v_date numeric)

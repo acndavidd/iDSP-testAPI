@@ -1,7 +1,3 @@
--- Function: public.get_target_actuals(character varying, character varying, character varying)
-
--- DROP FUNCTION public.get_target_actuals(character varying, character varying, character varying);
-
 CREATE OR REPLACE FUNCTION public.get_target_actuals(
     psalesperson character varying,
     ptargettype character varying,
@@ -18,7 +14,8 @@ DECLARE
 	vLastDateinWeek date;
 	vDaysinMonth integer;
 	vCurrentDate date;
-	_result VARCHAR(100000);	
+	result VARCHAR(100000);	
+	status INT; 
 BEGIN
 
 	select (date_trunc('MONTH', now()) + INTERVAL '1 MONTH - 1 day')::date into vLastDateinMonth ;
@@ -41,8 +38,29 @@ BEGIN
 		vEndDate = vLastDateinMonth;
 		vDivider = 1;
 	end if;
+
+	if(psalesperson is null or psalesperson = '')
+	then
+		SELECT json_build_object('status',status,'error_code',400) INTO result;
+		RETURN result; 
+	end if;
+
+	if(ptargettype is null or ptargettype = '')
+	then
+		SELECT json_build_object('status',status,'error_code',400) INTO result;
+		RETURN result; 
+	end if;
+
+	if(pbrand is null or pbrand = '')
+	then
+		SELECT json_build_object('status',status,'error_code',400) INTO result;
+		RETURN result; 
+	end if;
 	
-	select array_to_json(array_agg(row_to_json(temp))) INTO _result
+	
+	status = 0; 
+	
+	select json_build_object('status',status,'result',array_agg(row_to_json(temp))) INTO result
 	from (
 		select category_id, category_name,
 		(
@@ -51,16 +69,17 @@ BEGIN
 				select 	p.sub_category_id, 
 					p.sub_category_name,
 					p.ttarget,
-					--(p.tLoad + p.tPrd) tactual,
-					p.tPrd tactual,
+					(p.tLoad + p.tPrd) tactual,
+					(p.ttarget - (p.tLoad + p.tPrd)) balance,
+					--p.tPrd tactual,
 				CASE 
 					WHEN ttarget = 0 THEN 100
 					ELSE 
 						round(
 							cast(
 								(
-									--p.tLoad + p.tPrd
-									p.tPrd
+									p.tLoad + p.tPrd
+									--p.tPrd
 								)/ttarget*100 as numeric):: numeric, 2) 
 				END prc_actual,
 				CASE 
@@ -68,23 +87,23 @@ BEGIN
 					ELSE 
 						ceil(
 							(
-								--p.tLoad + p.tPrd
-								p.tPrd
+								p.tLoad + p.tPrd
+								--p.tPrd
 							)/ttarget*100) 
 				END prc_round				  
 				from (
 					select a.*,
-					--(
-					--	SELECT coalesce(SUM(x.amount),0) ttl_load 
-					--	FROM trx_saleord_load_det x, trx_sales_order y
-					--	WHERE x.order_id = y.order_id 
-					--	and y.DSP_ID = pSalesPerson
-					--	and y.order_date between vStartDate and	vEndDate
-					--	and x.product_id in (
-					--		select prd1.product_id from mst_product prd1
-					--		where prd1.sub_category_id = a.sub_category_id
-					--	) 
-					--)tLoad,
+					(
+						SELECT coalesce(SUM(x.amount),0) ttl_load 
+						FROM trx_saleord_load_det x, trx_sales_order y
+						WHERE x.order_id = y.order_id 
+						and y.DSP_ID = pSalesPerson
+						and y.order_date between vStartDate and	vEndDate
+						and x.product_id in (
+							select prd1.product_id from mst_product prd1
+							where prd1.sub_category_id = a.sub_category_id
+						) 
+					)tLoad,
 					(
 						SELECT coalesce(SUM(h.quantity),0) ttl_prd 
 						FROM trx_saleord_prd_det h, trx_sales_order i
@@ -113,7 +132,7 @@ BEGIN
 		from mst_prod_cat
 		where brand = pBrand
 	)temp;
-	RETURN _result;
+	RETURN result;
 END
 $BODY$
   LANGUAGE plpgsql VOLATILE

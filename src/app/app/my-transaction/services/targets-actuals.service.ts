@@ -9,9 +9,8 @@ export class TargetsActualsService {
       private vErrorMsg: string;
       private vIsLoading: boolean;
       private vSelectedTab;
-      public vBrand;
-      public vProdCat;
       public vProdCatBrand;
+      private vListBrands;
 
       constructor(
             private _http: Http,
@@ -19,62 +18,36 @@ export class TargetsActualsService {
 
             this.vIsLoading = false;
             this.queryBrand();
-            // this.queryProdCat();
-            // this.queryProdSubCat();
       }
 
 
       queryBrand() {
-            console.log('Start get brands');
-            return this._http.get('/brand');
+
+          this._http.get('/brand').subscribe(
+             response => {
+                this.vListBrands = response.json();
+                console.log(JSON.stringify(this.vListBrands));
+            },
+            error => {}
+        );
       }
 
-      // queryProdCat() {
+      getBrand() {
+            return this.vListBrands;
+      }
 
-      //       return this._http.get('/productCategories');
-      // }
-
-      // queryProdSubCat() {
-      //       return this._http.get('/productSubCategories');
-      // }
-
-      queryProduct(pSelectedTab, pSelectedBrand) {
-            console.log('Start hit login service to Query Product');
+      queryPerformance(pSelectedTab, pSelectedBrand) {
+            console.log('Start hit login service to Query Performance');
             console.log('Selected tab: ' + pSelectedTab);
-            // Get Current Login User
+            
             let vData = {
                   salesPerson : 'DSP00001',
                   actualType : pSelectedTab,
                   brand : pSelectedBrand
             };
-            return this._http.post('/targetsActuals', JSON.stringify(vData));
-      }
-
-      // queryCategory() {
-      //       return this._http.get('/getCategory');
-      // }
-
-      queryTargets(pSubCategoryID) {
-            // To-Do : Query User ID or Username
-            let vSubCategoryID: string = pSubCategoryID;
-
-            // Hit API with parameter user_id and current date
-            let data: string = 'sub_category_id=' + vSubCategoryID;
-            return this._http.post('/getTargets', data,
-                  <RequestOptionsArgs> {headers: new Headers(
-                {'Content-Type': 'application/x-www-form-urlencoded'})
-            });
-
+            return this._http.post('/performance', JSON.stringify(vData));
       }
       
-      getBrand() {
-            return this.vBrand;
-      }
-
-      getProdCat() {
-            return this.vProdCat;
-      }
-
       getError(): string {
             return this.vErrorMsg;
       }

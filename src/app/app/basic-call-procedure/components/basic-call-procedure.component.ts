@@ -78,27 +78,24 @@ export class BasicCallProcedureComponent {
         return this._layoutService.getFilter();
     }
 
+    getFilteredDate() {
+        return this.vFilteredListRoute;
+    }
+
     onKey(pInputText: any) {
         console.log(pInputText);
         this.vFilteredListRoute = this.vListRoute.filter(retailer => {
-             return retailer.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
-             retailer.retailer_min.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1;
+             return retailer.storeName.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
+             retailer.retailerMinDetails.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1;
         });
     }
 
     refreshRetailerRouteBCP() {
         console.log('Get  retailer route for Day');
-        this._retailerService.queryTodaysRetailerRoute().subscribe(
+        this._retailerService.queryTask().subscribe(
                 response => {
-                    console.log('Hasil response ' + response.json());
-                    if (response.json().status === 'Success') {
-                        console.log('Query Success');
-                        this.vListRoute = response.json().result;
+                        this.vListRoute = response.json().RetailerList;
                         this.vFilteredListRoute = this.vListRoute;
-                    } else {
-                        this.vListRoute = null;
-                        console.log('Query Failed');
-                    }
                 },
                 error => {
                     console.log(error);

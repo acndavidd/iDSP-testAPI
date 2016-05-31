@@ -94,13 +94,13 @@ vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
 vRouter.get('/testSync',vSchedCtrl.syncTableMaster);
 
 //API BASED ON GUIDELINES
-vRouter.post('/todaysRetailerRoute',vRetailerCtrl.todaysRetailerRoute);
+vRouter.get('/task',vRetailerCtrl.task);
 vRouter.post('/retailerCallPreparation',vRetailerCtrl.retailerCallPreparation);
 vRouter.post('/loadWallet',vRetailerCtrl.loadWallet);
 vRouter.post('/physicalInventory',vRetailerCtrl.physicalInventory);
 vRouter.post('/paymentHistory',vRetailerCtrl.paymentHistory);
 vRouter.get('/brand',vTargetsActualsCtrl.brand);
-vRouter.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
+vRouter.post('/performance',vTargetsActualsCtrl.performance);
 vRouter.post('/additionalRetailerRoute',vRetailerCtrl.additionalRetailerRoute);
 vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);
@@ -110,7 +110,7 @@ vTesting.post('/login',vLoginCtrl.login);
 vTesting.post('/login/MPIN', vLoginCtrl.submitMPIN);
 vTesting.get('/logout', vLoginCtrl.logout);
 vTesting.get('/brand',vTargetsActualsCtrl.brand);
-vTesting.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
+vTesting.post('/performance',vTargetsActualsCtrl.performance);
 vTesting.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
 vTesting.get('/retailer/alert',vRetailerCtrl.getAllRetailerAlert);
 vTesting.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);

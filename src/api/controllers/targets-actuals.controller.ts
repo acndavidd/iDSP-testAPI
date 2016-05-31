@@ -2,82 +2,75 @@
 
 import {TokenService} from '../services/token.service';
 import {ORMService} from '../services/orm.service';
+import {ErrorHandling} from '../services/error-handling.service';
+import {APIService} from '../services/api.service';
+import {PerformanceModel} from '../models/input/performance.model';
 
 export interface TargetsActualsInterface{
 	brand(pRequest,pResponse):void;
-	targetsActuals(pRequest,pResponse):void;
+	performance(pRequest,pResponse):void;
 }
 
 
 export class TargetsActualsController implements TargetsActualsInterface{
 
-    constructor(){}
+    constructor() {}
    
-    async brand(pRequest,pResponse){
-	    try {	  
-		    var message = 'Get brands start';
-
-		    console.log("Start getting brands");
-			var vOrmSvc = new ORMService();
-			
-			var vResult = await vOrmSvc.sp('get_brands', null);
-			console.log("Query Brands with result : "+ JSON.stringify(vResponse));
-			var vResponse = {
-						"status" : "Success",
-						"errorMessage" : "",
-						"brandList" : vResult
-					};
-			
-			pResponse.json(vResponse);
-		}
-		catch(pErr) {
-			console.log("Failed to Query Payment History" + pErr);
-
-			var vError = {
-						"status" : "Error",
-						"errorMessage" : pErr,
-						"result" : null
-					};
-			pResponse.json(vError);
+    async brand(pRequest,pResponse) {
+	console.log('Start getting Brands')
+	let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
+	try{
+		let vOrmService:ORMService = new ORMService();
+		try{
+			let vResult:ErrorHandling.Result = await vOrmService.sp('get_brands', null);
+			pResponse.status(vResult.status).json(vResult.payload);
+		}catch(pErr) {
+			console.log(pErr);
+			if(pErr.errorCode == ErrorHandling.ERROR_TYPE.ERROR_SEQUELIZE){
+				vErrHandling.throwError(pResponse, 400, pErr.errorCode, "Error happened on sequelize");
+			}else{
+				//handle other error code
+				switch (pErr.errorCode) {
+					case 101 :
+						vErrHandling.throwError(pResponse, 400, 101, "Error b");
+						break;
+					}
+				}
+			}
+		}catch(pErr) {
+			vErrHandling.throwError(pResponse, 400, 101, "test message");
 		}
 	}
 
-	async targetsActuals(pRequest,pResponse){
-	   try{	  
-		    var message = 'Insert start.';
 
-		    console.log("Start targets actuals");
-			var vSalesPerson = pRequest.body.salesPerson;
-			var vSelectedType = pRequest.body.actualType;
-			var vSelectedBrand = pRequest.body.brand;
-			var vOrmSvc = new ORMService();
-
-			let vParams = {
-				sales_person : vSalesPerson,
-				type : vSelectedType,
-				brand : vSelectedBrand
-			};
-
-			var vResult = await vOrmSvc.sp('get_target_actuals', vParams );
-			console.log("Query Done with result : "+ JSON.stringify(vResponse));
-			var vResponse = {
-						"status" : "Success",
-						"errorMessage" : "",
-						"result" : vResult
-					};
-			
-			pResponse.json(vResponse);
+	async performance(pRequest,pResponse) {
+	console.log("Start targets actuals");
+	let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
+	try{
+		let vOrmService:ORMService = new ORMService();
+		try{
+			let vPerformanceData = new PerformanceModel(pRequest.body.salesPerson, pRequest.body.actualType, pRequest.body.brand);
+				if(vPerformanceData.validate()) {
+					let vResult = await vOrmService.sp('get_target_actuals', vPerformanceData);
+					pResponse.status(vResult.status).json(vResult.payload);
+				}else {
+					vErrHandling.throwError(pResponse, 400, 101, "INPUT_ERROR", vPerformanceData.Errors);
+				}
+			}catch(pErr) {
+			console.log(pErr);
+			if(pErr.errorCode == ErrorHandling.ERROR_TYPE.ERROR_SEQUELIZE){
+				vErrHandling.throwError(pResponse, 400, pErr.errorCode, "Error happened on sequelize");
+			}else{
+				//handle other error code
+				switch (pErr.errorCode) {
+					case 101 :
+						vErrHandling.throwError(pResponse, 400, 101, "Error b");
+						break;
+					}
+				}
+			}
+		}catch(pErr) {
+			vErrHandling.throwError(pResponse, 400, 101, "test message");
 		}
-		catch(pErr)
-		{
-			console.log("Failed to Query Payment History" + pErr);
-
-			var vError = {
-						"status" : "Error",
-						"errorMessage" : pErr,
-						"result" : null
-					};
-			pResponse.json(vError);
-		}
-	}
+	}	
 }

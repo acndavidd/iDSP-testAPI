@@ -122,7 +122,7 @@ export class MyHttp {
                             pObserver.error(err);
                             break;
                         case 400:
-                            if(err.errorCode === 101) { //input error
+                            if(err.errorCode === 101) { // input error
                                 pObserver.error(err.inputError);
                             }else {
                                 pObserver.error(err.body);
