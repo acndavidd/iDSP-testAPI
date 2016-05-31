@@ -3,6 +3,8 @@ import {TokenService} from '../services/token.service';
 import {ORMService} from '../services/orm.service';
 import {APIService} from '../services/api.service';
 import {ErrorHandling} from '../services/error-handling.service';
+import {LoginModel} from '../models/input/login.model';
+import {MPINModel} from '../models/input/mpin.model';
 
 export interface LoginInterface {
 	login(pRequest, pResponse): Promise<void>;
@@ -51,46 +53,51 @@ export class LoginController implements LoginInterface{
 	}
 
 	async login(pRequest,pResponse) {
-		let vHttpSvc = new APIService.HTTPService();
-		let vPath:string = '/OPISNET/services/idsp/userValidation';
-		let vData = {
-			Username : pRequest.body.Username,
-			Password : pRequest.body.Password
-		};
-		let vResult = JSON.parse(await vHttpSvc.post(APIService.APIType.OPISNET, vPath, null, vData));
-		pResponse.json(vResult);
+		let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
+		try{
+			let vHttpSvc = new APIService.HTTPService();
+			let vPath:string = '/OPISNET/services/idsp/userValidation';
+			let vLoginData = new LoginModel(pRequest.body.Username, pRequest.body.Password);
+			if(vLoginData.validate()) {
+				let vResult = await vHttpSvc.post(APIService.APIType.OPISNET, vPath, null, vLoginData);
+				pResponse.status(vResult.status).json(vResult.payload);
+			}else {
+				vErrHandling.throwError(pResponse, 400, 101, "INPUT_ERROR", vLoginData.Errors);
+			}
+		}catch(pErr){
+			if(pErr.errorCode == 101) {
+				vErrHandling.throwError(pResponse, 400, 101, "ERR_INVALID_CREDENTIAL");
+			}
+		}
+		// pResponse.json(vResult);
 	}
 
 	async submitMPIN(pRequest, pResponse) {
-		let vResult;
+		let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
 		try{
 			let vHttpSvc = new APIService.HTTPService();
 			let vTokenSvc = new TokenService();
 			let vPath:string = '/OPISNET/services/idsp/userAuthorization';
-			let vData = {
-				Username : pRequest.body.Username,
-				MPIN : pRequest.body.MPIN
-			};
-			vResult = JSON.parse(await vHttpSvc.post(APIService.APIType.OPISNET, vPath, null, vData));
-			// If success login , generate token for services
-			if(vResult.Status === 200) {
+			let vMPINData = new MPINModel(pRequest.body.Username, pRequest.body.MPIN);
+			if(vMPINData.validate()) {
+				let vResult = await vHttpSvc.post(APIService.APIType.OPISNET, vPath, null, vMPINData);
+				// If success login , generate token for services
 				let vTokenObj = {
 					DSP_ID : pRequest.body.Username,
-					AccessToken : vResult.AccessToken
+					AccessToken : vResult.payload.AccessToken
 				};
-				vResult.accessToken = vTokenSvc.generateToken(vTokenObj);
+				vResult.payload.accessToken = vTokenSvc.generateToken(vTokenObj);
 				// Set Cookie session for web access
-				pResponse.cookie('accessToken', vResult.accessToken,{httpOnly:true});
+				pResponse.cookie('accessToken', vResult.payload.accessToken,{httpOnly:true});
+				pResponse.status(vResult.status).json(vResult.payload);
+			}else {
+				vErrHandling.throwError(pResponse, 400, 101, "INPUT_ERROR", vMPINData.Errors);
 			}
-			// Set Cookie session for web access
-			pResponse.cookie('accessToken', vResult.accessToken,{httpOnly:true});
 		}catch(pErr) {
-			vResult = {
-				ErrorCode : 400,
-				ErrorStatus : pErr + ""
-			};
+			if(pErr.errCode == 101) {
+				vErrHandling.throwError(pResponse, 400, 101, "ERR_INVALID_MPIN");
+			}
 		}
-		pResponse.json(vResult);
 	}
 
 	verifyToken(pRequest, pResponse) {
@@ -104,12 +111,14 @@ export class LoginController implements LoginInterface{
 	}
 
 	async logout(pRequest, pResponse) {
-		let vResult = {
-			Status : 200,
-			StatusMessage : "Success Bro"
-		};
-		pResponse.clearCookie('accessToken');
-		pResponse.json(vResult);
+		let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
+		try {
+			pResponse.clearCookie('accessToken');
+			pResponse.status(200).json();
+		}catch(pErr) {
+			vErrHandling.throwError(pResponse, 400, 101, pErr);
+		}
+		
 	}
 
 	test(pRequest,pResponse){

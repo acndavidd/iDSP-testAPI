@@ -34,18 +34,17 @@ export class CollectionComponent {
         return this._matchMediaService.getMm();
     }
 
-    gotoSalesOrderDetail() {
-        this._pageNavigationService.navigate('SalesOrderDetail', null, null);
+    gotoDetailSalesOrder() {
+        this._pageNavigationService.navigate('DetailSalesOrder', null, null);
     }
     subCollectionShow() {
         this.vCollectionShow = !this.vCollectionShow;
     }
-    gotoTotalCollectionShow() {
-        this._pageNavigationService.navigate('TotalCollectionDetail', null, null);
-    }
-    gotoTotalRemittanceShow() {
-        console.log('test to remittance oiii');
-        this._pageNavigationService.navigate('TotalRemittanceDetail', null, null);
+    gotoDetailCollection() {
+        this._pageNavigationService.navigate('DetailCollection', null, null);
     }
 
+    gotoDetailRemittance() {
+        this._pageNavigationService.navigate('DetailRemittance', null, null);
+    }
 }

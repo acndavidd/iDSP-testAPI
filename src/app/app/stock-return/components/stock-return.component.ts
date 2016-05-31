@@ -4,6 +4,7 @@ import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {NgFor, NgModel} from 'angular2/common';
+import {PageNavigationService} from '../../shared/services/page-navigation.service';
 
 @Component({
     selector: 'stock-return',
@@ -19,16 +20,14 @@ export class StockReturnComponent {
         private _layoutService: LayoutService,
         private _matchMediaService: MatchMediaService,
         private _headerService: HeaderService,
-        private _router: Router
+        private _router: Router,
+        private _pageNavigationService: PageNavigationService
     ) {
         this._layoutService.setCurrentPage('StockReturn');
         this._headerService.setTitle('Stock Return');
     }
 
-    save(pEvent) {
-        pEvent.preventDefault();
-
-        // For By Pass Directly without API
-        console.log('udah ke save');
+    goToAddStockReturn() {
+        this._pageNavigationService.navigate('AddStockReturn', null, null);
     }
 }

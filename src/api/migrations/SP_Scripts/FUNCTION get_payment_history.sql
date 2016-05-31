@@ -1,7 +1,3 @@
--- Function: public.get_payment_history(character varying, integer)
-
--- DROP FUNCTION public.get_payment_history(character varying, integer);
-
 CREATE OR REPLACE FUNCTION public.get_payment_history(
     pretailerid character varying,
     pintervalday integer)

@@ -35,8 +35,7 @@ declare var configChannel: any;
     selector: 'idsp-app',
     template: `
         <div id="content"
-            (window:resize)="OnResize()"
-            onhashchange="OnHashChange()">
+            (window:resize)="OnResize()">
             <idsp-header></idsp-header>
             <my-modal></my-modal>
             <left-menu></left-menu>

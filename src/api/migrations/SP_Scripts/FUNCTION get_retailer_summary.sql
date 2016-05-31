@@ -1,4 +1,4 @@
- 	CREATE OR REPLACE FUNCTION public.get_retailer_summary(pRetailerId varchar)
+CREATE OR REPLACE FUNCTION public.get_retailer_summary(pRetailerId varchar)
   RETURNS json AS
 $BODY$
 DECLARE

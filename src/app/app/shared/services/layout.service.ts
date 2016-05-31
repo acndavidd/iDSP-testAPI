@@ -404,10 +404,11 @@ export class LayoutService {
             };
         }
 
-
         else if (
-            pCurrent === 'SalesOrderDetail' ||
-            pCurrent === 'TotalCollectionDetail') {
+            pCurrent === 'DetailSalesOrder' ||
+            pCurrent === 'DetailCollection' ||
+            pCurrent === 'DetailRemittance') {
+
             // this._pageNavigationService.setPreviousPage('CloseDay');
             this._pageNavigationService.resetListPreviousData();
             this.vOldCurrentPage = 'Collection';
@@ -433,9 +434,53 @@ export class LayoutService {
 
 
         // UNDER REMITTANCE - START
+        else if (
+            pCurrent === 'AddRemittance' ||
+            pCurrent === 'ConfirmRemittance') {
+
+            this.vOldCurrentPage = 'Remittance';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+
+            this.vHeaderItem = {
+                hamburger: false,
+                back: true,
+                filter: false,
+                edit: false,
+                search: false,
+                add: false
+            };
+        }
         // UNDER REMITTANCE - END
 
         // UNDER STOCK RETURN - START
+        else if (
+            pCurrent === 'AddStockReturn' ||
+            pCurrent === 'ConfirmStockReturn') {
+            this.vOldCurrentPage = null;
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+            this.vHeaderItem = {
+                hamburger: false,
+                back: true,
+                filter: false,
+                edit: false,
+                search: false,
+                add: false
+            };
+        }
         // UNDER STOCK RETURN - END
 
 
@@ -524,6 +569,10 @@ export class LayoutService {
 
     toggleLeftMenu() {
         this.vLayoutState.leftMenu = !this.vLayoutState.leftMenu;
+    }
+
+    hideLeftMenu() {
+        this.vLayoutState.leftMenu = false;
     }
 
     toggleHeader() {

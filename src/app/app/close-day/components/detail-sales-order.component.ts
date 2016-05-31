@@ -6,14 +6,14 @@ import {Modal} from '../../shared/services/modal.service';
 import {HeaderService} from '../../shared/services/header.service';
 
 @Component({
-    selector: 'total-collection-detail',
-    templateUrl: './app/close-day/components/total-collection-detail.component.html',
+    selector: 'detail-sales-order',
+    templateUrl: './app/close-day/components/detail-sales-order.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
 })
 
-export class TotalCollectionDetailComponent {
+export class DetailSalesOrderComponent {
 
     constructor (
     private _router: Router,
@@ -22,14 +22,13 @@ export class TotalCollectionDetailComponent {
     private _modalService: Modal.ModalService,
     private _headerService: HeaderService
     ) {
-        this._layoutService.setCurrentPage('TotalCollectionDetail');
-        this._headerService.setTitle('Total Collection Detail');
+
+        this._layoutService.setCurrentPage('DetailSalesOrder');
+        this._headerService.setTitle('Detail Sales Order');
     }
 
     getResize() {
         return this._matchMediaService.getMm();
     }
 
-    
 }
-

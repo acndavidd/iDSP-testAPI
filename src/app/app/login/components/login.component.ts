@@ -32,8 +32,6 @@ export class LoginComponent {
     }
 
     login(pEvent) {
-        pEvent.preventDefault();
-
         // For Hit API
         // this._authenticationService.login(this.vUsername,this.vPassword);
 

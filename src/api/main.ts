@@ -17,6 +17,7 @@ var vExpress = require('express');
 var vApp = vExpress();
 var vBodyParser = require('body-parser');
 var vCookieParser = require('cookie-parser');
+var vValidator = require('validator');
 var vSOAP = require('soap');
 const PORT: number = process.env.PORT || vConfig.port || 8080;
 
@@ -32,7 +33,6 @@ var vOrmSvc:ORMService = new ORMService();
 vApp.use(vBodyParser.urlencoded({extended: true}));
 vApp.use(vBodyParser.json());
 vApp.use(vCookieParser());
-
 vApp.use(function(pRequest, pResponse, pNext) {
     // Allow access control origin
     let vAllow: string;
@@ -47,14 +47,16 @@ vApp.use(function(pRequest, pResponse, pNext) {
     pResponse.header('Access-Control-Allow-Headers', 
         'Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept,Authorization,Proxy-Authorization,X-session');
     pResponse.header('Access-Control-Allow-Methods','GET,PUT,DELETE,POST');
+    if(pRequest.path.indexOf('/testing') === -1) {
+        
+    }
     if(
         pRequest.path !== '/service/login' && 
-        pRequest.path !== '/service/submitMPIN' &&
+        pRequest.path !== '/service/login/MPIN' &&
         pRequest.path !== '/service/generateCallPlan' &&
-        pRequest.path.indexOf('/testing') !== -1 //bypass token for testing purpose
-
+        pRequest.path.indexOf('/testing') === -1
     ){
-        if( pRequest.method !== 'OPTIONS') {
+        if(pRequest.method !== 'OPTIONS') {
             // all request to service will validate token except login & logout
             var vToken = '';
             try{
@@ -64,13 +66,20 @@ vApp.use(function(pRequest, pResponse, pNext) {
                     vToken = pRequest.get('Authorization');
                     vToken = vToken.replace('Bearer ','');
                 }
+                console.log(vToken);
                 var jwt = vTokenSvc.verifyToken(vToken);
                 pResponse.locals.jwt = jwt;
-            }catch(err){
-                console.log('error : ' + err);
+            }catch(pErr){
+                console.log('Error while parsing token : ' + pErr);
                 pResponse.sendStatus(403);
             }
         }     
+    }
+    // Sanitize all the parameter send with POST request
+    if(pRequest.method === 'POST') {
+        for(let param in pRequest.body) {
+            pRequest.body[param] = vValidator.escape(pRequest.body[param]);
+        }
     }
     pNext();
 });
@@ -98,15 +107,8 @@ vRouter.post('/additionalRetailerRoute',vRetailerCtrl.additionalRetailerRoute);
 vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);
 
-var vTesting = vExpress.Router();
-vTesting.post('/login',vLoginCtrl.login);
-vTesting.post('/login/MPIN', vLoginCtrl.submitMPIN);
-vTesting.get('/logout', vLoginCtrl.logout);
-vTesting.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
-vTesting.get('/retailer/alert',vRetailerCtrl.getAllRetailerAlert);
-vTesting.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
-vTesting.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
-vTesting.get('/testSync',vSchedCtrl.syncTableMaster);
+// For testing purpose , can be hit outside app without token
+var vTesting = vRouter;
 vApp.use('/service',vRouter);
 vApp.use('/testing', vTesting);
 vApp.listen(PORT);

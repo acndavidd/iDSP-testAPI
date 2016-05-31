@@ -22,6 +22,8 @@ import {SalesOrderPaymentComponent} from '../../basic-call-procedure/components/
 import {VisitedRetailComponent} from '../../close-day/components/visited-retail.component';
 import {BCPActivityStepComponent} from '../../basic-call-procedure/components/bcp-activity-step.component';
 import {RemittanceComponent} from '../../remittance/components/remittance.component';
+import {AddRemittanceComponent} from '../../remittance/components/add-remittance.component';
+import {ConfirmRemittanceComponent} from '../../remittance/components/confirm-remittance.component';
 import {CallPreparationComponent} from '../../basic-call-procedure/components/call-preparation.component';
 import {StockReturnComponent} from '../../stock-return/components/stock-return.component';
 import {UnservedOrderComponent} from '../../basic-call-procedure/components/unserved-order.component';
@@ -35,10 +37,13 @@ import {BCPAddRetailerRouteComponent} from '../../basic-call-procedure/component
 import {CDUnservedOrderComponent} from '../../close-day/components/cd-unserved-order.component';
 import {ConfirmCollectionComponent} from '../../basic-call-procedure/components/confirm-collection.component';
 import {AddUnservedOrderComponent} from '../../basic-call-procedure/components/add-unserved-order.component';
+import {SkipSalesOrderComponent} from '../../basic-call-procedure/components/skip-sales-order.component';
 import {HomeComponent} from '../../shared/components/home.component';
-import {SalesOrderDetailComponent} from '../../close-day/components/sales-order-detail.component';
-import {TotalCollectionDetailComponent} from '../../close-day/components/total-collection-detail.component';
-
+import {AddStockReturnComponent} from '../../stock-return/components/add-stock-return.component';
+import {ConfirmStockReturnComponent} from '../../stock-return/components/confirm-stock-return.component';
+import {DetailSalesOrderComponent} from '../../close-day/components/detail-sales-order.component';
+import {DetailCollectionComponent} from '../../close-day/components/detail-collection.component';
+import {DetailRemittanceComponent} from '../../close-day/components/detail-remittance.component';
 
 
 @Component({
@@ -183,18 +188,28 @@ import {TotalCollectionDetailComponent} from '../../close-day/components/total-c
         name: 'AddUnservedOrder',
         component: AddUnservedOrderComponent
     },
+    {
+        path: '/skipSalesOrder',
+        name: 'SkipSalesOrder',
+        component: SkipSalesOrderComponent
+    },
     // UNDER BCP TAB - END
 
     // UNDER CLOSE OF THE DAY TAB - START
     {
-        path: '/totalCollectionDetail',
-        name: 'TotalCollectionDetail',
-        component: TotalCollectionDetailComponent
+        path: '/detailCollection',
+        name: 'DetailCollection',
+        component: DetailCollectionComponent
     },
     {
-        path: '/salesOrderDetail',
-        name: 'SalesOrderDetail',
-        component: SalesOrderDetailComponent
+        path: '/detailRemittance',
+        name: 'DetailRemittance',
+        component: DetailRemittanceComponent
+    },
+    {
+        path: '/detailSalesOrder',
+        name: 'DetailSalesOrder',
+        component: DetailSalesOrderComponent
     },
     {
         path: '/collection',
@@ -210,13 +225,35 @@ import {TotalCollectionDetailComponent} from '../../close-day/components/total-c
         path: '/cdUnservedOrder',
         name: 'CDUnservedOrder',
         component: CDUnservedOrderComponent
-    }
+    },
+
     // UNDER CLOSE OF THE DAY TAB - END
 
     // UNDER STOCK RETURN TAB - START
+    {
+        path: '/addStockReturn',
+        name: 'AddStockReturn',
+        component: AddStockReturnComponent
+    },
+    {
+        path: '/confirmStockReturn',
+        name: 'ConfirmStockReturn',
+        component: ConfirmStockReturnComponent
+    },
+
     // UNDER STOCK RETURN TAB - END
 
     // UNDER REMITTANCE TAB - START
+    {
+        path: '/addRemittance',
+        name: 'AddRemittance',
+        component: AddRemittanceComponent
+    },
+    {
+        path: '/confirmRemittance',
+        name: 'ConfirmRemittance',
+        component: ConfirmRemittanceComponent
+    }
     // UNDER REMITTANCE TAB - END
 
     // UNUSED PAGE - START
