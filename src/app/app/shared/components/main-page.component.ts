@@ -36,6 +36,10 @@ import {CDUnservedOrderComponent} from '../../close-day/components/cd-unserved-o
 import {ConfirmCollectionComponent} from '../../basic-call-procedure/components/confirm-collection.component';
 import {AddUnservedOrderComponent} from '../../basic-call-procedure/components/add-unserved-order.component';
 import {HomeComponent} from '../../shared/components/home.component';
+import {SalesOrderDetailComponent} from '../../close-day/components/sales-order-detail.component';
+import {TotalCollectionDetailComponent} from '../../close-day/components/total-collection-detail.component';
+
+
 
 @Component({
     selector : 'main-page',
@@ -182,6 +186,16 @@ import {HomeComponent} from '../../shared/components/home.component';
     // UNDER BCP TAB - END
 
     // UNDER CLOSE OF THE DAY TAB - START
+    {
+        path: '/totalCollectionDetail',
+        name: 'TotalCollectionDetail',
+        component: TotalCollectionDetailComponent
+    },
+    {
+        path: '/salesOrderDetail',
+        name: 'SalesOrderDetail',
+        component: SalesOrderDetailComponent
+    },
     {
         path: '/collection',
         name: 'Collection',

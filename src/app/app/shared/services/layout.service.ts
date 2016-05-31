@@ -403,7 +403,34 @@ export class LayoutService {
                 add: false
             };
         }
+
+
+        else if (
+            pCurrent === 'SalesOrderDetail' ||
+            pCurrent === 'TotalCollectionDetail') {
+            // this._pageNavigationService.setPreviousPage('CloseDay');
+            this._pageNavigationService.resetListPreviousData();
+            this.vOldCurrentPage = 'Collection';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+
+            this.vHeaderItem = {
+                hamburger: false,
+                back: true,
+                filter: false,
+                edit: false,
+                search: false,
+                add: false
+            };
+        }
         // UNDER CLOSE OF THE DAY - END
+
 
         // UNDER REMITTANCE - START
         // UNDER REMITTANCE - END
