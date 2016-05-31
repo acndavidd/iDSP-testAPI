@@ -132,8 +132,7 @@ export class LayoutService {
         if (
             pCurrent === 'GetStarted' ||
             pCurrent === 'Verification' ||
-            pCurrent === 'Login' ||
-            pCurrent === 'SkipSalesOrder') {
+            pCurrent === 'Login') {
             this._pageNavigationService.resetListPreviousData();
             this.vLayoutState = {
                 appHeader: false,
@@ -277,7 +276,8 @@ export class LayoutService {
             pCurrent === 'Offers' ||
             pCurrent === 'RetailerSalesOrder' ||
             pCurrent === 'SalesOrderPayment' ||
-            pCurrent === 'UnservedOrder') {
+            pCurrent === 'UnservedOrder' ||
+            pCurrent === 'SkipSalesOrder') {
 
             this.vLayoutState = {
                 appHeader: true,
