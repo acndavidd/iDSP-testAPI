@@ -56,8 +56,8 @@ export class LoginComponent {
         });
         */
         // this._router.navigate(['Mpin']);
-        pEvent.preventDefault();
-        this._authenticationService.login(this.vUsername, this.vPassword);
+        // pEvent.preventDefault();
+        // this._authenticationService.login(this.vUsername, this.vPassword);
     }
 
     getLoadingState() {

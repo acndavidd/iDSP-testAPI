@@ -49,11 +49,12 @@ export class AccountsReceivablesComponent {
         // Initial Data
         this.vSelectedRoute = 'inRoute';
         this.vFlag = 0;
-
+        console.log('mau panggil');
         this._accountsReceivablesService.getAllReceivablesRoute(vDspId,vSource).subscribe(
             response => {
-                this.setReceivablesRouteList(response.json().result[0].v_receivables);
-                this.setAllReceivablesRouteList(response.json().result[0].v_receivables_all);
+                console.log(response.json()[0]);
+                this.setReceivablesRouteList(response.json()[0].v_receivables);
+                this.setAllReceivablesRouteList(response.json()[0].v_receivables_all);
                 this.vTotalReceivablesInRoute = this.vReceivablesRouteList[0].ret_total_amount;
                 this.vTotalReceivablesAll = this.vAllReceivablesRouteList[0].total_amount;
                 this.setSearchedReceivablesRoute(this.vReceivablesRouteList);
@@ -70,7 +71,7 @@ export class AccountsReceivablesComponent {
                 // });
                 },
             error => {
-                console.log(error.json());
+                console.log('in acc component' + error.json());
             });
     }
 

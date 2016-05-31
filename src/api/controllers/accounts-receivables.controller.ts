@@ -3,10 +3,12 @@
 import {TokenService} from '../services/token.service';
 import {ORMService} from '../services/orm.service';
 import {APIService} from '../services/api.service';
+import {AccModel} from '../models/input/account-receivables.model';
+
 
 export interface AccInterface {
 	accountsReceivables(pRequest, pResponse): Promise<void>;
-	retailerSelf(pRequest, pResponse): Promise<void>;
+	// retailerSelf(pRequest, pResponse): Promise<void>;
 }
 
 export class AccController {
@@ -51,11 +53,11 @@ export class AccController {
 		try {
 			console.log('in accountsReceivables API');
 			let vOrmSvc = new ORMService();
-			var vUsername = pRequest.query.username;
-			var vSource = pRequest.query.source;
-			var vDay = new Date().getDay();
+			let vUsername = pRequest.query.username;
+			let vSource = pRequest.query.source;
+			let vDay = new Date().getDay();
 			let vHttpSvc = new APIService.HTTPService();
-			let vPath:string = '/OPISNET/services/idsp/SELFTransactions?source=' +vSource + '&username=' + vUsername;
+			let vPath:string = '/OPISNET/services/idsp/SELFTransactions';
 
 			console.log('Hit URL : ' + vPath);
 			console.log('in account receivables controller, get day = ' + vDay);
@@ -65,19 +67,27 @@ export class AccController {
 				// source : vSource,
 				route_day : vDay
 			};
+
+			let vUrlParams = {
+				source : vSource,
+				username : vUsername
+			};
+
 			console.log('sebelum hit API');
 			var vResultBcp = await vOrmSvc.sp( 'account_receivables', vParams );
 			// console.log('Get result BCP: ' + JSON.stringify(vResultBcp));
-			var vResultSelf = await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null);			
-			console.log('Get result Self: ' + JSON.stringify(vResultSelf));
-			vResultSelf.push({"source" : "SELF"});
-			var vResponse = {
-				"status" : "200",
-				"errorMessage" : "Success",
-				"result" : vResultBcp.concat(vResultSelf)
-			};
-			console.log('Response API: ' + JSON.stringify(vResponse));
-			pResponse.json(vResponse);
+			// var vResultSelf = await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null, vUrlParams);			
+			// console.log('Get result Self: ' + JSON.stringify(vResultSelf));
+			// vResultSelf.push({"source" : "SELF"});
+			// var vResponse = {
+			// 	"status" : "200",
+			// 	"errorMessage" : "Success",
+			// 	"result" : vResultBcp
+			// 	// "result" : vResultBcp.concat(vResultSelf)
+			// };
+			// console.log('Response API: ' + JSON.stringify(vResponse));
+			pResponse.status(vResultBcp.status).json(vResultBcp.payload);
+			console.log ('in acc controller : ' + pResponse);
 
 		} catch(pErr) {
 			var vError = {
