@@ -132,8 +132,7 @@ export class LayoutService {
         if (
             pCurrent === 'GetStarted' ||
             pCurrent === 'Verification' ||
-            pCurrent === 'Login' ||
-            pCurrent === 'SkipSalesOrder') {
+            pCurrent === 'Login') {
             this._pageNavigationService.resetListPreviousData();
             this.vLayoutState = {
                 appHeader: false,
@@ -277,7 +276,8 @@ export class LayoutService {
             pCurrent === 'Offers' ||
             pCurrent === 'RetailerSalesOrder' ||
             pCurrent === 'SalesOrderPayment' ||
-            pCurrent === 'UnservedOrder') {
+            pCurrent === 'UnservedOrder' ||
+            pCurrent === 'SkipSalesOrder') {
 
             this.vLayoutState = {
                 appHeader: true,
@@ -405,8 +405,10 @@ export class LayoutService {
         }
 
         else if (
+            pCurrent === 'DetailSalesOrder' ||
             pCurrent === 'DetailCollection' ||
             pCurrent === 'DetailRemittance') {
+
             // this._pageNavigationService.setPreviousPage('CloseDay');
             this._pageNavigationService.resetListPreviousData();
             this.vOldCurrentPage = 'Collection';
@@ -429,6 +431,7 @@ export class LayoutService {
             };
         }
         // UNDER CLOSE OF THE DAY - END
+
 
         // UNDER REMITTANCE - START
         else if (
@@ -457,6 +460,27 @@ export class LayoutService {
         // UNDER REMITTANCE - END
 
         // UNDER STOCK RETURN - START
+        else if (
+            pCurrent === 'AddStockReturn' ||
+            pCurrent === 'ConfirmStockReturn') {
+            this.vOldCurrentPage = null;
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+
+            this.vLayoutState = {
+                appHeader: true,
+                appFooter: false,
+                leftMenu: false
+            };
+            this.vHeaderItem = {
+                hamburger: false,
+                back: true,
+                filter: false,
+                edit: false,
+                search: false,
+                add: false
+            };
+        }
         // UNDER STOCK RETURN - END
 
 
@@ -545,6 +569,10 @@ export class LayoutService {
 
     toggleLeftMenu() {
         this.vLayoutState.leftMenu = !this.vLayoutState.leftMenu;
+    }
+
+    hideLeftMenu() {
+        this.vLayoutState.leftMenu = false;
     }
 
     toggleHeader() {

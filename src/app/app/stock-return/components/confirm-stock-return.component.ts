@@ -7,14 +7,14 @@ import {NgFor, NgModel} from 'angular2/common';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
 
 @Component({
-    selector: 'stock-return',
-    templateUrl: './app/stock-return/components/stock-return.component.html',
+    selector: 'confirm-stock-return',
+    templateUrl: './app/stock-return/components/confirm-stock-return.component.html',
     directives: [
         NgFor, NgModel, ROUTER_DIRECTIVES
     ],
 })
 
-export class StockReturnComponent {
+export class ConfirmStockReturnComponent {
 
     constructor (
         private _layoutService: LayoutService,
@@ -23,11 +23,18 @@ export class StockReturnComponent {
         private _router: Router,
         private _pageNavigationService: PageNavigationService
     ) {
-        this._layoutService.setCurrentPage('StockReturn');
-        this._headerService.setTitle('Stock Return');
+        this._layoutService.setCurrentPage('ConfirmStockReturn');
+        this._headerService.setTitle('Confirm Stock Return');
     }
 
-    goToAddStockReturn() {
-        this._pageNavigationService.navigate('AddStockReturn', null, null);
+    confirm(pEvent) {
+        pEvent.preventDefault();
+
+        // For By Pass Directly without API
+        console.log('stock return is successfully confirmed');
+    }
+
+    goToStockReturn() {
+        this._pageNavigationService.navigate('StockReturn', null, null);
     }
 }

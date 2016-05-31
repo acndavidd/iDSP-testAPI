@@ -17,7 +17,7 @@ var vExpress = require('express');
 var vApp = vExpress();
 var vBodyParser = require('body-parser');
 var vCookieParser = require('cookie-parser');
-
+var vValidator = require('validator');
 var vSOAP = require('soap');
 const PORT: number = process.env.PORT || vConfig.port || 8080;
 
@@ -52,11 +52,11 @@ vApp.use(function(pRequest, pResponse, pNext) {
     }
     if(
         pRequest.path !== '/service/login' && 
-        pRequest.path !== '/service/submitMPIN' &&
+        pRequest.path !== '/service/login/MPIN' &&
         pRequest.path !== '/service/generateCallPlan' &&
         pRequest.path.indexOf('/testing') === -1
     ){
-        if( pRequest.method !== 'OPTIONS') {
+        if(pRequest.method !== 'OPTIONS') {
             // all request to service will validate token except login & logout
             var vToken = '';
             try{
@@ -66,23 +66,21 @@ vApp.use(function(pRequest, pResponse, pNext) {
                     vToken = pRequest.get('Authorization');
                     vToken = vToken.replace('Bearer ','');
                 }
+                console.log(vToken);
                 var jwt = vTokenSvc.verifyToken(vToken);
                 pResponse.locals.jwt = jwt;
-            }catch(err){
-                console.log('error : ' + err);
+            }catch(pErr){
+                console.log('Error while parsing token : ' + pErr);
                 pResponse.sendStatus(403);
             }
         }     
     }
-    /*
-    if(pRequest.method == 'POST') {
-        let vNewParams;
+    // Sanitize all the parameter send with POST request
+    if(pRequest.method === 'POST') {
         for(let param in pRequest.body) {
-            vNewParams[param] = pRequest.sanitize(pRequest.body[param]);
+            pRequest.body[param] = vValidator.escape(pRequest.body[param]);
         }
-        pRequest.body = vNewParams;
-        console.log(pRequest.body);
-    }*/
+    }
     pNext();
 });
 

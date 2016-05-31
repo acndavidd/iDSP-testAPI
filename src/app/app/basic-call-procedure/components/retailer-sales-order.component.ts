@@ -10,7 +10,7 @@ import {Modal} from '../../shared/services/modal.service';
 
 @Component({
     selector: 'retailer-sales-order',
-    // templateUrl: './app/basic-call-procedure/components/retailer-sales-order.component.html',
+    // ptemplateUrl: './app/basic-call-procedure/components/retailer-sales-order.component.html',
     templateUrl: './app/basic-call-procedure/components/hc-retailer-sales-order.component.html',
     directives: [
         NgModel,
@@ -66,11 +66,23 @@ export class RetailerSalesOrderComponent {
         this._router.navigate(['SalesOrderPayment']);
     }
 
-    skipSalesOrderModalComponent() {
+    skipSalesOrder() {
         console.log('Skip Sales Order');
-        // this._modalService.toggleSkipSalesOrderModal();
+        let params = {
+            _pageNavigationService : this._pageNavigationService
+        };
+        this._modalService.toggleModal('Are you sure you <br/> want to skip retailer sales order ?', 
+            Modal.ModalType.CONFIRMATION, 
+            {footNote : '* If you confirm to continue, <br/> You cannot go back to retailer sales order <br/> for this retailer', 
+            ModalButton : Modal.ModalButton.OK_CANCEL, 
+            callback : this.skipSalesOrderCallback, 
+            param : params,
+            }  );
     }
 
+    skipSalesOrderCallback(pParam) {
+        pParam._pageNavigationService.navigate('SkipSalesOrder', null, null);
+    }
 
     gotoAddEditLoadTransfer() {
         this._pageNavigationService.navigate('AddEditLoadTransfer', null, null);

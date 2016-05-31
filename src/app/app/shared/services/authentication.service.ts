@@ -79,6 +79,7 @@ export class AuthenticationService {
             },
             error => {
                 this.vErrorMsg = 'Failed connecting to login service';
+                console.log(error);
                 this._modalService.showErrorModal(this.vErrorMsg);
             }
         );
@@ -129,19 +130,13 @@ export class AuthenticationService {
         // trigger logout service to clear session cookies and remove localstorage data for mobile
         pParams._http.get('/logout').subscribe(
             response => {
-                let vResponse = response.json();
-                if(vResponse.Status === 200) {
-                    // remove accessToken from localstorage for mobile apps
-                    if(configChannel === 'app') {
-                        localStorage.removeItem('accessToken');
-                    }
-                    pParams._layoutService.toggleLeftMenu();
-                    pParams._layoutService.toggleHeader();
-                    pParams._modalService.vShowModal = false;
-                }else {
-                    this.vErrorMsg = vResponse.StatusMessage;
-                    this._modalService.showErrorModal(this.vErrorMsg);
+                // remove accessToken from localstorage for mobile apps
+                if(configChannel === 'app') {
+                    localStorage.removeItem('accessToken');
                 }
+                pParams._layoutService.hideLeftMenu();
+                pParams._layoutService.toggleHeader();
+                pParams._modalService.vShowModal = false;
             },
             error => {
                 // this.vErrorMsg = 'failed connecting to login service';

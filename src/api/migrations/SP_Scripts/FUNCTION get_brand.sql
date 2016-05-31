@@ -1,7 +1,3 @@
--- Function: public.get_brands()
-
--- DROP FUNCTION public.get_brands();
-
 CREATE OR REPLACE FUNCTION public.get_brands()
   RETURNS json AS
 $BODY$

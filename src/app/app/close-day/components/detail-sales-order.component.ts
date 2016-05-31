@@ -6,27 +6,25 @@ import {Modal} from '../../shared/services/modal.service';
 import {HeaderService} from '../../shared/services/header.service';
 
 @Component({
-    selector: 'detail-remittance',
-    templateUrl: './app/close-day/components/detail-remittance.component.html',
+    selector: 'detail-sales-order',
+    templateUrl: './app/close-day/components/detail-sales-order.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
 })
 
-export class DetailRemittanceComponent {
-
-
+export class DetailSalesOrderComponent {
 
     constructor (
     private _router: Router,
     private _layoutService: LayoutService,
-
     private _matchMediaService: MatchMediaService,
     private _modalService: Modal.ModalService,
     private _headerService: HeaderService
     ) {
-        this._layoutService.setCurrentPage('DetailRemittance');
-        this._headerService.setTitle('Detail Remittance');
+
+        this._layoutService.setCurrentPage('DetailSalesOrder');
+        this._headerService.setTitle('Detail Sales Order');
     }
 
     getResize() {

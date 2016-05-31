@@ -32,8 +32,6 @@ export class LoginComponent {
     }
 
     login(pEvent) {
-        pEvent.preventDefault();
-
         // For Hit API
         // this._authenticationService.login(this.vUsername,this.vPassword);
 
@@ -55,7 +53,7 @@ export class LoginComponent {
             console.log(error);
         });
         */
-        // this._router.navigate(['Mpin']);
+        this._router.navigate(['Mpin']);
         pEvent.preventDefault();
         // this._authenticationService.login(this.vUsername, this.vPassword);
     }

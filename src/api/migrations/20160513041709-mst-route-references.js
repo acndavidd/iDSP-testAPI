@@ -19,14 +19,6 @@ module.exports = {
   },
 
   down: function (queryInterface, Sequelize) {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.dropTable('users');
-
-    */
     return [
       queryInterface.sequelize.query('ALTER TABLE mst_route DROP CONSTRAINT freq_map_id_foreign_idx')
     ];

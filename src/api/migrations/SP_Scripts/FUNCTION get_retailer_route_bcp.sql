@@ -1,7 +1,3 @@
--- Function: public.get_retailer_route_bcp(character varying, integer)
-
--- DROP FUNCTION public.get_retailer_route_bcp(character varying, integer);
-
 CREATE OR REPLACE FUNCTION public.get_retailer_route_bcp(
     psalesperson character varying,
     pday integer)
