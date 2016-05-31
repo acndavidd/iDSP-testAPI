@@ -1,7 +1,3 @@
--- Function: public.get_target_actuals(character varying, character varying, character varying)
-
--- DROP FUNCTION public.get_target_actuals(character varying, character varying, character varying);
-
 CREATE OR REPLACE FUNCTION public.get_target_actuals(
     psalesperson character varying,
     ptargettype character varying,

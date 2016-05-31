@@ -23,7 +23,7 @@
     "service" : {
       "OPIS+" : "http://localhost:7777",
       "ELP" : "http://localhost:7777",
-      "timeout" : 15000,
+      "timeout" : 15000
     },
     "token" : {
       "key" : "J@karta"

@@ -1,7 +1,3 @@
--- Function: public.get_retailer_call_prep(character varying, character varying)
-
--- DROP FUNCTION public.get_retailer_call_prep(character varying, character varying);
-
 CREATE OR REPLACE FUNCTION public.get_retailer_call_prep(
     psalesperson character varying,
     pretailerid character varying)
