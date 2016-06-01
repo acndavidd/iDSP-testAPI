@@ -47,14 +47,6 @@ export class TargetsActualsComponent {
         this.vSelectedTab = 'Day';
         this._layoutService.setCurrentPage('TargetsActuals');
         this._headerService.setTitle('Targets & Actuals');
-        // this._targetsActualsService.queryBrand().subscribe(
-        //      response => {
-        //         this.vListBrands = response.json();
-        //         console.log(JSON.stringify(this.vListBrands));
-        //     },
-        //     error => {}
-        // );
-
         this.getTargetsActuals();
 
     }
