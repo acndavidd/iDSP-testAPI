@@ -22,7 +22,7 @@ export module ErrorHandling {
 
 	export class Result {
 		status;
-		payload;
+		payload : {};
 	}
 
 	export interface ErrorHandlingInterface {

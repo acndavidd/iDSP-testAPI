@@ -2,46 +2,46 @@ import {ErrorHandling} from './error-handling.service';
 
 export module APIService {
 
-	var vEnv = process.env.NODE_ENV || "development";
-	var vRequest = require('request'); 
-	var vConfig = require('../config/config.json')[vEnv];
-	var vCurrentContext;
+        var vEnv = process.env.NODE_ENV || "development";
+        var vRequest = require('request'); 
+        var vConfig = require('../config/config.json')[vEnv];
+        var vCurrentContext;
 
-	export var APIType = {
-		OPISNET : vConfig.service["OPIS+"],
-		ELP : vConfig.service["ELP"]	
-	}
+        export var APIType = {
+                OPISNET : vConfig.service["OPIS+"],
+                ELP : vConfig.service["ELP"]        
+        }
 
-	export var RequestMethod = {
-		POST : 'POST',
-		GET : 'GET',
-		PUT : 'PUT',
-		DELETE : 'DELETE'
-	}
-	
-	export interface HTTPServiceInterface {
-		buildAuthHeaders(pMethod): any;
-	}
+        export var RequestMethod = {
+                POST : 'POST',
+                GET : 'GET',
+                PUT : 'PUT',
+                DELETE : 'DELETE'
+        }
+        
+        export interface HTTPServiceInterface {
+                buildAuthHeaders(pMethod): any;
+        }
 
-	export class HTTPService implements HTTPServiceInterface{
+        export class HTTPService implements HTTPServiceInterface{
 
-		constructor() {
-			vCurrentContext = this;
-		}
+                constructor() {
+                        vCurrentContext = this;
+                }
 
-		buildAuthHeaders(pMethod) {
-			let vReqHeaders;
-			if(pMethod === RequestMethod.POST) {
-				vReqHeaders = {
-					'Content-Type' : 'application/json'
-				}
-			}else {
-				vReqHeaders = {
-					'Content-Type' : 'application/x-www-form-urlencoded'
-				}
-			}
-			return vReqHeaders;
-		}
+                buildAuthHeaders(pMethod) {
+                        let vReqHeaders;
+                        if(pMethod === RequestMethod.POST) {
+                                vReqHeaders = {
+                                        'Content-Type' : 'application/json'
+                                }
+                        }else {
+                                vReqHeaders = {
+                                        'Content-Type' : 'application/x-www-form-urlencoded'
+                                }
+                        }
+                        return vReqHeaders;
+                }
 
 		post(pAPIType, pURL, pHeaders, pData) {
 			return this.request(RequestMethod.POST, pAPIType, pURL, pHeaders, pData);
@@ -96,6 +96,7 @@ export module APIService {
 				}
 			)
 		}
+>>>>>>> 1e4e4d2f78d5e431fca69842d4d7ffa9ae316abe
 
-	}
+        }
 }

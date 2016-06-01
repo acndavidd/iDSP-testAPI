@@ -47,14 +47,12 @@ vApp.use(function(pRequest, pResponse, pNext) {
     pResponse.header('Access-Control-Allow-Headers', 
         'Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept,Authorization,Proxy-Authorization,X-session');
     pResponse.header('Access-Control-Allow-Methods','GET,PUT,DELETE,POST');
-    if(pRequest.path.indexOf('/testing') === -1) {
-        
-    }
     if(
         pRequest.path !== '/service/login' && 
         pRequest.path !== '/service/login/MPIN' &&
         pRequest.path !== '/service/generateCallPlan' &&
-        pRequest.path.indexOf('/testing') === -1
+        pRequest.path.indexOf('/testing') !== -1 //bypass token for testing purpose
+
     ){
         if(pRequest.method !== 'OPTIONS') {
             // all request to service will validate token except login & logout
@@ -95,21 +93,30 @@ vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
 vRouter.get('/testSync',vSchedCtrl.syncTableMaster);
 
 //API BASED ON GUIDELINES
-vRouter.post('/todaysRetailerRoute',vRetailerCtrl.todaysRetailerRoute);
+vRouter.get('/task',vRetailerCtrl.task);
 vRouter.post('/retailerCallPreparation',vRetailerCtrl.retailerCallPreparation);
 vRouter.post('/loadWallet',vRetailerCtrl.loadWallet);
 vRouter.post('/physicalInventory',vRetailerCtrl.physicalInventory);
 vRouter.post('/paymentHistory',vRetailerCtrl.paymentHistory);
 vRouter.get('/brand',vTargetsActualsCtrl.brand);
-vRouter.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
+vRouter.post('/performance',vTargetsActualsCtrl.performance);
 vRouter.post('/additionalRetailerRoute',vRetailerCtrl.additionalRetailerRoute);
 vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);
 vRouter.get('/testSP', vLoginCtrl.testSP);
 vRouter.post('/dspPhysicalInventoryList',vInventoryCtrl.dspPhysicalInventoryList);
 
-// For testing purpose , can be hit outside app without token
-var vTesting = vRouter;
+var vTesting = vExpress.Router();
+vTesting.post('/login',vLoginCtrl.login);
+vTesting.post('/login/MPIN', vLoginCtrl.submitMPIN);
+vTesting.get('/logout', vLoginCtrl.logout);
+vTesting.get('/brand',vTargetsActualsCtrl.brand);
+vTesting.post('/performance',vTargetsActualsCtrl.performance);
+vTesting.get('/retailer/alert',vRetailerCtrl.getAllRetailerAlert);
+vTesting.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
+vTesting.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
+vTesting.get('/testSync',vSchedCtrl.syncTableMaster);
+
 vApp.use('/service',vRouter);
 vApp.use('/testing', vTesting);
 vApp.listen(PORT);

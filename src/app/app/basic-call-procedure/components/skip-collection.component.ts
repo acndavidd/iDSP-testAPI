@@ -8,15 +8,15 @@ import {Modal} from '../../shared/services/modal.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
 
 @Component({
-    selector: 'skip-sales-order',
-    templateUrl: './app/basic-call-procedure/components/skip-sales-order.component.html',
+    selector: 'skip-collection',
+    templateUrl: './app/basic-call-procedure/components/skip-collection.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
     ]
 })
 
-export class SkipSalesOrderComponent {
+export class SkipCollectionComponent {
 
 
     constructor (
@@ -27,12 +27,12 @@ export class SkipSalesOrderComponent {
         private _router: Router,
         private _pageNavigationService: PageNavigationService
         ) {
-        this._layoutService.setCurrentPage('SkipSalesOrder');
-        this._headerService.setTitle('Skip Retailer Sales Order');
+        this._layoutService.setCurrentPage('SkipCollection');
+        this._headerService.setTitle('Skip Collection');
     }
 
-    gotoUnservedOrder() {
-        this._pageNavigationService.navigate('UnservedOrder', null, null);
+    submitReasonCollection() {
+        this._pageNavigationService.navigate('Offer', null, null);
     }
 
 }

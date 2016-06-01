@@ -1,0 +1,9 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPattern": "/OPISNET/services/idsp/AllRT\\?username=[a-zA-Z0-9]+"
+    },
+    "response": {
+        "bodyFileName": "OPIS+/administration/get-list-of-retailer-profile-per-dsp-success.json"
+    }
+}
