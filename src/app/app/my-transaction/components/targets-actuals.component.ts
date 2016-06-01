@@ -30,7 +30,7 @@ export class TargetsActualsComponent {
     vUnderlineDay = true;
     vUnderlineWeek = false;
     vUnderlineMonth = false;
-    private vListBrands : any = [];
+    private vListBrands:any = [];
     public vSelectedBrand;
     private vListProduct;
     private vShowProduct;
