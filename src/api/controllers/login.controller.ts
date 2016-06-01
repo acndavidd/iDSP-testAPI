@@ -28,7 +28,7 @@ export class LoginController implements LoginInterface{
 				if(pErr.errorCode == ErrorHandling.ERROR_TYPE.ERROR_SEQUELIZE){
 					vErrHandling.throwError(pResponse, 400, pErr.errorCode, "Error happened on sequelize");
 				}else{
-					//handle other error code
+					// handle other error code
 					switch (pErr.errorCode) {
 						case 101 :
 							vErrHandling.throwError(pResponse, 400, 101, "Error b");
@@ -52,6 +52,22 @@ export class LoginController implements LoginInterface{
 		}
 	}
 
+	async testSP(pRequest, pResponse) {
+		let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
+		try{
+			let vOrmService:ORMService = new ORMService();
+			let vParams = {
+				test : 100
+			};
+			let vResult = await vOrmService.sp('test_sp', vParams, true);
+			pResponse.status(vResult.status).json(vResult.payload);
+		}catch(pErr) {
+			if(pErr.errorCode === ErrorHandling.ERROR_TYPE.ERROR_SEQUELIZE) { // something happened with sequelize service
+				vErrHandling.throwError(pResponse, ErrorHandling.RESPONSE_CODE.SYSTEM_ERROR, pErr.errorCode, pErr.description);
+			}
+		}
+	}
+
 	async login(pRequest,pResponse) {
 		let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
 		try{
@@ -62,14 +78,13 @@ export class LoginController implements LoginInterface{
 				let vResult = await vHttpSvc.post(APIService.APIType.OPISNET, vPath, null, vLoginData);
 				pResponse.status(vResult.status).json(vResult.payload);
 			}else {
-				vErrHandling.throwError(pResponse, 400, 101, "INPUT_ERROR", vLoginData.Errors);
+				vErrHandling.throwError(pResponse, ErrorHandling.RESPONSE_CODE.FUNCTIONAL_ERROR, ErrorHandling.ERROR_TYPE.INPUT_ERROR, vLoginData.Errors);
 			}
 		}catch(pErr){
 			if(pErr.errorCode == 101) {
 				vErrHandling.throwError(pResponse, 400, 101, "ERR_INVALID_CREDENTIAL");
 			}
 		}
-		// pResponse.json(vResult);
 	}
 
 	async submitMPIN(pRequest, pResponse) {
@@ -119,97 +134,5 @@ export class LoginController implements LoginInterface{
 			vErrHandling.throwError(pResponse, 400, 101, pErr);
 		}
 		
-	}
-
-	test(pRequest,pResponse){
-		try{
-			var message = 'Insert start.';
-			console.log("mw Init");
-
-			var orm = new ORMService();
-			console.log("mw map mode");
-
-			var vOrder_id;
-
-			return orm.getSequelize().transaction(function (t){
-				var sales_order_new = orm.getModel("trx_sales_order");
-
-				return sales_order_new.create({
-		            dsp_id: 'DSP01',
-			 	    retailer_id: 'RET01',
-			 	    total_amount: 1000000
-		        }, {transaction: t}).then(function(so){		        	
-		            vOrder_id = so.get("order_id");
-		            console.log("Successfully insert "+ vOrder_id);
-
-		            var unserve1 = orm.getModel('trx_unserved_order');
-		            var promises = [];
-
-		            
-		            promises.push(
-		            	unserve1.create({
-			                order_id:vOrder_id,
-					        product_id: 'P00001',
-					 	    quantity: 10,
-					 	    remarks: 'YO MAMEN 1'
-			            }, {transaction: t})
-			        );
-
-			        promises.push(
-		            	unserve1.create({
-			                order_id:vOrder_id,
-					        product_id: 'P00002',
-					 	    quantity: 100,
-					 	    remarks: 'YO MAMEN 2'
-			            }, {transaction: t})
-			        );
-
-			        console.log("start hit promise");
-		            return Promise.all([
-		            	promises
-		            ]);
-
-
-		        });
-
-			 }).then(function (result) {
-		        // Transaction has been committed
-		        // result is whatever the result of the promise chain returned to the transaction callback
-		        //console.log(t.)
-		        pResponse.send("Success Transaction" + ' Time :' + new Date().toLocaleString() + " with ID : " + vOrder_id);
-
-		        //Sample query and get Children and get 
-			    var so = orm.getModel("trx_sales_order");	
-
-			    so.find({
-				    where: { order_id: vOrder_id}
-				}).then(function(match){
-				  	match.getSalesOrderUnserved().then(function(resultUnserved){
-					console.log(resultUnserved.length);
-				    console.log(resultUnserved[0].get("product_id"));
-				    console.log(resultUnserved[1].get("product_id"));
-					});
-				});
-
-				var unSo = orm.getModel("trx_unserved_order");
-
-				unSo.find({
-				    where: { order_id: vOrder_id}
-				}).then(function(match){
-				   	match.getSalesOrder().then(function(resultSO){
-					console.log(resultSO.get("retailer_id"));
-		    		});
-				});  
-
-		    }).catch(function (err) {
-		        // Transaction has been rolled back
-		        // err is whatever rejected the promise chain returned to the transaction callback
-		        //t.rollback();
-		        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + err);
-			});
-		}
-		catch(pErr){
-			console.log(pErr);
-		}
 	}
 }

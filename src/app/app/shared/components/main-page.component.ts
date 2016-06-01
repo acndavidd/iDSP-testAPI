@@ -45,6 +45,8 @@ import {ConfirmStockReturnComponent} from '../../stock-return/components/confirm
 import {DetailSalesOrderComponent} from '../../close-day/components/detail-sales-order.component';
 import {DetailCollectionComponent} from '../../close-day/components/detail-collection.component';
 import {DetailRemittanceComponent} from '../../close-day/components/detail-remittance.component';
+import {TargetsActualsService} from '../../my-transaction/services/targets-actuals.service';
+
 
 
 @Component({
@@ -54,7 +56,7 @@ import {DetailRemittanceComponent} from '../../close-day/components/detail-remit
         ROUTER_DIRECTIVES
     ],
     providers : [
-        // PageNavigationService
+        TargetsActualsService
     ]
 })
 
@@ -290,8 +292,10 @@ import {DetailRemittanceComponent} from '../../close-day/components/detail-remit
 
 export class MainPageComponent {
 
-    constructor (private _layoutService: LayoutService,
-    private _matchMediaService: MatchMediaService) {}
+    constructor (
+        private _layoutService: LayoutService,
+        private _targetsActualsService: TargetsActualsService,
+        private _matchMediaService: MatchMediaService) {}
 
     getResize() {
         return this._matchMediaService.getMm();

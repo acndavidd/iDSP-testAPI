@@ -135,9 +135,9 @@ export class BCPCollectionComponent {
         return this.vPaymentHistory;
     }
 
-    //gotoSkipCollection() {
+    // gotoSkipCollection() {
         // nanti pegi ke SKIPP COLLECTION UI
-    //}
+    // }
 
     skipCollection() {
 
