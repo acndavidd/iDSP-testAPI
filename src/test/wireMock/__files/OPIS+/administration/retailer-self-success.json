@@ -1,7 +1,7 @@
 {
 	"Status" : 200,
 	"StatusMessage" : "OK",
-	"RecordCount" : 3,
+	"RecordCount" : 4,
 	"SELFTransactionList": [
 		{
 			"RetailerID" : "RTL00001",
@@ -20,6 +20,12 @@
 			"RetailerName" : "Alliance Cell",
 			"RetailerMIN" : "99999990006",
 			"totalAmount" : "2000"
+		},
+		{
+			"RetailerID" : "RTL00008",
+			"RetailerName" : "XYZ Cell",
+			"RetailerMIN" : "99999990008",
+			"totalAmount" : "2300"
 		}
 	]
 }

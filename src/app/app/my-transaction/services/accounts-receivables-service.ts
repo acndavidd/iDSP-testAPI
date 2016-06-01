@@ -16,7 +16,6 @@ export class AccountsReceivablesService {
     }
 
     searchRetailer() {
-        console.log('test onkeypress masuk service');
         return;
     }
 
@@ -28,13 +27,6 @@ export class AccountsReceivablesService {
         return this.vIsLoading;
     }
 
-    // getAllReceivablesRoute(pDspId, pDate) {
-    //   let vData = {
-    //       vDspId : pDspId,
-    //       vDate : pDate
-    //   };
-    //   return this._http.post('/accountsReceivables', JSON.stringify(vData));
-    // }
     getAllReceivablesRoute(pDspId, pSource) {
       try {
       var vDspId = pDspId;
@@ -46,12 +38,4 @@ export class AccountsReceivablesService {
           console.log('Error in get API: ' + pErr);
       }
     }
-
-    // getRetailerSelf(pSource, pDspId) {
-    //     let vData = {
-    //         vSource : pSource,
-    //         vDspId : pDspId
-    //     };
-    //     return this._http.post('/retailerSelf', JSON.stringify(vData));
-    // }
 }

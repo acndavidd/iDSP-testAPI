@@ -1,20 +1,20 @@
-<div class="container-body">
-	<div class='filter-container' *ngIf="getFilter().filterAccReceivables">
+<div class='container-body'>
+	<div class='filter-container' *ngIf='getFilter().filterAccReceivables'>
         <div class='filter-input input'>
             <div class='icon' (click)='searchFilter(listFilter.value)'></div>
             <input type='text' #listFilter (keyup)='onKey(listFilter.value)' id='RetailerSearchBox' placeholder='Input Retailer Name or MIN' />
         </div>
 
-        <div class="item-container">
-			<div class="container">
+        <div class='item-container'>
+			<div class='container'>
 				<div class='cell'>
-					<div class="container">
-						<div class="cell filter-label width-50 padding-top-1 padding-bottom-1">In Route</div>
+					<div class='container'>
+						<div class='cell filter-label width-50 padding-top-1 padding-bottom-1'>In Route</div>
 					</div>
 				</div>
 				<div class='cell'>
-					<div class="container">
-						<div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
+					<div class='container'>
+						<div class='cell filter-dropdown width-30 padding-top-1 padding-bottom-1'>
 							<select id='inRouteAcc' name='route' [(ngModel)]='vSelectedRoute' (ngModelChange)='getRoute($event)'>
 								<option value='allRoute'>All</option>
 								<option value='inRoute'>Yes</option>
@@ -26,7 +26,7 @@
 		</div>
     </div>
 
-    <div class="item-container">
+    <div class='item-container'>
         <div class='container'>
             <div class='cell'>
             	<div class='container'><div class='cell align-center width-100'>Total Receivables (In Route):</div></div>
@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <div class="item-container">
+    <div class='item-container'>
         <div class='container'>
             <div class='cell'>
             	<div class='container'><div class='cell align-center width-100'>Total Receivables (All):</div></div>
@@ -52,24 +52,23 @@
         </div>
     </div>
 
-
     <div *ngFor='#FilteredSearch of vSearchedReceivablesRouteList'>
-		<div class="item-container no-padding-item-container">
-		    <div class="container">
-		    	<div class='cell vertical  [ngClass]="{'sulu': (FilteredSearch.source === 'BCP') , 'serenade': (FilteredSearch.source === 'SELF')}"'>
+		<div class='item-container no-padding-item-container'>
+		    <div class='container'>
+		    	<div class='cell vertical'  [ngClass]="{'sulu': (FilteredSearch.source === 'BCP') , 'serenade': (FilteredSearch.source === 'SELF')}">
 	            	<div class='vertical-text'>{{FilteredSearch.source}}</div>
 	            </div>
 		        <div class='cell'>
-	                <div class='container' id ="accSeq" *ngIf='FilteredSearch.sequence'><div class='cell width-100 padding-left-5 green'># Route {{FilteredSearch.sequence}}</div></div>
-	                <div class='container' id ="accRetName"><div class='cell width-100 padding-left-5'>{{FilteredSearch.retailer_name}}</div></div>
+	                <div class='container' id ='accSeq' *ngIf='FilteredSearch.sequence'><div class='cell width-100 padding-left-5 green'># Route {{FilteredSearch.sequence}}</div></div>
+	                <div class='container' id ='accRetName'><div class='cell width-100 padding-left-5'>{{FilteredSearch.retailer_name}}</div></div>
 	                <div class='container'>
 	                	<div class='cell width-100'>
-						    <div class="container">
+						    <div class='container'>
 						        <div class='cell'>
-					                <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5 italic'>{{FilteredSearch.retailer_min}}</div></div>
+					                <div class='container' id ='accRetMin'><div class='cell width-50 padding-left-5 italic'>{{FilteredSearch.retailer_min}}</div></div>
 						        </div>
 						        <div class='cell'>
-					                <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>{{FilteredSearch.amount}}</div></div>
+					                <div class='container' id ='accAmount'><div class='cell width-50 padding-right-5 align-right'>{{FilteredSearch.amount}}</div></div>
 						        </div>
 						    </div>
 	                	</div>
