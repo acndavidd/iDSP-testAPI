@@ -8,66 +8,74 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const orm_service_1 = require('../services/orm.service');
+const error_handling_service_1 = require('../services/error-handling.service');
+const performance_model_1 = require('../models/input/performance.model');
 class TargetsActualsController {
     constructor() {
     }
     brand(pRequest, pResponse) {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log('Start getting Brands');
+            let vErrHandling = new error_handling_service_1.ErrorHandling.ErrorHandlingService();
             try {
-                var message = 'Insert start.';
-                console.log("Start getting brands");
-                var vOrmSvc = new orm_service_1.ORMService();
-                var vResult = yield vOrmSvc.sp('get_brands', null);
-                console.log("Query Brands with result : " + JSON.stringify(vResponse));
-                var vResponse = {
-                    "status": "Success",
-                    "errorMessage": "",
-                    "brandList": vResult
-                };
-                pResponse.json(vResponse);
+                let vOrmService = new orm_service_1.ORMService();
+                try {
+                    let vResult = yield vOrmService.sp('get_brands', null);
+                    pResponse.status(vResult.status).json(vResult.payload);
+                }
+                catch (pErr) {
+                    console.log(pErr);
+                    if (pErr.errorCode == error_handling_service_1.ErrorHandling.ERROR_TYPE.ERROR_SEQUELIZE) {
+                        vErrHandling.throwError(pResponse, 400, pErr.errorCode, "Error happened on sequelize");
+                    }
+                    else {
+                        //handle other error code
+                        switch (pErr.errorCode) {
+                            case 101:
+                                vErrHandling.throwError(pResponse, 400, 101, "Error b");
+                                break;
+                        }
+                    }
+                }
             }
             catch (pErr) {
-                console.log("Failed to Query Payment History" + pErr);
-                var vError = {
-                    "status": "Error",
-                    "errorMessage": pErr,
-                    "result": null
-                };
-                pResponse.json(vError);
+                vErrHandling.throwError(pResponse, 400, 101, "test message");
             }
         });
     }
-    targetsActuals(pRequest, pResponse) {
+    performance(pRequest, pResponse) {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log("Start targets actuals");
+            let vErrHandling = new error_handling_service_1.ErrorHandling.ErrorHandlingService();
             try {
-                var message = 'Insert start.';
-                console.log("Start targets actuals");
-                var vSalesPerson = pRequest.body.salesPerson;
-                var vSelectedType = pRequest.body.actualType;
-                var vSelectedBrand = pRequest.body.brand;
-                var vOrmSvc = new orm_service_1.ORMService();
-                let vParams = {
-                    sales_person: vSalesPerson,
-                    type: vSelectedType,
-                    brand: vSelectedBrand
-                };
-                var vResult = yield vOrmSvc.sp('get_target_actuals', vParams);
-                console.log("Query Done with result : " + JSON.stringify(vResponse));
-                var vResponse = {
-                    "status": "Success",
-                    "errorMessage": "",
-                    "result": vResult
-                };
-                pResponse.json(vResponse);
+                let vOrmService = new orm_service_1.ORMService();
+                try {
+                    let vPerformanceData = new performance_model_1.PerformanceModel(pRequest.body.salesPerson, pRequest.body.actualType, pRequest.body.brand);
+                    if (vPerformanceData.validate()) {
+                        let vResult = yield vOrmService.sp('get_target_actuals', vPerformanceData);
+                        pResponse.status(vResult.status).json(vResult.payload);
+                    }
+                    else {
+                        vErrHandling.throwError(pResponse, 400, 101, "INPUT_ERROR", vPerformanceData.Errors);
+                    }
+                }
+                catch (pErr) {
+                    console.log(pErr);
+                    if (pErr.errorCode == error_handling_service_1.ErrorHandling.ERROR_TYPE.ERROR_SEQUELIZE) {
+                        vErrHandling.throwError(pResponse, 400, pErr.errorCode, "Error happened on sequelize");
+                    }
+                    else {
+                        //handle other error code
+                        switch (pErr.errorCode) {
+                            case 101:
+                                vErrHandling.throwError(pResponse, 400, 101, "Error b");
+                                break;
+                        }
+                    }
+                }
             }
             catch (pErr) {
-                console.log("Failed to Query Payment History" + pErr);
-                var vError = {
-                    "status": "Error",
-                    "errorMessage": pErr,
-                    "result": null
-                };
-                pResponse.json(vError);
+                vErrHandling.throwError(pResponse, 400, 101, "test message");
             }
         });
     }

@@ -8,7 +8,7 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {NgModel} from 'angular2/common';
 
 @Component({
-      // templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
+       // templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
       templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
     directives: [
         ROUTER_DIRECTIVES

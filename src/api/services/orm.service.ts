@@ -51,20 +51,26 @@ export class ORMService{
 		if(vDebug)console.log('Finished loading association');*/
 	}
 
-	public async sp(pSPName:string,pParams:any) {
+	public async sp(pSPName:string,pParams:any,pIsJSON?:boolean) {
 		let vSequelize = this.getSequelize();
 		let vErrService:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
+		let vCurrentContext = this;
 		return new Promise<any>(
 			function (pResolve,pReject){
 				try{
-					let vParams = '()';
 					// build params
-					if (pParams) {
-						vParams = '(';
-						for(let vParam in pParams){
-							vParams += "'" + pParams[vParam] + "',";
+					let vParams;
+					if(pIsJSON) {
+						vParams = '(\''+JSON.stringify(pParams)+'\')';
+					}else {
+						vParams = '()';
+						if (pParams) {
+							vParams = '(';
+							for(let vParam in pParams){
+								vParams += "'" + pParams[vParam] + "',";
+							}
+							vParams = vParams.substring(0,vParams.lastIndexOf(',')) + ');';
 						}
-						vParams = vParams.substring(0,vParams.lastIndexOf(',')) + ');';
 					}
 					let vQuery = 'SELECT ' + pSPName + vParams;
 					vSequelize.query( vQuery, { type: vSequelize.QueryTypes.SELECT }).then(function(pResults){
@@ -73,6 +79,8 @@ export class ORMService{
 						}catch(pErr){
 							pReject(pErr);
 						}
+					}).catch(function(pErr){
+						pReject(vErrService.processSequelizeError(pErr.toString().replace('SequelizeDatabaseError: ', '')));
 					});
 				}catch(pErr){
 					pReject(vErrService.processSequelizeError(pErr));

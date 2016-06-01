@@ -38,12 +38,15 @@ import {CDUnservedOrderComponent} from '../../close-day/components/cd-unserved-o
 import {ConfirmCollectionComponent} from '../../basic-call-procedure/components/confirm-collection.component';
 import {AddUnservedOrderComponent} from '../../basic-call-procedure/components/add-unserved-order.component';
 import {SkipSalesOrderComponent} from '../../basic-call-procedure/components/skip-sales-order.component';
+import {SkipCollectionComponent} from '../../basic-call-procedure/components/skip-collection.component';
 import {HomeComponent} from '../../shared/components/home.component';
 import {AddStockReturnComponent} from '../../stock-return/components/add-stock-return.component';
 import {ConfirmStockReturnComponent} from '../../stock-return/components/confirm-stock-return.component';
 import {DetailSalesOrderComponent} from '../../close-day/components/detail-sales-order.component';
 import {DetailCollectionComponent} from '../../close-day/components/detail-collection.component';
 import {DetailRemittanceComponent} from '../../close-day/components/detail-remittance.component';
+import {TargetsActualsService} from '../../my-transaction/services/targets-actuals.service';
+
 
 
 @Component({
@@ -53,7 +56,7 @@ import {DetailRemittanceComponent} from '../../close-day/components/detail-remit
         ROUTER_DIRECTIVES
     ],
     providers : [
-        // PageNavigationService
+        TargetsActualsService
     ]
 })
 
@@ -193,6 +196,12 @@ import {DetailRemittanceComponent} from '../../close-day/components/detail-remit
         name: 'SkipSalesOrder',
         component: SkipSalesOrderComponent
     },
+    {
+        path: '/skipCollection',
+        name: 'SkipCollection',
+        component: SkipCollectionComponent
+    },
+
     // UNDER BCP TAB - END
 
     // UNDER CLOSE OF THE DAY TAB - START
@@ -283,8 +292,10 @@ import {DetailRemittanceComponent} from '../../close-day/components/detail-remit
 
 export class MainPageComponent {
 
-    constructor (private _layoutService: LayoutService,
-    private _matchMediaService: MatchMediaService) {}
+    constructor (
+        private _layoutService: LayoutService,
+        private _targetsActualsService: TargetsActualsService,
+        private _matchMediaService: MatchMediaService) {}
 
     getResize() {
         return this._matchMediaService.getMm();

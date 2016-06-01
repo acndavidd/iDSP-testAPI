@@ -10,14 +10,14 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class IdleService {
     vTimeout: number;
-
+    vTimeoutObs: Observable<void>;
     constructor( 
         private _authenticationService: AuthenticationService,
         private _router: Router,
         private _layoutService: LayoutService,
         private _modalService: Modal.ModalService,
         private _pageNavigationService: PageNavigationService) {
-        this.vTimeout = 60000;
+        this.vTimeout = 10000;
     }
 
     getTimeout() {
@@ -29,19 +29,26 @@ export class IdleService {
     }
 
     resetTimeout() {
-        this.vTimeout = 60000;
+        this.vTimeout = 10000;
     }
 
-    startTimer(pObservables: Observable<any>) {
-        if(!pObservables) {
-            pObservables = Observable.create( obs => {
-                
-            });
-        }
+    startTimer() {
+        console.log(Date.now() + '     start timer : ' + this.vTimeout);
+        let vCurrentContext = this;
+        return Observable.create(pObserever => {
+            let timer = setInterval(function() {
+                vCurrentContext.vTimeout -= 1000;
+                console.log(vCurrentContext.vTimeout);
+                if(vCurrentContext.vTimeout === 0) {
+                    vCurrentContext.timeoutEvent();
+                    clearInterval(timer);
+                }
+            }, 1000);
+            pObserever.complete();
+        });
     }
 
     timeoutEvent() {
-        
-        this._authenticationService.logoutCallBack(this);
+        console.log('Anjay : ' + Date.now());
     }
 }

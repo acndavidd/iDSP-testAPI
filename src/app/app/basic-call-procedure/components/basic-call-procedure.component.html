@@ -6,51 +6,28 @@
         </div>  
     </div>
 
-    <!-- <div class="item-container" *ngFor="#each of vFilteredListRoute" (click)="gotoAnotherPage(each)">
+<div class="container-body">
+    <!-- <div class="item-container" (click)="gotoCallPreparationHC({status: 'In Progress'})"> -->
+    <div class="item-container" *ngFor="#each of getFilteredDate()" (click)="gotoAnotherPage(each)">
         <div class="container">
+            <div class='cell width-10 padding-left-5'><div class="sequence green">1</div></div>
             <div class='cell'>
-                <div class='container'><div class='cell left'>{{each.retailer_name}}</div></div>
-                <div class='container'><div class='cell left italic'>{{each.retailer_min}}</div></div>
-                <div class='container'><div class='cell left grey'>Amount payable ({{each.total_count}})</div></div>
-                <div class='container'><div class='cell left grey'>Status</div></div>
+                <div class='container'><div class='cell width-40 padding-left-5'>{{each.storeName}}</div></div>
+                <div class='container'><div class='cell width-40 padding-left-5 italic'>{{each.retailerMinDetails}}</div></div>
+                <div class='container'><div class='cell width-40 padding-left-5'>Account receivables ({{each.numberofAgingSELFTransaction}}/{{each.numberofSELFTransaction}})</div></div>
             </div>
             <div class='cell'>
-                <div class='container'><div class='cell right green'>Route #{{each.seq}}</div></div>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'>{{each.total_acr}} ₱</div></div>
-                <div *ngIf="each.call_status === 'Visited'">
-                    <div class='container'><div class='cell right bold dark-sea-green'>{{each.call_status}}</div></div>
-                </div>
-                 <div *ngIf="each.call_status !== 'Visited'">
-                     <div class='container'><div class='cell right bold vivid-pink'>{{each.call_status}}</div></div>
-                 </div>
-
-            </div>
-            <div class='cell icon arrow-right'></div>
-        </div>
-    </div> -->
-
-
-    <div class="item-container" *ngFor="#each of vFilteredListRoute" (click)="gotoAnotherPage(each)">
-        <div class="container">
-            <div class='cell width-10 padding-left-5'><div class="sequence green">{{each.seq}}</div></div>
-            <div class='cell'>
-                <div class='container'><div class='cell width-40 padding-left-5'>{{each.retailer_name}}</div></div>
-                <div class='container'><div class='cell width-40 padding-left-5 italic'>{{each.retailer_min}}</div></div>
-                <div class='container'><div class='cell width-40 padding-left-5'>Amount payable ({{each.total_count}})</div></div>
-            </div>
-            <div class='cell'>
-                <div *ngIf="each.call_status === 'Visited'">
-                    <div class='container'><div class='cell width-40 align-right bold dark-sea-green'>{{each.call_status}}</div></div>
+                 <div *ngIf="each.call_status === 'Visited'">
+                    <div class='container'><div class='cell width-40 align-right bold dark-sea-green'>Visited</div></div>
                 </div>
                 <div *ngIf="each.call_status === 'In Progress'">
-                    <div class='container'><div class='cell width-40 align-right bold grey'>{{each.call_status}}</div></div>
+                    <div class='container'><div class='cell width-40 align-right bold grey'>Visited/NotVisited</div></div>
                 </div>
                 <div *ngIf="each.call_status === 'Visited'">
-                    <div class='container'><div class='cell width-40 align-right bold vivid-pink'>{{each.call_status}}</div></div>
+                    <div class='container'><div class='cell width-40 align-right bold vivid-pink'>Visited/NotVisited</div></div>
                 </div>
                 <div class='container'><div class='cell width-40 align-right'></div></div>
-                <div class='container'><div class='cell width-40 align-right'>{{each.total_acr}} ₱</div></div>
+                <div class='container'><div class='cell width-40 align-right'>{{each.totalAmountofSELFTransaction}} ₱</div></div>
             </div>
             <div class='cell width-10 arrow-right'></div>
         </div>
