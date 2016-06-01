@@ -612,6 +612,7 @@ GRID - TABLE CELL
                         background-position: right 2% top 50%;
                         background-repeat: no-repeat;
                         background-size: 3.5vw;
+                        border-style: ridge;
                     }
                 }
             }
@@ -733,81 +734,7 @@ GRID - TABLE CELL
                 &.serenade { background-color: $serenade; }
             }
 
-            &.left {
-                width: 45%;
-                padding-left:0.6em;
-            }
-            &.left2 {
-                width: 40%;
-                padding-left:0.6em;
-            }
-            &.left3 {
-                width: 40%;
-                text-align: left;
-            }
-            &.right {
-                width: 40%;
-                text-align: right;
-            }
-            &.right2 {
-                width: 30%;
-                text-align: right;
-            }
-            &.single {
-                width: 85%;
-                padding-left:0.6em;
-            }
-            &.single1 {
-                width: 100%;
-                padding-left:0.6em;
-            }
-            &.single-large {
-                height:3.2em;
-                width: 85%;
-                padding-left:0.6em;
-            }
-
-            &.icon {
-                width: 15%;
-            }
-            &.logo {
-                width:30%;
-            }
-            &.content{
-                padding-left:0.6em;
-                width:70%;
-            }
-            &.bold {
-                font-weight: bold;
-            }
-            &.italic {
-                font-style: italic;
-            }
-            &.center {
-                text-align: center;
-            }
-
-            &.sub-cell {
-                padding-left:2em;
-            }
-            &.title {
-                font-size: 1.1em;
-                height:2em;
-            }
-            &.title2 {
-                font-size: 1.2em;
-            }
-            &.title3{
-                font-size:1.5em;
-                padding-left:0.4em;
-            }
-            &.header {
-                width: 100%;
-                &.padding-left{
-                    padding-left:0.6em;
-                }
-            }
-
+ 
             .profpic {
                 width: 18vw;
                 height: 18vw;
