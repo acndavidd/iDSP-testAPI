@@ -38,6 +38,7 @@ import {CDUnservedOrderComponent} from '../../close-day/components/cd-unserved-o
 import {ConfirmCollectionComponent} from '../../basic-call-procedure/components/confirm-collection.component';
 import {AddUnservedOrderComponent} from '../../basic-call-procedure/components/add-unserved-order.component';
 import {SkipSalesOrderComponent} from '../../basic-call-procedure/components/skip-sales-order.component';
+import {SkipCollectionComponent} from '../../basic-call-procedure/components/skip-collection.component';
 import {HomeComponent} from '../../shared/components/home.component';
 import {AddStockReturnComponent} from '../../stock-return/components/add-stock-return.component';
 import {ConfirmStockReturnComponent} from '../../stock-return/components/confirm-stock-return.component';
@@ -193,6 +194,12 @@ import {DetailRemittanceComponent} from '../../close-day/components/detail-remit
         name: 'SkipSalesOrder',
         component: SkipSalesOrderComponent
     },
+    {
+        path: '/skipCollection',
+        name: 'SkipCollection',
+        component: SkipCollectionComponent
+    },
+
     // UNDER BCP TAB - END
 
     // UNDER CLOSE OF THE DAY TAB - START

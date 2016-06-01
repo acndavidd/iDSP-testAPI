@@ -5,6 +5,7 @@ import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {RetailerService} from '../../shared/services/retailer.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
+import {Modal} from '../../shared/services/modal.service';
 import {NgModel} from 'angular2/common';
 
 @Component({
@@ -32,7 +33,8 @@ export class BCPCollectionComponent {
         private _headerService: HeaderService,
         private _retailerService: RetailerService,
         private _pageNavigationService: PageNavigationService,
-        private _router: Router
+        private _router: Router,
+        private _modalService: Modal.ModalService
         ) {
 
 
@@ -133,9 +135,31 @@ export class BCPCollectionComponent {
         return this.vPaymentHistory;
     }
 
-    gotoSkipCollection() {
+    //gotoSkipCollection() {
         // nanti pegi ke SKIPP COLLECTION UI
+    //}
+
+    skipCollection() {
+
+            console.log('Skip Collection');
+            let params = {
+            _pageNavigationService : this._pageNavigationService
+            };
+
+            this._modalService.toggleModal('Are you sure  <br/> you want to skip collection ?', 
+            Modal.ModalType.CONFIRMATION, 
+            {footNote : '* If you confirm to continue, <br/> You cannot go back to collection for this retailer', 
+            ModalButton : Modal.ModalButton.OK_CANCEL, 
+            callback : this.skipCollectionback, 
+            param : params,
+            } );
     }
+
+    skipCollectionback(pParam) {
+
+            pParam._pageNavigationService.navigate('SkipCollection', null, null);
+
+    } 
 
     gotoConfirmCollection() {
         this._pageNavigationService.navigate('ConfirmCollection', null, null);
