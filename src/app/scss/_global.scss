@@ -81,13 +81,12 @@ CHECKBOX
 
 }
 
+
 /*
 ===========================================================
 END OF CHECKBOX
 ===========================================================
 */
-
-
 //PLEASE PUT HEIGHT HERE
 &.height-1 { height: 1vw; }
 &.height-2 { height: 2vw; }
@@ -101,6 +100,7 @@ END OF CHECKBOX
 &.height-10 { height: 10vw; }
 
 // PLEASE PUT WIDTH HERE
+&.width-00 { width: 0%; }
 &.width-10 { width: 10%; }
 &.width-15 { width: 15%; }
 &.width-20 { width: 20%; }
@@ -133,7 +133,7 @@ END OF CHECKBOX
 
 /*
 ===========================================================
-ICON - BUTTON
+LIST VIEW - ICON BUTTON
 ===========================================================
 */
 
@@ -228,7 +228,7 @@ ICON - BUTTON
 
 /*
 ===========================================================
-ICON - MENU
+LIST VIEW - ICON MENU
 ===========================================================
 */
 
@@ -363,7 +363,13 @@ SUBTAB
 
 /*
 ===========================================================
-BUTTON - CLICK
+LIST VIEW
+===========================================================
+*/
+
+/*
+===========================================================
+LIST VIEW - BUTTON
 ===========================================================
 */
 .container-body {
@@ -384,23 +390,7 @@ BUTTON - CLICK
         width: 50%;
         float:left;
     }
-    .button-bottom {
-        display: inline-block;
-        width: 100%;
-        bottom: 0;
-        position: fixed;
-        padding-bottom: 2vw;
-        padding-top: 2vw;
-        background-color: $apple;
-    }
-    .button-identifier {
-            cursor: pointer;
-            font-size: 4vw;
-            text-align: center;
-            width: 100%;
-            color: $white;
-            font-weight: lighter;
-    }
+
     .button {
         display: inline-block;
         width: 70%;
@@ -414,9 +404,17 @@ BUTTON - CLICK
 
         &.button-small {
             border-radius: 0vw;
-            padding-bottom: 1vw;
-            padding-top: 1vw;
+            padding-bottom: 0vw;
+            padding-top: 0vw;
+            font-size: 3vw;
+        }
+        .button-identifier {
+            cursor: pointer;
             font-size: 4vw;
+            text-align: center;
+            width: 100%;
+            color: $white;
+            font-weight: lighter;
         }
     }
 
@@ -430,21 +428,16 @@ BUTTON - CLICK
         margin-bottom:4%;
         background-color: $grey;
         border-radius: 2vw;
+        .button-identifier {
+            cursor: pointer;
+            font-size: $button;
+            text-align: center;
+            width: 100%;
+            color: $white;
+            font-weight: lighter;
+        }
     }
 
-/*
-===========================================================
-END OF BUTTON - CLICK
-===========================================================
-*/
-
-
-
-/*
-===========================================================
-MENU - COVER & PROFILE PICTURE 
-===========================================================
-*/
     .parent {
         width: 100%;
     }
@@ -511,7 +504,6 @@ MENU - COVER & PROFILE PICTURE
     }
 
 
-
     .square-button {
         display: table;
         width: 100%;
@@ -528,6 +520,8 @@ MENU - COVER & PROFILE PICTURE
         .icon {
             height: 18vw;
             width: 100%;
+
+
         }
 
         .text {
@@ -546,7 +540,7 @@ MENU - COVER & PROFILE PICTURE
 
 /*
 ===========================================================
-GRID - TABLE CELL  
+LIST VIEW - TEXT
 ===========================================================
 */
 
@@ -604,7 +598,6 @@ GRID - TABLE CELL
                 &.input-peso {
                     text-align: right;
                     font-size: $content-normal;
-                    //font-size: 4vw;
                     padding: 0% 11% 0% 0%;
                     @media screen and (-webkit-min-device-pixel-ratio: 0) {
                         background-image: url(#{$icon-peso});
@@ -847,7 +840,7 @@ GRID - TABLE CELL
       
  /*
 ===========================================================
-GRID - FILTER 
+LIST VIEW - FILTER
 ===========================================================
 */   
 
@@ -856,8 +849,6 @@ GRID - FILTER
         width: 100%;
         display: block;
         clear: left;
-        border-bottom: 1px solid $border-line;
-
         .filter-label {
             display: table-cell;
             font-size: 4vw;
@@ -913,7 +904,7 @@ GRID - FILTER
 
  /*
 ===========================================================
-END OF GRID - FILTER
+END OF LIST VIEW - FILTER
 ===========================================================
 */   
 
