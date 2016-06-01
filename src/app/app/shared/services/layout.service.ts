@@ -405,8 +405,10 @@ export class LayoutService {
         }
 
         else if (
+            pCurrent === 'DetailSalesOrder' ||
             pCurrent === 'DetailCollection' ||
             pCurrent === 'DetailRemittance') {
+
             // this._pageNavigationService.setPreviousPage('CloseDay');
             this._pageNavigationService.resetListPreviousData();
             this.vOldCurrentPage = 'Collection';
@@ -429,6 +431,7 @@ export class LayoutService {
             };
         }
         // UNDER CLOSE OF THE DAY - END
+
 
         // UNDER REMITTANCE - START
         else if (

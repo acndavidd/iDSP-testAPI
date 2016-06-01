@@ -19,6 +19,8 @@ import {Response, RequestOptionsArgs, Headers, Http, Connection, RequestOptions}
 export class AddRemittanceComponent {
     
     vSelectedRemittance;
+    vDatePicker;
+    vDateTimePicker;
 
     constructor (
     private _router: Router,
@@ -39,5 +41,27 @@ export class AddRemittanceComponent {
 
     gotoRemittance() {
         this._pageNavigationService.navigate('Remittance', null, null);
+    }
+
+
+    aaa() {
+        console.log('aaaa');
+        var options = {
+            date: new Date(),
+            mode: 'date'
+        };
+
+        this.vDatePicker.show(options, function(date) {
+            alert('date result ' + date);  
+        });
+    }
+
+    bbb() {
+        console.log('bbbb');
+        var onDateSelected = function (date) {
+            console.log(new Date(parseInt(date, 10)));
+        };
+
+        this.vDateTimePicker.selectDate(onDateSelected);
     }
 }

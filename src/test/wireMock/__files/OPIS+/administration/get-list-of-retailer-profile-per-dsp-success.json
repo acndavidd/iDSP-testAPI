@@ -1,0 +1,67 @@
+{
+	"Status" : 200,
+	"StatusMessage" : "OK",
+	"RecordCount" : 5,
+	"RetailerList": [
+		{
+			"retailerId" : "RTL00001",
+			"storeName" : "Gloria Cell",
+			"outletType" : "Gallery",
+			"retailerMinDetails" : "243234123",
+			"retailerAddress" : "BSD City South Manila",
+			"numberofSELFTransaction" : "6",
+			"numberofAgingSELFTransaction" : "3",
+			"totalAmountofSELFTransaction" : "100000",
+			"dspId" : "DSP00001",
+			"dspName" : "Edi Yono"
+		},
+		{
+			"retailerId" : "RTL00002",
+			"storeName" : "Tamara Cell",
+			"outletType" : "Gallery",
+			"retailerMinDetails" : "243234123",
+			"retailerAddress" : "BSD City South Manila",
+			"numberofSELFTransaction" : "7",
+			"numberofAgingSELFTransaction" : "2",
+			"totalAmountofSELFTransaction" : "100000",
+			"dspId" : "DSP00001",
+			"dspName" : "Edi Yono"
+		},
+		{
+			"retailerId" : "RTL00003",
+			"storeName" : "Bondan Cell",
+			"outletType" : "Gallery",
+			"retailerMinDetails" : "243234123",
+			"retailerAddress" : "BSD City South Manila",
+			"numberofSELFTransaction" : "8",
+			"numberofAgingSELFTransaction" : "6",
+			"totalAmountofSELFTransaction" : "100000",
+			"dspId" : "DSP00001",
+			"dspName" : "Edi Yono"
+		},
+		{
+			"retailerId" : "RTL00004",
+			"storeName" : "Cindy Cell",
+			"outletType" : "Gallery",
+			"retailerMinDetails" : "243234123",
+			"retailerAddress" : "BSD City South Manila",
+			"numberofSELFTransaction" : "9",
+			"numberofAgingSELFTransaction" : "1",
+			"totalAmountofSELFTransaction" : "100000",
+			"dspId" : "DSP00001",
+			"dspName" : "Edi Yono"
+		},
+		{
+			"retailerId" : "RTL00005",
+			"storeName" : "Gloria Cell",
+			"outletType" : "Gallery",
+			"retailerMinDetails" : "243234123",
+			"retailerAddress" : "BSD City South Manila",
+			"numberofSELFTransaction" : "6",
+			"numberofAgingSELFTransaction" : "1",
+			"totalAmountofSELFTransaction" : "100000",
+			"dspId" : "DSP00001",
+			"dspName" : "Edi Yono"
+		}
+	]
+}
