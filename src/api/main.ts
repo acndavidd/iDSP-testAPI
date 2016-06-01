@@ -104,6 +104,7 @@ vRouter.post('/performance',vTargetsActualsCtrl.performance);
 vRouter.post('/additionalRetailerRoute',vRetailerCtrl.additionalRetailerRoute);
 vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);
+vRouter.get('/testSP', vLoginCtrl.testSP);
 
 var vTesting = vExpress.Router();
 vTesting.post('/login',vLoginCtrl.login);
@@ -121,6 +122,7 @@ vApp.use('/service',vRouter);
 vApp.use('/testing', vTesting);
 vApp.listen(PORT);
 
+/*
 var CronJob = require('cron').CronJob;
 var job = new CronJob('* * 0 * * *', function() {
     console.log('Start Running scheduler for generate call plan');
@@ -128,6 +130,6 @@ var job = new CronJob('* * 0 * * *', function() {
 }, function () {
 
 }, true, 'Asia/Manila');
-
+*/ 
 console.log('http://127.0.0.1:' + PORT + '/service');
 console.log('http://127.0.0.1:' + PORT + '/testing');

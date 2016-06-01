@@ -43,60 +43,60 @@ export module APIService {
                         return vReqHeaders;
                 }
 
-                post(pAPIType, pURL, pHeaders, pData) {
-                        console.log('POST ' + pAPIType + pURL);
-                        return this.request(RequestMethod.POST, pAPIType, pURL, pHeaders, pData);
-                }
+		post(pAPIType, pURL, pHeaders, pData) {
+			return this.request(RequestMethod.POST, pAPIType, pURL, pHeaders, pData);
+		}
 
-                get(pAPIType, pURL, pHeaders, pUrlParams?) {
-                        let fullUrl = pURL;
-                        // build params url
-                        if(pUrlParams) {
-                                fullUrl = fullUrl + '?'
-                                for(let vParam in pUrlParams){
-                                        fullUrl += vParam + "=" + pUrlParams[vParam] + "&";
-                                }
-                                fullUrl = fullUrl.substring(0,fullUrl.lastIndexOf('&'));
-                        }
-                        console.log("GET " + fullUrl);
-                        return this.request(RequestMethod.GET, pAPIType, fullUrl, pHeaders);
-                }
+		get(pAPIType, pURL, pHeaders, pUrlParams?) {
+			let fullUrl = pURL;
+			// build params url
+			if(pUrlParams) {
+				fullUrl = fullUrl + '?'
+				for(let vParam in pUrlParams){
+					fullUrl += vParam + "=" + pUrlParams[vParam] + "&";
+				}
+				fullUrl = fullUrl.substring(0,fullUrl.lastIndexOf('&'));
+			}
+			return this.request(RequestMethod.GET, pAPIType, fullUrl, pHeaders);
+		}
 
-                request(pRequestMethod, pAPIType, pURL, pHeaders, pData?) {
-                        return new Promise<any>(
-                                function(pResolve, pReject){
-                                        let vErrorHandlingSvc:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
-                                        let vReqHeaders;
-                                        if(!pHeaders) {
-                                                vReqHeaders = vCurrentContext.buildAuthHeaders(pRequestMethod);
-                                        }else {
-                                                vReqHeaders = pHeaders;
-                                        }
-                                        let vRequestObj = {
-                                                url : pAPIType + pURL,
-                                                method : pRequestMethod,
-                                                headers : vReqHeaders,
-                                                timeout : vConfig.service["timeout"],
-                                                body : ''
-                                        };
-                                        console.log(vRequestObj);
-                                        if(pRequestMethod === APIService.RequestMethod.POST) {
-                                                vRequestObj.body = JSON.stringify(pData);
-                                        }
-                                        vRequest(vRequestObj, function(pErr, pResponse, pBody){
-                                                if(pErr) {
-                                                        pReject(vErrorHandlingSvc.processHTTPError(pErr));
-                                                }else {
-                                                        try{
-                                                                pResolve(vErrorHandlingSvc.processHTTPResult(JSON.parse(pBody)));
-                                                        }catch(pErr) {
-                                                                pReject(pErr);
-                                                        }
-                                                }
-                                        });
-                                }
-                        )
-                }
+		request(pRequestMethod, pAPIType, pURL, pHeaders, pData?) {
+			console.log(pRequestMethod + ' ' + pURL);
+			return new Promise<any>(
+				function(pResolve, pReject){
+					let vErrorHandlingSvc:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
+					let vReqHeaders;
+					if(!pHeaders) {
+						vReqHeaders = vCurrentContext.buildAuthHeaders(pRequestMethod);
+					}else {
+						vReqHeaders = pHeaders;
+					}
+					let vRequestObj = {
+						url : pAPIType + pURL,
+						method : pRequestMethod,
+						headers : vReqHeaders,
+						timeout : vConfig.service["timeout"],
+						body : ''
+					};
+					if(pRequestMethod === APIService.RequestMethod.POST) {
+						vRequestObj.body = JSON.stringify(pData);
+					}
+					vRequest(vRequestObj, function(pErr, pResponse, pBody){
+						if(pErr) {
+							pReject(vErrorHandlingSvc.processHTTPError(pErr));
+						}else {
+							try{
+								pResolve(vErrorHandlingSvc.processHTTPResult(JSON.parse(pBody)));
+							}catch(pErr) {
+								console.log(pErr);
+								pReject(pErr);
+							}
+						}
+					});
+				}
+			)
+		}
+>>>>>>> 1e4e4d2f78d5e431fca69842d4d7ffa9ae316abe
 
         }
 }

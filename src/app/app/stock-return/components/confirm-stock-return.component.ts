@@ -4,6 +4,7 @@ import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {NgFor, NgModel} from 'angular2/common';
+import {PageNavigationService} from '../../shared/services/page-navigation.service';
 
 @Component({
     selector: 'confirm-stock-return',
@@ -19,7 +20,8 @@ export class ConfirmStockReturnComponent {
         private _layoutService: LayoutService,
         private _matchMediaService: MatchMediaService,
         private _headerService: HeaderService,
-        private _router: Router
+        private _router: Router,
+        private _pageNavigationService: PageNavigationService
     ) {
         this._layoutService.setCurrentPage('ConfirmStockReturn');
         this._headerService.setTitle('Confirm Stock Return');
@@ -30,5 +32,9 @@ export class ConfirmStockReturnComponent {
 
         // For By Pass Directly without API
         console.log('stock return is successfully confirmed');
+    }
+
+    goToStockReturn() {
+        this._pageNavigationService.navigate('StockReturn', null, null);
     }
 }

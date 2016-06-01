@@ -57,5 +57,3 @@ END
 $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION public.get_account_receivables(character varying, numeric)
-  OWNER TO postgres;
