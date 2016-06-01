@@ -88,7 +88,6 @@ var vRouter = vExpress.Router();
 vRouter.post('/login',vLoginCtrl.login);
 vRouter.post('/login/MPIN', vLoginCtrl.submitMPIN);
 vRouter.get('/logout', vLoginCtrl.logout);
-vRouter.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
 vRouter.get('/retailer/alert',vRetailerCtrl.getAllRetailerAlert);
 vRouter.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
 vRouter.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
@@ -107,6 +106,7 @@ vRouter.post('/additionalRetailerRoute',vRetailerCtrl.additionalRetailerRoute);
 vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);
 vRouter.get('/testSP', vLoginCtrl.testSP);
+vRouter.post('/dspPhysicalInventoryList',vInventoryCtrl.dspPhysicalInventoryList);
 
 // For testing purpose , can be hit outside app without token
 var vTesting = vRouter;
