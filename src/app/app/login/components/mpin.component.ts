@@ -23,7 +23,6 @@ export class MpinComponent {
     private vMPIN3:string;
     private vMPIN4:string;
     private vMPIN5:string;
-    private autofocus:boolean;
     constructor (
         private _router: Router,
         private _layoutService: LayoutService,
@@ -33,8 +32,8 @@ export class MpinComponent {
         ) {
 
         this._layoutService.setCurrentPage('Mpin');
-        this.autofocus = false;
-        setTimeout( () => {this.onchange;}, 10);
+        // this.autofocus = false;
+        setTimeout( () => {this.onchange;}, 1);
     }
 
     cancel(pEvent) {
@@ -50,6 +49,9 @@ export class MpinComponent {
         // For By Pass Directly without API
         // this._pageNavigationService.navigate('Home', null, null);
         // this._authenticationService.submitMPIN();
+
+        this._pageNavigationService.navigate('Home', null, null);
+        // this._authenticationService.submitMPIN(this.vMPIN1 + this.vMPIN2 + this.vMPIN3 + this.vMPIN4 + this.vMPIN5);
     }
 
     ResendMpinModalComponent() {
@@ -57,49 +59,23 @@ export class MpinComponent {
         // this._modalService.toggleResendMpinModal();
     }
 
-    onchange(pStr) {
-        switch (pStr) {
-            case 1:
-                if (!this.vMPIN1) {
-                    document.getElementById('mpin1').focus();
-                } else {
-                    document.getElementById('mpin2').focus();
-                }
-                    break;
-            case 2:
-                if (!this.vMPIN2 && this.vMPIN1 && this.vMPIN3) {
-                    document.getElementById('mpin2').focus();
-                } else if (!this.vMPIN2 && this.vMPIN1 && !this.vMPIN3) {
-                    document.getElementById('mpin1').focus();
-                } else {
-                    document.getElementById('mpin3').focus();
-                }
-                break;
-            case 3:
-                if (!this.vMPIN3 && this.vMPIN2 && this.vMPIN4) {
-                    document.getElementById('mpin3').focus();
-                } else if (!this.vMPIN3 && this.vMPIN2 && !this.vMPIN4) {
-                    document.getElementById('mpin2').focus();
-                } else {
-                    document.getElementById('mpin4').focus();
-                }
-                break;
-            case 4:
-                if (!this.vMPIN4 && this.vMPIN3 && this.vMPIN5) {
-                    document.getElementById('mpin4').focus();
-                } else if (!this.vMPIN4 && this.vMPIN3 && !this.vMPIN5) {
-                    document.getElementById('mpin3').focus();
-                } else {
-                    document.getElementById('mpin5').focus();
-                }
-                break;
-            case 5:
-                if (!this.vMPIN5 && this.vMPIN4) {
-                    document.getElementById('mpin4').focus();
-                } 
-            default:
-                // code...
-                break;
+    onchange(pKeyCode, pId: number) {
+        var vId = 1;
+        var vMpin = 'mpin';
+        if (pKeyCode === 32) {
+            document.getElementById(vMpin+pId).focus();
+        } else if (pKeyCode === 8) {
+            if (pId === 1) {
+                pId = 2;
+            }
+            document.getElementById(vMpin+(pId-1)).focus();
+        } else if (pKeyCode === 13) {
+            this.submit(event);
+        } else {
+            if (pId === 5) {
+                pId = 4;
+            }
+            document.getElementById(vMpin+(pId+1)).focus();
         }
     }
 }

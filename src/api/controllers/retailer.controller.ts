@@ -1,12 +1,15 @@
 'use strict';
 import {ORMService} from '../services/orm.service';
+import {APIService} from '../services/api.service';
+import {ErrorHandling} from '../services/error-handling.service';
+import {RetailerModel} from '../models/input/retailer.model';
 //import {ErrHandlerService} from '../services/err.handler.service';
 
 export interface RetailerInterface{
 	getProduct(pRequest, pResponse):void;
 	getRetailerSummary(pRequest, pResponse):Promise<void>;
 	getSalesRoute(pRequest, pResponse):Promise<void>;
-	todaysRetailerRoute(pRequest, pResponse):Promise<void>;
+	task(pRequest, pResponse):Promise<void>;
 	retailerCallPreparation(pRequest, pResponse):Promise<void>;
 	getAllRetailerAlert(pRequest, pResponse):Promise<void>;
 	loadWallet(pRequest, pResponse):Promise<void>;
@@ -18,9 +21,9 @@ export interface RetailerInterface{
 export class RetailerController implements RetailerInterface{
 
 	//private errService:ErrHandlerService = new ErrHandlerService();
+	private vUsername: string;
 
-	constructor(){
-		
+	constructor() {
 	}
 	
 	getProduct(pRequest,pResponse) {
@@ -133,39 +136,64 @@ export class RetailerController implements RetailerInterface{
 		}
 	}
 
-	async todaysRetailerRoute(pRequest, pResponse){
-		try{
-			console.log("Start getting retailer route for BCP");
-			var vSelectedDay = pRequest.body.day;
-			var vSalesPerson = pRequest.body.salesPerson;
-			let vOrmSvc = new ORMService();
+	async task(pRequest, pResponse) {
+		// try{
+			// console.log("Start getting retailer route for BCP");
+			// var vSelectedDay = pRequest.body.day;
+			// var vSalesPerson = pRequest.body.salesPerson;
+			// let vOrmSvc = new ORMService();
 			
-			let vParams = {
-				sales_person : vSalesPerson,
-				selected_day : vSelectedDay
+			// let vParams = {
+			// 	sales_person : vSalesPerson,
+			// 	selected_day : vSelectedDay
 				
-			};
+			// };
 
-			var vResult = await vOrmSvc.sp('get_retailer_route_bcp', vParams );
-			console.log("Query Done with result : "+ JSON.stringify(vResponse));
-			var vResponse = {
-						"status" : "Success",
-						"errorMessage" : "",
-						"result" : vResult
-					};
+			// var vResult = await vOrmSvc.sp('get_retailer_route_bcp', vParams );
+			// console.log("Query Done with result : "+ JSON.stringify(vResponse));
+			// var vResponse = {
+			// 			"status" : "Success",
+			// 			"errorMessage" : "",
+			// 			"result" : vResult
+			// 		};
 			
-			pResponse.json(vResponse);
-		}
-		catch(pErr){
-			console.log("Failed to Query Sales Route with error message" + pErr);
+			// pResponse.json(vResponse);
 
-			var vError = {
-						"status" : "Error",
-						"errorMessage" : pErr,
-						"result" : null
-					};
-			pResponse.json(vError);
-		}
+			console.log("Controller Start getting retailer route for BCP");
+			var vSalesPerson = pRequest.query.username;
+			console.log('sales' + vSalesPerson);
+
+			let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
+			try{
+				let vHttpSvc = new APIService.HTTPService();
+				let vPath:string = '/OPISNET/services/idsp/AllRT';
+				let vRetailerData = new RetailerModel(vSalesPerson);
+				if(vRetailerData.validate()) {
+					let vResult = await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null, vRetailerData);
+					pResponse.status(vResult.status).json(vResult.payload);
+				}else {
+					vErrHandling.throwError(pResponse, 400, 101, "INPUT_ERROR", vRetailerData.Errors);
+				}
+			}catch(pErr){
+				console.log(pErr);
+				if(pErr.errorCode == 101) {
+					vErrHandling.throwError(pResponse, 400, 101, "ERR_INVALID_CREDENTIAL");
+				}
+			}
+
+
+
+		// }
+		// catch(pErr){
+		// 	console.log("Failed to Query Sales Route with error message" + pErr);
+
+		// 	var vError = {
+		// 				"status" : "Error",
+		// 				"errorMessage" : pErr,
+		// 				"result" : null
+		// 			};
+		// 	pResponse.json(vError);
+		// }
 	}
 
 	async retailerCallPreparation(pRequest,pResponse) {

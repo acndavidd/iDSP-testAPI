@@ -8,7 +8,7 @@ import {NgModel} from 'angular2/common';
 
 @Component({
     selector: 'dsp-alerts',
-    templateUrl: './app/my-transaction/components/hc-dsp-alerts.component.html',
+    templateUrl: './app/my-transaction/components/dsp-alerts.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
@@ -35,9 +35,9 @@ export class DSPAlertsComponent {
     }
 
     loadAlert() {
-        this._http.get('/getRetailerAlert', null).subscribe(
+        this._http.get('/testSP', null).subscribe(
             response => {
-                this.vRetailerAlert = this.vAllRetailerAlert = response.json().result;
+                this.vRetailerAlert = this.vAllRetailerAlert = response.json();
             },
             error => {
 

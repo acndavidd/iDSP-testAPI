@@ -15,8 +15,6 @@ import {HeaderService} from '../../shared/services/header.service';
 
 export class DetailCollectionComponent {
 
-
-
     constructor (
     private _router: Router,
     private _layoutService: LayoutService,
@@ -26,7 +24,7 @@ export class DetailCollectionComponent {
     private _headerService: HeaderService
     ) {
         this._layoutService.setCurrentPage('DetailCollection');
-        this._headerService.setTitle('Collection Detail');
+        this._headerService.setTitle('Detail Collection');
     }
 
     getResize() {

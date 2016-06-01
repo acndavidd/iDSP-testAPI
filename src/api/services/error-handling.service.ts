@@ -9,7 +9,8 @@ export module ErrorHandling {
 	}
 
 	export var ERROR_TYPE = {
-		ERROR_SEQUELIZE : 100
+		ERROR_SEQUELIZE : 100,
+		INPUT_ERROR : 99
 	}
 
 	export class Error{
@@ -21,7 +22,7 @@ export module ErrorHandling {
 
 	export class Result {
 		status;
-		payload;
+		payload : {};
 	}
 
 	export interface ErrorHandlingInterface {

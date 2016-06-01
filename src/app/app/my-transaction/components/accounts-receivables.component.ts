@@ -57,8 +57,8 @@ export class AccountsReceivablesComponent {
         this.vFlag = 0;
         this._accountsReceivablesService.getAllReceivablesRoute(vDspId,vSource).subscribe(
             response => {
-                console.log('1 : ' + JSON.stringify(response.json()[0].v_receivables_all));
-                this.vSelfTotalAmount = response.json()[0].v_receivables_all[1].self_total_amount;
+                console.log('1 : ' + JSON.stringify(response.json()));
+                this.vSelfTotalAmount = response.json()[1].v_receivables_all[1].self_total_amount;
                 this.vBcpTotalAmount = response.json()[0].v_receivables_all[0].total_amount;
                 this.vAllSelfBcpList = response.json()[0].v_receivables_all;
 

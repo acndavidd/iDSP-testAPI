@@ -108,16 +108,13 @@ export class RetailerService {
         */
     }
 
-    queryTodaysRetailerRoute() {
+    queryTask() {
         console.log('Start hit login service to Query Retailer Route for BCP');
-        this.vToday = new Date();
-        let vData = {
-            salesPerson: 'DSP00001',
-            day: 1
-        };
-
-        var vSalesRoute;
-        return this._http.post('/todaysRetailerRoute', JSON.stringify(vData));
+            let vData = {
+                salesPerson: 'DSP00001'
+            };
+            
+        return this._http.get('/task?username=' + vData.salesPerson);
     }
 
     queryAdditionalRetailerRoute() {

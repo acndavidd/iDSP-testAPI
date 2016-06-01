@@ -26,7 +26,7 @@ export class DetailRemittanceComponent {
     private _headerService: HeaderService
     ) {
         this._layoutService.setCurrentPage('DetailRemittance');
-        this._headerService.setTitle('Remittance Detail');
+        this._headerService.setTitle('Detail Remittance');
     }
 
     getResize() {

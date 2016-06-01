@@ -1,0 +1,21 @@
+{
+	"Status" : 200,
+	"StatusMessage" : "OK",
+	"RetailerProfileList": [
+		{
+			"RetailerID" : "RET000001",
+			"storeName" : "Gloria Cell",
+			"Outlet Type" : "Gallery",
+			"OwnerFirstName" :"Gloria",
+			"OwnerMiddleName" : "Joe",
+			"OwnerLastName" : "Mendes",
+			"RetailerMIN" : "123132131",
+			"PersonalMIN" : "2121212",
+			"StoreAddress" : "Jl. SUKA SUKA GUE",
+			"civilStatus" : "Single",
+			"Email" : "gloria@emailgloria.com",
+			"Gender" : "F",
+			"Birthday" : "1991/04/29"
+		}
+	]
+}
