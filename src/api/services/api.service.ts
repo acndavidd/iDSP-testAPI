@@ -44,12 +44,11 @@ export module APIService {
 		}
 
 		post(pAPIType, pURL, pHeaders, pData) {
-			console.log('POST ' + pAPIType + pURL);
 			return this.request(RequestMethod.POST, pAPIType, pURL, pHeaders, pData);
 		}
 
 		get(pAPIType, pURL, pHeaders, pUrlParams?) {
-			let fullUrl = pAPIType + pURL;
+			let fullUrl = pURL;
 			// build params url
 			if(pUrlParams) {
 				fullUrl = fullUrl + '?'
@@ -58,11 +57,11 @@ export module APIService {
 				}
 				fullUrl = fullUrl.substring(0,fullUrl.lastIndexOf('&'));
 			}
-			console.log("GET " + fullUrl);
 			return this.request(RequestMethod.GET, pAPIType, fullUrl, pHeaders);
 		}
 
 		request(pRequestMethod, pAPIType, pURL, pHeaders, pData?) {
+			console.log(pRequestMethod + ' ' + pURL);
 			return new Promise<any>(
 				function(pResolve, pReject){
 					let vErrorHandlingSvc:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();

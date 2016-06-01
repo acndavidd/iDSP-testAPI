@@ -106,6 +106,7 @@ vRouter.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
 vRouter.post('/additionalRetailerRoute',vRetailerCtrl.additionalRetailerRoute);
 vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);
+vRouter.get('/testSP', vLoginCtrl.testSP);
 
 // For testing purpose , can be hit outside app without token
 var vTesting = vRouter;
@@ -113,6 +114,7 @@ vApp.use('/service',vRouter);
 vApp.use('/testing', vTesting);
 vApp.listen(PORT);
 
+/*
 var CronJob = require('cron').CronJob;
 var job = new CronJob('* * 0 * * *', function() {
     console.log('Start Running scheduler for generate call plan');
@@ -120,6 +122,6 @@ var job = new CronJob('* * 0 * * *', function() {
 }, function () {
 
 }, true, 'Asia/Manila');
-
+*/ 
 console.log('http://127.0.0.1:' + PORT + '/service');
 console.log('http://127.0.0.1:' + PORT + '/testing');

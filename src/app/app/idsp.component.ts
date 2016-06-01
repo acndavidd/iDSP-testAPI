@@ -26,7 +26,8 @@ import {RetailerSalesOrderComponent} from './basic-call-procedure/components/ret
 import {DetailRetailerComponent} from './basic-call-procedure/components/detail-retailer.component';
 import {SalesOrderPaymentComponent} from './basic-call-procedure/components/sales-order-payment.component';
 import {LeftMenuComponent} from './shared/components/left-menu.component';
-
+import {IdleService} from './shared/services/idle.service';
+import {Observable} from 'rxjs/Observable';
 
 declare var FastClick: FastClickStatic;
 declare var configChannel: any;
@@ -35,7 +36,9 @@ declare var configChannel: any;
     selector: 'idsp-app',
     template: `
         <div id="content"
-            (window:resize)="OnResize()">
+            (window:resize)="OnResize()"
+            (window:scroll)="OnScroll()"
+            (window:click)="OnClick()">
             <idsp-header></idsp-header>
             <my-modal></my-modal>
             <left-menu></left-menu>
@@ -60,7 +63,8 @@ declare var configChannel: any;
         AuthenticationService,
         Modal.ModalService,
         HeaderService,
-        RetailerService
+        RetailerService,
+        IdleService
     ]
 })
 
@@ -95,19 +99,21 @@ declare var configChannel: any;
 export class IDSPComponent implements OnInit {
 
     globalListenFunc: Function;
-
+    timerObservables: Observable<any>;
     constructor ( private _matchMediaService: MatchMediaService,
     private _router: Router,
     private _layoutService: LayoutService,
     private _pageNavigationService: PageNavigationService,
     private _renderer: Renderer,
-    private _modalService: Modal.ModalService ) {
+    private _modalService: Modal.ModalService,
+    private _idleService: IdleService ) {
         new FastClick(document.body);
         this.globalListenFunc = _renderer.listenGlobal('document', 'backbutton', (event) => {
             // put pageNavigationService
             this._pageNavigationService.gotoPreviousPage();
             console.log('angular back button');
         });
+        this._idleService.startTimer().subscribe();
     }
 
     ngOnInit() {
@@ -131,12 +137,17 @@ export class IDSPComponent implements OnInit {
         return !this._matchMediaService.getMm().largeUp;
     }
 
-    OnHashChange() {
-        console.log('anjayy');
-    }
-
     ngOnDestroy() {
         this.globalListenFunc();
+    }
+
+    OnScroll() {
+        console.log('scrolled');
+    }
+
+    OnClick() {
+        console.log('clicked');
+        this._idleService.resetTimeout();
     }
 }
 
