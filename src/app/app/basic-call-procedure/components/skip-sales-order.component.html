@@ -13,10 +13,7 @@
     <div class="item-container">
         <div class='container'>
                 <div class='cell'>
-                    <div class='container'><div class='cell width-100 padding-left-5'>Please Input Your Reason</div></div>
-                </div>
-                <div class='cell'>
-                    <div class='container'><div class='cell width-03 vivid-pink bold'>*</div></div>
+                    <div class='container'><div class='cell width-100 padding-left-5'>Please Input Your Reason<span class='vivid-pink'>*</span></div></div>
                 </div>
         </div>
         <div class="container">
@@ -36,10 +33,7 @@
         </div>
         <div class='container'>
                 <div class='cell'>
-                    <div class='container'><div class='cell width-100 padding-left-5'>Remarks</div></div>
-                </div>
-                <div class='cell'>
-                    <div class='container'><div class='cell width-02 vivid-pink bold'>*</div></div>
+                    <div class='container'><div class='cell width-100 padding-left-5'>Remarks<span class='vivid-pink'>*</span></div></div>
                 </div>
         </div>
         <div class='container'>
@@ -48,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div class='no-divider' id='submit'>
+    <div class='no-divider' id='submit' (click)="gotoUnservedOrder()">
         <div class='button'>
             <div class='button-identifier'>SUBMIT</div>
         </div>

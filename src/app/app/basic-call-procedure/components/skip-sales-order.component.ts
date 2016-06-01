@@ -31,4 +31,8 @@ export class SkipSalesOrderComponent {
         this._headerService.setTitle('Skip Retailer Sales Order');
     }
 
+    gotoUnservedOrder() {
+        this._pageNavigationService.navigate('UnservedOrder', null, null);
+    }
+
 }
