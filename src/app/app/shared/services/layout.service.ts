@@ -132,8 +132,7 @@ export class LayoutService {
         if (
             pCurrent === 'GetStarted' ||
             pCurrent === 'Verification' ||
-            pCurrent === 'Login' ||
-            pCurrent === 'SkipSalesOrder') {
+            pCurrent === 'Login') {
             this._pageNavigationService.resetListPreviousData();
             this.vLayoutState = {
                 appHeader: false,
@@ -277,7 +276,8 @@ export class LayoutService {
             pCurrent === 'Offers' ||
             pCurrent === 'RetailerSalesOrder' ||
             pCurrent === 'SalesOrderPayment' ||
-            pCurrent === 'UnservedOrder') {
+            pCurrent === 'UnservedOrder' ||
+            pCurrent === 'SkipSalesOrder') {
 
             this.vLayoutState = {
                 appHeader: true,
@@ -405,8 +405,10 @@ export class LayoutService {
         }
 
         else if (
+            pCurrent === 'DetailSalesOrder' ||
             pCurrent === 'DetailCollection' ||
             pCurrent === 'DetailRemittance') {
+
             // this._pageNavigationService.setPreviousPage('CloseDay');
             this._pageNavigationService.resetListPreviousData();
             this.vOldCurrentPage = 'Collection';
@@ -429,6 +431,7 @@ export class LayoutService {
             };
         }
         // UNDER CLOSE OF THE DAY - END
+
 
         // UNDER REMITTANCE - START
         else if (

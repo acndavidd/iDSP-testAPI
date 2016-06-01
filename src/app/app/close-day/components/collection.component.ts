@@ -16,6 +16,8 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 
 export class CollectionComponent {
 
+    vCollectionShow = false;
+
     constructor (
     private _router: Router,
     private _layoutService: LayoutService,
@@ -24,7 +26,6 @@ export class CollectionComponent {
     private _headerService: HeaderService,
     private _pageNavigationService: PageNavigationService
     ) {
-
         this._layoutService.setCurrentPage('Collection');
         this._headerService.setTitle('Collection & Remittance');
     }
@@ -33,6 +34,12 @@ export class CollectionComponent {
         return this._matchMediaService.getMm();
     }
 
+    gotoDetailSalesOrder() {
+        this._pageNavigationService.navigate('DetailSalesOrder', null, null);
+    }
+    subCollectionShow() {
+        this.vCollectionShow = !this.vCollectionShow;
+    }
     gotoDetailCollection() {
         this._pageNavigationService.navigate('DetailCollection', null, null);
     }
