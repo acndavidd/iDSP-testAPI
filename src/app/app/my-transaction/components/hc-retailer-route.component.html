@@ -1,93 +1,101 @@
-	<div class="container-body">
-	<div class="filter-container-ret-route" *ngIf="getFilter().filterRetailerRoute">
-		<div class="filter-label">Mission For: </div>
-		<div class="filter-dropdown">
-			<select id="filter-day" [(ngModel)]="vSelectedDay" #val_day (change)="onChangeSelectDay(val_day.value)" id="selected-day">
-				<option *ngFor="#each of vListDay" [value]="each.value">{{each.name}}</option>
-			</select>
-		</div>	
-	</div>
-	<!--
-	<div class="item-container">
-        <div class="item-identifier">
-            <div class="item-title">
-            	<div>Mission for: {{vSelectedDate | date:'MMM, dd yyyy'}}</div>
-           </div>
-        </div>
-    </div>
-	-->
+<div class="container-body">
+
+	<div id="filter-btn" class="filter-container" *ngIf="getFilter().filterRetailerRoute">
+		<div class="item-container">
+			<div class="container">
+				<div class='cell'>
+					<div class="container">
+						<div class="cell filter-label width-50 padding-top-1 padding-bottom-1">Mission For</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class="container">
+						<div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
+							<select id="filter-day" [(ngModel)]="vSelectedDay" #val_day (change)="onChangeSelectDay(val_day.value)" id="selected-day">
+								<option *ngFor="#each of vListDay" [value]="each.value">{{each.name}}</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+
+
+
     <div class="item-container" id='each-retailer'>
         <div class="container">
-        	<div class='cell logo'><div class="profpic pink">G</div></div>
+        	<div class='cell width-20 padding-left-5'><div class="profpic pink">G</div></div>
         	<div class='cell'>
         		<div class='container'>
-        			<div class='cell content bold green'>#1</div>
+        			<div class='cell width-80 padding-left-5 bold green'>#1</div>
         		</div>
 		        <div class='container'>
-	        		<div class='cell content bold'>Gloria Cell</div>
+	        		<div class='cell width-80 padding-left-5 bold'>Gloria Cell</div>
 		        </div>
 		        <div class='container'>
-		        	<div class='cell content'>Gloria Laura Ang</div>
+		        	<div class='cell width-80 padding-left-5'>Gloria Laura Ang</div>
 		        </div>
 		        <div class='container'>
-		        	<div class='cell content'>Barangka Dr. Mandaluyong</div>
+		        	<div class='cell width-80 padding-left-5'>Barangka Dr. Mandaluyong</div>
 		    	</div>
 		    </div>
 		</div>
     </div>
      <div class="item-container" id='each-retailer'>
         <div class="container">
-        	<div class='cell logo'><div class="profpic purple">R</div></div>
+        	<div class='cell width-20 padding-left-5'><div class="profpic purple">R</div></div>
         	<div class='cell'>
         		<div class='container'>
-        			<div class='cell content bold green'>#2</div>
+        			<div class='cell width-80 padding-left-5 bold green'>#2</div>
         		</div>
 		        <div class='container'>
-	        		<div class='cell content bold'>Rose Cell</div>
+	        		<div class='cell width-80 padding-left-5 bold'>Rose Cell</div>
 		        </div>
 		        <div class='container'>
-		        	<div class='cell content'>Rose May Shu</div>
+		        	<div class='cell width-80 padding-left-5'>Rose May Shu</div>
 		        </div>
 		        <div class='container'>
-		        	<div class='cell content'>Maduluyong 10 Road</div>
+		        	<div class='cell width-80 padding-left-5'>Maduluyong 10 Road</div>
 		    	</div>
 		    </div>
 		</div>
     </div>
     <div class="item-container" id='each-retailer'>
         <div class="container">
-        	<div class='cell logo'><div class="profpic pink">B</div></div>
+        	<div class='cell width-20 padding-left-5'><div class="profpic pink">B</div></div>
         	<div class='cell'>
         		<div class='container'>
-        			<div class='cell content bold green'>#3</div>
+        			<div class='cell width-80 padding-left-5 bold green'>#3</div>
         		</div>
 		        <div class='container'>
-	        		<div class='cell content bold'>Bird Cell</div>
+	        		<div class='cell width-80 padding-left-5 bold'>Bird Cell</div>
 		        </div>
 		        <div class='container'>
-		        	<div class='cell content'>George Stephen Jo</div>
+		        	<div class='cell width-80 padding-left-5'>George Stephen Jo</div>
 		        </div>
 		        <div class='container'>
-		        	<div class='cell content'>Matalang 56 Barangka</div>
+		        	<div class='cell width-80 padding-left-5'>Matalang 56 Barangka</div>
 		    	</div>
 		    </div>
 		</div>
     </div>
     <div class="item-container" id='each-retailer'>
         <div class="container">
-        	<div class='cell logo'><div class="profpic purple">L</div></div>
+        	<div class='cell width-20 padding-left-5'><div class="profpic purple">L</div></div>
         	<div class='cell'>
         		<div class='container'>
-        			<div class='cell content bold green'>#4</div>
+        			<div class='cell width-80 padding-left-5 bold green'>#4</div>
         		</div>
 		        <div class='container'>
-	        		<div class='cell content bold'>Love Cell</div>
+	        		<div class='cell width-80 padding-left-5 bold'>Love Cell</div>
 		        </div>
 		        <div class='container'>
-		        	<div class='cell content'>Lovato</div>
+		        	<div class='cell width-80 padding-left-5'>Lovato</div>
 		        </div>
 		        <div class='container'>
-		        	<div class='cell content'>Matalang 78 Barangka</div>
+		        	<div class='cell width-80 padding-left-5'>Matalang 78 Barangka</div>
 		    	</div>
 		    </div>
 		</div>

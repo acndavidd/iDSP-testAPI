@@ -9,6 +9,8 @@ export class RetailerService {
     private vErrorMsg: string;
     private vIsLoading: boolean;
     private vRetailer: any;
+    private vToday: Date;
+
     constructor (
         private _http: Http,
         private _router: Router) {
@@ -17,125 +19,66 @@ export class RetailerService {
 
     queryRetailerRoute(pSelectedDay) {
         console.log('Start hit login service to Query Retailer Route');
-        // Get Current Login User
-        let vData = {
-            salesPerson: 'DSP01',
-            day: pSelectedDay
-        };
-
-        var vSalesRoute;
         // Hit Api with selectedDate and Login user
-        return this._http.post('/getSalesRoute', JSON.stringify(vData));
-
-        // Sample Hardcoded
-        /*
-        vSalesRoute = [
-            {
-                'retailer_id': '1',
-                'route': [{RouteDay: [{sequence: 1}]}],
-                'retailer_name': 'Gloria Cell',
-                'retailer_address': 'Barangka Dr. Mandaluyong',
-                'owner_name': 'Ms. Gloria'
-            },
-            {
-                'retailer_id': '2',
-                'route': [{RouteDay: [{sequence: 2}]}],
-                'retailer_name': 'Bird Cell',
-                'retailer_address': 'Barangka Dr. Sutrisno',
-                'owner_name': 'Mr. Jaja'
-            },
-            {
-                'retailer_id': '3',
-                'route': [{RouteDay: [{sequence: null}]}],
-                'retailer_name': 'Rose Cell',
-                'retailer_address': 'Matalang 56 Barangka',
-                'owner_name': 'Ms. Rose'
-            }];
-        */
-        // console.log(vSalesRoute); 
-        // return vSalesRoute;
+        return this._http.get('/salesRoute/'+ 'DSP00001' + '/' + pSelectedDay);        
     }
 
 
     queryRetailerSummary(pRetailerID) {
 
         console.log('Start hit login service to Query Retailer Summary');
-        // Get Current Login User
+        // Hit Api with selectedDate and Login user
+        return this._http.get('/retailerSummary/' + pRetailerID);
+
+       
+    }
+
+    queryRetailerCallPrep(pRetailerID) {
+        console.log('Start hit login service to Query Retailer Summary');
+
         let vData = {
-            retailerId : pRetailerID,
-            salesPerson: 'DSP01'
+            salesPerson: 'DSP00001',
+            retailerId : pRetailerID
         };
 
-
-        // Hit Api with selectedDate and Login user
-        return this._http.post('/getRetailerSummary', JSON.stringify(vData));
-
-        /*Sample Hardcoded
-        var vSampleObject;
-        if (pRetailerID == 1)
-        {
-            vSampleObject =
-            {
-                "retailer_id": "1",
-                "retailer_name": "Gloria Cell",
-                "retailer_min": "2931791239",
-                "owner_first_name": 'Ms. Gloria',
-                "owner_middle_name": '',
-                "owner_last_name": '',
-                "retailer_address": "Barangka Dr. Mandaluyong",
-                "civil_status": 'WNI',
-                "email": 'GLORIAR@GMAIL.COM',
-                "gender": 'Female',
-                "birthday": new Date(),
-                "amount_receivable": 1000000,
-                "value_segment": "High",
-                "threshold": 100000
-            };
-        }
-        else if (pRetailerID == 2)
-        {
-            vSampleObject =
-            {
-                "retailer_id": "2",
-                "retailer_name": "Bird Cell",
-                "retailer_min": "2931791239",
-                "owner_first_name": 'Ms. Jaja',
-                "owner_middle_name": '',
-                "owner_last_name": '',
-                "retailer_address": "Barangka Dr. Sutrisno",
-                "civil_status": 'WNI',
-                "email": 'JAJA@GMAIL.COM',
-                "gender": 'Male',
-                "birthday": new Date(),
-                "amount_receivable": 2000000,
-                "value_segment": "Medium",
-                "threshold": 500000
-            };
-        }
-        else if (pRetailerID == 3)
-        {
-            vSampleObject =
-            {
-                "retailer_id": "3",
-                "retailer_name": "Rose Cell",
-                "retailer_min": "1231312311",
-                "owner_first_name": 'Rose Cell',
-                "owner_middle_name": '',
-                "owner_last_name": '',
-                "retailer_address": "Matalang 56 Barangka",
-                "civil_status": 'WNI',
-                "email": 'ROSE@GMAIL.COM',
-                "gender": 'Female',
-                "birthday": new Date(),
-                "amount_receivable": 3000000,
-                "value_segment": "Low",
-                "threshold": 700000
-            };
-        }       
-                    
-        return vSampleObject;
-        */
+        return this._http.post('/retailerCallPreparation', JSON.stringify(vData));
     }
+
+    getLoadWallet(pRetailerID) {
+        console.log('Starts get load wallet for' + pRetailerID);
+
+          let vData = {
+            salesPerson: 'DSP00001',
+            retailerId : pRetailerID
+        };
+
+        return this._http.post('/loadWallet', JSON.stringify(vData));
+
+    }
+
+    getPhysicalInventory(pRetailerID) {
+        console.log('Starts get physical inventory' + pRetailerID);
+
+          let vData = {
+            salesPerson: 'DSP00001',
+            retailerId : pRetailerID
+        };
+
+        return this._http.post('/physicalInventory', JSON.stringify(vData));
+
+    }
+
+    getPaymentHistory(pRetailerID) {
+        console.log('Starts get payment history of' + pRetailerID);
+
+          let vData = {
+            retailerId : pRetailerID
+        };
+
+        return this._http.post('/paymentHistory', JSON.stringify(vData));
+
+    }
+
 
     getRetailer(pRetailerID) {
         /*
@@ -163,6 +106,26 @@ export class RetailerService {
             );
         return false;
         */
+    }
+
+    queryTask() {
+        console.log('Start hit login service to Query Retailer Route for BCP');
+            let vData = {
+                salesPerson: 'DSP00001'
+            };
+            
+        return this._http.get('/task?username=' + vData.salesPerson);
+    }
+
+    queryAdditionalRetailerRoute() {
+        console.log('Start hit login service to Query Retailer Route for BCP');
+        this.vToday = new Date();
+        let vData = {
+            salesPerson: 'DSP00001',
+            pDay : 1
+        };
+
+        return this._http.post('/additionalRetailerRoute', JSON.stringify(vData));
     }
 
     getRetailerAll() {

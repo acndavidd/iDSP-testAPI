@@ -1,39 +1,46 @@
 <div class="container-body">
-	<div class="filter-container-ret-route" *ngIf="getFilter().filterRetailerRoute">
-		<div class="filter-label">Mission For: </div>
-		<div class="filter-dropdown">
-			<select id="filter-day" [(ngModel)]="vSelectedDay" #val_day (change)="onChangeSelectDay(val_day.value)" id="selected-day">
-				<option *ngFor="#each of vListDay" [value]="each.value">{{each.name}}</option>
-			</select>
-		</div>	
+
+	<div id="filter-btn" class="filter-container" *ngIf="getFilter().filterRetailerRoute">
+		<div class="item-container">
+			<div class="container">
+				<div class='cell'>
+					<div class="container">
+						<div class="cell filter-label width-50 padding-top-1 padding-bottom-1">Mission For</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class="container">
+						<div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
+							<select id="filter-day" [(ngModel)]="vSelectedDay" #val_day (change)="onChangeSelectDay(val_day.value)" id="selected-day">
+								<option *ngFor="#each of vListDay" [value]="each.value">{{each.name}}</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<!--
-	<div class="item-container">
-        <div class="item-identifier">
-            <div class="item-title">
-            	<div>Mission for: {{vSelectedDate | date:'MMM, dd yyyy'}}</div>
-           </div>
-        </div>
-    </div>
-	-->
-    <div class="item-container" *ngFor="#each of vListRetailers" (click)='goToDetailRetailer(each)' id='each-retailer'>
+	
+
+    <div class="item-container" *ngFor="#each of vListRetailers; #i = index" (click)='goToDetailRetailer(each)' id='each-retailer'>
         <div class="container">
+        	<div class='cell width-20 padding-left-5' *ngIf="i%2==0"><div class="profpic pink">{{getInitialName(each.retailer_name)}}</div></div>
+        	<div class='cell width-20 padding-left-5' *ngIf="i%2==1"><div class="profpic purple">{{getInitialName(each.retailer_name)}}</div></div>
         	<div class='cell'>
         		<div class='container'>
-        			<div class='cell single bold deep-cyan' *ngIf="each.seq"># Route {{each.seq}}</div>
-        			<div class='cell single bold deep-cyan' *ngIf="!each.seq"></div>
+        			<div class='cell width-80 bold green' *ngIf="each.seq"># {{each.seq}}</div>
+        			<div class='cell width-80 bold green' *ngIf="!each.seq"></div>
         		</div>
 		        <div class='container'>
-	        		<div class='cell single bold'>{{each.retailer_name}}</div>
+	        		<div class='cell width-80 bold'>{{each.retailer_name}}</div>
 		        </div>
 		        <div class='container'>
-		        	<div class='cell single'>{{each.owner_name}}</div>
+		        	<div class='cell width-80'>{{each.owner_name}}</div>
 		        </div>
 		        <div class='container'>
-		        	<div class='cell single'>{{each.retailer_address}}</div>
+		        	<div class='cell width-80'>{{each.retailer_address}}</div>
 		    	</div>
 		    </div>
-		    <div class='cell icon arrow-right'></div>
 		</div>
     </div>        
 </div>

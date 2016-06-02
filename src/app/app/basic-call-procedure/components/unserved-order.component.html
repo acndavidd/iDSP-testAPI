@@ -1,0 +1,58 @@
+<div class="container-body">
+    <div class="item-container sub">
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell width-100 padding-left-5 large green'>Rose Cell</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-50 italic green'>(99999900003)</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="item-container">
+        <div class="bcp-step-container">
+            <div class="step-field">
+                <div class="step-field-item"><div class="step-circle">1</div></div>
+                <div class="step-field-item">-</div>
+                <div class="step-field-item"><div class="step-circle">2</div></div>
+                <div class="step-field-item">-</div>
+                <div class="step-field-item"><div class="step-circle">3</div></div>
+                <div class="step-field-item">-</div>
+                <div class="step-field-item"><div class="step-circle">4</div></div>
+                <div class="step-field-item">-</div>
+                <div class="step-field-item"><div class="step-circle vivid-pink">5</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="item-container">
+        <div class="container">
+            <div class='cell'>
+                <div class='container'><div class='cell width-50 padding-left-5 green'>Order No. 12345678</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-40 align-right'>2016-04-21 13:30</div></div>
+            </div>
+                <div class='cell width-10'></div>
+        </div>
+    </div>
+    <div class="item-container" (click)="gotoAddUnservedOrder()">
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell width-90 padding-left-5'>Add Unserved Order</div></div>
+            </div>
+            <div class='cell width-10 add'></div>
+        </div>
+    </div>
+    <div class='double-divider'>
+        <div class='button' id='skip'>
+            <div class='button-identifier'>SKIP</div>
+        </div>
+    </div>
+    <div class='double-divider' id='confirm'>
+        <div class='button' (click)="gotoBasicCallProcedure()">
+            <div class='button-identifier'>DONE</div>
+        </div>
+    </div>
+</div>

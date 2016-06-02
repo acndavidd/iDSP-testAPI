@@ -1,159 +1,185 @@
-<a (click)="showMenuDay()"><div class="sub-tab triple" [ngClass] = "{active: vUnderlineDay}"><div class="text" [ngClass] = "{active: vUnderlineDay}">Day</div></div></a>
-<a (click)="showMenuWeek()"><div class="sub-tab triple2" [ngClass] = "{active: vUnderlineWeek}"><div class="text" [ngClass] = "{active: vUnderlineWeek}">Week</div></div></a>
-<a (click)="showMenuMonth()"><div class="sub-tab triple" [ngClass] = "{active: vUnderlineMonth}"><div class="text" [ngClass] = "{active: vUnderlineMonth}">Month</div></div></a>
+<a (click)="showMenuDay()"><div class="sub-tab triple" [ngClass] = "{active: vUnderlineDay}"><div id="day-btn" class="text" [ngClass] = "{active: vUnderlineDay}">Day</div></div></a>
+<a (click)="showMenuWeek()"><div class="sub-tab triple2" [ngClass] = "{active: vUnderlineWeek}"><div id="week-btn" class="text" [ngClass] = "{active: vUnderlineWeek}">Week</div></div></a>
+<a (click)="showMenuMonth()"><div class="sub-tab triple" [ngClass] = "{active: vUnderlineMonth}"><div id="month-btn" class="text" [ngClass] = "{active: vUnderlineMonth}">Month</div></div></a>
 <!--Container-->
 <div class="container-body">
 
-	<div class="filter-container" *ngIf="getFilter().filterTargetsActuals">
-		<div class="filter-label">Brand</div>
-		<div class="filter-dropdown">
-			<select [(ngModel)]="vSelectedBrand"  (ngModelChange)="onChangeSelectBrand($event)">
-				<option  *ngFor="#each of getBrand()" [value]="each.brand" >
-				    {{each.brand}}
-				</option>
-			</select>
+	<div id="filter-btn" class="filter-container" *ngIf="getFilter().filterTargetsActuals">
+		<div class="item-container">
+			<div class="container">
+				<div class='cell'>
+					<div class="container">
+						<div class="cell filter-label width-50 padding-top-1 padding-bottom-1">Brand</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class="container">
+						<div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
+							<select name="cars" [(ngModel)]="vSelectedBrand"  (ngModelChange)="onChangeSelectBrand($event)">
+								<option *ngFor="#each of getBrand()" [value]="each.brand" >
+									{{each.brand}}
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
+	</div>	
+
+
+
 
 	<div *ngIf="vDayShow">
-		<!-- <div class="item-container-md-ta" *ngFor="#prod_day of vShowProduct" > -->
-		<div class="item-container-md-ta" *ngFor="#cat_name of vCatNameList">
-	        <div class="container border">
-	        	<div class='cell category-icon call'></div>
-	            <div class='cell'>
-	                <div class='container'><div class='cell category-text green'>{{cat_name}}</div></div>
-	            </div>
-	        </div>
-	        <div *ngFor="#prod_day of vShowProduct">
-	        	<div *ngIf="cat_name === prod_day.category_name">
-			        <div class="container border" *ngIf="prod_day.target_qty !== 0">
-			            <div class='cell'>
-			                <div class='container'>
-			                	<div class='cell content'>
-							        <div class="container">
-							            <div class='cell'>
-							                <div class='container'><div class='cell sub-category'>{{prod_day.sub_category_name}}</div></div>
-							                <div class='container'>
-							                	<div class='cell'>
-											        <div class="container">
-											            <div class='cell'>
-											                <div class='container'><div class='cell content-triple center'>{{prod_day.amountactual}}</div></div>
-											                <div class='container'><div class='cell content-triple center'>Actual</div></div>
-											            </div>
-											            <div class='cell'>
-											                <div class='container'><div class='cell content-triple center'>{{prod_day.target_qty}}</div></div>
-											                <div class='container'><div class='cell content-triple center'>Target</div></div>
-											            </div>
-											            <div class='cell'>
-											                <div class='container'><div class='cell content-triple center'>-115</div></div>
-											                <div class='container'><div class='cell content-triple center'>Balance</div></div>
-											            </div>
-											        </div>
-										    	</div>
-										    </div>
-							            </div>
-							        </div>
+		<div  *ngFor="#eachCat of vShowProduct">
+			<div class="item-container" >
+		        <div class="container">
+		        	<div class='cell width-20 targets-{{eachCat.category_name|lowercase}}'></div>
+		            <div class='cell'>
+		                <div class='container'><div class='cell width-80 green'>{{eachCat.category_name}}</div></div>
+		            </div>
+		        </div>
+		    </div>
+		    <div *ngFor="#eachSubCat of eachCat.sub_cat">
+			    <div  *ngIf="eachSubCat.ttarget">
+			    	<div class="item-container">
+				        <div class="container">
+				            <div class='cell'>
+				                <div class='container'>
+				                	<div class='cell width-70'>
+								        <div class="container">
+								            <div class='cell'>
+								                <div class='container'><div class='cell padding-left-5'>{{eachSubCat.sub_category_name}}</div></div>
+								                <div class='container'>
+								                	<div class='cell'>
+												        <div class="container">
+												            <div class='cell'>
+												                <div class='container'><div class='cell width-33 align-center'>{{eachSubCat.tactual}}</div></div>
+												                <div class='container'><div class='cell width-33 align-center'>Actual</div></div>
+												            </div>
+												            <div class='cell'>
+												                <div class='container'><div class='cell width-33 align-center'>{{eachSubCat.ttarget}}</div></div>
+												                <div class='container'><div class='cell width-33 align-center'>Target</div></div>
+												            </div>
+												            <div class='cell'>
+												                <div class='container'><div class='cell width-33 align-center'>{{eachSubCat.balance}}</div></div>
+												                <div class='container'><div class='cell width-33 align-center'>Balance</div></div>
+												            </div>
+												        </div>
+											    	</div>
+											    </div>
+								            </div>
+								        </div>
+									</div>
 								</div>
-							</div>
-			            </div>
-			            <div class='cell progress-bar'><div class="progress-radial progress-{{prod_day.amountactual/(prod_day.target_qty)*100 | number}}"><div class="overlay">{{prod_day.amountactual/(prod_day.target_qty)*100 | number}}<sup>%</sup></div></div></div>
-			        </div>
-		    	</div>
-	    	</div>
+				            </div>
+				            <div class='cell width-30'><div class="progress-radial progress-{{eachSubCat.prc_round}}"><div class="overlay">{{eachSubCat.prc_actual}}<sup>%</sup></div></div></div>
+				        </div>
+			    	</div>
+			    </div>
+			</div>
 	    </div>
 	</div>
 
 	<div *ngIf="vWeekShow">
-		<div class="item-container-md-ta" *ngFor="#cat_name of vCatNameList">
-	        <div class="container border">
-	        	<div class='cell category-icon call'></div>
-	            <div class='cell'>
-	                <div class='container'><div class='cell category-text green'>{{cat_name}}</div></div>
-	            </div>
-	        </div>
-	        <div *ngFor="#prod_week of vShowProduct">
-	        	<div *ngIf="cat_name === prod_week.category_name">
-			        <div class="container border" *ngIf="prod_week.target_qty !== 0">
-			            <div class='cell'>
-			                <div class='container'>
-			                	<div class='cell content'>
-							        <div class="container">
-							            <div class='cell'>
-							                <div class='container'><div class='cell sub-category'>{{prod_week.sub_category_name}}</div></div>
-							                <div class='container'>
-							                	<div class='cell'>
-											        <div class="container">
-											            <div class='cell'>
-											                <div class='container'><div class='cell content-triple center'>{{prod_week.amountactual}}</div></div>
-											                <div class='container'><div class='cell content-triple center'>Actual</div></div>
-											            </div>
-											            <div class='cell'>
-											                <div class='container'><div class='cell content-triple center'>{{prod_week.target_qty}}</div></div>
-											                <div class='container'><div class='cell content-triple center'>Target</div></div>
-											            </div>
-											            <div class='cell'>
-											                <div class='container'><div class='cell content-triple center'>-115</div></div>
-											                <div class='container'><div class='cell content-triple center'>Balance</div></div>
-											            </div>
-											        </div>
-										    	</div>
-										    </div>
-							            </div>
-							        </div>
+		<div  *ngFor="#eachCat of vShowProduct">
+			<div class="item-container" >
+		        <div class="container">
+		        	<div class='cell width-20 targets-{{eachCat.category_name|lowercase}}'></div>
+		            <div class='cell'>
+		                <div class='container'><div class='cell width-80 green'>{{eachCat.category_name}}</div></div>
+		            </div>
+		        </div>
+		    </div>
+		    <div *ngFor="#eachSubCat of eachCat.sub_cat">
+			    <div  *ngIf="eachSubCat.ttarget">
+			    	<div class="item-container">
+				        <div class="container">
+				            <div class='cell'>
+				                <div class='container'>
+				                	<div class='cell width-70'>
+								        <div class="container">
+								            <div class='cell'>
+								                <div class='container'><div class='cell padding-left-5'>{{eachSubCat.sub_category_name}}</div></div>
+								                <div class='container'>
+								                	<div class='cell'>
+												        <div class="container">
+												            <div class='cell'>
+												                <div class='container'><div class='cell width-33 align-center'>{{eachSubCat.tactual}}</div></div>
+												                <div class='container'><div class='cell width-33 align-center'>Actual</div></div>
+												            </div>
+												            <div class='cell'>
+												                <div class='container'><div class='cell width-33 align-center'>{{eachSubCat.ttarget}}</div></div>
+												                <div class='container'><div class='cell width-33 align-center'>Target</div></div>
+												            </div>
+												            <div class='cell'>
+												                <div class='container'><div class='cell width-33 align-center'>{{eachSubCat.balance}}</div></div>
+												                <div class='container'><div class='cell width-33 align-center'>Balance</div></div>
+												            </div>
+												        </div>
+											    	</div>
+											    </div>
+								            </div>
+								        </div>
+									</div>
 								</div>
-							</div>
-			            </div>
-			            <div class='cell progress-bar'><div class="progress-radial progress-{{prod_week.amountactual/(prod_week.target_qty)*100 | number}}"><div class="overlay">{{prod_week.amountactual/(prod_week.target_qty)*100 | number}}<sup>%</sup></div></div></div>
-			        </div>
-		    	</div>
-	    	</div>
+				            </div>
+				            <div class='cell width-30'><div class="progress-radial progress-{{eachSubCat.prc_round}}"><div class="overlay">{{eachSubCat.prc_actual}}<sup>%</sup></div></div></div>
+				        </div>
+			    	</div>
+			    </div>
+			</div>
 	    </div>
 	</div>
 
 	<div *ngIf="vMonthShow">
-				<div class="item-container-md-ta" *ngFor="#cat_name of vCatNameList">
-	        <div class="container border">
-	        	<div class='cell category-icon call'></div>
-	            <div class='cell'>
-	                <div class='container'><div class='cell category-text green'>{{cat_name}}</div></div>
-	            </div>
-	        </div>
-	        <div *ngFor="#prod_month of vShowProduct">
-	        	<div *ngIf="cat_name === prod_month.category_name">
-			        <div class="container border" *ngIf="prod_month.target_qty !== 0">
-			            <div class='cell'>
-			                <div class='container'>
-			                	<div class='cell content'>
-							        <div class="container">
-							            <div class='cell'>
-							                <div class='container'><div class='cell sub-category'>{{prod_month.sub_category_name}}</div></div>
-							                <div class='container'>
-							                	<div class='cell'>
-											        <div class="container">
-											            <div class='cell'>
-											                <div class='container'><div class='cell content-triple center'>{{prod_month.amountactual}}</div></div>
-											                <div class='container'><div class='cell content-triple center'>Actual</div></div>
-											            </div>
-											            <div class='cell'>
-											                <div class='container'><div class='cell content-triple center'>{{prod_month.target_qty}}</div></div>
-											                <div class='container'><div class='cell content-triple center'>Target</div></div>
-											            </div>
-											            <div class='cell'>
-											                <div class='container'><div class='cell content-triple center'>-115</div></div>
-											                <div class='container'><div class='cell content-triple center'>Balance</div></div>
-											            </div>
-											        </div>
-										    	</div>
-										    </div>
-							            </div>
-							        </div>
+		<div  *ngFor="#eachCat of vShowProduct">
+			<div class="item-container" >
+		        <div class="container">
+		        	<div class='cell width-20 targets-{{eachCat.category_name|lowercase}}'></div>
+		            <div class='cell'>
+		                <div class='container'><div class='cell width-80 green'>{{eachCat.category_name}}</div></div>
+		            </div>
+		        </div>
+		    </div>
+		    <div *ngFor="#eachSubCat of eachCat.sub_cat">
+			    <div  *ngIf="eachSubCat.ttarget">
+			    	<div class="item-container">
+				        <div class="container">
+				            <div class='cell'>
+				                <div class='container'>
+				                	<div class='cell width-70'>
+								        <div class="container">
+								            <div class='cell'>
+								                <div class='container'><div class='cell padding-left-5'>{{eachSubCat.sub_category_name}}</div></div>
+								                <div class='container'>
+								                	<div class='cell'>
+												        <div class="container">
+												            <div class='cell'>
+												                <div class='container'><div class='cell width-33 align-center'>{{eachSubCat.tactual}}</div></div>
+												                <div class='container'><div class='cell width-33 align-center'>Actual</div></div>
+												            </div>
+												            <div class='cell'>
+												                <div class='container'><div class='cell width-33 align-center'>{{eachSubCat.ttarget}}</div></div>
+												                <div class='container'><div class='cell width-33 align-center'>Target</div></div>
+												            </div>
+												            <div class='cell'>
+												                <div class='container'><div class='cell width-33 align-center'>{{eachSubCat.balance}}</div></div>
+												                <div class='container'><div class='cell width-33 align-center'>Balance</div></div>
+												            </div>
+												        </div>
+											    	</div>
+											    </div>
+								            </div>
+								        </div>
+									</div>
 								</div>
-							</div>
-			            </div>
-			            <div class='cell progress-bar'><div class="progress-radial progress-{{prod_month.amountactual/(prod_month.target_qty)*100 | number}}"><div class="overlay">{{prod_month.amountactual/(prod_month.target_qty)*100 | number}}<sup>%</sup></div></div></div>
-			        </div>
-		    	</div>
-	    	</div>
+				            </div>
+				            <div class='cell width-30'><div class="progress-radial progress-{{eachSubCat.prc_round}}"><div class="overlay">{{eachSubCat.prc_actual}}<sup>%</sup></div></div></div>
+				        </div>
+			    	</div>
+			    </div>
+			</div>
 	    </div>
 	</div>
 </div>

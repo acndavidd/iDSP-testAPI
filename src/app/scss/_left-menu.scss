@@ -1,14 +1,14 @@
-.left-menu-other{
+.left-menu-other {
     height: 100%;
     width: 100%;
-    //left: ($menuwidth+10px);
+    // left: ($menuwidth+10px);
     position: fixed;
     z-index: 120;
     top: 0;
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-.left-menu-container{
+.left-menu-container {
     width: 75%;
     z-index: 150;
     background-color: $white;
@@ -25,7 +25,7 @@
     -ms-transition: .3s ease all;
     transition: .3s ease all;
     
-    &.active{
+    &.active {
         -webkit-transform: translate3d( 100% ,0,0);
         -ms-transform: translate3d( 100% ,0,0);
         transform: translate3d( 100% ,0,0);
@@ -34,7 +34,7 @@
         transition: .3s ease all;
     }
     
-    .menu-header{
+    .menu-header {
         padding: 2% 0% 2% 0%;
         color: $white;
         display: inline-block;
@@ -48,11 +48,11 @@
             padding-top: 1vw;
             padding-bottom: 1vw;
         }
-        .header-cell{
+        .header-cell {
             display:table-cell;
             height:18vw;
             vertical-align:middle;
-            &.pic{
+            &.pic {
                 width: 18vw;
                 background: url(../img/profpic.jpg) no-repeat;
                 background-size: cover;
@@ -64,7 +64,7 @@
                 -webkit-transform: translateZ(0);
                 -webkit-backface-visibility: hidden;    
             }
-            &.text{  
+            &.text {  
                 color: $white;
                 width: 75%;
                 font-size: 7vw;
@@ -74,11 +74,11 @@
         }
     }
     
-    .menu-item-box{
+    .menu-item-box {
         
         display: inline-block;
         width: 100%;
-        .separator{
+        .separator {
             border-bottom: 1px solid $white-smoke;        
         }
         .container {
@@ -108,7 +108,7 @@
                 background-position-y: center;
                 background-size: 2vw;
             }
-            //delete below once testing is done
+            // delete below once testing is done
             &.call {
                 background: url("../img/icon-idsp/phone-grey.png")no-repeat;
                 background-position-x: center;
@@ -184,6 +184,12 @@
             }
             &.visited {
                 background: url(#{$icon-round-grad-visited})no-repeat;
+                background-position-x: center;
+                background-position-y: center;
+                background-size: 7vw;
+            }
+            &.unserved-order {
+                background: url(#{$icon-round-grad-unserved-order})no-repeat;
                 background-position-x: center;
                 background-position-y: center;
                 background-size: 7vw;

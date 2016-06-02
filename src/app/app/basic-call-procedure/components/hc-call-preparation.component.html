@@ -1,0 +1,384 @@
+<div class="container-body">
+	<div class="item-container sub">
+        <div class="container">
+        	<div class='cell'>
+        		<div class='container'>
+        			<div class='cell width-90 padding-left-5 x-large bold green'>Rose Cell</div>
+        		</div>
+		    </div>
+		    <div class='cell width-10 padding-right-5'><div class="sequence green">R</div></div>
+		</div>
+    </div>
+	
+	<div class="item-container">
+	    <div class="bcp-step-container">
+			<div class="step-field">
+				<div class="step-field-item"><div class="step-circle vivid-pink">1</div></div>
+				<div class="step-field-item">-</div>
+				<div class="step-field-item"><div class="step-circle">2</div></div>
+				<div class="step-field-item">-</div>
+				<div class="step-field-item"><div class="step-circle">3</div></div>
+				<div class="step-field-item">-</div>
+				<div class="step-field-item"><div class="step-circle">4</div></div>
+				<div class="step-field-item">-</div>
+				<div class="step-field-item"><div class="step-circle">5</div></div>
+	    	</div>
+	    </div>
+    </div>
+
+    <div class="item-container" (click)="subProfileMenuShow()">
+		<div class="container">
+			<div class='cell'>
+		        <div class='container'><div class='cell large width-90 padding-left-5 green'>Profile</div></div>
+		    </div>
+		    <div class='cell width-10 arrow-down' [ngClass]="{selected: vProfileMenuShow}"></div>
+		</div>
+	</div>
+	<div class="item-container sub" *ngIf="vProfileMenuShow">
+		<div class="container border">
+			<div class='cell'>
+		        <div class='container'><div class='cell width-100 padding-left-10 grey'>Retailer SMART MIN</div></div>
+		        <div class='container'><div class='cell width-100 padding-left-10'>99999900003</div></div>
+		    </div>
+		    <div class='cell width-10 call'></div>
+		</div>
+		<div class="container border">
+			<div class='cell'>
+		        <div class='container'><div class='cell width-100 padding-left-10 grey'>Retailer SUN MIN</div></div>
+		        <div class='container'><div class='cell width-100 padding-left-10'>99999900004</div></div>
+		    </div>
+		    <div class='cell width-10 call'></div>
+		</div>
+		<div class="container border">
+			<div class='cell'>
+		        <div class='container'><div class='cell width-100 padding-left-10 grey'>Address</div></div>
+		        <div class='container'><div class='cell width-100 padding-left-10'>Maduluyong 10 Road</div></div>
+		    </div>
+		    <div class='cell width-10'></div>
+		</div>
+		<div class="container border">
+			<div class='cell'>
+		        <div class='container'><div class='cell width-100 padding-left-10 grey'>Retailer Owner</div></div>
+		        <div class='container'><div class='cell width-100 padding-left-10'>Rose May Shu</div></div>
+		    </div>
+		    <div class='cell width-10'></div>
+		</div>
+		<div class="container border">
+			<div class='cell'>
+		        <div class='container'><div class='cell width-100 padding-left-10 grey'>Outlet Type</div></div>
+		        <div class='container'><div class='cell width-100 padding-left-10'>Gallery</div></div>
+		    </div>
+		    <div class='cell width-10'></div>
+		</div>
+		<div class="container border">
+			<div class='cell'>
+		        <div class='container'><div class='cell width-100 padding-left-10 grey'>Civil Status</div></div>
+		        <div class='container'><div class='cell width-100 padding-left-10'>Married</div></div>
+		    </div>
+		    <div class='cell width-10'></div>
+		</div>
+		<div class="container border">
+			<div class='cell'>
+		        <div class='container'><div class='cell width-100 padding-left-10 grey'>Email Address</div></div>
+		        <div class='container'><div class='cell width-100 padding-left-10'>rose_cell@yahoo.com</div></div>
+		    </div>
+		    <div class='cell width-10'></div>
+		</div>
+		<div class="container border">
+			<div class='cell'>
+		        <div class='container'><div class='cell width-100 padding-left-10 grey'>Gender</div></div>
+		        <div class='container'><div class='cell width-100 padding-left-10'>Female</div></div>
+		    </div>
+		    <div class='cell width-10'></div>
+		</div>
+		<div class="container border">
+			<div class='cell'>
+		        <div class='container'><div class='cell width-100 padding-left-10 grey'>Birthday</div></div>
+		        <div class='container'><div class='cell width-100 padding-left-10'>12 October 2016</div></div>
+		    </div>
+		    <div class='cell width-10'></div>
+		</div>
+		<div class="container border">
+			<div class='cell'>
+		        <div class='container'><div class='cell width-100 padding-left-10 grey'>Contact Number</div></div>
+		        <div class='container'><div class='cell width-100 padding-left-10'>99999900089</div></div>
+		    </div>
+		    <div class='cell width-10 call'></div>
+		</div>
+		<div class="container border">
+			<div class='cell'>
+		        <div class='container'><div class='cell width-100 padding-left-10 grey'>Amount Receivables</div></div>
+		        <div class='container'><div class='cell width-100 padding-left-10'>3,000.00 ₱</div></div>
+		    </div>
+		    <div class='cell width-10'></div>
+		</div>
+		<div class="container border">
+			<div class='cell'>
+		        <div class='container'><div class='cell width-100 padding-left-10 grey'>Value Segment</div></div>
+		        <div class='container'><div class='cell width-100 padding-left-10'>High</div></div>
+		    </div>
+		    <div class='cell width-10'></div>
+		</div>
+		<div class="container border">
+			<div class='cell'>
+		        <div class='container'><div class='cell width-100 padding-left-10 grey'>Threshold</div></div>
+		        <div class='container'><div class='cell width-100 padding-left-10'>1,000.00 ₱ </div></div>
+		    </div>
+		    <div class='cell width-10'></div>
+		</div>
+		<div class="container border">
+			<div class='cell'>
+		        <div class='container'><div class='cell width-100 padding-left-10 grey'>Status</div></div>
+		        <div class='container'><div class='cell width-100 padding-left-10'>In Progress</div></div>
+		    </div>
+		    <div class='cell width-10'></div>
+		</div>
+		<div class="container">
+			<div class='cell'>
+		        <div class='container'><div class='cell width-100 padding-left-10 grey'>Last Visit</div></div>
+		        <div class='container'><div class='cell width-100 padding-left-10'>04/12/2016 15.16</div></div>
+		    </div>
+		    <div class='cell width-10'></div>
+		</div>
+	</div>
+
+    <div class="item-container" (click)="subCollectionMenuShow()">
+		<div class="container">
+			<div class='cell'>
+		        <div class='container'><div class='cell large width-90 padding-left-5 green'>Collection</div></div>
+		    </div>
+		    <div class='cell width-10 arrow-down' [ngClass]="{selected: vCollectionMenuShow}"></div>
+		</div>
+	</div>
+	<div *ngIf="vCollectionMenuShow">
+		<div class="item-container sub">
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell width-50 padding-left-10'>Outstanding Balance</div></div>
+			    </div>
+				<div class='cell'>
+			        <div class='container'><div class='cell width-40 align-right'>3000 ₱</div></div>
+			    </div>
+			    <div class='cell width-10'></div>
+			</div>
+		</div>
+		<div class="item-container sub">
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell width-90 padding-left-10'>Last 3 Payment</div></div>
+			    </div>
+			    <div class='cell width-10'></div>
+			</div>
+		</div>
+		<div class="item-container sub">
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell width-50 padding-left-10'>Date</div></div>
+			        <div class='container'><div class='cell width-50 padding-left-10'>04/03/2016</div></div>
+			        <div class='container'><div class='cell width-50 padding-left-10'>04/02/2016</div></div>
+			        <div class='container'><div class='cell width-50 padding-left-10'>04/01/2016</div></div>
+			    </div>
+				<div class='cell'>
+			        <div class='container'><div class='cell width-40 align-right'>Amount</div></div>
+			        <div class='container'><div class='cell width-40 align-right'>800 ₱</div></div>
+			        <div class='container'><div class='cell width-40 align-right'>1,200 ₱</div></div>
+			        <div class='container'><div class='cell width-40 align-right'>400 ₱</div></div>
+			    </div>
+			    <div class='cell width-10'></div>
+			</div>
+		</div>
+	</div>
+
+    <div class="item-container" (click)="subLoadMenuShow()">
+		<div class="container">
+			<div class='cell'>
+		        <div class='container'><div class='cell large width-90 padding-left-5 green'>Load Wallet</div></div>
+		        <div class='container'>
+		        	<div class='cell width-90 padding-left-5 green'>
+						<div class="container">
+							<div class='cell'>
+						        <div class='container'><div class='cell large width-50'>Total Load Wallet</div></div>
+						    </div>
+							<div class='cell'>
+						        <div class='container'><div class='cell large width-40 align-right'>1,000.00 ₱</div></div>
+						    </div>
+						</div>
+		        	</div>
+		        </div>
+		    </div>
+		    <div class='cell width-10 arrow-down' [ngClass]="{selected: vLoadMenuShow}"></div>
+		</div>
+	</div>
+	<div *ngIf="vLoadMenuShow">
+		<div class="item-container sub">
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell width-100 padding-left-10'>SmartLoad</div></div>
+			        <div class='container'>
+			        	<div class='cell width-100 padding-left-10'>
+							<div class="container">
+								<div class='cell'>
+							        <div class='container'><div class='cell width-50'>Drop Size</div></div>
+							    </div>
+								<div class='cell'>
+							        <div class='container'><div class='cell width-50 align-right'>350</div></div>
+							    </div>
+							</div>
+			        	</div>
+			        </div>
+			    </div>
+			    <div class='cell width-10'></div>
+			</div>
+		</div>
+		<div class="item-container">
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell width-100 padding-left-10'>Smart Wallet Balance</div></div>
+			        <div class='container'>
+			        	<div class='cell width-100 padding-left-10'>
+							<div class="container">
+								<div class='cell'>
+							        <div class='container'><div class='cell width-50 grey'>Last Amount Transferred</div></div>
+							        <div class='container'><div class='cell width-50 grey'>Transaction Date</div></div>
+							        <div class='container'><div class='cell width-50 grey'>Latest Balance</div></div>
+							    </div>
+								<div class='cell'>
+							        <div class='container'><div class='cell width-50 align-right'>1,500 ₱</div></div>
+							        <div class='container'><div class='cell width-50 align-right'>2016-04-01 11:10</div></div>
+							        <div class='container'><div class='cell width-50 align-right'>1,000 ₱</div></div>
+							    </div>
+							</div>
+			        	</div>
+			        </div>
+			    </div>
+			    <div class='cell width-10'></div>
+			</div>
+		</div>
+		<div class="item-container sub">
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell width-100 padding-left-10'>XLoad Traditional</div></div>
+			        <div class='container'>
+			        	<div class='cell width-100 padding-left-10'>
+							<div class="container">
+								<div class='cell'>
+							        <div class='container'><div class='cell width-50'>Drop Size</div></div>
+							    </div>
+								<div class='cell'>
+							        <div class='container'><div class='cell width-50 align-right'>350</div></div>
+							    </div>
+							</div>
+			        	</div>
+			        </div>
+			    </div>
+			    <div class='cell width-10'></div>
+			</div>
+		</div>
+		<div class="item-container">
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell width-100 padding-left-10'>Xload Traditional Wallet Balance</div></div>
+			        <div class='container'>
+			        	<div class='cell width-100 padding-left-10'>
+							<div class="container">
+								<div class='cell'>
+							        <div class='container'><div class='cell width-50 grey'>Last Amount Transferred</div></div>
+							        <div class='container'><div class='cell width-50 grey'>Transaction Date</div></div>
+							        <div class='container'><div class='cell width-50 grey'>Latest Balance</div></div>
+							    </div>
+								<div class='cell'>
+							        <div class='container'><div class='cell width-50 align-right'>1,500 ₱</div></div>
+							        <div class='container'><div class='cell width-50 align-right'>2016-04-01 11:10</div></div>
+							        <div class='container'><div class='cell width-50 align-right'>1,000 ₱</div></div>
+							    </div>
+							</div>
+			        	</div>
+			        </div>
+			    </div>
+			    <div class='cell width-10'></div>
+			</div>
+		</div>
+	</div>
+
+    <div class="item-container" (click)="subPhysicalMenuShow()">
+		<div class="container">
+			<div class='cell'>
+		        <div class='container'><div class='cell large width-90 padding-left-5 green'>Physical Inventory</div></div>
+		    </div>
+		    <div class='cell width-10 arrow-down' [ngClass]="{selected: vPhysicalMenuShow}"></div>
+		</div>
+	</div>
+
+	<div *ngIf="vPhysicalMenuShow">
+		<div class="item-container sub">
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell width-100 padding-left-10'>Smart Prepaid Kit</div></div>
+			        <div class='container'>
+			        	<div class='cell width-100 padding-left-10'>
+							<div class="container">
+								<div class='cell'>
+							        <div class='container'><div class='cell width-50 grey'>Target Value</div></div>
+							    </div>
+								<div class='cell'>
+							        <div class='container'><div class='cell width-50 align-right'>1,500</div></div>
+							    </div>
+							</div>
+			        	</div>
+			        </div>
+			    </div>
+			    <div class='cell width-10'></div>
+			</div>
+		</div>
+		<div class="item-container">
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell width-100 padding-left-10'>SKU1</div></div>
+			        <div class='container'>
+			        	<div class='cell width-100 padding-left-10'>
+							<div class="container">
+								<div class='cell'>
+							        <div class='container'><div class='cell width-50 grey'>Last Quantity Sold</div></div>
+							        <div class='container'><div class='cell width-50 grey'>Transaction Date</div></div>
+							    </div>
+								<div class='cell'>
+							        <div class='container'><div class='cell width-50 align-right'>600</div></div>
+							        <div class='container'><div class='cell width-50 align-right'>04/01/2016</div></div>
+							    </div>
+							</div>
+			        	</div>
+			        </div>
+			    </div>
+			    <div class='cell width-10'></div>
+			</div>
+		</div>
+		<div class="item-container">
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell width-100 padding-left-10'>SKU2</div></div>
+			        <div class='container'>
+			        	<div class='cell width-100 padding-left-10'>
+							<div class="container">
+								<div class='cell'>
+							        <div class='container'><div class='cell width-50 grey'>Last Quantity Sold</div></div>
+							        <div class='container'><div class='cell width-50 grey'>Transaction Date</div></div>
+							    </div>
+								<div class='cell'>
+							        <div class='container'><div class='cell width-50 align-right'>600</div></div>
+							        <div class='container'><div class='cell width-50 align-right'>04/01/2016</div></div>
+							    </div>
+							</div>
+			        	</div>
+			        </div>
+			    </div>
+			    <div class='cell width-10'></div>
+			</div>
+		</div>
+	</div>
+
+    <div class="no-divider">
+        <div class= "button" (click)="HCgotoCollection()">
+            <div class="button-identifier">START</div>
+        </div>     
+    </div>
+</div>

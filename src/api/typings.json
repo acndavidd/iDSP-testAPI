@@ -9,7 +9,8 @@
     "node": "registry:dt/node#4.0.0+20160311162451",
     "request": "registry:dt/request#0.0.0+20160311134650",
     "require": "github:DefinitelyTyped/DefinitelyTyped/requirejs/require.d.ts#0423c27df4caeffc6f05f04d26e694646e854c3d",
-    "serve-static": "registry:dt/serve-static#0.0.0+20160218233549"
+    "serve-static": "registry:dt/serve-static#0.0.0+20160218233549",
+    "validator": "registry:dt/validator#4.5.1+20160316155526"
   },
   "dependencies": {}
 }

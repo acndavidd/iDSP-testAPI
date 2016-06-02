@@ -1,104 +1,122 @@
-<div class="filter-container-dsp" *ngIf="getFilter().filterDSPAlerts">
-	<div class="two-col">
-	   <div class="two-col-child-40">
-			<div class="filter-label">Value Segment</div>
-		</div>
-		<div class="two-col-child-60">
-			<div class="filter-dropdown">
-				<select name="value_segment_filter" [(ngModel)]="vValueSegmentFilter"  (ngModelChange)="onFilterValueSegment($event)">
-                    <option value="">All</option>
-                    <option value="High">High</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Low">Low</option>
-				</select>
-			</div>
-		</div>
-	</div>
-
-	<div class="two-col">
-		<div class="two-col-child-40">
-			<div class="filter-label">Threshold</div>			
-		</div>
-		<div class="two-col-child-60">
-			<div class="filter-input">
-				<input type="text" #filterThreshold id='threshold_hit_filter' placeholder='Enter Threshold' name='threshold_hit_filter' (keyup)="onFilterThreshold(filterThreshold.value)"/>
-			</div>
-		</div>
-	</div>
-	<div class="float-bottom">
-	</div>
-</div>
-
 <div class="container-body">
+    <div class="filter-container" *ngIf="getFilter().filterDSPAlerts">
+
+        <div class="item-container">
+            <div class="container">
+                <div class='cell'>
+                    <div class="container">
+                        <div class="cell filter-label width-50 padding-top-1 padding-bottom-1">Value Segment</div>
+                    </div>
+
+                    <div class="container">
+                        <div class="cell filter-label width-50 padding-top-1 padding-bottom-1">Threshold</div>
+                    </div>
+                </div>
+
+                <div class='cell'>
+                    <div class="container">
+                        <div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
+                            <select name="value_segment_filter" [(ngModel)]="vValueSegmentFilter"  (ngModelChange)="onFilterValueSegment($event)">
+                                <option value="">All</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
+                            <select name="value_segment_filter">
+                                <option value="">500.00 &nbsp; &#8369;</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+            
+    </div>
+
+
+
+
+
+
     <div class="item-container">
-        <div class="item-notification">UPDATED AS OF 05/16/2016 10.00 AM</div>
-        <div class="container border">
+        <div class="container">
             <div class='cell'>
-                <div class='container'><div class='cell left bold green'># Route 1</div></div>
-                <div class='container'><div class='cell left title2'>Gloria Cell</div></div>
-                <div class='container'><div class='cell left italic'>99999900001</div></div>
-                <div class='container'><div class='cell left grey'>Value Segment</div></div>
-                <div class='container'><div class='cell left grey'>Threshold hit</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 bold green'># Route 1</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50'>Gloria Cell</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 italic'>99999900001</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 grey'>Value Segment</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 grey'>Threshold hit</div></div>
             </div>
             <div class='cell'>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'>High</div></div>
-                <div class='container'><div class='cell right'>1,000.00 &nbsp; &#8369; </div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'></div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'></div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'></div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'>High</div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'>1,000.00 &nbsp; &#8369; </div></div>
             </div>
-            <div class='cell icon'></div>
         </div>
-        <div class="container border">
+    </div>
+    <div class="item-container">
+        <div class="container">
             <div class='cell'>
-                <div class='container'><div class='cell left bold green'># Route 2</div></div>
-                <div class='container'><div class='cell left title2'>Duren Cell</div></div>
-                <div class='container'><div class='cell left italic'>99999900066</div></div>
-                <div class='container'><div class='cell left grey'>Value Segment</div></div>
-                <div class='container'><div class='cell left grey'>Threshold hit</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 bold green'># Route 2</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50'>Duren Cell</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 italic'>99999900066</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 grey'>Value Segment</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 grey'>Threshold hit</div></div>
             </div>
             <div class='cell'>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'>Medium</div></div>
-                <div class='container'><div class='cell right'>800.00 &nbsp; &#8369; </div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'></div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'></div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'></div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'>Medium</div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'>800.00 &nbsp; &#8369; </div></div>
             </div>
-            <div class='cell icon'></div>
         </div>
-        <div class="container border">
+    </div>
+    <div class="item-container">
+        <div class="container">
             <div class='cell'>
-                <div class='container'><div class='cell left bold green'></div></div>
-                <div class='container'><div class='cell left title2'>Panda Cell</div></div>
-                <div class='container'><div class='cell left italic'>99999900777</div></div>
-                <div class='container'><div class='cell left grey'>Value Segment</div></div>
-                <div class='container'><div class='cell left grey'>Threshold hit</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 bold green'></div></div>
+                <div class='container'><div class='cell padding-left-5 width-50'>Panda Cell</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 italic'>99999900777</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 grey'>Value Segment</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 grey'>Threshold hit</div></div>
             </div>
             <div class='cell'>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'>Medium</div></div>
-                <div class='container'><div class='cell right'>700.00 &nbsp; &#8369; </div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'></div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'></div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'></div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'>Medium</div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'>700.00 &nbsp; &#8369; </div></div>
             </div>
-            <div class='cell icon'></div>
         </div>
-        <div class="container border">
+    </div>
+    <div class="item-container">
+        <div class="container">
             <div class='cell'>
-                <div class='container'><div class='cell left bold green'></div></div>
-                <div class='container'><div class='cell left title2'>Smith Cell</div></div>
-                <div class='container'><div class='cell left italic'>99999908080</div></div>
-                <div class='container'><div class='cell left grey'>Value Segment</div></div>
-                <div class='container'><div class='cell left grey'>Threshold hit</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 bold green'></div></div>
+                <div class='container'><div class='cell padding-left-5 width-50'>Smith Cell</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 italic'>99999908080</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 grey'>Value Segment</div></div>
+                <div class='container'><div class='cell padding-left-5 width-50 grey'>Threshold hit</div></div>
             </div>
             <div class='cell'>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'>Medium</div></div>
-                <div class='container'><div class='cell right'>500.00 &nbsp; &#8369; </div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'></div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'></div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'></div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'>Medium</div></div>
+                <div class='container'><div class='cell padding-right-5 width-50 align-right'>500.00 &nbsp; &#8369; </div></div>
             </div>
-            <div class='cell icon'></div>
         </div>
     </div>
 </div>

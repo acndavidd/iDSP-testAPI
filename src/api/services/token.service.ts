@@ -7,8 +7,8 @@ var vNJwt = require('njwt');
 export class TokenService{
 
 	generateToken(pObj?:any):string{
-		var vSigningkey = vConfig.service.key;
-		var vClaims = [];
+		let vSigningkey = vConfig.token.key;
+		let vClaims = [];
 		vClaims.push(pObj);
 		var vJwt = vNJwt.create(pObj,vSigningkey);
 		var vToken = vJwt.compact();
@@ -17,7 +17,7 @@ export class TokenService{
 
 	verifyToken(pToken:string){
 		try{
-			return vNJwt.verify(pToken,vConfig.service.key);
+			return vNJwt.verify(pToken,vConfig.token.key);
 		}catch(pErr){
 			throw pErr;
 		}

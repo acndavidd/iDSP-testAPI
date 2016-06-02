@@ -10,7 +10,9 @@ module.exports = function(sequelize, DataTypes) {
     },
     frequency: DataTypes.STRING(3),
     schedule_value: DataTypes.STRING(50),
-    schedule_name: DataTypes.STRING(100)
+    schedule_name: DataTypes.STRING(100),
+    sync_status:DataTypes.STRING(1),
+    sync_version:DataTypes.DATE
   }, {
     timestamps: false,
     freezeTableName: true,

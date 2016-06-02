@@ -6,21 +6,38 @@
 
 @import "layout";
 @import "header";
-//@import "footer";
+
 @import "login";
 @import "home";
 @import "verification";
 @import "mpin";
-@import "modal-verification-code";
-@import "targets-actuals";
-@import "inventory";
-@import "retailer-route";
-@import "accounts-receivables";
-@import "dsp-alerts";
-@import "reset-password";
-@import "modal-box";
-@import "basic-call-procedure";
-@import "detail-retailer";
-@import "sales-order-payment";
+
 @import "splash";
 @import "left-menu";
+
+@import "modal-box";
+@import "modal-verification-code";
+
+@import "bcp-collection";
+
+@import "stock-return";
+@import "offers";
+
+
+
+// @import "footer";
+// @import "targets-actuals";
+// @import "inventory";
+// @import "retailer-route";
+// @import "accounts-receivables";
+// @import "dsp-alerts";
+// @import "reset-password";
+// @import "basic-call-procedure";
+// @import "detail-retailer";
+// @import "sales-order-payment";
+// @import "visited-retailer";
+// @import "bcp-activity-step";
+@import "offers";
+@import "confirm-collection";
+
+

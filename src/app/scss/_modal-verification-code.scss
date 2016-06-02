@@ -73,18 +73,46 @@
         display: inline-block;
         width: calc(100% - 20px);
         text-align: center;
-        margin: 0px 10px 20px 10px;
-        .button {
-            width: 50%;
-            line-height: 5vh;
-            margin-top: 5px;
-            display: inline-block;
-            color: #FFF;
-            cursor: pointer;
-            text-align: center;
+        /*margin: 0px 10px 20px 10px;*/
+        .one{
+            margin-left: 40%;
+            .button{
+                width : 60%;
+            }
+        }
+        .two{
+            margin-left:20%;
+            .button{
+                width : 40%;
+            }
+        }
+        .three{
+            margin-left:10%;
+            .button{
+                width : 30%;
+            }
+        }
+        .one,.two,.three{
+            .button {
+                float:left;
+                margin-bottom:5%;
+                margin-right: 5%;
+                line-height: 5vh;
+                margin-top: 5px;
+                display: inline-block;
+                color: #FFF;
+                cursor: pointer;
+                text-align: center;
+            }
+            .button:last-child{
+                margin-right: 0%;
+            }
         }
         .green {
             background-color: #62BB47;
+        }
+        .red {
+            background-color: #F21727;
         }
     }
 }

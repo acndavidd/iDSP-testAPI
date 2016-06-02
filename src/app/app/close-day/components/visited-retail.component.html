@@ -1,1 +1,273 @@
-visited
+<div class="container-body">
+	
+
+	<div class="item-container">
+		<div class="container">
+			<div class='cell width-100 padding-left-5 large'>Retailers Visited</div>
+		</div>
+		<div class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-60 padding-left-5 grey'>Total Visited</div>
+				</div>
+			</div>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-30 align-right green '>3</div>
+				</div>
+			</div>
+			<div class='cell width-10'></div>
+		</div>
+
+		<div class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-60 padding-left-10 grey'>Scheduled visit</div>
+				</div>
+			</div>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-30 align-right green'>2 of 3</div>
+				</div>
+			</div>
+			<div class='cell width-10'></div>
+		</div>
+
+		<div class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-60 padding-left-10 grey'>Unscheduled visit</div>
+				</div>
+			</div>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-30 align-right green'>1</div>
+				</div>
+			</div>
+			<div class='cell width-10'></div>
+		</div>
+
+		<div class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-60 padding-left-10 grey'>Unique visited retailers</div>
+				</div>
+			</div>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-30 align-right green'>3</div>
+				</div>
+			</div>
+			<div class='cell width-10'></div>
+		</div>
+
+
+		<div class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-60 padding-left-5 grey'>Unvisited Retailers</div>
+				</div>
+			</div>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-30 align-right green'>1</div>
+				</div>
+			</div>
+			<div class='cell width-10'></div>
+		</div>
+
+		<div class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-60 padding-left-5 grey'>Percentage</div>
+				</div>
+			</div>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-30 align-right green'>66.67%</div>
+				</div>
+			</div>
+			<div class='cell width-10'></div>
+		</div>
+	</div>
+
+	<div class="item-container">
+		<div class="container">
+			<div class='cell width-100 padding-left-5 large'>Route Productivity</div>
+		</div>
+		<div class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-60 padding-left-5 grey'>Productive Visit</div>
+				</div>
+			</div>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-30 align-right green'>2</div>
+				</div>
+			</div>
+			<div class='cell width-10'></div>
+		</div>
+
+		<div class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-60 padding-left-5 grey'>Unproductive Visit</div>
+				</div>
+			</div>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-30 align-right green'>1</div>
+				</div>
+			</div>
+			<div class='cell width-10'></div>
+		</div>
+
+		<div class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-60 padding-left-5 grey'>Percentage</div>
+				</div>
+			</div>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-30 align-right green'>66.67%</div>
+				</div>
+			</div>
+			<div class='cell width-10'></div>
+		</div>
+	</div>
+
+	<div class="item-container" (click)="detailShow()" id="retailer-sub-menu-btn">
+        <div class="container">
+            <div class='cell'>
+                <div class='container'><div class='cell width-90 padding-left-5 large'>View Details</div></div>
+            </div>
+           	<div class='cell width-10 arrow-down' [ngClass]="{selected: vDetailShow}"></div>
+        </div>
+    </div>
+
+    <div *ngIf="vDetailShow">
+
+    	<div class="item-container sub">
+			<div class="container">
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell width-60 padding-left-5 black'>Gloria Cell</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell width-30 align-right green'>Scheduled</div>
+					</div>
+				</div>
+				<div class='cell width-10'></div>
+			</div>
+			<div class="container">				
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell width-60 padding-left-5 grey'>Visited</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell width-60 padding-left-5 grey'>Productive</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="item-container sub">
+			<div class="container">
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell width-60 padding-left-5 black'>Bird Cell</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell width-30 align-right green'>Scheduled</div>
+					</div>
+				</div>
+				<div class='cell width-10'></div>
+			</div>
+			<div class="container">
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell width-60 padding-left-5 grey'>Visited</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell width-60 padding-left-5 grey'>Unproductive</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="item-container sub">
+			<div class="container">
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell width-60 padding-left-5 black'>Rose Cell</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell width-30 align-right green'>Scheduled</div>
+					</div>
+				</div>
+				<div class='cell width-10'></div>
+			</div>
+			<div class="container">
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell width-60 padding-left-5 grey'>Unvisited</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell width-60 padding-left-5 grey'>-</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="item-container sub">
+			<div class="container">
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell width-60 padding-left-5 black'>Panda Cell</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell width-30 align-right vivid-pink'>Unscheduled</div>
+					</div>
+				</div>
+				<div class='cell width-10'></div>
+			</div>
+			<div class="container">
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell width-60 padding-left-5 grey'>Visited</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class='cell'>
+					<div class='container'>
+						<div class='cell width-60 padding-left-5 grey'>Productive</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+    </div>
+</div>

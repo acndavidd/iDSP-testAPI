@@ -1,99 +1,145 @@
-<div class="accounts-receivables">	
-	<div class="filter-container" *ngIf="getFilter().filterAccReceivables">
-		<div class="filter-input input">
-			<div class="icon"></div>
-			<input type="text" #listFilter (keyup)="onKey(listFilter.value)" id="RetailerSearchBox" placeholder="Input Retailer Name or MIN" />
-		</div>	
-	</div>
-</div>
 <div class="container-body">
+	<div class='filter-container' *ngIf="getFilter().filterAccReceivables">
+        <div class='filter-input input'>
+            <div class='icon' (click)='searchFilter(listFilter.value)'></div>
+            <input type='text' #listFilter (keyup)='onKey(listFilter.value)' id='RetailerSearchBox' placeholder='Input Retailer Name or MIN' />
+        </div>
+
+        <div class="item-container">
+			<div class="container">
+				<div class='cell'>
+					<div class="container">
+						<div class="cell filter-label width-50 padding-top-1 padding-bottom-1">In Route</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class="container">
+						<div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
+							<select id='inRouteAcc' name='route' [(ngModel)]='vSelectedRoute' (ngModelChange)='getRoute($event)'>
+								<option value='allRoute'>All</option>
+								<option value='inRoute'>Yes</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>	
+
     <div class="item-container">
         <div class='container'>
             <div class='cell'>
-            	<div class='container'><div class='cell header bold center title'>Total Receivables : 12,400.00 ₱</div></div>
+            	<div class='container'><div class='cell align-center width-100'>Total Receivables (In Route):</div></div>
+            </div>
+        </div>
+        <div class='container'>
+	        <div class='cell'>
+            	<div class='container'><div class='cell align-center width-100'>3,000.00 ₱</div></div>
             </div>
         </div>
     </div>
-	<div class="item-container">
+
+    <div class="item-container">
+        <div class='container'>
+            <div class='cell'>
+            	<div class='container'><div class='cell align-center width-100'>Total Receivables (All):</div></div>
+            </div>
+        </div>
+        <div class='container'>
+	        <div class='cell'>
+            	<div class='container'><div class='cell align-center width-100'>3,000.00 ₱</div></div>
+            </div>
+        </div>
+    </div>
+
+	<div class="item-container no-padding-item-container">
 	    <div class="container">
+	    	<div class='cell vertical sulu'>
+            	<div class='vertical-text'>BCP</div>
+            </div>
 	        <div class='cell'>
-                <div class='container' id ="accSeq"><div class='cell left green'># Route 2</div></div>
-                <div class='container' id ="accRetName"><div class='cell left'>Bird cell</div></div>
-                <div class='container' id ="accRetMin"><div class='cell left italic'>99999900002</div></div>
+                <div class='container' id ="accSeq"><div class='cell width-100 padding-left-5 green'># Route 2</div></div>
+                <div class='container' id ="accRetName"><div class='cell width-100 padding-left-5'>Bird cell</div></div>
+                <div class='container'>
+                	<div class='cell width-100'>
+					    <div class="container">
+					        <div class='cell'>
+				                <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5 italic'>99999900003</div></div>
+					        </div>
+					        <div class='cell'>
+				                <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>2,000.00 ₱</div></div>
+					        </div>
+					    </div>
+                	</div>
+                </div>
 	        </div>
-	        <div class='cell'>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container' id ="accAmount"><div class='cell right'>3,000.00 ₱</div></div>
-                <div class='container'><div class='cell right'></div></div>
-	        </div>
-	            <div class='cell icon'></div>
 	    </div>
 	</div>
-	<div class="item-container">
+	<div class="item-container no-padding-item-container">
 	    <div class="container">
+	    	<div class='cell vertical serenade'>
+            	<div class='vertical-text'>SELF</div>
+            </div>
 	        <div class='cell'>
-                <div class='container' id ="accSeq"><div class='cell left green'># Route 3</div></div>
-                <div class='container' id ="accRetName"><div class='cell left'>Rose cell</div></div>
-                <div class='container' id ="accRetMin"><div class='cell left italic'>99999900003</div></div>
+                <div class='container' id ="accSeq"><div class='cell width-100 padding-left-5 green'># Route 3</div></div>
+                <div class='container' id ="accRetName"><div class='cell width-100 padding-left-5'>Rose cell</div></div>
+                <div class='container'>
+                	<div class='cell width-100'>
+					    <div class="container">
+					        <div class='cell'>
+				                <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5 italic'>99999900004</div></div>
+					        </div>
+					        <div class='cell'>
+				                <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>2,000.00 ₱</div></div>
+					        </div>
+					    </div>
+                	</div>
+                </div>
 	        </div>
-	        <div class='cell'>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container' id ="accAmount"><div class='cell right'>2,000.00 ₱</div></div>
-                <div class='container'><div class='cell right'></div></div>
-	        </div>
-	            <div class='cell icon'></div>
 	    </div>
 	</div>
-	<div class="item-container">
+	<div class="item-container no-padding-item-container">
 	    <div class="container">
+	    	<div class='cell vertical serenade'>
+            	<div class='vertical-text'>SELF</div>
+            </div>
 	        <div class='cell'>
-                <div class='container' id ="accRetName"><div class='cell left'>ABC cell</div></div>
-                <div class='container' id ="accRetMin"><div class='cell left italic'>99999900004</div></div>
+                <div class='container' id ="accRetName"><div class='cell width-100 padding-left-5'>Rose cell</div></div>
+                <div class='container'>
+                	<div class='cell width-100'>
+					    <div class="container">
+					        <div class='cell'>
+				                <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5 italic'>99999900004</div></div>
+					        </div>
+					        <div class='cell'>
+				                <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>2,000.00 ₱</div></div>
+					        </div>
+					    </div>
+                	</div>
+                </div>
 	        </div>
-	        <div class='cell'>
-                <div class='container' id ="accAmount"><div class='cell right'>1,400.00 ₱</div></div>
-                <div class='container'><div class='cell right'></div></div>
-	        </div>
-	            <div class='cell icon'></div>
 	    </div>
 	</div>
-	<div class="item-container">
+	<div class="item-container no-padding-item-container">
 	    <div class="container">
+	    	<div class='cell vertical sulu'>
+            	<div class='vertical-text'>BCP</div>
+            </div>
 	        <div class='cell'>
-                <div class='container' id ="accRetName"><div class='cell left'>Lova cell</div></div>
-                <div class='container' id ="accRetMin"><div class='cell left italic'>99999900005</div></div>
+                <div class='container' id ="accRetName"><div class='cell width-100 padding-left-5'>Rose cell</div></div>
+                <div class='container'>
+                	<div class='cell width-100'>
+					    <div class="container">
+					        <div class='cell'>
+				                <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5 italic'>99999900004</div></div>
+					        </div>
+					        <div class='cell'>
+				                <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>2,000.00 ₱</div></div>
+					        </div>
+					    </div>
+                	</div>
+                </div>
 	        </div>
-	        <div class='cell'>
-                <div class='container' id ="accAmount"><div class='cell right'>6,000.00 ₱</div></div>
-                <div class='container'><div class='cell right'></div></div>
-	        </div>
-	            <div class='cell icon'></div>
-	    </div>
-	</div>
-	<div class="item-container">
-	    <div class="container">
-	        <div class='cell'>
-                <div class='container' id ="accRetName"><div class='cell left'>Mama cell</div></div>
-                <div class='container' id ="accRetMin"><div class='cell left italic'>99999900006</div></div>
-	        </div>
-	        <div class='cell'>
-                <div class='container' id ="accAmount"><div class='cell right'>7,000.00 ₱</div></div>
-                <div class='container'><div class='cell right'></div></div>
-	        </div>
-	            <div class='cell icon'></div>
-	    </div>
-	</div>
-	<div class="item-container">
-	    <div class="container">
-	        <div class='cell'>
-                <div class='container' id ="accRetName"><div class='cell left'>Nano cell</div></div>
-                <div class='container' id ="accRetMin"><div class='cell left italic'>99999900007</div></div>
-	        </div>
-	        <div class='cell'>
-                <div class='container' id ="accAmount"><div class='cell right'>4,500.00 ₱</div></div>
-                <div class='container'><div class='cell right'></div></div>
-	        </div>
-	            <div class='cell icon'></div>
 	    </div>
 	</div>
 </div>

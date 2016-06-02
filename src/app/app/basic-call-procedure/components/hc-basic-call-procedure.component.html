@@ -1,0 +1,61 @@
+<div class="container-body">
+    <div class='filter-container' *ngIf='getFilter().filterRetailerBCP'>
+        <div class='filter-input input'>
+            <div class='icon'></div>
+            <input type='text' #listFilter (keyup)='onKey(listFilter.value)' id='RetailerSearchBox' placeholder='Input Retailer Name or MIN' />
+        </div>  
+    </div>
+
+<div class="container-body">
+    <!-- <div class="item-container" (click)="gotoCallPreparationHC({status: 'In Progress'})"> -->
+    <div class="item-container" (click)="gotoAnotherPage()">
+        <div class="container">
+            <div class='cell width-10 padding-left-5'><div class="sequence green">1</div></div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-40 padding-left-5'>Rose Cell</div></div>
+                <div class='container'><div class='cell width-40 padding-left-5 italic'>99999900003</div></div>
+                <div class='container'><div class='cell width-40 padding-left-5'>Amount payable (5/8)</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-40 align-right bold'>In Progress</div></div>
+                <div class='container'><div class='cell width-40 align-right'></div></div>
+                <div class='container'><div class='cell width-40 align-right'>3,000.00 ₱</div></div>
+            </div>
+            <div class='cell width-10 arrow-right'></div>
+        </div>
+    </div>
+    <!-- <div class="item-container" (click)="gotoCallPreparationHC({status: 'Not Visited'})"> -->
+    <div class="item-container" (click)="gotoAnotherPage()">
+        <div class="container">
+            <div class='cell width-10 padding-left-5'><div class="sequence green">2</div></div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-40 padding-left-5'>Bird Cell</div></div>
+                <div class='container'><div class='cell width-40 padding-left-5 italic'>99999900003</div></div>
+                <div class='container'><div class='cell width-40 padding-left-5'>Amount payable (1/3)</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-40 align-right bold'>Not Visited</div></div>
+                <div class='container'><div class='cell width-40 align-right'></div></div>
+                <div class='container'><div class='cell width-40 align-right'>3,000.00 ₱</div></div>
+            </div>
+            <div class='cell width-10 arrow-right'></div>
+        </div>
+    </div>
+    <!-- <div class="item-container" (click)="gotoCallPreparationHC({status: 'Visited'})"> -->
+    <div class="item-container" (click)="gotoAnotherPage()">
+        <div class="container">
+            <div class='cell width-10 padding-left-5'><div class="sequence vivid-pink">3</div></div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-40 padding-left-5'>Rose Cell</div></div>
+                <div class='container'><div class='cell width-40 padding-left-5 italic'>99999900003</div></div>
+                <div class='container'><div class='cell width-40 padding-left-5'>Amount payable (1/5)</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-40 align-right bold'>Not Visited</div></div>
+                <div class='container'><div class='cell width-40 align-right'></div></div>
+                <div class='container'><div class='cell width-40 align-right'>3,000.00 ₱</div></div>
+            </div>
+            <div class='cell width-10 arrow-right'></div>
+        </div>
+    </div>
+</div>

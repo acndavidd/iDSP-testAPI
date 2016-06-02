@@ -1,0 +1,210 @@
+<div class='container-body'>
+    <div class="item-container sub">
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell width-100 padding-left-5 green'>Rose Cell</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-50 italic green'>(99999900003)</div></div>
+            </div>
+        </div>
+    </div>
+    <div class="item-container">
+        <div class="bcp-step-container">
+            <div class="step-field">
+                <div class="step-field-item"><div class="step-circle">1</div></div>
+                <div class="step-field-item">-</div>
+                <div class="step-field-item"><div class="step-circle">2</div></div>
+                <div class="step-field-item">-</div>
+                <div class="step-field-item"><div class="step-circle">3</div></div>
+                <div class="step-field-item">-</div>
+                <div class="step-field-item"><div class="step-circle vivid-pink">4</div></div>
+                <div class="step-field-item">-</div>
+                <div class="step-field-item"><div class="step-circle">5</div></div>
+            </div>
+        </div>
+    </div>
+    <div class='item-container'>
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell align-center width-100 bold'>Price After Discount:</div></div>
+                <div class='container'><div class='cell align-center width-100 bold green'>0.00 ₱</div></div>
+            </div>
+        </div>
+    </div>
+    <div class='item-container'>
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell padding-left-5 width-50'>Price Before Discount</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell align-right width-40'>0.00 ₱</div></div>
+            </div>
+            <div class='cell width-10'></div>
+        </div>
+    </div>
+    <div class='item-container'>
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell padding-left-5 width-50'>Total Discount Amount</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell align-right width-40'>0.00 ₱</div></div>
+            </div>
+            <div class='cell width-10'></div>
+        </div>
+    </div>
+    <div class='item-container'>
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell padding-left-5 width-50'>Transfer Load</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell align-right width-40'>0.00 ₱</div></div>
+            </div>
+            <div class='cell width-10 edit-gray' (click)='gotoAddEditLoadTransfer()'></div>
+        </div>
+    </div>
+    <div>
+        <div class='item-container sub'>
+            <div class='container'>
+                <div class='cell'>
+                    <div class='container'><div class='cell padding-left-10 width-50 bold'>SMART</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 grey'>Transfer Amount</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 grey'>Promo Code</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 grey'>Discount Amount</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 grey'>Total Amount</div></div>
+                </div>
+                <div class='cell'>
+                    <div class='container'><div class='cell align-right width-40'>9000000003</div></div>
+                    <div class='container'><div class='cell align-right width-40'>2,000.00 ₱</div></div>
+                    <div class='container'><div class='cell align-right width-40 grey'>load111</div></div>
+                    <div class='container'><div class='cell align-right width-40'>100.00 ₱</div></div>
+                    <div class='container'><div class='cell align-right width-40'>1,900.00 ₱</div></div>
+                </div>
+                <div class='cell width-10'></div>
+            </div>
+        </div>
+        <div class='item-container sub'>
+            <div class='container'>
+                <div class='cell'>
+                    <div class='container'><div class='cell padding-left-10 width-50 bold'>SUN</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 grey'>Transfer Amount</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 grey'>Promo Code</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 grey'>Discount Amount</div></div>
+                    <div class='container'><div class='cell padding-left-10 width-50 grey'>Total Amount</div></div>
+                </div>
+                <div class='cell'>
+                    <div class='container'><div class='cell align-right width-40'>9000000003</div></div>
+                    <div class='container'><div class='cell align-right width-40'>2,000.00 ₱</div></div>
+                    <div class='container'><div class='cell align-right width-40 grey'>load111</div></div>
+                    <div class='container'><div class='cell align-right width-40'>100.00 ₱</div></div>
+                    <div class='container'><div class='cell align-right width-40'>1,900.00 ₱</div></div>
+                </div>
+                <div class='cell width-10'></div>
+            </div>
+            <div class='container'>
+                <div class='double-divider'>
+                    <div class='button button-small' id='cancel'>
+                        <div class='button-identifier'>CANCEL</div>
+                    </div>
+                </div>
+                <div class='double-divider'>
+                    <div class='button button-small' id='confirm'>
+                        <div class='button-identifier'>CONFIRM</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class='item-container'>
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell padding-left-5 width-50'>Physical Order</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell align-right width-40'>0.00 ₱</div></div>
+            </div>
+            <div class='cell width-10 edit-gray' (click)='gotoAddEditPhysicalOrder()'></div>
+        </div>
+    </div>
+
+    <div>
+        <div class='item-container sub'>
+            <div class='container'>
+                <div class='cell'>
+                    <div class='container'><div class='cell padding-left-10 width-90'>Pinoy SIM</div></div>
+                    <div class='container'>
+                        <div class='cell padding-left-10 width-90'>
+                            <div class='container'>
+                                <div class='cell'>
+                                    <div class='container'><div class='cell width-50 grey'>Suggested Order</div></div>
+                                </div>
+                                <div class='cell'>
+                                    <div class='container'><div class='cell align-right width-40'>500</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='cell width-10'></div>
+            </div>
+        </div>
+        <div class='item-container sub'>
+            <div class='container'>
+                <div class='cell'>
+                    <div class='container'><div class='cell padding-left-10 width-90'>SKU1</div></div>
+                    <div class='container'>
+                        <div class='cell padding-left-10 width-90'>
+                            <div class='container'>
+                                <div class='cell'>
+                                    <div class='container'><div class='cell width-50'>Unit Price</div></div>
+                                    <div class='container'><div class='cell width-50 grey'>Order Quantity</div></div>
+                                    <div class='container'><div class='cell width-50 grey'>Amount per SKU</div></div>
+                                    <div class='container'><div class='cell width-50 grey'>Promo Code</div></div>
+                                    <div class='container'><div class='cell width-50 grey'>Discount Amount</div></div>
+                                    <div class='container'><div class='cell width-50 grey'>Total Amount</div></div>
+                                </div>
+                                <div class='cell'>
+                                    <div class='container'><div class='cell align-right width-40'>0.00 ₱</div></div>
+                                    <div class='container'><div class='cell align-right width-40'>5</div></div>
+                                    <div class='container'><div class='cell align-right width-40'>1,000.00 ₱</div></div>
+                                    <div class='container'><div class='cell align-right width-40'>phy1234</div></div>
+                                    <div class='container'><div class='cell align-right width-40'>100.00 ₱</div></div>
+                                    <div class='container'><div class='cell align-right width-40'>900.00 ₱</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='cell width-10'></div>
+            </div>
+
+            <div class='container'>
+                <div class='double-divider'>
+                    <div class='button button-small' id='cancel'>
+                        <div class='button-identifier'>CANCEL</div>
+                    </div>
+                </div>
+                <div class='double-divider'>
+                    <div class='button button-small' id='confirm'>
+                        <div class='button-identifier'>CONFIRM</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='double-divider'>
+        <div class='button' id='skip' (click)='skipSalesOrder()'>
+            <div class='button-identifier'>SKIP</div>
+        </div>
+    </div>
+    <div class='double-divider'>
+        <div class='button' id='next' (click)="goToSalesOrderPayment()">
+            <div class='button-identifier'>NEXT</div>
+        </div>
+    </div>
+</div>

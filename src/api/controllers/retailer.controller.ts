@@ -1,13 +1,32 @@
+'use strict';
 import {ORMService} from '../services/orm.service';
+import {APIService} from '../services/api.service';
+import {ErrorHandling} from '../services/error-handling.service';
+import {RetailerModel} from '../models/input/retailer.model';
+//import {ErrHandlerService} from '../services/err.handler.service';
+
+export interface RetailerInterface{
+	getProduct(pRequest, pResponse):void;
+	getRetailerSummary(pRequest, pResponse):Promise<void>;
+	getSalesRoute(pRequest, pResponse):Promise<void>;
+	task(pRequest, pResponse):Promise<void>;
+	retailerCallPreparation(pRequest, pResponse):Promise<void>;
+	getAllRetailerAlert(pRequest, pResponse):Promise<void>;
+	loadWallet(pRequest, pResponse):Promise<void>;
+	physicalInventory(pRequest, pResponse):Promise<void>;
+	paymentHistory(pRequest, pResponse):Promise<void>;
+}
 
 
-export class RetailerController{
+export class RetailerController implements RetailerInterface{
 
-	constructor(){
-		
+	//private errService:ErrHandlerService = new ErrHandlerService();
+	private vUsername: string;
+
+	constructor() {
 	}
 	
-	getProduct(pRequest,pResponse){
+	getProduct(pRequest,pResponse) {
 		let vOrmSvc = new ORMService();
 		let vProdCatModel = vOrmSvc.getModel('mst_prod_cat');
 		vProdCatModel.findAll({
@@ -52,16 +71,149 @@ export class RetailerController{
 	async getRetailerSummary(pRequest, pResponse){
 		try{
 			console.log("Start getting Retailer Summary");
-			var vSelectedRetailId = pRequest.body.retailerId;
-			var vSalesPerson = pRequest.body.salesPerson;
+			var vSelectedRetailId = pRequest.params.retailerId;
 			var vOrmSvc = new ORMService();
 
 			let vParams = {
-				selected_ret_id : vSelectedRetailId,
+				selected_ret_id : vSelectedRetailId
+			};
+
+			var vResult = JSON.parse(await vOrmSvc.sp('get_retailer_summary', vParams ));     
+			console.log("Query Done with result : "+ JSON.stringify(vResult));
+
+			if (vResult.status == "Error")
+			{
+				vResult = {
+						"status" : vResult.status,
+						"errorType": vResult.errorType,
+						//"errorCode": this.errService.getErrorMessage(vResult.errorCode),
+						"result" : null
+				};
+			}
+
+			pResponse.json(vResult);			
+		}
+		catch(pErr){
+			console.log("Failed to Query Retailer Summary with error message" + pErr);
+
+			var vError = {
+						"status" : "Error",
+						"errorType": "Internal Exception",
+						//"errorCode": this.errService.getErrorMessage("ERR_INTERNAL_SYSTEM"),
+						"result" : null
+					};
+			pResponse.json(vError);
+		}
+	}
+	
+	async getSalesRoute(pRequest, pResponse){
+		try{
+			console.log("Start getting sales route");
+			var vSalesPerson = pRequest.params.salesPerson;
+			var vSelectedDay = pRequest.params.day;			
+			let vOrmSvc = new ORMService();
+			
+			let vParams = {
+				selected_day : vSelectedDay,
 				sales_person : vSalesPerson
 			};
 
-			var vResult = await vOrmSvc.sp('query_retailer_summary', vParams );
+			var vResult = await vOrmSvc.sp('get_retailer_route', vParams );
+			console.log("Query Done with result : "+ JSON.stringify(vResult));
+
+			pResponse.json(vResult);			
+		}
+		catch(pErr){
+			console.log("Failed to Query Sales Route with error message" + pErr);
+			var vError = {
+						"status" : "Error",
+						"errorType": "Internal Exception",
+						"errorCode": "ERR_INTERNAL_SYSTEM",
+						"result" : ""
+					};
+
+			pResponse.json(vError);
+		}
+	}
+
+	async task(pRequest, pResponse) {
+		// try{
+			// console.log("Start getting retailer route for BCP");
+			// var vSelectedDay = pRequest.body.day;
+			// var vSalesPerson = pRequest.body.salesPerson;
+			// let vOrmSvc = new ORMService();
+			
+			// let vParams = {
+			// 	sales_person : vSalesPerson,
+			// 	selected_day : vSelectedDay
+				
+			// };
+
+			// var vResult = await vOrmSvc.sp('get_retailer_route_bcp', vParams );
+			// console.log("Query Done with result : "+ JSON.stringify(vResponse));
+			// var vResponse = {
+			// 			"status" : "Success",
+			// 			"errorMessage" : "",
+			// 			"result" : vResult
+			// 		};
+			
+			// pResponse.json(vResponse);
+
+			console.log("Controller Start getting retailer route for BCP");
+			var vSalesPerson = pRequest.query.username;
+			console.log('sales' + vSalesPerson);
+
+			let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
+			try{
+				let vHttpSvc = new APIService.HTTPService();
+				let vPath:string = '/OPISNET/services/idsp/AllRT';
+				let vRetailerData = new RetailerModel(vSalesPerson);
+				if(vRetailerData.validate()) {
+					let vResult = await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null, vRetailerData);
+					pResponse.status(vResult.status).json(vResult.payload);
+				}else {
+					vErrHandling.throwError(pResponse, 400, 101, "INPUT_ERROR", vRetailerData.Errors);
+				}
+			}catch(pErr){
+				console.log(pErr);
+				if(pErr.errorCode == 101) {
+					vErrHandling.throwError(pResponse, 400, 101, "ERR_INVALID_CREDENTIAL");
+				}
+			}
+
+
+
+		// }
+		// catch(pErr){
+		// 	console.log("Failed to Query Sales Route with error message" + pErr);
+
+		// 	var vError = {
+		// 				"status" : "Error",
+		// 				"errorMessage" : pErr,
+		// 				"result" : null
+		// 			};
+		// 	pResponse.json(vError);
+		// }
+	}
+
+	async retailerCallPreparation(pRequest,pResponse) {
+		try{
+			console.log("Start getting Retailer Preparation");
+
+			var vSalesPerson = pRequest.body.salesPerson;
+			var vSelectedRetailId = pRequest.body.retailerId;
+
+			console.log(vSelectedRetailId+'retailer id');
+
+			var vOrmSvc = new ORMService();
+
+			let vParams = {
+				sales_person : vSalesPerson,
+				selected_ret_id : vSelectedRetailId
+				
+			};
+
+			var vResult = await vOrmSvc.sp('get_retailer_call_prep', vParams );
 			console.log("Query Done with result : "+ JSON.stringify(vResponse));
 			var vResponse = {
 						"status" : "Success",
@@ -70,96 +222,8 @@ export class RetailerController{
 					};
 			
 			pResponse.json(vResponse);
-
-			/*
-			var vCurrentDate = new Date().setHours(0,0,0,0);
-			var vArStatusPaid = 'Paid';
-		    var vSequelize = vOrmSvc.getSequelize(); 
-			var vRetailer = vOrmSvc.getModel("mst_retailer");
-			var vDspAlert = vOrmSvc.getModel("mst_retailer_dsp_alert");
-			var vAccountReceivable = vOrmSvc.getModel("trx_account_receivable");
-
-			//Query REtailer
-			vRetailer.findOne({
-				attributes:	['retailer_id','retailer_name','retailer_min',
-							 'owner_first_name',
-							 'retailer_address','civil_status','email',
-							 'gender','birthday'
-							],
-				where: {
-						retailer_id : vSelectedRetailId						
-				}				
-			}).then(function (pResRetailer){
-				
-				var listPromise=[];
-				var vResAr;
-				var vResAlert;
-
-				//Query Alert
-				listPromise.push(pResRetailer.getRetailerDSPAlert({
-						attributes : ['value_segment','threshold_hit'],
-						order : [['date','DESC']],
-						where : {
-							date : {
-								$gt: vCurrentDate
-							}
-						},	
-						limit : 1				
-					}).then(function (pResAlert)
-					{	
-						console.log("Alert is Found" + JSON.stringify(pResAlert));
-						 vResAlert = pResAlert;
-					})
-				);
-
-				//Query AR
-				listPromise.push(pResRetailer.getAccountReceivable({
-					attributes : ['amount'],
-					where : { 
-						status : {
-							$ne: vArStatusPaid
-						}
-					}
-					}).then(function (pResAccount)
-					{	
-						console.log("AR is Found" + JSON.stringify(pResAccount));
-						vResAr = pResAccount;
-					})
-				);
-
-				Promise.all(listPromise).then(function(){
-
-					var vttlAccountReceivable = 0;
-					for(var i = 0; i < vResAr.length; i++) {
-					    vttlAccountReceivable = vttlAccountReceivable + vResAr[i].amount;
-					}
-
-					if (vResAlert.length == 0)
-					{
-						vResAlert = null;
-					}
-
-					var vResult = {
-					"status" : "Success",
-					"errorMessage" : "",
-					"result" : {
-						retailer : pResRetailer,
-						alert : vResAlert,
-						total_ar : vttlAccountReceivable
-						}
-					};
-
-					console.log("Query Done with result : "+ JSON.stringify(vResult));
-					pResponse.json(vResult);
-				});
-			}).catch(function (pErr) {
-				console.log(pErr)		        
-		        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + pErr);
-			});
-			*/
-			
 		}
-		catch(pErr){
+		catch(pErr) {
 			console.log("Failed to Query Retailer Summary with error message" + pErr);
 
 			var vError = {
@@ -169,21 +233,46 @@ export class RetailerController{
 					};
 			pResponse.json(vError);
 		}
+	} 
+
+	async getAllRetailerAlert(pRequest,pResponse){
+		let vOrmSvc = new ORMService();
+		let params = {
+			dsp_id : 'DSP00001'
+		};
+		var vResult = {
+			success : 1,
+			result : await vOrmSvc.sp('get_retailer_alert', params)
+		};
+		pResponse.json(vResult);
 	}
 
-	async getSalesRoute(pRequest, pResponse){
+	async loadWallet(pRequest,pResponse) {
 		try{
-			console.log("Start getting sales route");
-			var vSelectedDay = pRequest.body.day;
+			console.log("Start getting Load Wallet");
+
 			var vSalesPerson = pRequest.body.salesPerson;
-			let vOrmSvc = new ORMService();
-			
+			var vSelectedRetailId = pRequest.body.retailerId;
+
+			console.log(vSelectedRetailId+'retailer id');
+
+			var vOrmSvc = new ORMService();
+
 			let vParams = {
-				selected_day : vSelectedDay,
-				sales_person : vSalesPerson
+				sales_person : vSalesPerson,
+				selected_ret_id : vSelectedRetailId
+				
 			};
 
-			var vResult = await vOrmSvc.sp('query_retailer_route', vParams );
+			var vResult = [{
+				"brand":"SmartLoad",
+				"drop_size":"350",
+				"last_amount_transferred":"1200",
+				"transaction_date":"04/01/2016",
+				"latest_balance":"1000",
+				"retailer_id":"RTL00001"
+			}]
+
 			console.log("Query Done with result : "+ JSON.stringify(vResponse));
 			var vResponse = {
 						"status" : "Success",
@@ -192,45 +281,10 @@ export class RetailerController{
 					};
 			
 			pResponse.json(vResponse);
-
-			/* Query Using Model Sequelize
-			var vCurrentDate = new Date();	    
-		    var vSequelize = vOrmSvc.getSequelize(); 
-		    var vRoute = vOrmSvc.getModel("mst_route");	
-			var vRouteDay = vOrmSvc.getModel("mst_route_day");
-			var vRetailer = vOrmSvc.getModel("mst_retailer");
-
-			vRetailer.findAll({
-				attributes:	['retailer_id','retailer_name','retailer_min',
-							 'owner_first_name',
-							 'retailer_address','civil_status','email',
-							 'gender','birthday'
-							],
-				where: {dsp_id : vSalesPerson},
-				include: [
-					{	model: vRoute, as: 'Route', attributes:['route_id'], required: true, 
-						include: [{model: vRouteDay, as: 'RouteDay', attributes:['sequence'], where : {route_day : vSelectedDay}}]
-					}					
-				],
-				order: [[vSequelize.col('sequence', 'Route.RouteDay'), 'DESC NULLS LAST']]				
-			}).then(function (pResult){
-				var vResult = {
-				"status" : "Success",
-				"errorMessage" : "",
-				"result" : pResult
-				};
-
-				console.log("Query Done with result : "+ JSON.stringify(pResult));
-
-				pResponse.json(vResult);
-			}).catch(function (pErr) {
-				console.log(pErr)		        
-		        pResponse.send("Failed to Insert" + ' Time :' + new Date().toLocaleString() + " Error : " + pErr);
-			});
-			*/
 		}
-		catch(pErr){
-			console.log("Failed to Query Sales Route with error message" + pErr);
+		catch(pErr)
+		{
+			console.log("Failed to Query Load Wallet with error message" + pErr);
 
 			var vError = {
 						"status" : "Error",
@@ -241,75 +295,134 @@ export class RetailerController{
 		}
 	}
 
-	async getAllRetailerAlert(pRequest,pResponse){
-		let vOrmSvc = new ORMService();
-		var vCurrentDate = new Date();
-		let params = {
-			dsp_id : '1',
-			first_name : 'an'
-		};
+	async physicalInventory(pRequest,pResponse) {
+		try{
+			console.log("Start getting Physical Inventory");
 
-		var result = await vOrmSvc.sp('test_sp', params );
-		pResponse.json(result);
-		/*
-		let vDSPModel = vOrmSvc.getModel('mst_dsp');
-		let vDSPID = 'DSP00001';
-		let vResult;
-		vDSPModel.findById(vDSPID).then(function(dsp){
-			dsp.getRetailer({
-				attributes : ['retailer_name', 'retailer_min'],
-				include : [{
-					model : vOrmSvc.getModel('mst_retailer_dsp_alert'),
-					as : 'RetailerDSPAlert',
-					attributes : ['value_segment' , 'threshold_hit'],
-					where : { 
-						date : { $gte : vCurrentDate.setHours(0,0,0,0) }
-					}
-				},{
-					model : vOrmSvc.getModel('mst_route'),
-					as : 'Route',
-					attributes : ['route_id'],
-					include : [{
-						model : vOrmSvc.getModel('mst_route_day'),
-						as : 'RouteDay',
-						attributes : ['sequence'],
-						where : {route_day : vCurrentDate.getDay()},
-						required : false,
-						limit : 10
-					}]
-				}],
-				order : [ [ vOrmSvc.getSequelize().col('sequence') , 'ASC NULLS LAST']]
-			}).then(function(pResult){
-				console.log(JSON.stringify(pResult));
-				pResult = JSON.parse(JSON.stringify(pResult));
-				pResult.map(function(pRetailer){
-					pRetailer.threshold_hit = pRetailer.RetailerDSPAlert[0].threshold_hit;
-					pRetailer.value_segment = pRetailer.RetailerDSPAlert[0].value_segment;
-					if( pRetailer.Route.length > 0 
-						&& "RouteDay" in pRetailer.Route[0] 
-						&& pRetailer.Route[0].RouteDay.length > 0  
-						&& pRetailer.Route[0].RouteDay[0].route_day == vCurrentDate.getDay()
-					  ){
-						pRetailer.sequence = pRetailer.Route[0].RouteDay[0].sequence;
-					}else{
-						pRetailer.sequence = 0;
-					}
-					delete pRetailer.Route;
-					delete pRetailer.RetailerDSPAlert;
-				});
-				vResult = {
-					success : 1,
-					result : pResult
-				};
-				pResponse.json(vResult);
-			});
-		}).catch(function(pErr){
-			var vResult = {
-				success : 0,
-				error : pErr
-			}
-			pResponse.json(vResult);
-		});
-		*/
+			var vSalesPerson = pRequest.body.salesPerson;
+			var vSelectedRetailId = pRequest.body.retailerId;
+
+			console.log(vSelectedRetailId+'retailer id');
+
+			var vOrmSvc = new ORMService();
+
+			let vParams = {
+				sales_person : vSalesPerson,
+				selected_ret_id : vSelectedRetailId
+				
+			};
+
+			var vResult = [{
+				"brand":"SKU1",
+				"last_qty_sold":"650",
+				"transaction_date":"04/01/2016",
+				"beginning_balance":"1000",
+				"retailer_id":"RTL00001"
+			}]
+
+			console.log("Query Done with result : "+ JSON.stringify(vResponse));
+			var vResponse = {
+						"status" : "Success",
+						"errorMessage" : "",
+						"result" : vResult
+					};
+			
+			pResponse.json(vResponse);
+		}
+		catch(pErr)
+		{
+			console.log("Failed to Query Physical Inventory with error message" + pErr);
+
+			var vError = {
+						"status" : "Error",
+						"errorMessage" : pErr,
+						"result" : null
+					};
+			pResponse.json(vError);
+		}
+	}
+
+	async paymentHistory(pRequest,pResponse) {
+		try{
+
+			console.log("Start getting Physical Inventory");
+
+			var vSelectedRetailId = pRequest.body.retailerId;
+
+			console.log(vSelectedRetailId+'retailer id');
+
+			var vOrmSvc = new ORMService();
+
+			let vParams = {
+				selected_ret_id : vSelectedRetailId,
+				interval_days : 30
+				
+			};
+
+			var vResult = await vOrmSvc.sp('get_payment_history', vParams );
+			console.log("Query Done with result : "+ JSON.stringify(vResponse));
+			var vResponse = {
+						"status" : "Success",
+						"errorMessage" : "",
+						"result" : vResult
+					};
+			
+			pResponse.json(vResponse);
+
+		}
+		catch(pErr)
+		{
+			console.log("Failed to Query Payment History" + pErr);
+
+			var vError = {
+						"status" : "Error",
+						"errorMessage" : pErr,
+						"result" : null
+					};
+			pResponse.json(vError);
+		}
+	}
+
+	async additionalRetailerRoute (pRequest,pResponse) {
+		try
+		{	
+
+			console.log("Start getting Physical Inventory");
+
+			var vSalesPerson = pRequest.body.salesPerson;
+			var vDay = pRequest.body.pDay;
+
+			console.log(vSalesPerson + 'DSP id');
+
+			var vOrmSvc = new ORMService();
+
+			let vParams = {
+				salesPerson : vSalesPerson,
+				pDay : vDay	
+				
+			};
+
+			var vResult = await vOrmSvc.sp('get_additional_retailer', vParams );
+			console.log("Query Done with result : "+ JSON.stringify(vResponse));
+			var vResponse = {
+						"status" : "Success",
+						"errorMessage" : "",
+						"result" : vResult
+					};
+			
+			pResponse.json(vResponse);
+
+		}	
+		catch(pErr)
+		{
+			console.log("Failed to Query Payment History" + pErr);
+
+			var vError = {
+						"status" : "Error",
+						"errorMessage" : pErr,
+						"result" : null
+					};
+			pResponse.json(vError);
+		}
 	}
 }

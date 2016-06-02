@@ -32,58 +32,63 @@ $container-mpin-height: 100%;
 	.smart-logo
 	{
 		display: block;
-        height: 30px;
+        // height: 30px;
         width: 100%;
         background: 
         url("../img/smart-logo.png")
         no-repeat;
         background-position-x: center;
         background-position-y: center;
+        background-size: 30vw;
         z-index: 90;
 		position: fixed;
-		padding-top: 20vw;
+		padding-top: 40vw;
 
 	}
 
 	.outer-box{
-		max-width : 320px;
-		margin: 70px auto 0px;
+		max-width : 80%;
+		margin: 20vw auto -3vw;
 		.header {
 			color: #FFF;
-			font-size: 28px;
-			line-height: 40px;
-			margin-bottom: 75px;
+			font-size: 10vw;
+			line-height: 5vw;
+			margin-bottom: 10vw;
 			text-align: center;
 			font-weight: lighter;
 		}
 
 		.mpin-title{
 			color: #FFF;
-			font-size: 14px;
-			line-height: 40px;
-			text-align: left;
+			font-size: 5vw;
+			line-height: 12vw;
+			text-align: center;
 			//font-weight: lighter;
 		}
 
 		.mpin-message{
 			color: #FFF;
 			clear: both;
-	        margin-right: 20px;
-	        margin-left: 20px;
-	        font-size: 12px;
+	        margin-right: 4vw;
+	        margin-left: 4vw;
+	        font-size: 3.5vw;
 	        font-style: italic;
 	        text-align: center;
 		}
 
-		.mpin-field{
+		.mpin-field {
 			clear: both;
-			width: 88%;
+			display: inline-flex;
+			width: 100%;
+			
+			margin: 0% 0% 3% 0%;
 		       .mpin-field-item {
-			        float: left;
-			        margin-right: 5px;
-			        margin-bottom:5px;
-			        height: 51px;
-			        line-height: 51px;
+			        // float: left;
+			        margin-bottom:2.5vw;
+			        height: 12vw;
+			        line-height: 12vw;
+			        font-size: 4vw;
+    				font-weight: bold;
 			        color: #FFF;
       			}
       .last-child {
@@ -91,17 +96,14 @@ $container-mpin-height: 100%;
         }
         	input {
 	        border: 1px solid #ddd;
-	        width: 40px;
-	        height: 40px;
-	        margin: 2px auto;
-	        line-height: 50px - 20px;
-	        font-size: medium;
-	        margin-bottom: 5px;
+	        width: 75%;
+	        height: 7vh;
 	        background-color: rgba(199, 195, 184, 0.5);
-	        outline: 0;
-	        color: #000;
+	        font-size: 4vw;
 	        text-align: center;
 	        font-style: italic;
+	        font-weight: 600;
+	       	color: $white;
       }
 		}
 
@@ -109,22 +111,22 @@ $container-mpin-height: 100%;
 			color: #FFF;
 			//text-decoration: underline;
 			cursor: pointer;
-			padding: 0% 0% 0% 2%;
+			padding:2%;
 			}
 
 		.link{
 			text-decoration: underline;
+			font-size: 4vw;
 		}
 		
 
 		.submit-button
 		{
-			height: 35px;
 			background-color: $apple;
 			text-align: center;
 			vertical-align: center;
-			font-size: 13pt;
-    		padding-top: 7px;
+			padding: 3% 0% 3% 0%;
+			font-size: 4vw;
     		color : #FFF;
 		}
 	}

@@ -1,1 +1,211 @@
-<div>Collection</div>
+<div class="container-body">
+	<div class="item-container">
+	    <div class="container">
+	        <div class='cell'>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50'>Previous A/R</div>
+                </div>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50 italic small grey'>Total A/R before today</div>
+                </div>
+	        </div>
+	        <div class='cell'>
+                <!-- <div class='container'><div class='cell width-40 align-right'></div></div> -->
+                <div class='container'>
+                	<div class='cell width-40 align-right green'>50,000.00 ₱</div>
+                </div>
+	        </div>
+	        <div class='cell width-10'>
+	        </div>
+	    </div>
+	</div>
+
+
+	<div class="item-container" (click)="gotoDetailSalesOrder()">
+	    <div class="container">
+	        <div class='cell'>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50'>Sales / Order</div>
+                </div>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50 italic small grey'>Total order amount today</div>
+                </div>
+	        </div>
+	        <div class='cell'>
+                <!-- <div class='container'><div class='cell width-40 align-right'></div></div> -->
+                <div class='container'>
+                	<div class='cell width-40 align-right green'>10,000.00 ₱</div>
+                </div>
+	        </div>
+	        <div class='cell width-10 arrow-right'>
+	        </div>
+	    </div>
+	</div>
+
+
+	<div class="item-container">
+	    <div class="container">
+	        <div class='cell'>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50'>Gross A/R</div>
+                </div>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50 italic small grey'>Previous A/R + Sales / Order</div>
+                </div>
+	        </div>
+	        <div class='cell'>
+                <!-- <div class='container'><div class='cell width-40 align-right'></div></div> -->
+                <div class='container'>
+                	<div class='cell width-40 align-right green'>60,000.00 ₱</div>
+                </div>
+	        </div>
+	        <div class='cell width-10'>
+	        </div>
+	    </div>
+	</div>
+
+
+	<div class="item-container" (click)="subCollectionShow()">
+	    <div class="container">
+	        <div class='cell'>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50'>Collection</div>
+                </div>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50 italic small grey'>Previous + Current Transaction</div>
+                </div>
+	        </div>
+	        <div class='cell'>
+                <!-- <div class='container'><div class='cell width-40 align-right'></div></div> -->
+                <div class='container'>
+                	<div class='cell width-40 align-right green'>8,000.00 ₱</div>
+                </div>
+	        </div>
+	        <div class='cell width-10 arrow-down' [ngClass]="{selected: vCollectionShow}">
+
+	        <!-- <div ngIf='vCollectionShow'>
+	        	<div class='cell width-10 selected'></div>
+	        </div>
+	        
+	        <div ngIf='!vCollectionShow'>
+	        	<div class='cell width-10 arrow-down'></div>
+	        </div>
+	         -->
+	        </div>
+	    </div>
+	</div>
+
+	<div *ngIf="vCollectionShow">
+		<div class="item-container sub">
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell width-50 padding-left-10'>Previous</div></div>
+			        <div class='container'><div class='cell width-50 padding-left-10 grey small'>Payment for transaction in other day</div></div>
+			    </div>
+				<div class='cell'>
+			        <div class='container'><div class='cell width-40 align-right green'>0.00 ₱</div></div>
+			    </div>
+			    <div class='cell width-10'></div>
+			</div>
+			<div class="container">
+				<div class='cell'>
+			        <div class='container'><div class='cell width-50 padding-left-10'>Current</div></div>
+			        <div class='container'><div class='cell width-50 padding-left-10 grey small'>Payment for today’s transaction</div></div>
+			    </div>
+				<div class='cell'>
+			        <div class='container'><div class='cell width-40 align-right green'>8,000.00 ₱</div></div>
+			    </div>
+			    <div class='cell width-10'></div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="item-container">
+	    <div class="container">
+	        <div class='cell'>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50'>Total A/R</div>
+                </div>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50 italic small grey'>Gross A/R – Collection</div>
+                </div>
+	        </div>
+	        <div class='cell'>
+                <!-- <div class='container'><div class='cell width-40 align-right'></div></div> -->
+                <div class='container'>
+                	<div class='cell width-40 align-right green'>52,000.00 ₱</div>
+                </div>
+	        </div>
+	        <div class='cell width-10'>
+	        </div>
+	    </div>
+	</div>
+
+
+	<div class="item-container" (click)="gotoDetailCollection()">
+	    <div class="container">
+	        <div class='cell'>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50'>Total Collection</div>
+                </div>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50 italic small grey'>Total collected amount today</div>
+                </div>
+	        </div>
+	        <div class='cell'>
+                <!-- <div class='container'><div class='cell width-40 align-right'></div></div> -->
+                <div class='container'>
+                	<div class='cell width-40 align-right green'>8,000.00 ₱</div>
+                </div>
+	        </div>
+	        <div class='cell width-10 arrow-right'>
+	        </div>
+	    </div>
+	</div>
+
+
+	<div class="item-container" (click)="gotoDetailRemittance()">
+	    <div class="container">
+	        <div class='cell'>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50'>Total Remittance</div>
+                </div>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50 italic small grey'>Total remittance amount today</div>
+                </div>
+	        </div>
+	        <div class='cell'>
+                <!-- <div class='container'><div class='cell width-40 align-right'></div></div> -->
+                <div class='container'>
+                	<div class='cell width-40 align-right green'>8,000.00 ₱</div>
+                </div>
+	        </div>
+	        <div class='cell width-10 arrow-right'>
+	        </div>
+	    </div>
+	</div>
+
+
+	<div class="item-container">
+	    <div class="container">
+	        <div class='cell'>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50'>Difference</div>
+                </div>
+                <div class='container'>
+                	<div class='cell padding-left-5 width-50 italic small grey'>Collection - Remittance</div>
+                </div>
+	        </div>
+	        <div class='cell'>
+                <!-- <div class='container'><div class='cell width-40 align-right'></div></div> -->
+                <div class='container'>
+                	<div class='cell width-40 align-right green'>0.00 ₱</div>
+                </div>
+	        </div>
+	        <div class='cell width-10'>
+	        </div>
+	    </div>
+	</div>
+
+</div>

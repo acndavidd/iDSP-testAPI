@@ -10,14 +10,15 @@ import { Pipe, PipeTransform } from 'angular2/core';
 
 @Component({
     selector: 'targets-actuals',
+    // to be uncommented for actual api
     // templateUrl: './app/my-transaction/components/targets-actuals.component.html',
-    templateUrl: './app/my-transaction/components/md-targets-actuals.component.html',
+    // to be uncommented for hardcoded values
+    templateUrl: './app/my-transaction/components/hc-targets-actuals.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
     ],
     providers: [
-        TargetsActualsService
     ]
 })
 
@@ -29,30 +30,11 @@ export class TargetsActualsComponent {
     vUnderlineDay = true;
     vUnderlineWeek = false;
     vUnderlineMonth = false;
-    private vListBrands;
-    private vListProd;
-    private vListProdSubCat;
-    private vShowProd;
-    private vShowProdSubCat;
+    private vListBrands:any = [];
     public vSelectedBrand;
-    public vSelectedProd;
-
-    private vShowProductFirst;
-
     private vListProduct;
-    private vListCategory;
     private vShowProduct;
-
-    private vSubCatID;
-    private vListTargets;
-    private vShowTargets;
-
-    private vShowProductMonth;
-
     private vSelectedTab;
-
-    vCatNameList: any = [];
-
 
     constructor (
         private _router: Router,
@@ -61,35 +43,16 @@ export class TargetsActualsComponent {
         private _headerService: HeaderService,
         private _targetsActualsService: TargetsActualsService
         ) {
-        this.vSelectedBrand = 'SMART';
+        this.vSelectedBrand = 'Smart';
         this.vSelectedTab = 'Day';
         this._layoutService.setCurrentPage('TargetsActuals');
         this._headerService.setTitle('Targets & Actuals');
-        this._targetsActualsService.queryBrand().subscribe(
-             response => {
-                if (response.json().status === 'Success') {
-                    this.vListBrands = response.json().brandList;
-                }
-            },
-            error => {}
-        );
-
-        this._targetsActualsService.queryProdCat().subscribe(
-             response => {
-                if (response.json().status === 'Success') {
-                    this.vListProd = response.json().CatList;
-                    this.vShowProd = this.vListProd;
-                }
-            },
-            error => {}
-        );
-
-        this.getProduct();
+        this.getTargetsActuals();
 
     }
 
     getBrand() {
-        return this.vListBrands;
+        return this._targetsActualsService.getBrand();
     }
 
     getResize() {
@@ -100,28 +63,12 @@ export class TargetsActualsComponent {
         return this._layoutService.getFilter();
     }
 
-    getProduct() {
+    getTargetsActuals() {
          console.log('Refresh PRoduct ' + this.vSelectedTab);
-         this._targetsActualsService.queryProduct(this.vSelectedTab).subscribe(
+         this._targetsActualsService.queryPerformance(this.vSelectedTab, this.vSelectedBrand).subscribe(
              response => {
-                if (response.json().status === 'Success') {
-                    this.vListProduct = response.json().ProdList;
-                    this.vShowProduct = this.vListProduct.filter(
-                        prod => {
-                            return prod.brand === this.vSelectedBrand;
-                        });
-                    if (this.vShowProduct !== null) {
-                        var vPrev;
-                        this.vCatNameList = [];
-                        for (var i = 0; i < this.vShowProduct.length; i++) {
-                        if (this.vShowProduct[i].category_name !== vPrev) {
-                            vPrev = this.vShowProduct[i].category_name;
-                            console.log('dapet vPrev: ' + vPrev);
-                             this.vCatNameList.push(vPrev);
-                            }
-                        }
-                    }
-                }
+                    this.vListProduct = response.json();
+                    this.vShowProduct = this.vListProduct;
             },
             error => {}
         );
@@ -134,9 +81,8 @@ export class TargetsActualsComponent {
         this.vUnderlineMonth = false;
         this.vWeekShow = false;
         this.vMonthShow = false;
-
-         this.vSelectedTab = 'Day';
-        this.getProduct();
+        this.vSelectedTab = 'Day';
+        this.getTargetsActuals();
     }
 
     showMenuWeek() {
@@ -147,8 +93,7 @@ export class TargetsActualsComponent {
         this.vDayShow = false;
         this.vMonthShow = false;
         this.vSelectedTab = 'Week';
-        console.log('selected Tab' + this.vSelectedTab );
-        this.getProduct();
+        this.getTargetsActuals();
     }
 
     showMenuMonth() {
@@ -159,18 +104,13 @@ export class TargetsActualsComponent {
         this.vWeekShow = false;
         this.vDayShow = false;
         this.vSelectedTab = 'Month';
-        console.log('selected Tab' + this.vSelectedTab );
-        this.getProduct();
+        this.getTargetsActuals();
     }
 
     onChangeSelectBrand(pSelectedBrand) {
         this.vSelectedBrand = pSelectedBrand;
         console.log(this.vSelectedBrand + ' IS SELECTED');
-        this.vShowProd = this.vListProd.filter(prod => prod.brand === this.vSelectedBrand);
-        this.vShowProduct = this.vListProduct.filter(prod => prod.brand === this.vSelectedBrand);
+        this.getTargetsActuals();
     }
 
-    getCatNameList() {
-        return this.vCatNameList;
-    }
 }

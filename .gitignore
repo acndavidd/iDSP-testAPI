@@ -4,3 +4,5 @@ src/api/main.js
 src/api/controllers/retailer.controller.js
 src/api/services/orm.service.js
 src/api/services/token.service.js
+src/cordova
+*.js

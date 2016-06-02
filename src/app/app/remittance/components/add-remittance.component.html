@@ -1,0 +1,126 @@
+<div class="container-body">
+
+    <div class="item-container">
+        <div class="container">
+            <div class="cell padding-top-5 padding-bottom-2">
+                <div class="container"><div class="cell width-100 padding-left-20 padding-right-20">
+                    <select class="width-100" name="remittance_type" [(ngModel)]='vSelectedRemittance'>
+                        <option value="Cash">Cash</option>
+                        <option value="Bank Deposit">Bank Deposit</option>
+                        <option value="Trade Money">Trade Money</option>
+                    </select>
+                </div></div>
+            </div>
+        </div>
+
+
+        <div *ngIf="vSelectedRemittance === 'Cash'">
+            <div class="container">
+                <div class="cell padding-top-2 padding-bottom-2">
+                    <div class="container"><div class="cell width-100 padding-left-5 padding-right-5">
+                        <input class="width-100" type ="text" id ="cash-amount" placeholder="Amount"/>
+                    </div></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div *ngIf="vSelectedRemittance === 'Bank Deposit'">
+            <div class="container">
+                <div class="cell padding-top-2 padding-bottom-2">
+                    <div class="container"><div class="cell width-100 padding-left-5 padding-right-5">
+                        <input class="width-100" type ="text" id ="deposit-amount" placeholder="Amount"/>
+                    </div></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="cell padding-top-2 padding-bottom-2">
+                    <div class="container"><div class="cell width-100 padding-left-5 padding-right-5">
+                        <input class="width-100" type ="text" id ="deposit-bank-name" placeholder="Bank Name"/>
+                    </div></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="cell padding-top-2 padding-bottom-2">
+                    <div class="container"><div class="cell width-100 padding-left-5 padding-right-5">
+                        <input class="width-100" type ="text" id ="deposit-branch-name" placeholder="Branch Name"/>
+                    </div></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="cell padding-top-2 padding-bottom-2">
+                    <div class="container"><div class="cell width-100 padding-left-5 padding-right-5">
+                        <input class="width-100" type ="text" id ="deposit-account-number" placeholder="Account Number"/>
+                    </div></div>
+                </div>
+            </div>
+
+
+            <div class="container">
+                <div class="cell padding-top-2 padding-bottom-2">
+                    <div class="container"><div class="cell width-100 padding-left-5 padding-right-5">
+                        <input type="date" value ="1996-12-19T16:39:57-08:00" />
+                    </div></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="cell padding-top-2 padding-bottom-2">
+                    <div class="container"><div class="cell width-100 padding-left-5 padding-right-5">
+                        <input type="time" value ="1996-12-19T16:39:57-08:00" />
+                    </div></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="cell padding-top-2 padding-bottom-2">
+                    <div class="container"><div class="cell width-100 padding-left-5 padding-right-5">
+                        <input type="datetime-local" value="2000-01-01T00:00:00" />
+                    </div></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="cell padding-top-2 padding-bottom-2">
+                    <div class="container"><div class="cell width-100 padding-left-5 padding-right-5">
+                        <input type="month" value ="1996-12-19T16:39:57-08:00" />
+                    </div></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="cell padding-top-2 padding-bottom-2">
+                    <div class="container"><div class="cell width-100 padding-left-5 padding-right-5">
+                            <input (click)="aaa()" type="text"/>
+                    </div></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="cell padding-top-2 padding-bottom-2">
+                    <div class="container"><div class="cell width-100 padding-left-5 padding-right-5">
+                            <input (click)="bbb()" type="text"/>
+                    </div></div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="vSelectedRemittance === 'Trade Money'">
+            <div class="container">
+                <div class="cell padding-top-2 padding-bottom-2">
+                    <div class="container"><div class="cell width-100 padding-left-5 padding-right-5">
+                        <input class="width-100" type ="text" id ="trade-amount" placeholder="Amount"/>
+                    </div></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="cell padding-top-2 padding-bottom-2">
+                    <div class="container"><div class="cell width-100 padding-left-5 padding-right-5">
+                        <input class="width-100" type ="text" id ="trade-rrn" placeholder="RRN"/>
+                    </div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="no-divider">
+            <div class="button" id="btn-save" (click)="gotoRemittance()">
+                <div class="button-identifier">SAVE</div>
+            </div>      
+        </div>
+    </div>
+</div>

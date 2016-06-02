@@ -2,10 +2,11 @@
 	<div class="main-box">
         <div class="default-box">
         <div id="header-title-id" class="title">{{getTitle()}}</div>
-        	<div class="header-icon hamburger" *ngIf="getHeaderLayout().hamburger" (click)="toggleLeftMenu()"></div>
-            <div class="header-icon back" *ngIf="getHeaderLayout().back" (click)="goToPreviousPage()"></div>
-            <div class="header-icon filter" *ngIf="getHeaderLayout().filter" (click)="toggleFilter()"></div>
-            <div class="header-icon search" *ngIf="getHeaderLayout().search" (click)="toggleSearch()"></div>
+        	<div id="header-hamburger-btn" class="header-icon hamburger" *ngIf="getHeaderLayout().hamburger" (click)="toggleLeftMenu()"></div>
+            <div id="header-back-btn"class="header-icon back" *ngIf="getHeaderLayout().back" (click)="goToPreviousPage()"></div>
+            <div id="header-filter-btn" class="header-icon filter" *ngIf="getHeaderLayout().filter" (click)="toggleFilter()"></div>
+            <div id="header-search-btn"class="header-icon search" *ngIf="getHeaderLayout().search" (click)="toggleSearch()"></div>
+            <div id="header-add-btn"class="header-icon add" *ngIf="getHeaderLayout().add" (click)="toggleAdd()"></div>
         </div>
     </div>
 </div>

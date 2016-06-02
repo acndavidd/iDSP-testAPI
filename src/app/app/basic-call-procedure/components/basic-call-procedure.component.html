@@ -1,64 +1,35 @@
 <div class="container-body">
-    <div class="item-container">
-        <div class="item-notification">UPDATED AS OF 04/17/2016 02.00 PM</div>
+    <div class='filter-container' *ngIf='getFilter().filterRetailerBCP'>
+        <div class='filter-input input'>
+            <div class='icon'></div>
+            <input type='text' #listFilter (keyup)='onKey(listFilter.value)' id='RetailerSearchBox' placeholder='Input Retailer Name or MIN' />
+        </div>  
     </div>
-    <div class="item-container">
-            <div class="container">
-                <div class='cell'>
-                    <div class='container'><div class='cell single title bold'>Today's Route</div></div>
+
+<div class="container-body">
+    <!-- <div class="item-container" (click)="gotoCallPreparationHC({status: 'In Progress'})"> -->
+    <div class="item-container" *ngFor="#each of getFilteredDate()" (click)="gotoAnotherPage(each)">
+        <div class="container">
+            <div class='cell width-10 padding-left-5'><div class="sequence green">1</div></div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-40 padding-left-5'>{{each.storeName}}</div></div>
+                <div class='container'><div class='cell width-40 padding-left-5 italic'>{{each.retailerMinDetails}}</div></div>
+                <div class='container'><div class='cell width-40 padding-left-5'>Account receivables ({{each.numberofAgingSELFTransaction}}/{{each.numberofSELFTransaction}})</div></div>
+            </div>
+            <div class='cell'>
+                 <div *ngIf="each.call_status === 'Visited'">
+                    <div class='container'><div class='cell width-40 align-right bold dark-sea-green'>Visited</div></div>
                 </div>
-                <div class='cell icon'></div>
+                <div *ngIf="each.call_status === 'In Progress'">
+                    <div class='container'><div class='cell width-40 align-right bold grey'>Visited/NotVisited</div></div>
+                </div>
+                <div *ngIf="each.call_status === 'Visited'">
+                    <div class='container'><div class='cell width-40 align-right bold vivid-pink'>Visited/NotVisited</div></div>
+                </div>
+                <div class='container'><div class='cell width-40 align-right'></div></div>
+                <div class='container'><div class='cell width-40 align-right'>{{each.totalAmountofSELFTransaction}} ₱</div></div>
             </div>
-        </div>
-    <div class="item-container" (click)="gotoDetailRetailer()">
-        <div class="container">
-            <div class='cell'>
-                <div class='container'><div class='cell left'>Rose Cell</div></div>
-                <div class='container'><div class='cell left italic'>99999900003</div></div>
-                <div class='container'><div class='cell left grey'>Amount payable (5)</div></div>
-                <div class='container'><div class='cell left grey'>Status</div></div>
-            </div>
-            <div class='cell'>
-                <div class='container'><div class='cell right green'>Route #2</div></div>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'>3,000.00 ₱</div></div>
-                <div class='container'><div class='cell right bold dark-sea-green'>In Progress</div></div>
-            </div>
-            <div class='cell icon arrow-right'></div>
-        </div>
-    </div>
-    <div class="item-container" (click)="gotoDetailRetailer()">
-        <div class="container">
-            <div class='cell'>
-                <div class='container'><div class='cell left'>Bird Cell</div></div>
-                <div class='container'><div class='cell left italic'>99999900002</div></div>
-                <div class='container'><div class='cell left grey'>Amount payable (2)</div></div>
-                <div class='container'><div class='cell left grey'>Status</div></div>
-            </div>
-            <div class='cell'>
-                <div class='container'><div class='cell right green'>Route #3</div></div>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'>8,000.00 ₱</div></div>
-                <div class='container'><div class='cell right bold vivid-pink'>Not Visited</div></div>
-            </div>
-            <div class='cell icon arrow-right'></div>
-        </div>
-    </div>
-    <div class="item-container" (click)="gotoDetailRetailer()">
-        <div class="container">
-            <div class='cell'>
-                <div class='container'><div class='cell left'>Gloria Cell</div></div>
-                <div class='container'><div class='cell left italic'>99999900001</div></div>
-                <div class='container'><div class='cell left grey'>Amount payable</div></div>
-                <div class='container'><div class='cell left grey'>Status</div></div>
-            </div>
-            <div class='cell'>
-                <div class='container'><div class='cell right green'>Route #1</div></div>
-                <div class='container'><div class='cell right'></div></div>
-                <div class='container'><div class='cell right'>5,000.00 ₱</div></div>
-                <div class='container'><div class='cell right bold green'>Visited</div></div>
-            </div>
-            <div class='cell icon arrow-right'></div>
+            <div class='cell width-10 arrow-right'></div>
         </div>
     </div>
 </div>

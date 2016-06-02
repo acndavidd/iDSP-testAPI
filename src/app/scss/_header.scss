@@ -28,7 +28,6 @@
             background-size: 8vw;
             background-position: center center;
             padding: 0% 0% 0% 3%;
-
           }
           &.back{
             background: url("../img/icon-idsp/back-white.png") no-repeat;
@@ -41,13 +40,23 @@
             background: url("../img/icon-idsp/filter.png") no-repeat;
             background-size: 8vw;
             background-position: center center;
+            z-index: 150;
+            padding: 0% 3% 0% 0%;
           }
-         &.search{
+          &.add {
             right: 0;
-            background: url("../img/icon-idsp/search-white.png") no-repeat;
-            background-size: 1.6em;
+            background: url(#{$icon-add-white}) no-repeat;
+            background-size: 8vw;
             background-position: center center;
+            padding: 0% 23% 0% 0%;
           }
+         // &.search{
+         //    right: 0;
+         //    background: url("../img/icon-idsp/search-white.png") no-repeat;
+         //    background-size: 1.6em;
+         //    background-position: center center;
+         //    padding: 0% 3% 0% 0%;
+         //  }
         }
       }
     }

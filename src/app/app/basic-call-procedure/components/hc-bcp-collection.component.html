@@ -1,0 +1,127 @@
+<div class="container-body">
+    <div class="item-container sub">
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell width-100 padding-left-5 large green'>Rose Cell</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-50 italic green'>(99999900003)</div></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="item-container">
+        <div class="bcp-step-container">
+            <div class="step-field">
+                <div class="step-field-item"><div class="step-circle">1</div></div>
+                <div class="step-field-item">-</div>
+                <div class="step-field-item"><div class="step-circle vivid-pink">2</div></div>
+                <div class="step-field-item">-</div>
+                <div class="step-field-item"><div class="step-circle">3</div></div>
+                <div class="step-field-item">-</div>
+                <div class="step-field-item"><div class="step-circle">4</div></div>
+                <div class="step-field-item">-</div>
+                <div class="step-field-item"><div class="step-circle">5</div></div>
+            </div>
+        </div>
+    </div>
+
+
+	<div class="item-container" (click)='outstandingShow()' id="outstanding-show-btn">
+        <div class="container">
+            <div class="cell">
+                <div class="container"><div class="cell width-45 padding-left-5">Amount Receivables</div></div>
+            </div>
+            <div class="cell">
+                <div class="container"><div class="cell width-45 align-right green">3000 ₱</div></div>
+            </div>
+            <div class="cell width-10 arrow-down" id="arrow-outstanding" [ngClass]='{selected: vOutstandingShow}'></div>
+        </div>
+    </div>
+
+    <div *ngIf='vOutstandingShow'>
+		<div class="item-container sub">
+			<div class="container">
+				<div class="cell">
+					<div class="container"><div class="cell width-45 padding-left-10 grey">Order#</div></div>
+					<div class="container"><div class="cell width-45 padding-left-10 grey">Date</div></div>
+					<div class="container"><div class="cell width-45 padding-left-10 grey">Balance Amount</div>
+					</div>
+				</div>
+				<div class="cell">
+					<div class="container"><div class="cell width-45 align-right grey" id="order-id">12345</div></div>
+					<div class="container"><div class="cell width-45 align-right grey" id="outstd-date">2016-01-16  08:17</div></div>
+					<div class="container"><div class="cell width-45 align-right grey" id="outstd-balance-amount">1,000 ₱</div></div>
+				</div>
+	           	<div class="cell width-10"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="item-container" (click)='paymentShow()' id="payment-his-show-btn">
+        <div class="container">
+            <div class="cell">
+                <div class="container"><div class="cell width-45 padding-left-5">Payment History</div></div>
+            </div>
+           	<div class="cell width-10 arrow-down" id="payment-arrow" [ngClass]='{selected: vPaymentShow}'></div>
+        </div>
+    </div>
+
+    <div *ngIf='vPaymentShow'>
+	    <div class="item-container sub">
+			<div class="container">
+	            <div class="cell width-45 padding-left-10 grey">Date</div>
+	           	<div class="cell width-45 align-right grey">Amount</div>
+	           	<div class="cell width-10"></div>
+	        </div>
+			<div class="container">
+	            <div class="cell width-45 padding-left-10 grey" id="payment-date">04/03/2016</div>
+	           	<div class="cell width-45 align-right grey" id="payment-amount">800 ₱</div>
+	           	<div class="cell width-10"></div>
+	        </div>
+			<div class="container">
+	            <div class="cell width-45 padding-left-10 grey" id="payment-date">04/02/2016</div>
+	           	<div class="cell width-45 align-right grey" id="payment-amount">500 ₱</div>
+	           	<div class="cell width-10"></div>
+	        </div>
+	        <div class="container">
+	            <div class="cell width-45 padding-left-10 grey" id="payment-date">04/01/2016</div>
+	           	<div class="cell width-45 align-right grey" id="payment-amount">2,500 ₱</div>
+	           	<div class="cell width-10"></div>
+	        </div>
+	    </div>
+	</div>
+
+	<div class="item-container">
+        <div class="container">
+            <div class="cell">
+                <div class="container"><div class="cell width-45 padding-left-5">Collection</div></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="cell">
+                <div class="container"><div class="cell width-45 padding-left-5 grey">Amount</div></div>
+                <div class="container"><div class="cell width-45 padding-left-5 padding-right-5"><input class="width-100" type ="text" id ="collection-amount" placeholder="PHP"/></div></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class='cell'>
+                <div class='container'><div class='cell width-100 padding-left-5'>Remarks</div></div>
+                <div class='container'><div class='cell width-100 padding-left-5 padding-right-5'><textarea name="textarea" rows="10" cols="50"></textarea></div></div>
+            </div>
+        </div>
+        <div class="container">
+        	<div class="double-divider">
+        		<div class= "button" (click)="skipCollection()">
+        			<div class="button-identifier" id="skip-collection">SKIP</div>
+        		</div>
+        	</div>
+        	<div class="double-divider">
+        		<div class= "button" (click)="gotoConfirmCollection()">
+        			<div class="button-identifier" id="next-collection">APPLY</div>
+        		</div>
+        	</div>
+        </div>
+    </div>
+</div>

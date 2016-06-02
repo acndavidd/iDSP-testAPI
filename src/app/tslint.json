@@ -12,8 +12,8 @@
         "no-conditional-assignment": true,
         "no-duplicate-variable": true,
         "no-eval": true,
-        "no-internal-module": true,
-        "no-trailing-whitespace": true,
+        "no-internal-module": false,
+        "no-trailing-whitespace": false,
         "no-use-before-declare" : true,
         "no-var-keyword": false,
         "one-line": [
@@ -48,7 +48,7 @@
             "ban-keywords"
         ],
         "whitespace": [
-            true,
+            false,
             "check-branch",
             "check-decl",
             "check-operator",

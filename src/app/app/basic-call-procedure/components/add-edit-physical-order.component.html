@@ -1,0 +1,101 @@
+<div class="container-body">
+    <div class="item-container sub fixed">
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell width-100 padding-left-5 large green'>Rose Cell</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-50 italic green'>(99999900003)</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="item-container margin-top-13">
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell width-50 padding-left-5'>Physical Order</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-50 align-right padding-right-5'>0.00 ₱</div></div>
+            </div>
+        </div>
+    </div>
+    <div class="item-container" (click)="gotoAddSalesOrderPhysical()">
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell width-50 padding-left-5 grey'>Add Physical Order</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-50 align-right padding-right-5 bold'>+</div></div>
+            </div>
+        </div>
+    </div>
+    <div class="item-container">
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell width-100 padding-left-5'>Pinoy SIM</div></div>
+                <div class='container'>
+                	<div class='cell width-100 padding-left-5'>
+				        <div class='container'>
+				            <div class='cell'>
+				                <div class='container'><div class='cell width-50 grey'>Suggested Order</div></div>
+				            </div>
+				            <div class='cell'>
+				                <div class='container'><div class='cell width-50 padding-right-5 align-right'>500</div></div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+            </div>
+        </div>
+    </div>
+    <div class="item-container">
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell width-50 padding-left-5'>SKU1</div></div>
+                <div class='container'><div class='cell width-50 padding-left-5 grey'>Unit Price</div></div>
+                <div class='container'><div class='cell width-50 padding-left-5 grey'>Order Quantity</div></div>
+                <div class='container'><div class='cell width-50 padding-left-5 grey'>Amount per SKU</div></div>
+                <div class='container'><div class='cell width-50 padding-left-5 grey'>Promo Code</div></div>
+                <div class='container'><div class='cell width-50 padding-left-5 grey'>Promo Amount</div></div>
+                <div class='container'><div class='cell width-50 padding-left-5 grey'>Total Amount</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-50 align-right padding-right-5 bold red'>X</div></div>
+                <div class='container'><div class='cell width-50 align-right padding-right-5'>200.00 ₱</div></div>
+                <div class='container'><div class='cell width-50 align-right padding-right-3'><input class="width-70" id="amount"/></div></div>
+                <div class='container'><div class='cell width-50 align-right padding-right-5'>1,000.00 ₱</div></div>
+                <div class='container'><div class='cell width-50 align-right padding-right-3'><input class="width-70" id="amount"/></div></div>
+                <div class='container'><div class='cell width-50 align-right padding-right-3'><input class="width-60 input-peso" id="amount"/></div></div>
+                <div class='container'><div class='cell width-50 align-right padding-right-5'>900.00 ₱</div></div>
+            </div>
+        </div>
+    </div>
+    <div class="item-container">
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell width-50 padding-left-5'>SKU2</div></div>
+                <div class='container'><div class='cell width-50 padding-left-5 grey'>Unit Price</div></div>
+                <div class='container'><div class='cell width-50 padding-left-5 grey'>Order Quantity</div></div>
+                <div class='container'><div class='cell width-50 padding-left-5 grey'>Amount per SKU</div></div>
+                <div class='container'><div class='cell width-50 padding-left-5 grey'>Promo Code</div></div>
+                <div class='container'><div class='cell width-50 padding-left-5 grey'>Promo Amount</div></div>
+                <div class='container'><div class='cell width-50 padding-left-5 grey'>Total Amount</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-50 align-right padding-right-5 bold red'>X</div></div>
+                <div class='container'><div class='cell width-50 align-right padding-right-5'>200.00 ₱</div></div>
+                <div class='container'><div class='cell width-50 align-right padding-right-3'><input class="width-70" id="amount"/></div></div>
+                <div class='container'><div class='cell width-50 align-right padding-right-5'>1,000.00 ₱</div></div>
+                <div class='container'><div class='cell width-50 align-right padding-right-3'><input class="width-70" id="amount"/></div></div>
+                <div class='container'><div class='cell width-50 align-right padding-right-3'><input class="width-60 input-peso" id="amount"/></div></div>
+                <div class='container'><div class='cell width-50 align-right padding-right-5'>900.00 ₱</div></div>
+            </div>
+        </div>
+    </div>
+    <div class='no-divider'>
+        <div class='button' id='save'>
+            <div class='button-identifier' (click)="gotoRetailerSalesOrder()">SAVE</div>
+        </div>
+    </div>
+</div>    

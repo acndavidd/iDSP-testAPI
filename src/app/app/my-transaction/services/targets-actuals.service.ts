@@ -9,9 +9,8 @@ export class TargetsActualsService {
       private vErrorMsg: string;
       private vIsLoading: boolean;
       private vSelectedTab;
-      public vBrand;
-      public vProdCat;
       public vProdCatBrand;
+      private vListBrands;
 
       constructor(
             private _http: Http,
@@ -19,122 +18,36 @@ export class TargetsActualsService {
 
             this.vIsLoading = false;
             this.queryBrand();
-            this.queryProdCat();
-            this.queryProdSubCat();
-            this.queryProduct(this.vSelectedTab);
-
       }
 
 
       queryBrand() {
-            // this.vIsLoading = true;
-            // let vUserId: string = '1';
-            // let vCurrentDate = new Date();
-            // console.log(vCurrentDate);
-            // return this._http.get('/targetsActuals');
-            /*
-            this._http.get('/targetsActuals',
-                  <RequestOptionsArgs> {headers: new Headers(
-                {'Content-Type': 'application/x-www-form-urlencoded'})
-            }).subscribe(
-                  response => {
-                        this.vIsLoading = false;
-                        console.log(response.json());
-                        if(response.json().status == "Success") {
-                              this.vBrand = response.json().brandList;
-                        }else{
-                              this.vErrorMsg = response.json().error;
-                        }
-                  },
-                  error => {
-                        console.log(error);
-                        this.vErrorMsg = 'Failed connecting to Retailer service';
-                  }
-            );
-            */
-            /*
-            this._http.get('/targetsActuals').subscribe(
-                  response => {
-                        if(response.json().status == "Success") {
-                              this.vBrand = response.json().brandList;
-                              console.log('masukkk');
-                        }else{
-                              this.vErrorMsg = response.json().error;
-                        }
-                  },
-                  error => {
-                        console.log(error);
-                        this.vErrorMsg = 'Failed connecting to Retailer service';
-                  }
-            );
-            */
-            return this._http.get('/targetsActuals');
+
+          this._http.get('/brand').subscribe(
+             response => {
+                this.vListBrands = response.json();
+                console.log(JSON.stringify(this.vListBrands));
+            },
+            error => {}
+        );
       }
-
-      queryProdCat() {
-            /* console.log('masuk service');
-             this._http.get('/getProductCategory').subscribe(
-                  response => {
-                        if(response.json().status == "Success") {
-                              this.vProdCat = response.json().CatList;
-                        }else{
-                              this.vErrorMsg = response.json().error;
-                        }
-                  },
-                  error => {
-                        console.log(error);
-                        this.vErrorMsg = 'Failed connecting to Retailer service';
-                  }
-            );
-            return null;
-            */
-
-            return this._http.get('/getProductCategory');
-      }
-
-      queryProdSubCat() {
-            return this._http.get('/getProductSubCategory');
-      }
-
-
-      queryProduct(pSelectedTab) {
-            console.log('Start hit login service to Query Product');
-            console.log('selecteddd' + pSelectedTab);
-            // Get Current Login User
-            let vData = {
-                  salesPerson : 'DSP00001',
-                  actualType : pSelectedTab
-            };
-            return this._http.post('/getProduct', JSON.stringify(vData));
-      }
-
-      queryCategory() {
-            return this._http.get('/getCategory');
-      }
-
-      queryTargets(pSubCategoryID) {
-
-            // To-Do : Query User ID or Username
-            let vSubCategoryID: string = pSubCategoryID;
-
-            // Hit API with parameter user_id and current date
-            let data: string = 'sub_category_id=' + vSubCategoryID;
-            return this._http.post('/getTargets', data,
-                  <RequestOptionsArgs> {headers: new Headers(
-                {'Content-Type': 'application/x-www-form-urlencoded'})
-            });
-
-      }
-
 
       getBrand() {
-            return this.vBrand;
+            return this.vListBrands;
       }
 
-      getProdCat() {
-            return this.vProdCat;
+      queryPerformance(pSelectedTab, pSelectedBrand) {
+            console.log('Start hit login service to Query Performance');
+            console.log('Selected tab: ' + pSelectedTab);
+            
+            let vData = {
+                  salesPerson : 'DSP00001',
+                  actualType : pSelectedTab,
+                  brand : pSelectedBrand
+            };
+            return this._http.post('/performance', JSON.stringify(vData));
       }
-
+      
       getError(): string {
             return this.vErrorMsg;
       }

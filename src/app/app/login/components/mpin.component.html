@@ -5,20 +5,20 @@
       <div class="mpin-title">MPIN</div>
       <center>
       <div class="mpin-field">
-        <div class="mpin-field-item"><input id="mpin1" maxlength=1/></div>
+        <div class="mpin-field-item"><input [(ngModel)]="vMPIN1" id="mpin1" maxlength=1 (keyup)="onchange($event.keyCode, 1)"/></div>
         <div class="mpin-field-item">-</div>
-        <div class="mpin-field-item"><input id="mpin2" maxlength=1/></div>
+        <div class="mpin-field-item"><input [(ngModel)]="vMPIN2" id="mpin2" maxlength=1 (keyup)="onchange($event.keyCode, 2)"/></div>
         <div class="mpin-field-item">-</div>
-        <div class="mpin-field-item"><input id="mpin3" maxlength=1/></div>
+        <div class="mpin-field-item"><input [(ngModel)]="vMPIN3" id="mpin3" maxlength=1 (keyup)="onchange($event.keyCode, 3)"/></div>
         <div class="mpin-field-item">-</div>
-        <div class="mpin-field-item"><input id="mpin4" maxlength=1/></div>
+        <div class="mpin-field-item"><input [(ngModel)]="vMPIN4" id="mpin4" maxlength=1 (keyup)="onchange($event.keyCode, 4)"/></div>
         <div class="mpin-field-item">-</div>
-        <div class="mpin-field-item last-child"><input id="mpin5" maxlength=1/></div>
+        <div class="mpin-field-item last-child"><input [(ngModel)]="vMPIN5" id="mpin5" maxlength=1 (keyup)="onchange($event.keyCode, 5)"/></div>
       </div>
       </center>
       <div class="mpin-message">An MPIN code has been sent to your registered number.</div>
       <a (click)="submit($event)" id="submit-mpin-link">
-      	<div class="submit-button">SUBMIT</div>
+      	<div class="submit-button">SUBMIT</div>  
       </a>
       <a (click)="ResendMpinModalComponent()" id="resend-mpin-link">
         <div class="link">Resend MPIN?</div>

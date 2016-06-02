@@ -12,7 +12,7 @@ BEGIN
 		JOIN pg_catalog.pg_namespace n ON n.oid = p.pronamespace
 		WHERE p.proname = p_func_name
 	LOOP
-		v_query = CONCAT('DROP FUNCTION ' , p_func_name , '(', v_params.params, ')');
+		v_query = CONCAT('DROP ' , p_func_name , '(', v_params.params, ')');
 		EXECUTE v_query;
 	END LOOP;
 END

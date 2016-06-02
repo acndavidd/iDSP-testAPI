@@ -29,12 +29,12 @@ $container-login-height: 100%;
 		color:    #FFF;
 	}
 	.outer-box {
-		max-width : 75vw;
+		max-width : 80%;
 		margin: 20vw auto -3vw;
 		.header {
 			color: #FFF;
 			font-size: 10vw;
-			line-height: 0vw;
+			line-height: 5vw;
 			margin-bottom: 20vw;
 			text-align: center;
 		}
@@ -67,20 +67,20 @@ $container-login-height: 100%;
 			}
             .error-alert{
                 color:#FFF;
-                font-size:14px;
+                font-size:3vw;
             }
 			input {
 				width: 100%;
-				margin: 2vw auto;
+				// margin: 2vw auto;
 				display: block;
 				height: 10vw;
 				border: none;
-				font-size: medium;
-				margin-top: 10px;
-				margin-bottom: 10px;
+				font-size: 4vw;
+				margin-top: 1.5vw;
+				margin-bottom: 1.5vw;
 				background-color: rgba(199, 195, 184, 0.5);
 				outline: 0;
-				color : #000;
+				color : #FFF;
 				text-align: center;
 				font-style: italic;
 			}
@@ -89,17 +89,18 @@ $container-login-height: 100%;
 					color: #FFF;
 					text-decoration: underline;
 					cursor: pointer;
+					font-size: 4vw;
 				}
 			}
 		}
 		.login-button
 		{
-			height: 35px;
+			height: 7vw;
 			background-color: $apple;
 			text-align: center;
 			vertical-align: center;
-			font-size: 13pt;
-    		padding-top: 7px;
+			font-size: 5vw;
+    		padding: 2vw;
     		color : #FFF;
 		}
 		.login-separator
@@ -121,9 +122,10 @@ $container-login-height: 100%;
         no-repeat;
         background-position-x: center;
         background-position-y: center;
+        background-size: 30vw;
         z-index: 90;
 		position: fixed;
-		padding-top: 90vw;
+		padding-top: 73vw;
 
 	}
 }

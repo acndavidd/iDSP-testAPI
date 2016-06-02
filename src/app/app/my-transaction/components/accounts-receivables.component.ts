@@ -3,14 +3,15 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet, ROUTER_PROVIDERS }
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
-import {RetailerService} from '../../shared/services/retailer.service';
+// import {RetailerService} from '../../shared/services/retailer.service';
 import {AccountsReceivablesService} from '../services/accounts-receivables-service';
 import {NgFor, NgModel} from 'angular2/common';
-
+import {Modal} from '../../shared/services/modal.service';
 
 @Component({
     selector: 'accounts-receivables',
-    templateUrl: './app/my-transaction/components/hc-accounts-receivables.component.html',
+    // templateUrl: './app/my-transaction/components/hc-accounts-receivables.component.html',
+     templateUrl: './app/my-transaction/components/accounts-receivables.component.html',
     directives: [
         NgFor, NgModel, ROUTER_DIRECTIVES
     ],
@@ -21,46 +22,54 @@ import {NgFor, NgModel} from 'angular2/common';
 
 export class AccountsReceivablesComponent {
 
-    vAllRetailerList: any;
-    vSearchedList: any;
-    vSum: any;
+    vReceivablesRouteList: any;
+    vSearchedReceivablesRouteList: any;
+    vAllReceivablesRouteList: any;
+    vFlag;
+    vTotalReceivablesInRoute: number = 0;
+    vTotalReceivablesAll: number = 0;
+    vSelectedRoute;
 
     constructor (
         private _layoutService: LayoutService,
         private _matchMediaService: MatchMediaService,
         private _headerService: HeaderService,
         private _router: Router,
+        private _modalService: Modal.ModalService,
         private _accountsReceivablesService: AccountsReceivablesService
         ) {
 
         this._layoutService.setCurrentPage('AccountsReceivables');
         this._headerService.setTitle('Accounts Receivables');
 
-        this._accountsReceivablesService.getAllRetailer().subscribe(
+        var vDspId = 'DSP00001';
+        var vSource = 'iDSP';
+        var vTempFilteredList = [];
+  
+        // Initial Data
+        this.vSelectedRoute = 'inRoute';
+        this.vFlag = 0;
+        this._accountsReceivablesService.getAllReceivablesRoute(vDspId,vSource).subscribe(
             response => {
-                this.setAllRetailerList(response.json());
-                console.log('response success');
-                console.log(response.json());
-                console.log('sukses isi vAllRetailerList: ' + this.vAllRetailerList);
-
-                var x = 0;
-                console.log(response.json().length);
-                for (var i = 0; i < response.json().length; i++) {
-                    console.log('amount' + i + ' :' + JSON.stringify(response.json()[i].AccountReceivable[0].amount));
-                    console.log('sequence' + i + ' :' + JSON.stringify(response.json()[i].AccountReceivable[0].Retailer.Route[0].RouteDay[0].sequence));
-                    console.log('retailer_name' + i + ' :' + JSON.stringify(response.json()[i].AccountReceivable[0].Retailer.retailer_name));
-                    console.log('retailer_min' + i + ' :' + JSON.stringify(response.json()[i].AccountReceivable[0].Retailer.retailer_min));
-                    x = x + parseInt(response.json()[i].AccountReceivable[0].amount);
+                console.log('Get response from API : ' + JSON.stringify(response.json()));
+                this.setAllReceivablesRouteList(response.json().sort());
+                this.setReceivablesRouteList(this.vAllReceivablesRouteList.filter(pFilter => {
+                    return pFilter.sequence !== null;
+                }));
+                this.setSearchedReceivablesRoute(this.vReceivablesRouteList);
+                for (var i = 0; i < this.vReceivablesRouteList.length; i++) {
+                    var x = this.vReceivablesRouteList[i].amount;
+                    this.vTotalReceivablesInRoute = (this.vTotalReceivablesInRoute + parseInt(x));
                 }
-                console.log('get sum x: ' + x);
-                this.setTotalReceivable(x.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
-                this.getAllRetailer();
-            },
+                for (var j = 0; j < this.vAllReceivablesRouteList.length; j++) {
+                    var y = this.vAllReceivablesRouteList[j].amount;
+                    this.vTotalReceivablesAll = (this.vTotalReceivablesAll + parseInt(y));
+                }
+                },
             error => {
-                console.log(error.json());
-            }
-        );
-
+                console.log('in acc component' + error.json());
+                this._modalService.toggleModal('Failed to connect to service', Modal.ModalType.ERROR);
+            });
     }
 
     getResize() {
@@ -71,36 +80,73 @@ export class AccountsReceivablesComponent {
         return this._layoutService.getFilter();
     }
 
-    getTotalReceivable() {
-        if (this.vSum == null) {
-            this.setTotalReceivable(0);
-        }
-        return this.vSum;
-    }
-
-    setTotalReceivable(vTotal) {
-        this.vSum = vTotal;
-    }
-
     onKey(pInputText: any) {
-        console.log(pInputText);
-        this.vSearchedList = this.vAllRetailerList.filter(retailer => {
-             return retailer.AccountReceivable[0].Retailer.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
-             retailer.AccountReceivable[0].Retailer.retailer_min.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1;
-        });
+        if (this.vFlag === 0) {
+            if (pInputText.length === 0 ) {
+                this.setSearchedReceivablesRoute(this.vReceivablesRouteList);
+            } else {
+                this.setSearchedReceivablesRoute(this.vReceivablesRouteList.filter(pFilter => {
+                    return pFilter.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
+                    pFilter.retailer_min.indexOf(pInputText) !== -1;}));
+            }
+        } else {
+            if (pInputText.length === 0 ) {
+                this.setSearchedReceivablesRoute(this.vAllReceivablesRouteList);
+            } else {
+                this.setSearchedReceivablesRoute(this.vAllReceivablesRouteList.filter(pFilter => {
+                    return pFilter.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
+                    pFilter.retailer_min.indexOf(pInputText) !== -1;
+                    }));
+            }
+        }
     }
 
-    getAllRetailer() {
-       this.vSearchedList = this.vAllRetailerList;
-       console.log('sukses isi vsearchlist: ' + this.vSearchedList);
+    setSearchedReceivablesRoute(pSearchedReceivablesRoute) {
+        this.vSearchedReceivablesRouteList = pSearchedReceivablesRoute;
     }
 
-    getAllRetailerList() {
-        return this.vAllRetailerList;
+    setReceivablesRouteList(pReceivablesRouteList) {
+        this.vReceivablesRouteList = pReceivablesRouteList;
     }
 
-    setAllRetailerList(vAllRetailerList) {
-        this.vAllRetailerList = vAllRetailerList;
+    setAllReceivablesRouteList(pAllReceivablesRouteList) {
+        this.vAllReceivablesRouteList = pAllReceivablesRouteList;
     }
 
+    searchFilter(pInputText: any) {
+        if (pInputText.length > 0) {
+            if (this.vSelectedRoute === 'allRoute') {
+                this.vFlag = 1;
+                this.setSearchedReceivablesRoute(this.vAllReceivablesRouteList.filter(pFilter => {
+                    return pFilter.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
+                    pFilter.retailer_min.indexOf(pInputText) !== -1;
+                }));
+            } else {
+                this.vFlag = 0;
+                this.setSearchedReceivablesRoute(this.vReceivablesRouteList.filter(pFilter => {
+                    return pFilter.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
+                    pFilter.retailer_min.indexOf(pInputText) !== -1;
+                }));
+            }
+        } else {
+            if (this.vSelectedRoute === 'allRoute') {
+               this.vFlag = 1;
+               this.setSearchedReceivablesRoute(this.vAllReceivablesRouteList);
+            } else {
+               this.vFlag = 0;
+               this.setSearchedReceivablesRoute(this.vReceivablesRouteList);
+            }
+        }
+    }
+
+    getRoute(pStr: any) {
+        console.log('You select: ' + pStr);
+        this.vSelectedRoute = pStr;
+
+        if (this.vSelectedRoute === 'allRoute') {
+            this.vFlag = 1;
+        } else {
+            this.vFlag = 0;
+        }
+    }
 }

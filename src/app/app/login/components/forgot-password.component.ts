@@ -3,7 +3,7 @@ import { Router } from 'angular2/router';
 import {NgModel} from 'angular2/common';
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
-import {ModalService} from '../../shared/services/modal.service';
+import {Modal} from '../../shared/services/modal.service';
 
 @Component({
     templateUrl: './app/login/components/forgot-password.component.html',
@@ -19,7 +19,7 @@ export class ForgotPasswordComponent {
         private _router: Router,
         private _layoutService: LayoutService,
         private _matchMediaService: MatchMediaService,
-        private _modalService: ModalService
+        private _modalService: Modal.ModalService
         ) {
 
         this._layoutService.setCurrentPage('ForgotPassword');
@@ -35,7 +35,7 @@ export class ForgotPasswordComponent {
     }
 
     toggleVerificationCodeModal() {
-        this._modalService.toggleVerificationCodeModal();
+        // this._modalService.toggleVerificationCodeModal();
     }
 
 }

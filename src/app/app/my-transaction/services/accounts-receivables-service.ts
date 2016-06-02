@@ -16,7 +16,6 @@ export class AccountsReceivablesService {
     }
 
     searchRetailer() {
-        console.log('test onkeypress masuk service');
         return;
     }
 
@@ -28,7 +27,15 @@ export class AccountsReceivablesService {
         return this.vIsLoading;
     }
 
-    getAllRetailer() {
-      return this._http.get('/getAccountsReceivables', null);
+    getAllReceivablesRoute(pDspId, pSource) {
+      try {
+      var vDspId = pDspId;
+      var vSource = pSource;
+
+      console.log('In getAllReceivablesRoute service');
+      return this._http.get('/retailer/accountreceivable?source=' + vSource + '&username=' + vDspId);
+      } catch(pErr) {
+          console.log('Error in get API: ' + pErr);
+      }
     }
 }

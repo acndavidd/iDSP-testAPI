@@ -1,0 +1,84 @@
+<div *ngFor="#each of getRetailerDetails()">    
+    <div class="container-body bcp-steps">
+        <div class="item-container">
+            <div class="container">
+                <div class="cell">
+                    <div class="container">
+                        <div class="cell center header title2">{{each.retailer_name}}</div>
+                    </div>
+                    <div class="container">
+                        <div class="cell center header italic">{{each.retailer_min}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="step-container">
+        <div class="step">
+            <div class="left">
+                <div class='circle' [ngClass]="{'circle-green': vCallPrepFlag}">1</div>
+                <div class="line" [ngClass]="{'line-green': vCallPrepFlag}"></div>
+            </div>
+            <div class="right">
+                <div class="title">Call Preparation</div>
+                <div class="body" *ngIf="vCallPrepFlag">10:00 - 13:00</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="left">
+                <div class='circle' [ngClass]="{'circle-green': vCollectionFlag}">2</div>
+                <div class="line" [ngClass]="{'line-green': vCollectionFlag}"></div>
+            </div>
+            <div class="right">
+                <div class="title">Collection</div>
+                <div class="body" *ngIf="vCollectionFlag">10:00 - 13:00</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="left">
+                <div class='circle' [ngClass]="{'circle-green': vOffersFlag}">3</div>
+                <div class="line" [ngClass]="{'line-green': vOffersFlag}"></div>
+            </div>
+            <div class="right">
+                <div class="title">Offers</div>
+                <div class="body" *ngIf="vOffersFlag">10:00 - 13:00</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="left">
+                <div class='circle' [ngClass]="{'circle-green': vSalesFlag}">4</div>
+                <div class="line" [ngClass]="{'line-green': vSalesFlag}"></div>
+            </div>
+            <div class="right">
+                <div class="title">Sales Order</div>
+                <div class="body" *ngIf="vSalesFlag">10:00 - 13:00</div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="left">
+                <div class='circle' [ngClass]="{'circle-green': vUnservedFlag}">5</div>
+            </div>
+            <div class="right">
+                <div class="title">Unserved Order</div>
+                <div class="body" *ngIf="vUnservedFlag">10:00 - 13:00</div>
+            </div>
+        </div>
+    </div>
+
+<div class="container-body">
+    <div class="no-divider">
+        <div class="button" *ngIf="vNextEnabled">
+            <div class="button-identifier" (click)="gotoAnotherPage(each)" id="next-link">NEXT</div>
+        </div>
+        <div class= "button-disabled" *ngIf="!vNextEnabled" id="disabled-next-link">
+            <div class="button-identifier">NEXT</div>
+        </div>
+    </div>
+</div>
+
+</div>

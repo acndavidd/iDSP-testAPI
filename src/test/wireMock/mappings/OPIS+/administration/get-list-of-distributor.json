@@ -1,0 +1,9 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPattern": "/OPISNET/services/idsp/AllDistributor\\?source=[a-zA-Z0-9]+\\&recordstart=[0-9]+\\&recordend=[0-9]+"
+    },
+    "response": {
+        "bodyFileName": "OPIS+/administration/get-list-of-distributor-success.json"
+    }
+}

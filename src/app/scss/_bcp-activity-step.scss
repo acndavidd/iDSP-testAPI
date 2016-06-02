@@ -1,0 +1,56 @@
+.step-container{
+	padding-top: 25px;
+    padding-bottom: 100px;
+    box-sizing: border-box;
+
+	.step {
+		clear: both;
+    	padding-left: 30%;
+
+		.circle{
+			background: $dark-grey;
+		    width: 32px;
+		    height: 32px;
+		    line-height: 32px;
+		    border-radius: 16px;
+		    position: relative;
+		    color: white;
+		    text-align: center;
+
+		    &.circle-green{
+		    	background: $apple;
+		    }
+		}
+		.line{
+			position: relative;
+		    border-left: 1px solid $grey;
+		    height: 38px;
+		    margin: 10px 0px 8px 15px;
+
+		    &.line-green{
+		    	border-left: 1px solid $apple;
+		    }
+		}
+		.title{
+			font-weight: bold;
+		}
+		.right{
+			float: left;
+		}
+		.left{
+			float: left;
+    		margin-right: 10px;
+		}
+	}
+}
+
+//.bcp-steps {
+	//@extend .container-body;
+	//margin-bottom: 0px;
+//}
+
+.bcp-steps {
+	margin: 0 !important;
+	padding: 0 !important;
+
+}

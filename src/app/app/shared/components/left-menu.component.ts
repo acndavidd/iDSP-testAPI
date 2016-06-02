@@ -5,8 +5,7 @@ import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {AuthenticationService} from '../../shared/services/authentication.service';
-
-import {ModalService} from '../../shared/services/modal.service';
+import {Modal} from '../../shared/services/modal.service';
 import {RetailerService} from '../../shared/services/retailer.service';
 
 declare var ga: any;
@@ -29,7 +28,8 @@ export class LeftMenuComponent implements OnInit  {
     private _matchMediaService: MatchMediaService,
     private _authenticationService: AuthenticationService,
     private _headerService: HeaderService,
-    private _pageNavigationService: PageNavigationService
+    private _pageNavigationService: PageNavigationService,
+    private _modalService: Modal.ModalService
     ) {
         this.image = null;
     }
@@ -67,8 +67,9 @@ export class LeftMenuComponent implements OnInit  {
         this.checkCurrentPage(this.vGoToPage);
     }
 
-    goToTargets() {
+    goToTargetsActualsMD() {
         this.vGoToPage = 'TargetsActuals';
+        this._pageNavigationService.addListPreviousData('MyTransaction', null);
         this.checkCurrentPage(this.vGoToPage);
     }
 
@@ -102,8 +103,9 @@ export class LeftMenuComponent implements OnInit  {
         this.checkCurrentPage(this.vGoToPage);
     }
 
-    goToTargetsActuals() {
-        this.vGoToPage = 'CDTargetsActuals';
+    goToTargetsActualsCD() {
+        this.vGoToPage = 'TargetsActuals';
+        this._pageNavigationService.addListPreviousData('CloseDay', null);
         this.checkCurrentPage(this.vGoToPage);
     }
 
@@ -117,20 +119,22 @@ export class LeftMenuComponent implements OnInit  {
         this.checkCurrentPage(this.vGoToPage);
     }
 
+    goToCDUnservedOrder() {
+        this.vGoToPage = 'CDUnservedOrder';
+        this.checkCurrentPage(this.vGoToPage);
+    }
+
     goToRemittance() {
-        // this.vGoToPage = 'Remittance';
-        // this.checkCurrentPage(this.vGoToPage);
+        this.vGoToPage = 'Remittance';
+        this.checkCurrentPage(this.vGoToPage);
     }
 
     goToStockReturn() {
-        // this.vGoToPage = 'StockReturn';
-        // this.checkCurrentPage(this.vGoToPage);
+        this.vGoToPage = 'StockReturn';
+        this.checkCurrentPage(this.vGoToPage);
     }
 
-    goToLogout() {
-        this._layoutService.toggleLeftMenu();
-        this._layoutService.toggleHeader();
-        this._router.navigate(['Starter', 'Login']);
+    toggleLogout() {
+        this._authenticationService.logout();    
     }
-
 }

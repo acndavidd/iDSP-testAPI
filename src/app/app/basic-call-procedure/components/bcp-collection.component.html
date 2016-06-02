@@ -1,0 +1,187 @@
+<div *ngFor="#each of getRetailerDetails()">
+	<div class="container-body">
+		<div class="item-container">
+	        <div class="container">
+	            <div class="cell">
+	                <div class="container">
+	                	<div class="cell single title3 black" id="retailer-name">{{each.retailer_name}}</div>
+	                </div>                
+	            </div>
+	        </div>
+	        <div class="container">
+	            <div class="cell">
+	                <div class="container">
+	                	<div class="cell left grey" id="retailer-id">{{each.retailer_min}}</div>
+	                </div>                
+	            </div>
+	        </div>
+	    </div>
+
+
+		<div class="item-container" (click)='outstandingShow()' id="outstanding-show-btn">
+	        <div class="container">
+	            <div class="cell">
+	                <div class="container">
+	                	<div class="cell left black">Outstanding</div>
+	                </div>
+	            </div>
+	            <div class="cell right green" id="total-outstanding">3000 ₱</div>
+	            <div class="cell icon arrow-down" id="arrow-outstanding" [ngClass]='{selected: vOutstandingShow}'></div>
+	        </div>
+	    </div>
+
+	    <div class="item-container-sub-full" *ngIf='vOutstandingShow'>
+
+	    	<div class="item-container">
+				<div class="container">
+					<div class="cell">
+						<div class="container">
+							<div class="cell left grey">Order#</div>
+						</div>
+						<div class="container">
+							<div class="cell left grey">Date</div>
+						</div>
+						<div class="container">
+							<div class="cell left grey">Balance Amount</div>
+						</div>
+					</div>
+					<div class="cell">
+						<div class="container">
+	       					<div class="cell right grey" id="order-id">12345</div>
+						</div>
+						<div class="container">
+	       					<div class="cell right grey" id="outstd-date">05/19/2016</div>
+						</div>
+						<div class="container">
+	       					<div class="cell right grey" id="outstd-balance-amount">1,000 ₱</div>
+						</div>
+					</div>
+		           	<div class="cell icon"></div>
+				</div>
+			</div>
+
+			<div class="item-container">
+				<div class="container">
+					<div class="cell">
+						<div class="container">
+							<div class="cell left grey">Order#</div>
+						</div>
+						<div class="container">
+							<div class="cell left grey">Date</div>
+						</div>
+						<div class="container">
+							<div class="cell left grey">Balance Amount</div>
+						</div>
+					</div>
+					<div class="cell">
+						<div class="container">
+	       					<div class="cell right grey" id="order-id">56721</div>
+						</div>
+						<div class="container">
+	       					<div class="cell right grey" id="outstd-date">05/19/2016</div>
+						</div>
+						<div class="container">
+	       					<div class="cell right grey" id="outstd-balance-amount">1,500 ₱</div>
+						</div>
+					</div>
+		           	<div class="cell icon"></div>
+				</div>
+			</div>
+
+			<div class="item-container">
+				<div class="container">
+					<div class="cell">
+						<div class="container">
+							<div class="cell left grey">Order#</div>
+						</div>
+						<div class="container">
+							<div class="cell left grey">Date</div>
+						</div>
+						<div class="container">
+							<div class="cell left grey">Balance Amount</div>
+						</div>
+					</div>
+					<div class="cell">
+						<div class="container">
+	       					<div class="cell right grey" id="order-id">68321</div>
+						</div>
+						<div class="container">
+	       					<div class="cell right vivid-pink" id="outstd-date">01/19/2016</div>
+						</div>
+						<div class="container">
+	       					<div class="cell right grey" id="outstd-balance-amount">500 ₱</div>
+						</div>
+					</div>
+		           	<div class="cell icon"></div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="item-container" (click)='paymentShow()' id="payment-his-show-btn">
+	        <div class="container">
+	            <div class="cell">
+	                <div class="container"><div class="cell left black">Payment History</div></div>
+	            </div>
+	           	<div class="cell icon arrow-down" id="payment-arrow" [ngClass]='{selected: vPaymentShow}'></div>
+	        </div>
+	    </div>
+
+	    <div class="item-container-sub-vistd" *ngIf='vPaymentShow'>
+
+	   
+		    <div class="item-container">
+				<div class="container">
+		            <div class="cell left grey">Date</div>
+		           	<div class="cell right grey">Amount</div>
+		           	<div class="cell icon"></div>
+		        </div>
+		        
+		        <div *ngFor="#each of getPaymentHistory()">
+					<div class="container">
+				            <div class="cell left grey" id="payment-date">{{each.trans_date}}</div>
+				            <div class="cell right grey" id="payment-amount">{{each.amount}} ₱</div>
+				           	<div class="cell icon"></div>
+					</div>
+			    </div>
+		    </div>
+
+		</div>
+
+		<div class="item-container">
+	        <div class="container">
+	            <div class="cell">
+	                <div class="container"><div class="cell left black">Collection</div></div>
+	            </div>
+	        </div>
+	        <div class="container">
+	            <div class="cell">
+	                <div class="container"><div class="cell left grey">Amount</div></div>
+	            </div>
+	        </div>
+	        <div class="container">
+	    		<input  type ="text" class ="input-90" id ="collection-amount" placeholder="PHP"/>	
+	        </div>
+	        <div class="container">
+	            <div class="cell">
+	                <div class="container"><div class="cell left grey">Remarks</div></div>
+	            </div>
+	        </div>
+	        <div class="container">
+	    		<textarea rows="4" cols="50" class="text-90" id="colllection-remarks"></textarea>	
+	        </div>
+	        <div class="container">
+	        	<div class="double-divider">
+	        		<div class= "button" (click)="gotoBCPActivityStep()">
+	        			<div class="button-identifier" id="skip-collection">Skip</div>
+	        		</div>
+	        	</div>
+	        	<div class="double-divider">
+	        		<div class= "button" (click)="gotoBCPActivityStep(each)">
+	        			<div class="button-identifier" id="next-collection">Next</div>
+	        		</div>
+	        	</div>
+	        </div>
+	    </div>
+	</div>
+</div>

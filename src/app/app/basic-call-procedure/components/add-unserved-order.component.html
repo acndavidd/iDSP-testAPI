@@ -1,0 +1,57 @@
+<div class="container-body">
+    <div class="item-container sub">
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell width-100 padding-left-5 large green'>Rose Cell</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-50 italic green'>(99999900003)</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="item-container">
+        <div class="container">
+            <div class='cell'>
+                <div class='container'><div class='cell width-50 padding-left-5 green'>Order No. 12345678</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-40 padding-right-5 align-right'>2016-04-21 13:30</div></div>
+            </div>
+        </div>
+    </div>
+    <div class="item-container">
+        <div class="container">
+            <div class='cell'>
+                <div class='container'><div class='cell width-30 align-center'>SKU</div></div>
+                <div class='container'><div class='cell width-30 padding-left-5 padding-right-5'>
+                    <select name="SKU" class="width-100">
+                        <option value="">Select</option>
+                    </select>
+                </div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-100 align-center'>Quantity</div></div>
+                <div class='container'><div class='cell width-100 padding-left-5 padding-right-5'>
+                    <input class="width-100" type ="text" id ="quantity" type="number" pattern="[0-9]+([,\.][0-9]+)?"/>
+                </div></div>
+            </div>
+        </div>
+
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell width-100 padding-left-5'>Remarks<span class='vivid-pink'>*</span></div></div>
+            </div>
+        </div>
+        <div class='container'>
+            <div class='cell width-100 padding-left-5 padding-right-5'>
+                <textarea name="textarea" rows="10" cols="50"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class='no-divider' id='add'>
+        <div class='button' (click)="gotoUnservedOrder()">
+            <div class='button-identifier'>ADD</div>
+        </div>
+    </div>
+</div>    

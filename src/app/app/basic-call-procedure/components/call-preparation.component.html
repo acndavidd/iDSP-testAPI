@@ -1,0 +1,226 @@
+    <div class="container-body">
+    	<div *ngFor="#each of getRetailerDetails()">
+	    	<div class="item-container">
+		        <div class="container">
+		        	<div class='cell'>
+		        		<div class='container'><div class='cell width-100 align-right padding-right-5 green'>Route #{{each.seq}}</div></div>
+				    </div>
+				</div>
+		        <div class="container">
+		        	<div class='cell width-20 padding-left-5'><div class="profpic pink">{{each.first_char}}</div></div>
+		        	<div class='cell'>
+		        		<div class='container'>
+		        			<div class='cell width-80 padding-left-5 x-large bold green'>{{each.retailer_name}}</div>
+		        		</div>
+				    </div>
+				</div>
+		    </div>
+	        <div class="item-container" (click)="subProfileMenuShow()">
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell large width-90 padding-left-5 green'>Profile</div></div>
+				    </div>
+				    <div class='cell width-10 arrow-down' [ngClass]="{selected: vProfileMenuShow}"></div>
+				</div>
+			</div>
+			<div class="item-container sub" *ngIf="vProfileMenuShow">
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell width-100 padding-left-10 grey'>Retailer Owner</div></div>
+				        <div class='container'><div class='cell width-100 padding-left-10'>{{each.owner_name}}</div></div>
+				    </div>
+				    <div class='cell width-10'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell width-100 padding-left-10 grey'>Outlet Type</div></div>
+				        <div class='container'><div class='cell width-100 padding-left-10'>{{each.outlet_type}}</div></div>
+				    </div>
+				    <div class='cell width-10'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell width-100 padding-left-10 grey'>Civil Status</div></div>
+				        <div class='container'><div class='cell width-100 padding-left-10'>{{each.civil_status}}</div></div>
+				    </div>
+				    <div class='cell width-10'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell width-100 padding-left-10 grey'>Email Address</div></div>
+				        <div class='container'><div class='cell width-100 padding-left-10'>{{each.email}}</div></div>
+				    </div>
+				    <div class='cell width-10'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell width-100 padding-left-10 grey'>Gender</div></div>
+				        <div class='container'><div class='cell width-100 padding-left-10'>{{each.gender}}</div></div>
+				    </div>
+				    <div class='cell width-10'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell width-100 padding-left-10 grey'>Birthday</div></div>
+				        <div class='container'><div class='cell width-100 padding-left-10'>{{each.birthday}}</div></div>
+				    </div>
+				    <div class='cell width-10'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell width-100 padding-left-10 grey'>Mobile Number (MIN)</div></div>
+				        <div class='container'><div class='cell width-100 padding-left-10'>{{each.retailer_min}}</div></div>
+				    </div>
+				    <a href="tel:99999900089" class='cell width-10 call'></a>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell width-100 padding-left-10 grey'>Address</div></div>
+				        <div class='container'><div class='cell width-100 padding-left-10'>{{each.retailer_address}}</div></div>
+				    </div>
+				    <div class='cell width-10'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell width-100 padding-left-10 grey'>Amount Receivables</div></div>
+				        <div class='container'><div class='cell width-100 padding-left-10'>{{each.total_ar}} ₱</div></div>
+				    </div>
+				    <div class='cell width-10'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell width-100 padding-left-10 grey'>Value Segment</div></div>
+				        <div class='container'><div class='cell width-100 padding-left-10'>{{each.value_segment}}</div></div>
+				    </div>
+				    <div class='cell width-10'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell width-100 padding-left-10 grey'>Threshold</div></div>
+				        <div class='container'><div class='cell width-100 padding-left-10'>{{each.threshold_hit}} ₱ </div></div>
+				    </div>
+				    <div class='cell width-10'></div>
+				</div>
+				<div class="container border">
+					<div class='cell'>
+				        <div class='container'><div class='cell width-100 padding-left-10 grey'>Status</div></div>
+				        <div class='container'><div class='cell width-100 padding-left-10'>{{each.call_status}}</div></div>
+				    </div>
+				    <div class='cell width-10'></div>
+				</div>
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell width-100 padding-left-10 grey'>Last Visit</div></div>
+				        <div class='container'><div class='cell width-100 padding-left-10'>{{each.last_visit}}</div></div>
+				    </div>
+				    <div class='cell width-10'></div>
+				</div>
+			</div>
+
+	        <div class="item-container" (click)="subCollectionMenuShow()">
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell large width-90 padding-left-5 green'>Collection</div></div>
+				    </div>
+				    <div class='cell width-10 arrow-down' [ngClass]="{selected: vCollectionMenuShow}"></div>
+				</div>
+			</div>
+			<div class="item-container sub" *ngIf="vCollectionMenuShow">
+				<div class="container">
+				
+						<div class='cell'>
+					        <div class='container'><div class='cell width-50 padding-left-10'>Date</div></div>
+					        	<div *ngFor="#date of each.coll_date">
+					        		<div class='container'><div class='cell width-50 padding-left-10'>{{date.trans_date}}</div></div>
+					        	</div>
+					    </div>
+						<div class='cell'>
+					        <div class='container'><div class='cell width-50 align-right'>Amount</div></div>
+					        <div *ngFor="#amount of each.coll_amount">
+					        	<div class='container'><div class='cell width-50 align-right'>{{amount.amount}} ₱</div></div>
+					        </div>
+					    </div>
+					    <div class='cell width-10'></div>
+					</div>
+				
+			</div>
+
+	        <div class="item-container" (click)="subLoadMenuShow()">
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell large width-90 padding-left-5 green'>Load Wallet</div></div>
+				    </div>
+				    <div class='cell width-10 arrow-down' [ngClass]="{selected: vLoadMenuShow}"></div>
+				</div>
+			</div>
+			<div class="item-container sub" *ngIf="vLoadMenuShow">
+				<div class="container">
+					<div *ngFor="#each of getLoadWallet()">	
+						<div class='cell'>
+					        <div class='container'><div class='cell width-100 padding-left-10 large bold'>SmartLoad</div></div>
+					        <div class='container'>
+					        	<div class='cell width-100 padding-left-10'>
+									<div class="container">
+										<div class='cell'>
+									        <div class='container'><div class='cell width-50'>Drop Size</div></div>
+									        <div class='container'><div class='cell width-50'>Last Amount Transferred</div></div>
+									        <div class='container'><div class='cell width-50'>Transaction Date</div></div>
+									        <div class='container'><div class='cell width-50'>Latest Balance</div></div>
+									    </div>
+										<div class='cell'>
+									        <div class='container'><div class='cell width-50 align-right'>{{each.drop_size}}</div></div>
+									        <div class='container'><div class='cell width-50 align-right'>{{each.last_amount_transferred}} ₱</div></div>
+									        <div class='container'><div class='cell width-50 align-right'>{{each.transaction_date}}</div></div>
+									        <div class='container'><div class='cell width-50 align-right'>{{each.latest_balance}} ₱</div></div>
+									    </div>
+									</div>
+					        	</div>
+					        </div>
+					    </div>
+					    <div class='cell width-10'></div>
+					</div>
+				</div>
+			</div>
+
+	        <div class="item-container" (click)="subPhysicalMenuShow()">
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell large width-90 padding-left-5 green'>Physical Inventory</div></div>
+				    </div>
+				    <div class='cell width-10 arrow-down' [ngClass]="{selected: vPhysicalMenuShow}"></div>
+				</div>
+			</div>
+			<div class="item-container sub" *ngIf="vPhysicalMenuShow">
+				<div class="container">
+					<div *ngFor="#each of getPhysicalInventory()">
+						<div class='cell'>
+					        <div class='container'><div class='cell width-100 padding-left-10 large bold'>SKU1</div></div>
+					        <div class='container'>
+					        	<div class='cell width-100 padding-left-10'>
+									<div class="container">
+										<div class='cell'>
+									        <div class='container'><div class='cell width-50'>Last Quantity Sold</div></div>
+									        <div class='container'><div class='cell width-50'>Transaction Date</div></div>
+									        <div class='container'><div class='cell width-50'>Beginning Balance</div></div>
+									    </div>
+										<div class='cell'>
+									        <div class='container'><div class='cell width-50 align-right'>{{each.last_qty_sold}}</div></div>
+									        <div class='container'><div class='cell width-50 align-right'>{{each.transaction_date}}</div></div>
+									        <div class='container'><div class='cell width-50 align-right'>{{each.beginning_balance}}</div></div>
+									    </div>
+									</div>
+					        	</div>
+					        </div>
+					    </div>
+					    <div class='cell width-10'></div>
+					</div>
+				</div>
+			</div>
+
+		    <div class="no-divider">
+		        <div class= "button" (click)="gotoBCPActivityStep(each)">
+		            <div class="button-identifier">START</div>
+		        </div>     
+		    </div>
+	    </div>
+    </div>

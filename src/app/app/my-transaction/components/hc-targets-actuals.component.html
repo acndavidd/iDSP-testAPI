@@ -1,0 +1,386 @@
+<a (click)="showMenuDay()"><div class="sub-tab triple" [ngClass] = "{active: vUnderlineDay}"><div id="day-btn" class="text" [ngClass] = "{active: vUnderlineDay}">Day</div></div></a>
+<a (click)="showMenuWeek()"><div class="sub-tab triple2" [ngClass] = "{active: vUnderlineWeek}"><div id="week-btn" class="text" [ngClass] = "{active: vUnderlineWeek}">Week</div></div></a>
+<a (click)="showMenuMonth()"><div class="sub-tab triple" [ngClass] = "{active: vUnderlineMonth}"><div id="month-btn" class="text" [ngClass] = "{active: vUnderlineMonth}">Month</div></div></a>
+<!--Container-->
+<div class="container-body">
+
+	<div id="filter-btn" class="filter-container" *ngIf="getFilter().filterTargetsActuals">
+		<div class="item-container">
+			<div class="container">
+				<div class='cell'>
+					<div class="container">
+						<div class="cell filter-label width-50 padding-top-1 padding-bottom-1">Brand</div>
+					</div>
+				</div>
+				<div class='cell'>
+					<div class="container">
+						<div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
+							<select name="cars">
+								<option value="volvo">Smart</option>
+								<option value="saab">Sun</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+	
+
+
+
+	<div *ngIf="vDayShow">
+		<div class="item-container">
+	        <div class="container">
+	        	<div class='cell width-20 targets-sim'></div>
+	            <div class='cell'>
+	                <div class='container'><div class='cell width-80 green'>Airtime</div></div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="item-container">
+	        <div class="container">
+	            <div class='cell'>
+	                <div class='container'>
+	                	<div class='cell width-70'>
+					        <div class="container">
+					            <div class='cell'>
+					                <div class='container'><div class='cell padding-left-5'>Smartload</div></div>
+					                <div class='container'>
+					                	<div class='cell'>
+									        <div class="container">
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>35</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Actual</div></div>
+									            </div>
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>150</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Target</div></div>
+									            </div>
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>-115</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Balance</div></div>
+									            </div>
+									        </div>
+								    	</div>
+								    </div>
+					            </div>
+					        </div>
+						</div>
+					</div>
+	            </div>
+	            <div class='cell width-30'><div class="progress-radial progress-23"><div class="overlay">23.33<sup>%</sup></div></div></div>
+	        </div>
+	    </div>
+		<div class="item-container">
+	        <div class="container">
+	        	<div class='cell width-20 targets-broadband'></div>
+	            <div class='cell'>
+	                <div class='container'><div class='cell width-80 green'>Broadband</div></div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="item-container">
+	        <div class="container">
+	            <div class='cell'>
+	                <div class='container'>
+	                	<div class='cell width-70'>
+					        <div class="container">
+					            <div class='cell'>
+					                <div class='container'><div class='cell padding-left-5'>SIM</div></div>
+					                <div class='container'>
+					                	<div class='cell'>
+									        <div class="container">
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>55</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Actual</div></div>
+									            </div>
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>55</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Target</div></div>
+									            </div>
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>0</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Balance</div></div>
+									            </div>
+									        </div>
+								    	</div>
+								    </div>
+					            </div>
+					        </div>
+						</div>
+					</div>
+	            </div>
+	            <div class='cell width-30'><div class="progress-radial progress-100"><div class="overlay">100<sup>%</sup></div></div></div>
+	        </div>
+	    </div>
+		<div class="item-container">
+	        <div class="container">
+	        	<div class='cell width-20 targets-sim'></div>
+	            <div class='cell'>
+	                <div class='container'><div class='cell width-80 green'>SIM</div></div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="item-container">
+	        <div class="container">
+	            <div class='cell'>
+	                <div class='container'>
+	                	<div class='cell width-70'>
+					        <div class="container">
+					            <div class='cell'>
+					                <div class='container'><div class='cell padding-left-5'>Smart Prepaid Kit</div></div>
+					                <div class='container'>
+					                	<div class='cell'>
+									        <div class="container">
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>75</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Actual</div></div>
+									            </div>
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>50</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Target</div></div>
+									            </div>
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>25</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Balance</div></div>
+									            </div>
+									        </div>
+								    	</div>
+								    </div>
+					            </div>
+					        </div>
+						</div>
+					</div>
+	            </div>
+	            <div class='cell width-30'><div class="progress-radial progress-99"><div class="overlay">99<sup>%</sup></div></div></div>
+	        </div>
+	    </div>
+	</div>
+
+	<div *ngIf="vWeekShow">
+		<div class="item-container">
+	        <div class="container">
+	        	<div class='cell width-20 targets-sim'></div>
+	            <div class='cell'>
+	                <div class='container'><div class='cell width-80 green'>Airtime</div></div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="item-container">
+	        <div class="container">
+	            <div class='cell'>
+	                <div class='container'>
+	                	<div class='cell width-70'>
+					        <div class="container">
+					            <div class='cell'>
+					                <div class='container'><div class='cell padding-left-5'>Smart CTC/TL</div></div>
+					                <div class='container'>
+					                	<div class='cell'>
+									        <div class="container">
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>30</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Actual</div></div>
+									            </div>
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>80</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Target</div></div>
+									            </div>
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>15</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Balance</div></div>
+									            </div>
+									        </div>
+								    	</div>
+								    </div>
+					            </div>
+					        </div>
+						</div>
+					</div>
+	            </div>
+	            <div class='cell width-30'><div class="progress-radial progress-37"><div class="overlay">37.5<sup>%</sup></div></div></div>
+	        </div>
+	    </div>
+	    <div class="item-container">
+	        <div class="container">
+	            <div class='cell'>
+	                <div class='container'>
+	                	<div class='cell width-70'>
+					        <div class="container">
+					            <div class='cell'>
+					                <div class='container'><div class='cell padding-left-5'>XLoad Traditional</div></div>
+					                <div class='container'>
+					                	<div class='cell'>
+									        <div class="container">
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>35</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Actual</div></div>
+									            </div>
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>50</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Target</div></div>
+									            </div>
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>35</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Balance</div></div>
+									            </div>
+									        </div>
+								    	</div>
+								    </div>
+					            </div>
+					        </div>
+						</div>
+					</div>
+	            </div>
+	            <div class='cell width-30'><div class="progress-radial progress-70"><div class="overlay">70<sup>%</sup></div></div></div>
+	        </div>
+	    </div>
+		<div class="item-container">
+	        <div class="container">
+	        	<div class='cell width-20 targets-broadband'></div>
+	            <div class='cell'>
+	                <div class='container'><div class='cell width-80 green'>Broadband</div></div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="item-container">
+	        <div class="container">
+	            <div class='cell'>
+	                <div class='container'>
+	                	<div class='cell width-70'>
+					        <div class="container">
+					            <div class='cell'>
+					                <div class='container'><div class='cell padding-left-5'>Device</div></div>
+					                <div class='container'>
+					                	<div class='cell'>
+									        <div class="container">
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>45</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Actual</div></div>
+									            </div>
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>71</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Target</div></div>
+									            </div>
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>0</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Balance</div></div>
+									            </div>
+									        </div>
+								    	</div>
+								    </div>
+					            </div>
+					        </div>
+						</div>
+					</div>
+	            </div>
+	            <div class='cell width-30'><div class="progress-radial progress-63"><div class="overlay">63.38<sup>%</sup></div></div></div>
+	        </div>
+	    </div>
+		<div class="item-container">
+	        <div class="container">
+	        	<div class='cell width-20 targets-sim'></div>
+	            <div class='cell'>
+	                <div class='container'><div class='cell width-80 green'>SIM</div></div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="item-container">
+	        <div class="container">
+	            <div class='cell'>
+	                <div class='container'>
+	                	<div class='cell width-70'>
+					        <div class="container">
+					            <div class='cell'>
+					                <div class='container'><div class='cell padding-left-5'>Pinoy SIM</div></div>
+					                <div class='container'>
+					                	<div class='cell'>
+									        <div class="container">
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>32</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Actual</div></div>
+									            </div>
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>49</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Target</div></div>
+									            </div>
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>33</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Balance</div></div>
+									            </div>
+									        </div>
+								    	</div>
+								    </div>
+					            </div>
+					        </div>
+						</div>
+					</div>
+	            </div>
+	            <div class='cell width-30'><div class="progress-radial progress-65"><div class="overlay">65.3<sup>%</sup></div></div></div>
+	        </div>
+	    </div>
+	</div>
+
+	<div *ngIf="vMonthShow">
+		<div class="item-container">
+	        <div class="container">
+	        	<div class='cell width-20 targets-sim'></div>
+	            <div class='cell'>
+	                <div class='container'><div class='cell width-80 green'>Airtime</div></div>
+	            </div>
+	        </div>
+	    </div>
+		<div class="item-container">
+	        <div class="container">
+	        	<div class='cell width-20 targets-broadband'></div>
+	            <div class='cell'>
+	                <div class='container'><div class='cell width-80 green'>Broadband</div></div>
+	            </div>
+	        </div>
+	    </div>
+		<div class="item-container">
+	        <div class="container">
+	        	<div class='cell width-20 targets-sim'></div>
+	            <div class='cell'>
+	                <div class='container'><div class='cell width-80 green'>SIM</div></div>
+	            </div>
+	        </div>
+	    </div>
+	    <div class="item-container">
+	        <div class="container">
+	            <div class='cell'>
+	                <div class='container'>
+	                	<div class='cell width-70'>
+					        <div class="container">
+					            <div class='cell'>
+					                <div class='container'><div class='cell padding-left-5'>TNT Kit</div></div>
+					                <div class='container'>
+					                	<div class='cell'>
+									        <div class="container">
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>55</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Actual</div></div>
+									            </div>
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>40</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Target</div></div>
+									            </div>
+									            <div class='cell'>
+									                <div class='container'><div class='cell width-33 align-center'>0</div></div>
+									                <div class='container'><div class='cell width-33 align-center'>Balance</div></div>
+									            </div>
+									        </div>
+								    	</div>
+								    </div>
+					            </div>
+					        </div>
+						</div>
+					</div>
+	            </div>
+	            <div class='cell width-30'><div class="progress-radial progress-137"><div class="overlay">137.5<sup>%</sup></div></div></div>
+	        </div>
+	    </div>
+	</div>
+</div>
+<!--End of Container-->

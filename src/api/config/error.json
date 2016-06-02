@@ -1,0 +1,6 @@
+{
+  "ERR_SEQUELIZE" : "",
+  "ERR_SP" : "",
+  "ERR_CONN_REFUSED" : "Failed connecting to the data server",
+  "ERR_INVALID_CREDENTIAL" : "Invalid username or password"
+}

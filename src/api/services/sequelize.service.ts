@@ -3,10 +3,18 @@ var vEnv = process.env.NODE_ENV || "development";
 var vConfig = require(vPath.join(__dirname, '..', 'config', 'config.json'))[vEnv];
 var vSequelize = require("sequelize");
 var vFs = require('fs');
-var vDebugFile = vPath.join(__dirname,'..','debug', (Date.now() / 1000) + 'debug.js');
+var vToday = Date.now();
+var vDate = new Date(vToday);
+var vDebugFile = vPath.join(__dirname,'..','debug', vDate.getDate() + '-' + (vDate.getMonth()+1) + '-' + vDate.getFullYear() + '.debug.js');
 var vDebugFD;
 
-export class SequelizeService{
+export interface SequelizeInterface {
+	getInstance(): any;
+	getModelPath(): string;
+	getModelNaming(): string; 
+}
+
+export class SequelizeService implements SequelizeInterface{
 	private vSeqInstance;
 	private vNaming;
 	private vModelPath;
@@ -22,10 +30,11 @@ export class SequelizeService{
 					dialect : vConfig.db.dialect,
 					host    : vConfig.db.host,
 					port	: vConfig.db.port,
+					timezone : vConfig.db.timezone,
 					logging : (vEnv === 'development') ? function(pLog){
-						if (vFs.existsSync(vDebugFile))vFs.unlinkSync(vDebugFile);
-							vDebugFD = vFs.openSync(vDebugFile, 'a');
-						vFs.writeSync(vDebugFD,pLog+'\n');
+						vDebugFD = vFs.openSync(vDebugFile, 'a');
+						vDate = new Date(Date.now());
+						vFs.writeSync(vDebugFD,vDate.getHours()+':'+vDate.getMinutes()+':'+vDate.getSeconds() + ' - '+ pLog+'\n');
         				vFs.closeSync(vDebugFD);
 					} : false
 				});

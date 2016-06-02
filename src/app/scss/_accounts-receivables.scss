@@ -5,7 +5,7 @@
             width: 100%;
             display: block;
             clear: left;
-            height: 50px;
+            height: 100px;
             position: center center;
         .filter-label {
             font-size: $filter-label;
@@ -25,12 +25,13 @@
                 border: 1px solid $dark-grey;
                 width: 90%;
                 -webkit-appearance: none;
-                border-radius: 7px;
+                border-radius: 2px;
                 padding-left: 15px;
                 font-size: $filter-select;
                 font-weight:lighter;
                 appearance: none;
                 cursor: pointer;
+                text-align: center;
             }
             .icon{
                 width:80px;
@@ -41,9 +42,42 @@
                 background: url("../img/icon-idsp/search-black.png") no-repeat;
                 background-size: 25px;
                 background-position: center center;
-
             }
         }
+        .filter-label {
+            font-size: $filter-label;
+            color: #000;
+            padding-top: 20px;
+            padding-left: 10px;
+            float: left;
+            text-align: center;
+        }
+        .filter-dropdown {
+            padding-top: 15px;
+            padding-left: 150px;
+            select {
+                background: $white;
+                height: 31px;
+                border: 1px solid $dark-grey;
+                width: 90%;
+                -webkit-appearance: none;
+                text-align: center;
+                border-radius: 2px;
+                padding-left: 15px;
+                font-size: $filter-select;
+                appearance: none;
+                @media screen and (-webkit-min-device-pixel-ratio: 0) {
+                    background-image: url(#{$select-arrow});
+                    background-position: right 0 top 50%;
+                    background-repeat: no-repeat;
+                }
+            }
+        }
+
+        &.width-30 { width: 30%; }
+        &.width-40 { width: 40%; }
+        &.align-right { text-align: right; }
+        &.padding-right-5 { padding-right: 5vw; }
     }
     .item-container {
     width: 100%;
@@ -57,7 +91,7 @@
         .container {
             display: table;
             width: 100%;
-
+            height: 100%;
             &.border {
                 border-bottom: 1px solid $border-line;
             }
@@ -65,23 +99,30 @@
         .cell {
             display:table-cell;
             font-size: $content-normal;
-            height:1.6em;
+            height:100%;
             vertical-align:middle;
 
-            &.left {
-                width: 45%;
-                padding-left:0.6em;
-            }
-            &.right {
-                width: 40%;
-                text-align: right;
-            }
-            &.single {
-                width: 85%;
-                padding-left:0.6em;
-            }
             &.icon {
-                width: 15%;
+                height: 15px;
+                position: center;
+                text-align: center;
+                font-size: 9px;
+                
+                .src{
+                    width: 15px;
+                    position: center;
+                    transform: rotate(-90deg);
+                    text-align: center; 
+                    font-size: 10px;
+                    font-weight: bold;
+                } 
+                &.sulu{
+                    background-color: $sulu;
+
+                }
+                &.serenade{
+                    background-color: $serenade;
+                }
             }
 
             &.bold {
@@ -90,24 +131,39 @@
             &.italic {
                 font-style: italic;
             }
-            &.center {
-                text-align: center;
-            }
-
             &.grey {
                 color: $grey;
             }
             &.deep-cyan {
                 color: $deep-cyan;
             }
-
             &.sub-cell {
                 padding-left:2em;
             }
             &.title {
-                font-size: 1.2em;
-                height:2.5em;
+                font-size: 16px;
+                height:100%;
             }
+
+            &.padding-top-1 { padding-top: 1vw; }
+            &.padding-top-3 { padding-top: 3vw; }
+            &.padding-left-5 { padding-left: 5vw; }
+            &.padding-right-5 { padding-right: 5vw; }
+            &.padding-bottom-1 { padding-bottom: 1vw; }
+            &.padding-bottom-2 { padding-bottom: 2vw; }
+            &.padding-bottom-3 { padding-bottom: 3vw; }
+
+            &.width-7 { width: 7%; }
+            &.width-40 { width: 40%; }
+            &.width-45 { width: 45%; }
+            &.width-80 { width: 80%; }
+            &.width-85 { width: 85%; }
+            &.width-100 { width: 100%; }
+
+            &.align-right { text-align: right; }
+            &.align-center { text-align: center; }
+
+            &.green { color: $apple; }
         }
     }
     

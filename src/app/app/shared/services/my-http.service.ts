@@ -4,6 +4,7 @@ import {Injectable} from 'angular2/core';
 import {Http, Request, RequestOptions, RequestMethod, RequestOptionsArgs, Headers} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 import {Router} from 'angular2/router';
+import {Modal} from './modal.service';
 
 declare var configChannel: any;
 
@@ -13,7 +14,8 @@ export class MyHttp {
     private vTimeout: number;
 
     constructor(private _http: Http,
-                private _router: Router) {
+                private _router: Router,
+                private _modalService: Modal.ModalService) {
 
         this.vServiceBaseUrl = '';
 
@@ -80,8 +82,6 @@ export class MyHttp {
             vRequestOptions.headers = this._createAuthHeaders(pMethod);
         }
 
-        ;
-
         return Observable.create((pObserver) => {
             const CONFIG_URL = 'config/service.json';
             if (this.vServiceBaseUrl === '') {
@@ -96,9 +96,6 @@ export class MyHttp {
                    this.vServiceBaseUrl = vConfig.baseUrl;
                    this.vTimeout = Number(vConfig.timeout);
                    vRequestOptions.url = this.vServiceBaseUrl + pUrl;
-
-                   console.log('Start request to ' + this.vServiceBaseUrl + pUrl);
-
                    this.executeRequest(pObserver, vRequestOptions);
                });
             } else {
@@ -109,6 +106,7 @@ export class MyHttp {
     }
 
     public executeRequest(pObserver, pOpt: RequestOptions) {
+        console.log('Start request to ' + pOpt.url);
         this._http.request(new Request(pOpt))
             .timeout(this.vTimeout, {status: 408})
             .subscribe(
@@ -119,9 +117,19 @@ export class MyHttp {
                 (err) => {
                     switch (err.status) {
                         case 403:
+                            // caused by invalid token send to server
+                            // try access once again using refresh token
                             pObserver.error(err);
                             break;
+                        case 400:
+                            if(err.errorCode === 101) { // input error
+                                pObserver.error(err.inputError);
+                            }else {
+                                pObserver.error(err.body);
+                            }
+                            break;
                         default:
+                            // throw error
                             pObserver.error(err);
                             break;
                     }

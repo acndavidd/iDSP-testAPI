@@ -2,14 +2,13 @@
 module.exports = function(sequelize, DataTypes) {
   var trx_saleord_prd_det = sequelize.define('trx_saleord_prd_det', {
     order_det_id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.STRING(50),
       primaryKey: true,
       allowNull: false,
       unique: true
     },
     order_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING(50),
       allowNull: false
     },
     product_id: {
@@ -17,7 +16,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     },
     quantity: DataTypes.INTEGER,
-    price: DataTypes.DECIMAL(10,2)
+    price: DataTypes.DECIMAL(10,2),
+    promo_code: DataTypes.STRING(20),
+    promo_price: DataTypes.DECIMAL(10,2),
+    sync_status: DataTypes.STRING(1),
+    sync_version: DataTypes.DATE
   }, {
     timestamps: false,
     freezeTableName: true,

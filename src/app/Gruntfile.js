@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
 
     grunt.loadNpmTasks('grunt-cache-breaker');
-
+    grunt.loadNpmTasks('grunt-exec');
     // Project Configuration
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -290,7 +290,7 @@ module.exports = function(grunt) {
         clean:{
             options: { force: true },
             debug: ["../../debug/", "!../../debug/node_modules/"],
-            cordova: ["../../cordova/www/**"],
+            cordova: ["../cordova/www/**", "../cordova/res/**"],
             sasscache: [".sass-cache/"]  
         },
 
@@ -300,7 +300,7 @@ module.exports = function(grunt) {
         watch: {
             js: {
                 files: ['js/**/*.js', 'js/**/*.js.map', 'Gruntfile.js', 'tsconfig.json','init.js'],
-                tasks: ['copy:js', 'jshint'],
+                tasks: ['copy:js'],
             },
             ts: {
                 files: ['app/**/*.ts'],
@@ -322,6 +322,23 @@ module.exports = function(grunt) {
                 files: 'img/*.*',
                 tasks: ['copy:resources'],
             },
+        },
+            
+
+        exec : {
+            build : {
+                cwd : "../cordova",
+                command : "cordova build android",
+                stdout : true,
+                stderr : true
+            },
+
+            run : {
+                cwd : "../cordova",
+                command : 'cordova run android',
+                stdout : true,
+                stderr : true
+            }
         },
 
 // ---------------------
@@ -374,6 +391,29 @@ module.exports = function(grunt) {
         ]); 
 
     grunt.registerTask('cordova',[      
+        'clean:debug',
+        'copy:dependencies',
+        'copy:resources',
+        'copy:html',
+        'copy:css',
+        'copy:fonts',
+        'tslint',
+        'ts',
+        'copy:js',
+        'concat',
+        'sass',
+        'clean:sasscache',
+        // 'jshint',
+        'cssmin',
+        'uglify',
+        'cachebreaker',
+        'clean:cordova',
+        'copy:cordova',
+        'exec:build',
+        'exec:run'
+        ]); 
+
+    grunt.registerTask('cordova-jenkins',[      
         'clean:debug',
         'copy:dependencies',
         'copy:resources',

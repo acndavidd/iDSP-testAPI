@@ -5,10 +5,12 @@ import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
 import {InventoryService} from '../../shared/services/inventory.service';
+import {PageNavigationService} from '../../shared/services/page-navigation.service';
 
 @Component({
     selector: 'inventory',
     templateUrl: './app/my-transaction/components/inventory.component.html',
+    // templateUrl: './app/my-transaction/components/hc-inventory.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
@@ -36,7 +38,7 @@ export class InventoryComponent {
         // this.vSelectedDate = '20160429003012';
         this._layoutService.setCurrentPage('Inventory');
         this._headerService.setTitle('Inventory');
-        this._inventoryService.getProductListPhysical('asdasd', 'asd');
+        this.toggleFilterInventory();
     }
 
     getResize() {
@@ -50,11 +52,14 @@ export class InventoryComponent {
     showMenuLoad() {
         this.vLoadShow = true;
         this.vPhysicalShow = false;
+        this.toggleFilterInventory();
     }
 
     showMenuPhysical() {
         this.vLoadShow = false;
         this.vPhysicalShow = true;
+        this.toggleFilterInventory();
+        this._inventoryService.getPhysicalInventoryList('anjay1', 'physical', 'anjay3', 'anjay4', 'anjay5', 'anjay6');
     }
 
     subPhysicalMenuShow(indexArr) {
@@ -73,6 +78,10 @@ export class InventoryComponent {
 
     isProductListLoaded() {
         return this._inventoryService.productListStatus;
+    }
+
+    toggleFilterInventory() {
+        this._layoutService.toggleFilterInventory(this.vLoadShow, this.vPhysicalShow);
     }
 
 }

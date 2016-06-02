@@ -1,0 +1,50 @@
+<div class='container-body'>
+    <div class="item-container sub">
+        <div class='container'>
+            <div class='cell'>
+                <div class='container'><div class='cell width-100 padding-left-5 green'>Rose Cell</div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-50 italic green'>(99999900003)</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="item-container">
+        <div class='container'>
+                <div class='cell'>
+                    <div class='container'><div class='cell width-100 padding-left-5'>Please Input Your Reason<span class='vivid-pink'>*</span></div></div>
+                </div>
+        </div>
+        <div class="container">
+            <div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1 padding-right-5 padding-left-5">
+                <select name="value_segment_filter" class="width-100">
+                    <option value="NoStock">No Stocks on Hand (DSP)</option>
+                    <option value="Closed">Store is Closed</option>
+                    <option value="CreditLimit">Credit Limit Exceeded</option>
+                    <option value="NotActive">Customer not active</option>
+                    <option value="NoCapital">No working capital</option>
+                    <option value="Unavailable">Owner unavailable</option>
+                    <option value="StockAvailable">Stock already available</option>
+                    <option value="AgingBalance">With aging balance</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+        </div>
+        <div class='container'>
+                <div class='cell'>
+                    <div class='container'><div class='cell width-100 padding-left-5'>Remarks<span class='vivid-pink'>*</span></div></div>
+                </div>
+        </div>
+        <div class='container'>
+            <div class='cell width-100 padding-left-5 padding-right-5'>
+                <textarea name="textarea" rows="10" cols="50"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class='no-divider' id='submit' (click)="gotoUnservedOrder()">
+        <div class='button'>
+            <div class='button-identifier'>SUBMIT</div>
+        </div>
+    </div>
+</div>
