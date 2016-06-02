@@ -31,7 +31,7 @@
 
 
 	<div *ngIf="vDayShow">
-		<div  *ngFor="#eachCat of vShowProduct">
+		<div  *ngFor="#eachCat of vListProduct">
 			<div class="item-container" >
 		        <div class="container">
 		        	<div class='cell width-20 targets-{{eachCat.category_name|lowercase}}'></div>
@@ -82,7 +82,7 @@
 	</div>
 
 	<div *ngIf="vWeekShow">
-		<div  *ngFor="#eachCat of vShowProduct">
+		<div  *ngFor="#eachCat of vListProduct">
 			<div class="item-container" >
 		        <div class="container">
 		        	<div class='cell width-20 targets-{{eachCat.category_name|lowercase}}'></div>
@@ -133,7 +133,7 @@
 	</div>
 
 	<div *ngIf="vMonthShow">
-		<div  *ngFor="#eachCat of vShowProduct">
+		<div  *ngFor="#eachCat of vListProduct">
 			<div class="item-container" >
 		        <div class="container">
 		        	<div class='cell width-20 targets-{{eachCat.category_name|lowercase}}'></div>

@@ -11,9 +11,9 @@ import { Pipe, PipeTransform } from 'angular2/core';
 @Component({
     selector: 'targets-actuals',
     // to be uncommented for actual api
-    // templateUrl: './app/my-transaction/components/targets-actuals.component.html',
+    templateUrl: './app/my-transaction/components/targets-actuals.component.html',
     // to be uncommented for hardcoded values
-    templateUrl: './app/my-transaction/components/hc-targets-actuals.component.html',
+    // templateUrl: './app/my-transaction/components/hc-targets-actuals.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
@@ -33,7 +33,7 @@ export class TargetsActualsComponent {
     private vListBrands:any = [];
     public vSelectedBrand;
     private vListProduct;
-    private vShowProduct;
+    // private vShowProduct;
     private vSelectedTab;
 
     constructor (
@@ -68,7 +68,7 @@ export class TargetsActualsComponent {
          this._targetsActualsService.queryPerformance(this.vSelectedTab, this.vSelectedBrand).subscribe(
              response => {
                     this.vListProduct = response.json();
-                    this.vShowProduct = this.vListProduct;
+                    // this.vShowProduct = this.vListProduct;
             },
             error => {}
         );

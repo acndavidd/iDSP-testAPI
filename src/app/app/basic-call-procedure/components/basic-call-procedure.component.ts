@@ -9,9 +9,9 @@ import {NgModel, NgClass} from 'angular2/common';
 
 @Component({
     // FOR HIT API
-    // templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
+    templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
     // FOR HARDCODE UI
-    templateUrl: './app/basic-call-procedure/components/hc-basic-call-procedure.component.html',
+    // templateUrl: './app/basic-call-procedure/components/hc-basic-call-procedure.component.html',
 
     directives: [
         ROUTER_DIRECTIVES,
@@ -26,6 +26,7 @@ export class BasicCallProcedureComponent {
 
     private vListRoute;
     private vFilteredListRoute;
+    private vListDay;
     constructor (
         private _layoutService: LayoutService,
         private _matchMediaService: MatchMediaService,
@@ -95,8 +96,9 @@ export class BasicCallProcedureComponent {
         console.log('Get  retailer route for Day');
         this._retailerService.queryTask().subscribe(
                 response => {
-                        this.vListRoute = response.json().RetailerList;
+                        this.vListRoute = response.json();
                         this.vFilteredListRoute = this.vListRoute;
+                        console.log('halo '+ this.vFilteredListRoute.length);
                 },
                 error => {
                     console.log(error);

@@ -10,5 +10,6 @@ export class RetailerModel extends IDSPModel{
 	constructor(pUsername: string) {
 		super();
 		this.username = pUsername;
+
 	}
 }
