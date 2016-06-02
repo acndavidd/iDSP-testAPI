@@ -25,17 +25,10 @@ export class AccountsReceivablesComponent {
     vReceivablesRouteList: any;
     vSearchedReceivablesRouteList: any;
     vAllReceivablesRouteList: any;
-    vSum: any;
     vFlag;
     vTotalReceivablesInRoute: number = 0;
     vTotalReceivablesAll: number = 0;
     vSelectedRoute;
-    vRetailerSelfList: any;
-    vAllSelfBcpList: any;
-    vTempAllList: any;
-    vFilteredSelfBcpList: any;
-    vSelfTotalAmount: number = 0;
-    vBcpTotalAmount: number = 0;
 
     constructor (
         private _layoutService: LayoutService,
@@ -52,36 +45,26 @@ export class AccountsReceivablesComponent {
         var vDspId = 'DSP00001';
         var vSource = 'iDSP';
         var vTempFilteredList = [];
+  
         // Initial Data
         this.vSelectedRoute = 'inRoute';
         this.vFlag = 0;
         this._accountsReceivablesService.getAllReceivablesRoute(vDspId,vSource).subscribe(
             response => {
-                console.log('1 : ' + JSON.stringify(response.json()));
-                this.vSelfTotalAmount = response.json()[1].v_receivables_all[1].self_total_amount;
-                this.vBcpTotalAmount = response.json()[0].v_receivables_all[0].total_amount;
-                this.vAllSelfBcpList = response.json()[0].v_receivables_all;
-
-                console.log('vSelfTotalAmount : ' + this.vSelfTotalAmount);
-                console.log('vBcpTotalAmount : ' + this.vBcpTotalAmount);
-                console.log('vAllSelfBcpList : ' + JSON.stringify(this.vAllSelfBcpList));
-
-                this.vFilteredSelfBcpList = this.vAllSelfBcpList.filter(pFilter => {
-                    for (var i = 0; i < this.vAllSelfBcpList.length; i++) {
-                        vTempFilteredList.push(pFilter[i].sequence !== null)
-                    }
-                    return vTempFilteredList;
-                });
-
-                console.log('vFilteredSelfBcpList : ' + JSON.stringify(this.vFilteredSelfBcpList));
-                console.log('vTempFilteredList : ' + JSON.stringify(vTempFilteredList));
-                // this.setReceivablesRouteList(response.json()[0].v_receivables_all.filter(pFilter => {
-                //     return pFilter.sequence !== null;
-                // }));
-                // this.setAllReceivablesRouteList(response.json()[0].v_receivables_all);
-                // // this.vTotalReceivablesInRoute = this.vReceivablesRouteList[0].ret_total_amount;
-                // // this.vTotalReceivablesAll = this.vAllReceivablesRouteList[0].total_amount;
-                // this.setSearchedReceivablesRoute(this.vReceivablesRouteList);
+                console.log('Get response from API : ' + JSON.stringify(response.json()));
+                this.setAllReceivablesRouteList(response.json().sort());
+                this.setReceivablesRouteList(this.vAllReceivablesRouteList.filter(pFilter => {
+                    return pFilter.sequence !== null;
+                }));
+                this.setSearchedReceivablesRoute(this.vReceivablesRouteList);
+                for (var i = 0; i < this.vReceivablesRouteList.length; i++) {
+                    var x = this.vReceivablesRouteList[i].amount;
+                    this.vTotalReceivablesInRoute = (this.vTotalReceivablesInRoute + parseInt(x));
+                }
+                for (var j = 0; j < this.vAllReceivablesRouteList.length; j++) {
+                    var y = this.vAllReceivablesRouteList[j].amount;
+                    this.vTotalReceivablesAll = (this.vTotalReceivablesAll + parseInt(y));
+                }
                 },
             error => {
                 console.log('in acc component' + error.json());
@@ -131,9 +114,6 @@ export class AccountsReceivablesComponent {
     }
 
     searchFilter(pInputText: any) {
-        console.log('in searchFilter : ' + pInputText.length);
-        console.log('initial selectedRoute : ' + this.vSelectedRoute);
-        
         if (pInputText.length > 0) {
             if (this.vSelectedRoute === 'allRoute') {
                 this.vFlag = 1;
