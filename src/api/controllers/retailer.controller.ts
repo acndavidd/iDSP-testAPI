@@ -167,7 +167,25 @@ export class RetailerController implements RetailerInterface{
 						let vOrmService:ORMService = new ORMService();
 						let vResultData = await vOrmService.sp('get_route_day', vAllRetailers ,true);
 						console.log('All result ' + JSON.stringify(vResultData.payload));
-						pResponse.status(vResultData.status).json(vResultData.payload);
+						pResponse.status(vResultData.status).json(vResultData.payload.sort(function(a, b) {
+								if (a.getroute.sequence_no === null && b.getroute.sequence_no === null) {
+									return 0;
+								}
+								if (a.getroute.sequence_no === null) {
+									return 1;
+								}
+								if (b.getroute.sequence_no === null) {
+									return -1;
+								}
+								if (parseInt(a.getroute.sequence_no) > parseInt(b.getroute.sequence_no)) {
+									return 1;
+								}
+								if (parseInt(a.getroute.sequence_no) < parseInt(b.getroute.sequence_no)) {
+									return -1;
+								} else {
+									return 0;
+								}
+							}));
 					}
 					catch(pErr)
 					{
