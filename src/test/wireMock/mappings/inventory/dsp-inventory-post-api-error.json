@@ -1,0 +1,15 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/OPISNET/services/idsp/DSPinventory",
+        "bodyPatterns" : [
+            { "equalToJson" : "{\"username\":\"anjay1\",\"type\":\"load\",\"recordStart\":\"anjay3\",\"recordEnd\":\"anjay4\",\"brand\":\"anjay5\",\"subCategory\":\"anjay6\"}","jsonCompareMode": "LENIENT"}
+        ]
+    },
+    "response": {
+        "status": 200,        
+        "bodyFileName": "inventory/dsp-inventory-error.json"
+    }
+}
+
+
