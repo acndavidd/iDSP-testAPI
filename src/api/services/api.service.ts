@@ -96,7 +96,6 @@ export module APIService {
 				}
 			)
 		}
->>>>>>> 1e4e4d2f78d5e431fca69842d4d7ffa9ae316abe
 
         }
 }

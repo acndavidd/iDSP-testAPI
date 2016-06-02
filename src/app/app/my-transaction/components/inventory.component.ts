@@ -10,6 +10,7 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 @Component({
     selector: 'inventory',
     templateUrl: './app/my-transaction/components/inventory.component.html',
+    // templateUrl: './app/my-transaction/components/hc-inventory.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
@@ -37,7 +38,6 @@ export class InventoryComponent {
         // this.vSelectedDate = '20160429003012';
         this._layoutService.setCurrentPage('Inventory');
         this._headerService.setTitle('Inventory');
-        this._inventoryService.getProductListPhysical('asdasd', 'asd');
         this.toggleFilterInventory();
     }
 
@@ -59,6 +59,7 @@ export class InventoryComponent {
         this.vLoadShow = false;
         this.vPhysicalShow = true;
         this.toggleFilterInventory();
+        this._inventoryService.getPhysicalInventoryList('anjay1', 'physical', 'anjay3', 'anjay4', 'anjay5', 'anjay6');
     }
 
     subPhysicalMenuShow(indexArr) {

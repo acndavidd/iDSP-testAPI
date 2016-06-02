@@ -71,7 +71,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
                 console.log('Error while parsing token : ' + pErr);
                 pResponse.sendStatus(403);
             }
-        }     
+        }
     }
     // Sanitize all the parameter send with POST request
     if(pRequest.method === 'POST') {
@@ -86,11 +86,12 @@ var vRouter = vExpress.Router();
 vRouter.post('/login',vLoginCtrl.login);
 vRouter.post('/login/MPIN', vLoginCtrl.submitMPIN);
 vRouter.get('/logout', vLoginCtrl.logout);
-vRouter.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
 vRouter.get('/retailer/alert',vRetailerCtrl.getAllRetailerAlert);
 vRouter.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
 vRouter.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
+// vRouter.post('/accountsReceivables',vAccCtrl.accountsReceivables);
+// vRouter.post('/retailerSelf',vAccCtrl.retailerSelf);
 vRouter.get('/testSync',vSchedCtrl.syncTableMaster);
 
 //API BASED ON GUIDELINES
@@ -104,7 +105,10 @@ vRouter.post('/performance',vTargetsActualsCtrl.performance);
 vRouter.post('/additionalRetailerRoute',vRetailerCtrl.additionalRetailerRoute);
 vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
 vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);
+vRouter.get('/retailer/accountreceivable',vAccCtrl.accountsReceivables);
+
 vRouter.get('/testSP', vLoginCtrl.testSP);
+vRouter.post('/dspPhysicalInventoryList',vInventoryCtrl.dspPhysicalInventoryList);
 
 var vTesting = vExpress.Router();
 vTesting.post('/login',vLoginCtrl.login);
@@ -112,14 +116,13 @@ vTesting.post('/login/MPIN', vLoginCtrl.submitMPIN);
 vTesting.get('/logout', vLoginCtrl.logout);
 vTesting.get('/brand',vTargetsActualsCtrl.brand);
 vTesting.post('/performance',vTargetsActualsCtrl.performance);
-vTesting.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
 vTesting.get('/retailer/alert',vRetailerCtrl.getAllRetailerAlert);
 vTesting.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
 vTesting.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
 vTesting.get('/testSync',vSchedCtrl.syncTableMaster);
 
 vApp.use('/service',vRouter);
-vApp.use('/testing', vTesting);
+vApp.use('/testing',vTesting);
 vApp.listen(PORT);
 
 /*

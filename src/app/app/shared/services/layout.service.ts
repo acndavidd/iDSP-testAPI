@@ -277,7 +277,8 @@ export class LayoutService {
             pCurrent === 'RetailerSalesOrder' ||
             pCurrent === 'SalesOrderPayment' ||
             pCurrent === 'UnservedOrder' ||
-            pCurrent === 'SkipSalesOrder') {
+            pCurrent === 'SkipSalesOrder' ||
+            pCurrent === 'SkipCollection') {
 
             this.vLayoutState = {
                 appHeader: true,
