@@ -4,7 +4,7 @@ import {TokenService} from '../services/token.service';
 import {ORMService} from '../services/orm.service';
 import {APIService} from '../services/api.service';
 import {ErrorHandling} from '../services/error-handling.service';
-import {DspPhysicalInventoryModel} from '../models/input/dsp-physical-inventory.model';
+import {DspInventoryModel} from '../models/input/dsp-inventory.model';
 
 export class InventoryController{
 	
@@ -49,23 +49,43 @@ export class InventoryController{
 	// 	pResponse.json(vResult);
 	// }
 
-	async dspPhysicalInventoryList(pRequest,pResponse) {
+	async physical(pRequest,pResponse) {
 		let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
 		try{
 			let vHttpSvc = new APIService.HTTPService();
 			let vPath:string = '/OPISNET/services/idsp/DSPinventory';
-			console.log('controller nih : ' + pRequest.body);
-			let vDspPhysicalInventoryData = new DspPhysicalInventoryModel(
-				pRequest.body.username, 
-				pRequest.body.type, 
-				pRequest.body.recordStart, 
-				pRequest.body.recordEnd, 
-				pRequest.body.brand, 
-				pRequest.body.subCategory);
+			let vDspInventoryData = new DspInventoryModel(
+				pRequest.query.username,
+				pRequest.query.type);
 
-			if(vDspPhysicalInventoryData.validate()) {
-				console.log(vDspPhysicalInventoryData);
-				let vResult = await vHttpSvc.post(APIService.APIType.OPISNET, vPath, null, vDspPhysicalInventoryData);
+			if(vDspInventoryData.validate()) {
+				console.log(vDspInventoryData);
+				let vResult = await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null, vDspInventoryData);
+				console.log('KELUAR PHYSICAL SINI : ' +vResult.status+ ', pay : ' +JSON.stringify(vResult.payload));
+				pResponse.status(vResult.status).json(vResult.payload);
+			}else {
+				vErrHandling.throwError(pResponse, ErrorHandling.RESPONSE_CODE.FUNCTIONAL_ERROR, ErrorHandling.ERROR_TYPE.INPUT_ERROR, "ERR_INVALID_CREDENTIAL");
+			}
+		}catch(pErr){
+			if(pErr.errorCode == 101) {
+				vErrHandling.throwError(pResponse, 400, 101, "ERR_INVALID_CREDENTIAL");
+			}
+		}
+	}
+
+	async load(pRequest,pResponse) {
+		let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
+		try{
+			let vHttpSvc = new APIService.HTTPService();
+			let vPath:string = '/OPISNET/services/idsp/DSPinventory';
+			let vDspInventoryData = new DspInventoryModel(
+				pRequest.query.username,
+				pRequest.query.type);
+
+			if(vDspInventoryData.validate()) {
+				console.log(vDspInventoryData);
+				let vResult = await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null, vDspInventoryData);
+				console.log('KELUAR LOAD SINI : ' +vResult.status+ ', pay : ' +JSON.stringify(vResult.payload));
 				pResponse.status(vResult.status).json(vResult.payload);
 			}else {
 				vErrHandling.throwError(pResponse, ErrorHandling.RESPONSE_CODE.FUNCTIONAL_ERROR, ErrorHandling.ERROR_TYPE.INPUT_ERROR, "ERR_INVALID_CREDENTIAL");
