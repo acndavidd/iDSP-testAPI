@@ -39,7 +39,6 @@ export class InventoryService {
 
                     var totalProduct = vResponse.productList.length;
 
-                    this.vProductListTemp = vResponse.productList;
 
                     // for (var a = 0 ; a < totalProduct ; a++) {
 
@@ -66,8 +65,6 @@ export class InventoryService {
 
                     this.vProductList = vResponse.productList;
                 } else {
-                    console.log('BUKAN 200 NIH');
-                    this.vErrorMsg = this.vProductListTemp.statusMessage;
                 }
             },
             error => {
