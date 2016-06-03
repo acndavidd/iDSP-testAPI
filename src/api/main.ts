@@ -33,8 +33,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
         'Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept,Authorization,Proxy-Authorization,X-session');
     pResponse.header('Access-Control-Allow-Methods','GET,PUT,DELETE,POST');
     if(
-        pRequest.path !== '/service/login' && 
-        pRequest.path !== '/service/login/MPIN' &&
+        pRequest.path.indexOf('/service/account') !== -1 && // all account service doesn't require token
         pRequest.path.indexOf('/testing') !== -1 //bypass token for testing purpose
     ){
         if(pRequest.method !== 'OPTIONS') {

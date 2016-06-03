@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const error_handling_service_1 = require('../../services/error-handling.service');
 const api_service_1 = require('../../services/api.service');
-const account_model_1 = require('../../models/input/account.model');
+const account_model_1 = require('../../models/input/account/account.model');
 const data_access_service_1 = require('../../services/data-access.service');
 class AccountController {
     constructor() {

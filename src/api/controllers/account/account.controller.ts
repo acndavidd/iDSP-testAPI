@@ -1,7 +1,7 @@
 import {ErrorHandlingService} from '../../services/error-handling.service';
 import {APIService} from '../../services/api.service';
 import {TokenService} from '../../services/token.service';
-import {Account} from '../../models/input/account.model';
+import {Account} from '../../models/input/account/account.model';
 import {DataAccessService} from '../../services/data-access.service';
 
 
