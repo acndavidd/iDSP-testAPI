@@ -1,5 +1,6 @@
-controllers/*.js
+controllers/**/*.js
 services/*.js
+models/**/*.js
 **/*.js.map
 typings
 node_modules
