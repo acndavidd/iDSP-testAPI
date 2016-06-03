@@ -96,6 +96,7 @@ export module APIService {
 									}
 								vErrorHandlingSvc.throwPromiseError(pReject, Error.code, Error.desc);
 							}else {
+								console.log(pBody);
 								let vPayLoad = JSON.parse(pBody);
 								if(vPayLoad.status !== 200) { // success response from client api
 									vErrorHandlingSvc.throwPromiseError(pReject, 0, vPayLoad.statusMessage);

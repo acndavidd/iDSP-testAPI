@@ -64,7 +64,7 @@ export module Modal {
             if(this.vModalType === ModalType.INFO || this.vModalType === ModalType.ERROR) {
                 this.vButtons.push(this.vDefaultOKButton);
             }else if(this.vModalType === ModalType.CONFIRMATION) {
-                this.setButtonType(ButtonType.YES_NO); //default is Yes No button
+                this.setButtonType(ButtonType.YES_NO); // default is Yes No button
             }else if(this.vModalType === ModalType.CUSTOM) {
 
             }

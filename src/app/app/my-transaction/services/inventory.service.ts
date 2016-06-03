@@ -7,19 +7,7 @@ import {Response, RequestOptionsArgs, Headers, Http, Connection, RequestOptions}
 export class InventoryService {
     private vErrorMsg: string;
 
-    // productList: [{
-    //     productID: '',
-    //     productName: '',
-    //     beginningBalance: '',
-    //     newDelivery: '',
-    //     sold: '',
-    //     transferBack: '',
-    //     endingBalance: '',
-    //     dateModified: ''
-    // }];
-
     vProductList: any = [];
-    vProductListTemp;
 
     constructor(
         private _http: Http,
@@ -93,18 +81,13 @@ export class InventoryService {
 
 
     getInventoryList(pUsername: string, pType: string) {
-        let vData = {
-            username: pUsername,
-            type: pType
-        };
 
         let url = '/inventory/' + pType + '?username=' +pUsername+ '&type=' +pType;
-
         this._http.get(url).subscribe(
             response => {
                 let vResponse = response.json();
 
-                if (vResponse.Status === 200) {
+                if (vResponse.status === 200) {
                     this.vProductList = vResponse.productList;
                 } else {
                     this.vErrorMsg = vResponse.productList;

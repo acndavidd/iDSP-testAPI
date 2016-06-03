@@ -1,5 +1,5 @@
 {
-	"Status" : 100,
-	"StatusMessage" : "ERROR BROH",
+	"status" : 100,
+	"statusMessage" : "ERROR BROH",
 	"productList" : [{}]
 }
