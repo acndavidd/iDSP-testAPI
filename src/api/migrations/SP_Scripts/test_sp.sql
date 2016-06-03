@@ -7,7 +7,7 @@ $BODY$
 DECLARE
 	_result VARCHAR;
 BEGIN /* Test Comment */
-	SELECT array_to_json(array_agg(mst_dsp)) INTO _result FROM mst_dsp WHERE first_name LIKE '%'||firstName||'%';
+	SELECT json_build_object('status', 0 , 'result' , 'hihihihi') INTO _result;
 	RETURN _result;
 END	
 $BODY$

@@ -1,17 +1,11 @@
 /// <reference path="typings/main.d.ts" />
 'use strict';
 
-import {LoginController} from './controllers/login.controller';
-import {SchedulerController} from './controllers/scheduler.controller';
-import {InventoryController} from './controllers/inventory.controller';
-import {TargetsActualsController} from './controllers/targets-actuals.controller';
-import {RetailerController} from './controllers/retailer.controller';
-import {AccController} from './controllers/accounts-receivables.controller';
-import {TokenService} from './services/token.service';
-import {ORMService} from './services/orm.service';
+import {AccountController} from './controllers/account/account.controller';
+import {SequelizeService} from './services/sequelize.service';
 
 var vPath = require("path");
-var vEnv = process.env.NODE_ENV || "development";
+var vEnv = process.env.NODE_ENV || "DEVELOPMENT";
 var vConfig = require(vPath.join(__dirname, '.', 'config', 'config.json'))[vEnv];
 var vExpress = require('express');
 var vApp = vExpress();
@@ -20,15 +14,6 @@ var vCookieParser = require('cookie-parser');
 var vValidator = require('validator');
 var vSOAP = require('soap');
 const PORT: number = process.env.PORT || vConfig.port || 8080;
-
-var vRetailerCtrl:RetailerController = new RetailerController();
-var vLoginCtrl:LoginController = new LoginController();
-var vSchedCtrl:SchedulerController = new SchedulerController();
-var vInventoryCtrl:InventoryController = new InventoryController();
-var vTargetsActualsCtrl:TargetsActualsController = new TargetsActualsController();
-var vAccCtrl:AccController = new AccController();
-var vTokenSvc:TokenService = new TokenService();
-var vOrmSvc:ORMService = new ORMService();
 
 vApp.use(vBodyParser.urlencoded({extended: true}));
 vApp.use(vBodyParser.json());
@@ -53,29 +38,26 @@ vApp.use(function(pRequest, pResponse, pNext) {
     if(
         pRequest.path !== '/service/login' && 
         pRequest.path !== '/service/login/MPIN' &&
-        pRequest.path !== '/service/generateCallPlan' &&
         pRequest.path.indexOf('/testing') === -1
     ){
         if(pRequest.method !== 'OPTIONS') {
             // all request to service will validate token except login & logout
             var vToken = '';
             try{
-                if(pRequest.cookies['accessToken']){//accessed from web
+                if(pRequest.cookies['accessToken']){ //accessed from web
                     vToken = vCookieParser.JSONCookies(pRequest.cookies).accessToken;
                 }else{ // accessed from mobile
                     vToken = pRequest.get('Authorization');
                     vToken = vToken.replace('Bearer ','');
                 }
-                console.log(vToken);
-                var jwt = vTokenSvc.verifyToken(vToken);
-                pResponse.locals.jwt = jwt;
+                // var jwt = vTokenSvc.verifyToken(vToken);
+                // pResponse.locals.jwt = jwt;
             }catch(pErr){
-                console.log('Error while parsing token : ' + pErr);
                 pResponse.sendStatus(403);
             }
         }     
     }
-    // Sanitize all the parameter send with POST request
+    // Sanitize all the parameters send with POST request
     if(pRequest.method === 'POST') {
         for(let param in pRequest.body) {
             pRequest.body[param] = vValidator.escape(pRequest.body[param]);
@@ -85,28 +67,27 @@ vApp.use(function(pRequest, pResponse, pNext) {
 });
 
 var vRouter = vExpress.Router();
-vRouter.post('/login',vLoginCtrl.login);
-vRouter.post('/login/MPIN', vLoginCtrl.submitMPIN);
-vRouter.get('/logout', vLoginCtrl.logout);
-vRouter.get('/getProductListPhysical',vInventoryCtrl.getProductListPhysical);
-vRouter.get('/retailer/alert',vRetailerCtrl.getAllRetailerAlert);
-vRouter.post('/getSalesRoute',vRetailerCtrl.getSalesRoute);
-vRouter.post('/getRetailerSummary',vRetailerCtrl.getRetailerSummary);
-vRouter.get('/getRetailerAlert',vRetailerCtrl.getAllRetailerAlert);
-vRouter.get('/testSync',vSchedCtrl.syncTableMaster);
 
-//API BASED ON GUIDELINES
-vRouter.post('/todaysRetailerRoute',vRetailerCtrl.todaysRetailerRoute);
-vRouter.post('/retailerCallPreparation',vRetailerCtrl.retailerCallPreparation);
-vRouter.post('/loadWallet',vRetailerCtrl.loadWallet);
-vRouter.post('/physicalInventory',vRetailerCtrl.physicalInventory);
-vRouter.post('/paymentHistory',vRetailerCtrl.paymentHistory);
-vRouter.get('/brand',vTargetsActualsCtrl.brand);
-vRouter.post('/targetsActuals',vTargetsActualsCtrl.targetsActuals);
-vRouter.post('/additionalRetailerRoute',vRetailerCtrl.additionalRetailerRoute);
-vRouter.get('/retailerSummary/:retailerId',vRetailerCtrl.getRetailerSummary);
-vRouter.get('/salesRoute/:salesPerson/:day',vRetailerCtrl.getSalesRoute);
-vRouter.get('/testSP', vLoginCtrl.testSP);
+// Open connection pool for database using sequelize
+let vSequelizeService = new SequelizeService();
+
+let vAccountController =  new AccountController();
+vRouter.post('/account', vAccountController.authenticate);
+vRouter.post('/account/:id/MPIN', vAccountController.submitMPIN);
+vRouter.get('/account/logout', vAccountController.logout);
+vRouter.post('/account/test', vAccountController.testSP);
+
+
+// define instance of your controller and route here
+
+// let aa = new aa();
+// vRouter.method('/aa', aa.bb);
+
+
+// let bb = new bb();
+// vRouter.method('/bb' bb.aa);
+
+
 
 // For testing purpose , can be hit outside app without token
 var vTesting = vRouter;

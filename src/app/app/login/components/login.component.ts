@@ -20,6 +20,8 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 export class LoginComponent {
     vUsername: string;
     vPassword: string;
+    vModalMessage: string;
+    vModalType: number;
     constructor (
         private _router: Router,
         private _layoutService: LayoutService,
@@ -62,11 +64,9 @@ export class LoginComponent {
         return this._authenticationService.getLoadingState();
     }
 
-    gotoForgetPassword() {
-        this._router.navigate(['ForgotPassword']);
-    }
-
     toggleForgotPassword() {
-        this._modalService.toggleModal('Please Contact your Distributor<br/>Admin for Password Reset<br/>(+63-9228888899).', Modal.ModalType.INFO);
+        this._modalService.setModalMessage('Please Contact your Distributor<br/>Admin for Password Reset<br/>(+63-9228888899).');
+        this._modalService.setModalType(Modal.ModalType.INFO);
+        this._modalService.showModal();
     }
 }

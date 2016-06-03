@@ -41,35 +41,15 @@ export class ConfirmCollectionComponent {
     }
 
     skipCollection() {
+        console.log('Skip Collection');
+        this._modalService.showConfirmationModal('Are you sure  <br/> you want to skip collection ?',
+            this.skipCollectionCallback.bind(this),
+            '* If you confirm to continue, <br/> You cannot go back to collection for this retailer', Modal.ButtonType.OK_CANCEL);
+    }
 
-            console.log('Skip Collection');
-
-            let params = {
-
-            _pageNavigationService : this._pageNavigationService
-
-            };
-
-            this._modalService.toggleModal('Are you sure  <br/> you want to skip collection ?', 
-
-            Modal.ModalType.CONFIRMATION, 
-
-            {footNote : '* If you confirm to continue, <br/> You cannot go back to collection for this retailer', 
-
-            ModalButton : Modal.ModalButton.OK_CANCEL, 
-
-            callback : this.skipCollectionback, 
-
-            param : params,
-
-            } );
-
-            }
-
-    skipCollectionback(pParam) {
-
-            pParam._pageNavigationService.navigate('Offer', null, null);
-
+    skipCollectionCallback() {
+        console.log('Skip Collection Callback');
+        this._pageNavigationService.navigate('Offer', null, null);
     } 
               
 }
