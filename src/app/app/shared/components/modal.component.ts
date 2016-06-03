@@ -7,30 +7,42 @@ import {Router} from 'angular2/router';
 
 @Component({
     selector: 'my-modal',
-    templateUrl: 'app/shared/components/modal.component.html',
-    directives: [
-        VerificationCodeModalComponent,
-        ResendMpinModalComponent
-    ]
+    templateUrl: 'app/shared/components/modal.component.html'
 })
+
 export class ModalComponent {
 
-    constructor(private _modalService: Modal.ModalService, 
-        private _layoutService: LayoutService,
-        private _router: Router) {
-
+    constructor(private _modalService: Modal.ModalService) {
     }
 
     getModalState() {
         return this._modalService.getModalState();
     }
 
-    getModalType() {
-        return this._modalService.getModalType();
+    getButtons() {
+        return this._modalService.getButtons();
     }
 
     getModalMessage() {
         return this._modalService.getModalMessage();
+    }
+
+    getFootNote() {
+        return this._modalService.getFootNote();
+    }
+
+    callback(pButton: Modal.ModalButton) {
+        pButton.callback(pButton.callbackParams);
+        this._modalService.closeModal();
+    }
+
+    /*
+    getModalState() {
+        return this._modalService.getModalState();
+    }
+
+    getModalType() {
+        return this._modalService.getModalType();
     }
 
     getFootNote() {
@@ -44,4 +56,5 @@ export class ModalComponent {
     callBack(button) {
         button.callback(button.param);
     }
+    */
 }

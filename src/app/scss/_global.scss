@@ -87,6 +87,7 @@ CHECKBOX
 END OF CHECKBOX
 ===========================================================
 */
+
 //PLEASE PUT HEIGHT HERE
 &.height-1 { height: 1vw; }
 &.height-2 { height: 2vw; }
@@ -133,7 +134,7 @@ END OF CHECKBOX
 
 /*
 ===========================================================
-LIST VIEW - ICON BUTTON
+ICON - BUTTON
 ===========================================================
 */
 
@@ -228,7 +229,7 @@ LIST VIEW - ICON BUTTON
 
 /*
 ===========================================================
-LIST VIEW - ICON MENU
+ICON - MENU
 ===========================================================
 */
 
@@ -363,13 +364,7 @@ SUBTAB
 
 /*
 ===========================================================
-LIST VIEW
-===========================================================
-*/
-
-/*
-===========================================================
-LIST VIEW - BUTTON
+BUTTON - CLICK
 ===========================================================
 */
 .container-body {
@@ -390,6 +385,23 @@ LIST VIEW - BUTTON
         width: 50%;
         float:left;
     }
+    .button-bottom {
+        display: inline-block;
+        width: 100%;
+        bottom: 0;
+        position: fixed;
+        padding-bottom: 2vw;
+        padding-top: 2vw;
+        background-color: $apple;
+    }
+    .button-identifier {
+        cursor: pointer;
+        font-size: 4vw;
+        text-align: center;
+        width: 100%;
+        color: $white;
+        font-weight: lighter;
+     }
 
     .button {
         display: inline-block;
@@ -404,17 +416,9 @@ LIST VIEW - BUTTON
 
         &.button-small {
             border-radius: 0vw;
-            padding-bottom: 0vw;
-            padding-top: 0vw;
-            font-size: 3vw;
-        }
-        .button-identifier {
-            cursor: pointer;
+            padding-bottom: 1vw;
+            padding-top: 1vw;
             font-size: 4vw;
-            text-align: center;
-            width: 100%;
-            color: $white;
-            font-weight: lighter;
         }
     }
 
@@ -428,15 +432,21 @@ LIST VIEW - BUTTON
         margin-bottom:4%;
         background-color: $grey;
         border-radius: 2vw;
-        .button-identifier {
-            cursor: pointer;
-            font-size: $button;
-            text-align: center;
-            width: 100%;
-            color: $white;
-            font-weight: lighter;
-        }
     }
+
+/*
+===========================================================
+END OF BUTTON - CLICK
+===========================================================
+*/
+
+
+ 
+/*
+===========================================================
+MENU - COVER & PROFILE PICTURE
+===========================================================
+*/
 
     .parent {
         width: 100%;
@@ -540,7 +550,7 @@ LIST VIEW - BUTTON
 
 /*
 ===========================================================
-LIST VIEW - TEXT
+GRID - TABLE CELL
 ===========================================================
 */
 
@@ -599,6 +609,7 @@ LIST VIEW - TEXT
                     text-align: right;
                     font-size: $content-normal;
                     padding: 0% 11% 0% 0%;
+                    font-size: 4vw;
                     @media screen and (-webkit-min-device-pixel-ratio: 0) {
                         background-image: url(#{$icon-peso});
                         background-position: right 2% top 50%;
@@ -767,7 +778,7 @@ LIST VIEW - TEXT
       
  /*
 ===========================================================
-LIST VIEW - FILTER
+GRID - FILTER
 ===========================================================
 */   
 
@@ -831,7 +842,7 @@ LIST VIEW - FILTER
 
  /*
 ===========================================================
-END OF LIST VIEW - FILTER
+END OF GRID - FILTER
 ===========================================================
 */   
 
