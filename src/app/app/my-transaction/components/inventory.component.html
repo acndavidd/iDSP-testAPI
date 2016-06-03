@@ -142,12 +142,12 @@
 	</div>
 
 	<div *ngIf="vPhysicalShow">
-		<div>
+		<div *ngFor="#vProduct of getProductList(); #i = index">
 			<div class="item-container" (click)="subPhysicalMenuShow(i)">
 				<div class="container">
 					<div class='cell width-10 inventory-physical'></div>
 					<div class='cell'>
-				        <div class='container'><div class='cell width-80 padding-left-5 bold' [ngClass]="{title: vSubPhysicalMenuShow[i]}">SKU1</div></div>
+				        <div class='container'><div class='cell width-80 padding-left-5 bold' [ngClass]="{title: vSubPhysicalMenuShow[i]}">{{vProduct.productName}}</div></div>
 				        <div class='container' *ngIf="!vSubPhysicalMenuShow[i]">
 				        	<div class='cell'>
 				        		<div class="container">
@@ -155,50 +155,11 @@
 								        <div class='container'><div class='cell width-40 padding-left-5'>Ending Balance</div></div>
 								    </div>
 									<div class='cell'>
-								        <div class='container'><div class='cell width-40 align-right bold'>1,300</div></div>
+								        <div class='container'><div class='cell width-40 align-right bold'>{{vProduct.endingBalance}}</div></div>
 								    </div>
 								</div>
 							</div>
 						</div>
-				    </div>
-				    <div class='cell width-10 arrow-down' [ngClass]="{selected: vSubPhysicalMenuShow[i]}"></div>
-				</div>
-			</div>
-			<div class="item-container sub" *ngIf="vSubPhysicalMenuShow[i]">
-				<div class="container">
-					<div class='cell'>
-				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Total Inventory</div></div>
-				        <div class='container'><div class='cell width-45 padding-left-10'>Beginning Balance</div></div>
-				        <div class='container'><div class='cell width-45 padding-left-10'>New Delivery</div></div>
-				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Sales &amp; Transfer Back</div></div>
-				        <div class='container'><div class='cell width-45 padding-left-10'>Sold</div></div>
-				        <div class='container'><div class='cell width-45 padding-left-10'>Transfer Back</div></div>
-				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Ending Balance</div></div>
-				    </div>
-					<div class='cell'>
-				        <div class='container'><div class='cell width-45 align-right bold'>1,500</div></div>
-				        <div class='container'><div class='cell width-45 align-right'>1,500</div></div>
-				        <div class='container'><div class='cell width-45 align-right'>0</div></div>
-				        <div class='container'><div class='cell width-45 align-right bold'>200</div></div>
-				        <div class='container'><div class='cell width-45 align-right'>100</div></div>
-				        <div class='container'><div class='cell width-45 align-right'>100</div></div>
-				        <div class='container'><div class='cell width-45 align-right bold'>1,300</div></div>
-				    </div>
-				    <div class='cell width-10'></div>
-				</div>
-			</div>
-		</div>
-		<!-- FOR HIT API -->
-		<!-- <div *ngFor="#vProduct of getProductList(); #i = index">
-			<div class="item-container" (click)="subPhysicalMenuShow(i)">
-				<div class="container">
-					<div class='cell'>
-				        <div class='container'><div class='cell width-45 padding-left-5 bold' [ngClass]="{title: vSubPhysicalMenuShow[i]}">{{vProduct.productName}}</div></div>
-				        <div class='container'><div class='cell width-45 padding-left-5 grey' *ngIf="!vSubPhysicalMenuShow[i]">Ending Balance</div></div>
-				    </div>
-					<div class='cell'>
-				        <div class='container'><div class='cell width-45 align-right'></div></div>
-				        <div class='container'><div class='cell width-45 align-right bold' *ngIf="!vSubPhysicalMenuShow[i]">{{vProduct.endingBalance}}</div></div>
 				    </div>
 				    <div class='cell width-10 arrow-down' [ngClass]="{selected: vSubPhysicalMenuShow[i]}"></div>
 				</div>
@@ -208,10 +169,11 @@
 				<div class="container">
 					<div class='cell'>
 				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Total Inventory</div></div>
-				        <div class='container'><div class='cell width-45 padding-left-5 sub-cell'>Beginning Balance</div></div>
-				        <div class='container'><div class='cell width-45 padding-left-5 sub-cell'>Delivery</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-10'>Beginning Balance</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-10'>Delivery</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Sales</div></div>
-				        <div class='container'><div class='cell width-45 padding-left-5 sub-cell'>Sold</div></div>				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Ending Balance</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-10'>Sold</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Ending Balance</div></div>
 				    </div>
 					<div class='cell'>
 				        <div class='container'><div class='cell width-45 align-right bold'>600</div></div>
@@ -225,7 +187,6 @@
 				</div>
 			</div>
 		</div>
-	</div> -->
 	</div>
 </div>
 	

@@ -11,15 +11,14 @@ import { Pipe, PipeTransform } from 'angular2/core';
 @Component({
     selector: 'targets-actuals',
     // to be uncommented for actual api
-    // templateUrl: './app/my-transaction/components/targets-actuals.component.html',
+    templateUrl: './app/my-transaction/components/targets-actuals.component.html',
     // to be uncommented for hardcoded values
-    templateUrl: './app/my-transaction/components/hc-targets-actuals.component.html',
+    // templateUrl: './app/my-transaction/components/hc-targets-actuals.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
     ],
     providers: [
-        TargetsActualsService
     ]
 })
 
@@ -31,10 +30,10 @@ export class TargetsActualsComponent {
     vUnderlineDay = true;
     vUnderlineWeek = false;
     vUnderlineMonth = false;
-    private vListBrands;
+    private vListBrands:any = [];
     public vSelectedBrand;
     private vListProduct;
-    private vShowProduct;
+    // private vShowProduct;
     private vSelectedTab;
 
     constructor (
@@ -48,23 +47,12 @@ export class TargetsActualsComponent {
         this.vSelectedTab = 'Day';
         this._layoutService.setCurrentPage('TargetsActuals');
         this._headerService.setTitle('Targets & Actuals');
-
-        this._targetsActualsService.queryBrand().subscribe(
-             response => {
-                if (response.json().status === 'Success') {
-                    this.vListBrands = response.json().brandList;
-                    console.log('brand result' + this.vListBrands);
-                }
-            },
-            error => {}
-        );
-
         this.getTargetsActuals();
 
     }
 
     getBrand() {
-        return this.vListBrands;
+        return this._targetsActualsService.getBrand();
     }
 
     getResize() {
@@ -77,13 +65,10 @@ export class TargetsActualsComponent {
 
     getTargetsActuals() {
          console.log('Refresh PRoduct ' + this.vSelectedTab);
-         this._targetsActualsService.queryProduct(this.vSelectedTab, this.vSelectedBrand).subscribe(
+         this._targetsActualsService.queryPerformance(this.vSelectedTab, this.vSelectedBrand).subscribe(
              response => {
-                if (response.json().status === 'Success') {
-                    console.log('Query sukses ' + response.json());
-                    this.vListProduct = response.json().result;
-                     this.vShowProduct = this.vListProduct;
-                }
+                    this.vListProduct = response.json();
+                    // this.vShowProduct = this.vListProduct;
             },
             error => {}
         );

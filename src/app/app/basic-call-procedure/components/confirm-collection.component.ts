@@ -50,6 +50,6 @@ export class ConfirmCollectionComponent {
     skipCollectionCallback() {
         console.log('Skip Collection Callback');
         this._pageNavigationService.navigate('Offer', null, null);
-    } 
+    }
               
 }

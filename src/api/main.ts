@@ -32,13 +32,10 @@ vApp.use(function(pRequest, pResponse, pNext) {
     pResponse.header('Access-Control-Allow-Headers', 
         'Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept,Authorization,Proxy-Authorization,X-session');
     pResponse.header('Access-Control-Allow-Methods','GET,PUT,DELETE,POST');
-    if(pRequest.path.indexOf('/testing') === -1) {
-        
-    }
     if(
         pRequest.path !== '/service/login' && 
         pRequest.path !== '/service/login/MPIN' &&
-        pRequest.path.indexOf('/testing') === -1
+        pRequest.path.indexOf('/testing') !== -1 //bypass token for testing purpose
     ){
         if(pRequest.method !== 'OPTIONS') {
             // all request to service will validate token except login & logout
@@ -55,7 +52,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
             }catch(pErr){
                 pResponse.sendStatus(403);
             }
-        }     
+        }
     }
     // Sanitize all the parameters send with POST request
     if(pRequest.method === 'POST') {
@@ -68,7 +65,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
 
 var vRouter = vExpress.Router();
 
-// Open connection pool for database using sequelize
+// Open connection pool for database access using sequelize
 let vSequelizeService = new SequelizeService();
 
 let vAccountController =  new AccountController();
@@ -87,12 +84,12 @@ vRouter.post('/account/test', vAccountController.testSP);
 // let bb = new bb();
 // vRouter.method('/bb' bb.aa);
 
-
-
-// For testing purpose , can be hit outside app without token
-var vTesting = vRouter;
 vApp.use('/service',vRouter);
-vApp.use('/testing', vTesting);
+
+// for testing purpose, will not validate token
+var vTesting = vRouter;
+vApp.use('/testing',vTesting);
+
 vApp.listen(PORT);
 
 /*

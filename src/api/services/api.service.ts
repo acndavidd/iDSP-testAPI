@@ -13,20 +13,20 @@ export module APIService {
 	}
 
 	export var RequestMethod = {
-		POST : 'POST',
-		GET : 'GET',
-		PUT : 'PUT',
-		DELETE : 'DELETE'
+			POST : 'POST',
+			GET : 'GET',
+			PUT : 'PUT',
+			DELETE : 'DELETE'
 	}
-	
+        
 	export interface HTTPServiceInterface {
-		buildAuthHeaders(pMethod): any;
+			buildAuthHeaders(pMethod): any;
 	}
 
 	export class HTTPService implements HTTPServiceInterface{
 
 		constructor() {
-			vCurrentContext = this;
+				vCurrentContext = this;
 		}
 
 		buildAuthHeaders(pMethod) {
@@ -35,7 +35,7 @@ export module APIService {
 			}
 			return vReqHeaders;
 		}
-
+			
 		post(pAPIType, pURL, pHeaders, pData) {
 			return this.request(RequestMethod.POST, pAPIType, pURL, pHeaders, pData);
 		}
@@ -90,7 +90,7 @@ export module APIService {
 										break;
 									default :
 										console.log(pErr.code);
-										Error.code = 109;
+										Error.code = 105;
 										Error.desc = "Unhandled error on HTTP Request";
 										break;
 									}

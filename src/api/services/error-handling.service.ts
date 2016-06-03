@@ -3,13 +3,10 @@ var ErrorConfig = require('../config/error.json');
 export interface ErrorHandlingInterface {
 	throwHTTPErrorResponse(HTTPResponseObject: any, HTTPResponseStatus: number, errorCode: number, errorDescription: string, inputError?: any): void;
 	throwError(errorCode: number, errorDescription: string, inputError?: any): Object;
-	throwPromiseError(RejectFunction: Function, errorCode: number, errorDescription: string, inputErr?: any)
+	throwPromiseError(RejectFunction: Function, errorCode: number, errorDescription: string, inputErr?: any): void;
 }
 
 export class ErrorHandlingService implements ErrorHandlingInterface {
-
-	constructor() {
-	}
 
 	buildErrorObject(errorCode: number, errorDescription: string, inputError?: any): Object{
 		// build error object
