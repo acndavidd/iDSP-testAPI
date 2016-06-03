@@ -3,6 +3,7 @@ import {APIService} from '../../services/api.service';
 import {TokenService} from '../../services/token.service';
 import {Account} from '../../models/input/account/account.model';
 import {DataAccessService} from '../../services/data-access.service';
+import {Utility} from '../../shared/utility';
 
 
 export interface AccountControllerInterface {
@@ -24,7 +25,7 @@ export class AccountController implements AccountControllerInterface{
 
 	async authenticate(pRequest:any, pResponse:any): Promise<void> {
 		try{
-			let vAccount = new Account(pRequest.body.Username, pRequest.body.Password);
+			let vAccount = new Account.Account(pRequest.body.Username, pRequest.body.Password);
 			if(vAccount.validate()) {
 				let vLoginServiceURL: string = '/OPISNET/services/idsp/userValidation';
 				let vPayLoad = await AccountController._httpService.post(APIService.APIType.OPISNET, vLoginServiceURL, null, vAccount);
@@ -55,6 +56,9 @@ export class AccountController implements AccountControllerInterface{
 				test : 100
 			};
 			let vSPResult = await AccountController._dataAccess.executeSP('test_sp', vParams, true);
+			console.log('before sort : ' + JSON.stringify(vSPResult));
+			vSPResult = Utility.sortJSON(vSPResult, 'test');
+			console.log('after sort : ' + JSON.stringify(vSPResult));
 			pResponse.status(200).json(vSPResult);
 		}catch(pErr) {
 			console.log(pErr);

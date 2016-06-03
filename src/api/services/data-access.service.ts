@@ -38,6 +38,7 @@ export class DataAccessService implements DataAccessInterface {
 					console.log(vSQL);
 					SequelizeService.sequelize.query(vSQL, { type: SequelizeService.sequelize.QueryTypes.SELECT }).then(function(pResult){
 						// stored procedure will return 0 if there is no errors
+						console.log(JSON.stringify(pResult));
 						let vResult = pResult[0][pSPName.toLowerCase()];
 						if(vResult.status === 0) {
 							pResolve(vResult.result);

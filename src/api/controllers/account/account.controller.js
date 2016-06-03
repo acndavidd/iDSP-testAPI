@@ -11,6 +11,7 @@ const error_handling_service_1 = require('../../services/error-handling.service'
 const api_service_1 = require('../../services/api.service');
 const account_model_1 = require('../../models/input/account/account.model');
 const data_access_service_1 = require('../../services/data-access.service');
+const utility_1 = require('../../shared/utility');
 class AccountController {
     constructor() {
         AccountController._dataAccess = new data_access_service_1.DataAccessService();
@@ -20,7 +21,7 @@ class AccountController {
     authenticate(pRequest, pResponse) {
         return __awaiter(this, void 0, Promise, function* () {
             try {
-                let vAccount = new account_model_1.Account(pRequest.body.Username, pRequest.body.Password);
+                let vAccount = new account_model_1.Account.Account(pRequest.body.Username, pRequest.body.Password);
                 if (vAccount.validate()) {
                     let vLoginServiceURL = '/OPISNET/services/idsp/userValidation';
                     let vPayLoad = yield AccountController._httpService.post(api_service_1.APIService.APIType.OPISNET, vLoginServiceURL, null, vAccount);
@@ -54,6 +55,9 @@ class AccountController {
                     test: 100
                 };
                 let vSPResult = yield AccountController._dataAccess.executeSP('test_sp', vParams, true);
+                console.log('before sort : ' + JSON.stringify(vSPResult));
+                vSPResult = utility_1.Utility.sortJSON(vSPResult, 'test');
+                console.log('after sort : ' + JSON.stringify(vSPResult));
                 pResponse.status(200).json(vSPResult);
             }
             catch (pErr) {
