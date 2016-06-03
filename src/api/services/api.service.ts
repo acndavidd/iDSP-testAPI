@@ -78,6 +78,7 @@ export module APIService {
 						timeout : vConfig.service["timeout"],
 						body : ''
 					};
+
 					if(pRequestMethod === APIService.RequestMethod.POST) {
 						vRequestObj.body = JSON.stringify(pData);
 					}
@@ -88,7 +89,7 @@ export module APIService {
 							try{
 								pResolve(vErrorHandlingSvc.processHTTPResult(JSON.parse(pBody)));
 							}catch(pErr) {
-								console.log(pErr);
+								console.log('ERROR IN PARSING RESULT' + pErr);
 								pReject(pErr);
 							}
 						}

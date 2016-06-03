@@ -96,7 +96,9 @@ vRouter.get('/testSync',vSchedCtrl.syncTableMaster);
 
 //API BASED ON GUIDELINES
 vRouter.get('/task',vRetailerCtrl.task);
-vRouter.post('/retailerCallPreparation',vRetailerCtrl.retailerCallPreparation);
+// vRouter.post('/retailerCallPreparation',vRetailerCtrl.retailerCallPreparation);
+vRouter.get('/retailer/summary',vRetailerCtrl.retailerCallPreparation);
+
 vRouter.post('/loadWallet',vRetailerCtrl.loadWallet);
 vRouter.post('/physicalInventory',vRetailerCtrl.physicalInventory);
 vRouter.post('/paymentHistory',vRetailerCtrl.paymentHistory);

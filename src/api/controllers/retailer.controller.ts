@@ -3,12 +3,14 @@ import {ORMService} from '../services/orm.service';
 import {APIService} from '../services/api.service';
 import {ErrorHandling} from '../services/error-handling.service';
 import {RetailerModel} from '../models/input/retailer.model';
+import {RetailerProfileModel} from '../models/input/retailer-profile.model';
+import {RetailerOutputProfileModel} from '../models/output/retailer-profile.model';
 import {RetailerOutputModel} from '../models/output/retailer.model';
 import {RouteDayOutputModel} from '../models/output/route-day.model';
 //import {ErrHandlerService} from '../services/err.handler.service';
 
 export interface RetailerInterface{
-	getProduct(pRequest, pResponse):void;
+	getProduct(pRequest, pResponse):Promise<void>;
 	getRetailerSummary(pRequest, pResponse):Promise<void>;
 	getSalesRoute(pRequest, pResponse):Promise<void>;
 	task(pRequest, pResponse):Promise<void>;
@@ -166,7 +168,7 @@ export class RetailerController implements RetailerInterface{
 						// Start getting the route day from store procedure										
 						let vOrmService:ORMService = new ORMService();
 						let vResultData = await vOrmService.sp('get_route_day', vAllRetailers ,true);
-						console.log('All result ' + JSON.stringify(vResultData.payload));
+						// console.log('All result ' + JSON.stringify(vResultData.payload));
 						pResponse.status(vResultData.status).json(vResultData.payload.sort(function(a, b) {
 								if (a.getroute.sequence_no === null && b.getroute.sequence_no === null) {
 									return 0;
@@ -204,45 +206,79 @@ export class RetailerController implements RetailerInterface{
 	}
 
 	async retailerCallPreparation(pRequest,pResponse) {
-		try{
-			console.log("Start getting Retailer Preparation");
+		// try{
+		// 	console.log("Start getting Retailer Preparation");
 
-			var vSalesPerson = pRequest.body.salesPerson;
-			var vSelectedRetailId = pRequest.body.retailerId;
+		// 	var vSalesPerson = pRequest.body.salesPerson;
+		// 	var vSelectedRetailId = pRequest.body.retailerId;
 
-			console.log(vSelectedRetailId+'retailer id');
+		// 	console.log(vSelectedRetailId+'retailer id');
 
-			var vOrmSvc = new ORMService();
+		// 	var vOrmSvc = new ORMService();
 
-			let vParams = {
-				sales_person : vSalesPerson,
-				selected_ret_id : vSelectedRetailId
+		// 	let vParams = {
+		// 		sales_person : vSalesPerson,
+		// 		selected_ret_id : vSelectedRetailId
 				
-			};
+		// 	};
 
-			var vResult = await vOrmSvc.sp('get_retailer_call_prep', vParams );
-			console.log("Query Done with result : "+ JSON.stringify(vResponse));
-			var vResponse = {
-						"status" : "Success",
-						"errorMessage" : "",
-						"result" : vResult
-					};
+		// 	var vResult = await vOrmSvc.sp('get_retailer_call_prep', vParams );
+		// 	console.log("Query Done with result : "+ JSON.stringify(vResponse));
+		// 	var vResponse = {
+		// 				"status" : "Success",
+		// 				"errorMessage" : "",
+		// 				"result" : vResult
+		// 			};
 			
-			pResponse.json(vResponse);
-		}
-		catch(pErr) {
-			console.log("Failed to Query Retailer Summary with error message" + pErr);
+		// 	pResponse.json(vResponse);
+		// }
+		// catch(pErr) {
+		// 	console.log("Failed to Query Retailer Summary with error message" + pErr);
 
-			var vError = {
-						"status" : "Error",
-						"errorMessage" : pErr,
-						"result" : null
-					};
-			pResponse.json(vError);
-		}
+		// 	var vError = {
+		// 				"status" : "Error",
+		// 				"errorMessage" : pErr,
+		// 				"result" : null
+		// 			};
+		// 	pResponse.json(vError);
+		// }
+
+		console.log("Controller Start getting retailer route for BCP");
+
+				var vSalesPerson = pRequest.query.username;
+				var vRetailerId = pRequest.query.retailerid;
+
+			let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
+			try{
+		
+				let vHttpSvc = new APIService.HTTPService();
+				let vPath:string = '/OPISNET/services/idsp/rtprofile';
+				let vRetailerData = new RetailerProfileModel(vSalesPerson,vRetailerId);
+				// console.log('parammmm' + JSON.stringify(vRetailerData));
+
+				if(vRetailerData.validate()) {
+					// Catch result from API
+
+					let vResult = await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null, vRetailerData);
+					// console.log('All result ' + JSON.stringify(vResult));
+
+					// var vRetailerProfile = vResult.payload.RetailerProfileList;
+
+					console.log('For Call procedure'+JSON.stringify(vResult.payload));
+					pResponse.status(vResult.status).json(vResult.payload);
+				}else {
+					vErrHandling.throwError(pResponse, 400, 101, "INPUT_ERROR", vRetailerData.Errors);
+				}
+			}catch(pErr){
+				console.log(pErr);
+				if(pErr.errorCode == 101) {
+					vErrHandling.throwError(pResponse, 400, 101, "ERR_INVALID_CREDENTIAL");
+				}
+			}
 	} 
 
 	async getAllRetailerAlert(pRequest,pResponse){
+		console.log("Start getAllRetailerAlert");
 		let vOrmSvc = new ORMService();
 		let params = {
 			dsp_id : 'DSP00001'
@@ -261,7 +297,7 @@ export class RetailerController implements RetailerInterface{
 			var vSalesPerson = pRequest.body.salesPerson;
 			var vSelectedRetailId = pRequest.body.retailerId;
 
-			console.log(vSelectedRetailId+'retailer id');
+			// console.log(vSelectedRetailId+'retailer id');
 
 			var vOrmSvc = new ORMService();
 
@@ -280,7 +316,7 @@ export class RetailerController implements RetailerInterface{
 				"retailer_id":"RTL00001"
 			}]
 
-			console.log("Query Done with result : "+ JSON.stringify(vResponse));
+			// console.log("Query Done with result : "+ JSON.stringify(vResponse));
 			var vResponse = {
 						"status" : "Success",
 						"errorMessage" : "",
@@ -309,7 +345,7 @@ export class RetailerController implements RetailerInterface{
 			var vSalesPerson = pRequest.body.salesPerson;
 			var vSelectedRetailId = pRequest.body.retailerId;
 
-			console.log(vSelectedRetailId+'retailer id');
+			// console.log(vSelectedRetailId+'retailer id');
 
 			var vOrmSvc = new ORMService();
 
@@ -327,7 +363,7 @@ export class RetailerController implements RetailerInterface{
 				"retailer_id":"RTL00001"
 			}]
 
-			console.log("Query Done with result : "+ JSON.stringify(vResponse));
+			// console.log("Query Done with result : "+ JSON.stringify(vResponse));
 			var vResponse = {
 						"status" : "Success",
 						"errorMessage" : "",

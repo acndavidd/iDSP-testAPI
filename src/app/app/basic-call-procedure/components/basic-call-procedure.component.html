@@ -18,13 +18,13 @@
             </div>
             <div class='cell'>
                  <div *ngIf="each.getroute.call_status === 'Not Visited'">
-                    <div class='container'><div class='cell width-40 align-right bold '>{{each.getroute.call_status}}</div></div>
+                    <div class='container'><div class='cell width-40 align-right bold vivid-pink'>{{each.getroute.call_status}}</div></div>
                 </div>
                 <div *ngIf="each.getroute.call_status === 'In Progress'">
-                    <div class='container'><div class='cell width-40 align-right bold'>{{each.getroute.call_status}}</div></div>
+                    <div class='container'><div class='cell width-40 align-right bold dark-sea-green'>{{each.getroute.call_status}}</div></div>
                 </div>
                 <div *ngIf="each.getroute.call_status === 'Visited'">
-                    <div class='container'><div class='cell width-40 align-right bold'>{{each.getroute.call_status}}</div></div>
+                    <div class='container'><div class='cell width-40 align-right bold green'>{{each.getroute.call_status}}</div></div>
                 </div>
                 <div class='container'><div class='cell width-40 align-right'></div></div>
                 <div class='container'><div class='cell width-40 align-right'>{{each.getroute.total_amount_self_transaction}} ₱</div></div>
