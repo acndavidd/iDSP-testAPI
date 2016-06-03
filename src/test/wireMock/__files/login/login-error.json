@@ -1,4 +1,4 @@
 { 
-	"Status": "403",
-	"StatusMessage": "Anjay bro, DSP ID not found !"
+	"status": "403",
+	"statusMessage": "Anjay bro, DSP ID not found !"
 }

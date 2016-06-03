@@ -68,20 +68,13 @@ export class RetailerSalesOrderComponent {
 
     skipSalesOrder() {
         console.log('Skip Sales Order');
-        let params = {
-            _pageNavigationService : this._pageNavigationService
-        };
-        this._modalService.toggleModal('Are you sure you <br/> want to skip retailer sales order ?', 
-            Modal.ModalType.CONFIRMATION, 
-            {footNote : '* If you confirm to continue, <br/> You cannot go back to retailer sales order <br/> for this retailer', 
-            ModalButton : Modal.ModalButton.OK_CANCEL, 
-            callback : this.skipSalesOrderCallback, 
-            param : params,
-            }  );
+        this._modalService.showConfirmationModal('Are you sure you <br/> want to skip retailer sales order ?',
+            this.skipSalesOrderCallback.bind(this),
+            '* If you confirm to continue, <br/> You cannot go back to retailer sales order <br/> for this retailer', Modal.ButtonType.OK_CANCEL);
     }
 
-    skipSalesOrderCallback(pParam) {
-        pParam._pageNavigationService.navigate('SkipSalesOrder', null, null);
+    skipSalesOrderCallback() {
+        this._pageNavigationService.navigate('SkipSalesOrder', null, null);
     }
 
     gotoAddEditLoadTransfer() {

@@ -1,55 +1,48 @@
-import {ErrorHandling} from './error-handling.service';
+import {ErrorHandlingService} from './error-handling.service';
 
 export module APIService {
 
-        var vEnv = process.env.NODE_ENV || "development";
-        var vRequest = require('request'); 
-        var vConfig = require('../config/config.json')[vEnv];
-        var vCurrentContext;
+	var vEnv = process.env.NODE_ENV || "DEVELOPMENT";
+	var vRequest = require('request'); 
+	var vConfig = require('../config/config.json')[vEnv];
+	var vCurrentContext;
 
-        export var APIType = {
-                OPISNET : vConfig.service["OPIS+"],
-                ELP : vConfig.service["ELP"]        
-        }
+	export var APIType = {
+		OPISNET : vConfig.services["OPIS+"],
+		ELP : vConfig.services["ELP"]	
+	}
 
-        export var RequestMethod = {
-                POST : 'POST',
-                GET : 'GET',
-                PUT : 'PUT',
-                DELETE : 'DELETE'
-        }
+	export var RequestMethod = {
+			POST : 'POST',
+			GET : 'GET',
+			PUT : 'PUT',
+			DELETE : 'DELETE'
+	}
         
-        export interface HTTPServiceInterface {
-                buildAuthHeaders(pMethod): any;
-        }
+	export interface HTTPServiceInterface {
+			buildAuthHeaders(pMethod): any;
+	}
 
-        export class HTTPService implements HTTPServiceInterface{
+	export class HTTPService implements HTTPServiceInterface{
 
-                constructor() {
-                        vCurrentContext = this;
-                }
+		constructor() {
+				vCurrentContext = this;
+		}
 
-                buildAuthHeaders(pMethod) {
-                        let vReqHeaders;
-                        if(pMethod === RequestMethod.POST) {
-                                vReqHeaders = {
-                                        'Content-Type' : 'application/json'
-                                }
-                        }else {
-                                vReqHeaders = {
-                                        'Content-Type' : 'application/x-www-form-urlencoded'
-                                }
-                        }
-                        return vReqHeaders;
-                }
-
+		buildAuthHeaders(pMethod) {
+			let vReqHeaders = {
+				'Content-Type' : 'application/json' // default request header
+			}
+			return vReqHeaders;
+		}
+			
 		post(pAPIType, pURL, pHeaders, pData) {
 			return this.request(RequestMethod.POST, pAPIType, pURL, pHeaders, pData);
 		}
 
 		get(pAPIType, pURL, pHeaders, pUrlParams?) {
 			let fullUrl = pURL;
-			// build params url
+			// build params url from object
 			if(pUrlParams) {
 				fullUrl = fullUrl + '?'
 				for(let vParam in pUrlParams){
@@ -61,42 +54,63 @@ export module APIService {
 		}
 
 		request(pRequestMethod, pAPIType, pURL, pHeaders, pData?) {
-			console.log(pRequestMethod + ' ' + pURL);
+			console.log(pRequestMethod + ' ' + pAPIType + pURL);
+			let vErrorHandlingSvc = new ErrorHandlingService();
 			return new Promise<any>(
 				function(pResolve, pReject){
-					let vErrorHandlingSvc:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
-					let vReqHeaders;
-					if(!pHeaders) {
-						vReqHeaders = vCurrentContext.buildAuthHeaders(pRequestMethod);
-					}else {
-						vReqHeaders = pHeaders;
-					}
-					let vRequestObj = {
-						url : pAPIType + pURL,
-						method : pRequestMethod,
-						headers : vReqHeaders,
-						timeout : vConfig.service["timeout"],
-						body : ''
-					};
-
-					if(pRequestMethod === APIService.RequestMethod.POST) {
-						vRequestObj.body = JSON.stringify(pData);
-					}
-					vRequest(vRequestObj, function(pErr, pResponse, pBody){
-						if(pErr) {
-							pReject(vErrorHandlingSvc.processHTTPError(pErr));
+					try{
+						let vReqHeaders;
+						if(!pHeaders) {
+							vReqHeaders = vCurrentContext.buildAuthHeaders(pRequestMethod);
 						}else {
-							try{
-								pResolve(vErrorHandlingSvc.processHTTPResult(JSON.parse(pBody)));
-							}catch(pErr) {
-								console.log('ERROR IN PARSING RESULT' + pErr);
-								pReject(pErr);
-							}
+							vReqHeaders = pHeaders;
 						}
-					});
+						// build request object
+						let vRequestObj = {
+							url : pAPIType + pURL,
+							method : pRequestMethod,
+							headers : vReqHeaders,
+							timeout : vConfig.services["timeout"],
+							body : ''
+						};
+						if(pRequestMethod === APIService.RequestMethod.POST) {
+							vRequestObj.body = JSON.stringify(pData);
+						}
+						vRequest(vRequestObj, function(pErr, pResponse, pBody){
+							if(pErr) {
+								// map HTTP Error
+								let Error = {
+									code: 0, // Error Code
+									desc:'' // Error Description
+								};
+								switch (pErr.code) {
+									case 'ECONNREFUSED' :
+										Error.code = 101;
+										Error.desc = "ERR_CONN_REFUSED";
+										break;
+									default :
+										console.log(pErr.code);
+										Error.code = 105;
+										Error.desc = "Unhandled error on HTTP Request";
+										break;
+									}
+								vErrorHandlingSvc.throwPromiseError(pReject, Error.code, Error.desc);
+							}else {
+								let vPayLoad = JSON.parse(pBody);
+								if(vPayLoad.status !== 200) { // success response from client api
+									vErrorHandlingSvc.throwPromiseError(pReject, 0, vPayLoad.statusMessage);
+								}else {
+									// no error, return the result body
+									pResolve(vPayLoad);
+								}
+							}
+						});
+					}catch(pErr) {
+						console.log(pErr);
+						pReject(pErr);
+					}
 				}
 			)
 		}
-
-        }
+	}
 }
