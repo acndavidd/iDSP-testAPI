@@ -1,11 +1,11 @@
--- Function: public.account_receivables(character varying, numeric)
+-- Function: public.account_receivables_bcp(character varying, numeric, character varying)
 
--- DROP FUNCTION public.account_receivables(character varying, numeric);
+-- DROP FUNCTION public.account_receivables_bcp(character varying, numeric, character varying);
 
 CREATE OR REPLACE FUNCTION public.account_receivables_bcp(
     v_dsp_id character varying,
     v_day numeric,
-    v_source varchar)
+    v_source character varying)
   RETURNS json AS
 $BODY$
 DECLARE
@@ -43,7 +43,14 @@ BEGIN
 			mst_route h on g.retailer_id = h.retailer_id join
 			mst_route_day i on h.route_id = i.route_id
 			and i.route_day = v_day
-			group by f.dsp_id) total_amount
+			group by f.dsp_id) bcp_total_amount, 
+			(select sum(amount) from trx_account_receivable f join mst_retailer g
+			on f.retailer_id = g.retailer_id and f.dsp_id = v_dsp_id left join
+			mst_route h on g.retailer_id = h.retailer_id join
+			mst_route_day i on h.route_id = i.route_id
+			and i.sequence is not null
+			and i.route_day = v_day
+			group by f.dsp_id) bcp_route_total_amount
 		from (
 		trx_account_receivable b join
 		mst_retailer c on b.retailer_id = c.retailer_id and b.dsp_id = v_dsp_id left join
@@ -65,3 +72,5 @@ END
 $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
+ALTER FUNCTION public.account_receivables_bcp(character varying, numeric, character varying)
+  OWNER TO postgres;

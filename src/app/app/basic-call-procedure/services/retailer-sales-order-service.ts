@@ -8,6 +8,7 @@ export class RetailerSalesOrderService {
     private vServiceUrl: string;
     private vErrorMsg: string;
     private vIsLoading: boolean;
+    private vSmartLoadTransferList: any = [];
 
     constructor(
         private _http: Http,
@@ -31,5 +32,13 @@ export class RetailerSalesOrderService {
 
     getLoadingState(): boolean {
         return this.vIsLoading;
+    }
+
+    getSmartLoadTransferList() {
+        return this.vSmartLoadTransferList;
+    }
+
+    setSmartLoadTransferList(pData) {
+        this.vSmartLoadTransferList = pData;
     }
 }

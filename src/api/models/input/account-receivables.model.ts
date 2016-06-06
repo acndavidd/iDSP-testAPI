@@ -9,12 +9,14 @@ export class AccModel extends IDSPModel {
 	RetailerName: string;
 	RetailerMin: string;
 	TotalAmount: number;
+	RecordStart: number;
+	RecordEnd: number;
 
 	ParamSpSelf;
 	ParamSpBcp;
 	ParamOpis;
 
-	constructor(pUsername: string, pDay:number, pSource: string, pRetailerId: string, pRetailerName: string, pRetailerMin: string, pTotalAmount: number) {
+	constructor(pUsername: string, pDay:number, pSource: string, pRetailerId: string, pRetailerName: string, pRetailerMin: string, pTotalAmount: number, pRecordStart: number, pRecordEnd: number) {
 		super();
 		this.Username = pUsername;
 		this.RouteDay = pDay;
@@ -23,6 +25,8 @@ export class AccModel extends IDSPModel {
 		this.RetailerName = pRetailerName;
 		this.RetailerMin = pRetailerMin;
 		this.TotalAmount = pTotalAmount;
+		this.RecordStart = pRecordStart;
+		this.RecordEnd = pRecordEnd;
 		
 		this.ParamSpSelf = {
 			source : this.Source,
@@ -34,8 +38,11 @@ export class AccModel extends IDSPModel {
 		};
 
 		this.ParamOpis = {
-			source : this.Source,
-			username : this.Username
+			username : this.Username,
+			recordstart : this.RecordStart,
+			recordend : this.RecordEnd,
+			retailername : this.RetailerName,
+			retailermin : this.RetailerMin
 		}
 
 		this.ParamSpBcp = {
