@@ -3,15 +3,15 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet, ROUTER_PROVIDERS }
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
-import {RetailerService} from '../../shared/services/retailer.service';
+// import {RetailerService} from '../../shared/services/retailer.service';
 import {AccountsReceivablesService} from '../services/accounts-receivables-service';
 import {NgFor, NgModel} from 'angular2/common';
-
+import {Modal} from '../../shared/services/modal.service';
 
 @Component({
     selector: 'accounts-receivables',
-    templateUrl: './app/my-transaction/components/hc-accounts-receivables.component.html',
-    // templateUrl: './app/my-transaction/components/accounts-receivables.component.html',
+    // templateUrl: './app/my-transaction/components/hc-accounts-receivables.component.html',
+     templateUrl: './app/my-transaction/components/accounts-receivables.component.html',
     directives: [
         NgFor, NgModel, ROUTER_DIRECTIVES
     ],
@@ -25,7 +25,6 @@ export class AccountsReceivablesComponent {
     vReceivablesRouteList: any;
     vSearchedReceivablesRouteList: any;
     vAllReceivablesRouteList: any;
-    vSum: any;
     vFlag;
     vTotalReceivablesInRoute: number = 0;
     vTotalReceivablesAll: number = 0;
@@ -36,6 +35,7 @@ export class AccountsReceivablesComponent {
         private _matchMediaService: MatchMediaService,
         private _headerService: HeaderService,
         private _router: Router,
+        private _modalService: Modal.ModalService,
         private _accountsReceivablesService: AccountsReceivablesService
         ) {
 
@@ -43,25 +43,33 @@ export class AccountsReceivablesComponent {
         this._headerService.setTitle('Accounts Receivables');
 
         var vDspId = 'DSP00001';
-        var vDate = new Date().getDay();
-
+        var vSource = 'iDSP';
+        var vTempFilteredList = [];
+  
         // Initial Data
         this.vSelectedRoute = 'inRoute';
         this.vFlag = 0;
-
-        this._accountsReceivablesService.getAllReceivablesRoute( vDspId, vDate ).subscribe(
+        this._accountsReceivablesService.getAllReceivablesRoute(vDspId,vSource).subscribe(
             response => {
-                this.setReceivablesRouteList(response.json().result[0].v_receivables);
-                this.setAllReceivablesRouteList(response.json().result[0].v_receivables_all);
-                this.vTotalReceivablesInRoute = this.vReceivablesRouteList[0].ret_total_amount;
-                this.vTotalReceivablesAll = this.vAllReceivablesRouteList[0].total_amount;
+                console.log('Get response from API : ' + JSON.stringify(response.json()));
+                this.setAllReceivablesRouteList(response.json().sort());
+                this.setReceivablesRouteList(this.vAllReceivablesRouteList.filter(pFilter => {
+                    return pFilter.sequence !== null;
+                }));
                 this.setSearchedReceivablesRoute(this.vReceivablesRouteList);
-            },
-
+                for (var i = 0; i < this.vReceivablesRouteList.length; i++) {
+                    var x = this.vReceivablesRouteList[i].amount;
+                    this.vTotalReceivablesInRoute = (this.vTotalReceivablesInRoute + parseInt(x));
+                }
+                for (var j = 0; j < this.vAllReceivablesRouteList.length; j++) {
+                    var y = this.vAllReceivablesRouteList[j].amount;
+                    this.vTotalReceivablesAll = (this.vTotalReceivablesAll + parseInt(y));
+                }
+                },
             error => {
-                console.log(error.json());
-            }
-        );
+                console.log('in acc component' + error.json());
+                this._modalService.toggleModal('Failed to connect to service', Modal.ModalType.ERROR);
+            });
     }
 
     getResize() {
@@ -106,9 +114,6 @@ export class AccountsReceivablesComponent {
     }
 
     searchFilter(pInputText: any) {
-        console.log('in searchFilter : ' + pInputText.length);
-        console.log('initial selectedRoute : ' + this.vSelectedRoute);
-        
         if (pInputText.length > 0) {
             if (this.vSelectedRoute === 'allRoute') {
                 this.vFlag = 1;

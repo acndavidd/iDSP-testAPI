@@ -103,7 +103,7 @@ declare var configChannel: any;
 
 ])
 export class IDSPComponent implements OnInit {
-
+    vModalMessage;
     globalListenFunc: Function;
     timerObservables: Observable<any>;
     constructor ( private _matchMediaService: MatchMediaService,

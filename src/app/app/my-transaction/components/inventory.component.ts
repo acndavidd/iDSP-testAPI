@@ -4,12 +4,13 @@ import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
-import {InventoryService} from '../../shared/services/inventory.service';
+import {InventoryService} from '../services/inventory.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
 
 @Component({
     selector: 'inventory',
     templateUrl: './app/my-transaction/components/inventory.component.html',
+    // templateUrl: './app/my-transaction/components/hc-inventory.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
@@ -27,6 +28,7 @@ export class InventoryComponent {
     vPhysicalShow = false;
     vSubPhysicalMenuShow = [];
     vSubLoadMenuShow = [];
+    x:number = 0;
 
     constructor (
         private _layoutService: LayoutService,
@@ -37,7 +39,6 @@ export class InventoryComponent {
         // this.vSelectedDate = '20160429003012';
         this._layoutService.setCurrentPage('Inventory');
         this._headerService.setTitle('Inventory');
-        this._inventoryService.getProductListPhysical('asdasd', 'asd');
         this.toggleFilterInventory();
     }
 
@@ -59,6 +60,7 @@ export class InventoryComponent {
         this.vLoadShow = false;
         this.vPhysicalShow = true;
         this.toggleFilterInventory();
+        this._inventoryService.getInventoryList('anjay1', 'physical');
     }
 
     subPhysicalMenuShow(indexArr) {
@@ -72,15 +74,19 @@ export class InventoryComponent {
     }
 
     getProductList() {
-        return this._inventoryService.productList;
-    }
-
-    isProductListLoaded() {
-        return this._inventoryService.productListStatus;
+        return this._inventoryService.vProductList;
     }
 
     toggleFilterInventory() {
         this._layoutService.toggleFilterInventory(this.vLoadShow, this.vPhysicalShow);
+    }
+
+    toNumber(pStr) {
+        if(pStr === '0') {
+            return this.x;
+        } else {
+            return parseInt(pStr);
+        }
     }
 
 }

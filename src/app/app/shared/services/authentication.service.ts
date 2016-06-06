@@ -65,7 +65,7 @@ export class AuthenticationService {
             Username : pUsername,
             Password : pPassword
         };
-        this._http.post('/login', JSON.stringify(vData)).subscribe(
+        this._http.post('/account', JSON.stringify(vData)).subscribe(
             response => {
                 let vResponse = response.json();
                 if(vResponse.Status === 200) {
@@ -91,7 +91,7 @@ export class AuthenticationService {
             Username : 'DSP00001',
             MPIN : pMPIN
         };
-        this._http.post('/login/MPIN', JSON.stringify(vData)).subscribe(
+        this._http.post('/account/' +vData.Username+ '/MPIN', JSON.stringify(vData)).subscribe(
             response => {
                 let vResponse = response.json();
                 if(vResponse.Status === 200) {
@@ -128,32 +128,22 @@ export class AuthenticationService {
 
     logoutCallBack(pParams) {
         // trigger logout service to clear session cookies and remove localstorage data for mobile
-        pParams._http.get('/logout').subscribe(
+        this._http.get('/logout').subscribe(
             response => {
                 // remove accessToken from localstorage for mobile apps
                 if(configChannel === 'app') {
                     localStorage.removeItem('accessToken');
                 }
-                pParams._layoutService.hideLeftMenu();
-                pParams._layoutService.toggleHeader();
-                pParams._modalService.vShowModal = false;
-            },
-            error => {
-                // this.vErrorMsg = 'failed connecting to login service';
-                // this._modalService.showErrorModal(this.vErrorMsg);
             }
         );
-        pParams._router.navigate(['Starter', 'Login']);
+        this._layoutService.hideLeftMenu();
+        this._layoutService.toggleHeader();
+        this._modalService.closeModal();
+        this._router.navigate(['Starter', 'Login']);
     } 
 
     logout() {
-        let params = {
-            _layoutService : this._layoutService,
-            _router : this._router,
-            _modalService : this._modalService,
-            _http : this._http
-        };
-        this._modalService.toggleModal('Are you sure you<br/>want to Logout ?', Modal.ModalType.CONFIRMATION, { ModalButton : Modal.ModalButton.OK_CANCEL, callback : this.logoutCallBack, param : params });
+        this._modalService.showConfirmationModal('Are you sure you<br/>want to Logout ?', this.logoutCallBack.bind(this));
     }
 
     getLoadingState(): boolean {

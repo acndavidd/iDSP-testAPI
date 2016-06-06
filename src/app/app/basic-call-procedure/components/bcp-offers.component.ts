@@ -33,7 +33,7 @@ export class OffersComponent {
 
     }
 
-    gotoRetailerSalesOrder() {
-        this._pageNavigationService.navigate('RetailerSalesOrder', null, null);
+    gotoAddEditLoadTransfer() {
+        this._pageNavigationService.navigate('AddEditLoadTransfer', null, null);
     }
 }

@@ -1,5 +1,5 @@
 { 
-	"Status" : 200,
-	"StatusMessage" : "OK",
+	"status" : 200,
+	"statusMessage" : "OK",
 	"MPIN" : "12345"
 }

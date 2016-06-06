@@ -1,0 +1,9 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPattern": "/OPISNET/services/idsp/SELFTransactions\\?source=[a-zA-Z0-9]+\\&username=[a-zA-Z0-9]+"
+    },
+    "response": {
+        "bodyFileName": "OPIS+/administration/retailer-self-success.json"
+    }
+}

@@ -26,6 +26,7 @@ export class BasicCallProcedureComponent {
 
     private vListRoute;
     private vFilteredListRoute;
+    private vListDay;
     constructor (
         private _layoutService: LayoutService,
         private _matchMediaService: MatchMediaService,
@@ -48,7 +49,7 @@ export class BasicCallProcedureComponent {
 
     gotoAnotherPage() {
         // ACTUALLY BASED ON STATUS, BUT FOR NOW JUST GO TO CALL PREP FIRST
-        this._pageNavigationService.navigate('CallPreparation', null, null);
+        this._pageNavigationService.navigate('AddEditLoadTransfer', null, null);
     }
 
     // gotoAnotherPage(pSelectedRetailer) {
@@ -56,23 +57,11 @@ export class BasicCallProcedureComponent {
     //     let vParamsOld = {};
     //     let vParams = {
     //         retailer_id: pSelectedRetailer.retailer_id,
-    //         route_sequence: pSelectedRetailer.seq,
+    //         route_sequence: pSelectedRetailer.sequence_no,
     //         call_id: pSelectedRetailer.call_id,
     //         status: pSelectedRetailer.call_status
     //     };
-    //      this._pageNavigationService.navigate('BCPActivityStep', vParams, vParamsOld);
-    // }
-
-    // gotoAnotherPage(pSelectedRetailer) {
-    //     console.log('Go to Call Preparation' + pSelectedRetailer );
-    //     let vParamsOld = {};
-    //     let vParams = {
-    //         retailer_id: pSelectedRetailer.retailer_id,
-    //         route_sequence: pSelectedRetailer.seq,
-    //         call_id: pSelectedRetailer.call_id,
-    //         status: pSelectedRetailer.call_status
-    //     };
-    //      this._pageNavigationService.navigate('BCPActivityStep', vParams, vParamsOld);
+    //      this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);
     // }
 
     getFilter() {
@@ -86,8 +75,8 @@ export class BasicCallProcedureComponent {
     onKey(pInputText: any) {
         console.log(pInputText);
         this.vFilteredListRoute = this.vListRoute.filter(retailer => {
-             return retailer.storeName.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
-             retailer.retailerMinDetails.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1;
+             return retailer.getroute.store_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
+             retailer.getroute.retailer_min.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1;
         });
     }
 
@@ -95,7 +84,7 @@ export class BasicCallProcedureComponent {
         console.log('Get  retailer route for Day');
         this._retailerService.queryTask().subscribe(
                 response => {
-                        this.vListRoute = response.json().RetailerList;
+                        this.vListRoute = response.json();
                         this.vFilteredListRoute = this.vListRoute;
                 },
                 error => {

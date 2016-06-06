@@ -1,0 +1,193 @@
+<a (click)="showMenuLoad()">
+	<div class="sub-tab double" [ngClass] = "{active: vLoadShow}">
+		<div class="text" [ngClass] = "{active: vLoadShow}">
+			Load
+		</div>
+	</div>
+</a>
+<a (click)="showMenuPhysical()">
+	<div class="sub-tab double" [ngClass] = "{active: vPhysicalShow}">
+		<div class="text" [ngClass] = "{active: vPhysicalShow}">
+			Physical
+		</div>
+	</div>
+</a>
+
+
+
+<div class="container-body">
+
+	<div class="filter-container" *ngIf="getFilter().filterInventoryPhysical && vPhysicalShow">
+
+		<div class='filter-input input'>
+            <div class='icon'></div>
+            <input type='text' placeholder='Enter Brand, Category, Sub Category, or Item Code' />
+        </div>  
+
+
+        <div class="item-container">
+			<div class="container">
+				<div class='cell'>
+					<div class="container">
+						<div class="cell filter-label width-50 padding-top-1 padding-bottom-1">Brand</div>
+					</div>
+
+					<div class="container">
+						<div class="cell filter-label width-50 padding-top-1 padding-bottom-1">Sub Category</div>
+					</div>
+
+					<div class="container">
+						<div class="cell filter-label width-50 padding-top-1 padding-bottom-1">Item Code</div>
+					</div>
+
+				</div>
+				<div class='cell'>
+					<div class="container">
+						<div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
+							<select name="cars">
+								<option value="volvo">Smart</option>
+								<option value="saab">Sun</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="container">
+						<div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
+							<select name="cars">
+								<option value="volvo">Smart SIM</option>
+								<option value="saab">TNT CTC/TL</option>
+								<option value="fiat">Regular Cards</option>
+								<option value="audi">Smart CTC/TL</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="container">
+						<div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
+							<select name="cars">
+								<option value="volvo">MC00087PD</option>
+								<option value="saab">MC00087PD</option>
+								<option value="fiat">DC0002</option>
+								<option value="audi">19411</option>
+							</select>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+			
+	</div>
+
+
+
+	<div *ngIf="vLoadShow">
+		<div>
+			<div class="item-container" (click)="subLoadMenuShow(i)">
+				<div class="container">
+					<div class='cell width-10 inventory-load'></div>
+					<div class='cell'>
+				        <div class='container'><div class='cell width-80 padding-left-5 bold' [ngClass]="{title: vSubLoadMenuShow[i]}">Smartload</div></div>
+				        <div class='container' *ngIf="!vSubLoadMenuShow[i]">
+				        	<div class='cell'>
+				        		<div class="container">
+									<div class='cell'>
+								        <div class='container'><div class='cell width-40 padding-left-5'>Ending Balance</div></div>
+								    </div>
+									<div class='cell'>
+								        <div class='container'><div class='cell width-40 align-right bold'>700</div></div>
+								    </div>
+								</div>
+							</div>
+						</div>
+				    </div>
+				    <div class='cell width-10 arrow-down' [ngClass]="{selected: vSubLoadMenuShow[i]}"></div>
+				</div>
+			</div>
+
+			<div class="item-container sub" *ngIf="vSubLoadMenuShow[i]">
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Total Inventory</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-10'>Beginning Balance</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-10 small'>As of 2016-04-22  13:00</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-10'>Delivery</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Sales</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-10'>Sold</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Ending Balance</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Current Balance</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-10 small'>As of 2016-04-22  13:00</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-5 bold'>For Validation</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-10'>Dispute Amount</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-10'>Others</div></div>
+				    </div>
+					<div class='cell'>
+				        <div class='container'><div class='cell width-45 align-right bold'>600</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>100</div></div>
+				        <div class='container'><div class='cell width-45 align-right'></div></div>
+				        <div class='container'><div class='cell width-45 align-right'>100</div></div>
+				        <div class='container'><div class='cell width-45 align-right bold'>100</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>100</div></div>
+				        <div class='container'><div class='cell width-45 align-right bold'>700</div></div>
+				        <div class='container'><div class='cell width-45 align-right bold'>300</div></div>
+				        <div class='container'><div class='cell width-45 align-right'></div></div>
+				        <div class='container'><div class='cell width-45 align-right'>-200</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>1000</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>-1200</div></div>
+				    </div>
+				    <div class='cell width-10'></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div *ngIf="vPhysicalShow">
+		<div>
+			<div class="item-container" (click)="subPhysicalMenuShow(i)">
+				<div class="container">
+					<div class='cell width-10 inventory-physical'></div>
+					<div class='cell'>
+				        <div class='container'><div class='cell width-80 padding-left-5 bold' [ngClass]="{title: vSubPhysicalMenuShow[i]}">SKU1</div></div>
+				        <div class='container' *ngIf="!vSubPhysicalMenuShow[i]">
+				        	<div class='cell'>
+				        		<div class="container">
+									<div class='cell'>
+								        <div class='container'><div class='cell width-40 padding-left-5'>Ending Balance</div></div>
+								    </div>
+									<div class='cell'>
+								        <div class='container'><div class='cell width-40 align-right bold'>1,300</div></div>
+								    </div>
+								</div>
+							</div>
+						</div>
+				    </div>
+				    <div class='cell width-10 arrow-down' [ngClass]="{selected: vSubPhysicalMenuShow[i]}"></div>
+				</div>
+			</div>
+			<div class="item-container sub" *ngIf="vSubPhysicalMenuShow[i]">
+				<div class="container">
+					<div class='cell'>
+				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Total Inventory</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-10'>Beginning Balance</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-10'>New Delivery</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Sales &amp; Transfer Back</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-10'>Sold</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-10'>Transfer Back</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Ending Balance</div></div>
+				    </div>
+					<div class='cell'>
+				        <div class='container'><div class='cell width-45 align-right bold'>1,500</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>1,500</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>0</div></div>
+				        <div class='container'><div class='cell width-45 align-right bold'>200</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>100</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>100</div></div>
+				        <div class='container'><div class='cell width-45 align-right bold'>1,300</div></div>
+				    </div>
+				    <div class='cell width-10'></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	
