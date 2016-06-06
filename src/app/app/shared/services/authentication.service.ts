@@ -102,7 +102,7 @@ export class AuthenticationService {
                 }
             },
             error => {
-                if(error.code == 121) { // Invalid MPIN
+                if(error.code === 121) { // Invalid MPIN
                     this.vErrorMsg = error.desc;
                 }else {
                     this.vErrorMsg = 'failed connecting to iDSP MPIN verification service';
