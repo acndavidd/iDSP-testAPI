@@ -3,6 +3,7 @@ import {SequelizeService} from './sequelize.service'
 
 export interface DataAccessInterface {
 	executeSP(pSPName: string, pParams: any, pIsJSONFormat?: boolean): Promise<string>;
+	getAccReceivable(pParams);
 }
 
 export class DataAccessService implements DataAccessInterface {
@@ -24,7 +25,7 @@ export class DataAccessService implements DataAccessInterface {
 						vParams = '(\''+JSON.stringify(pParams)+'\')';
 					}else {
 						// default params for stored procedure if null object is passed as parameter
-						vParams = '()';
+						vParams = '(';
 						// converting params object into parameter in stored procedure
 						if(pParams) {
 							for(let vParam in pParams){
@@ -54,5 +55,9 @@ export class DataAccessService implements DataAccessInterface {
 				}
 			}
 		);
+	}
+
+	getAccReceivable(pParams) {
+		return this.executeSP(pParams.spName, pParams.spData, pParams.isJson);
 	}
 }

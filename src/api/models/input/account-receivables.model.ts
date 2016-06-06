@@ -1,7 +1,7 @@
 import {IDSPModel} from '../idsp.model';
 import {isValid} from 'class-validator';
 
-export class AccModel extends IDSPModel {
+export class AccountReceivableModel extends IDSPModel {
 	Username: string;
 	RouteDay: number;
 	Source: string;

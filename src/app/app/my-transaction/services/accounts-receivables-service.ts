@@ -15,14 +15,6 @@ export class AccountsReceivablesService {
         this.vIsLoading = false;
     }
 
-    searchRetailer() {
-        return;
-    }
-
-    getError(): string {
-        return this.vErrorMsg;
-    }
-
     getLoadingState(): boolean {
         return this.vIsLoading;
     }

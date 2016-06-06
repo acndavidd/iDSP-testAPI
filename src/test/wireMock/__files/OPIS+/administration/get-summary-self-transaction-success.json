@@ -1,7 +1,7 @@
 {
-	"Status" : 200,
-	"StatusMessage" : "OK",
-	"RecordCount" : 4,
+	"status" : 200,
+	"statusMessage" : "OK",
+	"recordCount" : 4,
 	"selfTransactionList" : [
 		{
 			"RetailerID" : "RTL00001",
