@@ -26,8 +26,10 @@ export class TargetsActualsController implements TargetsActualsInterface{
    
     async brand(pRequest,pResponse) {
 	console.log('Start getting Brands')
+
 	try{
-		let vResult = await TargetsActualsController._dataAccess.getBrands('get_brands', null ,false);
+		var vParam ='';
+		let vResult = await TargetsActualsController._dataAccess.getBrands('get_brands', null);
 		console.log('All Brand : ' + JSON.stringify(vResult));
 		pResponse.json(vResult);
 
