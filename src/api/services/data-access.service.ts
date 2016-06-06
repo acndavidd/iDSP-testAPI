@@ -1,5 +1,5 @@
 import {ErrorHandlingService} from './error-handling.service';
-import {SequelizeService} from './sequelize.service'
+import {SequelizeService} from './sequelize.service';
 
 export interface DataAccessInterface {
 	executeSP(pSPName: string, pParams: any, pIsJSONFormat?: boolean): Promise<string>;
@@ -27,6 +27,7 @@ export class DataAccessService implements DataAccessInterface {
 						vParams = '()';
 						// converting params object into parameter in stored procedure
 						if(pParams) {
+							vParams = '';
 							for(let vParam in pParams){
 								vParams += "'" + pParams[vParam] + "',";
 							}

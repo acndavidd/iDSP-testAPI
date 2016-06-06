@@ -48,9 +48,10 @@ export class MpinComponent {
         this._authenticationService.submitMPIN(this.vMPIN1 + this.vMPIN2 + this.vMPIN3 + this.vMPIN4 + this.vMPIN5);
         // For By Pass Directly without API
         // this._pageNavigationService.navigate('Home', null, null);
+        console.log('masuk ke passcode');        
+        this._router.navigate(['PasscodeLock']);
         // this._authenticationService.submitMPIN();
-
-        this._pageNavigationService.navigate('Home', null, null);
+        // this._pageNavigationService.navigate('Home', null, null);
         // this._authenticationService.submitMPIN(this.vMPIN1 + this.vMPIN2 + this.vMPIN3 + this.vMPIN4 + this.vMPIN5);
     }
 

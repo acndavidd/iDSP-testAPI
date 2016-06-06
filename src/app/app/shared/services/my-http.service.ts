@@ -5,6 +5,7 @@ import {Http, Request, RequestOptions, RequestMethod, RequestOptionsArgs, Header
 import {Observable} from 'rxjs/Observable';
 import {Router} from 'angular2/router';
 import {Modal} from './modal.service';
+import {ServiceConfiguration} from '../config/service.config';
 
 declare var configChannel: any;
 
@@ -16,25 +17,8 @@ export class MyHttp {
     constructor(private _http: Http,
                 private _router: Router,
                 private _modalService: Modal.ModalService) {
-
-        this.vServiceBaseUrl = '';
-
-        /* Read Config
-        const URL = 'config/service.json';
-        this.vServiceBaseUrl = '';
-        this._http.get(URL,
-            <RequestOptionsArgs> {
-                headers: new Headers({
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                })
-            })
-           .subscribe(file => {
-               let vConfig = file.json();
-               this.vServiceBaseUrl = vConfig.baseUrl;
-               this.vTimeout = Number(vConfig.timeout);
-
-           });
-        */
+        this.vServiceBaseUrl = ServiceConfiguration.BaseURL;
+        this.vTimeout = ServiceConfiguration.Timeout;
     }
 
     public get(pUrl: string, pOptions?: RequestOptionsArgs) {
@@ -81,8 +65,37 @@ export class MyHttp {
         } else {
             vRequestOptions.headers = this._createAuthHeaders(pMethod);
         }
-
+        vRequestOptions.url = this.vServiceBaseUrl + pUrl;
         return Observable.create((pObserver) => {
+            console.log('Start request to ' + vRequestOptions.url);
+            let vCurrentContext = this;
+            this._http.request(new Request(vRequestOptions))
+                .timeout(this.vTimeout, {status: 408})
+                .subscribe(
+                    (res) => {
+                        pObserver.next(res.json());
+                        pObserver.complete();
+                    },
+                    (err) => {
+                        switch (err.status) {
+                            case 403:
+                                // caused by invalid token sent to server
+                                // try access once again using refresh token
+                                // if still failed redirect to login page
+                                pObserver.error(err);
+                                break;
+                            case 400: // system error
+                                pObserver.error(err.json());
+                                break;
+                            case 500: // functional error
+                                pObserver.error(err.json());
+                            default:
+                                // throw error
+                                pObserver.error(err);
+                                break;
+                        }
+                    });
+            /*
             const CONFIG_URL = 'config/service.json';
             if (this.vServiceBaseUrl === '') {
                 this._http.get(CONFIG_URL,
@@ -101,12 +114,14 @@ export class MyHttp {
             } else {
                 vRequestOptions.url = this.vServiceBaseUrl + pUrl;
                 this.executeRequest(pObserver, vRequestOptions);
-            }
+            }*/
         });
     }
 
     public executeRequest(pObserver, pOpt: RequestOptions) {
         console.log('Start request to ' + pOpt.url);
+        let vCurrentContext = this;
+        vCurrentContext._modalService.showErrorModal('Start request to ' + pOpt.url);
         this._http.request(new Request(pOpt))
             .timeout(this.vTimeout, {status: 408})
             .subscribe(
@@ -117,17 +132,16 @@ export class MyHttp {
                 (err) => {
                     switch (err.status) {
                         case 403:
-                            // caused by invalid token send to server
+                            // caused by invalid token sent to server
                             // try access once again using refresh token
+                            // if still failed redirect to login page
                             pObserver.error(err);
                             break;
-                        case 400:
-                            if(err.errorCode === 101) { // input error
-                                pObserver.error(err.inputError);
-                            }else {
-                                pObserver.error(err.body);
-                            }
+                        case 400: // system error
+                            pObserver.error(err.json());
                             break;
+                        case 500: // functional error
+                            pObserver.error(err);
                         default:
                             // throw error
                             pObserver.error(err);
