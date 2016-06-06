@@ -28,7 +28,7 @@
         <div class='container'>
             <div class='cell'>
                 <div class='container'><div class='cell align-center width-100 bold'>Price After Discount:</div></div>
-                <div class='container'><div class='cell align-center width-100 bold green'>₱ {{priceAfterDiscount()}}<</div></div>
+                <div class='container'><div class='cell align-center width-100 bold green'>P {{priceAfterDiscount()}}<</div></div>
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
                 <div class='container'><div class='cell padding-left-5 width-50'>Price Before Discount</div></div>
             </div>
             <div class='cell'>
-                <div class='container'><div class='cell align-right width-40'>₱ {{vPriceBeforeDisc | number}}</div></div>
+                <div class='container'><div class='cell align-right width-40'>P {{vPriceBeforeDisc | number}}</div></div>
             </div>
             <div class='cell width-10'></div>
         </div>
@@ -60,7 +60,7 @@
                 <div class='container'><div class='cell padding-left-5 width-50'>Transfer Load</div></div>
             </div>
             <div class='cell'>
-                <div class='container'><div class='cell align-right width-40'>₱ {{vTransferLoad | number}}</div></div>
+                <div class='container'><div class='cell align-right width-40'>P {{vTransferLoad | number}}</div></div>
             </div>
             <div class='cell width-10 edit-gray' (click)='gotoAddEditLoadTransfer()'></div>
         </div>
@@ -77,10 +77,10 @@
                 </div>
                 <div class='cell'>
                     <div class='container'><div class='cell align-right width-40'>{{vSmartLoadTransferList.selectedMIN}}</div></div>
-                    <div class='container'><div class='cell align-right width-40'>₱ {{vSmartLoadTransferList.inputTransferAmount | number}}</div></div>
+                    <div class='container'><div class='cell align-right width-40'>P {{vSmartLoadTransferList.inputTransferAmount | number}}</div></div>
                     <div class='container'><div class='cell align-right width-40 grey'>{{vSmartLoadTransferList.inputPromoCode}}</div></div>
-                    <div class='container'><div class='cell align-right width-40'>₱ {{vSmartLoadTransferList.inputDiscAmount | number}}</div></div>
-                    <div class='container'><div class='cell align-right width-40'>₱ {{vSmartLoadTransferList.totalAmount}}</div></div>
+                    <div class='container'><div class='cell align-right width-40'>P {{vSmartLoadTransferList.inputDiscAmount | number}}</div></div>
+                    <div class='container'><div class='cell align-right width-40'>P {{vSmartLoadTransferList.totalAmount}}</div></div>
                 </div>
                 <div class='cell width-10'></div>
             </div>
@@ -96,10 +96,10 @@
                 </div>
                 <div class='cell'>
                     <div class='container'><div class='cell align-right width-40'>{{vSunLoadTransferList.selectedMIN}}</div></div>
-                    <div class='container'><div class='cell align-right width-40'>₱ {{vSunLoadTransferList.inputTransferAmount | number}}</div></div>
+                    <div class='container'><div class='cell align-right width-40'>P {{vSunLoadTransferList.inputTransferAmount | number}}</div></div>
                     <div class='container'><div class='cell align-right width-40 grey'>{{vSunLoadTransferList.inputPromoCode}}</div></div>
-                    <div class='container'><div class='cell align-right width-40'>₱ {{vSunLoadTransferList.inputDiscAmount | number}}</div></div>
-                    <div class='container'><div class='cell align-right width-40'>₱ {{vSunLoadTransferList.totalAmount}}</div></div>
+                    <div class='container'><div class='cell align-right width-40'>P {{vSunLoadTransferList.inputDiscAmount | number}}</div></div>
+                    <div class='container'><div class='cell align-right width-40'>P {{vSunLoadTransferList.totalAmount}}</div></div>
                 </div>
                 <div class='cell width-10'></div>
             </div>
@@ -124,7 +124,7 @@
                 <div class='container'><div class='cell padding-left-5 width-50'>Physical Order</div></div>
             </div>
             <div class='cell'>
-                <div class='container'><div class='cell align-right width-40'>₱ {{vPhysicalOrder | number}}</div></div>
+                <div class='container'><div class='cell align-right width-40'>P {{vPhysicalOrder | number}}</div></div>
             </div>
             <div class='cell width-10 edit-gray' (click)='gotoAddEditPhysicalOrder()'></div>
         </div>

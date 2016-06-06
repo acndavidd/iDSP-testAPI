@@ -10,8 +10,8 @@ import {Modal} from '../../shared/services/modal.service';
 
 @Component({
     selector: 'retailer-sales-order',
-    // templateUrl: './app/basic-call-procedure/components/retailer-sales-order.component.html',
-    templateUrl: './app/basic-call-procedure/components/hc-retailer-sales-order.component.html',
+    templateUrl: './app/basic-call-procedure/components/retailer-sales-order.component.html',
+    // templateUrl: './app/basic-call-procedure/components/hc-retailer-sales-order.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES

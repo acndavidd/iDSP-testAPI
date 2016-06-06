@@ -49,6 +49,8 @@ export class AccountsReceivablesComponent {
         this._accountsReceivablesService.getAllReceivablesRoute(vDspId).subscribe(
             response => {
                 console.log('Get response from API : ' + JSON.stringify(response.json()));
+
+                // sorted object by route number
                 this.setAllReceivablesRouteList(response.json()[0].sort(function(a, b) {
                 if (a.sequence === null && b.sequence === null) {
                     return 0;
@@ -68,9 +70,11 @@ export class AccountsReceivablesComponent {
                     return 0;
                 }
             }));
+                // set default value to display: all retailer which has route for today's task
                 this.setReceivablesRouteList(this.vAllReceivablesRouteList.filter(pFilter => {
                     return pFilter.sequence !== null;
                 }));
+                
                 this.setSearchedReceivablesRoute(this.vReceivablesRouteList);
                 this.vTotalReceivablesInRoute = response.json()[2].total_inroute_amount;
                 this.vTotalReceivablesAll = response.json()[1].total_receivable_amount;
