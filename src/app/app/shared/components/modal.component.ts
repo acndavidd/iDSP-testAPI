@@ -32,8 +32,8 @@ export class ModalComponent {
     }
 
     callback(pButton: Modal.ModalButton) {
-        pButton.callback(pButton.callbackParams);
         this._modalService.closeModal();
+        pButton.callback(pButton.callbackParams);
     }
 
     /*

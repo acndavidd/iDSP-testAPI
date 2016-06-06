@@ -33,6 +33,13 @@ export class AddEditLoadTransferComponent {
         this._headerService.setTitle('Add Load Transfer');
     }
 
+    addLoadTransfer() {
+        console.log('Go to Retailer Sales Order');
+        this._modalService.showConfirmationModal('Confirm Load Transfer to <br/><label class="vivid-pink">99999000003</label> with <br/> Total Amount <label class="vivid-pink">P 2,000</label> and <br/>Total Discount <label class="vivid-pink">P 100</label>',
+            this.gotoRetailerSalesOrder.bind(this),
+            null, Modal.ButtonType.OK_CANCEL);
+    }
+
     gotoRetailerSalesOrder() {
         this._pageNavigationService.navigate('RetailerSalesOrder', null, null);
     }
