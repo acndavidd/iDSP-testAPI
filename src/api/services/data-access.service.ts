@@ -3,6 +3,7 @@ import {SequelizeService} from './sequelize.service'
 
 export interface DataAccessInterface {
 	executeSP(pSPName: string, pParams: any, pIsJSONFormat?: boolean): Promise<string>;
+	getRouteDay(pSPName,pParams,pIsJSONFormat);
 }
 
 export class DataAccessService implements DataAccessInterface {
@@ -10,6 +11,10 @@ export class DataAccessService implements DataAccessInterface {
 	
 	constructor() {
 		DataAccessService._errorHandling = new ErrorHandlingService();
+	}
+
+	getRouteDay(pSPName,pParams,pIsJSONFormat) {
+		return this.executeSP(pSPName,pParams,pIsJSONFormat);
 	}
 
 	executeSP(pSPName:string, pParams: any, pIsJSONFormat?: boolean): Promise<string> {

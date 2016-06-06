@@ -1,12 +1,13 @@
 'use strict';
-import {ORMService} from '../services/orm.service';
-import {APIService} from '../services/api.service';
-import {ErrorHandling} from '../services/error-handling.service';
-import {RetailerModel} from '../models/input/retailer.model';
-import {RetailerProfileModel} from '../models/input/retailer-profile.model';
-import {RetailerOutputProfileModel} from '../models/output/retailer-profile.model';
-import {RetailerOutputModel} from '../models/output/retailer.model';
-import {RouteDayOutputModel} from '../models/output/route-day.model';
+import {ORMService} from '../../services/orm.service';
+import {APIService} from '../../services/api.service';
+import {DataAccessService} from '../../services/data-access.service';
+import {RetailerModel} from '../../models/input/retailer.model';
+import {RetailerProfileModel} from '../../models/input/retailer-profile.model';
+import {RetailerOutputProfileModel} from '../../models/output/retailer-profile.model';
+import {RetailerOutputModel} from '../../models/output/retailer.model';
+import {RouteDayOutputModel} from '../../models/output/route-day.model';
+import {ErrorHandlingService} from '../../services/error-handling.service';
 //import {ErrHandlerService} from '../services/err.handler.service';
 
 export interface RetailerInterface{
@@ -23,11 +24,15 @@ export interface RetailerInterface{
 
 
 export class RetailerController implements RetailerInterface{
-
-	//private errService:ErrHandlerService = new ErrHandlerService();
+	private static _errorHandling: ErrorHandlingService;
+	private static _httpService: APIService.HTTPService;
+	private static _dataAccess: DataAccessService;
 	private vUsername: string;
 
 	constructor() {
+		RetailerController._dataAccess = new DataAccessService();
+		RetailerController._errorHandling = new ErrorHandlingService();
+		RetailerController._httpService = new APIService.HTTPService();
 	}
 	
 	getProduct(pRequest,pResponse) {
@@ -144,16 +149,15 @@ export class RetailerController implements RetailerInterface{
 			console.log("Controller Start getting retailer route for BCP");
 
 			var vSalesPerson = pRequest.query.username;
-
-			let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
 			try{
-				let vHttpSvc = new APIService.HTTPService();
+				
 				let vPath:string = '/OPISNET/services/idsp/AllRT';
 				let vRetailerData = new RetailerModel(vSalesPerson);
+
 				if(vRetailerData.validate()) {
 
 					// Catch result from API
-					let vResult = await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null, vRetailerData);
+					let vResult = await RetailerController._httpService.get(APIService.APIType.OPISNET, vPath, null, vRetailerData);
 					var vRetailer = vResult.payload.RetailerList;
 					var vAllRetailers= [];
 
@@ -165,29 +169,32 @@ export class RetailerController implements RetailerInterface{
 						}
 						
 					try {	
-						// Start getting the route day from store procedure										
-						let vOrmService:ORMService = new ORMService();
-						let vResultData = await vOrmService.sp('get_route_day', vAllRetailers ,true);
-						// console.log('All result ' + JSON.stringify(vResultData.payload));
-						pResponse.status(vResultData.status).json(vResultData.payload.sort(function(a, b) {
-								if (a.getroute.sequence_no === null && b.getroute.sequence_no === null) {
-									return 0;
-								}
-								if (a.getroute.sequence_no === null) {
-									return 1;
-								}
-								if (b.getroute.sequence_no === null) {
-									return -1;
-								}
-								if (parseInt(a.getroute.sequence_no) > parseInt(b.getroute.sequence_no)) {
-									return 1;
-								}
-								if (parseInt(a.getroute.sequence_no) < parseInt(b.getroute.sequence_no)) {
-									return -1;
-								} else {
-									return 0;
-								}
-							}));
+						// Start getting the route day from store procedure	ORM									
+						// let vOrmService:ORMService = new ORMService();
+						// let vResultData = await vOrmService.sp('get_route_day', vAllRetailers ,true);
+
+
+						let vResultData = await RetailerController._dataAccess.getRouteDay('get_route_day', vAllRetailers ,true);
+						console.log('All result ' + JSON.stringify(vResultData));
+						// pResponse.status(vResultData.status).json(vResultData.payload.sort(function(a, b) {
+						// 		if (a.getroute.sequence_no === null && b.getroute.sequence_no === null) {
+						// 			return 0;
+						// 		}
+						// 		if (a.getroute.sequence_no === null) {
+						// 			return 1;
+						// 		}
+						// 		if (b.getroute.sequence_no === null) {
+						// 			return -1;
+						// 		}
+						// 		if (parseInt(a.getroute.sequence_no) > parseInt(b.getroute.sequence_no)) {
+						// 			return 1;
+						// 		}
+						// 		if (parseInt(a.getroute.sequence_no) < parseInt(b.getroute.sequence_no)) {
+						// 			return -1;
+						// 		} else {
+						// 			return 0;
+						// 		}
+						// 	}));
 					}
 					catch(pErr)
 					{
@@ -195,53 +202,17 @@ export class RetailerController implements RetailerInterface{
 					}
 				 	
 				}else {
-					vErrHandling.throwError(pResponse, 400, 101, "INPUT_ERROR", vRetailerData.Errors);
+					RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 101, "INPUT_ERROR", vRetailerData.Errors);
 				}
 			}catch(pErr){
 				console.log(pErr);
 				if(pErr.errorCode == 101) {
-					vErrHandling.throwError(pResponse, 400, 101, "ERR_INVALID_CREDENTIAL");
+					RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 101, "ERR_INVALID_CREDENTIAL");
 				}
 			}
 	}
 
 	async retailerCallPreparation(pRequest,pResponse) {
-		// try{
-		// 	console.log("Start getting Retailer Preparation");
-
-		// 	var vSalesPerson = pRequest.body.salesPerson;
-		// 	var vSelectedRetailId = pRequest.body.retailerId;
-
-		// 	console.log(vSelectedRetailId+'retailer id');
-
-		// 	var vOrmSvc = new ORMService();
-
-		// 	let vParams = {
-		// 		sales_person : vSalesPerson,
-		// 		selected_ret_id : vSelectedRetailId
-				
-		// 	};
-
-		// 	var vResult = await vOrmSvc.sp('get_retailer_call_prep', vParams );
-		// 	console.log("Query Done with result : "+ JSON.stringify(vResponse));
-		// 	var vResponse = {
-		// 				"status" : "Success",
-		// 				"errorMessage" : "",
-		// 				"result" : vResult
-		// 			};
-			
-		// 	pResponse.json(vResponse);
-		// }
-		// catch(pErr) {
-		// 	console.log("Failed to Query Retailer Summary with error message" + pErr);
-
-		// 	var vError = {
-		// 				"status" : "Error",
-		// 				"errorMessage" : pErr,
-		// 				"result" : null
-		// 			};
-		// 	pResponse.json(vError);
-		// }
 
 		console.log("Controller Start getting retailer route for BCP");
 
@@ -251,28 +222,23 @@ export class RetailerController implements RetailerInterface{
 			let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
 			try{
 		
-				let vHttpSvc = new APIService.HTTPService();
 				let vPath:string = '/OPISNET/services/idsp/rtprofile';
 				let vRetailerData = new RetailerProfileModel(vSalesPerson,vRetailerId);
 				// console.log('parammmm' + JSON.stringify(vRetailerData));
 
 				if(vRetailerData.validate()) {
 					// Catch result from API
-
-					let vResult = await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null, vRetailerData);
-					// console.log('All result ' + JSON.stringify(vResult));
-
-					// var vRetailerProfile = vResult.payload.RetailerProfileList;
+					let vResult = await RetailerController._httpService.get(APIService.APIType.OPISNET, vPath, null, vRetailerData);
 
 					console.log('For Call procedure'+JSON.stringify(vResult.payload));
 					pResponse.status(vResult.status).json(vResult.payload);
 				}else {
-					vErrHandling.throwError(pResponse, 400, 101, "INPUT_ERROR", vRetailerData.Errors);
+					RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 101, "INPUT_ERROR", vRetailerData.Errors);
 				}
 			}catch(pErr){
 				console.log(pErr);
 				if(pErr.errorCode == 101) {
-					vErrHandling.throwError(pResponse, 400, 101, "ERR_INVALID_CREDENTIAL");
+					RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 101, "ERR_INVALID_CREDENTIAL");
 				}
 			}
 	} 

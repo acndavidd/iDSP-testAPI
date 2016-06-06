@@ -4,7 +4,7 @@
 import {AccountController} from './controllers/account/account.controller';
 import {SequelizeService} from './services/sequelize.service';
 import {TargetsActualsController} from './controllers/targets-actuals.controller';
-import {RetailerController} from './controllers/retailer.controller';
+import {RetailerController} from './controllers/retailer/retailer.controller';
 
 var vPath = require("path");
 var vEnv = process.env.NODE_ENV || "DEVELOPMENT";
