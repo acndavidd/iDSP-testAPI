@@ -1,0 +1,50 @@
+{ 
+	"status" : 200,
+	"statusMessage" : "OK",
+	"recordCount" : "5",
+	"alertList" : [
+		{
+			"retailerID" : "9393137786",
+			"retailerName" : "RETAILER 1",
+			"retailerMIN" : "123456",
+			"date" : "20160606",
+			"valueSegment" : "LV",
+			"thresholdhit" : ""
+		},{
+			"retailerID" : "9079398429",
+			"retailerName" : "RETAILER 2",
+			"retailerMIN" : "123457",
+			"date" : "20160606",
+			"valueSegment" : "LV",
+			"thresholdhit" : ""
+		},{
+			"retailerID" : "9393137793",
+			"retailerName" : "RETAILER 3",
+			"retailerMIN" : "123458",
+			"date" : "20160606",
+			"valueSegment" : "MV",
+			"thresholdhit" : ""
+		},{
+			"retailerID" : "9216549553",
+			"retailerName" : "RETAILER 4",
+			"retailerMIN" : "123459",
+			"date" : "20160606",
+			"valueSegment" : "MV",
+			"thresholdhit" : ""
+		},{
+			"retailerID" : "9079398421",
+			"retailerName" : "RETAILER 5",
+			"retailerMIN" : "123450",
+			"date" : "20160606",
+			"valueSegment" : "HV",
+			"thresholdhit" : ""
+		},{
+			"retailerID" : "9287954921",
+			"retailerName" : "RETAILER 6",
+			"retailerMIN" : "123451",
+			"date" : "20160606",
+			"valueSegment" : "HV",
+			"thresholdhit" : ""
+		}
+	]
+}

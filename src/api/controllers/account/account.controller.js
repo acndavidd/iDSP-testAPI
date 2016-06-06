@@ -25,9 +25,9 @@ class AccountController {
             try {
                 let vAccount = new account_model_1.Account.Account(pRequest.body.Username, pRequest.body.Password);
                 if (vAccount.validate()) {
-                    let vLoginServiceURL = '/OPISNET/services/idsp/userValidation';
+                    let vLoginServiceURL = '/opisnet/services/idsp/userValidation';
                     let vPayLoad = yield AccountController._httpService.post(api_service_1.APIService.APIType.OPISNET, vLoginServiceURL, null, vAccount);
-                    if (vPayLoad.status == 200) {
+                    if (vPayLoad.status === 200) {
                         pResponse.status(200).json(vPayLoad);
                     }
                     else {
@@ -41,7 +41,12 @@ class AccountController {
                 }
             }
             catch (pErr) {
-                AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 400, pErr.code, pErr.desc);
+                if (pErr.code) {
+                    AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 400, pErr.code, pErr.desc);
+                }
+                else {
+                    AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 103, pErr);
+                }
             }
         });
     }
@@ -49,30 +54,37 @@ class AccountController {
         return __awaiter(this, void 0, Promise, function* () {
             try {
                 let vHttpSvc = new api_service_1.APIService.HTTPService();
-                let vPath = '/OPISNET/services/idsp/userAuthorization';
+                let vPath = '/opisnet/services/idsp/userAuthorization';
                 let vMPIN = new account_model_1.Account.MPIN(pRequest.params.id, pRequest.body.MPIN);
                 if (vMPIN.validate()) {
-                    let vResult = yield vHttpSvc.post(api_service_1.APIService.APIType.OPISNET, vPath, null, vMPIN);
+                    let vPayLoad = yield vHttpSvc.post(api_service_1.APIService.APIType.OPISNET, vPath, null, vMPIN);
                     // if success encrypt dsp id as token object
-                    if (vResult.status === 200) {
+                    if (vPayLoad.status === 200) {
                         let vTokenService = new token_service_1.TokenService();
                         let vTokenObj = new token_model_1.TokenObject();
                         vTokenObj.setDSPId(pRequest.params.id);
-                        vTokenObj.setOPISToken = vResult.AccessToken;
+                        vTokenObj.setOPISToken = vPayLoad.AccessToken;
                         let vTokenStr = vTokenService.encryptToken(vTokenObj);
+                        // set cookie session value with token
                         pResponse.cookie('accessToken', vTokenStr, { httpOnly: true });
-                        vResult.token = vTokenStr;
-                        vResult.remove('AccessToken');
+                        vPayLoad.accessToken = vTokenStr;
+                        delete vPayLoad.AccessToken;
+                        pResponse.status(200).json(vPayLoad);
                     }
-                    pResponse.status(vResult.status).json(vResult);
+                    else {
+                        AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 500, 121, 'ERR_INVALID_MPIN');
+                    }
                 }
                 else {
                     AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 100, 'INPUT_ERRORS', vMPIN.Errors);
                 }
             }
             catch (pErr) {
-                if (pErr.errorCode == 111) {
-                    AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 400, pErr.errorCode, "ERR_INVALID_MPIN");
+                if (pErr.code) {
+                    AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 400, pErr.code, pErr.desc);
+                }
+                else {
+                    AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 103, pErr);
                 }
             }
         });
