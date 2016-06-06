@@ -3,17 +3,20 @@
 import {DataAccessService} from '../../services/data-access.service';
 import {APIService} from '../../services/api.service';
 import {ErrorHandlingService} from '../../services/error-handling.service';
+import {TokenService} from '../../services/token.service';
 
 // import your model here
 import {AccountReceivableModel} from '../../models/input/account-receivables.model';
 import {RetailerOutputModel} from '../../models/output/retailer.model';
 import {RouteDayOutputModel} from '../../models/output/route-day.model';
 import {RetailerModel} from '../../models/input/retailer.model';
+import {TokenObject} from '../../models/token.model';
 
 //import {ErrHandlerService} from '../services/err.handler.service';
 
 export interface RetailerInterface{
 	getAccountReceivable(pRequest, pResponse): Promise<void>;
+	getRetailerThreshold(pRequest, pResponse): Promise<void>; 
 }
 
 
@@ -116,6 +119,33 @@ export class RetailerController implements RetailerInterface{
 			// 	};
 			// throw pResponse.json(vError);
 			RetailerController._errorHandling.throwError(400, 'Error in calling API Service', pErr);
+		}
+	}
+
+	async getRetailerThreshold(pRequest, pResponse) {
+		try{
+			let serviceURL: string = '/opisnet/services/idsp/dspalert';
+			let vTokenService = new TokenService();
+			let vTokebObject = new TokenObject();
+			let vToken = pResponse.locals.token;
+			console.log(vToken);
+			vTokebObject = vTokenService.decryptToken(vToken);
+			let params = {
+				username : vTokebObject.getDSPId()
+			};
+			console.log(params);
+			let vPayLoad = await RetailerController._httpService.post(APIService.APIType.OPISNET, serviceURL, null, params);
+			if(vPayLoad.status === 200) {
+				pResponse.status(200).json(vPayLoad);
+			}else { // api call success but error on the logic
+				
+			}
+		}catch(pErr) {
+			if(pErr.code) {
+				RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, pErr.code, pErr.desc);
+			}else {
+				RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 103, pErr);
+			}
 		}
 	}
 }

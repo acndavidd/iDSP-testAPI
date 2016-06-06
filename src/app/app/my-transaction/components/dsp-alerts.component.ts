@@ -35,8 +35,9 @@ export class DSPAlertsComponent {
     }
 
     loadAlert() {
-        this._http.get('/testSP', null).subscribe(
+        this._http.get('/retailer/threshold', null).subscribe(
             response => {
+                console.log(response.json());
                 this.vRetailerAlert = this.vAllRetailerAlert = response.json();
             },
             error => {

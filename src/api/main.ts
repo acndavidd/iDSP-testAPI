@@ -80,6 +80,7 @@ vRouter.get('/inventory/load',vInventoryController.load);
 
 let vRetailerController = new RetailerController();
 vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
+vRouter.get('/retailer/threshold', vRetailerController.getRetailerThreshold);
 // define instance of your controller and route here
 
 // let aa = new aa();
