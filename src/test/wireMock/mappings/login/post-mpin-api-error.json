@@ -1,7 +1,7 @@
 {
     "request": {
         "method": "POST",
-        "url": "/OPISNET/services/idsp/userAuthorization",
+        "url": "/opisnet/services/idsp/userAuthorization",
         "bodyPatterns" : [
             { "doesNotMatch" : ".*DSP00001.*" }
         ]

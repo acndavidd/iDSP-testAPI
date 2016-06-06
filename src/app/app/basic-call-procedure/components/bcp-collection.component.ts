@@ -130,7 +130,6 @@ export class BCPCollectionComponent {
     }
 
     getPaymentHistory() {
-
         console.log('masuk get payment history');
         return this.vPaymentHistory;
     }
