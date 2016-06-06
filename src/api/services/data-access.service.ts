@@ -56,7 +56,6 @@ export class DataAccessService implements DataAccessInterface {
 						vParams = '(\''+JSON.stringify(pParams)+'\')';
 					}else {
 						// default params for stored procedure if null object is passed as parameter
-						
 						// converting params object into parameter in stored procedure
 						if(pParams) {
 							vParams = '(';

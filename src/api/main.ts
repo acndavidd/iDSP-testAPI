@@ -80,6 +80,8 @@ vRouter.get('/inventory/physical',vInventoryController.physical);
 vRouter.get('/inventory/load',vInventoryController.load);
 
 let vRetailerController = new RetailerController();
+vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
+vRouter.get('/retailer/threshold', vRetailerController.getRetailerThreshold);
 // vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
 vRouter.get('/task',vRetailerController.task);
 vRouter.get('/retailer/summary',vRetailerController.retailerCallPreparation);
