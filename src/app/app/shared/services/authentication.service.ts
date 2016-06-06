@@ -65,36 +65,31 @@ export class AuthenticationService {
             Username : pUsername,
             Password : pPassword
         };
-        this._http.post('/login', JSON.stringify(vData)).subscribe(
+        this._http.post('/account', JSON.stringify(vData)).subscribe(
             response => {
-                let vResponse = response.json();
-                if(vResponse.Status === 200) {
-                    this.vDSPID = pUsername;
-                    alert('MPIN : ' + vResponse.MPIN);
-                    this._router.navigate(['Mpin']);
-                }else {
-                    this.vErrorMsg = vResponse.StatusMessage;
-                    this._modalService.showErrorModal(this.vErrorMsg);
-                }
+                this.vDSPID = pUsername;
+                alert('MPIN : ' + response.MPIN);
+                this._router.navigate(['Mpin']);
             },
             error => {
-                this.vErrorMsg = 'Failed connecting to login service';
-                console.log(error);
+                if(error.code === 121) { // Invalid credential error
+                    this.vErrorMsg = error.desc;
+                }else {
+                    this.vErrorMsg = 'Failed connecting to iDSP authentication service';
+                }
                 this._modalService.showErrorModal(this.vErrorMsg);
             }
         );
     }
 
     submitMPIN(pMPIN: string) {
-        console.log(this.vDSPID);
         let vData = {
-            Username : 'DSP00001',
             MPIN : pMPIN
         };
-        this._http.post('/login/MPIN', JSON.stringify(vData)).subscribe(
+        this._http.post('/account/'+this.vDSPID+'/MPIN', JSON.stringify(vData)).subscribe(
             response => {
                 let vResponse = response.json();
-                if(vResponse.Status === 200) {
+                if(vResponse.status === 200) {
                     // Set accessToken to localstorage for mobile apps
                     if(configChannel === 'app') {
                         localStorage.setItem('accessToken', vResponse.accessToken);

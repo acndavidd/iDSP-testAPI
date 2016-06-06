@@ -1,6 +1,4 @@
 import { Injectable } from 'angular2/core';
-import { Layout } from '../../../models/layout';
-import { LayoutService } from './layout.service';
 
 export module Modal {
     export var ModalType = {
@@ -45,7 +43,7 @@ export module Modal {
         private vDefaultCANCELButton: ModalButton;
         private vConfirmationCallBack: Function;
 
-        constructor(_layoutServie: LayoutService) {
+        constructor() {
             this.vShowModal = false;
             this.vButtons = [];
             this.vFootNote = '';
@@ -64,7 +62,7 @@ export module Modal {
             if(this.vModalType === ModalType.INFO || this.vModalType === ModalType.ERROR) {
                 this.vButtons.push(this.vDefaultOKButton);
             }else if(this.vModalType === ModalType.CONFIRMATION) {
-                this.setButtonType(ButtonType.YES_NO); //default is Yes No button
+                this.setButtonType(ButtonType.YES_NO); // default is Yes No button
             }else if(this.vModalType === ModalType.CUSTOM) {
 
             }

@@ -17,7 +17,7 @@ import {BasicCallProcedureComponent} from './basic-call-procedure/components/bas
 import {CloseDayComponent} from './close-day/components/close-day.component';
 import {SettingsComponent} from './settings/components/settings.component';
 import {VerificationComponent} from './verification/components/verification.component';
-import {MpinComponent} from './login/components/mpin.component';
+import {MpinComponent} from './login/components/mpin.component'    ;
 import {ModalComponent} from './shared/components/modal.component';
 import {RetailerRouteComponent} from './my-transaction/components/retailer-route.component';
 import {Modal} from './shared/services/modal.service';
@@ -61,7 +61,6 @@ declare var configChannel: any;
         PageNavigationService,
         SQLiteService,
         AuthenticationService,
-        Modal.ModalService,
         HeaderService,
         RetailerService,
         IdleService
@@ -113,7 +112,7 @@ export class IDSPComponent implements OnInit {
             this._pageNavigationService.gotoPreviousPage();
             console.log('angular back button');
         });
-        this._idleService.startTimer().subscribe();
+        // this._idleService.startTimer().subscribe();
     }
 
     ngOnInit() {
@@ -147,7 +146,7 @@ export class IDSPComponent implements OnInit {
 
     OnClick() {
         console.log('clicked');
-        this._idleService.resetTimeout();
+        // this._idleService.resetTimeout();
     }
 }
 
