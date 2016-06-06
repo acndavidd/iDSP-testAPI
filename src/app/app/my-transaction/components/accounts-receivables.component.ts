@@ -3,7 +3,6 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES, RouterOutlet, ROUTER_PROVIDERS }
 import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
-// import {RetailerService} from '../../shared/services/retailer.service';
 import {AccountsReceivablesService} from '../services/accounts-receivables-service';
 import {NgFor, NgModel} from 'angular2/common';
 import {Modal} from '../../shared/services/modal.service';
@@ -21,7 +20,6 @@ import {Modal} from '../../shared/services/modal.service';
 })
 
 export class AccountsReceivablesComponent {
-
     vReceivablesRouteList: any;
     vSearchedReceivablesRouteList: any;
     vAllReceivablesRouteList: any;
@@ -43,28 +41,43 @@ export class AccountsReceivablesComponent {
         this._headerService.setTitle('Accounts Receivables');
 
         var vDspId = 'DSP00001';
-        var vSource = 'iDSP';
         var vTempFilteredList = [];
   
         // Initial Data
         this.vSelectedRoute = 'inRoute';
         this.vFlag = 0;
-        this._accountsReceivablesService.getAllReceivablesRoute(vDspId,vSource).subscribe(
+        this._accountsReceivablesService.getAllReceivablesRoute(vDspId).subscribe(
             response => {
                 console.log('Get response from API : ' + JSON.stringify(response.json()));
-                this.setAllReceivablesRouteList(response.json().sort());
+
+                // sorted object by route number
+                this.setAllReceivablesRouteList(response.json()[0].sort(function(a, b) {
+                if (a.sequence === null && b.sequence === null) {
+                    return 0;
+                }
+                if (a.sequence === null) {
+                    return 1;
+                }
+                if (b.sequence === null) {
+                    return -1;
+                }
+                if (a.sequence > b.sequence) {
+                    return 1;
+                }
+                if (a.sequence < b.sequence) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }));
+                // set default value to display: all retailer which has route for today's task
                 this.setReceivablesRouteList(this.vAllReceivablesRouteList.filter(pFilter => {
                     return pFilter.sequence !== null;
                 }));
+                
                 this.setSearchedReceivablesRoute(this.vReceivablesRouteList);
-                for (var i = 0; i < this.vReceivablesRouteList.length; i++) {
-                    var x = this.vReceivablesRouteList[i].amount;
-                    this.vTotalReceivablesInRoute = (this.vTotalReceivablesInRoute + parseInt(x));
-                }
-                for (var j = 0; j < this.vAllReceivablesRouteList.length; j++) {
-                    var y = this.vAllReceivablesRouteList[j].amount;
-                    this.vTotalReceivablesAll = (this.vTotalReceivablesAll + parseInt(y));
-                }
+                this.vTotalReceivablesInRoute = response.json()[2].total_inroute_amount;
+                this.vTotalReceivablesAll = response.json()[1].total_receivable_amount;
                 },
             error => {
                 console.log('in acc component' + error.json());

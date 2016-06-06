@@ -28,7 +28,14 @@ export class AddEditPhysicalOrderComponent {
         private _pageNavigationService: PageNavigationService
         ) {
         this._layoutService.setCurrentPage('AddEditPhysicalOrder');
-        this._headerService.setTitle('Add / Edit Physical Order');
+        this._headerService.setTitle('Add Physical Order');
+    }
+
+    addLoadTransfer() {
+        console.log('Go to Retailer Sales Order');
+        this._modalService.showConfirmationModal('Confirm Physical Order with<br/>Total Amount <label class="vivid-pink">P 1,000</label>and<br/>Total Discount <label class="vivid-pink">P 100</label>',
+            this.gotoRetailerSalesOrder.bind(this),
+            null, Modal.ButtonType.OK_CANCEL);
     }
 
     gotoRetailerSalesOrder() {

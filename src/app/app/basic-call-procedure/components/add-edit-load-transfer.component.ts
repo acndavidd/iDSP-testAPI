@@ -9,6 +9,7 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 
 @Component({
     selector: 'add-edit-load-transfer',
+    // templateUrl: './app/basic-call-procedure/components/hc-add-edit-load-transfer.component.html',
     templateUrl: './app/basic-call-procedure/components/add-edit-load-transfer.component.html',
     directives: [
         NgModel,
@@ -31,6 +32,13 @@ export class AddEditLoadTransferComponent {
         ) {
         this._layoutService.setCurrentPage('AddEditLoadTransfer');
         this._headerService.setTitle('Add Load Transfer');
+    }
+
+    addLoadTransfer() {
+        console.log('Go to Retailer Sales Order');
+        this._modalService.showConfirmationModal('Confirm Load Transfer to <br/><label class="vivid-pink">99999000003</label> with <br/> Total Amount <label class="vivid-pink">P 2,000</label> and <br/>Total Discount <label class="vivid-pink">P 100</label>',
+            this.gotoRetailerSalesOrder.bind(this),
+            null, Modal.ButtonType.OK_CANCEL);
     }
 
     gotoRetailerSalesOrder() {

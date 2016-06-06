@@ -134,16 +134,39 @@ export class BCPCollectionComponent {
         return this.vPaymentHistory;
     }
 
-    skipCollection() {
+    // gotoSkipCollection() {
+        // nanti pegi ke SKIPP COLLECTION UI
+    // }
+
+    // skipCollection() {
+
+    //         console.log('Skip Collection');
+    //         let params = {
+    //         _pageNavigationService : this._pageNavigationService
+    //         };
+
+    //         this._modalService.toggleModal('Are you sure  <br/> you want to skip collection ?', 
+    //         Modal.ModalType.CONFIRMATION, 
+    //         {footNote : '* If you confirm to continue, <br/> You cannot go back to collection for this retailer', 
+    //         ModalButton : Modal.ButtonType.OK_CANCEL, 
+    //         callback : this.skipCollectionback, 
+    //         param : params,
+    //         } );
+    // }
+
+
+     skipCollection() {
+        console.log('Skip Collection');
         this._modalService.showConfirmationModal('Are you sure  <br/> you want to skip collection ?',
-            this.skipCollectionCallBack.bind(this),
-            '* If you confirm to continue, <br/> You cannot go back to collection for this retailer', 
-            Modal.ButtonType.OK_CANCEL);
+            this.skipCollectionback.bind(this),
+            '* If you confirm to continue, <br/> You cannot go back to collection for this retailer', Modal.ButtonType.OK_CANCEL);
     }
 
-    skipCollectionCallBack() {
+
+    skipCollectionback() {
         this._pageNavigationService.navigate('SkipCollection', null, null);
     } 
+
 
     gotoConfirmCollection() {
         this._pageNavigationService.navigate('ConfirmCollection', null, null);

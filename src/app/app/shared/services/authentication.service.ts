@@ -68,7 +68,8 @@ export class AuthenticationService {
         this._http.post('/account', JSON.stringify(vData)).subscribe(
             response => {
                 this.vDSPID = pUsername;
-                alert('MPIN : ' + response.MPIN);
+                let vResponse = response.json();
+                alert('MPIN : ' + vResponse.MPIN);
                 this._router.navigate(['Mpin']);
             },
             error => {
@@ -101,22 +102,12 @@ export class AuthenticationService {
                 }
             },
             error => {
-                this.vErrorMsg = 'failed connecting to login service';
-                this._modalService.showErrorModal(this.vErrorMsg);
-            }
-        );
-    }
-
-    test() {
-        this._http.get('/verifyToken').subscribe(
-            response => {
-                let vResponse = response.json();
-                if(vResponse.Status === 200) {
-                   alert(vResponse.TokenObject.body.DSP_ID);
+                if(error.code == 121) { // Invalid MPIN
+                    this.vErrorMsg = error.desc;
+                }else {
+                    this.vErrorMsg = 'failed connecting to iDSP MPIN verification service';
                 }
-            },
-            error => {
-                
+                this._modalService.showErrorModal(this.vErrorMsg);
             }
         );
     }

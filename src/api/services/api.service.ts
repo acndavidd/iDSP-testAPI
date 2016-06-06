@@ -44,7 +44,7 @@ export module APIService {
 			// build params url from object
 			if(pUrlParams) {
 				fullUrl = fullUrl + '?'
-				for(let vParam in pUrlParams){
+				for(let vParam in pUrlParams) {
 					fullUrl += vParam + "=" + pUrlParams[vParam] + "&";
 				}
 				fullUrl = fullUrl.substring(0,fullUrl.lastIndexOf('&'));
@@ -152,41 +152,16 @@ export module APIService {
 						}
 						vRequest(vRequestObj, function(pErr, pResponse, pBody){
 							if(pErr) {
-								// map HTTP Error
-								let Error = {
-									code: 0, // Error Code
-									desc:'' // Error Description
-								};
-								switch (pErr.code) {
-									case 'ECONNREFUSED' :
-										Error.code = 101;
-										Error.desc = "ERR_CONN_REFUSED";
-										break;
-									default :
-										console.log(pErr.code);
-										Error.code = 105;
-										Error.desc = "Unhandled error on HTTP Request";
-										break;
-									}
-								vErrorHandlingSvc.throwPromiseError(pReject, Error.code, Error.desc);
+								this.handleHTTPError(pErr);
 							}else {
-								console.log(pBody);
-								let vPayLoad = JSON.parse(pBody);
-								if(vPayLoad.status !== 200) { // success response from client api
-									vErrorHandlingSvc.throwPromiseError(pReject, 0, vPayLoad.statusMessage);
-								}else {
-									console.log('Response : ' + pResponse.statusCode);
-									if(pResponse.statusCode === 200) { // HTTP Success Response
-										pResolve(JSON.parse(pBody));
-										console.log(JSON.parse(pBody));
-									}else { // API server found but not returning response 200
-										vError = vCurrentContext.handleHTTPErrorResponse(pResponse);
-										vCurrentContext.vErrHandling.throwPromiseError(pReject, vError.code, vError.desc);
-									}
+								console.log('Response : ' + pResponse.statusCode);
+								if(pResponse.statusCode === 200) { // HTTP Success Response
+									console.log(JSON.parse(pBody));
+									pResolve(JSON.parse(pBody));
+								}else { // API server found but not returning response 200
+									let vError = vCurrentContext.handleHTTPErrorResponse(pResponse);
+									vCurrentContext.vErrHandling.throwPromiseError(pReject, vError.code, vError.desc);
 								}
-							}catch(pErr) {
-								console.log(pErr);
-								vCurrentContext.vErrHandling.throwPromiseError(pReject, 111, pErr.toString());
 							}
 						});
 					}catch(pErr) {

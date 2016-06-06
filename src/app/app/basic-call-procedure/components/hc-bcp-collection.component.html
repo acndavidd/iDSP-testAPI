@@ -41,7 +41,7 @@
     </div>
 
     <div *ngIf='vOutstandingShow'>
-		<div class="item-container sub">
+		<!--div class="item-container sub">
 			<div class="container">
 				<div class="cell">
 					<div class="container"><div class="cell width-45 padding-left-10 grey">Order#</div></div>
@@ -56,7 +56,149 @@
 				</div>
 	           	<div class="cell width-10"></div>
 			</div>
-		</div>
+		</div-->
+
+        <div class="item-container sub no-padding-item-container">
+            <div class="container">
+                <div class='cell vertical sulu'>
+                    <div class='vertical-text'>BCP</div>
+                </div>
+                <div class='cell'>
+                    <div class='container'>
+                        <div class='cell width-100'>
+                            <div class="container">
+                                <div class='cell'>
+                                    <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Order #</div></div>
+                                </div>
+                                <div class='cell'>
+                                    <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>12345</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='container'>
+                        <div class='cell width-100'>
+                            <div class="container">
+                                <div class='cell'>
+                                    <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Date</div></div>
+                                </div>
+                                <div class='cell'>
+                                    <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right vivid-pink'>2016-01-16  08:17</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='container'>
+                        <div class='cell width-100'>
+                            <div class="container">
+                                <div class='cell'>
+                                    <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Balance Amount</div></div>
+                                </div>
+                                <div class='cell'>
+                                    <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>P 1,000</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="item-container sub no-padding-item-container">
+            <div class="container">
+                <div class='cell vertical serenade'>
+                    <div class='vertical-text'>SELF</div>
+                </div>
+                <div class='cell'>
+                    <div class='container'>
+                        <div class='cell width-100'>
+                            <div class="container">
+                                <div class='cell'>
+                                    <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Order #</div></div>
+                                </div>
+                                <div class='cell'>
+                                    <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>56721</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='container'>
+                        <div class='cell width-100'>
+                            <div class="container">
+                                <div class='cell'>
+                                    <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Date</div></div>
+                                </div>
+                                <div class='cell'>
+                                    <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>2016-05-22  13:02</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='container'>
+                        <div class='cell width-100'>
+                            <div class="container">
+                                <div class='cell'>
+                                    <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Balance Amount</div></div>
+                                </div>
+                                <div class='cell'>
+                                    <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>P 1,500</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="item-container sub no-padding-item-container">
+            <div class="container">
+                <div class='cell vertical serenade'>
+                    <div class='vertical-text'>SELF</div>
+                </div>
+                <div class='cell'>
+                    <div class='container'>
+                        <div class='cell width-100'>
+                            <div class="container">
+                                <div class='cell'>
+                                    <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Order #</div></div>
+                                </div>
+                                <div class='cell'>
+                                    <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>68321</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='container'>
+                        <div class='cell width-100'>
+                            <div class="container">
+                                <div class='cell'>
+                                    <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Date</div></div>
+                                </div>
+                                <div class='cell'>
+                                    <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>2016-05-23  13:18</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='container'>
+                        <div class='cell width-100'>
+                            <div class="container">
+                                <div class='cell'>
+                                    <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Balance Amount</div></div>
+                                </div>
+                                <div class='cell'>
+                                    <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>P 1,000</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 	</div>
 
 	<div class="item-container" (click)='paymentShow()' id="payment-his-show-btn">

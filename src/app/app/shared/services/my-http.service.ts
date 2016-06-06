@@ -73,7 +73,7 @@ export class MyHttp {
                 .timeout(this.vTimeout, {status: 408})
                 .subscribe(
                     (res) => {
-                        pObserver.next(res.json());
+                        pObserver.next(res);
                         pObserver.complete();
                     },
                     (err) => {
