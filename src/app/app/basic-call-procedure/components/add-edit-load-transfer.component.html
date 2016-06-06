@@ -32,7 +32,7 @@
                     </select>
                 </div></div>
                 <div class='container'><div class='cell width-60 padding-right-5 align-right'>P 350</div></div>
-                <div class='container'><div class='cell width-60 padding-right-5 padding-left-5 align-right'><input class='width-100' id="load_amount"/></div></div>
+                <div class='container'><div class='cell width-60 padding-right-5 padding-left-5 align-right'><input class='width-100' id="load_amount" type="number" pattern="[0-9]+([,\.][0-9]+)?"/></div></div>
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
                 </div>
                 <div class='cell'>
                     <div class='container'><div class='cell width-60 padding-top-1 padding-bottom-1 padding-right-5 padding-left-5 align-right'><input class='width-100' id="promo_code"/></div></div>
-                    <div class='container'><div class='cell width-60 padding-top-1 padding-bottom-1 padding-right-5 padding-left-5 align-right'><input class='width-100' id="discount_amount"/></div></div>
+                    <div class='container'><div class='cell width-60 padding-top-1 padding-bottom-1 padding-right-5 padding-left-5 align-right'><input class='width-100' id="discount_amount" type="number" pattern="[0-9]+([,\.][0-9]+)?"/></div></div>
                     <div class='container'><div class='cell width-60 padding-right-5 align-right'>P 1,900</div></div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
 
     <div class='no-divider'>
         <div class='button' id='save'>
-            <div class='button-identifier' (click)="gotoRetailerSalesOrder()">CONFIRM</div>
+            <div class='button-identifier' (click)="addLoadTransfer()">CONFIRM</div>
         </div>
     </div>
 </div>    

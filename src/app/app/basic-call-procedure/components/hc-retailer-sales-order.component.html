@@ -89,7 +89,7 @@
             <div class='container'>
                 <div class='double-divider'>
                     <div class='button button-small' id='cancel'>
-                        <div class='button-identifier'>DISPUTE</div>
+                        <div class='button-identifier' (click)="confirmDisputeLoadTransfer()">DISPUTE</div>
                     </div>
                 </div>
                 <div class='double-divider'>
@@ -207,7 +207,7 @@
                     <div class='container'><div class='cell padding-left-10 width-50 grey'>Payment Status</div></div>
                 </div>
                 <div class='cell'>
-                    <div class='container'><div class='cell width-60 padding-top-1 padding-bottom-1 align-right'><input class='width-100' id="payment_amount"/></div></div>
+                    <div class='container'><div class='cell width-60 padding-top-1 padding-bottom-1 align-right'><input class='width-100' id="payment_amount" type="number" pattern="[0-9]+([,\.][0-9]+)?"/></div></div>
                     <div class='container'><div class='cell align-right width-60 green'>Full</div></div>
                 </div>
                 <div class='cell width-10'></div>
@@ -221,7 +221,7 @@
         </div>
     </div>
     <div class='double-divider'>
-        <div class='button' id='next' (click)="goToSalesOrderPayment()">
+        <div class='button' id='next' (click)="paySalesOrder()">
             <div class='button-identifier'>PAY</div>
         </div>
     </div>
