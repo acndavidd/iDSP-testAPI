@@ -1,6 +1,4 @@
 import { Injectable } from 'angular2/core';
-import { Layout } from '../../../models/layout';
-import { LayoutService } from './layout.service';
 
 export module Modal {
     export var ModalType = {
@@ -45,7 +43,7 @@ export module Modal {
         private vDefaultCANCELButton: ModalButton;
         private vConfirmationCallBack: Function;
 
-        constructor(_layoutServie: LayoutService) {
+        constructor() {
             this.vShowModal = false;
             this.vButtons = [];
             this.vFootNote = '';
