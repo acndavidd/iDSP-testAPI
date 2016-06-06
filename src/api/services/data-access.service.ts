@@ -28,9 +28,9 @@ export class DataAccessService implements DataAccessInterface {
 		return this.executeSP(pSPName,pParams);
 	}
 
-	getBrands(pSPName,pParams,pIsJSONFormat) {
+	getBrands(pSPName,pParams) {
 		console.log('Start Store Procedure get_brands');
-		return this.executeSP(pSPName,pParams,pIsJSONFormat);
+		return this.executeSP(pSPName,pParams);
 	}
 
 	getTargetsActuals(pSPName,pParams) {
@@ -56,18 +56,17 @@ export class DataAccessService implements DataAccessInterface {
 						vParams = '(\''+JSON.stringify(pParams)+'\')';
 					}else {
 						// default params for stored procedure if null object is passed as parameter
-						vParams = '(';
+						
 						// converting params object into parameter in stored procedure
 						if(pParams) {
-<<<<<<< HEAD
 							vParams = '(';
-=======
-							vParams = '';
->>>>>>> 17f68e4fb0e1bb2fa4255d324e5eff32fa2df4ea
 							for(let vParam in pParams){
 								vParams += "'" + pParams[vParam] + "',";
 							}
 							vParams = vParams.substring(0,vParams.lastIndexOf(',')) + ');';
+						}
+						else{
+							vParams = '();';
 						}
 					}
 					// build query to execute stored procedure
