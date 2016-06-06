@@ -90,7 +90,7 @@ export class RetailerSalesOrderComponent {
     disputeLoadTransfer() {
         console.log('Save Dispute Amount');
         this._modalService.toggleModal('Dispute with <br/>Amount <label class="vivid-pink">P 2,000</label> is recorded',
-            Modal.ModalType.INFO, {footNote : '*Please check dispute amount in load inventory'})
+            Modal.ModalType.INFO, {footNote : '*Please check dispute amount in load inventory'});
     }
 
 

@@ -68,7 +68,8 @@ export class AuthenticationService {
         this._http.post('/account', JSON.stringify(vData)).subscribe(
             response => {
                 this.vDSPID = pUsername;
-                alert('MPIN : ' + response.MPIN);
+                let vResponse = response.json();
+                alert('MPIN : ' + vResponse.MPIN);
                 this._router.navigate(['Mpin']);
             },
             error => {
