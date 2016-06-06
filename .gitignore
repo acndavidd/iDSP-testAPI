@@ -6,3 +6,4 @@ src/api/services/orm.service.js
 src/api/services/token.service.js
 src/cordova
 *.js
+*.cmd

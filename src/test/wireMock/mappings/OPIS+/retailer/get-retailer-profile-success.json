@@ -1,0 +1,9 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPattern": "/OPISNET/services/idsp/rtprofile\\?username=[a-zA-Z0-9]+\\&?retailerid=[a-zA-Z0-9]+"
+    },
+    "response": {
+        "bodyFileName": "OPIS+/administration/get-retailer-profile-success.json"
+    }
+}
