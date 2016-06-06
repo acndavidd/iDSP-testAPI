@@ -49,7 +49,7 @@ export class BasicCallProcedureComponent {
 
     gotoAnotherPage() {
         // ACTUALLY BASED ON STATUS, BUT FOR NOW JUST GO TO CALL PREP FIRST
-        this._pageNavigationService.navigate('AddEditLoadTransfer', null, null);
+        this._pageNavigationService.navigate('CallPreparation', null, null);
     }
 
     // gotoAnotherPage(pSelectedRetailer) {
