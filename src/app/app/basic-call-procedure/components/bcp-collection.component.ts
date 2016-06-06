@@ -130,7 +130,6 @@ export class BCPCollectionComponent {
     }
 
     getPaymentHistory() {
-
         console.log('masuk get payment history');
         return this.vPaymentHistory;
     }
@@ -139,27 +138,35 @@ export class BCPCollectionComponent {
         // nanti pegi ke SKIPP COLLECTION UI
     // }
 
-    skipCollection() {
+    // skipCollection() {
 
-            console.log('Skip Collection');
-            let params = {
-            _pageNavigationService : this._pageNavigationService
-            };
+    //         console.log('Skip Collection');
+    //         let params = {
+    //         _pageNavigationService : this._pageNavigationService
+    //         };
 
-            this._modalService.toggleModal('Are you sure  <br/> you want to skip collection ?', 
-            Modal.ModalType.CONFIRMATION, 
-            {footNote : '* If you confirm to continue, <br/> You cannot go back to collection for this retailer', 
-            ModalButton : Modal.ButtonType.OK_CANCEL, 
-            callback : this.skipCollectionback, 
-            param : params,
-            } );
+    //         this._modalService.toggleModal('Are you sure  <br/> you want to skip collection ?', 
+    //         Modal.ModalType.CONFIRMATION, 
+    //         {footNote : '* If you confirm to continue, <br/> You cannot go back to collection for this retailer', 
+    //         ModalButton : Modal.ButtonType.OK_CANCEL, 
+    //         callback : this.skipCollectionback, 
+    //         param : params,
+    //         } );
+    // }
+
+
+     skipCollection() {
+        console.log('Skip Collection');
+        this._modalService.showConfirmationModal('Are you sure  <br/> you want to skip collection ?',
+            this.skipCollectionback.bind(this),
+            '* If you confirm to continue, <br/> You cannot go back to collection for this retailer', Modal.ButtonType.OK_CANCEL);
     }
 
-    skipCollectionback(pParam) {
 
-            pParam._pageNavigationService.navigate('SkipCollection', null, null);
-
+    skipCollectionback() {
+        this._pageNavigationService.navigate('SkipCollection', null, null);
     } 
+
 
     gotoConfirmCollection() {
         this._pageNavigationService.navigate('ConfirmCollection', null, null);

@@ -1,6 +1,4 @@
 import { Injectable } from 'angular2/core';
-import { Layout } from '../../../models/layout';
-import { LayoutService } from './layout.service';
 
 export module Modal {
     export var ModalType = {
@@ -45,13 +43,10 @@ export module Modal {
         private vDefaultCANCELButton: ModalButton;
         private vConfirmationCallBack: Function;
 
-        constructor(_layoutServie: LayoutService) {
+        constructor() {
             this.vShowModal = false;
             this.vButtons = [];
             this.vFootNote = '';
-            let vCloseModalFunction = this.closeModal.bind(this);
-            this.vDefaultOKButton = new ModalButton('ok-button', 'green', 'OK', vCloseModalFunction, null);
-            this.vDefaultCANCELButton  = new ModalButton('cancel-button', 'green', 'CANCEL', vCloseModalFunction, null);
         }
 
         getModalType() {
@@ -59,6 +54,9 @@ export module Modal {
         }
 
         setModalType(pModalType: number) {
+            let vCloseModalFunction = this.closeModal.bind(this);
+            this.vDefaultOKButton = new ModalButton('ok-button', 'green', 'OK', vCloseModalFunction, null);
+            this.vDefaultCANCELButton  = new ModalButton('cancel-button', 'green', 'CANCEL', vCloseModalFunction, null);
             this.vModalType = pModalType;
             this.vButtons = [];
             if(this.vModalType === ModalType.INFO || this.vModalType === ModalType.ERROR) {
@@ -66,7 +64,7 @@ export module Modal {
             }else if(this.vModalType === ModalType.CONFIRMATION) {
                 this.setButtonType(ButtonType.YES_NO); // default is Yes No button
             }else if(this.vModalType === ModalType.CUSTOM) {
-
+                // this.setButtonType(ButtonType);
             }
         }
 
@@ -82,7 +80,6 @@ export module Modal {
                 this.vButtons.push(this.vDefaultOKButton);
                 this.vButtons.push(this.vDefaultCANCELButton);
             }else if(pButtonType === ButtonType.CUSTOM) {
-
             }
         }
 
@@ -150,8 +147,19 @@ export module Modal {
         }
 
         toggleModal(pModalMessage:string, pModalType?:number, pArgs?:any) {
+            this.setFootNote('');
+            this.setModalMessage('');
             this.vModalMessage = pModalMessage;
+            if(pArgs) {
+                if(pArgs.footNote) {
+                    this.setFootNote(pArgs.footNote);
+                }
+                if(pArgs.callback) {
+                    this.setConfirmationCallBack = pArgs.callback;
+                }
+            }
             this.setModalType(pModalType);
+            this.showModal();
             /* 
             this.vModalMessage = pModalMessage;
             this.setModalState(true);

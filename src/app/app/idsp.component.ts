@@ -62,7 +62,6 @@ declare var configChannel: any;
         PageNavigationService,
         SQLiteService,
         AuthenticationService,
-        Modal.ModalService,
         HeaderService,
         RetailerService,
         IdleService
@@ -119,7 +118,7 @@ export class IDSPComponent implements OnInit {
             this._pageNavigationService.gotoPreviousPage();
             console.log('angular back button');
         });
-        this._idleService.startTimer().subscribe();
+        // this._idleService.startTimer().subscribe();
     }
 
     ngOnInit() {
@@ -153,7 +152,7 @@ export class IDSPComponent implements OnInit {
 
     OnClick() {
         console.log('clicked');
-        this._idleService.resetTimeout();
+        // this._idleService.resetTimeout();
     }
 }
 
