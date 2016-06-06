@@ -17,7 +17,7 @@
 	    	</div>
 		    <div class="modal-footer">
 	    		<div [ngClass]="{one:getButtons().length === 1 , two:getButtons().length === 2}">
-		        	<div *ngFor="#button of getButtons()" class="button {{button.color_style}}" id="{{button.id}}" (click)="callBack(button)">{{button.display}}</div>
+		        	<div *ngFor="#button of getButtons()" class="button {{button.color_style}}" id="{{button.id}}" (click)="callback(button)">{{button.display}}</div>
 	        	</div>
 		    </div>
 		    <div class="foot-note" [innerHTML]="getFootNote()">

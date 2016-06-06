@@ -1,25 +1,46 @@
+import {ErrorHandlingService} from './error-handling.service';
+import {TokenObject} from '../models/token.model';
+
 var vPath = require("path");
 var vEnv = process.env.NODE_ENV || "development";
 var vConfig = require(vPath.join(__dirname, '..', 'config', 'config.json'))[vEnv];
-//var vUuid = require('uuid');
 var vNJwt = require('njwt');
 
-export class TokenService{
+export interface TokenInterface {
+	encryptToken(pObject: any): string;
+	decryptToken(pToken: string): TokenObject;
+}
 
-	generateToken(pObj?:any):string{
-		let vSigningkey = vConfig.token.key;
-		let vClaims = [];
-		vClaims.push(pObj);
-		var vJwt = vNJwt.create(pObj,vSigningkey);
-		var vToken = vJwt.compact();
-		return vToken;
+export class TokenService implements TokenInterface {
+
+	private static _errorHandling: ErrorHandlingService;
+
+	constructor() {
+		TokenService._errorHandling = new ErrorHandlingService();
 	}
 
-	verifyToken(pToken:string){
+	encryptToken(pObject: TokenObject): string{
 		try{
-			return vNJwt.verify(pToken,vConfig.token.key);
+			// load sign in key from config files
+			let vSigningkey = vConfig.token.key;
+			// encrypt token
+			let vClaims = [];
+			vClaims.push(pObject);
+			var vJwt = vNJwt.create(pObject,vSigningkey);
+			var vToken = vJwt.compact();
+			return vToken;
+		}catch(pErr) {
+
+		}
+	}
+
+	decryptToken(pToken:string): TokenObject{
+		try{
+			// load sign in key from config files
+			let vSigningkey = vConfig.token.key;
+			return vNJwt.verify(pToken,vSigningkey);
 		}catch(pErr){
-			throw pErr;
+			
 		}
 	}
 }

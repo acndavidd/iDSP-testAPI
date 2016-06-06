@@ -1,0 +1,12 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPattern": "/OPISNET/services/idsp/DSPinventory\\?username=[a-zA-Z0-9]+\\&type=physical"
+    },
+    "response": {
+        "status": 200,   
+        "bodyFileName": "OPIS+/inventory/dsp-physical-inventory-success.json"
+    }
+}
+
+

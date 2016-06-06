@@ -1,5 +1,5 @@
 {
-  "development": {
+  "DEVELOPMENT": {
     "port" : 8080,
     "db" : {
       "dialect"  : "postgres",
@@ -16,13 +16,9 @@
           "idle" : 10000
       }
     },
-    "model" : {
-        "dir" : "models",
-        "naming" : ".js"
-    },
-    "service" : {
-      "OPIS+" : "http://localhost:7777",
-      "ELP" : "http://localhost:7777",
+    "services" : {
+      "OPIS+" : "http://localhost:5678",
+      "ELP" : "http://localhost:5678",
       "timeout" : 15000
     },
     "token" : {

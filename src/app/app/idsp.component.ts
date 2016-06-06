@@ -18,6 +18,7 @@ import {CloseDayComponent} from './close-day/components/close-day.component';
 import {SettingsComponent} from './settings/components/settings.component';
 import {VerificationComponent} from './verification/components/verification.component';
 import {MpinComponent} from './login/components/mpin.component';
+import {PasscodeLockComponent} from './login/components/passcode-lock.component';
 import {ModalComponent} from './shared/components/modal.component';
 import {RetailerRouteComponent} from './my-transaction/components/retailer-route.component';
 import {Modal} from './shared/services/modal.service';
@@ -91,13 +92,18 @@ declare var configChannel: any;
         component: MpinComponent
     },
     {
+        path: '/passcodeLock',
+        name: 'PasscodeLock',
+        component: PasscodeLockComponent
+    },
+    {
         path: '/**',
         redirectTo: ['Starter', 'Login']
     }
 
 ])
 export class IDSPComponent implements OnInit {
-
+    vModalMessage;
     globalListenFunc: Function;
     timerObservables: Observable<any>;
     constructor ( private _matchMediaService: MatchMediaService,

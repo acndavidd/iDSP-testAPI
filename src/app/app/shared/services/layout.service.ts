@@ -145,6 +145,12 @@ export class LayoutService {
             this.vOldCurrentPage = 'Login';
             this.vOldCurrentPageParams = null;
             this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
+        } else if (
+            pCurrent === 'PasscodeLock') {
+            this._pageNavigationService.resetListPreviousData();
+            this.vOldCurrentPage = 'Mpin';
+            this.vOldCurrentPageParams = null;
+            this._pageNavigationService.addListPreviousData(this.vOldCurrentPage, this.vOldCurrentPageParams);
         }
         // BEFORE LOGIN PAGE - END
 

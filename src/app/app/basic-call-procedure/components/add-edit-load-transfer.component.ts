@@ -19,6 +19,8 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 
 export class AddEditLoadTransferComponent {
 
+    vDetailPromo = false;
+    vArrowMap   = false;
 
     constructor (
         private _layoutService: LayoutService,
@@ -29,10 +31,15 @@ export class AddEditLoadTransferComponent {
         private _pageNavigationService: PageNavigationService
         ) {
         this._layoutService.setCurrentPage('AddEditLoadTransfer');
-        this._headerService.setTitle('Add / Edit Load Transfer');
+        this._headerService.setTitle('Add Load Transfer');
     }
 
     gotoRetailerSalesOrder() {
         this._pageNavigationService.navigate('RetailerSalesOrder', null, null);
+    }
+
+    detailPromo() {
+        this.vDetailPromo = !this.vDetailPromo;
+        this.vArrowMap = !this.vArrowMap;
     }
 }

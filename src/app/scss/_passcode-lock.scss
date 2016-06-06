@@ -1,0 +1,121 @@
+// li {
+// 	&.left{
+// 		float: left;
+// 		width:10%;
+// 	}	
+// }
+
+&.cancel-passcode{
+	font-size:4vw;
+}
+
+&.password-container{
+	color: #FFF;
+    font-size: 5vw;
+    text-align: center;
+    height: 9vw;
+}
+
+&.icon-backspace {
+    background: url(#{$icon-backspace})no-repeat;
+    background-position: center;
+    background-size: 6vw;
+    height: 8vw;
+}
+
+
+.container-mpin {
+	background: url("../img/login_bg.png") no-repeat center center;
+	z-index: 50;
+	position: fixed;
+    left: 0;
+    right: 0;
+	height: 100%;
+	text-align :center;
+
+	.anti-spy {
+                width: 100%;
+                position: absolute;
+                background-color: rgba(0, 0, 0, 0.4);
+                height : 100%;
+            }
+
+	.passcode-item-container{
+	    width: 100%;
+	    overflow-x: hidden;
+	    float:left;
+	    margin-top:5%;
+	    margin-bottom:5%;
+	    color: $white;
+	    font-size:7vw;
+
+
+	    .keyboard-line{
+	    	width: 100%;
+	    	padding: 5%;
+
+
+		    .cell-keyboard-30{
+		    	width: 30%;
+		    	height: 8vw;
+		    	float: left;
+		    	border-bottom:1px solid $white;
+		    	padding-top: 2%;
+	    		padding-bottom: 2%;
+		    }
+
+
+		    .cell-keyboard-30:active{
+		    	background-color:$dark-grey;
+		    }
+		}
+
+		.passcode-line{
+			width: 70%;
+	    	padding: 0 19%;
+
+
+		    .cell-icon-25{
+		    	width: 25%;
+		    	height: 8vw;
+		    	float: left;
+		    	padding-top: 2%;
+	    		padding-bottom: 2%;
+
+	    		&.empty{
+	    			background: url(#{$image-passcode-empty})no-repeat;
+		    		background-size:8vw;
+	    		}
+
+	    		&.fill{
+	    			background: url(#{$image-passcode-fill})no-repeat;
+		    		background-size:8vw;
+	    		}
+		    }
+		}
+	}
+
+	.container-logo-passcode{
+	    width: 100%;
+	    overflow-x: hidden;
+	    float:left;
+	    margin-top:5%;
+	    margin-bottom:5%;
+	    color: $white;
+	    font-size:7vw;
+
+	    .passcode-smart-logo {
+			display: block;
+	        width: 100%;
+	        height:10%;
+	        background: 
+	        url("../img/smart-logo.png")
+	        no-repeat;
+	        background-position:center;
+	        background-size: 30vw;
+	        z-index: 90;
+			position: fixed;
+		}
+	}
+
+}
