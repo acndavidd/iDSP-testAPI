@@ -8,6 +8,8 @@ import {RetailerOutputProfileModel} from '../../models/output/retailer-profile.m
 import {RetailerOutputModel} from '../../models/output/retailer.model';
 import {RouteDayOutputModel} from '../../models/output/route-day.model';
 import {ErrorHandlingService} from '../../services/error-handling.service';
+import {PhysicalInventoryModel} from '../../models/input/retailer/physical-inventory.model';
+
 //import {ErrHandlerService} from '../services/err.handler.service';
 
 export interface RetailerInterface{
@@ -146,8 +148,7 @@ export class RetailerController implements RetailerInterface{
 	}
 
 	async task(pRequest, pResponse) {
-			console.log("Controller Start getting retailer route for BCP");
-
+			console.log("Start getting retailer route for BCP");
 			var vSalesPerson = pRequest.query.username;
 			try{
 				
@@ -158,49 +159,54 @@ export class RetailerController implements RetailerInterface{
 
 					// Catch result from API
 					let vResult = await RetailerController._httpService.get(APIService.APIType.OPISNET, vPath, null, vRetailerData);
-					var vRetailer = vResult.payload.RetailerList;
+
+					console.log('total record : '+JSON.stringify(vResult.recordCount));
+					
+					var vTotalRetailer = vResult.recordCount;
 					var vAllRetailers= [];
 
 					// Start getting the retailer details
-					for(var i = 0; i < vResult.payload.RetailerList.length; i++) {
-							var vRetailerAsJSON = new RetailerOutputModel(vResult.payload.RetailerList[i].retailerId, vResult.payload.RetailerList[i].storeName, vResult.payload.RetailerList[i].outletType, vResult.payload.RetailerList[i].retailerMinDetails, vResult.payload.RetailerList[i].retailerAddress, vResult.payload.RetailerList[i].numberofSELFTransaction, vResult.payload.RetailerList[i].numberofAgingSELFTransaction, vResult.payload.RetailerList[i].totalAmountofSELFTransaction, vResult.payload.RetailerList[i].dspId, vResult.payload.RetailerList[i].dspName).param_to_db;
 
-							vAllRetailers = vAllRetailers.concat(vRetailerAsJSON);
+					if (vTotalRetailer > 0 ){
+						for(var i = 0; i < vResult.recordCount; i++) {
+								var vRetailerAsJSON = new RetailerOutputModel(vResult.retailerList[i].retailerId, vResult.retailerList[i].storeName, vResult.retailerList[i].outletType, vResult.retailerList[i].retailerMinDetails, vResult.retailerList[i].retailerAddress, vResult.retailerList[i].numberofSELFTransaction, vResult.retailerList[i].numberofAgingSELFTransaction, vResult.retailerList[i].totalAmountofSELFTransaction, vResult.retailerList[i].dspId, vResult.retailerList[i].dspName).param_to_db;
+
+								vAllRetailers = vAllRetailers.concat(vRetailerAsJSON);
+							}
+
+						try {	
+
+							let vResultData = await RetailerController._dataAccess.getRouteDay('get_route_day', vAllRetailers ,true);
+							// console.log('All result ' + JSON.stringify(vResultData));
+							pResponse.json(vResultData.sort(function(a, b) {
+									if (a.getroute.sequence_no === null && b.getroute.sequence_no === null) {
+										return 0;
+									}
+									if (a.getroute.sequence_no === null) {
+										return 1;
+									}
+									if (b.getroute.sequence_no === null) {
+										return -1;
+									}
+									if (parseInt(a.getroute.sequence_no) > parseInt(b.getroute.sequence_no)) {
+										return 1;
+									}
+									if (parseInt(a.getroute.sequence_no) < parseInt(b.getroute.sequence_no)) {
+										return -1;
+									} else {
+										return 0;
+									}
+								}));
 						}
-						
-					try {	
-						// Start getting the route day from store procedure	ORM									
-						// let vOrmService:ORMService = new ORMService();
-						// let vResultData = await vOrmService.sp('get_route_day', vAllRetailers ,true);
-
-
-						let vResultData = await RetailerController._dataAccess.getRouteDay('get_route_day', vAllRetailers ,true);
-						console.log('All result ' + JSON.stringify(vResultData));
-						// pResponse.status(vResultData.status).json(vResultData.payload.sort(function(a, b) {
-						// 		if (a.getroute.sequence_no === null && b.getroute.sequence_no === null) {
-						// 			return 0;
-						// 		}
-						// 		if (a.getroute.sequence_no === null) {
-						// 			return 1;
-						// 		}
-						// 		if (b.getroute.sequence_no === null) {
-						// 			return -1;
-						// 		}
-						// 		if (parseInt(a.getroute.sequence_no) > parseInt(b.getroute.sequence_no)) {
-						// 			return 1;
-						// 		}
-						// 		if (parseInt(a.getroute.sequence_no) < parseInt(b.getroute.sequence_no)) {
-						// 			return -1;
-						// 		} else {
-						// 			return 0;
-						// 		}
-						// 	}));
-					}
-					catch(pErr)
-					{
-						throw pErr;
-					}
-				 	
+						catch(pErr)
+						{
+							console.log('Cannot Get Data From Database');
+							throw pErr;
+						}
+				 	}else
+				 	{
+				 		console.log('No Route for Today');
+				 	}
 				}else {
 					RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 101, "INPUT_ERROR", vRetailerData.Errors);
 				}
@@ -214,14 +220,12 @@ export class RetailerController implements RetailerInterface{
 
 	async retailerCallPreparation(pRequest,pResponse) {
 
-		console.log("Controller Start getting retailer route for BCP");
+		console.log("Start getting Call Preparation");
 
 				var vSalesPerson = pRequest.query.username;
 				var vRetailerId = pRequest.query.retailerid;
 
-			let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
 			try{
-		
 				let vPath:string = '/OPISNET/services/idsp/rtprofile';
 				let vRetailerData = new RetailerProfileModel(vSalesPerson,vRetailerId);
 				// console.log('parammmm' + JSON.stringify(vRetailerData));
@@ -229,9 +233,9 @@ export class RetailerController implements RetailerInterface{
 				if(vRetailerData.validate()) {
 					// Catch result from API
 					let vResult = await RetailerController._httpService.get(APIService.APIType.OPISNET, vPath, null, vRetailerData);
+					// console.log('For Call procedure'+JSON.stringify(vResult));
 
-					console.log('For Call procedure'+JSON.stringify(vResult.payload));
-					pResponse.status(vResult.status).json(vResult.payload);
+					pResponse.status(200).json(vResult.retailerProfileList);
 				}else {
 					RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 101, "INPUT_ERROR", vRetailerData.Errors);
 				}
@@ -305,90 +309,55 @@ export class RetailerController implements RetailerInterface{
 	}
 
 	async physicalInventory(pRequest,pResponse) {
+		console.log("Start getting Physical Inventory");
+
+				var vSalesPerson = pRequest.body.salesPerson;
+				var vRetailerId = pRequest.body.retailerId;
 		try{
-			console.log("Start getting Physical Inventory");
-
-			var vSalesPerson = pRequest.body.salesPerson;
-			var vSelectedRetailId = pRequest.body.retailerId;
-
-			// console.log(vSelectedRetailId+'retailer id');
-
-			var vOrmSvc = new ORMService();
-
-			let vParams = {
-				sales_person : vSalesPerson,
-				selected_ret_id : vSelectedRetailId
-				
-			};
-
-			var vResult = [{
-				"brand":"SKU1",
-				"last_qty_sold":"650",
-				"transaction_date":"04/01/2016",
-				"beginning_balance":"1000",
-				"retailer_id":"RTL00001"
-			}]
-
-			// console.log("Query Done with result : "+ JSON.stringify(vResponse));
-			var vResponse = {
-						"status" : "Success",
-						"errorMessage" : "",
-						"result" : vResult
-					};
-			
-			pResponse.json(vResponse);
+			let vParam = new PhysicalInventoryModel(vSalesPerson, vRetailerId);
+			console.log('Param Physical Inventory : ' + JSON.stringify(vParam));
+				if(vParam.validate()) {
+					let vResult = await RetailerController._dataAccess.getPhysicalInventory('get_physical_inventory', vParam);
+					// console.log('All Result Physical Inventory : ' + JSON.stringify(vResult));
+					pResponse.json(vResult);
+				}else {
+					RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 100, 'INPUT_ERRORS', vParam.Errors);
+				}
 		}
-		catch(pErr)
-		{
-			console.log("Failed to Query Physical Inventory with error message" + pErr);
-
-			var vError = {
-						"status" : "Error",
-						"errorMessage" : pErr,
-						"result" : null
-					};
-			pResponse.json(vError);
+		catch(pErr) {
+			if(pErr.errorCode === 111) {
+				RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 111, 'INVALID_CREDENTIALS');
 		}
+		else if(pErr.errorCode === 112) {// 
+
+			}
+		}
+	
 	}
 
-	async paymentHistory(pRequest,pResponse) {
+	async collection(pRequest,pResponse) {
+	console.log("Start getting collection");
+
+				var vSalesPerson = pRequest.body.salesPerson;
+				var vRetailerId = pRequest.body.retailerId;
 		try{
-
-			console.log("Start getting Physical Inventory");
-
-			var vSelectedRetailId = pRequest.body.retailerId;
-
-			console.log(vSelectedRetailId+'retailer id');
-
-			var vOrmSvc = new ORMService();
-
-			let vParams = {
-				selected_ret_id : vSelectedRetailId,
-				interval_days : 30
-				
-			};
-
-			var vResult = await vOrmSvc.sp('get_payment_history', vParams );
-			console.log("Query Done with result : "+ JSON.stringify(vResponse));
-			var vResponse = {
-						"status" : "Success",
-						"errorMessage" : "",
-						"result" : vResult
-					};
-			
-			pResponse.json(vResponse);
-
+			let vParam = new PhysicalInventoryModel(vSalesPerson, vRetailerId);
+			console.log('Param Physical Inventory : ' + JSON.stringify(vParam));
+				if(vParam.validate()) {
+					let vResult = await RetailerController._dataAccess.getCollection('get_collection', vParam);
+					// console.log('All Result Physical Inventory : ' + JSON.stringify(vResult));
+					pResponse.json(vResult);
+				}else {
+					RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 100, 'INPUT_ERRORS', vParam.Errors);
+				}
 		}
-		catch(pErr)
-		{
-			console.log("Failed to Query Payment History" + pErr);
+		catch(pErr) {
+			if(pErr.errorCode === 111) {
+				RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 111, 'INVALID_CREDENTIALS');
+		}
+		else if(pErr.errorCode === 112) {// 
 
-			var vError = {
-						"status" : "Error",
-						"errorMessage" : pErr,
-						"result" : null
-					};
-			pResponse.json(vError);
+			}
 		}
 	}
 

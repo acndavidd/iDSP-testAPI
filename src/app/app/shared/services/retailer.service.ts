@@ -64,18 +64,19 @@ export class RetailerService {
             retailerId : pRetailerID
         };
 
-        return this._http.post('/physicalInventory', JSON.stringify(vData));
+        return this._http.post('/retailer/physicalInventory', JSON.stringify(vData));
 
     }
 
-    getPaymentHistory(pRetailerID) {
+    getCollection(pRetailerID) {
         console.log('Starts get payment history of' + pRetailerID);
 
           let vData = {
+            salesPerson : 'DSP00001',
             retailerId : pRetailerID
         };
 
-        return this._http.post('/paymentHistory', JSON.stringify(vData));
+        return this._http.post('/retailer/collection', JSON.stringify(vData));
 
     }
 

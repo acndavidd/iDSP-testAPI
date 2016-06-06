@@ -1,8 +1,8 @@
 {
-	"Status" : 200,
-	"StatusMessage" : "OK",
-	"RecordCount" : 1,
-	"RetailerProfileList": [
+	"status" : 200,
+	"statusMessage" : "OK",
+	"recordCount" : 1,
+	"retailerProfileList": [
 		{
 			"retailerID" : "RTL00001",
 			"storeName" : "Tamara Cell",

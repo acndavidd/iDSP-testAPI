@@ -29,6 +29,7 @@ export class CallPreparationComponent {
     vLoadWallet;
     vPhysicalInventory;
     vSelectedRetailCallId;
+    vCollection;
 
     constructor (
         private _layoutService: LayoutService,
@@ -52,7 +53,7 @@ export class CallPreparationComponent {
 
         this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
         response => {
-                this.vSelectedRetail = response.json().RetailerProfileList;
+                this.vSelectedRetail = response.json();
                 console.log( 'result : ' + this.vSelectedRetail);
            
         },
@@ -76,21 +77,22 @@ export class CallPreparationComponent {
         //     console.log(error);
         // });
 
-        // this._retailerService.getPhysicalInventory(this.vSelectedRetailId).subscribe(
-        // response => {
-        //     if (response.json().status === 'Success') {
-        //         console.log('Query Success to Get Physical Inventory' + JSON.stringify(response.json().result));
-        //         this.vPhysicalInventory = response.json().result;
-        //         console.log( 'result : ' + this.vPhysicalInventory );
+        this._retailerService.getPhysicalInventory(this.vSelectedRetailId).subscribe(
+        response => {               
+                this.vPhysicalInventory = response.json();
+        },
+        error => {
+            console.log(error);
+        });
 
-        //     } else {
-        //         console.log( 'Query Failed to Get Physical Inventory' );
-        //         this.vPhysicalInventory = null;
-        //     }
-        // },
-        // error => {
-        //     console.log(error);
-        // });
+        this._retailerService.getCollection(this.vSelectedRetailId).subscribe(
+        response => {               
+                this.vCollection = response.json();
+        },
+        error => {
+            console.log(error);
+        });
+
 
         // console.log('update start date where call_id' + this.vSelectedRetailCallId);
 
@@ -155,6 +157,11 @@ export class CallPreparationComponent {
 
     getPhysicalInventory() {
        return this.vPhysicalInventory;
+    }
+
+    getCollection()
+    {
+        return this.vCollection;
     }
 
 }

@@ -171,23 +171,24 @@
 				    <div class='cell width-10'></div>
 				</div>
 			</div>
-			<div class="item-container sub">
-				<div class="container">
-					<div class='cell'>
-				        <div class='container'><div class='cell width-50 padding-left-10'>Date</div></div>
-				        <div class='container'><div class='cell width-50 padding-left-10'>04/03/2016</div></div>
-				        <div class='container'><div class='cell width-50 padding-left-10'>04/02/2016</div></div>
-				        <div class='container'><div class='cell width-50 padding-left-10'>04/01/2016</div></div>
-				    </div>
-					<div class='cell'>
-				        <div class='container'><div class='cell width-40 align-right'>Amount</div></div>
-				        <div class='container'><div class='cell width-40 align-right'>800 ₱</div></div>
-				        <div class='container'><div class='cell width-40 align-right'>1,200 ₱</div></div>
-				        <div class='container'><div class='cell width-40 align-right'>400 ₱</div></div>
-				    </div>
-				    <div class='cell width-10'></div>
+			
+				<div class="item-container sub">
+					<div class="container">
+						<div class='cell'>
+					        <div class='container'><div class='cell width-50 padding-left-10'>Date</div></div>
+					        <div *ngFor="#each of getCollection()">
+					        	<div class='container'><div class='cell width-50 padding-left-10'>{{each.trans_date}}</div></div>
+					        </div>
+					    </div>
+						<div class='cell'>
+					        <div class='container'><div class='cell width-40 align-right'>Amount</div></div>
+					        <div *ngFor="#each of getCollection()">
+					        	<div class='container'><div class='cell width-40 align-right'>{{each.amount}} ₱</div></div>
+					        </div>
+					    </div>
+					    <div class='cell width-10'></div>
+					</div>
 				</div>
-			</div>
 		</div>
 
 	    <div class="item-container" (click)="subLoadMenuShow()">
@@ -311,68 +312,52 @@
 		</div>
 
 		<div *ngIf="vPhysicalMenuShow">
-			<div class="item-container sub">
-				<div class="container">
-					<div class='cell'>
-				        <div class='container'><div class='cell width-100 padding-left-10'>Smart Prepaid Kit</div></div>
-				        <div class='container'>
-				        	<div class='cell width-100 padding-left-10'>
-								<div class="container">
-									<div class='cell'>
-								        <div class='container'><div class='cell width-50 grey'>Target Value</div></div>
-								    </div>
-									<div class='cell'>
-								        <div class='container'><div class='cell width-50 align-right'>1,500</div></div>
-								    </div>
-								</div>
-				        	</div>
-				        </div>
-				    </div>
-				    <div class='cell width-10'></div>
+			<div  *ngFor="#each of getPhysicalInventory()">
+				<div class="item-container sub">
+					<div class="container">
+						<div class='cell'>
+					        <div class='container'><div class='cell width-100 padding-left-10'>{{each.sub_category_name}}</div></div>
+					        <div class='container'>
+					        	<div class='cell width-100 padding-left-10'>
+									<div class="container">
+										<div class='cell'>
+									        <div class='container'><div class='cell width-50 grey'>Target Value</div></div>
+									    </div>
+										<div class='cell'>
+									        <div class='container'><div class='cell width-50 align-right'>{{each.target_qty}}</div></div>
+									    </div>
+									</div>
+					        	</div>
+					        </div>
+					    </div>
+					    <div class='cell width-10'></div>
+					</div>
 				</div>
-			</div>
-			<div class="item-container">
-				<div class="container">
-					<div class='cell'>
-				        <div class='container'><div class='cell width-100 padding-left-10'>SKU1</div></div>
-				        <div class='container'>
-				        	<div class='cell width-100 padding-left-10'>
-								<div class="container">
-									<div class='cell'>
-								        <div class='container'><div class='cell width-50 grey'>Last Quantity Sold</div></div>
-								        <div class='container'><div class='cell width-50 grey'>Transaction Date</div></div>
-								    </div>
-									<div class='cell'>
-								        <div class='container'><div class='cell width-50 align-right'>600</div></div>
-								        <div class='container'><div class='cell width-50 align-right'>04/01/2016</div></div>
-								    </div>
-								</div>
-				        	</div>
-				        </div>
-				    </div>
-				    <div class='cell width-10'></div>
-				</div>
-			</div>
-			<div class="item-container">
-				<div class="container">
-					<div class='cell'>
-				        <div class='container'><div class='cell width-100 padding-left-10'>SKU2</div></div>
-				        <div class='container'>
-				        	<div class='cell width-100 padding-left-10'>
-								<div class="container">
-									<div class='cell'>
-								        <div class='container'><div class='cell width-50 grey'>Last Quantity Sold</div></div>
-								        <div class='container'><div class='cell width-50 grey'>Transaction Date</div></div>
-								    </div>
-									<div class='cell'>
-								        <div class='container'><div class='cell width-50 align-right'>600</div></div>
-								        <div class='container'><div class='cell width-50 align-right'>04/01/2016</div></div>
-								    </div>
-								</div>
-				        	</div>
-				        </div>
-				    </div>
-				    <div class='cell width-10'></div>
+				 <div *ngFor="#eachProduct of each.product">
+				 	<div  *ngIf="eachProduct.last_quantity_sold">
+						<div class="item-container">
+							<div class="container">
+								<div class='cell'>
+							        <div class='container'><div class='cell width-100 padding-left-10'>{{eachProduct.product_name}}</div></div>
+							        <div class='container'>
+							        	<div class='cell width-100 padding-left-10'>
+											<div class="container">
+												<div class='cell'>
+											        <div class='container'><div class='cell width-50 grey'>Last Quantity Sold</div></div>
+											        <div class='container'><div class='cell width-50 grey'>Transaction Date</div></div>
+											    </div>
+												<div class='cell'>
+											        <div class='container'><div class='cell width-50 align-right'>{{eachProduct.last_quantity_sold}}</div></div>
+											        <div class='container'><div class='cell width-50 align-right'>{{eachProduct.last_transaction}}</div></div>
+											    </div>
+											</div>
+							        	</div>
+							        </div>
+							    </div>
+							    <div class='cell width-10'></div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

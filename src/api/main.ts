@@ -4,7 +4,7 @@
 import {AccountController} from './controllers/account/account.controller';
 import {InventoryController} from './controllers/inventory.controller';
 import {SequelizeService} from './services/sequelize.service';
-import {TargetsActualsController} from './controllers/targets-actuals.controller';
+import {TargetsActualsController} from './controllers/targets-actuals/targets-actuals.controller';
 import {RetailerController} from './controllers/retailer/retailer.controller';
 
 var vPath = require("path");
@@ -85,8 +85,8 @@ vRouter.get('/task',vRetailerController.task);
 vRouter.get('/retailer/summary',vRetailerController.retailerCallPreparation);
 vRouter.post('/additionalRetailerRoute',vRetailerController.additionalRetailerRoute);
 vRouter.post('/loadWallet',vRetailerController.loadWallet);
-vRouter.post('/physicalInventory',vRetailerController.physicalInventory);
-vRouter.post('/paymentHistory',vRetailerController.paymentHistory);
+vRouter.post('/retailer/physicalInventory',vRetailerController.physicalInventory);
+vRouter.post('/retailer/collection',vRetailerController.collection);
 
 let vTargetsActualsController =  new TargetsActualsController();
 vRouter.get('/brand',vTargetsActualsController.brand);
