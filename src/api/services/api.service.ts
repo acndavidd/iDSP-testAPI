@@ -151,11 +151,29 @@ export module APIService {
 							vRequestObj.body = JSON.stringify(pData);
 						}
 						vRequest(vRequestObj, function(pErr, pResponse, pBody){
-							try {
-								let vError;
-								if(pErr) { 
-									vError = vCurrentContext.handleHTTPError(pErr);
-									vCurrentContext.vErrHandling.throwPromiseError(pReject, vError.code, vError.desc);
+							if(pErr) {
+								// map HTTP Error
+								let Error = {
+									code: 0, // Error Code
+									desc:'' // Error Description
+								};
+								switch (pErr.code) {
+									case 'ECONNREFUSED' :
+										Error.code = 101;
+										Error.desc = "ERR_CONN_REFUSED";
+										break;
+									default :
+										console.log(pErr.code);
+										Error.code = 105;
+										Error.desc = "Unhandled error on HTTP Request";
+										break;
+									}
+								vErrorHandlingSvc.throwPromiseError(pReject, Error.code, Error.desc);
+							}else {
+								console.log(pBody);
+								let vPayLoad = JSON.parse(pBody);
+								if(vPayLoad.status !== 200) { // success response from client api
+									vErrorHandlingSvc.throwPromiseError(pReject, 0, vPayLoad.statusMessage);
 								}else {
 									console.log('Response : ' + pResponse.statusCode);
 									if(pResponse.statusCode === 200) { // HTTP Success Response

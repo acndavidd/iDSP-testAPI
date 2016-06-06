@@ -2,6 +2,7 @@
 'use strict';
 
 import {AccountController} from './controllers/account/account.controller';
+import {InventoryController} from './controllers/inventory.controller';
 import {SequelizeService} from './services/sequelize.service';
 
 var vPath = require("path");
@@ -74,6 +75,9 @@ vRouter.get('/account/logout', vAccountController.logout);
 vRouter.post('/account/test', vAccountController.testSP);
 
 
+let vInventoryController =  new InventoryController();
+vRouter.get('/inventory/physical',vInventoryController.physical);
+vRouter.get('/inventory/load',vInventoryController.load);
 // define instance of your controller and route here
 
 // let aa = new aa();

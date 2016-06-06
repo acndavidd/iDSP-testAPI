@@ -155,7 +155,7 @@
 								        <div class='container'><div class='cell width-40 padding-left-5'>Ending Balance</div></div>
 								    </div>
 									<div class='cell'>
-								        <div class='container'><div class='cell width-40 align-right bold'>{{vProduct.endingBalance}}</div></div>
+								        <div class='container'><div class='cell width-40 align-right bold'>{{toNumber(vProduct.endingBalance) | number}}</div></div>
 								    </div>
 								</div>
 							</div>
@@ -173,15 +173,17 @@
 				        <div class='container'><div class='cell width-45 padding-left-10'>Delivery</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Sales</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-10'>Sold</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-10'>Transfer Back</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Ending Balance</div></div>
 				    </div>
 					<div class='cell'>
-				        <div class='container'><div class='cell width-45 align-right bold'>600</div></div>
-				        <div class='container'><div class='cell width-45 align-right'>{{vProduct.beginningBalance}}</div></div>
-				        <div class='container'><div class='cell width-45 align-right'>{{vProduct.newDelivery}}</div></div>
-				        <div class='container'><div class='cell width-45 align-right bold'>100</div></div>
-				        <div class='container'><div class='cell width-45 align-right'>{{vProduct.sold}}</div></div>
-				        <div class='container'><div class='cell width-45 align-right bold'>{{vProduct.endingBalance}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right bold'>{{(toNumber(vProduct.beginningBalance)+toNumber(vProduct.newDelivery)) | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>{{toNumber(vProduct.beginningBalance) | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>{{toNumber(vProduct.newDelivery) | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right bold'>{{(toNumber(vProduct.sold)+toNumber(vProduct.transferBack)) | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>{{toNumber(vProduct.sold) | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>{{toNumber(vProduct.transferBack) | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right bold'>{{toNumber(vProduct.endingBalance) | number}}</div></div>
 				    </div>
 				    <div class='cell width-10'></div>
 				</div>

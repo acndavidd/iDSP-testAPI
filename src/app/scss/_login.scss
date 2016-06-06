@@ -120,8 +120,9 @@ $container-login-height: 100%;
         background: 
         url("../img/smart-logo.png")
         no-repeat;
-        background-position-x: center;
-        background-position-y: center;
+        background-position:center;
+        // background-position-x: center;
+        // background-position-y: center;
         background-size: 30vw;
         z-index: 90;
 		position: fixed;

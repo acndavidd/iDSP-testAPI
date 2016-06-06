@@ -26,7 +26,7 @@ export class SalesOrderPaymentComponent {
         private _pageNavigationService: PageNavigationService
         ) {
         this._layoutService.setCurrentPage('SalesOrderPayment');
-        this._headerService.setTitle('Sales Order Payment');
+        this._headerService.setTitle('Summary Sales Order');
     }
 
     gotoUnservedOrder() {
