@@ -40,16 +40,28 @@ export class ConfirmCollectionComponent {
         this._pageNavigationService.navigate('Offer', null, null);
     }
 
+    // skipCollection() {
+    //     console.log('Skip Collection');
+    //     this._modalService.showConfirmationModal('Are you sure  <br/> you want to skip collection ?',
+    //         this.skipCollectionCallback.bind(this),
+    //         '* If you confirm to continue, <br/> You cannot go back to collection for this retailer', Modal.ButtonType.OK_CANCEL);
+    // }
+
+    // skipCollectionCallback() {
+    //     console.log('Skip Collection Callback');
+    //     this._pageNavigationService.navigate('Offer', null, null);
+    // }
+
     skipCollection() {
         console.log('Skip Collection');
         this._modalService.showConfirmationModal('Are you sure  <br/> you want to skip collection ?',
-            this.skipCollectionCallback.bind(this),
+            this.skipCollectionback.bind(this),
             '* If you confirm to continue, <br/> You cannot go back to collection for this retailer', Modal.ButtonType.OK_CANCEL);
     }
 
-    skipCollectionCallback() {
-        console.log('Skip Collection Callback');
-        this._pageNavigationService.navigate('Offer', null, null);
-    }
+
+    skipCollectionback() {
+        this._pageNavigationService.navigate('SkipCollection', null, null);
+    } 
               
 }
