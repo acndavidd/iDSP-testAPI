@@ -22,10 +22,13 @@ export class RetailerController implements RetailerInterface{
 	//private errService:ErrHandlerService = new ErrHandlerService();
 	private vUsername: string;
 	private static _errorHandling: ErrorHandlingService;
-	private static _dataAccess: DataAccessService;
+	private static _dataAccessService: DataAccessService;
 	private static _httpService: APIService.HTTPService;
 
 	constructor() {
+		RetailerController._dataAccessService = new DataAccessService(),
+		RetailerController._httpService = new APIService.HTTPService(),
+		RetailerController._errorHandling = new ErrorHandlingService();
 	}
 	
 	async getAccountReceivable(pRequest, pResponse) {
@@ -66,7 +69,7 @@ export class RetailerController implements RetailerInterface{
 					'isJson' : false
 				};
 				// var vResultTmpBcp = await vOrmSvc.sp('account_receivables_bcp', vDataBcp.ParamSpBcp, false);
-				var vResultTmpBcp:any = await RetailerController._dataAccess.getAccReceivable(vParamsBcp);
+				var vResultTmpBcp:any = await RetailerController._dataAccessService.getAccReceivable(vParamsBcp);
 				console.log('vResultTmpBcp : ' + JSON.stringify(vResultTmpBcp));
 				vResultBcp = vResultTmpBcp[0].v_receivables_bcp;
 				vRouteDay = 1;
@@ -81,7 +84,7 @@ export class RetailerController implements RetailerInterface{
 					'isJson' : true
 				};
 				// var vResultTmpSelf = await vOrmSvc.sp('account_receivables_self', vDataSelfList, true);
-				var vResultTmpSelf:any = await RetailerController._dataAccess.getAccReceivable(vParamsSelf);
+				var vResultTmpSelf:any = await RetailerController._dataAccessService.getAccReceivable(vParamsSelf);
 				console.log('vDataSelfList : ' + JSON.stringify(vDataSelfList));
 				console.log('vResultTmpSelf : ' + JSON.stringify(vResultTmpSelf));
 				// vResultSelf = vResultTmpSelf.payload;
