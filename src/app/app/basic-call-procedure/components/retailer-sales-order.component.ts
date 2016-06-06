@@ -10,8 +10,8 @@ import {Modal} from '../../shared/services/modal.service';
 
 @Component({
     selector: 'retailer-sales-order',
-    // ptemplateUrl: './app/basic-call-procedure/components/retailer-sales-order.component.html',
-    templateUrl: './app/basic-call-procedure/components/hc-retailer-sales-order.component.html',
+    templateUrl: './app/basic-call-procedure/components/retailer-sales-order.component.html',
+    // templateUrl: './app/basic-call-procedure/components/hc-retailer-sales-order.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
@@ -24,14 +24,17 @@ import {Modal} from '../../shared/services/modal.service';
 export class RetailerSalesOrderComponent {
     vTotalAmount: number = 0;
     vPromoAmount: number = 0;
-    vSubTotal: number = 0;
+    vPriceBeforeDisc: number = 0;
     vTransferLoad: number = 0;
     vPhysicalOrder: number = 0;
-    vSelectedRetailId: any;
-    vSelectedRetailName: any;
-    vSelectedRetailMIN: any;
+    vRetailerId: any;
+    vRetailerName: any;
+    vRetailerMIN: any;
     vAllDataList: any = [];
     vTransferLoadList: any = [];
+    vPhysicalOrderList: any = [];
+    vTotalDiscAmount: number = 0;
+    vSmartLoadTransferList: any = [];
 
     constructor (
         private _layoutService: LayoutService,
@@ -43,22 +46,16 @@ export class RetailerSalesOrderComponent {
         private _retailerSalesOrderService: RetailerSalesOrderService
         ) {
 
-        // if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
-        //     this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
-        //     this.vSelectedRetailName = this._pageNavigationService.getCurrentParams().retailer_name;
-        // } else{
-            
-        // }
         this.vAllDataList = this._retailerSalesOrderService.getAllDataList();
         console.log('isi data : ' + JSON.stringify(this.vAllDataList));
-        this.vSelectedRetailId = this.vAllDataList[0].retailer_id;
+        this.vRetailerId = this.vAllDataList[0].retailer_id;
         console.log('isi retailer id : ' + this.vAllDataList[0].retailer_id);
-        this.vSelectedRetailName = this.vAllDataList[0].retailer_name;
-        this.vSelectedRetailMIN = this.vAllDataList[0].retailer_min;
+        this.vRetailerName = this.vAllDataList[0].retailer_name;
+        this.vRetailerMIN = this.vAllDataList[0].retailer_min;
 
         this._layoutService.setCurrentPage('RetailerSalesOrder');
         this._headerService.setTitle('Retailer Sales Order');
-        this.vSubTotal = (this.vTransferLoad + this.vPhysicalOrder);
+        this.vPriceBeforeDisc = (this.vTransferLoad + this.vPhysicalOrder);
     }
 
     goToSalesOrderPayment() {
@@ -100,6 +97,7 @@ export class RetailerSalesOrderComponent {
 
     gotoAddEditLoadTransfer() {
         this._pageNavigationService.navigate('AddEditLoadTransfer', null, null);
+        this.vSmartLoadTransferList = this._retailerSalesOrderService.getSmartLoadTransferList();
     }
 
     gotoAddEditPhysicalOrder() {
@@ -111,11 +109,11 @@ export class RetailerSalesOrderComponent {
         return this.vAllDataList;
     }
 
-    getTotalAmount() {
+    priceAfterDiscount() {
         if (!this.vPromoAmount) {
-            this.vTotalAmount = this.vSubTotal;
+            this.vTotalAmount = this.vPriceBeforeDisc;
         } else {
-            this.vTotalAmount = (this.vSubTotal - this.vPromoAmount);
+            this.vTotalAmount = (this.vPriceBeforeDisc - this.vPromoAmount);
         }
         var q = this.vTotalAmount;
         return q.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');

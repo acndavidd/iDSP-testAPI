@@ -1,0 +1,13 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/opisnet/services/idsp/userValidation",
+        "bodyPatterns" : [
+            { "equalToJson" : "{\"Username\":\"5600026ZHJ\",\"Password\":\"1234\"}", "jsonCompareMode": "LENIENT" }
+        ]
+    },
+    "response": {
+        "status": 200,   
+        "bodyFileName": "login/login-success.json"
+    }
+}

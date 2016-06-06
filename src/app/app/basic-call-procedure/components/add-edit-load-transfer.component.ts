@@ -9,6 +9,7 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 
 @Component({
     selector: 'add-edit-load-transfer',
+    // templateUrl: './app/basic-call-procedure/components/hc-add-edit-load-transfer.component.html',
     templateUrl: './app/basic-call-procedure/components/add-edit-load-transfer.component.html',
     directives: [
         NgModel,

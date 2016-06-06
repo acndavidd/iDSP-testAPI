@@ -1,9 +1,9 @@
 /// <reference path="typings/main.d.ts" />
 'use strict';
-
+import {SequelizeService} from './services/sequelize.service';
 import {AccountController} from './controllers/account/account.controller';
 import {InventoryController} from './controllers/inventory.controller';
-import {SequelizeService} from './services/sequelize.service';
+import {RetailerController} from './controllers/retailer/retailer.controller';
 
 var vPath = require("path");
 var vEnv = process.env.NODE_ENV || "DEVELOPMENT";
@@ -74,10 +74,12 @@ vRouter.post('/account/:id/MPIN', vAccountController.submitMPIN);
 vRouter.get('/account/logout', vAccountController.logout);
 vRouter.post('/account/test', vAccountController.testSP);
 
-
 let vInventoryController =  new InventoryController();
 vRouter.get('/inventory/physical',vInventoryController.physical);
 vRouter.get('/inventory/load',vInventoryController.load);
+
+let vRetailerController = new RetailerController();
+vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
 // define instance of your controller and route here
 
 // let aa = new aa();

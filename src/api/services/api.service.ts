@@ -44,7 +44,7 @@ export module APIService {
 			// build params url from object
 			if(pUrlParams) {
 				fullUrl = fullUrl + '?'
-				for(let vParam in pUrlParams){
+				for(let vParam in pUrlParams) {
 					fullUrl += vParam + "=" + pUrlParams[vParam] + "&";
 				}
 				fullUrl = fullUrl.substring(0,fullUrl.lastIndexOf('&'));

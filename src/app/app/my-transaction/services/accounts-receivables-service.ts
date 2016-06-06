@@ -15,25 +15,14 @@ export class AccountsReceivablesService {
         this.vIsLoading = false;
     }
 
-    searchRetailer() {
-        return;
-    }
-
-    getError(): string {
-        return this.vErrorMsg;
-    }
-
     getLoadingState(): boolean {
         return this.vIsLoading;
     }
 
-    getAllReceivablesRoute(pDspId, pSource) {
+    getAllReceivablesRoute(pDspId) {
       try {
-      var vDspId = pDspId;
-      var vSource = pSource;
-
       console.log('In getAllReceivablesRoute service');
-      return this._http.get('/retailer/accountreceivable?source=' + vSource + '&username=' + vDspId);
+      return this._http.get('/retailer/accountreceivable?username=' + pDspId);
       } catch(pErr) {
           console.log('Error in get API: ' + pErr);
       }
