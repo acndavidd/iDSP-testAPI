@@ -2,6 +2,7 @@
 'use strict';
 
 import {AccountController} from './controllers/account/account.controller';
+import {InventoryController} from './controllers/inventory.controller';
 import {SequelizeService} from './services/sequelize.service';
 import {TargetsActualsController} from './controllers/targets-actuals.controller';
 import {RetailerController} from './controllers/retailer/retailer.controller';
@@ -74,7 +75,11 @@ vRouter.post('/account/:id/MPIN', vAccountController.submitMPIN);
 vRouter.get('/account/logout', vAccountController.logout);
 vRouter.post('/account/test', vAccountController.testSP);
 
+let vInventoryController =  new InventoryController();
+vRouter.get('/inventory/physical',vInventoryController.physical);
+vRouter.get('/inventory/load',vInventoryController.load);
 // define instance of your controller and route here
+
 let vRetailerController =  new RetailerController();
 vRouter.get('/task',vRetailerController.task);
 vRouter.get('/retailer/summary',vRetailerController.retailerCallPreparation);
@@ -88,7 +93,6 @@ vRouter.get('/brand',vTargetsActualsController.brand);
 vRouter.post('/performance',vTargetsActualsController.performance);
 // let aa = new aa();
 // vRouter.method('/aa', aa.bb);
-
 
 // let bb = new bb();
 // vRouter.method('/bb' bb.aa);
