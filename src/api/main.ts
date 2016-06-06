@@ -1,11 +1,11 @@
 /// <reference path="typings/main.d.ts" />
 'use strict';
-
+import {SequelizeService} from './services/sequelize.service';
 import {AccountController} from './controllers/account/account.controller';
 import {InventoryController} from './controllers/inventory.controller';
-import {SequelizeService} from './services/sequelize.service';
 import {TargetsActualsController} from './controllers/targets-actuals/targets-actuals.controller';
 import {RetailerController} from './controllers/retailer/retailer.controller';
+
 
 var vPath = require("path");
 var vEnv = process.env.NODE_ENV || "DEVELOPMENT";
@@ -78,15 +78,16 @@ vRouter.post('/account/test', vAccountController.testSP);
 let vInventoryController =  new InventoryController();
 vRouter.get('/inventory/physical',vInventoryController.physical);
 vRouter.get('/inventory/load',vInventoryController.load);
-// define instance of your controller and route here
 
-let vRetailerController =  new RetailerController();
+let vRetailerController = new RetailerController();
+// vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
 vRouter.get('/task',vRetailerController.task);
 vRouter.get('/retailer/summary',vRetailerController.retailerCallPreparation);
 vRouter.post('/additionalRetailerRoute',vRetailerController.additionalRetailerRoute);
 vRouter.post('/loadWallet',vRetailerController.loadWallet);
 vRouter.post('/retailer/physicalInventory',vRetailerController.physicalInventory);
 vRouter.post('/retailer/collection',vRetailerController.collection);
+// define instance of your controller and route here
 
 let vTargetsActualsController =  new TargetsActualsController();
 vRouter.get('/brand',vTargetsActualsController.brand);

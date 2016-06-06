@@ -1,9 +1,9 @@
 import {SequelizeService} from './sequelize.service';
-import {ErrorHandling} from './error-handling.service';
+import {ErrorHandlingService} from './error-handling.service';
 
 var vPath = require("path");
 var vFs = require('fs');
-var vEnv = process.env.NODE_ENV || "development";
+var vEnv = process.env.NODE_ENV || "DEVELOPMENT";
 var vExec = require('child_process').spawn;
 var vDebug = (vEnv === 'development') ? true : false;
 
@@ -53,7 +53,7 @@ export class ORMService {
 
 	public async sp(pSPName:string,pParams:any,pIsJSON?:boolean) {
 		let vSequelize = this.getSequelize();
-		let vErrService:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
+		let vErrService:ErrorHandlingService = new ErrorHandlingService();
 		let vCurrentContext = this;
 		return new Promise<any>(
 			function (pResolve,pReject){

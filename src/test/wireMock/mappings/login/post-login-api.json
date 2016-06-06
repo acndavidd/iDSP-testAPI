@@ -1,9 +1,9 @@
 {
     "request": {
         "method": "POST",
-        "url": "/OPISNET/services/idsp/userValidation",
+        "url": "/opisnet/services/idsp/userValidation",
         "bodyPatterns" : [
-            { "equalToJson" : "{\"Username\":\"DSP00001\",\"Password\":\"1234\"}", "jsonCompareMode": "LENIENT" }
+            { "equalToJson" : "{\"Username\":\"5600026ZHJ\",\"Password\":\"1234\"}", "jsonCompareMode": "LENIENT" }
         ]
     },
     "response": {

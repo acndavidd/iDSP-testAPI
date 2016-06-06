@@ -18,11 +18,12 @@ export class ErrorHandlingService implements ErrorHandlingInterface {
 		}
 		let Error = {
 			code: errorCode,
-			desc: errorDescription
+			desc: errorDescription,
+			inputError : inputError
 		};
 		// if input errors (errors generated from class validator that is used in model) is passed
-		if(inputError) {
-			Error.inputError = inputError;
+		if(!inputError) {
+			delete Error.inputError;
 		}
 		return Error;
 	}

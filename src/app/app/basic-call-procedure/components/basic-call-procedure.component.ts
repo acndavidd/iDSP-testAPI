@@ -47,9 +47,21 @@ export class BasicCallProcedureComponent {
     }
 
 
+
     // gotoAnotherPage() {
     //     // ACTUALLY BASED ON STATUS, BUT FOR NOW JUST GO TO CALL PREP FIRST
     //     this._pageNavigationService.navigate('AddEditLoadTransfer', null, null);
+
+    // gotoAnotherPage(pSelectedRetailer) {
+    //     console.log('Go to Call Preparation' + pSelectedRetailer );
+    //     let vParamsOld = {};
+    //     let vParams = {
+    //         retailer_id: pSelectedRetailer.retailer_id,
+    //         route_sequence: pSelectedRetailer.sequence_no,
+    //         call_id: pSelectedRetailer.call_id,
+    //         status: pSelectedRetailer.call_status
+    //     };
+    //      this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);
     // }
 
     gotoAnotherPage(pSelectedRetailer) {

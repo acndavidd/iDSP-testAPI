@@ -159,8 +159,7 @@ export class CallPreparationComponent {
        return this.vPhysicalInventory;
     }
 
-    getCollection()
-    {
+    getCollection() {
         return this.vCollection;
     }
 
