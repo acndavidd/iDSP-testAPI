@@ -28,9 +28,9 @@ export class AccountController implements AccountControllerInterface{
 		try{
 			let vAccount = new Account.Account(pRequest.body.Username, pRequest.body.Password);
 			if(vAccount.validate()) {
-				let vLoginServiceURL: string = '/OPISNET/services/idsp/userValidation';
+				let vLoginServiceURL: string = '/opisnet/services/idsp/userValidation';
 				let vPayLoad = await AccountController._httpService.post(APIService.APIType.OPISNET, vLoginServiceURL, null, vAccount);
-				if(vPayLoad.status == 200) {
+				if(vPayLoad.status === 200) {
 					pResponse.status(200).json(vPayLoad);
 				}else { // api call success but error on the logic
 					if(vPayLoad.status === 403) { // DSP ID Not found Error
@@ -41,36 +41,44 @@ export class AccountController implements AccountControllerInterface{
 				AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 100, 'INPUT_ERRORS', vAccount.Errors);
 			}
 		}catch(pErr) {
-			AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 400, pErr.code, pErr.desc);
+			if(pErr.code) {
+				AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 400, pErr.code, pErr.desc);
+			}else {
+				AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 103, pErr);
+			}
 		}
 	}
 
 	async submitMPIN(pRequest:any, pResponse:any): Promise<void> {
 		try{
 			let vHttpSvc = new APIService.HTTPService();
-			let vPath:string = '/OPISNET/services/idsp/userAuthorization';
+			let vPath:string = '/opisnet/services/idsp/userAuthorization';
 			let vMPIN = new Account.MPIN(pRequest.params.id, pRequest.body.MPIN);
 			if(vMPIN.validate()) {
-				let vResult = await vHttpSvc.post(APIService.APIType.OPISNET, vPath, null, vMPIN);
+				let vPayLoad = await vHttpSvc.post(APIService.APIType.OPISNET, vPath, null, vMPIN);
 				// if success encrypt dsp id as token object
-				if(vResult.status === 200) {
+				if(vPayLoad.status === 200) {
 					let vTokenService = new TokenService();
 					let vTokenObj: TokenObject = new TokenObject();
 					vTokenObj.setDSPId(pRequest.params.id);
-					vTokenObj.setOPISToken = vResult.AccessToken;
+					vTokenObj.setOPISToken = vPayLoad.AccessToken;
 					let vTokenStr = vTokenService.encryptToken(vTokenObj);
-					pResponse.cookie('accessToken', vTokenStr,{httpOnly:true});
-					vResult.token = vTokenStr;
-					vResult.remove('AccessToken');
 					// set cookie session value with token
+					pResponse.cookie('accessToken', vTokenStr,{httpOnly:true});
+					vPayLoad.accessToken = vTokenStr;
+					delete vPayLoad.AccessToken;
+					pResponse.status(200).json(vPayLoad);
+				}else {
+					AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 500, 121, 'ERR_INVALID_MPIN');
 				}
-				pResponse.status(vResult.status).json(vResult);
 			}else {
 				AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 100, 'INPUT_ERRORS', vMPIN.Errors);
 			}
 		}catch(pErr){
-			if(pErr.errorCode == 111) {
-				AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 400, pErr.errorCode, "ERR_INVALID_MPIN");
+			if(pErr.code) {
+				AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 400, pErr.code, pErr.desc);
+			}else {
+				AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 103, pErr);
 			}
 		}
 	}

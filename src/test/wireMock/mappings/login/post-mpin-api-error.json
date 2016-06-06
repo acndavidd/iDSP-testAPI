@@ -3,7 +3,7 @@
         "method": "POST",
         "url": "/opisnet/services/idsp/userAuthorization",
         "bodyPatterns" : [
-            { "doesNotMatch" : ".*DSP00001.*" }
+            { "doesNotMatch" : ".*12345.*" }
         ]
     },
     "response": {
