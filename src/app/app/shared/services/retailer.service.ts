@@ -52,7 +52,7 @@ export class RetailerService {
             retailerId : pRetailerID
         };
 
-        return this._http.post('/loadWallet', JSON.stringify(vData));
+        return this._http.get('retailer/'+vData.retailerId+'/load');
 
     }
 

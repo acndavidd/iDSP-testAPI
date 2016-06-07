@@ -244,8 +244,8 @@ export class RetailerController implements RetailerInterface{
 		try{
 			console.log("Start getting Load Wallet");
 
-			var vSalesPerson = pRequest.body.salesPerson;
-			var vSelectedRetailId = pRequest.body.retailerId;
+			var vSalesPerson = 'DSP00001';
+			var vRetailerId = pRequest.params.id;
 
 			// console.log(vSelectedRetailId+'retailer id');
 
@@ -253,7 +253,7 @@ export class RetailerController implements RetailerInterface{
 
 			let vParams = {
 				sales_person : vSalesPerson,
-				selected_ret_id : vSelectedRetailId
+				selected_ret_id : vRetailerId
 				
 			};
 
