@@ -25,7 +25,8 @@ export class AddEditLoadTransferComponent {
     vRetailerName;
     vRetailerMIN;
     vRetailerID;
-
+    vSelectedBrand;
+    vDataList: any = [];
     vRetailerMinList: any = [];
 
     constructor (
@@ -44,13 +45,14 @@ export class AddEditLoadTransferComponent {
         // initial data
         console.log('Start initializing data');
         this.vSelectedBrand = 'smart';
-        this.vRetailerName = this._retailerSalesOrderService.getAllDataList().retailer_name;
-        this.vRetailerMIN = this._retailerSalesOrderService.getAllDataList().retailer_min;
-        this.vRetailerID = this._retailerSalesOrderService.getAllDataList().retailer_id;
+        this.vDataList = this._retailerSalesOrderService.getAllDataList();
+        this.vRetailerName = this.vDataList.retailer_name;
+        this.vRetailerMIN = this.vDataList.retailer_min;
+        this.vRetailerID = this.vDataList.retailer_id;
 
         try {
             this._retailerSalesOrderService.getRetailerMins(this.vRetailerID);
-        } catch (pErr){
+        } catch (pErr) {
             this._modalService.toggleModal(pErr, Modal.ModalType.ERROR);
         }
 
