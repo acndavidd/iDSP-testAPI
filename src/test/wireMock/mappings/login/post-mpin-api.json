@@ -3,7 +3,7 @@
         "method": "POST",
         "url": "/opisnet/services/idsp/userAuthorization",
         "bodyPatterns" : [
-            { "equalToJson" : "{ \"Username\": \"5600026ZHJ\" , \"MPIN\" : \"12345\"}", "jsonCompareMode": "LENIENT" }
+            { "equalToJson" : "{ \"Username\": \"DSP00001\" , \"MPIN\" : \"12345\"}", "jsonCompareMode": "LENIENT" }
         ]
     },
     "response": {

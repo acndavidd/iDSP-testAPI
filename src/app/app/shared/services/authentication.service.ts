@@ -95,7 +95,8 @@ export class AuthenticationService {
                     if(configChannel === 'app') {
                         localStorage.setItem('accessToken', vResponse.accessToken);
                     }
-                    this._pageNavigationService.navigate('Home', null, null);
+                    // navigate user to set passcode that is used to decrypt the token
+                    this._pageNavigationService.navigate('PasscodeLock', null, null);
                 }else {
                     this.vErrorMsg = vResponse.StatusMessage;
                     this._modalService.showErrorModal(this.vErrorMsg);

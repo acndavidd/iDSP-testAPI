@@ -15,7 +15,7 @@ module.exports = {
       if(!funct) funct = queryInterface.sequelize.query(vQuery);
       else {
         funct = funct.then(function(){
-            // console.log(vQuery);
+            // delay to solve database concurrency problem
             timer = 50000;
             while(timer-- > 0){console.log("");}
             console.log('== == migrating : ' + pSP);

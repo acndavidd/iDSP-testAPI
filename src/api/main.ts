@@ -5,7 +5,7 @@ import {AccountController} from './controllers/account/account.controller';
 import {InventoryController} from './controllers/inventory.controller';
 import {TargetsActualsController} from './controllers/targets-actuals/targets-actuals.controller';
 import {RetailerController} from './controllers/retailer/retailer.controller';
-
+import {RetailerThreshold} from './controllers/retailer/threshold/retailer.threshold.controller';
 
 var vPath = require("path");
 var vEnv = process.env.NODE_ENV || "DEVELOPMENT";
@@ -36,11 +36,10 @@ vApp.use(function(pRequest, pResponse, pNext) {
         'Access-Control-Allow-Origin, X-Requested-With, Content-Type, Accept,Authorization,Proxy-Authorization,X-session');
     pResponse.header('Access-Control-Allow-Methods','GET,PUT,DELETE,POST');
     if(
-        pRequest.path.indexOf('/service/account') !== -1 && // all account service doesn't require token
-        pRequest.path.indexOf('/testing') !== -1 //bypass token for testing purpose
+        pRequest.path.indexOf('/service/account') == -1 && // all account service no need forW token
+        pRequest.path.indexOf('/testing') == -1 //bypass token for testing purpose
     ){
         if(pRequest.method !== 'OPTIONS') {
-            // all request to service will validate token except login & logout
             var vToken = '';
             try{
                 if(pRequest.cookies['accessToken']){ //accessed from web
@@ -50,7 +49,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
                     vToken = vToken.replace('Bearer ','');
                 }
                 // var jwt = vTokenSvc.verifyToken(vToken);
-                // pResponse.locals.jwt = jwt;
+                pResponse.locals.accessToken = vToken;
             }catch(pErr){
                 pResponse.sendStatus(403);
             }
@@ -75,20 +74,22 @@ vRouter.post('/account/:id/MPIN', vAccountController.submitMPIN);
 vRouter.get('/account/logout', vAccountController.logout);
 vRouter.post('/account/test', vAccountController.testSP);
 
+let vRetailerThresholdController = new RetailerThreshold();
+vRouter.get('/retailer/threshold', vRetailerThresholdController.getRetailerThreshold);
+
 let vInventoryController =  new InventoryController();
 vRouter.get('/inventory/physical',vInventoryController.physical);
 vRouter.get('/inventory/load',vInventoryController.load);
 
 let vRetailerController = new RetailerController();
-vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
-vRouter.get('/retailer/threshold', vRetailerController.getRetailerThreshold);
 // vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
-vRouter.get('/task',vRetailerController.task);
-vRouter.get('/retailer/summary',vRetailerController.retailerCallPreparation);
-vRouter.post('/additionalRetailerRoute',vRetailerController.additionalRetailerRoute);
-vRouter.post('/loadWallet',vRetailerController.loadWallet);
-vRouter.post('/retailer/physicalInventory',vRetailerController.physicalInventory);
-vRouter.post('/retailer/collection',vRetailerController.collection);
+// vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
+// vRouter.get('/task',vRetailerController.task);
+// vRouter.get('/retailer/summary',vRetailerController.retailerCallPreparation);
+// // vRouter.post('/additionalRetailerRoute',vRetailerController.additionalRetailerRoute);
+// vRouter.post('/loadWallet',vRetailerController.loadWallet);
+// vRouter.post('/retailer/physicalInventory',vRetailerController.physicalInventory);
+// vRouter.post('/retailer/collection',vRetailerController.collection);
 // define instance of your controller and route here
 
 let vTargetsActualsController =  new TargetsActualsController();

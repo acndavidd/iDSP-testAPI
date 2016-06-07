@@ -5,10 +5,7 @@ export class RetailerProfileModel extends IDSPModel{
 
 	@IsLength(8,8, {message : 'Invalid DSP ID'})
 	username: string;
-
 	retailerid: string;
-
-	Errors:any;
 
 	constructor(pUsername:string, pRetailerId: string) {
 		super();
