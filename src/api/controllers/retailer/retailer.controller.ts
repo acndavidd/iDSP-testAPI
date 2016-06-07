@@ -8,6 +8,7 @@ import {DataAccessService} from '../../services/data-access.service';
 // import your model here
 import {TokenObject} from '../../models/token.model';
 import {RetailerProfileModel} from '../../models/input/retailer-profile.model';
+import {BalanceModel} from '../../models/input/retailer/balance.model';
 import {PhysicalInventoryModel} from '../../models/input/inventory/physical-inventory.model';
 
 //import {ErrHandlerService} from '../services/err.handler.service';
@@ -19,6 +20,7 @@ export interface RetailerInterface{
 	getSalesRoute(pRequest, pResponse):Promise<void>;
 	loadWallet(pRequest, pResponse):Promise<void>;
 	getSuggestedOrder(pRequest, pResponse):Promise<void>;
+	getCurrentBalance(pRequest, pResponse):Promise<void>;
 }
 
 
@@ -296,6 +298,20 @@ export class RetailerController implements RetailerInterface{
 			});
 		}catch(pErr) {
 			RetailerController._errorHandling.throwError(400,'Failed to get suggested order',pErr);
+		}
+	}
+
+	async getCurrentBalance(pRequest, pResponse) {
+		try {
+			let vPath:string = '/elpnet/services/idsp/retailerbalance';
+			console.log('isi: ' + JSON.stringify(pRequest));
+			let vMin = pRequest.body.min;
+			let vSource = pRequest.body.source;
+			let vParams = new BalanceModel(vMin, vSource);
+			let vResult = await RetailerController._httpService.post(APIService.APIType.ELP, vPath, null, vParams);
+			pResponse.json(vResult);
+		}catch(pErr) {
+			RetailerController._errorHandling.throwError(400,'Failed to get balance from ELP',pErr);
 		}
 	}
 

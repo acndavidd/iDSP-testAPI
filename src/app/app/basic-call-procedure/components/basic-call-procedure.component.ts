@@ -46,15 +46,19 @@ export class BasicCallProcedureComponent {
         return this._matchMediaService.getMm();
     }
 
-
-
     gotoAnotherPage() {
         // ACTUALLY BASED ON STATUS, BUT FOR NOW JUST GO TO CALL PREP FIRST
-        let vParams = {
-            retailer_id: 'RTL00001',
-            retailer_name: 'Rose Cell',
-            retailer_min: '99999900003'
-        }
+        let vParams = [{retailer_profile : {
+            retailer_id : 'RTL00001',
+            retailer_name : 'Rose Cell',
+            retailer_min : '99999900003'}},
+            {
+            account_profile : {
+            dsp_id : 'DSP00001',
+            dsp_name : 'Kucing',
+            dsp_min_smart : '000000001',
+            dsp_min_sun : '1111111110'
+            }}];
         this._pageNavigationService.navigate('AddEditLoadTransfer', vParams, null);
     }
 

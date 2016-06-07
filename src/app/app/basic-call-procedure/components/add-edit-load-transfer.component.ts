@@ -22,19 +22,22 @@ import {RetailerSalesOrderService} from '../services/retailer-sales-order-servic
 export class AddEditLoadTransferComponent {
 
     vDetailPromo = false;
-    vArrowMap   = false;
-    vRetailerName;
-    vRetailerMIN;
-    vRetailerID;
-    vSelectedBrand;
-    vSelectedMIN;
+    vArrowMap = false;
+    vRetailerName: any;
+    vRetailerMIN: any;
+    vRetailerID: any;
+    vSelectedBrand: any;
+    vSelectedMIN: any;
     vInputLoadAmount: number = 0;
-    vSuggestedOrder;
-    vInputPromoCode;
+    vSuggestedOrder: any;
+    vInputPromoCode: any;
     vInputDiscountAmount: number = 0;
     vTotalAmount: number = 0;
-    vDataList: any = [];
+    vParamList: any = [];
     vRetailerMinList: any = [];
+    vRetailerProfile: any = [];
+    vDspProfile: any = [];
+    vCurrentBalance: any = 0;
 
     constructor (
         private _layoutService: LayoutService,
@@ -52,20 +55,25 @@ export class AddEditLoadTransferComponent {
         // initialize data
         console.log('Start initializing data');
         this.vSelectedBrand = 'smart';
-        this.vRetailerName = this._pageNavigationService.getCurrentParams().retailer_name;
-        this.vRetailerMIN = this._pageNavigationService.getCurrentParams().retailer_min;
-        this.vRetailerID = this._pageNavigationService.getCurrentParams().retailer_id;
+        this.vParamList = this._pageNavigationService.getCurrentParams();
+        this.vRetailerProfile = this.vParamList[0].retailer_profile;
+        this.vDspProfile = this.vParamList[1].account_profile;
+        this.vRetailerName = this.vRetailerProfile.retailer_name;
+        this.vRetailerMIN = this.vRetailerProfile.retailer_min;
+        this.vRetailerID = this.vRetailerProfile.retailer_id;
         
+        // get suggested order from DB 
         try {
             this._retailerSalesOrderService.getSuggestedOrder(this.vRetailerID).subscribe(
                 response => {
                     // console.log('get suggested order ' + JSON.stringify(response.json()));
-                    this.vSuggestedOrder = response.json().result.suggested_order.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    this.vSuggestedOrder = response.json().result.suggested_order.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
                 });
         } catch (pErr) {
             this.vSuggestedOrder = 'N/A';
         }
 
+        // get list of mins from OPIS+
         try {
             this._retailerSalesOrderService.getRetailerMins(this.vRetailerID).subscribe(
                 response => {
@@ -77,12 +85,12 @@ export class AddEditLoadTransferComponent {
                 });
         } catch (pErr) {
             this._modalService.toggleModal(pErr, Modal.ModalType.ERROR);
-        }
+        } 
     }
 
     addLoadTransfer() {
         console.log('Go to Retailer Sales Order');
-        this._modalService.showConfirmationModal('Confirm Load Transfer to <br/><label class="vivid-pink">'+ this.vSelectedMIN +'</label> with <br/> Total Amount <label class="vivid-pink">P ' + this.vTotalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</label> and <br/>Total Discount <label class="vivid-pink">P ' + this.vInputDiscountAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</label>',
+        this._modalService.showConfirmationModal('Confirm Load Transfer to <br/><label class="vivid-pink">'+ this.vSelectedMIN +'</label> with <br/> Total Amount <label class="vivid-pink">P ' + this.vTotalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</label> and <br/>Total Discount <label class="vivid-pink">P ' + this.vInputDiscountAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</label>',
             this.gotoRetailerSalesOrder.bind(this),
             null, Modal.ButtonType.OK_CANCEL);
     }
@@ -95,10 +103,13 @@ export class AddEditLoadTransferComponent {
             total_load_amount : this.vTotalAmount,
             total_load_disc_amount : this.vInputDiscountAmount,
             load_transfer_amount : this.vInputLoadAmount,
-            load_promo_code : this.vInputPromoCode
+            load_promo_code : this.vInputPromoCode,
+            brand : this.vSelectedBrand,
+            selected_min : this.vSelectedMIN,
+            current_balance : this.vCurrentBalance
         };
 
-        this._pageNavigationService.navigate('RetailerSalesOrder', vParams, null);
+        this._pageNavigationService.navigate('RetailerSalesOrder', vParams, this.vParamList);
     }
 
     detailPromo() {
@@ -115,6 +126,20 @@ export class AddEditLoadTransferComponent {
 
     setSelectedMIN(pStr) {
         this.vSelectedMIN = pStr;
+        // get retailer balance from ELP
+        try {
+            let vParams = {
+                min : this.vSelectedMIN,
+                source : 'iDSP'
+            };
+            this._retailerSalesOrderService.getRetailerBalanceElp(vParams).subscribe(
+                response => {
+                    this.vCurrentBalance = response.json().currentBalance;
+                });
+        } catch(pErr) {
+            this.vCurrentBalance = 'N/A';
+            console.log('Error when getting current balance from ELP : ' +pErr);
+        }
     }
 
     setInputPromoCode(pStr) {

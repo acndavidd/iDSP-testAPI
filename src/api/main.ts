@@ -87,6 +87,7 @@ vRouter.get('/retailer/summary',vRetailerController.retailerProfile);
 vRouter.get('/retailer/:id/physical',vRetailerController.physicalInventory);
 vRouter.get('/retailer/:id/load',vRetailerController.loadWallet);
 vRouter.get('/retailer/:id/suggestedorder', vRetailerController.getSuggestedOrder);
+vRouter.post('/retailer/balance', vRetailerController.getCurrentBalance);
 // vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
 
 let vAccountReceivableController = new AccountReceivableController();

@@ -40,4 +40,8 @@ export class RetailerSalesOrderService {
     getSuggestedOrder(pStr) {
         return this._http.get('/retailer/' + pStr + '/suggestedorder');
     }
+
+    getRetailerBalanceElp(pParams) {
+        return this._http.post('/retailer/balance', pParams);
+    }
 }
