@@ -40,9 +40,10 @@ export class InventoryComponent {
         this._layoutService.setCurrentPage('Inventory');
         this._headerService.setTitle('Inventory');
         this.toggleFilterInventory();
+        this._inventoryService.getDSPInventoryList('anjay1', '1', '2');
     }
-
-    getResize() {
+  
+  getResize() {
         return this._matchMediaService.getMm();
     }
 
@@ -60,7 +61,6 @@ export class InventoryComponent {
         this.vLoadShow = false;
         this.vPhysicalShow = true;
         this.toggleFilterInventory();
-        this._inventoryService.getInventoryList('anjay1', 'physical');
     }
 
     subPhysicalMenuShow(indexArr) {
@@ -73,8 +73,12 @@ export class InventoryComponent {
         this.vSubLoadMenuShow[indexArr] = !this.vSubLoadMenuShow[indexArr];
     }
 
-    getProductList() {
-        return this._inventoryService.vProductList;
+    getPhysicalProductList() {
+        return this._inventoryService.vPhysicalProductList;
+    }
+
+    getLoadProductList() {
+        return this._inventoryService.vLoadProductList;
     }
 
     toggleFilterInventory() {
