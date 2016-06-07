@@ -126,7 +126,7 @@ export class RetailerService {
             pDay : 1
         };
 
-        return this._http.post('/additionalRetailerRoute', JSON.stringify(vData));
+        return this._http.get('/retailer/' + vData.salesPerson + '/additional');
     }
 
     getRetailerAll() {

@@ -11,6 +11,7 @@ export interface DataAccessInterface {
 	getCollection(pSPName,pParams,pIsJSONFormat);
 	getAccReceivable(pParams);
 	getDropSize(pSPName,pParams);
+	getAdditionalRetailer(pSPName,pParams);
 }
 
 export class DataAccessService implements DataAccessInterface {
@@ -47,6 +48,11 @@ export class DataAccessService implements DataAccessInterface {
 
 	getDropSize(pSPName,pParams) {
 		console.log('Start Store Procedure getDropSize');
+		return this.executeSP(pSPName,pParams);
+	}
+
+	getAdditionalRetailer(pSPName,pParams) {
+		console.log('Start Store Procedure get_additional_retailer');
 		return this.executeSP(pSPName,pParams);
 	}
 

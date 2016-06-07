@@ -18,6 +18,7 @@ export interface RetailerInterface{
 	getRetailerSummary(pRequest, pResponse):Promise<void>;
 	getSalesRoute(pRequest, pResponse):Promise<void>;
 	loadWallet(pRequest, pResponse):Promise<void>;
+	additionalRetailer(pRequest, pResponse):Promise<void>;
 }
 
 
@@ -275,9 +276,30 @@ export class RetailerController implements RetailerInterface{
 				if(pErr.InventoryController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 111, 'INVALID_CREDENTIALS')) {
 
 				}
-			}
-
-	
+			}	
 	}
+
+	async additionalRetailer(pRequest,pResponse) {
+			console.log("Start getting additional retaielr");
+
+				var vSalesPerson = pRequest.params.id;
+		try{
+			let vParam = new PhysicalInventoryModel(vSalesPerson, null);
+			console.log('Param Physical Inventory : ' + JSON.stringify(vParam));
+				if(vParam.validate()) {
+					let vResult = await RetailerController._dataAccess.getPhysicalInventory('get_physical_inventory', vParam);
+					// console.log('All Result Physical Inventory : ' + JSON.stringify(vResult));
+					pResponse.json(vResult);
+				}else {
+					RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 100, 'INPUT_ERRORS', vParam.Errors);
+				}
+		}
+		catch(pErr) {
+			if(pErr.InventoryController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 111, 'INVALID_CREDENTIALS')) {
+
+			}
+	}
+
+		}
 
 }

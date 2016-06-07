@@ -8,8 +8,8 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {NgModel} from 'angular2/common';
 
 @Component({
-    // templateUrl: './app/basic-call-procedure/components/bcp-add-retailer-route.component.html',
-    templateUrl: './app/basic-call-procedure/components/hc-bcp-add-retailer-route.component.html',
+    templateUrl: './app/basic-call-procedure/components/bcp-add-retailer-route.component.html',
+    // templateUrl: './app/basic-call-procedure/components/hc-bcp-add-retailer-route.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
@@ -20,6 +20,9 @@ export class BCPAddRetailerRouteComponent {
     vUserId;
     vListRoute;
     vFilteredListRoute;
+    vSelectedRetailId;
+    vSelectedRetailSeq;
+    vSelectedRetailCallId;
 
     constructor (
         private _layoutService: LayoutService,
@@ -29,6 +32,17 @@ export class BCPAddRetailerRouteComponent {
         private _pageNavigationService: PageNavigationService,
         private _router: Router
         ) {
+
+
+        console.log(this._pageNavigationService.getCurrentParams());
+        if (this._pageNavigationService.getCurrentParams() !== null && this._pageNavigationService.getCurrentParams() !== '') {
+            this.vSelectedRetailId = this._pageNavigationService.getCurrentParams().retailer_id;
+            this.vSelectedRetailSeq = this._pageNavigationService.getCurrentParams().route_sequence;
+            this.vSelectedRetailCallId = this._pageNavigationService.getCurrentParams().call_id;
+        } else {
+            console.log('Retailer ID not found');
+        }
+
         this._layoutService.setCurrentPage('BCPAddRetailerRoute');
         this._headerService.setTitle('Add Retailer Route');
         this.vUserId = 'DSP00001';
