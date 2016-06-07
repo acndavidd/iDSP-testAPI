@@ -5,28 +5,27 @@ export module APIService {
 	var vEnv = process.env.NODE_ENV || "DEVELOPMENT";
 	var vRequest = require('request'); 
 	var vConfig = require('../config/config.json')[vEnv];
-	var vCurrentContext;
-
+	
 	export var APIType = {
 		OPISNET : vConfig.services["OPIS+"],
 		ELP : vConfig.services["ELP"]	
 	}
 
 	export var RequestMethod = {
-			POST : 'POST',
-			GET : 'GET',
-			PUT : 'PUT',
-			DELETE : 'DELETE'
+		POST : 'POST',
+		GET : 'GET',
+		PUT : 'PUT',
+		DELETE : 'DELETE'
 	}
         
 	export interface HTTPServiceInterface {
-			buildAuthHeaders(pMethod): any;
+		buildAuthHeaders(pMethod): any;
 	}
 
 	export class HTTPService implements HTTPServiceInterface{
-
+		private vErrHandling: ErrorHandlingService;
 		constructor() {
-				vCurrentContext = this;
+			this.vErrHandling = new ErrorHandlingService();
 		}
 
 		buildAuthHeaders(pMethod) {
@@ -45,7 +44,7 @@ export module APIService {
 			// build params url from object
 			if(pUrlParams) {
 				fullUrl = fullUrl + '?'
-				for(let vParam in pUrlParams){
+				for(let vParam in pUrlParams) {
 					fullUrl += vParam + "=" + pUrlParams[vParam] + "&";
 				}
 				fullUrl = fullUrl.substring(0,fullUrl.lastIndexOf('&'));
@@ -53,9 +52,84 @@ export module APIService {
 			return this.request(RequestMethod.GET, pAPIType, fullUrl, pHeaders);
 		}
 
+		// Handles error caused by technical errors such as server not found, timeout etc
+		handleHTTPError(pHTTPError) {
+			let Error = {
+				code: 0, // Error Code
+				desc:'' // Error Description
+			};
+			// format error received from request : 
+			// {"code":"ECONNREFUSED","errno":"ECONNREFUSED","syscall":"connect","address":"127.0.0.1","port":5678}
+			// map HTTP Error
+			if(pHTTPError.code === 'ECONNREFUSED') {// Interface server could not be reached
+				Error.code = 106;
+				Error.desc = 'CONNECTION REFUSED';
+			}else {
+				console.log(pHTTPError);
+			}
+			return Error;
+		}
+
+		// Handles response error returned when requesting to Interface service
+		handleHTTPErrorResponse(pHTTPErrorResponse) {
+			let Error = {
+				code: 0, // Error Code
+				desc:'' // Error Description
+			};
+			// format error received from response :
+			// {
+			// 	"statusCode":404,
+			// 	"body":"",
+			// 	"headers":{
+			// 		"content-type":"text/html;charset=iso-8859-1",
+			// 		"cache-control":"must-revalidate,no-cache,no-store",
+			// 		"content-length":"1401",
+			// 		"connection":"close",
+			// 		"server":"Jetty(6.1.x)"
+			// 	},
+			// 	"request":{
+			// 		"uri":{
+			// 			"protocol":"http:",
+			// 			"slashes":true,
+			// 			"auth":null,
+			// 			"host":"localhost:5678",
+			// 			"port":"5678",
+			// 			"hostname":"localhost",
+			// 			"hash":null,
+			// 			"search":null,
+			// 			"query":null,
+			// 			"pathname":"/OPISNET/services/idsp/userValidation",
+			// 			"path":"/OPISNET/services/idsp/userValidation",
+			// 			"href":"http://localhost:5678/OPISNET/services/idsp/userValidation"
+			// 		},
+			// 		"method":"POST",
+			// 		"headers":{
+			// 			"Content-Type":"application/json",
+			// 			"content-length":42
+			// 		}
+			// 	}
+			// }
+			switch(pHTTPErrorResponse.statusCode) {
+				case 404:
+					Error.code = 116;
+					Error.desc = 'SERVICE_NOT_FOUND';
+					break;
+				case 403:
+					Error.code = 117;
+					Error.desc = 'FORBIDDEN_REQUEST';
+					break;
+				default :
+					console.log(pHTTPErrorResponse);
+					Error.code = 120;
+					Error.desc = "UNHANDLED_ERROR";
+					break;
+			}
+			return Error;
+		}
+
 		request(pRequestMethod, pAPIType, pURL, pHeaders, pData?) {
 			console.log(pRequestMethod + ' ' + pAPIType + pURL);
-			let vErrorHandlingSvc = new ErrorHandlingService();
+			let vCurrentContext = this;
 			return new Promise<any>(
 				function(pResolve, pReject){
 					try{
@@ -78,37 +152,21 @@ export module APIService {
 						}
 						vRequest(vRequestObj, function(pErr, pResponse, pBody){
 							if(pErr) {
-								// map HTTP Error
-								let Error = {
-									code: 0, // Error Code
-									desc:'' // Error Description
-								};
-								switch (pErr.code) {
-									case 'ECONNREFUSED' :
-										Error.code = 101;
-										Error.desc = "ERR_CONN_REFUSED";
-										break;
-									default :
-										console.log(pErr.code);
-										Error.code = 105;
-										Error.desc = "Unhandled error on HTTP Request";
-										break;
-									}
-								vErrorHandlingSvc.throwPromiseError(pReject, Error.code, Error.desc);
+								this.handleHTTPError(pErr);
 							}else {
-								console.log(pBody);
-								let vPayLoad = JSON.parse(pBody);
-								if(vPayLoad.status !== 200) { // success response from client api
-									vErrorHandlingSvc.throwPromiseError(pReject, 0, vPayLoad.statusMessage);
-								}else {
-									// no error, return the result body
-									pResolve(vPayLoad);
+								console.log('Response : ' + pResponse.statusCode);
+								if(pResponse.statusCode === 200) { // HTTP Success Response
+									console.log(JSON.parse(pBody));
+									pResolve(JSON.parse(pBody));
+								}else { // API server found but not returning response 200
+									let vError = vCurrentContext.handleHTTPErrorResponse(pResponse);
+									vCurrentContext.vErrHandling.throwPromiseError(pReject, vError.code, vError.desc);
 								}
 							}
 						});
 					}catch(pErr) {
-						console.log(pErr);
-						pReject(pErr);
+						console.log('Error : ' + pErr);
+						vCurrentContext.vErrHandling.throwPromiseError(pReject, 112, pErr.toString());
 					}
 				}
 			)

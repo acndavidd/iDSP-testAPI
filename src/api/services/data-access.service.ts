@@ -1,8 +1,14 @@
 import {ErrorHandlingService} from './error-handling.service';
-import {SequelizeService} from './sequelize.service'
+import {SequelizeService} from './sequelize.service';
 
 export interface DataAccessInterface {
 	executeSP(pSPName: string, pParams: any, pIsJSONFormat?: boolean): Promise<string>;
+	getRouteDay(pSPName,pParams,pIsJSONFormat);
+	getBrands(pSPName,pParams,pIsJSONFormat);
+	getTargetsActuals(pSPName,pParams,pIsJSONFormat);
+	getPhysicalInventory(pSPName,pParams,pIsJSONFormat);
+	getCollection(pSPName,pParams,pIsJSONFormat);
+	getAccReceivable(pParams);
 }
 
 export class DataAccessService implements DataAccessInterface {
@@ -12,25 +18,54 @@ export class DataAccessService implements DataAccessInterface {
 		DataAccessService._errorHandling = new ErrorHandlingService();
 	}
 
+	getRouteDay(pSPName,pParams,pIsJSONFormat) {
+		console.log('Start Store Procedure get_route_day');
+		return this.executeSP(pSPName,pParams,pIsJSONFormat);
+	}
+
+	getPhysicalInventory(pSPName,pParams) {
+		console.log('Start Store Procedure get_targets_actuals');
+		return this.executeSP(pSPName,pParams);
+	}
+
+	getBrands(pSPName,pParams) {
+		console.log('Start Store Procedure get_brands');
+		return this.executeSP(pSPName,pParams);
+	}
+
+	getTargetsActuals(pSPName,pParams) {
+		console.log('Start Store Procedure get_targets_actuals');
+		return this.executeSP(pSPName,pParams);
+	}
+	
+	getCollection(pSPName,pParams) {
+		console.log('Start Store Procedure get_targets_actuals');
+		return this.executeSP(pSPName,pParams);
+	}
+
 	executeSP(pSPName:string, pParams: any, pIsJSONFormat?: boolean): Promise<string> {
 		return new Promise<string>(
 			function(pResolve, pReject) {
 				try{
 					// build stored procedure params
 					let vParams;
+					
 					// if we pass a JSON as parameter
 					// make sure that the created stored procedure accept 1 param with type of JSON
 					if(pIsJSONFormat) {
 						vParams = '(\''+JSON.stringify(pParams)+'\')';
 					}else {
 						// default params for stored procedure if null object is passed as parameter
-						vParams = '()';
 						// converting params object into parameter in stored procedure
 						if(pParams) {
+							vParams = '(';
 							for(let vParam in pParams){
 								vParams += "'" + pParams[vParam] + "',";
 							}
 							vParams = vParams.substring(0,vParams.lastIndexOf(',')) + ');';
+						}
+						else{
+							vParams = '();';
 						}
 					}
 					// build query to execute stored procedure
@@ -54,5 +89,9 @@ export class DataAccessService implements DataAccessInterface {
 				}
 			}
 		);
+	}
+
+	getAccReceivable(pParams) {
+		return this.executeSP(pParams.spName, pParams.spData, pParams.isJson);
 	}
 }

@@ -8,11 +8,23 @@ module.exports = {
     var vEnv = process.env.NODE_ENV || "development";
     var vDebug = (vEnv === 'development') ? true : false;
     var vMigrate = [];
+    var funct = null;
+    var timer = 100000;
     vFs.readdirSync(vPath.join('migrations','SP_Scripts')).forEach(function(pSP){
       var vQuery = vFs.readFileSync(vPath.join('migrations','SP_Scripts',pSP), 'utf-8');
-      vMigrate.push(queryInterface.sequelize.query(vQuery));
+      if(!funct) funct = queryInterface.sequelize.query(vQuery);
+      else {
+        funct = funct.then(function(){
+            // console.log(vQuery);
+            timer = 50000;
+            while(timer-- > 0){console.log("");}
+            console.log('== == migrating : ' + pSP);
+            queryInterface.sequelize.query(vQuery)
+        });
+      }
+      // vMigrate.push(queryInterface.sequelize.query(vQuery));
     });
-    return vMigrate;
+    return funct;
   },
 
   down: function (queryInterface, Sequelize) {

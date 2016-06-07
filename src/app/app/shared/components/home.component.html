@@ -9,8 +9,48 @@
             </div>
         </div>
     </div>
+
+    <div class="double-divider" (click)="goToMyDashboard()" id="targets-actuals">
+        <div class= "square-button border-bottom border-right">
+            <div class="icon mydashboard"></div>
+            <div class="text"> My Dashboard</div>
+        </div>      
+    </div>
+    <div class="double-divider" (click)="goToTargetsActuals()" id="visited-retailer">
+        <div class= "square-button border-bottom">
+            <div class="icon target"></div>
+            <div class="text">Targets &amp; Actuals</div>
+        </div>      
+    </div>
+    <div class="double-divider" (click)="goToInventory()" id="collection">
+        <div class= "square-button border-bottom border-right">
+            <div class="icon inventory"></div>
+            <div class="text">Inventory</div>
+        </div>      
+    </div>
+    <div class="double-divider" (click)="goToBasicCallProcedure()" id="unserved-order">
+        <div class= "square-button border-bottom">
+            <div class="icon bcp"></div>
+            <div class="text">Basic Call Procedure</div>
+        </div>      
+    </div>
+    <div class="double-divider" (click)="goToRemittance()"id="unserved-order">
+        <div class= "square-button border-bottom">
+            <div class="icon remittance"></div>
+            <div class="text">Remittance</div>
+        </div>      
+    </div>
+     <div class="double-divider" (click)="goToStockReturn()" id="unserved-order">
+        <div class= "square-button border-bottom">
+            <div class="icon stock-return"></div>
+            <div class="text">Stock Return</div>
+        </div>      
+    </div>
+
+
 </div>
-<div class="home-container">
+
+<!--div class="home-container">
     <div class="home-item-box">
         <div class="home-table" (click)="goToMyDashboard()">
             <div class='cell icon mydashboard'></div>
@@ -97,4 +137,4 @@
         <div class="separator"></div>
 
     </div>
-</div>
+</div-->

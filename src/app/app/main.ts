@@ -7,6 +7,7 @@ import {Headers, XHRBackend} from 'angular2/http';
 import {ROUTER_PROVIDERS, Router, APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 import {MyHttp} from './shared/services/my-http.service';
 import {Modal} from './shared/services/modal.service';
+import {LayoutService} from './shared/services/layout.service';
 import 'rxjs/Rx';
 
 declare var configChannel: any;
@@ -36,6 +37,7 @@ enableProdMode();
 
 bootstrap(IDSPComponent, [
     ROUTER_PROVIDERS,
+    Modal.ModalService,
     provide(LocationStrategy, { useClass: HashLocationStrategy }),
     provide(APP_BASE_HREF, { useValue: getPath() }),
     HTTP_PROVIDERS,
@@ -44,7 +46,7 @@ bootstrap(IDSPComponent, [
             let originalHttp = new Http(xhrBackend, requestOptions);
             return new MyHttp(originalHttp, _router, _modalService);
         },
-        deps: [XHRBackend, RequestOptions, Router]
+        deps: [XHRBackend, RequestOptions, Router, Modal.ModalService]
     }),
     provide(BrowserXhr, { useClass: CustomBrowserXhr })
 ]);

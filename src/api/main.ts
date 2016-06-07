@@ -1,9 +1,11 @@
 /// <reference path="typings/main.d.ts" />
 'use strict';
-
+import {SequelizeService} from './services/sequelize.service';
 import {AccountController} from './controllers/account/account.controller';
 import {InventoryController} from './controllers/inventory.controller';
-import {SequelizeService} from './services/sequelize.service';
+import {TargetsActualsController} from './controllers/targets-actuals/targets-actuals.controller';
+import {RetailerController} from './controllers/retailer/retailer.controller';
+
 
 var vPath = require("path");
 var vEnv = process.env.NODE_ENV || "DEVELOPMENT";
@@ -64,7 +66,6 @@ vApp.use(function(pRequest, pResponse, pNext) {
 });
 
 var vRouter = vExpress.Router();
-
 // Open connection pool for database access using sequelize
 let vSequelizeService = new SequelizeService();
 
@@ -74,18 +75,31 @@ vRouter.post('/account/:id/MPIN', vAccountController.submitMPIN);
 vRouter.get('/account/logout', vAccountController.logout);
 vRouter.post('/account/test', vAccountController.testSP);
 
-
 let vInventoryController =  new InventoryController();
 vRouter.get('/inventory/physical',vInventoryController.physical);
 vRouter.get('/inventory/load',vInventoryController.load);
+
+let vRetailerController = new RetailerController();
+vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
+vRouter.get('/retailer/threshold', vRetailerController.getRetailerThreshold);
+// vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
+vRouter.get('/task',vRetailerController.task);
+vRouter.get('/retailer/summary',vRetailerController.retailerCallPreparation);
+vRouter.post('/additionalRetailerRoute',vRetailerController.additionalRetailerRoute);
+vRouter.post('/loadWallet',vRetailerController.loadWallet);
+vRouter.post('/retailer/physicalInventory',vRetailerController.physicalInventory);
+vRouter.post('/retailer/collection',vRetailerController.collection);
 // define instance of your controller and route here
 
+let vTargetsActualsController =  new TargetsActualsController();
+vRouter.get('/brand',vTargetsActualsController.brand);
+vRouter.post('/performance',vTargetsActualsController.performance);
 // let aa = new aa();
 // vRouter.method('/aa', aa.bb);
 
-
 // let bb = new bb();
 // vRouter.method('/bb' bb.aa);
+
 
 vApp.use('/service',vRouter);
 
