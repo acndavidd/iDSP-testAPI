@@ -30,14 +30,26 @@
             padding: 0% 0% 0% 3%;
           }
           &.back{
-            background: url("../img/icon-idsp/back-white.png") no-repeat;
+            // background: url("../img/icon-idsp/back-white.png") no-repeat;
+            background: url(#{$icon-back}) no-repeat;
             background-size: 8vw;
             background-position: center center;
             padding: 0% 0% 0% 3%;
           }
           &.filter{
             right: 0;
-            background: url("../img/icon-idsp/filter.png") no-repeat;
+            // background: url("../img/icon-idsp/filter.png") no-repeat;
+            background: url(#{$icon-filter-empty}) no-repeat;
+            background-size: 8vw;
+            background-position: center center;
+            z-index: 150;
+            padding: 0% 3% 0% 0%;
+          }
+
+          &.filter-selected{
+            right: 0;
+            // background: url("../img/icon-idsp/back-white.png") no-repeat;
+            background: url(#{$icon-filter-fill}) no-repeat;
             background-size: 8vw;
             background-position: center center;
             z-index: 150;
