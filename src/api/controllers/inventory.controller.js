@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const api_service_1 = require('../services/api.service');
-const dsp_inventory_model_1 = require('../models/input/dsp-inventory.model');
+const inventory_model_1 = require('../models/input/inventory/inventory.model');
 class InventoryController {
     constructor() {
     }
@@ -16,12 +16,11 @@ class InventoryController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 let vHttpSvc = new api_service_1.APIService.HTTPService();
-                let vPath = '/OPISNET/services/idsp/DSPinventory';
-                let vDspInventoryData = new dsp_inventory_model_1.DspInventoryModel(pRequest.query.username, pRequest.query.type);
-                if (vDspInventoryData.validate()) {
-                    console.log(vDspInventoryData);
-                    let vResult = yield vHttpSvc.get(api_service_1.APIService.APIType.OPISNET, vPath, null, vDspInventoryData);
-                    console.log('KELUAR PHYSICAL SINI : ' + vResult.status + ', pay : ' + JSON.stringify(vResult));
+                let vPath = '/opisnet/services/idsp/dspphysicalinventory';
+                // let vPhysicalInventoryData = new Inventory.PhysicalInventory(pRequest.query.username, '1', '5', null);
+                let vPhysicalInventoryData = new inventory_model_1.Inventory.PhysicalInventory(pRequest.query.username, null, null, null);
+                if (vPhysicalInventoryData.validate()) {
+                    let vResult = yield vHttpSvc.get(api_service_1.APIService.APIType.OPISNET, vPath, null, vPhysicalInventoryData.paramDSP);
                     pResponse.status(vResult.status).json(vResult);
                 }
                 else {
@@ -37,15 +36,21 @@ class InventoryController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 let vHttpSvc = new api_service_1.APIService.HTTPService();
-                let vPath = '/OPISNET/services/idsp/DSPinventory';
-                let vDspInventoryData = new dsp_inventory_model_1.DspInventoryModel(pRequest.query.username, pRequest.query.type);
-                if (vDspInventoryData.validate()) {
-                    console.log(vDspInventoryData);
-                    let vResult = yield vHttpSvc.get(api_service_1.APIService.APIType.OPISNET, vPath, null, vDspInventoryData);
-                    console.log('KELUAR LOAD SINI : ' + vResult.status + ', pay : ' + JSON.stringify(vResult.payload));
-                    pResponse.status(vResult.status).json(vResult.payload);
+                let vPathOPIS = '/opisnet/services/idsp/dsploadinventory';
+                let vPathELP = '/ELPNET/services/idsp/dspLoadInventory';
+                let vLoadInventoryData = new inventory_model_1.Inventory.LoadInventory(pRequest.query.username, null, null, null, null, null, null, null, null, null, null);
+                // OPIS+
+                try {
+                    if (vLoadInventoryData.validate()) {
+                        let vResult = yield vHttpSvc.get(api_service_1.APIService.APIType.OPISNET, vPathOPIS, null, vLoadInventoryData.paramDSPOpis);
+                        pResponse.status(vResult.status).json(vResult);
+                    }
+                    else {
+                    }
                 }
-                else {
+                catch (pErr) {
+                    if (pErr.errorCode == 101) {
+                    }
                 }
             }
             catch (pErr) {
