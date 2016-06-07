@@ -101,16 +101,16 @@ export class RetailerSalesOrderComponent {
 
 
     skipSalesOrderCallback() {
-        this._pageNavigationService.navigate('SkipSalesOrder', null, null);
+        this._pageNavigationService.navigate('SkipSalesOrder', this._pageNavigationService.getCurrentParams(), null);
     }
 
     gotoAddEditLoadTransfer() {
-        this._pageNavigationService.navigate('AddEditLoadTransfer', null, null);
+        this._pageNavigationService.navigate('AddEditLoadTransfer', this._pageNavigationService.getCurrentParams(), null);
         this.vSmartLoadTransferList = this._retailerSalesOrderService.getSmartLoadTransferList();
     }
 
     gotoAddEditPhysicalOrder() {
-        this._pageNavigationService.navigate('AddEditPhysicalOrder', null, null);
+        this._pageNavigationService.navigate('AddEditPhysicalOrder', this._pageNavigationService.getCurrentParams(), null);
     }
 
     priceAfterDiscount() {

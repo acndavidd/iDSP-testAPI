@@ -40,6 +40,7 @@ import {ConfirmCollectionComponent} from '../../basic-call-procedure/components/
 import {AddUnservedOrderComponent} from '../../basic-call-procedure/components/add-unserved-order.component';
 import {SkipSalesOrderComponent} from '../../basic-call-procedure/components/skip-sales-order.component';
 import {SkipCollectionComponent} from '../../basic-call-procedure/components/skip-collection.component';
+import {VisitedRetailerComponent} from '../../basic-call-procedure/components/visited-retailer.component';
 import {HomeComponent} from '../../shared/components/home.component';
 import {AddStockReturnComponent} from '../../stock-return/components/add-stock-return.component';
 import {ConfirmStockReturnComponent} from '../../stock-return/components/confirm-stock-return.component';
@@ -141,6 +142,11 @@ import {TargetsActualsService} from '../../my-transaction/services/targets-actua
         path: '/callPreparation',
         name: 'CallPreparation',
         component: CallPreparationComponent
+    },
+    {
+        path: '/visitedRetailer',
+        name: 'VisitedRetailer',
+        component: VisitedRetailerComponent
     },
     {
         path: 'bcpCollection',
