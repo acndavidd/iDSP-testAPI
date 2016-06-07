@@ -1,0 +1,28 @@
+{
+	"status" : 200,
+	"statusMessage" : "OK",
+	"recordCount" : 1,
+	"retailerProfileList": [
+		{
+			"retailerID" : "RTL00001",
+			"storeName" : "Tamara Cell",
+			"outletType" : "Gallery",
+			"subOutletType" : "243234123",
+			"ownerFirstName" : "Tamara",
+			"ownerMiddleName" : "Mid",
+			"ownerLastName" : "Blazeky",
+			"personalMin" : "29282999",
+			"storeAddress" : "BSD City, Indonesia",
+			"civilStatus" : "Single",
+			"email" : "tamara@emailprov.com",
+			"gender" : "Female",
+			"birthday" : "10 July 1998",
+			"totalAmountofSelfTransaction" : "243234123",
+			"valueSegment" : "High",
+			"threshold" : "6",
+			"dspId" : "3",
+			"dspName" : "Edi Yono",
+			"firstRetailerMIN" : "223333"
+		}
+	]
+}

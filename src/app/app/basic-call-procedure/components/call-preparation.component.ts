@@ -8,8 +8,8 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {NgModel} from 'angular2/common';
 
 @Component({
-       // templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
-      templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
+       templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
+      // templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
@@ -29,6 +29,7 @@ export class CallPreparationComponent {
     vLoadWallet;
     vPhysicalInventory;
     vSelectedRetailCallId;
+    vCollection;
 
     constructor (
         private _layoutService: LayoutService,
@@ -47,57 +48,53 @@ export class CallPreparationComponent {
         } else {
             console.log('Retailer ID not found');
         }
-        console.log('in detail retailer for retailer id ' +  this.vSelectedRetailId);
+
+        console.log('======in detail retailer for retailer id ' +  this.vSelectedRetailId);
 
         this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
         response => {
-            if (response.json().status === 'Success') {
-                console.log('Query Success' + JSON.stringify(response.json().result));
-                this.vSelectedRetail = response.json().result;
-                console.log( 'result : ' + this.vSelectedRetail );
-
-            } else {
-                console.log( 'Query Failed' );
-                this.vSelectedRetail = null;
-            }
+                this.vSelectedRetail = response.json();
+                console.log( 'result : ' + this.vSelectedRetail);
+           
         },
         error => {
             console.log(error);
         });
 
-        this._retailerService.getLoadWallet(this.vSelectedRetailId).subscribe(
-        response => {
-            if (response.json().status === 'Success') {
-                console.log('Query Success to Load Wallet' + JSON.stringify(response.json().result));
-                this.vLoadWallet = response.json().result;
-                console.log( 'result : ' + this.vLoadWallet );
+        // this._retailerService.getLoadWallet(this.vSelectedRetailId).subscribe(
+        // response => {
+        //     if (response.json().status === 'Success') {
+        //         console.log('Query Success to Load Wallet' + JSON.stringify(response.json().result));
+        //         this.vLoadWallet = response.json().result;
+        //         console.log( 'result : ' + this.vLoadWallet );
 
-            } else {
-                console.log( 'Query Failed' );
-                this.vLoadWallet = null;
-            }
-        },
-        error => {
-            console.log(error);
-        });
+        //     } else {
+        //         console.log( 'Query Failed' );
+        //         this.vLoadWallet = null;
+        //     }
+        // },
+        // error => {
+        //     console.log(error);
+        // });
 
         this._retailerService.getPhysicalInventory(this.vSelectedRetailId).subscribe(
-        response => {
-            if (response.json().status === 'Success') {
-                console.log('Query Success to Get Physical Inventory' + JSON.stringify(response.json().result));
-                this.vPhysicalInventory = response.json().result;
-                console.log( 'result : ' + this.vPhysicalInventory );
-
-            } else {
-                console.log( 'Query Failed to Get Physical Inventory' );
-                this.vPhysicalInventory = null;
-            }
+        response => {               
+                this.vPhysicalInventory = response.json();
         },
         error => {
             console.log(error);
         });
 
-        console.log('update start date where call_id' + this.vSelectedRetailCallId);
+        this._retailerService.getCollection(this.vSelectedRetailId).subscribe(
+        response => {               
+                this.vCollection = response.json();
+        },
+        error => {
+            console.log(error);
+        });
+
+
+        // console.log('update start date where call_id' + this.vSelectedRetailCallId);
 
 
         this._layoutService.setCurrentPage('CallPreparation');
@@ -160,6 +157,10 @@ export class CallPreparationComponent {
 
     getPhysicalInventory() {
        return this.vPhysicalInventory;
+    }
+
+    getCollection() {
+        return this.vCollection;
     }
 
 }
