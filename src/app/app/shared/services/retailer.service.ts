@@ -34,14 +34,14 @@ export class RetailerService {
     }
 
     queryRetailerCallPrep(pRetailerID) {
+
         console.log('Start hit login service to Query Retailer Summary');
 
         let vData = {
             salesPerson: 'DSP00001',
             retailerId : pRetailerID
         };
-
-        return this._http.post('/retailerCallPreparation', JSON.stringify(vData));
+        return this._http.get('/retailer/summary?username=' + vData.salesPerson+'&retailerid='+vData.retailerId);
     }
 
     getLoadWallet(pRetailerID) {
@@ -52,7 +52,7 @@ export class RetailerService {
             retailerId : pRetailerID
         };
 
-        return this._http.post('/loadWallet', JSON.stringify(vData));
+        return this._http.get('retailer/'+vData.retailerId+'/load');
 
     }
 
@@ -64,18 +64,19 @@ export class RetailerService {
             retailerId : pRetailerID
         };
 
-        return this._http.post('/physicalInventory', JSON.stringify(vData));
+        return this._http.get('/retailer/'+vData.retailerId+'/physical');
 
     }
 
-    getPaymentHistory(pRetailerID) {
+    getCollection(pRetailerID) {
         console.log('Starts get payment history of' + pRetailerID);
 
           let vData = {
+            salesPerson : 'DSP00001',
             retailerId : pRetailerID
         };
 
-        return this._http.post('/paymentHistory', JSON.stringify(vData));
+        return this._http.post('/retailer/collection', JSON.stringify(vData));
 
     }
 

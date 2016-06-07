@@ -2,17 +2,17 @@
     <div class="item-container sub fixed">
         <div class='container'>
             <div class='cell'>
-                <div class='container'><div class='cell width-100 padding-left-5 large green'>Rose Cell</div></div>
+                <div class='container'><div class='cell width-100 padding-left-5 large green'>{{vRetailerName}}</div></div>
             </div>
             <div class='cell'>
-                <div class='container'><div class='cell width-50 italic green'>(99999900003)</div></div>
+                <div class='container'><div class='cell width-50 italic green'>({{vRetailerMIN}})</div></div>
             </div>
         </div>
     </div>
 
     <div class="item-container margin-top-13">
         <div class='container'>
-            <div class='cell'>
+            <div class='cell padding-top-1'>
                 <div class='container'><div class='cell width-40 padding-left-5'>Brand</div></div>
                 <div class='container'><div class='cell width-40 padding-left-5'>MIN</div></div>
                 <div class='container'><div class='cell width-40 padding-left-5'>Suggested Orders</div></div>
@@ -20,19 +20,18 @@
             </div>
             <div class='cell'>
                 <div class='container'><div class='cell filter-dropdown width-60 padding-top-1 padding-bottom-1 padding-left-5 padding-right-5'>
-                    <select name='brand_name' class='width-100'>
-                        <option value="smart">SMART</option>
-                        <option value="sun">SUN</option>
+                    <select name='brand_name' class='width-100' [(ngModel)]='vSelectedBrand' #brand (ngModelChange)='getSelectedBrand(brand.value)'>
+                        <option id='smart' value='smart'>SMART</option>
+                        <option id='sun' value='sun'>SUN</option>
                     </select>
                 </div></div>
                 <div class='container'><div class='cell filter-dropdown width-60 padding-top-1 padding-bottom-1 padding-left-5 padding-right-5'>
-                    <select name='retailer_min' class='width-100'>
-                        <option value="">9999900003</option>
-                        <option value="">9999900004</option>
+                    <select name='retailer_min' class='width-100' [(ngModel)]='vSelectedMIN' #MIN (ngModelChange)='getSelectedMIN(MIN.value)'>
+                        <option *ngFor='#min of vRetailerMinList' id={{min.retailerMIN}} value={{min.retailerMIN}}>{{min.retailerMIN}}</option>
                     </select>
                 </div></div>
-                <div class='container'><div class='cell width-60 padding-right-5 align-right'>P 350</div></div>
-                <div class='container'><div class='cell width-60 padding-right-5 padding-left-5 align-right'><input class='width-100' id="load_amount" type="number" pattern="[0-9]+([,\.][0-9]+)?"/></div></div>
+                <div class='container'><div class='cell width-60 padding-right-5 align-right'>P {{vSuggestedOrder | number}}</div></div>
+                <div class='container'><div class='cell width-60 padding-right-5 padding-left-5 align-right'><input class='width-100' #inputLoad (keyup)='getInputLoadAmount(inputLoad.value)' id="load_amount" type="number" pattern="[0-9]+([,\.][0-9]+)?"/></div></div>
             </div>
         </div>
     </div>
@@ -60,9 +59,9 @@
                     </div>
                 </div>
                 <div class='cell'>
-                    <div class='container'><div class='cell width-60 padding-top-1 padding-bottom-1 padding-right-5 padding-left-5 align-right'><input class='width-100' id="promo_code"/></div></div>
-                    <div class='container'><div class='cell width-60 padding-top-1 padding-bottom-1 padding-right-5 padding-left-5 align-right'><input class='width-100' id="discount_amount" type="number" pattern="[0-9]+([,\.][0-9]+)?"/></div></div>
-                    <div class='container'><div class='cell width-60 padding-right-5 align-right'>P 1,900</div></div>
+                    <div class='container'><div class='cell width-60 padding-top-1 padding-bottom-1 padding-right-5 padding-left-5 align-right'><input class='width-100' #promo (keyup)='getInputPromoCode(promo.value)' id="promo_code"/></div></div>
+                    <div class='container'><div class='cell width-60 padding-top-1 padding-bottom-1 padding-right-5 padding-left-5 align-right'><input class='width-100' #disc (keyup)='getInputDiscount(disc.value)' id="discount_amount" type="number" pattern="[0-9]+([,\.][0-9]+)?"/></div></div>
+                    <div class='container'><div class='cell width-60 padding-right-5 align-right'>P {{vInputLoadAmount-vInputDiscountAmount}}</div></div>
                 </div>
             </div>
         </div>

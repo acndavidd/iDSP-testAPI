@@ -1,0 +1,13 @@
+{
+	"BalanceInquiryResponse": {
+		"corporateID": "corph",
+		"branchID": "brh",
+		"requestRefNo": "123456789012",
+		"walletBalance": "33333",
+		"respCode": "0000",
+		"respCodeDesc": "SUCCESSFUL",
+		"transactionRRN": "460300000004",
+		"transactionTimestamp": "1377748444445"
+	}
+}
+

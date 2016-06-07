@@ -1,0 +1,17 @@
+{
+	"status" : 200,
+	"statusMessage" : "BERHASIL LOAD INVENTORY",
+	"productList" : [{
+		"productID" : "10001",
+		"productName" : "SmartLoad",
+		"beginningBalance" : "1000000",
+		"newDelivery" : "400000",
+		"lastModified" : "20160429003012"
+	},{
+		"productID" : "10002",
+		"productName" : "XpressLoad",
+		"beginningBalance" : "65000",
+		"newDelivery" : "5000",
+		"lastModified" : "20160429003012"
+	}]
+}

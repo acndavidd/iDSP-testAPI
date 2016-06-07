@@ -1,0 +1,12 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPattern": "/ELPNET/services/idsp/dspLoadInventory\\?username=[a-zA-Z0-9]+\\&type=load"
+    },
+    "response": {
+        "status": 200,        
+        "bodyFileName": "ELP/inventory/dsp-load-smart-inventory-error.json"
+    }
+}
+
+

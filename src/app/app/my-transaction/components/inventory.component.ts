@@ -22,7 +22,9 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 
 export class InventoryComponent {
 
-    vProductList;
+    vProductLoadList;
+    vSearchedProductPhysicalList;
+    vProductPhysicalList;
     vSelectedDate: String;
     vLoadShow = true;
     vPhysicalShow = false;
@@ -40,9 +42,13 @@ export class InventoryComponent {
         this._layoutService.setCurrentPage('Inventory');
         this._headerService.setTitle('Inventory');
         this.toggleFilterInventory();
-    }
 
-    getResize() {
+        this._inventoryService.getDSPInventoryList('anjay1', '1', '2', 'corph', 'branch', 
+            'b6a9c7b70f957d17802ec4ea4726302e5f3627e3c03d5075db820ce25685eaca', '123456789012', 
+            '1377683895', 'term001', 'Makati', '1226');
+    }
+  
+  getResize() {
         return this._matchMediaService.getMm();
     }
 
@@ -60,7 +66,6 @@ export class InventoryComponent {
         this.vLoadShow = false;
         this.vPhysicalShow = true;
         this.toggleFilterInventory();
-        this._inventoryService.getInventoryList('anjay1', 'physical');
     }
 
     subPhysicalMenuShow(indexArr) {
@@ -73,8 +78,14 @@ export class InventoryComponent {
         this.vSubLoadMenuShow[indexArr] = !this.vSubLoadMenuShow[indexArr];
     }
 
-    getProductList() {
-        return this._inventoryService.vProductList;
+    getPhysicalProductList() {
+        this.vProductPhysicalList = this._inventoryService.vPhysicalProductList;
+        return this.vProductPhysicalList;
+    }
+
+    getLoadProductList() {
+        this.vProductLoadList = this._inventoryService.vLoadProductList;
+        return this.vProductLoadList;
     }
 
     toggleFilterInventory() {
@@ -88,5 +99,11 @@ export class InventoryComponent {
             return parseInt(pStr);
         }
     }
+
+    onKey(pInputText: any) {
+        console.log('1111 : ' +pInputText);
+    }
+
+
 
 }

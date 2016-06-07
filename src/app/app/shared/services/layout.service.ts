@@ -161,7 +161,8 @@ export class LayoutService {
             pCurrent === 'CloseDay' ||
             pCurrent === 'Remittance' ||
             pCurrent === 'StockReturn' ||
-            pCurrent === 'Home') {
+            pCurrent === 'Home' ||
+            pCurrent === 'VisitedRetailer') {
 
             this._pageNavigationService.resetListPreviousData();
 
@@ -183,6 +184,9 @@ export class LayoutService {
             if (pCurrent === 'BasicCallProcedure') {
                 this.vHeaderItem.filter = true;
                 this.vHeaderItem.add = true;
+            }
+            if(pCurrent === 'VisitedRetailer') {
+                this.vHeaderItem.filter = true;
             }
         }
         // PARENT PAGE - END

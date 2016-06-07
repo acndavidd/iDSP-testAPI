@@ -2,10 +2,10 @@ import {ErrorHandlingService} from './error-handling.service';
 import {TokenObject} from '../models/token.model';
 
 var vPath = require("path");
-var vEnv = process.env.NODE_ENV || "development";
+var vEnv = process.env.NODE_ENV || "DEVELOPMENT";
 var vConfig = require(vPath.join(__dirname, '..', 'config', 'config.json'))[vEnv];
 var vNJwt = require('njwt');
-
+var TOKEN_ERROR = 104;
 export interface TokenInterface {
 	encryptToken(pObject: any): string;
 	decryptToken(pToken: string): TokenObject;
@@ -14,7 +14,6 @@ export interface TokenInterface {
 export class TokenService implements TokenInterface {
 
 	private static _errorHandling: ErrorHandlingService;
-
 	constructor() {
 		TokenService._errorHandling = new ErrorHandlingService();
 	}
@@ -30,7 +29,7 @@ export class TokenService implements TokenInterface {
 			var vToken = vJwt.compact();
 			return vToken;
 		}catch(pErr) {
-
+			TokenService._errorHandling.throwError(TOKEN_ERROR, pErr.toString());
 		}
 	}
 
@@ -40,7 +39,7 @@ export class TokenService implements TokenInterface {
 			let vSigningkey = vConfig.token.key;
 			return vNJwt.verify(pToken,vSigningkey);
 		}catch(pErr){
-			
+			TokenService._errorHandling.throwError(TOKEN_ERROR, pErr.toString());
 		}
 	}
 }

@@ -20,11 +20,7 @@ export class AccountsReceivablesService {
     }
 
     getAllReceivablesRoute(pDspId) {
-      try {
       console.log('In getAllReceivablesRoute service');
       return this._http.get('/retailer/accountreceivable?username=' + pDspId);
-      } catch(pErr) {
-          console.log('Error in get API: ' + pErr);
-      }
     }
 }
