@@ -3,6 +3,7 @@ import {SequelizeService} from './sequelize.service';
 
 export interface DataAccessInterface {
 	executeSP(pSPName: string, pParams: any, pIsJSONFormat?: boolean): Promise<string>;
+	getAccountReceivable(pParams);
 	getRouteDay(pSPName,pParams,pIsJSONFormat);
 	getBrands(pSPName,pParams,pIsJSONFormat);
 	getTargetsActuals(pSPName,pParams,pIsJSONFormat);
@@ -97,7 +98,7 @@ export class DataAccessService implements DataAccessInterface {
 		);
 	}
 
-	getAccReceivable(pParams) {
+	getAccountReceivable(pParams) {
 		return this.executeSP(pParams.spName, pParams.spData, pParams.isJson);
 	}
 }

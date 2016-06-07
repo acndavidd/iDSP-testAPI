@@ -1,7 +1,7 @@
 'use strict';
 
 import {Component} from 'angular2/core';
-import { Router } from 'angular2/router';
+import {Router} from 'angular2/router';
 import {NgModel} from 'angular2/common';
 import {AuthenticationService} from '../../shared/services/authentication.service';
 import {Layout} from '../../../models/layout';
@@ -35,10 +35,10 @@ export class LoginComponent {
 
     login(pEvent) {
         // For Hit API
-        this._authenticationService.login(this.vUsername,this.vPassword);
+        // this._authenticationService.login(this.vUsername,this.vPassword);
 
         // For By Pass Directly without API
-        // this._router.navigate(['Mpin']);
+        this._router.navigate(['Mpin']);
 
         // Testing SQLite
         /*let vCurrentContext = this;

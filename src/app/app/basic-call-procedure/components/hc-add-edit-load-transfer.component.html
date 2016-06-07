@@ -13,61 +13,64 @@
     <div class="item-container margin-top-13">
         <div class='container'>
             <div class='cell'>
-                <div class='container'><div class='cell width-100 padding-left-5'>DSP SMART Wallet Balance</div></div>
-            </div>
-        </div>
-        <div class='container'>
-            <div class='cell'>
-                <div class='container'><div class='cell width-50 padding-left-5'>Suggested Orders</div></div>
-                <div class='container'><div class='cell width-50 padding-left-5'>Before</div></div>
-                <div class='container'><div class='cell width-50 padding-left-5'>Edit Load Transfer Amount</div></div>
-                <div class='container'><div class='cell width-50 padding-left-5'>After</div></div>
-                <div class='container'><div class='cell width-50 padding-left-5'>Promo Code</div></div>
-                <div class='container'><div class='cell width-50 padding-left-5'>Promo Amount</div></div>
-                <div class='container'><div class='cell width-50 padding-left-5'>Total Amount</div></div>
+                <div class='container'><div class='cell width-40 padding-left-5'>Brand</div></div>
+                <div class='container'><div class='cell width-40 padding-left-5'>MIN</div></div>
+                <div class='container'><div class='cell width-40 padding-left-5'>Suggested Orders</div></div>
+                <div class='container'><div class='cell width-40 padding-left-5'>Load Transfer Amount</div></div>
             </div>
             <div class='cell'>
-                <div class='container'><div class='cell width-50 padding-right-5 align-right'>350.00 ₱</div></div>
-                <div class='container'><div class='cell width-50 padding-right-5 align-right'>50,000.00 ₱</div></div>
-                <div class='container'><div class='cell width-50 padding-right-3 align-right'><input class="width-60 input-peso" id="amount"/></div></div>
-                <div class='container'><div class='cell width-50 padding-right-5 align-right'>48,000.00 ₱</div></div>
-                <div class='container'><div class='cell width-50 padding-right-3 align-right'><input class="width-70" id="amount"/></div></div>
-                <div class='container'><div class='cell width-50 padding-right-3 align-right'><input class="width-60 input-peso" id="amount"/></div></div>
-                <div class='container'><div class='cell width-50 padding-right-5 align-right'>1,900.00 ₱</div></div>
+                <div class='container'><div class='cell filter-dropdown width-60 padding-top-1 padding-bottom-1 padding-left-5 padding-right-5'>
+                    <select name='brand_name' class='width-100'>
+                        <option value="smart">SMART</option>
+                        <option value="sun">SUN</option>
+                    </select>
+                </div></div>
+                <div class='container'><div class='cell filter-dropdown width-60 padding-top-1 padding-bottom-1 padding-left-5 padding-right-5'>
+                    <select name='retailer_min' class='width-100'>
+                        <option value="">9999900003</option>
+                        <option value="">9999900004</option>
+                    </select>
+                </div></div>
+                <div class='container'><div class='cell width-60 padding-right-5 align-right'>P 350</div></div>
+                <div class='container'><div class='cell width-60 padding-right-5 padding-left-5 align-right'><input class='width-100' id="load_amount" type="number" pattern="[0-9]+([,\.][0-9]+)?"/></div></div>
             </div>
         </div>
     </div>
-    <div class="item-container">
-        <div class='container'>
+    <div class="item-container" (click)="detailPromo()" id="detail-promo">
+        <div class="container">
             <div class='cell'>
-                <div class='container'><div class='cell width-100 padding-left-5'>DSP SUN Wallet Balance</div></div>
+                <div class='container'><div class='cell width-90 padding-left-5 large'>Promotion</div></div>
             </div>
+            <div class='cell width-10 arrow-down' [ngClass]="{selected: vDetailPromo}"></div>
         </div>
-        <div class='container'>
-            <div class='cell'>
-                <div class='container'><div class='cell width-50 padding-left-5'>Suggested Orders</div></div>
-                <div class='container'><div class='cell width-50 padding-left-5'>Before</div></div>
-                <div class='container'><div class='cell width-50 padding-left-5'>Edit Load Transfer Amount</div></div>
-                <div class='container'><div class='cell width-50 padding-left-5'>After</div></div>
-                <div class='container'><div class='cell width-50 padding-left-5'>Promo Code</div></div>
-                <div class='container'><div class='cell width-50 padding-left-5'>Promo Amount</div></div>
-                <div class='container'><div class='cell width-50 padding-left-5'>Total Amount</div></div>
-            </div>
-            <div class='cell'>
-                <div class='container'><div class='cell width-50 padding-right-5 align-right'>350.00 ₱</div></div>
-                <div class='container'><div class='cell width-50 padding-right-5 align-right'>50,000.00 ₱</div></div>
-                <div class='container'><div class='cell width-50 padding-right-3 align-right'><input class="width-60 input-peso" id="amount"/></div></div>
-                <div class='container'><div class='cell width-50 padding-right-5 align-right'>48,000.00 ₱</div></div>
-                <div class='container'><div class='cell width-50 padding-right-3 align-right'><input class="width-70" id="amount"/></div></div>
-                <div class='container'><div class='cell width-50 padding-right-3 align-right'><input class="width-60 input-peso" id="amount"/></div></div>
-                <div class='container'><div class='cell width-50 padding-right-5 align-right'>1,900.00 ₱</div></div>
+    </div>
+
+    <div *ngIf="vDetailPromo">
+        <div class="item-container sub">
+            <div class="container">
+                <div class='cell'>
+                    <div class='container'>
+                        <div class='cell width-40 padding-left-5'>Promo Code</div>
+                    </div>
+                    <div class='container'>
+                        <div class='cell width-40 padding-left-5'>Discount Amount</div>
+                    </div>
+                    <div class='container'>
+                        <div class='cell width-40 padding-left-5'>Total Amount</div>
+                    </div>
+                </div>
+                <div class='cell'>
+                    <div class='container'><div class='cell width-60 padding-top-1 padding-bottom-1 padding-right-5 padding-left-5 align-right'><input class='width-100' id="promo_code"/></div></div>
+                    <div class='container'><div class='cell width-60 padding-top-1 padding-bottom-1 padding-right-5 padding-left-5 align-right'><input class='width-100' id="discount_amount" type="number" pattern="[0-9]+([,\.][0-9]+)?"/></div></div>
+                    <div class='container'><div class='cell width-60 padding-right-5 align-right'>P 1,900</div></div>
+                </div>
             </div>
         </div>
     </div>
 
     <div class='no-divider'>
         <div class='button' id='save'>
-            <div class='button-identifier' (click)="gotoRetailerSalesOrder()">SAVE</div>
+            <div class='button-identifier' (click)="addLoadTransfer()">CONFIRM</div>
         </div>
     </div>
 </div>    

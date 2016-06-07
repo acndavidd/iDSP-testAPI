@@ -3,20 +3,16 @@ import {ORMService} from '../../services/orm.service';
 import {APIService} from '../../services/api.service';
 import {ErrorHandlingService} from '../../services/error-handling.service';
 import {TokenService} from '../../services/token.service';
-
-// import your model here
-import {AccountReceivableModel} from '../../models/input/account-receivables.model';
-import {TokenObject} from '../../models/token.model';
 import {DataAccessService} from '../../services/data-access.service';
 
-
+// import your model here
+import {TokenObject} from '../../models/token.model';
 import {RetailerProfileModel} from '../../models/input/retailer-profile.model';
 import {PhysicalInventoryModel} from '../../models/input/inventory/physical-inventory.model';
 
 //import {ErrHandlerService} from '../services/err.handler.service';
 
 export interface RetailerInterface{
-	getAccountReceivable(pRequest, pResponse): Promise<void>;
 	getRetailerThreshold(pRequest, pResponse): Promise<void>;
 	getProduct(pRequest, pResponse):Promise<void>;
 	getRetailerSummary(pRequest, pResponse):Promise<void>;

@@ -85,6 +85,13 @@
             <div class='cell icon arrow-right'></div>
         </div>
         <div class="separator"></div>
+            <div class="container" (click)="goToVisitedRetailer()">
+                <div class='cell icon visited'></div>
+                <div class='cell'>
+                    <div class='container'><div class='cell single'>Visited Retailer</div></div>
+                </div>
+            </div>
+        <div class="separator"></div>
         <div class="container" (click)="goToCloseOfTheDay()">
             <div class='cell'>
                 <div class='container'><div id='close-of-the-day-btn' class='cell single'>Close of the Day</div></div>
@@ -109,7 +116,7 @@
             <div class="container" (click)="goToCollection()">
                 <div class='cell icon collection'></div>
                 <div class='cell'>
-                    <div class='container'><div class='cell single'>Collection &amp; Remittance Summary</div></div>
+                    <div class='container'><div class='cell single'>Collection &amp; Remittance</div></div>
                 </div>
             </div>
         <div class="separator"></div>

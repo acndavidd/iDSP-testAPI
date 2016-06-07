@@ -15,11 +15,13 @@ export class InventoryService {
         private _router: Router) {
         }
 
+    getDSPInventoryList(pUsername: string, pRecordStart: string, pRecordEnd: string, pCorporateID: string, pBranchID: string, 
+        pTransKey: string, pReqRefNo: string, pReqTimestamp: string, pTerminalID: string, pAddress: string, pZipCode: string) {
 
-    getDSPInventoryList(pUsername: string, pRecordStart: string, pRecordEnd: string) {
-
-        let urlLoad = '/inventory/load?username=' +pUsername;
-        let urlPhysical = '/inventory/physical?username=' +pUsername;
+        let urlLoad = '/inventory/load?username=' +pUsername+ '&corporateid=' +pCorporateID+ '&branchid=' +pBranchID+
+            '&transactionkey=' +pTransKey+ '&requestrefno=' +pReqRefNo+ '&requesttimestamp=' +pReqTimestamp+ 
+            '&terminalid=' +pTerminalID+ '&address=' +pAddress+ '&zipcode=' +pZipCode;
+        let urlPhysical = '/inventory/physical?username=' +pUsername+ '&recordstart=' +pRecordStart+ '&recordend=' +pRecordEnd;
 
         console.log('URL LOAD : ' +urlLoad);
         console.log('URL PHYSICAL : ' +urlPhysical);

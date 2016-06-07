@@ -34,8 +34,11 @@ export class InventoryController implements InventoryInterface {
 		try {
 			let vHttpSvc = new APIService.HTTPService();
 			let vPath: string = '/opisnet/services/idsp/dspphysicalinventory';
-			// let vPhysicalInventoryData = new Inventory.PhysicalInventory(pRequest.query.username, '1', '5', null);
-			let vPhysicalInventoryData = new Inventory.PhysicalInventory(pRequest.query.username, null, null, null);
+			let vPhysicalInventoryData = new Inventory.PhysicalInventory(
+				pRequest.query.username, 
+				pRequest.query.recordstart, 
+				pRequest.query.recordend, 
+				null);
 
 			if (vPhysicalInventoryData.validate()) {
 				let vResult = await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null, vPhysicalInventoryData.paramDSP);
@@ -55,13 +58,25 @@ export class InventoryController implements InventoryInterface {
 			let vHttpSvc = new APIService.HTTPService();
 			let vPathOPIS: string = '/opisnet/services/idsp/dsploadinventory';
 			let vPathELP: string = '/ELPNET/services/idsp/dspLoadInventory';
-			let vLoadInventoryData = new Inventory.LoadInventory(pRequest.query.username, null, null, null, null, null, null, null, null, null, null);
+
+			let vLoadInventoryData = new Inventory.LoadInventory(
+				pRequest.query.username,
+				null,
+				pRequest.query.corporateid,
+				pRequest.query.branchid,
+				pRequest.query.transactionkey,
+				pRequest.query.requestrefno,
+				pRequest.query.requesttimestamp,
+				pRequest.query.terminalid,
+				pRequest.query.address,
+				pRequest.query.zipcode);
 
 			// OPIS+
 			try {
 				if (vLoadInventoryData.validate()) {
 					let vResult = await vHttpSvc.get(APIService.APIType.OPISNET, vPathOPIS, null, vLoadInventoryData.paramDSPOpis);
 					pResponse.status(vResult.status).json(vResult);
+					console.log('OPISSSS : ' + JSON.stringify(vResult));
 				} else {
 					
 				}
@@ -70,18 +85,31 @@ export class InventoryController implements InventoryInterface {
 				}
 			}
 
-
-			// ELP
-			// try {
-			// 	if (vDspInventoryData.validate()) {
-			// 		let vResult = await vHttpSvc.get(APIService.APIType.ELP.config, vPathELP, null, vDspInventoryData);
-			// 	} else {
+			// ELP SMART
+			try {
+				if (vLoadInventoryData.validate()) {
+					let vResult = await vHttpSvc.get(APIService.APIType.ELP, vPathELP, null, vLoadInventoryData.paramDSPElpSmart);
+					console.log('ELP SMART : ' + JSON.stringify(vResult));
+				} else {
 					
-			// 	}
-			// } catch(pErr) {
-			// 	if(pErr.errorCode == 101) {
-			// 	}
-			// }
+				}
+			} catch(pErr) {
+				if(pErr.errorCode == 101) {
+				}
+			}
+
+			// ELP SUN
+			try {
+				if (vLoadInventoryData.validate()) {
+					let vResult = await vHttpSvc.get(APIService.APIType.ELP, vPathELP, null, vLoadInventoryData.paramDSPElpSun);
+					console.log('ELP SUN : ' + JSON.stringify(vResult));
+				} else {
+					
+				}
+			} catch(pErr) {
+				if(pErr.errorCode == 101) {
+				}
+			}
 
 			// DB
 			

@@ -5,6 +5,7 @@ import {AccountController} from './controllers/account/account.controller';
 import {InventoryController} from './controllers/inventory.controller';
 import {TargetsActualsController} from './controllers/targets-actuals/targets-actuals.controller';
 import {RetailerController} from './controllers/retailer/retailer.controller';
+import {AccountReceivableController} from './controllers/retailer/account-receivable/account-receivable.controller';
 import {TaskController} from './controllers/task/task.controller';
 
 var vPath = require("path");
@@ -81,12 +82,15 @@ vRouter.get('/inventory/load',vInventoryController.load);
 
 
 let vRetailerController = new RetailerController();
-// vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
 vRouter.get('/retailer/threshold', vRetailerController.getRetailerThreshold);
 vRouter.get('/retailer/summary',vRetailerController.retailerProfile);
 vRouter.get('/retailer/:id/physical',vRetailerController.physicalInventory);
 vRouter.get('/retailer/:id/load',vRetailerController.loadWallet);
 // vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
+
+let vAccountReceivableController = new AccountReceivableController();
+vRouter.get('/retailer/accountreceivable', vAccountReceivableController.getAccountReceivable);
+vRouter.get('/retailer/:id/mins', vAccountReceivableController.getRetailerMins);
 
 let vTaskCOntroller = new TaskController();
 vRouter.get('/task',vTaskCOntroller.task);

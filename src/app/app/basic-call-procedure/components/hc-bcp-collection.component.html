@@ -34,7 +34,7 @@
                 <div class="container"><div class="cell width-45 padding-left-5">Amount Receivables</div></div>
             </div>
             <div class="cell">
-                <div class="container"><div class="cell width-45 align-right green">3000 ₱</div></div>
+                <div class="container"><div class="cell width-45 align-right green">P 3000</div></div>
             </div>
             <div class="cell width-10 arrow-down" id="arrow-outstanding" [ngClass]='{selected: vOutstandingShow}'></div>
         </div>
@@ -219,17 +219,17 @@
 	        </div>
 			<div class="container">
 	            <div class="cell width-45 padding-left-10 grey" id="payment-date">04/03/2016</div>
-	           	<div class="cell width-45 align-right grey" id="payment-amount">800 ₱</div>
+	           	<div class="cell width-45 align-right grey" id="payment-amount">P 800</div>
 	           	<div class="cell width-10"></div>
 	        </div>
 			<div class="container">
 	            <div class="cell width-45 padding-left-10 grey" id="payment-date">04/02/2016</div>
-	           	<div class="cell width-45 align-right grey" id="payment-amount">500 ₱</div>
+	           	<div class="cell width-45 align-right grey" id="payment-amount">P 500</div>
 	           	<div class="cell width-10"></div>
 	        </div>
 	        <div class="container">
 	            <div class="cell width-45 padding-left-10 grey" id="payment-date">04/01/2016</div>
-	           	<div class="cell width-45 align-right grey" id="payment-amount">2,500 ₱</div>
+	           	<div class="cell width-45 align-right grey" id="payment-amount">P 2,500</div>
 	           	<div class="cell width-10"></div>
 	        </div>
 	    </div>
@@ -244,7 +244,7 @@
         <div class="container">
             <div class="cell">
                 <div class="container"><div class="cell width-45 padding-left-5 grey">Amount</div></div>
-                <div class="container"><div class="cell width-45 padding-left-5 padding-right-5"><input class="width-100" type ="text" id ="collection-amount" placeholder="PHP"/></div></div>
+                <div class="container"><div class="cell width-45 padding-left-5 padding-right-5"><input class="width-90 input-peso" type ="text" pattern="[0-9]+([,\.][0-9]+)?" type="number"  id ="collection-amount" /></div></div>
             </div>
         </div>
         <div class="container">
