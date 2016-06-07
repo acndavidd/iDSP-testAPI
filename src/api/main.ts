@@ -5,7 +5,7 @@ import {AccountController} from './controllers/account/account.controller';
 import {InventoryController} from './controllers/inventory.controller';
 import {TargetsActualsController} from './controllers/targets-actuals/targets-actuals.controller';
 import {RetailerController} from './controllers/retailer/retailer.controller';
-
+import {TaskController} from './controllers/task/task.controller';
 
 var vPath = require("path");
 var vEnv = process.env.NODE_ENV || "DEVELOPMENT";
@@ -79,16 +79,21 @@ let vInventoryController =  new InventoryController();
 vRouter.get('/inventory/physical',vInventoryController.physical);
 vRouter.get('/inventory/load',vInventoryController.load);
 
+
 let vRetailerController = new RetailerController();
-vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
-vRouter.get('/retailer/threshold', vRetailerController.getRetailerThreshold);
 // vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
-vRouter.get('/task',vRetailerController.task);
-vRouter.get('/retailer/summary',vRetailerController.retailerCallPreparation);
-vRouter.post('/additionalRetailerRoute',vRetailerController.additionalRetailerRoute);
-vRouter.post('/loadWallet',vRetailerController.loadWallet);
-vRouter.post('/retailer/physicalInventory',vRetailerController.physicalInventory);
-vRouter.post('/retailer/collection',vRetailerController.collection);
+vRouter.get('/retailer/threshold', vRetailerController.getRetailerThreshold);
+vRouter.get('/retailer/summary',vRetailerController.retailerProfile);
+vRouter.get('/retailer/:id/physical',vRetailerController.physicalInventory);
+vRouter.get('/retailer/:id/load',vRetailerController.loadWallet);
+// vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
+
+let vTaskCOntroller = new TaskController();
+vRouter.get('/task',vTaskCOntroller.task);
+
+vRouter.post('/additionalRetailerRoute',vTaskCOntroller.additionalRetailerRoute);
+
+vRouter.post('/retailer/collection',vTaskCOntroller.collection);
 // define instance of your controller and route here
 
 let vTargetsActualsController =  new TargetsActualsController();

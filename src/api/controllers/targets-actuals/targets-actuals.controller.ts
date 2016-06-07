@@ -29,12 +29,24 @@ export class TargetsActualsController implements TargetsActualsInterface{
 
 	try{
 		var vParam ='';
+
 		let vResult = await TargetsActualsController._dataAccess.getBrands('get_brands', null);
 		console.log('All Brand : ' + JSON.stringify(vResult));
-		pResponse.json(vResult);
 
+		if(vResult) {
+			pResponse.json(vResult);
+		}
+		else {
+			console.log('BRAND NOT FOUND');
+		}
+		
 		}catch(pErr) {
-			throw pErr;
+			if(pErr.errorCode === 111) {
+				TargetsActualsController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 111, 'INVALID_CREDENTIALS');
+		}
+		else if(pErr.errorCode === 112) {// 
+
+			}
 		}
 	}
 

@@ -6,18 +6,12 @@ import {TokenService} from '../../services/token.service';
 
 // import your model here
 import {AccountReceivableModel} from '../../models/input/account-receivables.model';
-import {RetailerOutputModel} from '../../models/output/retailer.model';
-import {RouteDayOutputModel} from '../../models/output/route-day.model';
-import {RetailerModel} from '../../models/input/retailer.model';
 import {TokenObject} from '../../models/token.model';
 import {DataAccessService} from '../../services/data-access.service';
-import {RetailerModel} from '../../models/input/retailer.model';
+
+
 import {RetailerProfileModel} from '../../models/input/retailer-profile.model';
-import {RetailerOutputProfileModel} from '../../models/output/retailer-profile.model';
-import {RetailerOutputModel} from '../../models/output/retailer.model';
-import {RouteDayOutputModel} from '../../models/output/route-day.model';
-import {ErrorHandlingService} from '../../services/error-handling.service';
-import {PhysicalInventoryModel} from '../../models/input/retailer/physical-inventory.model';
+import {PhysicalInventoryModel} from '../../models/input/inventory/physical-inventory.model';
 
 //import {ErrHandlerService} from '../services/err.handler.service';
 
@@ -27,12 +21,7 @@ export interface RetailerInterface{
 	getProduct(pRequest, pResponse):Promise<void>;
 	getRetailerSummary(pRequest, pResponse):Promise<void>;
 	getSalesRoute(pRequest, pResponse):Promise<void>;
-	task(pRequest, pResponse):Promise<void>;
-	retailerCallPreparation(pRequest, pResponse):Promise<void>;
-	getAllRetailerAlert(pRequest, pResponse):Promise<void>;
 	loadWallet(pRequest, pResponse):Promise<void>;
-	physicalInventory(pRequest, pResponse):Promise<void>;
-	paymentHistory(pRequest, pResponse):Promise<void>;
 }
 
 
@@ -158,78 +147,48 @@ export class RetailerController implements RetailerInterface{
 		}
 	}
 
-	async task(pRequest, pResponse) {
-			console.log("Start getting retailer route for BCP");
-			var vSalesPerson = pRequest.query.username;
-			try{
-				
-				let vPath:string = '/OPISNET/services/idsp/AllRT';
-				let vRetailerData = new RetailerModel(vSalesPerson);
-
-				if(vRetailerData.validate()) {
-
-					// Catch result from API
-					let vResult = await RetailerController._httpService.get(APIService.APIType.OPISNET, vPath, null, vRetailerData);
-
-					console.log('total record : '+JSON.stringify(vResult.recordCount));
-					
-					var vTotalRetailer = vResult.recordCount;
-					var vAllRetailers= [];
-
-					// Start getting the retailer details
-
-					if (vTotalRetailer > 0 ){
-						for(var i = 0; i < vResult.recordCount; i++) {
-								var vRetailerAsJSON = new RetailerOutputModel(vResult.retailerList[i].retailerId, vResult.retailerList[i].storeName, vResult.retailerList[i].outletType, vResult.retailerList[i].retailerMinDetails, vResult.retailerList[i].retailerAddress, vResult.retailerList[i].numberofSELFTransaction, vResult.retailerList[i].numberofAgingSELFTransaction, vResult.retailerList[i].totalAmountofSELFTransaction, vResult.retailerList[i].dspId, vResult.retailerList[i].dspName).param_to_db;
-
-								vAllRetailers = vAllRetailers.concat(vRetailerAsJSON);
-							}
-
-						try {	
-
-							let vResultData = await RetailerController._dataAccess.getRouteDay('get_route_day', vAllRetailers ,true);
-							// console.log('All result ' + JSON.stringify(vResultData));
-							pResponse.json(vResultData.sort(function(a, b) {
-									if (a.getroute.sequence_no === null && b.getroute.sequence_no === null) {
-										return 0;
-									}
-									if (a.getroute.sequence_no === null) {
-										return 1;
-									}
-									if (b.getroute.sequence_no === null) {
-										return -1;
-									}
-									if (parseInt(a.getroute.sequence_no) > parseInt(b.getroute.sequence_no)) {
-										return 1;
-									}
-									if (parseInt(a.getroute.sequence_no) < parseInt(b.getroute.sequence_no)) {
-										return -1;
-									} else {
-										return 0;
-									}
-								}));
-						}
-						catch(pErr)
-						{
-							console.log('Cannot Get Data From Database');
-							throw pErr;
-						}
-				 	}else
-				 	{
-				 		console.log('No Route for Today');
-				 	}
-				}else {
-					RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 101, "INPUT_ERROR", vRetailerData.Errors);
-				}
-			}catch(pErr){
-				console.log(pErr);
-				if(pErr.errorCode == 101) {
-					RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 101, "ERR_INVALID_CREDENTIAL");
-				}
-			}
+	async getAllRetailerAlert(pRequest,pResponse){
+		console.log("Start getAllRetailerAlert");
+		let vOrmSvc = new ORMService();
+		let params = {
+			dsp_id : 'DSP00001'
+		};
+		var vResult = {
+			success : 1,
+			result : await vOrmSvc.sp('get_retailer_alert', params)
+		};
+		pResponse.json(vResult);
 	}
 
-	async retailerCallPreparation(pRequest,pResponse) {
+	async getRetailerThreshold(pRequest, pResponse) {
+		try{
+			let serviceURL: string = '/opisnet/services/idsp/dspalert';
+			let vTokenService = new TokenService();
+			let vTokebObject = new TokenObject();
+			let vToken = pResponse.locals.token;
+			console.log(vToken);
+			vTokebObject = vTokenService.decryptToken(vToken);
+			let params = {
+				username : vTokebObject.getDSPId()
+			};
+			console.log(params);
+			let vPayLoad = await RetailerController._httpService.post(APIService.APIType.OPISNET, serviceURL, null, params);
+			if(vPayLoad.status === 200) {
+				pResponse.status(200).json(vPayLoad);
+			}else { // api call success but error on the logic
+				
+			}
+		}catch(pErr) {
+			if(pErr.code) {
+				RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, pErr.code, pErr.desc);
+			}else {
+				RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 103, pErr);
+			}
+		}
+	}
+
+
+	async retailerProfile(pRequest,pResponse) {
 
 		console.log("Start getting Call Preparation");
 
@@ -257,18 +216,28 @@ export class RetailerController implements RetailerInterface{
 				}
 			}
 	} 
+	async physicalInventory(pRequest,pResponse) {
+		console.log("Start getting Physical Inventory");
 
-	async getAllRetailerAlert(pRequest,pResponse){
-		console.log("Start getAllRetailerAlert");
-		let vOrmSvc = new ORMService();
-		let params = {
-			dsp_id : 'DSP00001'
-		};
-		var vResult = {
-			success : 1,
-			result : await vOrmSvc.sp('get_retailer_alert', params)
-		};
-		pResponse.json(vResult);
+				var vSalesPerson = 'DSP00001';
+				var vRetailerId = pRequest.params.id;
+		try{
+			let vParam = new PhysicalInventoryModel(vSalesPerson, vRetailerId);
+			console.log('Param Physical Inventory : ' + JSON.stringify(vParam));
+				if(vParam.validate()) {
+					let vResult = await RetailerController._dataAccess.getPhysicalInventory('get_physical_inventory', vParam);
+					// console.log('All Result Physical Inventory : ' + JSON.stringify(vResult));
+					pResponse.json(vResult);
+				}else {
+					RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 100, 'INPUT_ERRORS', vParam.Errors);
+				}
+		}
+		catch(pErr) {
+			if(pErr.InventoryController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 111, 'INVALID_CREDENTIALS')) {
+
+			}
+		}
+
 	}
 
 	async loadWallet(pRequest,pResponse) {
@@ -319,126 +288,4 @@ export class RetailerController implements RetailerInterface{
 		}
 	}
 
-	async physicalInventory(pRequest,pResponse) {
-		console.log("Start getting Physical Inventory");
-
-				var vSalesPerson = pRequest.body.salesPerson;
-				var vRetailerId = pRequest.body.retailerId;
-		try{
-			let vParam = new PhysicalInventoryModel(vSalesPerson, vRetailerId);
-			console.log('Param Physical Inventory : ' + JSON.stringify(vParam));
-				if(vParam.validate()) {
-					let vResult = await RetailerController._dataAccess.getPhysicalInventory('get_physical_inventory', vParam);
-					// console.log('All Result Physical Inventory : ' + JSON.stringify(vResult));
-					pResponse.json(vResult);
-				}else {
-					RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 100, 'INPUT_ERRORS', vParam.Errors);
-				}
-		}
-		catch(pErr) {
-			if(pErr.errorCode === 111) {
-				RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 111, 'INVALID_CREDENTIALS');
-		}
-		else if(pErr.errorCode === 112) {// 
-
-			}
-		}
-	
-	}
-
-	async collection(pRequest,pResponse) {
-	console.log("Start getting collection");
-
-				var vSalesPerson = pRequest.body.salesPerson;
-				var vRetailerId = pRequest.body.retailerId;
-		try{
-			let vParam = new PhysicalInventoryModel(vSalesPerson, vRetailerId);
-			console.log('Param Physical Inventory : ' + JSON.stringify(vParam));
-				if(vParam.validate()) {
-					let vResult = await RetailerController._dataAccess.getCollection('get_collection', vParam);
-					// console.log('All Result Physical Inventory : ' + JSON.stringify(vResult));
-					pResponse.json(vResult);
-				}else {
-					RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 100, 'INPUT_ERRORS', vParam.Errors);
-				}
-		}
-		catch(pErr) {
-			if(pErr.errorCode === 111) {
-				RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 111, 'INVALID_CREDENTIALS');
-		}
-		else if(pErr.errorCode === 112) {// 
-
-			}
-		}
-	}
-
-	async additionalRetailerRoute (pRequest,pResponse) {
-		try
-		{	
-
-			console.log("Start getting Physical Inventory");
-
-			var vSalesPerson = pRequest.body.salesPerson;
-			var vDay = pRequest.body.pDay;
-
-			console.log(vSalesPerson + 'DSP id');
-
-			var vOrmSvc = new ORMService();
-
-			let vParams = {
-				salesPerson : vSalesPerson,
-				pDay : vDay	
-				
-			};
-
-			var vResult = await vOrmSvc.sp('get_additional_retailer', vParams );
-			console.log("Query Done with result : "+ JSON.stringify(vResponse));
-			var vResponse = {
-						"status" : "Success",
-						"errorMessage" : "",
-						"result" : vResult
-					};
-			
-			pResponse.json(vResponse);
-
-		}	
-		catch(pErr)
-		{
-			console.log("Failed to Query Payment History" + pErr);
-
-			var vError = {
-						"status" : "Error",
-						"errorMessage" : pErr,
-						"result" : null
-					};
-			pResponse.json(vError);
-		}
-	}
-
-	async getRetailerThreshold(pRequest, pResponse) {
-		try{
-			let serviceURL: string = '/opisnet/services/idsp/dspalert';
-			let vTokenService = new TokenService();
-			let vTokebObject = new TokenObject();
-			let vToken = pResponse.locals.token;
-			console.log(vToken);
-			vTokebObject = vTokenService.decryptToken(vToken);
-			let params = {
-				username : vTokebObject.getDSPId()
-			};
-			console.log(params);
-			let vPayLoad = await RetailerController._httpService.post(APIService.APIType.OPISNET, serviceURL, null, params);
-			if(vPayLoad.status === 200) {
-				pResponse.status(200).json(vPayLoad);
-			}else { // api call success but error on the logic
-				
-			}
-		}catch(pErr) {
-			if(pErr.code) {
-				RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, pErr.code, pErr.desc);
-			}else {
-				RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 103, pErr);
-			}
-		}
-	}
 }

@@ -29,7 +29,7 @@ export class TokenService implements TokenInterface {
 			var vToken = vJwt.compact();
 			return vToken;
 		}catch(pErr) {
-			TokenService._errorHandling.throwError(TOKEN_ERROR, pErr.toString()):
+			TokenService._errorHandling.throwError(TOKEN_ERROR, pErr.toString());
 		}
 	}
 
@@ -39,7 +39,7 @@ export class TokenService implements TokenInterface {
 			let vSigningkey = vConfig.token.key;
 			return vNJwt.verify(pToken,vSigningkey);
 		}catch(pErr){
-			TokenService._errorHandling.throwError(TOKEN_ERROR, pErr.toString()):
+			TokenService._errorHandling.throwError(TOKEN_ERROR, pErr.toString());
 		}
 	}
 }

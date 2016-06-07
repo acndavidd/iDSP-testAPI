@@ -8,9 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 const api_service_1 = require('../services/api.service');
+const error_handling_service_1 = require('../services/error-handling.service');
+const data_access_service_1 = require('../services/data-access.service');
 const dsp_inventory_model_1 = require('../models/input/dsp-inventory.model');
 class InventoryController {
     constructor() {
+        InventoryController._dataAccess = new data_access_service_1.DataAccessService();
+        InventoryController._errorHandling = new error_handling_service_1.ErrorHandlingService();
+        InventoryController._httpService = new api_service_1.APIService.HTTPService();
     }
     physical(pRequest, pResponse) {
         return __awaiter(this, void 0, void 0, function* () {

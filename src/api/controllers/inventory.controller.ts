@@ -3,12 +3,32 @@
 import {TokenService} from '../services/token.service';
 import {ORMService} from '../services/orm.service';
 import {APIService} from '../services/api.service';
+
+import {ErrorHandlingService} from '../services/error-handling.service';
+
+import {DataAccessService} from '../services/data-access.service';
 import {DspInventoryModel} from '../models/input/dsp-inventory.model';
 
-export class InventoryController{
+
+export interface InventoryInterface {
+	physical(pRequest, pResponse):Promise<void>;
+	load(pRequest, pResponse):Promise<void>;
+}
+
+export class InventoryController implements InventoryInterface {
 	
-	constructor(){
+
+	private static _errorHandling: ErrorHandlingService;
+	private static _httpService: APIService.HTTPService;
+	private static _dataAccess: DataAccessService;
+	private vUsername: string;
+
+	constructor() {
+		InventoryController._dataAccess = new DataAccessService();
+		InventoryController._errorHandling = new ErrorHandlingService();
+		InventoryController._httpService = new APIService.HTTPService();
 	}
+
 
 	async physical(pRequest,pResponse) {
 		try{
@@ -53,4 +73,5 @@ export class InventoryController{
 			}
 		}
 	}
+
 }
