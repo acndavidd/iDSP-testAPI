@@ -16,13 +16,12 @@ module.exports = {
       else {
         funct = funct.then(function(){
             // delay to solve database concurrency problem
-            timer = 50000;
+            timer = 60000;
             while(timer-- > 0){console.log("");}
             console.log('== == migrating : ' + pSP);
             queryInterface.sequelize.query(vQuery)
         });
       }
-      // vMigrate.push(queryInterface.sequelize.query(vQuery));
     });
     return funct;
   },
@@ -35,7 +34,7 @@ module.exports = {
     var vMigrate = [];
     vFs.readdirSync(vPath.join('migrations','SP_Scripts')).forEach(function(pSP){
       try{
-        if(pSP !=='migrate_SP.sql'){
+        if(pSP !== 'migrate_SP.sql'){
           pSP = pSP.replace(".sql","");
           vMigrate.push(queryInterface.sequelize.query("SELECT migrate_SP('"+pSP+"')"));
         }
