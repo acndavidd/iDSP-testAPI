@@ -18,6 +18,7 @@ export interface RetailerInterface{
 	getRetailerSummary(pRequest, pResponse):Promise<void>;
 	getSalesRoute(pRequest, pResponse):Promise<void>;
 	loadWallet(pRequest, pResponse):Promise<void>;
+	getSuggestedOrder(pRequest, pResponse):Promise<void>;
 }
 
 
@@ -281,6 +282,20 @@ export class RetailerController implements RetailerInterface{
 						"result" : null
 					};
 			pResponse.json(vError);
+		}
+	}
+
+	async getSuggestedOrder(pRequest, pResponse) {
+		try {
+			console.log('In retailer controller..get suggested order for : ' + pRequest.params.id);
+			let vResult = {suggested_order : "1000"};
+			pResponse.json({
+				"status" : "Success",
+				"errorMessage" : "",
+				"result" : vResult
+			});
+		}catch(pErr) {
+			RetailerController._errorHandling.throwError(400,'Failed to get suggested order',pErr);
 		}
 	}
 

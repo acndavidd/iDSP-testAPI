@@ -16,9 +16,10 @@ import {DataAccessService} from '../../services/data-access.service';
 
 export interface TaskInterface{
 	task(pRequest, pResponse):Promise<void>;
-	physicalInventory(pRequest, pResponse):Promise<void>;
-	paymentHistory(pRequest, pResponse):Promise<void>;
+	// physicalInventory(pRequest, pResponse):Promise<void>;
+	// paymentHistory(pRequest, pResponse):Promise<void>;
 	collection(pRequest, pResponse):Promise<void>;
+	additionalRetailerRoute(pRequest, pResponse):Promise<void>;
 }
 
 
