@@ -1,0 +1,27 @@
+{
+	"status" : 200,
+	"statusMessage" : "OK",
+	"recordCount" : 4,
+	"retailerMINList" : [
+		{
+			"retailerID" : "RTL00001",
+			"retailerMIN" : "99999990001",
+			"retailerMINBrand" : "SMART"
+		},
+		{
+			"retailerID" : "RTL00001",
+			"retailerMIN" : "99999990004",
+			"retailerMINBrand" : "SMART"
+		},
+		{
+			"retailerID" : "RTL00001",
+			"retailerMIN" : "99999990006",
+			"retailerMINBrand" : "SUN"
+		},
+		{
+			"retailerID" : "RTL00001",
+			"retailerMIN" : "99999990008",
+			"retailerMINBrand" : "SUN"
+		}
+	]
+}

@@ -3,12 +3,14 @@ import {SequelizeService} from './sequelize.service';
 
 export interface DataAccessInterface {
 	executeSP(pSPName: string, pParams: any, pIsJSONFormat?: boolean): Promise<string>;
+	getAccountReceivable(pParams);
 	getRouteDay(pSPName,pParams,pIsJSONFormat);
 	getBrands(pSPName,pParams,pIsJSONFormat);
 	getTargetsActuals(pSPName,pParams,pIsJSONFormat);
 	getPhysicalInventory(pSPName,pParams,pIsJSONFormat);
 	getCollection(pSPName,pParams,pIsJSONFormat);
 	getAccReceivable(pParams);
+	getDropSize(pSPName,pParams);
 }
 
 export class DataAccessService implements DataAccessInterface {
@@ -39,7 +41,12 @@ export class DataAccessService implements DataAccessInterface {
 	}
 	
 	getCollection(pSPName,pParams) {
-		console.log('Start Store Procedure get_targets_actuals');
+		console.log('Start Store Procedure getCollection');
+		return this.executeSP(pSPName,pParams);
+	}
+
+	getDropSize(pSPName,pParams) {
+		console.log('Start Store Procedure getDropSize');
 		return this.executeSP(pSPName,pParams);
 	}
 
@@ -91,7 +98,7 @@ export class DataAccessService implements DataAccessInterface {
 		);
 	}
 
-	getAccReceivable(pParams) {
+	getAccountReceivable(pParams) {
 		return this.executeSP(pParams.spName, pParams.spData, pParams.isJson);
 	}
 }

@@ -1,7 +1,7 @@
 {
     "request": {
         "method": "GET",
-        "urlPattern": "/OPISNET/services/idsp/DSPinventory\\?username=[a-zA-Z0-9]+\\&type=physical"
+        "urlPattern": "/opisnet/services/idsp/dspphysicalinventory\\?username=[a-zA-Z0-9]+\\&recordstart=[0-9]+\\&recordend=[0-9]+"
     },
     "response": {
         "status": 200,        

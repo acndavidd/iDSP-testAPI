@@ -1,7 +1,3 @@
--- Function: public.get_route_day(json)
-
--- DROP FUNCTION public.get_route_day(json);
-
 CREATE OR REPLACE FUNCTION public.get_route_day(vretailerids json)
   RETURNS json AS
 $BODY$
@@ -32,9 +28,12 @@ loop
 		i ->>'number_of_self_transaction' as number_of_self_transaction,
 		i ->>'number_of_aging_self_transaction' as number_of_aging_self_transaction,
 		i ->>'total_amount_self_transaction' as total_amount_self_transaction,
-		i ->>'dsp_name' as dsp_name
+		i ->>'dsp_name' as dsp_name,
+		c.call_id call_id,
+		CASE WHEN call_status IS NULL THEN 'Not Visited' ELSE call_status END AS call_status
 		from mst_route a
 		join mst_route_day b on a.route_id = b.route_id
+		join trx_sales_call_plan c on a.route_id = c.route_id
 		where 
 		b.route_day = vdow and
 		a.retailer_id = i->>'retailerid'

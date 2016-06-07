@@ -1,30 +1,30 @@
 {
 	"status" : 200,
 	"statusMessage" : "OK",
-	"recordCount" : 4,
+	"totalAllRetailerAmount" : "9800",
 	"selfTransactionList" : [
 		{
-			"RetailerID" : "RTL00001",
-			"RetailerName" : "Liquid Cell",
-			"RetailerMIN" : "99999990001",
+			"retailerID" : "RTL00001",
+			"retailerName" : "Liquid Cell",
+			"retailerMIN" : "99999990001",
 			"totalAmount" : "3210"
 		},
 		{
-			"RetailerID" : "RTL00004",
-			"RetailerName" : "Newbee Cell",
-			"RetailerMIN" : "99999990004",
+			"retailerID" : "RTL00004",
+			"retailerName" : "Newbee Cell",
+			"retailerMIN" : "99999990004",
 			"totalAmount" : "1290"
 		},
 		{
-			"RetailerID" : "RTL00006",
-			"RetailerName" : "Alliance Cell",
-			"RetailerMIN" : "99999990006",
+			"retailerID" : "RTL00006",
+			"retailerName" : "Alliance Cell",
+			"retailerMIN" : "99999990006",
 			"totalAmount" : "2000"
 		},
 		{
-			"RetailerID" : "RTL00008",
-			"RetailerName" : "XYZ Cell",
-			"RetailerMIN" : "99999990008",
+			"retailerID" : "RTL00008",
+			"retailerName" : "XYZ Cell",
+			"retailerMIN" : "99999990008",
 			"totalAmount" : "2300"
 		}
 	]

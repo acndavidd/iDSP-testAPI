@@ -3,7 +3,7 @@ import {isValid, IsLength} from 'class-validator';
 
 export class RetailerProfileModel extends IDSPModel{
 
-	@IsLength(8,8, {message : 'Invalid DSP ID'})
+	// @IsLength(8,8, {message : 'Invalid DSP ID'});
 	username: string;
 	retailerid: string;
 

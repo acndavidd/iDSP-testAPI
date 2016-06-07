@@ -98,6 +98,11 @@ export class LeftMenuComponent implements OnInit  {
         this.checkCurrentPage(this.vGoToPage);
     }
 
+    goToVisitedRetailer() {
+        this.vGoToPage = 'VisitedRetailer';
+        this.checkCurrentPage(this.vGoToPage);
+    }
+
     goToCloseOfTheDay() {
         this.vGoToPage = 'CloseDay';
         this.checkCurrentPage(this.vGoToPage);
