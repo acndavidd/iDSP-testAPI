@@ -1,0 +1,12 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPattern": "/ELPNET/services/idsp/dspLoadInventory\\?corporateid=[a-zA-Z0-9]+\\&branchid=[a-zA-Z0-9]+\\&transactionkey=[a-zA-Z0-9]+\\&requestrefno=[a-zA-Z0-9]+\\&transactiontype=DLRBALSUN&requesttimestamp=[a-zA-Z0-9]+\\&terminalid=[a-zA-Z0-9]+\\&address=[a-zA-Z0-9]+\\&zipcode=[a-zA-Z0-9]+"
+    },
+    "response": {
+        "status": 200,   
+        "bodyFileName": "ELP/inventory/dsp-load-sun-inventory-success.json"
+    }
+}
+
+
