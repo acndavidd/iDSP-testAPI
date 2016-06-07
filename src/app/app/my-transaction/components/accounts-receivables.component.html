@@ -1,7 +1,7 @@
 <div class='container-body'>
 	<div class='filter-container' *ngIf='getFilter().filterAccReceivables'>
         <div class='filter-input input'>
-            <div class='icon' (click)='searchFilter(listFilter.value)'></div>
+            <div class='icon'></div>
             <input type='text' #listFilter (keyup)='onKey(listFilter.value)' id='RetailerSearchBox' placeholder='Input Retailer Name or MIN' />
         </div>
 

@@ -3,7 +3,7 @@ import {Router} from 'angular2/router';
 import {Response, RequestOptionsArgs, Headers, Http, Connection, RequestOptions} from 'angular2/http';
 
 @Injectable()
-export class AccountsReceivablesService {
+export class AddEditLoadTransferService {
     private vServiceUrl: string;
     private vErrorMsg: string;
     private vIsLoading: boolean;
@@ -19,8 +19,8 @@ export class AccountsReceivablesService {
         return this.vIsLoading;
     }
 
-    getAllReceivablesRoute(pDspId) {
-      console.log('In getAllReceivablesRoute service');
-      return this._http.get('/retailer/accountreceivable?username=' + pDspId);
+    getRetailerMins(pStr) {
+      console.log('In AddEditLoadTransferService service');
+      return this._http.get('/retailer/' + pStr + '/mins');
     }
 }

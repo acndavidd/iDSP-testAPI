@@ -9,6 +9,17 @@ export class RetailerSalesOrderService {
     private vErrorMsg: string;
     private vIsLoading: boolean;
     private vSmartLoadTransferList: any = [];
+    vRetailerName;
+    vRetailerMIN;
+    vSelectedMIN;
+    vSelectedBrand;
+    vInputPromoCode;
+    vSuggestedOrder: number = 0;
+    vInputLoadAmount:number = 0;
+    vInputDiscountAmount:number = 0;
+    vTotalAmount:number = 0;
+    vBrandList:any = [];
+    vRetailerMinList: any = [];
 
     constructor(
         private _http: Http,
@@ -40,5 +51,21 @@ export class RetailerSalesOrderService {
 
     setSmartLoadTransferList(pData) {
         this.vSmartLoadTransferList = pData;
+    }
+
+    getRetailerMins(pStr) {
+      console.log('In AddEditLoadTransferService service');
+      this._http.get('/retailer/' + pStr + '/mins').subscribe(
+            response => {
+                this.vRetailerMinList = response.json();
+            },
+            error => {
+                throw ('Error in Service');
+            }
+        );
+    }
+
+    setTotalAmount() {
+        return this.vTotalAmount = (this.vInputLoadAmount-this.vInputDiscountAmount);
     }
 }
