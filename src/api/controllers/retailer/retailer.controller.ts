@@ -241,51 +241,47 @@ export class RetailerController implements RetailerInterface{
 	}
 
 	async loadWallet(pRequest,pResponse) {
-		try{
+		
 			console.log("Start getting Load Wallet");
-
 			var vSalesPerson = 'DSP00001';
 			var vRetailerId = pRequest.params.id;
+			var vAllDropSize= [];
+			var result;
+			try{
+				let vParam = new PhysicalInventoryModel(vSalesPerson, vRetailerId);
+				console.log('Param Load Wallet : ' + JSON.stringify(vParam));
+					if(vParam.validate()) {						
+						let vResult = await RetailerController._dataAccess.getDropSize('get_drop_size', vParam);
+						console.log('All Result Load Wallet : ' + JSON.stringify(vResult));
 
-			// console.log(vSelectedRetailId+'retailer id');
+						var total = vResult.length;
+						console.log('load wallet total : '+total);
 
-			var vOrmSvc = new ORMService();
+						for (var y = 0; y < total; y++)
+						{
+							var dropSizeJSON =((vResult[y].target_qty * vResult[y].product[0].percent_share/100) - vResult[y].product[0].sales_retailer)/vResult[y].product[0].supposed_remaining_visits;
 
-			let vParams = {
-				sales_person : vSalesPerson,
-				selected_ret_id : vRetailerId
-				
-			};
+							var vResults=vResult[y];
+							let vParamss = {
+								dropsize : dropSizeJSON
+							};						
+							vAllDropSize = vAllDropSize.concat(vResults,vParamss);
 
-			var vResult = [{
-				"brand":"SmartLoad",
-				"drop_size":"350",
-				"last_amount_transferred":"1200",
-				"transaction_date":"04/01/2016",
-				"latest_balance":"1000",
-				"retailer_id":"RTL00001"
-			}]
+						}
+						console.log('aaaa load'+ JSON.stringify(vAllDropSize));
+						pResponse.json(vAllDropSize);
 
-			// console.log("Query Done with result : "+ JSON.stringify(vResponse));
-			var vResponse = {
-						"status" : "Success",
-						"errorMessage" : "",
-						"result" : vResult
-					};
-			
-			pResponse.json(vResponse);
-		}
-		catch(pErr)
-		{
-			console.log("Failed to Query Load Wallet with error message" + pErr);
+					}else {
+						RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 100, 'INPUT_ERRORS', vParam.Errors);
+					}
+			}
+			catch(pErr) {
+				if(pErr.InventoryController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 111, 'INVALID_CREDENTIALS')) {
 
-			var vError = {
-						"status" : "Error",
-						"errorMessage" : pErr,
-						"result" : null
-					};
-			pResponse.json(vError);
-		}
+				}
+			}
+
+	
 	}
 
 }
