@@ -3,7 +3,7 @@
         "method": "POST",
         "url": "/opisnet/services/idsp/userValidation",
         "bodyPatterns" : [
-            {"doesNotMatch" : ".*5600026ZHJ.*"}
+            {"doesNotMatch" : ".*DSP00001.*"}
         ]
     },
     "response": {

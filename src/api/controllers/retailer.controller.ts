@@ -1,7 +1,7 @@
 'use strict';
 import {ORMService} from '../services/orm.service';
 import {APIService} from '../services/api.service';
-import {ErrorHandling} from '../services/error-handling.service';
+import {ErrorHandlingService} from '../services/error-handling.service';
 import {RetailerModel} from '../models/input/retailer.model';
 import {RetailerOutputModel} from '../models/output/retailer.model';
 import {RouteDayOutputModel} from '../models/output/route-day.model';

@@ -145,6 +145,7 @@ export class BCPCollectionComponent {
     //         _pageNavigationService : this._pageNavigationService
     //         };
 
+
     //         this._modalService.toggleModal('Are you sure  <br/> you want to skip collection ?', 
     //         Modal.ModalType.CONFIRMATION, 
     //         {footNote : '* If you confirm to continue, <br/> You cannot go back to collection for this retailer', 

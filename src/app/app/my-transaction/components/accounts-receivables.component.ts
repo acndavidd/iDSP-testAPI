@@ -126,40 +126,14 @@ export class AccountsReceivablesComponent {
         this.vAllReceivablesRouteList = pAllReceivablesRouteList;
     }
 
-    searchFilter(pInputText: any) {
-        if (pInputText.length > 0) {
-            if (this.vSelectedRoute === 'allRoute') {
-                this.vFlag = 1;
-                this.setSearchedReceivablesRoute(this.vAllReceivablesRouteList.filter(pFilter => {
-                    return pFilter.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
-                    pFilter.retailer_min.indexOf(pInputText) !== -1;
-                }));
-            } else {
-                this.vFlag = 0;
-                this.setSearchedReceivablesRoute(this.vReceivablesRouteList.filter(pFilter => {
-                    return pFilter.retailer_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
-                    pFilter.retailer_min.indexOf(pInputText) !== -1;
-                }));
-            }
-        } else {
-            if (this.vSelectedRoute === 'allRoute') {
-               this.vFlag = 1;
-               this.setSearchedReceivablesRoute(this.vAllReceivablesRouteList);
-            } else {
-               this.vFlag = 0;
-               this.setSearchedReceivablesRoute(this.vReceivablesRouteList);
-            }
-        }
-    }
-
     getRoute(pStr: any) {
-        console.log('You select: ' + pStr);
         this.vSelectedRoute = pStr;
-
         if (this.vSelectedRoute === 'allRoute') {
             this.vFlag = 1;
+            this.setSearchedReceivablesRoute(this.vAllReceivablesRouteList);
         } else {
             this.vFlag = 0;
+            this.setSearchedReceivablesRoute(this.vReceivablesRouteList);
         }
     }
 }

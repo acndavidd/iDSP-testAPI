@@ -1,13 +1,13 @@
 {
     "request": {
         "method": "GET",
-        "urlPattern": "/opisnet/services/idsp/dspalert\\?username=5600026ZHJ",
+        "urlPattern": "/opisnet/services/idsp/dspalert\\?username=DSP00001",
         "headers": {
             "accessToken" : {
                 "equalTo" : "1234567890-J@karta123-0987654321"
             },
             "username" : {
-                "equalTo" : "5600026ZHJ"
+                "equalTo" : "DSP00001"
             } 
         }
     },
