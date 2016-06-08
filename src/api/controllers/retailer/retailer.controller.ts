@@ -8,6 +8,8 @@ import {DataAccessService} from '../../services/data-access.service';
 // import your model here
 import {TokenObject} from '../../models/token.model';
 import {RetailerProfileModel} from '../../models/input/retailer-profile.model';
+import {BalanceModel} from '../../models/input/retailer/balance.model';
+import {DropsizeModel} from '../../models/input/retailer/dropsize.model';
 import {PhysicalInventoryModel} from '../../models/input/inventory/physical-inventory.model';
 
 //import {ErrHandlerService} from '../services/err.handler.service';
@@ -18,6 +20,8 @@ export interface RetailerInterface{
 	getRetailerSummary(pRequest, pResponse):Promise<void>;
 	getSalesRoute(pRequest, pResponse):Promise<void>;
 	loadWallet(pRequest, pResponse):Promise<void>;
+	getSuggestedOrder(pRequest, pResponse):Promise<void>;
+	getCurrentBalance(pRequest, pResponse):Promise<void>;
 }
 
 
@@ -85,7 +89,7 @@ export class RetailerController implements RetailerInterface{
 				selected_ret_id : vSelectedRetailId
 			};
 
-			var vResult = JSON.parse(await vOrmSvc.sp('get_retailer_summary', vParams ));     
+			var vResult = JSON.parse(await RetailerController._dataAccess.getRetailerSummary('get_retailer_summary', vParams ));     
 			console.log("Query Done with result : "+ JSON.stringify(vResult));
 
 			if (vResult.status == "Error")
@@ -125,7 +129,7 @@ export class RetailerController implements RetailerInterface{
 				sales_person : vSalesPerson
 			};
 
-			var vResult = await vOrmSvc.sp('get_retailer_route', vParams );
+			var vResult = await RetailerController._dataAccess.getSalesRoute('get_retailer_route', vParams );
 			console.log("Query Done with result : "+ JSON.stringify(vResult));
 
 			pResponse.json(vResult);			
@@ -281,6 +285,37 @@ export class RetailerController implements RetailerInterface{
 						"result" : null
 					};
 			pResponse.json(vError);
+		}
+	}
+
+	async getSuggestedOrder(pRequest, pResponse) {
+		try {
+			console.log('In getSuggestedOrder controller');
+			var vMonth = new Date().getMonth();
+			if (pRequest.query.subcat_type === 'L') {
+				let vData = new DropsizeModel(pRequest.query.brand, vMonth, pRequest.params.id, pRequest.query.subcat_type);
+
+				var vSuggestedOrder:any = await RetailerController._dataAccess.getDropSize('get_bcp_dropsize', vData);
+				console.log('Result : ' + vSuggestedOrder);
+				pResponse.status(200).json(vSuggestedOrder);
+			} else {
+				console.log('P');
+			}
+		}catch(pErr) {
+			JSON.stringify(pErr);
+			RetailerController._errorHandling.throwError(400,'Failed to get suggested order',pErr);
+		}
+	}
+
+	async getCurrentBalance(pRequest, pResponse) {
+		try {
+			console.log('in getCurrentBalance controller');	
+			let vPath:string = '/elpnet/services/idsp/retailerbalance';
+			let vParams = new BalanceModel(pRequest.body.min, pRequest.body.source);
+			let vResult = await RetailerController._httpService.post(APIService.APIType.ELP, vPath, null, vParams);
+			pResponse.status(200).json(vResult);
+		}catch(pErr) {
+			RetailerController._errorHandling.throwError(400,'Failed to get balance from ELP',pErr);
 		}
 	}
 

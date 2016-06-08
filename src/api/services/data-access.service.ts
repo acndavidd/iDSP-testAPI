@@ -10,6 +10,10 @@ export interface DataAccessInterface {
 	getPhysicalInventory(pSPName,pParams,pIsJSONFormat);
 	getCollection(pSPName,pParams,pIsJSONFormat);
 	getInventoryLoadDsp(pSPName,pParams,pIsJSONFormat);
+	getDropSize(pSPName,pParams);
+	getRetailerSummary(pSPName, pParams);
+	getSalesRoute(pSPName, pParams);
+	getAdditionalRetailer(pSPName,pParams);
 }
 
 export class DataAccessService implements DataAccessInterface {
@@ -40,12 +44,31 @@ export class DataAccessService implements DataAccessInterface {
 	}
 	
 	getCollection(pSPName,pParams) {
-		console.log('Start Store Procedure get_targets_actuals');
+		console.log('Start Store Procedure getCollection');
+		return this.executeSP(pSPName,pParams);
+	}
+
+	getDropSize(pSPName,pParams) {
+		console.log('Start Store Procedure getDropSize');
+		return this.executeSP(pSPName,pParams);
+	}
+
+	getRetailerSummary(pSPName,pParams) {
+		console.log('Start Store Procedure getRetailerSummary');
 		return this.executeSP(pSPName,pParams);
 	}
 
 	getAccountReceivable(pParams) {
 		return this.executeSP(pParams.spName, pParams.spData, pParams.isJson);
+	}
+
+	getSalesRoute(pSPName,pParams) {
+		console.log('Start Store Procedure getSalesRoute');
+	}
+
+	getAdditionalRetailer(pSPName,pParams) {
+		console.log('Start Store Procedure get_additional_retailer');
+		return this.executeSP(pSPName,pParams);
 	}
 
 	getInventoryLoadDsp(pSPName, pParams, pIsJSONFormat) {
@@ -103,6 +126,4 @@ export class DataAccessService implements DataAccessInterface {
 			}
 		);
 	}
-
-
 }

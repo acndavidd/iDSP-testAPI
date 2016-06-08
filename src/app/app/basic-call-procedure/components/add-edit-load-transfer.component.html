@@ -20,18 +20,18 @@
             </div>
             <div class='cell'>
                 <div class='container'><div class='cell filter-dropdown width-60 padding-top-1 padding-bottom-1 padding-left-5 padding-right-5'>
-                    <select name='brand_name' class='width-100' [(ngModel)]='vSelectedBrand' #brand (ngModelChange)='getSelectedBrand(brand.value)'>
+                    <select name='brand_name' class='width-100' [(ngModel)]='vSelectedBrand' #brand (ngModelChange)='setSelectedBrand(brand.value)'>
                         <option id='smart' value='smart'>SMART</option>
                         <option id='sun' value='sun'>SUN</option>
                     </select>
                 </div></div>
                 <div class='container'><div class='cell filter-dropdown width-60 padding-top-1 padding-bottom-1 padding-left-5 padding-right-5'>
-                    <select name='retailer_min' class='width-100' [(ngModel)]='vSelectedMIN' #MIN (ngModelChange)='getSelectedMIN(MIN.value)'>
+                    <select name='retailer_min' class='width-100' [(ngModel)]='vSelectedMIN' #MIN (ngModelChange)='setSelectedMIN(MIN.value)'>
                         <option *ngFor='#min of vRetailerMinList' id={{min.retailerMIN}} value={{min.retailerMIN}}>{{min.retailerMIN}}</option>
                     </select>
                 </div></div>
-                <div class='container'><div class='cell width-60 padding-right-5 align-right'>P {{vSuggestedOrder | number}}</div></div>
-                <div class='container'><div class='cell width-60 padding-right-5 padding-left-5 align-right'><input class='width-100' #inputLoad (keyup)='getInputLoadAmount(inputLoad.value)' id="load_amount" type="number" pattern="[0-9]+([,\.][0-9]+)?"/></div></div>
+                <div class='container'><div class='cell width-60 padding-right-5 align-right grey' [ngClass]="{'red': (vSuggestedOrder < 0)}">P {{vSuggestedOrder | number}}</div></div>
+                <div class='container'><div class='cell width-60 padding-right-5 padding-left-5 align-right'><input class='width-100' #inputLoad (keyup)='setInputLoadAmount(inputLoad.value)' id="load_amount" type="number" pattern="[0-9]+([,\.][0-9]+)?"/></div></div>
             </div>
         </div>
     </div>
@@ -52,16 +52,16 @@
                         <div class='cell width-40 padding-left-5'>Promo Code</div>
                     </div>
                     <div class='container'>
-                        <div class='cell width-40 padding-left-5'>Discount Amount</div>
+                        <div class='cell width-40 padding-left-5 padding-top-1'>Discount Amount</div>
                     </div>
                     <div class='container'>
-                        <div class='cell width-40 padding-left-5'>Total Amount</div>
+                        <div class='cell width-40 padding-left-5 padding-top-2'>Total Amount</div>
                     </div>
                 </div>
                 <div class='cell'>
-                    <div class='container'><div class='cell width-60 padding-top-1 padding-bottom-1 padding-right-5 padding-left-5 align-right'><input class='width-100' #promo (keyup)='getInputPromoCode(promo.value)' id="promo_code"/></div></div>
-                    <div class='container'><div class='cell width-60 padding-top-1 padding-bottom-1 padding-right-5 padding-left-5 align-right'><input class='width-100' #disc (keyup)='getInputDiscount(disc.value)' id="discount_amount" type="number" pattern="[0-9]+([,\.][0-9]+)?"/></div></div>
-                    <div class='container'><div class='cell width-60 padding-right-5 align-right'>P {{vInputLoadAmount-vInputDiscountAmount}}</div></div>
+                    <div class='container'><div class='cell width-60 padding-bottom-1 padding-right-5 padding-left-5 align-right'><input class='width-100' [(ngModel)]='vInputPromoCode' id="promo_code"/></div></div>
+                    <div class='container'><div class='cell width-60 padding-top-1 padding-bottom-1 padding-right-5 padding-left-5 align-right'><input class='width-100' [(ngModel)]='vInputDiscountAmount' id="discount_amount" type="number" pattern="[0-9]+([,\.][0-9]+)?"/></div></div>
+                    <div class='container'><div class='cell width-60 padding-right-5 align-right' [ngClass]="{'red': (vTotalAmount < 0)}">P {{getTotalAmount()}}</div></div>
                 </div>
             </div>
         </div>

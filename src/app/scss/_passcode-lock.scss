@@ -31,14 +31,15 @@
     left: 0;
     right: 0;
 	height: 100%;
+    width: 100%;
 	text-align :center;
 
 	.anti-spy {
-                width: 100%;
-                position: absolute;
-                background-color: rgba(0, 0, 0, 0.4);
-                height : 100%;
-            }
+        width: 100%;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.4);
+        height : 100%;
+    }
 
 	.passcode-item-container{
 	    width: 100%;

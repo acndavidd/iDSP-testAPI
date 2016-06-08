@@ -1,7 +1,7 @@
 {
     "request": {
         "method": "GET",
-        "urlPattern": "/ELPNET/services/idsp/dspLoadInventory\\?username=[a-zA-Z0-9]+\\&type=load"
+        "urlPattern": "/elpnet/services/idsp/dspLoadInventory\\?username=[a-zA-Z0-9]+\\&type=load"
     },
     "response": {
         "status": 200,        

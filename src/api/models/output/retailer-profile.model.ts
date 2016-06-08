@@ -51,7 +51,6 @@ export class RetailerOutputProfileModel extends IDSPModel{
 		// 		dsp_name :	dspName,
 		// 		first_retailer_min : firstRetailerMIN
 		// 	}
-		}
 	}
 	
 }

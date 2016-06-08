@@ -4,6 +4,7 @@ import {Response, RequestOptionsArgs, Headers, Http, Connection, RequestOptions}
 import {Modal} from './modal.service';
 import {LayoutService} from './layout.service';
 import {PageNavigationService} from './page-navigation.service';
+import {PasscodeService} from './passcode.service';
 
 declare var configChannel: any;
 
@@ -20,7 +21,8 @@ export class AuthenticationService {
         private _router: Router,
         private _layoutService: LayoutService,
         private _modalService: Modal.ModalService,
-        private _pageNavigationService: PageNavigationService) {
+        private _pageNavigationService: PageNavigationService,
+        private _passcodeService: PasscodeService) {
     }
 
     login(pUsername: string, pPassword: string) {
@@ -69,7 +71,6 @@ export class AuthenticationService {
             response => {
                 this.vDSPID = pUsername;
                 let vResponse = response.json();
-                alert('MPIN : ' + vResponse.MPIN);
                 this._router.navigate(['Mpin']);
             },
             error => {
@@ -94,8 +95,13 @@ export class AuthenticationService {
                     // Set accessToken to localstorage for mobile apps
                     if(configChannel === 'app') {
                         localStorage.setItem('accessToken', vResponse.accessToken);
+                        localStorage.setItem('refreshToken', vResponse.refreshToken);
                     }
-                    this._pageNavigationService.navigate('Home', null, null);
+                    // show passcode component to input passcode that is used to encrypt the refreshToken
+                    this._passcodeService.resetState();
+                    this._passcodeService.showPasscode();
+                    // navigate user to set passcode that is used to decrypt the token
+                    // this._pageNavigationService.navigate('PasscodeLock', null, null);
                 }else {
                     this.vErrorMsg = vResponse.StatusMessage;
                     this._modalService.showErrorModal(this.vErrorMsg);
