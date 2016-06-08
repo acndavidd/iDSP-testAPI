@@ -1,4 +1,4 @@
 export module ServiceConfiguration {
-export const BaseURL = 'http://127.0.0.1:8080/service';
+export const BaseURL = 'http://10.209.1.20:8080/service';
 export const Timeout = 15000;
 }

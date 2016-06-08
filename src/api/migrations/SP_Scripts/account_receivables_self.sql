@@ -1,7 +1,3 @@
--- Function: public.account_receivables_self(json)
-
--- DROP FUNCTION public.account_receivables_self(json);
-
 CREATE OR REPLACE FUNCTION public.account_receivables_self(v_data_self json)
   RETURNS json AS
 $BODY$

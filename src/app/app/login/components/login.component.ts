@@ -38,7 +38,7 @@ export class LoginComponent {
         // this._authenticationService.login(this.vUsername,this.vPassword);
 
         // For By Pass Directly without API
-        this._router.navigate(['Mpin']);
+        // this._router.navigate(['Mpin']);
 
         // Testing SQLite
         /*let vCurrentContext = this;
@@ -59,7 +59,7 @@ export class LoginComponent {
         // pEvent.preventDefault();
         // this._router.navigate(['Mpin']);
         // pEvent.preventDefault();
-        // this._authenticationService.login(this.vUsername, this.vPassword);
+        this._authenticationService.login(this.vUsername, this.vPassword);
     }
 
     getLoadingState() {

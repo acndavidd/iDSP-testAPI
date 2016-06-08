@@ -76,73 +76,73 @@ export class RetailerController implements RetailerInterface{
 		});
 	}
 
-	async getRetailerSummary(pRequest, pResponse){
-		try{
-			console.log("Start getting Retailer Summary");
-			var vSelectedRetailId = pRequest.params.retailerId;
-			var vOrmSvc = new ORMService();
+	// async getRetailerSummary(pRequest, pResponse){
+	// 	try{
+	// 		console.log("Start getting Retailer Summary");
+	// 		var vSelectedRetailId = pRequest.params.retailerId;
+	// 		var vOrmSvc = new ORMService();
 
-			let vParams = {
-				selected_ret_id : vSelectedRetailId
-			};
+	// 		let vParams = {
+	// 			selected_ret_id : vSelectedRetailId
+	// 		};
 
-			var vResult = JSON.parse(await vOrmSvc.sp('get_retailer_summary', vParams ));     
-			console.log("Query Done with result : "+ JSON.stringify(vResult));
+	// 		var vResult = JSON.parse(await vOrmSvc.sp('get_retailer_summary', vParams ));     
+	// 		console.log("Query Done with result : "+ JSON.stringify(vResult));
 
-			if (vResult.status == "Error")
-			{
-				vResult = {
-						"status" : vResult.status,
-						"errorType": vResult.errorType,
-						//"errorCode": this.errService.getErrorMessage(vResult.errorCode),
-						"result" : null
-				};
-			}
+	// 		if (vResult.status == "Error")
+	// 		{
+	// 			vResult = {
+	// 					"status" : vResult.status,
+	// 					"errorType": vResult.errorType,
+	// 					//"errorCode": this.errService.getErrorMessage(vResult.errorCode),
+	// 					"result" : null
+	// 			};
+	// 		}
 
-			pResponse.json(vResult);			
-		}
-		catch(pErr){
-			console.log("Failed to Query Retailer Summary with error message" + pErr);
+	// 		pResponse.json(vResult);			
+	// 	}
+	// 	catch(pErr){
+	// 		console.log("Failed to Query Retailer Summary with error message" + pErr);
 
-			var vError = {
-						"status" : "Error",
-						"errorType": "Internal Exception",
-						//"errorCode": this.errService.getErrorMessage("ERR_INTERNAL_SYSTEM"),
-						"result" : null
-					};
-			pResponse.json(vError);
-		}
-	}
+	// 		var vError = {
+	// 					"status" : "Error",
+	// 					"errorType": "Internal Exception",
+	// 					//"errorCode": this.errService.getErrorMessage("ERR_INTERNAL_SYSTEM"),
+	// 					"result" : null
+	// 				};
+	// 		pResponse.json(vError);
+	// 	}
+	// }
 	
-	async getSalesRoute(pRequest, pResponse){
-		try{
-			console.log("Start getting sales route");
-			var vSalesPerson = pRequest.params.salesPerson;
-			var vSelectedDay = pRequest.params.day;			
-			let vOrmSvc = new ORMService();
+	// async getSalesRoute(pRequest, pResponse){
+	// 	try{
+	// 		console.log("Start getting sales route");
+	// 		var vSalesPerson = pRequest.params.salesPerson;
+	// 		var vSelectedDay = pRequest.params.day;			
+	// 		let vOrmSvc = new ORMService();
 			
-			let vParams = {
-				selected_day : vSelectedDay,
-				sales_person : vSalesPerson
-			};
+	// 		let vParams = {
+	// 			selected_day : vSelectedDay,
+	// 			sales_person : vSalesPerson
+	// 		};
 
-			var vResult = await vOrmSvc.sp('get_retailer_route', vParams );
-			console.log("Query Done with result : "+ JSON.stringify(vResult));
+	// 		var vResult = await vOrmSvc.sp('get_retailer_route', vParams );
+	// 		console.log("Query Done with result : "+ JSON.stringify(vResult));
 
-			pResponse.json(vResult);			
-		}
-		catch(pErr){
-			console.log("Failed to Query Sales Route with error message" + pErr);
-			var vError = {
-						"status" : "Error",
-						"errorType": "Internal Exception",
-						"errorCode": "ERR_INTERNAL_SYSTEM",
-						"result" : ""
-					};
+	// 		pResponse.json(vResult);			
+	// 	}
+	// 	catch(pErr){
+	// 		console.log("Failed to Query Sales Route with error message" + pErr);
+	// 		var vError = {
+	// 					"status" : "Error",
+	// 					"errorType": "Internal Exception",
+	// 					"errorCode": "ERR_INTERNAL_SYSTEM",
+	// 					"result" : ""
+	// 				};
 
-			pResponse.json(vError);
-		}
-	}
+	// 		pResponse.json(vError);
+	// 	}
+	// }
 
 	async getAllRetailerAlert(pRequest,pResponse){
 		console.log("Start getAllRetailerAlert");
@@ -287,7 +287,7 @@ export class RetailerController implements RetailerInterface{
 			let vParam = new PhysicalInventoryModel(vSalesPerson, null);
 			console.log('Param Physical Inventory : ' + JSON.stringify(vParam));
 				if(vParam.validate()) {
-					let vResult = await RetailerController._dataAccess.getPhysicalInventory('get_physical_inventory', vParam);
+					let vResult = await RetailerController._dataAccess.getAdditionalRetailer('get_additional_retailer', vParam);
 					// console.log('All Result Physical Inventory : ' + JSON.stringify(vResult));
 					pResponse.json(vResult);
 				}else {

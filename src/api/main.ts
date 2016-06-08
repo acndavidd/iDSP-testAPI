@@ -86,11 +86,12 @@ vRouter.get('/retailer/threshold', vRetailerController.getRetailerThreshold);
 vRouter.get('/retailer/summary',vRetailerController.retailerProfile);
 vRouter.get('/retailer/:id/physical',vRetailerController.physicalInventory);
 vRouter.get('/retailer/:id/load',vRetailerController.loadWallet);
+vRouter.get('/retailer/:id/additional',vRetailerController.additionalRetailer);
 // vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
 
 let vAccountReceivableController = new AccountReceivableController();
 vRouter.get('/retailer/accountreceivable', vAccountReceivableController.getAccountReceivable);
-vRouter.get('/retailer/:id/mins', vAccountReceivableController.getRetailerMins);
+// vRouter.get('/retailer/:id/mins', vAccountReceivableController.additionalRetailer);
 
 let vTaskCOntroller = new TaskController();
 vRouter.get('/task',vTaskCOntroller.task);
