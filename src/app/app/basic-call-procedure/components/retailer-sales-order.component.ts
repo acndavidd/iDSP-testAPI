@@ -6,35 +6,49 @@ import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {RetailerSalesOrderService} from '../services/retailer-sales-order-service';
+import {AddEditLoadTransferComponent} from './add-edit-load-transfer.component';
 import {Modal} from '../../shared/services/modal.service';
 
 @Component({
     selector: 'retailer-sales-order',
-    templateUrl: './app/basic-call-procedure/components/retailer-sales-order.component.html',
-    // templateUrl: './app/basic-call-procedure/components/hc-retailer-sales-order.component.html',
+    // templateUrl: './app/basic-call-procedure/components/retailer-sales-order.component.html',
+    templateUrl: './app/basic-call-procedure/components/hc-retailer-sales-order.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
     ],
-    providers: [
-        RetailerSalesOrderService
-    ]
+    providers: [RetailerSalesOrderService]
 })
 
 export class RetailerSalesOrderComponent {
     vTotalAmount: number = 0;
     vPromoAmount: number = 0;
     vPriceBeforeDisc: number = 0;
-    vTransferLoad: number = 0;
     vPhysicalOrder: number = 0;
     vRetailerId: any;
     vRetailerName: any;
     vRetailerMIN: any;
-    vAllDataList: any = [];
-    vTransferLoadList: any = [];
-    vPhysicalOrderList: any = [];
+    vDspId: any;
+    vDspMin: any;
+    vDspName: any;
+    vParamList: any = [];
+    vDspProfile: any = [];
+    vRetailerProfile: any = [];
+    
     vTotalDiscAmount: number = 0;
     vSmartLoadTransferList: any = [];
+
+    // variable of add-edit-load-transfer page
+    vAllLoadDataList: any = [];
+    vTotalLoadAmount;
+    vTotalLoadDiscAmount;
+    vTotalLoadTransferAmount;
+    vLoadPromoCode;
+
+    // variable of add-edit-physical-order page
+    vAllPhysicalDataList: any = [];
+    vTotalPhysicalAmount;
+
 
     constructor (
         private _layoutService: LayoutService,
@@ -46,16 +60,27 @@ export class RetailerSalesOrderComponent {
         private _retailerSalesOrderService: RetailerSalesOrderService
         ) {
 
-        this.vAllDataList = this._retailerSalesOrderService.getAllDataList();
-        console.log('isi data : ' + JSON.stringify(this.vAllDataList));
-        this.vRetailerId = this.vAllDataList[0].retailer_id;
-        console.log('isi retailer id : ' + this.vAllDataList[0].retailer_id);
-        this.vRetailerName = this.vAllDataList[0].retailer_name;
-        this.vRetailerMIN = this.vAllDataList[0].retailer_min;
+        // initialize data profile
+        // this.vParamList = this._pageNavigationService.getLatestPreviousData();
+        // this.vRetailerProfile = this.vParamList[0].retailer_profile;
+        // this.vDspProfile = this.vParamList[1].account_profile;
+        // console.log('aaaaaaaaa : ' + JSON.stringify(this.vParamList));
 
-        this._layoutService.setCurrentPage('RetailerSalesOrder');
-        this._headerService.setTitle('Retailer Sales Order');
-        this.vPriceBeforeDisc = (this.vTransferLoad + this.vPhysicalOrder);
+        // initialize data from add-edit-load-transfer page
+        // this.vAllLoadDataList = this._pageNavigationService.getCurrentParams();
+        // this.vRetailerId = this.vAllLoadDataList.retailer_id;
+        // this.vRetailerName = this.vAllLoadDataList.retailer_name;
+        // this.vRetailerMIN = this.vAllLoadDataList.retailer_min;
+        // this.vLoadPromoCode = this.vAllLoadDataList.promo_code;
+        // this.vTotalLoadAmount = this.vAllLoadDataList.total_load_amount;
+        // this.vTotalLoadTransferAmount = this.vAllLoadDataList.load_transfer_amount;
+        // this.vTotalLoadDiscAmount = this.vAllLoadDataList.total_load_disc_amount;
+
+        // initialize param page
+        // this._layoutService.setCurrentPage('RetailerSalesOrder');
+        // this._headerService.setTitle('Retailer Sales Order');
+        // this.vPriceBeforeDisc = (this.vTotalLoadTransferAmount + this.vPhysicalOrder);
+        console.log('tokek');
     }
 
     goToSalesOrderPayment() {
@@ -92,21 +117,15 @@ export class RetailerSalesOrderComponent {
 
 
     skipSalesOrderCallback() {
-        this._pageNavigationService.navigate('SkipSalesOrder', null, null);
+        this._pageNavigationService.navigate('SkipSalesOrder', this._pageNavigationService.getCurrentParams(), this.vAllLoadDataList);
     }
 
     gotoAddEditLoadTransfer() {
-        this._pageNavigationService.navigate('AddEditLoadTransfer', null, null);
-        this.vSmartLoadTransferList = this._retailerSalesOrderService.getSmartLoadTransferList();
+        this._pageNavigationService.navigate('AddEditLoadTransfer', this._pageNavigationService.getCurrentParams(), this.vAllLoadDataList);
     }
 
     gotoAddEditPhysicalOrder() {
-        this._pageNavigationService.navigate('AddEditPhysicalOrder', null, null);
-    }
-
-    getTransferLoadList() {
-        console.log('lalallaa');
-        return this.vAllDataList;
+        this._pageNavigationService.navigate('AddEditPhysicalOrder', this._pageNavigationService.getCurrentParams(), this.vAllLoadDataList);
     }
 
     priceAfterDiscount() {
@@ -116,6 +135,6 @@ export class RetailerSalesOrderComponent {
             this.vTotalAmount = (this.vPriceBeforeDisc - this.vPromoAmount);
         }
         var q = this.vTotalAmount;
-        return q.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+        return q.toString().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 }

@@ -1,0 +1,13 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/OPISNET/services/idsp/userValidation",
+        "bodyPatterns" : [
+            {"doesNotMatch" : ".*DSP00001.*"}
+        ]
+    },
+    "response": {
+        "status": 200,        
+        "bodyFileName": "login/login-error.json"
+    }
+}

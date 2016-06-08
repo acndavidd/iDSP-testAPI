@@ -9,8 +9,8 @@ import {Modal} from '../../shared/services/modal.service';
 
 @Component({
     selector: 'accounts-receivables',
-    // templateUrl: './app/my-transaction/components/hc-accounts-receivables.component.html',
-     templateUrl: './app/my-transaction/components/accounts-receivables.component.html',
+    templateUrl: './app/my-transaction/components/hc-accounts-receivables.component.html',
+    // templateUrl: './app/my-transaction/components/accounts-receivables.component.html',
     directives: [
         NgFor, NgModel, ROUTER_DIRECTIVES
     ],

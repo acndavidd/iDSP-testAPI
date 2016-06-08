@@ -15,7 +15,9 @@
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="Orientation" value="portrait" />
+
     <preference name="android-windowSoftInputMode" value="stateVisible|adjustResize" />
+
     <feature name="SplashScreen">
         <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
         <param name="onload" value="true" />
@@ -29,7 +31,23 @@
         <splash density="port-ldpi" src="res/screen/android/splash-port-ldpi.png" />
         <splash density="port-mdpi" src="res/screen/android/splash-port-mdpi.png" />
         <splash density="port-xhdpi" src="res/screen/android/splash-port-xhdpi.png" />
+
+        <!--
+            ldpi    : 36x36 px
+            mdpi    : 48x48 px
+            hdpi    : 72x72 px
+            xhdpi   : 96x96 px
+            xxhdpi  : 144x144 px
+            xxxhdpi : 192x192 px
+        -->
+        <icon src="res/app-icon/android/circle/idsp-logo-circle_36.png" density="ldpi" />
+        <icon src="res/app-icon/android/circle/idsp-logo-circle_48.png" density="mdpi" />
+        <icon src="res/app-icon/android/circle/idsp-logo-circle_72.png" density="hdpi" />
+        <icon src="res/app-icon/android/circle/idsp-logo-circle_96.png" density="xhdpi" />
+        <icon src="res/app-icon/android/circle/idsp-logo-circle_144.png" density="xxhdpi" />
+        <icon src="res/app-icon/android/circle/idsp-logo-circle_192.png" density="xxxhdpi" />
     </platform>
+
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-plugin-device" spec="~1.1.2" />
@@ -51,7 +69,7 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <engine name="android" spec="~5.1.1" />
     <plugin name="cordova-plugin-datepicker" spec="~0.9.3" />
     <plugin name="cordova-plugin-datetime-picker" spec="~0.5.1" />
-    <engine name="android" spec="~5.1.1" />
 </widget>
