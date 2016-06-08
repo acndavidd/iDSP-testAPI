@@ -58,12 +58,12 @@ export class PasscodeLockComponent {
         console.log('Length: ',this.vLength);
 
         // if length more = 4 and passcode correct, goes to home menu
-        if((this.vLength === 4 ) && (this.vPasscodeLock === '1234')) {
+        if((this.vLength === 4 ) && (this.vPasscodeLock === '2222')) {
             this.vPasscodeLock = '';
             this._pageNavigationService.navigate('Home', null, null);
         }
         // if length =4 ,and passcode wrong
-        else if((this.vLength === 4) && (this.vPasscodeLock !== '1234')) {
+        else if((this.vLength === 4) && (this.vPasscodeLock !== '2222')) {
             this.vPasscodeLock  = '';
             this.vErrorCode = 1;
             console.log('Password Correct');

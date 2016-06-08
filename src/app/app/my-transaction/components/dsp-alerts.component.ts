@@ -29,7 +29,7 @@ export class DSPAlertsComponent {
         private _headerService: HeaderService
         ) {
         this._layoutService.setCurrentPage('DSPAlerts');
-        this._headerService.setTitle('Alert & Threshold');
+        this._headerService.setTitle('Threshold & Alerts');
         this.vValueSegmentFilter = '';
         this.loadAlert();
     }

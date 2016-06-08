@@ -9,9 +9,9 @@ import {NgModel, NgClass} from 'angular2/common';
 
 @Component({
     // FOR HIT API
-    templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
+    // templateUrl: './app/basic-call-procedure/components/basic-call-procedure.component.html',
     // FOR HARDCODE UI
-    // templateUrl: './app/basic-call-procedure/components/hc-basic-call-procedure.component.html',
+    templateUrl: './app/basic-call-procedure/components/hc-basic-call-procedure.component.html',
 
     directives: [
         ROUTER_DIRECTIVES,
@@ -74,6 +74,10 @@ export class BasicCallProcedureComponent {
             status: pSelectedRetailer.call_status
         };
          this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);
+    }
+
+    gotoAnotherPageHC() {
+         this._pageNavigationService.navigate('CallPreparation', null, null);
     }
 
     getFilter() {
