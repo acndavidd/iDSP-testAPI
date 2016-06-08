@@ -154,11 +154,11 @@ export module APIService {
 							if(pErr) {
 								this.handleHTTPError(pErr);
 							}else {
-								console.log('Response : ' + pResponse.statusCode);
 								if(pResponse.statusCode === 200) { // HTTP Success Response
-									console.log(JSON.parse(pBody));
+									// console.log(JSON.parse(pBody));
 									pResolve(JSON.parse(pBody));
 								}else { // API server found but not returning response 200
+									console.log('Response : ' + pResponse.statusCode);
 									let vError = vCurrentContext.handleHTTPErrorResponse(pResponse);
 									vCurrentContext.vErrHandling.throwPromiseError(pReject, vError.code, vError.desc);
 								}

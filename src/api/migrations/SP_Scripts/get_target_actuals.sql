@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION public.get_target_actuals(
+CREATE OR REPLACE FUNCTION public.get_targets_actuals(
     psalesperson character varying,
     ptargettype character varying,
     pbrand character varying)
@@ -70,7 +70,7 @@ BEGIN
 					p.sub_category_name,
 					p.ttarget,
 					(p.tLoad + p.tPrd) tactual,
-					(p.ttarget - (p.tLoad + p.tPrd)) balance,
+					((p.tLoad + p.tPrd) - p.ttarget) balance,
 					--p.tPrd tactual,
 				CASE 
 					WHEN ttarget = 0 THEN 100
@@ -137,5 +137,5 @@ END
 $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
-ALTER FUNCTION public.get_target_actuals(character varying, character varying, character varying)
+ALTER FUNCTION public.get_targets_actuals(character varying, character varying, character varying)
   OWNER TO postgres;

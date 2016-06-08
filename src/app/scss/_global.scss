@@ -129,6 +129,7 @@ END OF CHECKBOX
 &.green             { color: $apple; }
 &.red               { color: $red; }
 &.blue-smart        { color: $blue-smart; }
+&.tosca             { color: $tosca;}
 
 
 /*
@@ -138,89 +139,76 @@ ICON - BUTTON
 */
 
 &.arrow-down {
-    background: url("../img/icon-idsp/path-down-grey.png")no-repeat;
-    background-position-x: center;
-    background-position-y: center;
+    background: url(#{$arrow-down})no-repeat;
+    background-position:center;
     background-size: 6vw;
 }
 
 &.icon-yes{
     background-image: url(#{$icon-peso});
-    background-position-x: center;
-    background-position-y: center;
+    background-position:center;
     background-size: 6vw;
 }
 
 &.icon-no{
     background-image: url(#{$icon-peso});
-    background-position-x: center;
-    background-position-y: center;
+    background-position:center;
     background-size: 6vw;
 }
 &.arrow-right {
-    background: url("../img/icon-idsp/path-right-grey.png")no-repeat;
-    background-position-x: center;
-    background-position-y: center;
-    background-size: 3.5vw;
+    background: url(#{$arrow-right})no-repeat;
+    background-position:center;
+    background-size: 6vw;
 }
 &.selected {   
-    background: url("../img/icon-idsp/path-down-up.png")no-repeat;
-    background-position-x: center;
-    background-position-y: center;
+    // background: url("../img/icon-idsp/path-down-up.png")no-repeat;
+    background: url(#{$arrow-up})no-repeat;
+    background-position:center;
     background-size: 6vw;
 }
 &.call {
     background: url("../img/icon-idsp/phone-grey.png")no-repeat;
-    background-position-x: center;
-    background-position-y: center;
+    background-position:center;
     background-size: 6vw;
 }
 &.targets-airtime {
     background: url(#{$icon-targets-airtime})no-repeat;
-    background-position-x: center;
-    background-position-y: center;
+    background-position:center;
     background-size: 6vw;
 }
 &.targets-broadband {
     background: url(#{$icon-targets-broadband})no-repeat;
-    background-position-x: center;
-    background-position-y: center;
+    background-position:center;
     background-size: 6vw;
 }
 &.targets-sim {
     background: url(#{$icon-targets-sim})no-repeat;
-    background-position-x: center;
-    background-position-y: center;
+    background-position:center;
     background-size: 5vw;
 }
 &.inventory-load {
     background: url(#{$icon-inventory-load})no-repeat;
-    background-position-x: center;
-    background-position-y: center;
+    background-position:center;
     background-size: 6vw;
 }
 &.inventory-physical {
     background: url(#{$icon-inventory-physical})no-repeat;
-    background-position-x: center;
-    background-position-y: center;
+    background-position:center;
     background-size: 6vw;
 }
 &.sales-view {
     background: url(#{$icon-sales-view})no-repeat;
-    background-position-x: center;
-    background-position-y: center;
+    background-position:center;
     background-size: 6vw;
 }
 &.edit-gray {
     background: url(#{$icon-edit-gray})no-repeat;
-    background-position-x: center;
-    background-position-y: center;
+    background-position:center;
     background-size: 6vw;
 }
 &.add {
     background: url(#{$icon-add})no-repeat;
-    background-position-x: center;
-    background-position-y: center;
+    background-position:center;
     background-size: 6vw;
 }
 
@@ -397,7 +385,7 @@ BUTTON - CLICK
         margin-top:4%;
         margin-bottom:4%;
         background-color: $apple;
-        border-radius: 1vw;
+        border-radius: 5px;
 
         &.button-small {
             border-radius: 0vw;
@@ -474,7 +462,8 @@ MENU - COVER & PROFILE PICTURE
             }
             .profile-photo {
                 width: 6%;
-                background: url(../img/profpic.jpg) no-repeat;
+                // background: url(../img/profpic.jpg) no-repeat;
+                background: url(../img/person-icon.png) no-repeat;
                 background-position: center center;
                 border: 3px solid $white;
                 border-radius: 50%;
@@ -589,6 +578,8 @@ GRID - TABLE CELL
 
             input {
                 height: 7vw;
+                border-radius: 5px;
+                border-style: ridge;
 
                 &.input-peso {
                     text-align: right;
@@ -597,7 +588,7 @@ GRID - TABLE CELL
                     font-size: 4vw;
                     @media screen and (-webkit-min-device-pixel-ratio: 0) {
                         background-image: url(#{$icon-peso});
-                        background-position: right 2% top 50%;
+                        background-position: left 2% top 50%;
                         background-repeat: no-repeat;
                         background-size: 3.5vw;
                         border-style: ridge;
@@ -608,7 +599,7 @@ GRID - TABLE CELL
                 height: 10vw;
                 width: 100%;
                 border: 1px solid $dark-grey;
-                border-radius: 7px;
+                border-radius: 5px;
                 font-size: 4vw;
             }
 
@@ -624,9 +615,11 @@ GRID - TABLE CELL
                     background-image: url(#{$select-arrow});
                     background-position: right 0 top 50%;
                     background-repeat: no-repeat;
+                    background-size: 8vw;
+                    border-radius: 5px;
+                    border-style: ridge;
                 }
             }
-
             
             // PLEASE PUT STYLE HERE
             &.padding-left-2 { padding-left: 2vw; }
@@ -647,8 +640,8 @@ GRID - TABLE CELL
 
             .margin-right-7 { margin-right: 7vw; }
 
-
-
+            .red { color: $red };
+            .apple { color: $apple };
             
             &.small { font-size: 3vw; }
             &.large { font-size: 4.5vw; }
@@ -712,7 +705,7 @@ GRID - TABLE CELL
                 
                 .vertical-text{
                     width: 6.5vw;
-                    position: center;
+                    // position: center;
                     transform: rotate(-90deg);
                     text-align: center; 
                     font-size: 3vw;

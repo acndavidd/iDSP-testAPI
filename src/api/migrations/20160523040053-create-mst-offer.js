@@ -12,10 +12,10 @@ module.exports = {
 				offer_name: {
 					type: Sequelize.STRING(20)
 				},
-				offer_description: {
+				description: {
 					type: Sequelize.STRING(2500)
 				},
-				offer_picture: {
+				image: {
 					type: Sequelize.BLOB
 				},
 				start_date: {
@@ -24,11 +24,14 @@ module.exports = {
 				end_date: {
 					type: Sequelize.DATE
 				},
-				sync_status: {
-					type: Sequelize.STRING(1)
+				priority: {
+					type: Sequelize.STRING(20)
 				},
-				sync_version: {
-					type: Sequelize.DATE
+				outlet_type: {
+					type: Sequelize.STRING(100)
+				},
+				sub_outlet_type: {
+					type: Sequelize.STRING(100)
 				}
 			})
 		];

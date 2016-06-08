@@ -52,7 +52,7 @@ export class RetailerService {
             retailerId : pRetailerID
         };
 
-        return this._http.get('retailer/'+vData.retailerId+'/load');
+        return this._http.get('/retailer/'+vData.retailerId+'/load');
 
     }
 
@@ -126,7 +126,7 @@ export class RetailerService {
             pDay : 1
         };
 
-        return this._http.post('/additionalRetailerRoute', JSON.stringify(vData));
+        return this._http.get('/retailer/' + vData.salesPerson + '/additional');
     }
 
     getRetailerAll() {

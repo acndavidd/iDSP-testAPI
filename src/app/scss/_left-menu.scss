@@ -35,41 +35,37 @@
     }
     
     .menu-header {
-        padding: 2% 0% 2% 0%;
-        color: $white;
+        color: #FFF;
         display: inline-block;
-        padding-left: 5vw;
-        padding-right: 5vw;
-        width: calc(100% - 5vw);
-        background-color: $apple;
+        width: 100%;
+        background-color: #62BB47;
         .header-container {
             display: table;
-            width: 100%;
-            padding-top: 1vw;
-            padding-bottom: 1vw;
+            width: 94%;
+            padding: 3% 5%;
+    
         }
         .header-cell {
             display:table-cell;
-            height:18vw;
+            height:20%;
             vertical-align:middle;
             &.pic {
-                width: 18vw;
-                background: url(../img/profpic.jpg) no-repeat;
+                width: 22%;
+                background: url(../img/person-icon.png) no-repeat;
                 background-size: cover;
                 background-position: center center;
-                border: 3px solid $white;
+                border: 3px solid #FFF;
                 border-radius: 50%;
-                /*justify-content: center;
-                align-items: center;*/
                 -webkit-transform: translateZ(0);
-                -webkit-backface-visibility: hidden;    
+                -webkit-backface-visibility: hidden;
             }
             &.text {  
-                color: $white;
+                color: #FFF;
                 width: 75%;
-                font-size: 7vw;
-                font-weight: 600;
-                text-align: center;
+                font-size: 5vw;
+                /* font-weight: 600; */
+                padding-left: 5%;
+                /* text-align: center; */
             }
         }
     }
@@ -103,95 +99,81 @@
             }
 
             &.arrow-right {
-                background: url("../img/icon-idsp/path-right-grey.png")no-repeat;
-                background-position-x: center;
-                background-position-y: center;
-                background-size: 2vw;
+                // background: url("../img/icon-idsp/path-right-grey.png")no-repeat;
+                background: url(#{$arrow-right})no-repeat;
+                background-position:center;
+                background-size: 4vw;
             }
             // delete below once testing is done
             &.call {
                 background: url("../img/icon-idsp/phone-grey.png")no-repeat;
-                background-position-x: center;
-                background-position-y: center;
+                background-position:center;
                 background-size: 13px;
             }
             ////////////////////////////
             &.bcp {
                 background: url(#{$icon-round-grad-bcp})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
+                background-position:center;
                 background-size: 7vw;
             }
             &.inventory {
                 background: url(#{$icon-round-grad-inventory})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
+                background-position:center;
                 background-size: 7vw;
             }
             &.logout {
                 background: url(#{$icon-round-grad-logout})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
+                background-position:center;
                 background-size: 7vw;
             }
             &.remittance {
                 background: url(#{$icon-round-grad-remittance})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
+                background-position:center;
                 background-size: 7vw;
             }
             &.stock-return {
                 background: url(#{$icon-round-grad-stock-return})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
+                background-position:center;
                 background-size: 7vw;
             }
             &.target {
                 background: url(#{$icon-round-grad-target})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
+                background-position:center;
                 background-size: 7vw;
             }
             &.acc-receivable {
                 background: url(#{$icon-round-grad-acc-receivable})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
+                background-position:center;
                 background-size: 7vw;
             }
             &.alert {
                 background: url(#{$icon-round-grad-alert})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
+                background-position:center;
                 background-size: 7vw;
             }
             &.collection {
                 background: url(#{$icon-round-grad-collection})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
+                background-position:center;
                 background-size: 7vw;
             }
             &.retailer-route {
                 background: url(#{$icon-round-grad-retailer-route})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
+                background-position:center;
                 background-size: 7vw;
             }
             &.sync {
                 background: url(#{$icon-round-grad-sync})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
+                background-position:center;
                 background-size: 7vw;
             }
             &.visited {
                 background: url(#{$icon-round-grad-visited})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
+                background-position:center;
                 background-size: 7vw;
             }
             &.unserved-order {
                 background: url(#{$icon-round-grad-unserved-order})no-repeat;
-                background-position-x: center;
-                background-position-y: center;
+                background-position:center;
                 background-size: 7vw;
             }
         }

@@ -10,24 +10,34 @@ import {RetailerSalesOrderService} from '../services/retailer-sales-order-servic
 
 @Component({
     selector: 'add-edit-load-transfer',
-    // templateUrl: './app/basic-call-procedure/components/hc-add-edit-load-transfer.component.html',
-    templateUrl: './app/basic-call-procedure/components/add-edit-load-transfer.component.html',
+    templateUrl: './app/basic-call-procedure/components/hc-add-edit-load-transfer.component.html',
+    // templateUrl: './app/basic-call-procedure/components/add-edit-load-transfer.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
-    ]
+    ],
+    providers: [RetailerSalesOrderService]
 })
 
 export class AddEditLoadTransferComponent {
 
     vDetailPromo = false;
-    vArrowMap   = false;
-    vRetailerName;
-    vRetailerMIN;
-    vRetailerID;
-    vSelectedBrand;
-    vDataList: any = [];
+    vArrowMap = false;
+    vRetailerName: any;
+    vRetailerMIN: any;
+    vRetailerID: any;
+    vSelectedBrand: any;
+    vSelectedMIN: any;
+    vInputLoadAmount: number = 0;
+    vSuggestedOrder: any;
+    vInputPromoCode: any;
+    vInputDiscountAmount: number = 0;
+    vTotalAmount: number = 0;
+    vParamList: any = [];
     vRetailerMinList: any = [];
+    vRetailerProfile: any = [];
+    vDspProfile: any = [];
+    vCurrentBalance: any = 0;
 
     constructor (
         private _layoutService: LayoutService,
@@ -42,66 +52,122 @@ export class AddEditLoadTransferComponent {
         this._layoutService.setCurrentPage('AddEditLoadTransfer');
         this._headerService.setTitle('Add Load Transfer');
 
-        // initial data
+        // initialize data
         console.log('Start initializing data');
         this.vSelectedBrand = 'smart';
-        this.vDataList = this._retailerSalesOrderService.getAllDataList();
-        this.vRetailerName = this.vDataList.retailer_name;
-        this.vRetailerMIN = this.vDataList.retailer_min;
-        this.vRetailerID = this.vDataList.retailer_id;
+        // this.vParamList = this._pageNavigationService.getCurrentParams();
+        // this.vRetailerProfile = this.vParamList[0].retailer_profile;
+        // this.vDspProfile = this.vParamList[1].account_profile;
+        // this.vRetailerName = this.vRetailerProfile.retailer_name;
+        // this.vRetailerMIN = this.vRetailerProfile.retailer_min;
+        // this.vRetailerID = this.vRetailerProfile.retailer_id;
+        
+        // // get suggested order from DB 
+        // try {
+        //     this._retailerSalesOrderService.getSuggestedOrder(this.vRetailerID).subscribe(
+        //         response => {
+        //             // console.log('get suggested order ' + JSON.stringify(response.json()));
+        //             this.vSuggestedOrder = response.json().result.suggested_order.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        //         });
+        // } catch (pErr) {
+        //     this.vSuggestedOrder = 'N/A';
+        // }
 
-        try {
-            this._retailerSalesOrderService.getRetailerMins(this.vRetailerID);
-        } catch (pErr) {
-            this._modalService.toggleModal(pErr, Modal.ModalType.ERROR);
-        }
-
-        if (this._retailerSalesOrderService.vRetailerMinList) {
-            this.vRetailerMinList = this._retailerSalesOrderService.vRetailerMinList;
-        }
+        // // get list of mins from OPIS+
+        // try {
+        //     this._retailerSalesOrderService.getRetailerMins(this.vRetailerID).subscribe(
+        //         response => {
+        //             this.vRetailerMinList = response.json();
+        //             this.vSelectedMIN = this.vRetailerMinList[0].retailerMIN;
+        //         },
+        //         error => {
+        //             throw ('Error in Service');
+        //         });
+        // } catch (pErr) {
+        //     this._modalService.toggleModal(pErr, Modal.ModalType.ERROR);
+        // } 
     }
 
     addLoadTransfer() {
         console.log('Go to Retailer Sales Order');
-        this._modalService.showConfirmationModal('Confirm Load Transfer to <br/><label class="vivid-pink">99999000003</label> with <br/> Total Amount <label class="vivid-pink">P 2,000</label> and <br/>Total Discount <label class="vivid-pink">P 100</label>',
+        this._modalService.showConfirmationModal('Confirm Load Transfer to <br/><label class="vivid-pink">'+ this.vSelectedMIN +'</label> with <br/> Total Amount <label class="vivid-pink">P ' + this.vTotalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</label> and <br/>Total Discount <label class="vivid-pink">P ' + this.vInputDiscountAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</label>',
             this.gotoRetailerSalesOrder.bind(this),
             null, Modal.ButtonType.OK_CANCEL);
     }
 
-    gotoRetailerSalesOrder() {
-        this._pageNavigationService.navigate('RetailerSalesOrder', null, null);
+    addLoadTransferHC() {
+        console.log('Go to Retailer Sales Order');
+        this._modalService.showConfirmationModal('Confirm Load Transfer to <br/><label class="vivid-pink">'+ this.vSelectedMIN +'</label> with <br/> Total Amount <label class="vivid-pink">P ' + this.vTotalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</label> and <br/>Total Discount <label class="vivid-pink">P ' + this.vInputDiscountAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</label>',
+            this.gotoRetailerSalesOrderHC.bind(this),
+            null, Modal.ButtonType.OK_CANCEL);
     }
 
+    gotoRetailerSalesOrder() {
+        let vParams = {
+            retailer_name : this.vRetailerName,
+            retailer_id : this.vRetailerID,
+            retailer_min : this.vRetailerMIN,
+            total_load_amount : this.vTotalAmount,
+            total_load_disc_amount : this.vInputDiscountAmount,
+            load_transfer_amount : this.vInputLoadAmount,
+            load_promo_code : this.vInputPromoCode,
+            brand : this.vSelectedBrand,
+            selected_min : this.vSelectedMIN,
+            current_balance : this.vCurrentBalance
+        };
+
+        this._pageNavigationService.navigate('RetailerSalesOrder', vParams, this.vParamList);
+    }
+
+    gotoRetailerSalesOrderHC() {
+        this._pageNavigationService.navigate('RetailerSalesOrder', null, null);
+    }
     detailPromo() {
         this.vDetailPromo = !this.vDetailPromo;
         this.vArrowMap = !this.vArrowMap;
     }
 
     setInputLoadAmount(pStr) {
-        console.log('Get Input Load Amount: ' + pStr);
-        this._retailerSalesOrderService.vInputLoadAmount = parseInt(pStr);
+        if(!this.vInputLoadAmount)
+            this.vInputLoadAmount = 0;
+        this.vInputLoadAmount = parseInt(pStr);
+        this.getTotalAmount();
     }
 
     setSelectedMIN(pStr) {
-        console.log('Get Selected MIN: ' + pStr);
-        this._retailerSalesOrderService.vSelectedMIN = pStr;
+        this.vSelectedMIN = pStr;
+        // get retailer balance from ELP
+        try {
+            let vParams = {
+                min : this.vSelectedMIN,
+                source : 'iDSP'
+            };
+            this._retailerSalesOrderService.getRetailerBalanceElp(vParams).subscribe(
+                response => {
+                    this.vCurrentBalance = response.json().currentBalance;
+                });
+        } catch(pErr) {
+            this.vCurrentBalance = 'N/A';
+            console.log('Error when getting current balance from ELP : ' +pErr);
+        }
     }
 
     setInputPromoCode(pStr) {
-        console.log('Get Input Promo Code: ' + pStr);
-        this._retailerSalesOrderService.vInputPromoCode = pStr;
+        this.vInputPromoCode = pStr;
     }
 
     setInputDiscount(pStr) {
-        console.log('Get Input Discount Amount: ' + pStr);
-        this._retailerSalesOrderService.vInputDiscountAmount = parseInt(pStr);
+        if(!this.vInputLoadAmount)
+            this.vInputLoadAmount = 0;
+        this.vInputDiscountAmount = parseInt(pStr);
+        this.getTotalAmount();
+    }
+
+    setSelectedBrand(pStr) {
+        this.vSelectedBrand = pStr;
     }
 
     getTotalAmount() {
-        return this._retailerSalesOrderService.setTotalAmount();
-    }
-
-    getSuggestedOrder() {
-        return this._retailerSalesOrderService.vSuggestedOrder;
+        this.vTotalAmount = (this.vInputLoadAmount-this.vInputDiscountAmount);
     }
 }

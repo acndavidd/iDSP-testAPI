@@ -212,48 +212,51 @@
 			</div>
 		</div>
 		<div *ngIf="vLoadMenuShow">
-			<div class="item-container sub">
-				<div class="container">
-					<div class='cell'>
-				        <div class='container'><div class='cell width-100 padding-left-10'>SmartLoad</div></div>
-				        <div class='container'>
-				        	<div class='cell width-100 padding-left-10'>
-								<div class="container">
-									<div class='cell'>
-								        <div class='container'><div class='cell width-50'>Drop Size</div></div>
-								    </div>
-									<div class='cell'>
-								        <div class='container'><div class='cell width-50 align-right'>350</div></div>
-								    </div>
-								</div>
-				        	</div>
-				        </div>
-				    </div>
-				    <div class='cell width-10'></div>
+			<div *ngFor="#each of getLoadWallet()">
+				<div class="item-container sub">
+					<div class="container">
+						<div class='cell'>
+					        <div class='container'><div class='cell width-100 padding-left-10'>{{each.sub_category_name}}</div></div>
+					        <div class='container'>
+					        	<div class='cell width-100 padding-left-10'>
+									<div class="container">
+										<div class='cell'>
+									        <div class='container'><div class='cell width-50'>Drop Size</div></div>
+									    </div>
+										<div class='cell'>
+									        <div class='container'><div class='cell width-50 align-right'>{{each.dropsize}}</div></div>
+									    </div>
+									</div>
+					        	</div>
+					        </div>
+					    </div>
+					    <div class='cell width-10'></div>
+					</div>
 				</div>
-			</div>
-			<div class="item-container">
-				<div class="container">
-					<div class='cell'>
-				        <div class='container'><div class='cell width-100 padding-left-10'>Smart Wallet Balance</div></div>
-				        <div class='container'>
-				        	<div class='cell width-100 padding-left-10'>
-								<div class="container">
-									<div class='cell'>
-								        <div class='container'><div class='cell width-50 grey'>Last Amount Transferred</div></div>
-								        <div class='container'><div class='cell width-50 grey'>Transaction Date</div></div>
-								        <div class='container'><div class='cell width-50 grey'>Latest Balance</div></div>
-								    </div>
-									<div class='cell'>
-								        <div class='container'><div class='cell width-50 align-right'>1,500 ₱</div></div>
-								        <div class='container'><div class='cell width-50 align-right'>2016-04-01 11:10</div></div>
-								        <div class='container'><div class='cell width-50 align-right'>1,000 ₱</div></div>
-								    </div>
-								</div>
-				        	</div>
-				        </div>
-				    </div>
-				    <div class='cell width-10'></div>
+
+				<div class="item-container">
+					<div class="container">
+						<div class='cell'>
+					        <div class='container'><div class='cell width-100 padding-left-10'>Smart Wallet Balance</div></div>
+					        <div class='container'>
+					        	<div class='cell width-100 padding-left-10'>
+									<div class="container">
+										<div class='cell'>
+									        <div class='container'><div class='cell width-50 grey'>Last Amount Transferred</div></div>
+									        <div class='container'><div class='cell width-50 grey'>Transaction Date</div></div>
+									        <div class='container'><div class='cell width-50 grey'>Latest Balance</div></div>
+									    </div>
+										<div class='cell'>
+									        <div class='container'><div class='cell width-50 align-right'>1,500 ₱</div></div>
+									        <div class='container'><div class='cell width-50 align-right'>2016-04-01 11:10</div></div>
+									        <div class='container'><div class='cell width-50 align-right'>1,000 ₱</div></div>
+									    </div>
+									</div>
+					        	</div>
+					        </div>
+					    </div>
+					    <div class='cell width-10'></div>
+					</div>
 				</div>
 			</div>
 			<div class="item-container sub">

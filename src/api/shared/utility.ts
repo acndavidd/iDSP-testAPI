@@ -1,5 +1,5 @@
 export module Utility {
-	export function sortJSON(pJSONObject: Object, pSortKey: string, pASC?: boolean) {
+	export function sortJSON(pJSONObject: any, pSortKey: string, pASC?: boolean) {
 		let vAsc: boolean = pASC ? pASC : true; //default is Ascending
 		return pJSONObject.sort(function(a,b){
 			if(typeof a[pSortKey] === 'number') {

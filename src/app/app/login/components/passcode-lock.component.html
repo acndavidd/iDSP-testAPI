@@ -42,24 +42,24 @@
     </div>
     <div class="passcode-item-container">
       <div class="keyboard-line">
-        <div class="cell-keyboard-30" (click)="onClickKeypad(1)">1</div>
-        <div class="cell-keyboard-30" (click)="onClickKeypad(2)">2</div>
-        <div class="cell-keyboard-30" (click)="onClickKeypad(3)">3</div>
+        <div id="pin-button-1" class="cell-keyboard-30" (click)="onClickKeypad(1)">1</div>
+        <div id="pin-button-2" class="cell-keyboard-30" (click)="onClickKeypad(2)">2</div>
+        <div id="pin-button-3" class="cell-keyboard-30" (click)="onClickKeypad(3)">3</div>
       </div>
       <div class="keyboard-line">
-        <div class="cell-keyboard-30" (click)="onClickKeypad(4)">4</div>
-        <div class="cell-keyboard-30" (click)="onClickKeypad(5)">5</div>
-        <div class="cell-keyboard-30" (click)="onClickKeypad(6)">6</div>
+        <div id="pin-button-4" class="cell-keyboard-30" (click)="onClickKeypad(4)">4</div>
+        <div id="pin-button-5" class="cell-keyboard-30" (click)="onClickKeypad(5)">5</div>
+        <div id="pin-button-6" class="cell-keyboard-30" (click)="onClickKeypad(6)">6</div>
       </div>
       <div class="keyboard-line">
-        <div class="cell-keyboard-30" (click)="onClickKeypad(7)">7</div>
-        <div class="cell-keyboard-30" (click)="onClickKeypad(8)">8</div>
-        <div class="cell-keyboard-30" (click)="onClickKeypad(9)">9</div>
+        <div id="pin-button-7" class="cell-keyboard-30" (click)="onClickKeypad(7)">7</div>
+        <div id="pin-button-8" class="cell-keyboard-30" (click)="onClickKeypad(8)">8</div>
+        <div id="pin-button-9" class="cell-keyboard-30" (click)="onClickKeypad(9)">9</div>
       </div>
       <div class="keyboard-line">
         <div class="cell-keyboard-30" (click)="cancel($event)"><a class="cancel-passcode" id="cancel-passcode-link">Cancel</a></div>
-        <div class="cell-keyboard-30" (click)="onClickKeypad(0)">0</div>
-        <div class="cell-keyboard-30 icon-backspace" (click)="onClickDelete()"></div>
+        <div id="pin-button-0" class="cell-keyboard-30" (click)="onClickKeypad(0)">0</div>
+        <div id="pin-button-delete" class="cell-keyboard-30 icon-backspace" (click)="onClickDelete()"></div>
       </div>
     </div>
     <div class ="container-logo-passcode">

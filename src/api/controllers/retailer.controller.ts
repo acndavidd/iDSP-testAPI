@@ -11,16 +11,17 @@ export interface RetailerInterface{
 	getProduct(pRequest, pResponse):void;
 	getRetailerSummary(pRequest, pResponse):Promise<void>;
 	getSalesRoute(pRequest, pResponse):Promise<void>;
-	task(pRequest, pResponse):Promise<void>;
+	// task(pRequest, pResponse):Promise<void>;
 	retailerCallPreparation(pRequest, pResponse):Promise<void>;
 	getAllRetailerAlert(pRequest, pResponse):Promise<void>;
 	loadWallet(pRequest, pResponse):Promise<void>;
 	physicalInventory(pRequest, pResponse):Promise<void>;
 	paymentHistory(pRequest, pResponse):Promise<void>;
+	// additionalRetailerRoute(pRequest, pResponse):Promise<void>;
 }
 
 
-export class RetailerController implements RetailerInterface{
+export class RetailerController implements RetailerInterface {
 
 	//private errService:ErrHandlerService = new ErrHandlerService();
 	private vUsername: string;
@@ -138,70 +139,70 @@ export class RetailerController implements RetailerInterface{
 		}
 	}
 
-	async task(pRequest, pResponse) {
-			console.log("Controller Start getting retailer route for BCP");
+	// async task(pRequest, pResponse) {
+	// 		console.log("Controller Start getting retailer route for BCP");
 
-			var vSalesPerson = pRequest.query.username;
+	// 		var vSalesPerson = pRequest.query.username;
 
-			let vErrHandling:ErrorHandling.ErrorHandlingService = new ErrorHandling.ErrorHandlingService();
-			try{
-				let vHttpSvc = new APIService.HTTPService();
-				let vPath:string = '/OPISNET/services/idsp/AllRT';
-				let vRetailerData = new RetailerModel(vSalesPerson);
-				if(vRetailerData.validate()) {
+	// 		let vErrHandling:ErrorHandlingService = new ErrorHandlingService();
+	// 		try{
+	// 			let vHttpSvc = new APIService.HTTPService();
+	// 			let vPath:string = '/OPISNET/services/idsp/AllRT';
+	// 			let vRetailerData = new RetailerModel(vSalesPerson);
+	// 			if(vRetailerData.validate()) {
 
-					// Catch result from API
-					let vResult = await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null, vRetailerData);
-					var vRetailer = vResult.payload.RetailerList;
-					var vAllRetailers= [];
+	// 				// Catch result from API
+	// 				let vResult = await vHttpSvc.get(APIService.APIType.OPISNET, vPath, null, vRetailerData);
+	// 				var vRetailer = vResult.payload.RetailerList;
+	// 				var vAllRetailers= [];
 
-					// Start getting the retailer details
-					for(var i = 0; i < vResult.payload.RetailerList.length; i++) {
-							var vRetailerAsJSON = new RetailerOutputModel(vResult.payload.RetailerList[i].retailerId, vResult.payload.RetailerList[i].storeName, vResult.payload.RetailerList[i].outletType, vResult.payload.RetailerList[i].retailerMinDetails, vResult.payload.RetailerList[i].retailerAddress, vResult.payload.RetailerList[i].numberofSELFTransaction, vResult.payload.RetailerList[i].numberofAgingSELFTransaction, vResult.payload.RetailerList[i].totalAmountofSELFTransaction, vResult.payload.RetailerList[i].dspId, vResult.payload.RetailerList[i].dspName).param_to_db;
+	// 				// Start getting the retailer details
+	// 				for(var i = 0; i < vResult.payload.RetailerList.length; i++) {
+	// 						var vRetailerAsJSON = new RetailerOutputModel(vResult.payload.RetailerList[i].retailerId, vResult.payload.RetailerList[i].storeName, vResult.payload.RetailerList[i].outletType, vResult.payload.RetailerList[i].retailerMinDetails, vResult.payload.RetailerList[i].retailerAddress, vResult.payload.RetailerList[i].numberofSELFTransaction, vResult.payload.RetailerList[i].numberofAgingSELFTransaction, vResult.payload.RetailerList[i].totalAmountofSELFTransaction, vResult.payload.RetailerList[i].dspId, vResult.payload.RetailerList[i].dspName).param_to_db;
 
-							vAllRetailers = vAllRetailers.concat(vRetailerAsJSON);
-						}
+	// 						vAllRetailers = vAllRetailers.concat(vRetailerAsJSON);
+	// 					}
 						
-					try {	
-						// Start getting the route day from store procedure										
-						let vOrmService:ORMService = new ORMService();
-						let vResultData = await vOrmService.sp('get_route_day', vAllRetailers ,true);
-						console.log('All result ' + JSON.stringify(vResultData.payload));
-						pResponse.status(vResultData.status).json(vResultData.payload.sort(function(a, b) {
-								if (a.getroute.sequence_no === null && b.getroute.sequence_no === null) {
-									return 0;
-								}
-								if (a.getroute.sequence_no === null) {
-									return 1;
-								}
-								if (b.getroute.sequence_no === null) {
-									return -1;
-								}
-								if (parseInt(a.getroute.sequence_no) > parseInt(b.getroute.sequence_no)) {
-									return 1;
-								}
-								if (parseInt(a.getroute.sequence_no) < parseInt(b.getroute.sequence_no)) {
-									return -1;
-								} else {
-									return 0;
-								}
-							}));
-					}
-					catch(pErr)
-					{
-						throw pErr;
-					}
+	// 				try {	
+	// 					// Start getting the route day from store procedure										
+	// 					let vOrmService:ORMService = new ORMService();
+	// 					let vResultData = await vOrmService.sp('get_route_day', vAllRetailers ,true);
+	// 					console.log('All result ' + JSON.stringify(vResultData.payload));
+	// 					pResponse.status(vResultData.status).json(vResultData.payload.sort(function(a, b) {
+	// 							if (a.getroute.sequence_no === null && b.getroute.sequence_no === null) {
+	// 								return 0;
+	// 							}
+	// 							if (a.getroute.sequence_no === null) {
+	// 								return 1;
+	// 							}
+	// 							if (b.getroute.sequence_no === null) {
+	// 								return -1;
+	// 							}
+	// 							if (parseInt(a.getroute.sequence_no) > parseInt(b.getroute.sequence_no)) {
+	// 								return 1;
+	// 							}
+	// 							if (parseInt(a.getroute.sequence_no) < parseInt(b.getroute.sequence_no)) {
+	// 								return -1;
+	// 							} else {
+	// 								return 0;
+	// 							}
+	// 						}));
+	// 				}
+	// 				catch(pErr)
+	// 				{
+	// 					throw pErr;
+	// 				}
 				 	
-				}else {
-					vErrHandling.throwError(pResponse, 400, 101, "INPUT_ERROR", vRetailerData.Errors);
-				}
-			}catch(pErr){
-				console.log(pErr);
-				if(pErr.errorCode == 101) {
-					vErrHandling.throwError(pResponse, 400, 101, "ERR_INVALID_CREDENTIAL");
-				}
-			}
-	}
+	// 			}else {
+	// 				vErrHandling.throwError(400, "INPUT_ERROR", vRetailerData.Errors);
+	// 			}
+	// 		}catch(pErr){
+	// 			console.log(pErr);
+	// 			if(pErr.errorCode == 101) {
+	// 				vErrHandling.throwError(400, "ERR_INVALID_CREDENTIAL", pErr);
+	// 			}
+	// 		}
+	// }
 
 	async retailerCallPreparation(pRequest,pResponse) {
 		try{
@@ -390,46 +391,46 @@ export class RetailerController implements RetailerInterface{
 		}
 	}
 
-	async additionalRetailerRoute (pRequest,pResponse) {
-		try
-		{	
+	// async additionalRetailerRoute (pRequest,pResponse) {
+	// 	try
+	// 	{	
 
-			console.log("Start getting Physical Inventory");
+	// 		console.log("Start getting Physical Inventory");
 
-			var vSalesPerson = pRequest.body.salesPerson;
-			var vDay = pRequest.body.pDay;
+	// 		var vSalesPerson = pRequest.body.salesPerson;
+	// 		var vDay = pRequest.body.pDay;
 
-			console.log(vSalesPerson + 'DSP id');
+	// 		console.log(vSalesPerson + 'DSP id');
 
-			var vOrmSvc = new ORMService();
+	// 		var vOrmSvc = new ORMService();
 
-			let vParams = {
-				salesPerson : vSalesPerson,
-				pDay : vDay	
+	// 		let vParams = {
+	// 			salesPerson : vSalesPerson,
+	// 			pDay : vDay	
 				
-			};
+	// 		};
 
-			var vResult = await vOrmSvc.sp('get_additional_retailer', vParams );
-			console.log("Query Done with result : "+ JSON.stringify(vResponse));
-			var vResponse = {
-						"status" : "Success",
-						"errorMessage" : "",
-						"result" : vResult
-					};
+	// 		var vResult = await vOrmSvc.sp('get_additional_retailer', vParams );
+	// 		console.log("Query Done with result : "+ JSON.stringify(vResponse));
+	// 		var vResponse = {
+	// 					"status" : "Success",
+	// 					"errorMessage" : "",
+	// 					"result" : vResult
+	// 				};
 			
-			pResponse.json(vResponse);
+	// 		pResponse.json(vResponse);
 
-		}	
-		catch(pErr)
-		{
-			console.log("Failed to Query Payment History" + pErr);
+	// 	}	
+	// 	catch(pErr)
+	// 	{ss
+	// 		console.log("Failed to Query Payment History" + pErr);
 
-			var vError = {
-						"status" : "Error",
-						"errorMessage" : pErr,
-						"result" : null
-					};
-			pResponse.json(vError);
-		}
-	}
+	// 		var vError = {
+	// 					"status" : "Error",
+	// 					"errorMessage" : pErr,
+	// 					"result" : null
+	// 				};
+	// 		pResponse.json(vError);
+	// 	}
+	// }
 }

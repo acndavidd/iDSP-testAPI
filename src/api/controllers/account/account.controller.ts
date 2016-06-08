@@ -28,10 +28,12 @@ export class AccountController implements AccountControllerInterface{
 		try{
 			let vAccount = new Account.Account(pRequest.body.Username, pRequest.body.Password);
 			if(vAccount.validate()) {
-				let vLoginServiceURL: string = '/opisnet/services/idsp/userValidation';
+				let vLoginServiceURL: string = '/OPISNET/services/idsp/userValidation';
 				let vPayLoad = await AccountController._httpService.post(APIService.APIType.OPISNET, vLoginServiceURL, null, vAccount);
 				if(vPayLoad.status === 200) {
-					pResponse.status(200).json(vPayLoad);
+					let vTokenObject = new TokenObject(vAccount.Username, '', true, false);
+					// on actual case will return token and trigger sms to client number
+					pResponse.status(200).json(vTokenObject);
 				}else { // api call success but error on the logic
 					if(vPayLoad.status === 403) { // DSP ID Not found Error
 						AccountController._errorHandling.throwHTTPErrorResponse(pResponse, 500, 121, 'ERR_INVALID_CREDENTIAL');
@@ -52,7 +54,7 @@ export class AccountController implements AccountControllerInterface{
 	async submitMPIN(pRequest:any, pResponse:any): Promise<void> {
 		try{
 			let vHttpSvc = new APIService.HTTPService();
-			let vPath:string = '/opisnet/services/idsp/userAuthorization';
+			let vPath:string = '/OPISNET/services/idsp/userAuthorization';
 			let vMPIN = new Account.MPIN(pRequest.params.id, pRequest.body.MPIN);
 			if(vMPIN.validate()) {
 				let vPayLoad = await vHttpSvc.post(APIService.APIType.OPISNET, vPath, null, vMPIN);
@@ -61,7 +63,7 @@ export class AccountController implements AccountControllerInterface{
 					let vTokenService = new TokenService();
 					let vTokenObj: TokenObject = new TokenObject();
 					vTokenObj.setDSPId(pRequest.params.id);
-					vTokenObj.setOPISToken = vPayLoad.AccessToken;
+					vTokenObj.setOPISToken(vPayLoad.AccessToken);
 					let vTokenStr = vTokenService.encryptToken(vTokenObj);
 					// set cookie session value with token
 					pResponse.cookie('accessToken', vTokenStr,{httpOnly:true});
