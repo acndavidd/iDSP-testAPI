@@ -20,6 +20,7 @@ import {VerificationComponent} from './verification/components/verification.comp
 import {MpinComponent} from './login/components/mpin.component';
 import {PasscodeLockComponent} from './login/components/passcode-lock.component';
 import {ModalComponent} from './shared/components/modal.component';
+import {PasscodeService} from './shared/services/passcode.service';
 import {RetailerRouteComponent} from './my-transaction/components/retailer-route.component';
 import {Modal} from './shared/services/modal.service';
 import {RetailerService} from './shared/services/retailer.service';
@@ -42,6 +43,7 @@ declare var configChannel: any;
             (window:click)="OnClick()">
             <idsp-header></idsp-header>
             <my-modal></my-modal>
+            <passcode></passcode>
             <left-menu></left-menu>
             <router-outlet></router-outlet>
             <idsp-footer-menu></idsp-footer-menu>
@@ -52,6 +54,7 @@ declare var configChannel: any;
         HeaderComponent,
         FooterMenuComponent,
         ModalComponent,
+        PasscodeLockComponent,
         ROUTER_DIRECTIVES,
         LeftMenuComponent
     ],
@@ -102,7 +105,6 @@ declare var configChannel: any;
 
 ])
 export class IDSPComponent implements OnInit {
-    vModalMessage;
     globalListenFunc: Function;
     timerObservables: Observable<any>;
     constructor ( private _matchMediaService: MatchMediaService,
@@ -111,7 +113,8 @@ export class IDSPComponent implements OnInit {
     private _pageNavigationService: PageNavigationService,
     private _renderer: Renderer,
     private _modalService: Modal.ModalService,
-    private _idleService: IdleService ) {
+    private _idleService: IdleService,
+    private _passcodeService: PasscodeService ) {
         new FastClick(document.body);
         this.globalListenFunc = _renderer.listenGlobal('document', 'backbutton', (event) => {
             // put pageNavigationService

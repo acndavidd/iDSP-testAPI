@@ -35,10 +35,10 @@ export class LoginComponent {
 
     login(pEvent) {
         // For Hit API
-        // this._authenticationService.login(this.vUsername,this.vPassword);
+        this._authenticationService.login(this.vUsername,this.vPassword);
 
         // For By Pass Directly without API
-        this._router.navigate(['Mpin']);
+        // this._router.navigate(['Mpin']);
 
         // Testing SQLite
         /*let vCurrentContext = this;

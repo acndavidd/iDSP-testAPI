@@ -167,6 +167,7 @@ module.exports = function(grunt) {
                             'node_modules/requirejs/require.js',
                             'node_modules/nouislider/distribute/nouislider.js',
                             'node_modules/angular2/es6/dev/src/testing/shims_for_IE.js',
+                            'node_modules/crypto-js/crypto-js.js',
                         ],
                         dest:'../../debug/scripts',
                         expand: true, 
