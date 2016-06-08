@@ -38,10 +38,12 @@ export class RetailerSalesOrderService {
     }
 
     getSuggestedOrder(pStr) {
-        return this._http.get('/retailer/' + pStr + '/suggestedorder');
+        console.log(pStr.id + pStr.brand + pStr.subcat_type);
+        return this._http.get('/retailer/' + pStr.id + '/suggestedorder?brand='+pStr.brand+'&subcat_type='+pStr.subcat_type);
     }
 
     getRetailerBalanceElp(pParams) {
-        return this._http.post('/retailer/balance', pParams);
+        console.log('in get retailer service : ' + JSON.stringify(pParams));
+        return this._http.post('/retailer/balance', JSON.stringify(pParams));
     }
 }

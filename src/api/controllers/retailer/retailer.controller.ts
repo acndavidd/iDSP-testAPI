@@ -9,6 +9,7 @@ import {DataAccessService} from '../../services/data-access.service';
 import {TokenObject} from '../../models/token.model';
 import {RetailerProfileModel} from '../../models/input/retailer-profile.model';
 import {BalanceModel} from '../../models/input/retailer/balance.model';
+import {DropsizeModel} from '../../models/input/retailer/dropsize.model';
 import {PhysicalInventoryModel} from '../../models/input/inventory/physical-inventory.model';
 
 //import {ErrHandlerService} from '../services/err.handler.service';
@@ -88,7 +89,7 @@ export class RetailerController implements RetailerInterface{
 				selected_ret_id : vSelectedRetailId
 			};
 
-			var vResult = JSON.parse(await vOrmSvc.sp('get_retailer_summary', vParams ));     
+			var vResult = JSON.parse(await RetailerController._dataAccess.getRetailerSummary('get_retailer_summary', vParams ));     
 			console.log("Query Done with result : "+ JSON.stringify(vResult));
 
 			if (vResult.status == "Error")
@@ -128,7 +129,7 @@ export class RetailerController implements RetailerInterface{
 				sales_person : vSalesPerson
 			};
 
-			var vResult = await vOrmSvc.sp('get_retailer_route', vParams );
+			var vResult = await RetailerController._dataAccess.getSalesRoute('get_retailer_route', vParams );
 			console.log("Query Done with result : "+ JSON.stringify(vResult));
 
 			pResponse.json(vResult);			
@@ -289,27 +290,30 @@ export class RetailerController implements RetailerInterface{
 
 	async getSuggestedOrder(pRequest, pResponse) {
 		try {
-			console.log('In retailer controller..get suggested order for : ' + pRequest.params.id);
-			let vResult = {suggested_order : "1000"};
-			pResponse.json({
-				"status" : "Success",
-				"errorMessage" : "",
-				"result" : vResult
-			});
+			console.log('In getSuggestedOrder controller');
+			var vMonth = new Date().getMonth();
+			if (pRequest.query.subcat_type === 'L') {
+				let vData = new DropsizeModel(pRequest.query.brand, vMonth, pRequest.params.id, pRequest.query.subcat_type);
+				let vParamsLoad = vData.paramLoad;
+				var vSuggestedOrder:any = await RetailerController._dataAccess.getDropSize('get_bcp_dropsize', vParamsLoad);
+				console.log('Result : ' + vSuggestedOrder);
+				pResponse.status(200).json(vSuggestedOrder);
+			} else {
+				console.log('P');
+			}
 		}catch(pErr) {
+			JSON.stringify(pErr);
 			RetailerController._errorHandling.throwError(400,'Failed to get suggested order',pErr);
 		}
 	}
 
 	async getCurrentBalance(pRequest, pResponse) {
 		try {
+			console.log('in getCurrentBalance controller');	
 			let vPath:string = '/elpnet/services/idsp/retailerbalance';
-			console.log('isi: ' + JSON.stringify(pRequest));
-			let vMin = pRequest.body.min;
-			let vSource = pRequest.body.source;
-			let vParams = new BalanceModel(vMin, vSource);
+			let vParams = new BalanceModel(pRequest.body.min, pRequest.body.source);
 			let vResult = await RetailerController._httpService.post(APIService.APIType.ELP, vPath, null, vParams);
-			pResponse.json(vResult);
+			pResponse.status(200).json(vResult);
 		}catch(pErr) {
 			RetailerController._errorHandling.throwError(400,'Failed to get balance from ELP',pErr);
 		}

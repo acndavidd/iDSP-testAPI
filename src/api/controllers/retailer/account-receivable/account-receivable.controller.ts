@@ -125,10 +125,10 @@ export class AccountReceivableController implements AccountReceivableInterface {
 	}
 
 	async getRetailerMins(pRequest, pResponse) {
-		console.log('in controller');
+		// console.log('in controller');
 		let vPath:string = '/opisnet/services/idsp/rtmins';
 		let vRetailerModel = new RetailerInputModel('DSP00001', pRequest.params.id, 1, 4);
-		console.log('12312312 : ' + vRetailerModel);
+		// console.log('12312312 : ' + vRetailerModel);
 		try {
 			var vResult = await AccountReceivableController._httpService.get(APIService.APIType.OPISNET, vPath, null, vRetailerModel);
 			pResponse.status(200).json(vResult.retailerMINList);

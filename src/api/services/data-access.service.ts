@@ -11,6 +11,8 @@ export interface DataAccessInterface {
 	getCollection(pSPName,pParams,pIsJSONFormat);
 	getAccReceivable(pParams);
 	getDropSize(pSPName,pParams);
+	getRetailerSummary(pSPName, pParams);
+	getSalesRoute(pSPName, pParams);
 }
 
 export class DataAccessService implements DataAccessInterface {
@@ -47,6 +49,20 @@ export class DataAccessService implements DataAccessInterface {
 
 	getDropSize(pSPName,pParams) {
 		console.log('Start Store Procedure getDropSize');
+		return this.executeSP(pSPName,pParams);
+	}
+
+	getRetailerSummary(pSPName,pParams) {
+		console.log('Start Store Procedure getRetailerSummary');
+		return this.executeSP(pSPName,pParams);
+	}
+
+	getAccountReceivable(pParams) {
+		return this.executeSP(pParams.spName, pParams.spData, pParams.isJson);
+	}
+
+	getSalesRoute(pSPName,pParams) {
+		console.log('Start Store Procedure getSalesRoute');
 		return this.executeSP(pSPName,pParams);
 	}
 
@@ -98,7 +114,4 @@ export class DataAccessService implements DataAccessInterface {
 		);
 	}
 
-	getAccountReceivable(pParams) {
-		return this.executeSP(pParams.spName, pParams.spData, pParams.isJson);
-	}
 }

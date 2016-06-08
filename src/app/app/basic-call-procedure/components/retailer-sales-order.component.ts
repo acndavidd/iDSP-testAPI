@@ -62,9 +62,8 @@ export class RetailerSalesOrderComponent {
 
         // initialize data profile
         this.vParamList = this._pageNavigationService.getLatestPreviousData();
-        this.vRetailerProfile = this.vParamList[0].retailer_profile;
-        this.vDspProfile = this.vParamList[1].account_profile;
-        console.log('aaaaaaaaa : ' + JSON.stringify(this.vParamList));
+        // this.vRetailerProfile = this.vParamList[0].retailer_profile;
+        // this.vDspProfile = this.vParamList[1].account_profile;
 
         // initialize data from add-edit-load-transfer page
         this.vAllLoadDataList = this._pageNavigationService.getCurrentParams();
