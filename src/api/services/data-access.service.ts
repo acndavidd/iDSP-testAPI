@@ -9,6 +9,9 @@ export interface DataAccessInterface {
 	getTargetsActuals(pSPName,pParams,pIsJSONFormat);
 	getPhysicalInventory(pSPName,pParams,pIsJSONFormat);
 	getCollection(pSPName,pParams,pIsJSONFormat);
+	getAccReceivable(pParams);
+	getDropSize(pSPName,pParams);
+	getAdditionalRetailer(pSPName,pParams);
 }
 
 export class DataAccessService implements DataAccessInterface {
@@ -39,7 +42,17 @@ export class DataAccessService implements DataAccessInterface {
 	}
 	
 	getCollection(pSPName,pParams) {
-		console.log('Start Store Procedure get_targets_actuals');
+		console.log('Start Store Procedure getCollection');
+		return this.executeSP(pSPName,pParams);
+	}
+
+	getDropSize(pSPName,pParams) {
+		console.log('Start Store Procedure getDropSize');
+		return this.executeSP(pSPName,pParams);
+	}
+
+	getAdditionalRetailer(pSPName,pParams) {
+		console.log('Start Store Procedure get_additional_retailer');
 		return this.executeSP(pSPName,pParams);
 	}
 

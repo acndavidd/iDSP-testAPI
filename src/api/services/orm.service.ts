@@ -52,44 +52,44 @@ export class ORMService {
 	}
 
 	public async sp(pSPName:string,pParams:any,pIsJSON?:boolean) {
-		let vSequelize = this.getSequelize();
-		let vErrService:ErrorHandlingService = new ErrorHandlingService();
-		let vCurrentContext = this;
-		return new Promise<any>(
-			function (pResolve,pReject){
-				try{
-					// build params
-					let vParams;
-					if(pIsJSON) {
-						vParams = '(\''+JSON.stringify(pParams)+'\')';
-					}else {
-						vParams = '()';
-						if (pParams) {
-							vParams = '(';
-							for(let vParam in pParams){
-								vParams += "'" + pParams[vParam] + "',";
-							}
-							vParams = vParams.substring(0,vParams.lastIndexOf(',')) + ');';
-						}
-					}
-					let vQuery = 'SELECT ' + pSPName + vParams;
-					vSequelize.query( vQuery, { type: vSequelize.QueryTypes.SELECT }).then(function(pResults){
-						try{
-							pResolve(vErrService.processSPResult(pResults[0][pSPName.toLowerCase()]));
-						}catch(pErr){
-							pReject(pErr);
-						}
-					}).catch(function(pErr){
-						pReject(vErrService.processSequelizeError(pErr.toString().replace('SequelizeDatabaseError: ', '')));
-					});
-				}catch(pErr){
-					pReject(vErrService.processSequelizeError(pErr));
-				}
-			});
+		// let vSequelize = this.getSequelize();
+		// let vErrService:ErrorHandlingService = new ErrorHandlingService();
+		// let vCurrentContext = this;
+		// return new Promise<any>(
+		// 	function (pResolve,pReject){
+		// 		try{
+		// 			// build params
+		// 			let vParams;
+		// 			if(pIsJSON) {
+		// 				vParams = '(\''+JSON.stringify(pParams)+'\')';
+		// 			}else {
+		// 				vParams = '()';
+		// 				if (pParams) {
+		// 					vParams = '(';
+		// 					for(let vParam in pParams){
+		// 						vParams += "'" + pParams[vParam] + "',";
+		// 					}
+		// 					vParams = vParams.substring(0,vParams.lastIndexOf(',')) + ');';
+		// 				}
+		// 			}
+		// 			let vQuery = 'SELECT ' + pSPName + vParams;
+		// 			vSequelize.query( vQuery, { type: vSequelize.QueryTypes.SELECT }).then(function(pResults){
+		// 				try{
+		// 					pResolve(vErrService.processSPResult(pResults[0][pSPName.toLowerCase()]));
+		// 				}catch(pErr){
+		// 					pReject(pErr);
+		// 				}
+		// 			}).catch(function(pErr){
+		// 				pReject(vErrService.processSequelizeError(pErr.toString().replace('SequelizeDatabaseError: ', '')));
+		// 			});
+		// 		}catch(pErr){
+		// 			pReject(vErrService.processSequelizeError(pErr));
+		// 		}
+		// 	});
 	}
 
 	public getSequelize() {
-		return this.vSequelizeSvc.getInstance();
+		// return this.vSequelizeSvc.getInstance();
 	}
 
 	public getModel(pModelName:string) {

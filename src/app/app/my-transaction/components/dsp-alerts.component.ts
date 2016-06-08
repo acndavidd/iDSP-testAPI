@@ -41,7 +41,7 @@ export class DSPAlertsComponent {
                 this.vRetailerAlert = this.vAllRetailerAlert = response.json();
             },
             error => {
-
+                
             }
         );
     }

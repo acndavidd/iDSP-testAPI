@@ -17,11 +17,12 @@ export module Inventory {
 		zipCode: string;
 
 		paramDSPOpis;
-		paramDSPElp;
+		paramDSPElpSmart;
+		paramDSPElpSun;
+		paramDSPCoba;
 		paramRetailerOpis;
-		paramRetailerElp;
 
-		constructor(pUsername: string, pRetailerID: string, pCorporateID: string, pBranchID: string, pTransKey: string, pReqRefNo: string, pTransType: string, pReqTimestamp: string, pTerminalID: string, pAddress: string, pZipCode: string) {
+		constructor(pUsername: string, pRetailerID: string, pCorporateID: string, pBranchID: string, pTransKey: string, pReqRefNo: string, pReqTimestamp: string, pTerminalID: string, pAddress: string, pZipCode: string) {
 			super();
 			this.username = pUsername;
 			this.retailerID = pRetailerID;
@@ -30,7 +31,6 @@ export module Inventory {
 			this.branchID = pBranchID;
 			this.transactionKey = pTransKey;
 			this.requestRefNo = pReqRefNo;
-			this.transactionType = pTransType;
 			this.requestTimestamp = pReqTimestamp;
 			this.terminalID = pTerminalID;
 			this.address = pAddress;
@@ -40,21 +40,33 @@ export module Inventory {
 				username : this.username
 			}
 
-			this.paramDSPElp = {
-				corporateID : this.corporateID,
-				branchID : this.branchID,
-				transactionKey : this.transactionKey,
-				requestRefNo : this.requestRefNo,
-				transactionType : this.transactionType,
-				requestTimestamp : this.requestTimestamp,
-				terminalID : this.terminalID,
+			this.paramDSPElpSmart = {
+				corporateid : this.corporateID,
+				branchid : this.branchID,
+				transactionkey : this.transactionKey,
+				requestrefno : this.requestRefNo,
+				transactiontype : 'DLRBAL',
+				requesttimestamp : this.requestTimestamp,
+				terminalid : this.terminalID,
 				address : this.address,
-				zipCode : this.zipCode
+				zipcode : this.zipCode
 			}
 
-			this.paramRetailerOpis = {
-				username : this.username,
-				retailerID : this.retailerID
+
+			this.paramDSPElpSun = {
+				corporateid : this.corporateID,
+				branchid : this.branchID,
+				transactionkey : this.transactionKey,
+				requestrefno : this.requestRefNo,
+				transactiontype : 'DLRBALSUN',
+				requesttimestamp : this.requestTimestamp,
+				terminalid : this.terminalID,
+				address : this.address,
+				zipcode : this.zipCode
+			}
+
+			this.paramDSPCoba = {
+				corporateid : this.corporateID
 			}
 		}
 	}
@@ -77,14 +89,16 @@ export module Inventory {
 			this.retailerID = pRetailerID;
 
 			this.paramDSP = {
-				username : this.username
+				username : this.username,
+				recordstart : this.recordStart,
+				recordend : this.recordEnd
 			}
 
 			this.paramRetailer = {
 				username : this.username,
-				recordStart : this.recordStart,
-				recordEnd : this.recordEnd,
-				retailerID : this.retailerID
+				recordstart : this.recordStart,
+				recordend : this.recordEnd,
+				retailerid : this.retailerID
 			}
 		}
 	}

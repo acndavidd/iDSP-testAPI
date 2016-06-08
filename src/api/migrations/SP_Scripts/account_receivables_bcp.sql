@@ -1,7 +1,3 @@
--- Function: public.account_receivables_bcp(character varying, numeric, character varying)
-
--- DROP FUNCTION public.account_receivables_bcp(character varying, numeric, character varying);
-
 CREATE OR REPLACE FUNCTION public.account_receivables_bcp(
     v_dsp_id character varying,
     v_day numeric,
