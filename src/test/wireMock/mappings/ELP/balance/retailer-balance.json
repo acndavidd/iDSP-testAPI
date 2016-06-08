@@ -1,10 +1,7 @@
 {
     "request": {
         "method": "POST",
-        "url": "/elpnet/services/idsp/retailerbalance",
-        "body" : [
-            { "required" : "username","password"}
-        ]
+        "url": "/elpnet/services/idsp/retailerbalance"
     },
     "response": {
         "status" : 200,

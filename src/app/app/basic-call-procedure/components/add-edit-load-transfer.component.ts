@@ -31,7 +31,7 @@ export class AddEditLoadTransferComponent {
     vInputLoadAmount: number = 0;
     vSuggestedOrder: any;
     vInputPromoCode: any;
-    vInputDiscountAmount: number = 0;
+    vInputDiscountAmount: number;
     vTotalAmount: number = 0;
     vParamList: any = [];
     vRetailerMinList: any = [];
@@ -85,7 +85,7 @@ export class AddEditLoadTransferComponent {
                 });
         } catch (pErr) {
             this._modalService.toggleModal(pErr, Modal.ModalType.ERROR);
-        } 
+        }
     }
 
     addLoadTransfer() {
@@ -117,11 +117,10 @@ export class AddEditLoadTransferComponent {
         this.vArrowMap = !this.vArrowMap;
     }
 
-    setInputLoadAmount(pStr) {
+    setInputLoadAmount(pStr: number) {
         if(!this.vInputLoadAmount)
             this.vInputLoadAmount = 0;
-        this.vInputLoadAmount = parseInt(pStr);
-        this.getTotalAmount();
+        this.vInputLoadAmount = pStr;
     }
 
     setSelectedMIN(pStr) {
@@ -132,7 +131,7 @@ export class AddEditLoadTransferComponent {
                 min : this.vSelectedMIN,
                 source : 'iDSP'
             };
-            this._retailerSalesOrderService.getRetailerBalanceElp(vParams).subscribe(
+            this._retailerSalesOrderService.getRetailerBalanceElp(JSON.stringify(vParams)).subscribe(
                 response => {
                     this.vCurrentBalance = response.json().currentBalance;
                 });
@@ -142,22 +141,12 @@ export class AddEditLoadTransferComponent {
         }
     }
 
-    setInputPromoCode(pStr) {
-        this.vInputPromoCode = pStr;
-    }
-
-    setInputDiscount(pStr) {
-        if(!this.vInputLoadAmount)
-            this.vInputLoadAmount = 0;
-        this.vInputDiscountAmount = parseInt(pStr);
-        this.getTotalAmount();
-    }
-
     setSelectedBrand(pStr) {
         this.vSelectedBrand = pStr;
     }
 
     getTotalAmount() {
         this.vTotalAmount = (this.vInputLoadAmount-this.vInputDiscountAmount);
+        return this.vTotalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 }
