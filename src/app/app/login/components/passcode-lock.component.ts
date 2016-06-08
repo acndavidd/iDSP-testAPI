@@ -93,7 +93,6 @@ export class PasscodeLockComponent {
     //     // concate inputted number into one string
     //     this.vPasscodeLock = this.vPasscodeLock+pInputtedNumber;
     //     this.vLength = this.vPasscodeLock.length;
-
     //     // if length more = 4 and passcode correct, goes to home menu
     //     if((this.vLength === 4 ) && (this.vPasscodeLock === '1234')) {
     //         this.vPasscodeLock = '';
