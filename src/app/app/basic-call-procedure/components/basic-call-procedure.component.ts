@@ -74,6 +74,10 @@ export class BasicCallProcedureComponent {
     //      this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);
     // }
 
+    gotoAnotherPageHC() {
+         this._pageNavigationService.navigate('CallPreparation', null, null);
+    }
+
     getFilter() {
         return this._layoutService.getFilter();
     }

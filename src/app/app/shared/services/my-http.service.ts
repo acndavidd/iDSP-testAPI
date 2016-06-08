@@ -5,7 +5,8 @@ import {Http, Request, RequestOptions, RequestMethod, RequestOptionsArgs, Header
 import {Observable} from 'rxjs/Observable';
 import {Router} from 'angular2/router';
 import {Modal} from './modal.service';
-import {ServiceConfiguration} from '../config/service.config';
+import {Configuration} from '../config/configuration';
+import {EncryptionService} from './encryption.service';
 
 declare var configChannel: any;
 
@@ -13,12 +14,13 @@ declare var configChannel: any;
 export class MyHttp {
     private vServiceBaseUrl: string;
     private vTimeout: number;
-
+    private vEnc: EncryptionService;
     constructor(private _http: Http,
                 private _router: Router,
                 private _modalService: Modal.ModalService) {
-        this.vServiceBaseUrl = ServiceConfiguration.BaseURL;
-        this.vTimeout = ServiceConfiguration.Timeout;
+        this.vServiceBaseUrl = Configuration.SERVICE.BASE_URL;
+        this.vTimeout = Configuration.SERVICE.TIME_OUT;
+        this.vEnc = new EncryptionService();
     }
 
     public get(pUrl: string, pOptions?: RequestOptionsArgs) {

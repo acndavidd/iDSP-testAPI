@@ -9,8 +9,8 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 
 @Component({
     selector: 'inventory',
-    templateUrl: './app/my-transaction/components/inventory.component.html',
-    // templateUrl: './app/my-transaction/components/hc-inventory.component.html',
+    // templateUrl: './app/my-transaction/components/inventory.component.html',
+    templateUrl: './app/my-transaction/components/hc-inventory.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES

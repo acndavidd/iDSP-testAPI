@@ -1,4 +1,4 @@
-<div class="container-mpin">
+<div class="container-mpin" *ngIf="getPassCodeState()">
   <div class="anti-spy">
     <div class="outer-box">
       <div class="header">iDSP</div>
@@ -36,9 +36,7 @@
           <div class="cell-icon-25 fill"></div>
         </div>
       </div>
-     
-      <div class="mpin-message" *ngIf="vErrorCode === 0">Please enter a passcode</div>
-      <div class="mpin-message" *ngIf="vErrorCode === 1">Wrong Password!</div>    
+      <div class="mpin-message">getDisplayMessage()</div>
     </div>
     <div class="passcode-item-container">
       <div class="keyboard-line">
