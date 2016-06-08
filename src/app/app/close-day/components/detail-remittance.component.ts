@@ -4,6 +4,7 @@ import {MatchMediaService} from '../../shared/services/match-media.service';
 import {LayoutService} from '../../shared/services/layout.service';
 import {Modal} from '../../shared/services/modal.service';
 import {HeaderService} from '../../shared/services/header.service';
+import {RemittanceService} from '../../remittance/services/remittance.service';
 
 @Component({
     selector: 'detail-remittance',
@@ -15,15 +16,13 @@ import {HeaderService} from '../../shared/services/header.service';
 
 export class DetailRemittanceComponent {
 
-
-
-    constructor (
-    private _router: Router,
-    private _layoutService: LayoutService,
-
-    private _matchMediaService: MatchMediaService,
-    private _modalService: Modal.ModalService,
-    private _headerService: HeaderService
+    constructor(
+        private _router: Router,
+        private _layoutService: LayoutService,
+        private _matchMediaService: MatchMediaService,
+        private _modalService: Modal.ModalService,
+        private _headerService: HeaderService,
+        private _remittanceService: RemittanceService
     ) {
         this._layoutService.setCurrentPage('DetailRemittance');
         this._headerService.setTitle('Detail Remittance');
@@ -31,6 +30,14 @@ export class DetailRemittanceComponent {
 
     getResize() {
         return this._matchMediaService.getMm();
+    }
+
+    getTotalRemittance() {
+        return this._remittanceService.getTotalRemittance();
+    }
+
+    getRemittance() {
+        return this._remittanceService.getRemittance();
     }
 
 }
