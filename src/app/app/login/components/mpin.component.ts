@@ -42,7 +42,8 @@ export class MpinComponent {
 
     submit(pEvent) {
         pEvent.preventDefault();
-        this._authenticationService.submitMPIN(this.vMPIN1 + this.vMPIN2 + this.vMPIN3 + this.vMPIN4 + this.vMPIN5);
+        this._router.navigate(['MainPage', 'MyTransaction']);
+        // this._authenticationService.submitMPIN(this.vMPIN1 + this.vMPIN2 + this.vMPIN3 + this.vMPIN4 + this.vMPIN5);
     }
 
     ResendMpinModalComponent() {
