@@ -13,6 +13,23 @@
 // 	buildErrorObject(errorCode: number, errorDescription: string, inputError?: any): Object{
 // 		// build error object
 
+
+		// get error message in the config file if error description exists
+		// if not, just use the passed errorDescription parameter
+		// if(ErrorConfig[errorDescription]){
+		// 	errorDescription = ErrorConfig[errorDescription];
+		// }
+		// let Error = {
+		// 	code: errorCode,
+		// 	desc: errorDescription,
+		// 	inputError : inputError
+		// };
+		// // if input errors (errors generated from class validator that is used in model) is passed
+		// if(!inputError) {
+		// 	delete Error.inputError;
+		// }
+		// return Error;
+
 // 		// get error message in the config file if error description exists
 // 		// if not, just use the passed errorDescription parameter
 // 		if(ErrorConfig[errorDescription]){
@@ -28,6 +45,7 @@
 // 		}
 // 		return Error;
 // 	}
+
 
 // 	throwError(errorCode: number, errorDescription: string, inputError?: any): Object {
 // 		throw this.buildErrorObject(errorCode, errorDescription, inputError);

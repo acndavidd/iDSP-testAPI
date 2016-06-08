@@ -621,7 +621,6 @@ GRID - TABLE CELL
                     border-style: ridge;
                 }
             }
-
             
             // PLEASE PUT STYLE HERE
             &.padding-left-2 { padding-left: 2vw; }
@@ -642,8 +641,8 @@ GRID - TABLE CELL
 
             .margin-right-7 { margin-right: 7vw; }
 
-
-
+            .red { color: $red };
+            .apple { color: $apple };
             
             &.small { font-size: 3vw; }
             &.large { font-size: 4.5vw; }

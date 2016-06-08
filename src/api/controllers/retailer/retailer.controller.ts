@@ -21,7 +21,6 @@ export interface RetailerInterface{
 	additionalRetailer(pRequest, pResponse):Promise<void>;
 }
 
-
 export class RetailerController implements RetailerInterface{
 	private static _errorHandling: ErrorHandlingService;
 	private static _httpService: APIService.HTTPService;
