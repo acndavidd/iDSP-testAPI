@@ -5,6 +5,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
 var configChannel = 'web'; //possible values: app, web
+var deviceId = '';
 var vDbSqlite;
 
 var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
@@ -65,44 +66,43 @@ function bootstrapApp() {
     ga('set','checkProtocolTask',null);
     ga('set','checkStorageTask',null);
     // document.addEventListener("backbutton", onBackKeyDown, false);
-    console.log("this device is :" + device.cordova);
-
+    deviceId = device.uuid;
     // sqlite
-    vDbSqlite = window.sqlitePlugin;
-    window.sqlitePlugin.openDatabase({ name: 'hello-world.db', location: 'default' }, function (db) {
-    db.executeSql("select length('tenletters') as stringlength", [], function (res) {
-      var stringlength = res.rows.item(0).stringlength;
-      console.log('got stringlength: ' + stringlength);
-      document.getElementById('deviceready').querySelector('.received').innerHTML = 'stringlength: ' + stringlength;
-        });
-    });
+    // vDbSqlite = window.sqlitePlugin;
+    // window.sqlitePlugin.openDatabase({ name: 'hello-world.db', location: 'default' }, function (db) {
+    // db.executeSql("select length('tenletters') as stringlength", [], function (res) {
+    //   var stringlength = res.rows.item(0).stringlength;
+    //   console.log('got stringlength: ' + stringlength);
+    //   document.getElementById('deviceready').querySelector('.received').innerHTML = 'stringlength: ' + stringlength;
+    //     });
+    // });
 
-    // sms
-    if (! SMS ) { alert( 'SMS plugin not ready' ); return; }
+    // // sms
+    // if (! SMS ) { alert( 'SMS plugin not ready' ); return; }
 
-    if(SMS) SMS.startWatch(function(){
-                update('watching', 'watching started');
-            }, function(){
-                updateStatus('failed to start watching');
-            });
+    // if(SMS) SMS.startWatch(function(){
+    //             update('watching', 'watching started');
+    //         }, function(){
+    //             updateStatus('failed to start watching');
+    //         });
 
-    document.addEventListener('onSMSArrive', function(e){
-        var data = e.data;
-        smsList.push( data );
+    // document.addEventListener('onSMSArrive', function(e){
+    //     var data = e.data;
+    //     smsList.push( data );
             
-        updateStatus('SMS arrived, count: ' + smsList.length );
+    //     updateStatus('SMS arrived, count: ' + smsList.length );
                 
-        alert( data );
-        console.log( data );
-        console.log('sms arrived~!'); 
-    });
+    //     alert( data );
+    //     console.log( data );
+    //     console.log('sms arrived~!'); 
+    // });
 
-    if(SMS) SMS.stopWatch(function(){
-        update('watching', 'watching stopped');
-    }, function(){
-        updateStatus('failed to stop watching');
-    });
-
+    // if(SMS) SMS.stopWatch(function(){
+    //     update('watching', 'watching stopped');
+    // }, function(){
+    //     updateStatus('failed to stop watching');
+    // });
+    
     // fullscreen
     AndroidFullScreen.immersiveMode(successFunction, errorFunction);
 }

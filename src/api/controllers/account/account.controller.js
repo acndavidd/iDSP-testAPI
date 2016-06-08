@@ -28,7 +28,9 @@ class AccountController {
                     let vLoginServiceURL = '/opisnet/services/idsp/userValidation';
                     let vPayLoad = yield AccountController._httpService.post(api_service_1.APIService.APIType.OPISNET, vLoginServiceURL, null, vAccount);
                     if (vPayLoad.status === 200) {
-                        pResponse.status(200).json(vPayLoad);
+                        let vTokenObject = new token_model_1.TokenObject(vAccount.Username, '', true, false);
+                        // on actual case will return token and trigger sms to client number
+                        pResponse.status(200).json(vTokenObject);
                     }
                     else {
                         if (vPayLoad.status === 403) {
@@ -63,7 +65,7 @@ class AccountController {
                         let vTokenService = new token_service_1.TokenService();
                         let vTokenObj = new token_model_1.TokenObject();
                         vTokenObj.setDSPId(pRequest.params.id);
-                        vTokenObj.setOPISToken = vPayLoad.AccessToken;
+                        vTokenObj.setOPISToken(vPayLoad.AccessToken);
                         let vTokenStr = vTokenService.encryptToken(vTokenObj);
                         // set cookie session value with token
                         pResponse.cookie('accessToken', vTokenStr, { httpOnly: true });

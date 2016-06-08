@@ -1,20 +1,18 @@
 import {IDSPModel} from './idsp.model';
 
 export class TokenObject extends IDSPModel{
-	private DSPId:string;
-	private expired:Date;
-	private OPISToken:string;
-
-	constructor() {
+	private DSPId: string;
+	private expired: Date;
+	private OPISToken: string;
+	private factorAuth0: boolean;
+	private factorAuth1: boolean;
+	
+	constructor(pDSPId: string, pOPISToken: string, pFactorAuth0:boolean, pFactorAuth1:boolean) {
 		super();
-	}
-
-	setOPISToken(pOPISToken: string) {
+		this.DSPId = pDSPId;
 		this.OPISToken = pOPISToken;
-	}
-
-	getOPISToken(): string {
-		return this.OPISToken;
+		this.factorAuth0 = pFactorAuth0;
+		this.factorAuth1 = pFactorAuth1;
 	}
 
 	setDSPId(pDSPId: string) {
@@ -25,7 +23,27 @@ export class TokenObject extends IDSPModel{
 		return this.DSPId;
 	}
 
-	getExpired():Date {
-		return this.expired;
+	setOPISToken(pOPISToken: string) {
+		this.OPISToken = pOPISToken;
+	}
+
+	getOPISToken(): string {
+		return this.OPISToken;
+	}
+
+	setFactorAuth0(state: boolean) {
+		this.factorAuth0 = state;
+	}
+
+	getFactorAuth0(): boolean {
+		return this.factorAuth0;
+	}
+
+	setFactorAuth1(state: boolean) {
+		this.factorAuth1 = state;
+	}
+
+	getFactorAuth1(): boolean {
+		return this.factorAuth1;
 	}
 }

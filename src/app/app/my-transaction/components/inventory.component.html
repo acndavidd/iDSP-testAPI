@@ -21,7 +21,7 @@
 
 		<div class='filter-input input'>
             <div class='icon'></div>
-            <input type='text' placeholder='Enter Brand, Category, Sub Category, or Item Code' />
+            <input type='text' #filterInput (keyup)="onKey(filterInput.value)" placeholder='Enter Brand, Category, Sub Category, or Item Code' />
         </div>  
 
 

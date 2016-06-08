@@ -61,21 +61,11 @@ export class CallPreparationComponent {
             console.log(error);
         });
 
-        // this._retailerService.getLoadWallet(this.vSelectedRetailId).subscribe(
-        // response => {
-        //     if (response.json().status === 'Success') {
-        //         console.log('Query Success to Load Wallet' + JSON.stringify(response.json().result));
-        //         this.vLoadWallet = response.json().result;
-        //         console.log( 'result : ' + this.vLoadWallet );
-
-        //     } else {
-        //         console.log( 'Query Failed' );
-        //         this.vLoadWallet = null;
-        //     }
-        // },
-        // error => {
-        //     console.log(error);
-        // });
+        this._retailerService.getLoadWallet(this.vSelectedRetailId).subscribe(
+        response => {
+                this.vLoadWallet = response.json();
+                console.log('HSILLLLLL'+this.vLoadWallet);
+        });
 
         this._retailerService.getPhysicalInventory(this.vSelectedRetailId).subscribe(
         response => {               
@@ -92,10 +82,6 @@ export class CallPreparationComponent {
         error => {
             console.log(error);
         });
-
-
-        // console.log('update start date where call_id' + this.vSelectedRetailCallId);
-
 
         this._layoutService.setCurrentPage('CallPreparation');
         this._headerService.setTitle('Call Preparation');

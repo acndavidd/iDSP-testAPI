@@ -3,7 +3,7 @@
         "method": "POST",
         "url": "/elpnet/services/idsp/retailerbalance",
         "body" : [
-            { "required" : "username","password"}"
+            { "required" : "username","password"}
         ]
     },
     "response": {
