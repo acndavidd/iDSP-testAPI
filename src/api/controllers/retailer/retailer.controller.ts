@@ -294,8 +294,8 @@ export class RetailerController implements RetailerInterface{
 			var vMonth = new Date().getMonth();
 			if (pRequest.query.subcat_type === 'L') {
 				let vData = new DropsizeModel(pRequest.query.brand, vMonth, pRequest.params.id, pRequest.query.subcat_type);
-				let vParamsLoad = vData.paramLoad;
-				var vSuggestedOrder:any = await RetailerController._dataAccess.getDropSize('get_bcp_dropsize', vParamsLoad);
+
+				var vSuggestedOrder:any = await RetailerController._dataAccess.getDropSize('get_bcp_dropsize', vData);
 				console.log('Result : ' + vSuggestedOrder);
 				pResponse.status(200).json(vSuggestedOrder);
 			} else {

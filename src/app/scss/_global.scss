@@ -122,14 +122,13 @@ END OF CHECKBOX
 
             
 // PLEASE PUT COLOR HERE
-&.dark-sea-green    { color: $dark-sea-green; }
 &.vivid-pink        { color: $vivid-pink; }
 &.gainsboro         { color: $gainsboro; }
 &.grey              { color: $grey; }
 &.black             { color: $black; }
 &.green             { color: $apple; }
-&.deep-cyan         { color: $deep-cyan; }
 &.red               { color: $red; }
+&.blue-smart        { color: $blue-smart; }
 &.tosca             { color: $tosca;}
 
 
@@ -386,7 +385,7 @@ BUTTON - CLICK
         margin-top:4%;
         margin-bottom:4%;
         background-color: $apple;
-        border-radius: 1vw;
+        border-radius: 5px;
 
         &.button-small {
             border-radius: 0vw;
@@ -579,7 +578,7 @@ GRID - TABLE CELL
 
             input {
                 height: 7vw;
-                border-radius: 1vw;
+                border-radius: 5px;
                 border-style: ridge;
 
                 &.input-peso {
@@ -600,7 +599,7 @@ GRID - TABLE CELL
                 height: 10vw;
                 width: 100%;
                 border: 1px solid $dark-grey;
-                border-radius: 7px;
+                border-radius: 5px;
                 font-size: 4vw;
             }
 
@@ -617,7 +616,7 @@ GRID - TABLE CELL
                     background-position: right 0 top 50%;
                     background-repeat: no-repeat;
                     background-size: 8vw;
-                    border-radius: 1vw;
+                    border-radius: 5px;
                     border-style: ridge;
                 }
             }
@@ -707,14 +706,16 @@ GRID - TABLE CELL
                 
                 .vertical-text{
                     width: 6.5vw;
-                    position: center;
+                    // position: center;
                     transform: rotate(-90deg);
                     text-align: center; 
                     font-size: 3vw;
-                    font-weight: bold;
+                    color: black;
+                    font-weight: 600;
                 }
                 &.sulu { background-color: $sulu; }
-                &.serenade { background-color: $serenade; }
+                &.blue-vertical { background-color: $blue-vertical; }
+                // &.serenade { background-color: $serenade; }
             }
 
  
@@ -726,15 +727,28 @@ GRID - TABLE CELL
                 text-align: center;
                 line-height: 18vw;
                 font-size: 10vw;
-                color : $apple;
-                border: 1px solid $gainsboro;
+                color : $white;
+                border: 1px solid $white;
 
-                &.pink {
-                    background-color : $serenade;
+                &.turquoise {
+                    background-color : $turquoise;
                 }
-                &.purple {
-                    background-color : $violetish-white;
+                &.soft-red {
+                    background-color : $soft-red;
                 }
+                &.soft-blue {
+                    background-color : $soft-blue;
+                }
+                &.yellow-sun {
+                    background-color : $yellow-sun;
+                }
+
+                // &.pink {
+                //     background-color : $serenade;
+                // }
+                // &.purple {
+                //     background-color : $violetish-white;
+                // }
             }
 
             .sequence {
@@ -749,8 +763,11 @@ GRID - TABLE CELL
                 &.green {
                     background-color : $apple;
                 }
-                &.vivid-pink {
-                    background-color : $vivid-pink;
+                // &.vivid-pink {
+                //     background-color : $vivid-pink;
+                // }
+                &.blue-smart { 
+                    background-color: $blue-smart; 
                 }
             }
         }

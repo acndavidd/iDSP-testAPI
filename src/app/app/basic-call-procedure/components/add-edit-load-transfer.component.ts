@@ -10,8 +10,8 @@ import {RetailerSalesOrderService} from '../services/retailer-sales-order-servic
 
 @Component({
     selector: 'add-edit-load-transfer',
-    // templateUrl: './app/basic-call-procedure/components/hc-add-edit-load-transfer.component.html',
-    templateUrl: './app/basic-call-procedure/components/add-edit-load-transfer.component.html',
+    templateUrl: './app/basic-call-procedure/components/hc-add-edit-load-transfer.component.html',
+    // templateUrl: './app/basic-call-procedure/components/add-edit-load-transfer.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
@@ -76,12 +76,51 @@ export class AddEditLoadTransferComponent {
         } catch (pErr) {
             this._modalService.toggleModal(pErr, Modal.ModalType.ERROR);
         }
+
+        this.vParamList = this._pageNavigationService.getCurrentParams();
+        this.vRetailerProfile = this.vParamList[0].retailer_profile;
+        this.vDspProfile = this.vParamList[1].account_profile;
+        this.vRetailerName = this.vRetailerProfile.retailer_name;
+        this.vRetailerMIN = this.vRetailerProfile.retailer_min;
+        this.vRetailerID = this.vRetailerProfile.retailer_id;
+        
+        // get suggested order from DB 
+        try {
+            this._retailerSalesOrderService.getSuggestedOrder(this.vRetailerID).subscribe(
+                response => {
+                    // console.log('get suggested order ' + JSON.stringify(response.json()));
+                    this.vSuggestedOrder = response.json().result.suggested_order.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                });
+        } catch (pErr) {
+            this.vSuggestedOrder = 'N/A';
+        }
+
+        // get list of mins from OPIS+
+        try {
+            this._retailerSalesOrderService.getRetailerMins(this.vRetailerID).subscribe(
+                response => {
+                    this.vRetailerMinList = response.json();
+                    this.vSelectedMIN = this.vRetailerMinList[0].retailerMIN;
+                },
+                error => {
+                    throw ('Error in Service');
+                });
+        } catch (pErr) {
+            this._modalService.toggleModal(pErr, Modal.ModalType.ERROR);
+        } 
     }
 
     addLoadTransfer() {
         console.log('Go to Retailer Sales Order');
         this._modalService.showConfirmationModal('Confirm Load Transfer to <br/><label class="vivid-pink">'+ this.vSelectedMIN +'</label> with <br/> Total Amount <label class="vivid-pink">P ' + this.vTotalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</label> and <br/>Total Discount <label class="vivid-pink">P ' + this.vInputDiscountAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</label>',
             this.gotoRetailerSalesOrder.bind(this),
+            null, Modal.ButtonType.OK_CANCEL);
+    }
+
+    addLoadTransferHC() {
+        console.log('Go to Retailer Sales Order');
+        this._modalService.showConfirmationModal('Confirm Load Transfer to <br/><label class="vivid-pink">'+ this.vSelectedMIN +'</label> with <br/> Total Amount <label class="vivid-pink">P ' + this.vTotalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</label> and <br/>Total Discount <label class="vivid-pink">P ' + this.vInputDiscountAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</label>',
+            this.gotoRetailerSalesOrderHC.bind(this),
             null, Modal.ButtonType.OK_CANCEL);
     }
 
@@ -102,6 +141,9 @@ export class AddEditLoadTransferComponent {
         this._pageNavigationService.navigate('RetailerSalesOrder', vParams, this.vParamList);
     }
 
+    gotoRetailerSalesOrderHC() {
+        this._pageNavigationService.navigate('RetailerSalesOrder', null, null);
+    }
     detailPromo() {
         this.vDetailPromo = !this.vDetailPromo;
         this.vArrowMap = !this.vArrowMap;

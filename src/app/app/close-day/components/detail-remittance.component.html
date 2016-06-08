@@ -1,32 +1,33 @@
 <div class="container-body">
 	<div class="item-container">
-	    <div class="container">
-	        <div class='cell'>
-                <div class='container'>
-                	<div class='cell align-center width-100 large'>Total Remittance :</div>
-                </div>
-	        </div>
-	    </div>
-	    <div class="container">
-	        <div class='cell'>
-                <div class='container'>
-                	<div class='cell align-center width-100 large'>P 10,000</div>
-                </div>
-	        </div>
-	    </div>
+		<div class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell align-center width-100 large'>Total Remittance :</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell align-center width-100 large'>P {{getTotalRemittance() | number}}</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
-
-	<div class="item-container">
+	<!-- Remittance List -->
+	<div class="item-container" *ngFor="#item of getRemittance()">
 		<div class="container">
 			<div class='cell'>
 				<div class='container'>
-					<div class='cell width-60 padding-left-5'>RemitBD1356</div>
+					<div class='cell width-60 padding-left-5'>{{item.remit_id}}</div>
 				</div>
 			</div>
 			<div class='cell'>
 				<div class='container'>
-					<div class='cell width-30 align-right green'>Confirmed</div>
+					<div class='cell width-30 align-right vivid-pink' *ngIf="item.confirm===0">Unconfirmed</div>
+					<div class='cell width-30 align-right green' *ngIf="item.confirm===1">Confirmed</div>
 				</div>
 			</div>
 			<div class='cell width-10'></div>
@@ -35,12 +36,30 @@
 		<div class="container">
 			<div class='cell'>
 				<div class='container'>
-					<div class='cell width-60 padding-left-5'>Bank Deposit</div>
+					<div class='cell width-60 padding-left-5'>{{item.remit_type}}</div>
 				</div>
 			</div>
 			<div class='cell'>
 				<div class='container'>
-					<div class='cell width-30 align-right'>P 5,000</div>
+					<div class='cell width-30 align-right'>P {{item.remit_amount | number}}</div>
+				</div>
+			</div>
+			<div class='cell width-10'></div>
+		</div>
+
+		<div *ngIf="item.remit_type==='Bank Deposit'" class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-90 padding-left-5'>Bank {{item.bank_name}} / {{item.branch_name}}</div>
+				</div>
+			</div>
+			<div class='cell width-10'></div>
+		</div>
+
+		<div *ngIf="item.remit_type==='Bank Deposit'" class="container">
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-90 padding-left-5'>{{item.account_no}}</div>
 				</div>
 			</div>
 			<div class='cell width-10'></div>
@@ -49,25 +68,7 @@
 		<div class="container">
 			<div class='cell'>
 				<div class='container'>
-					<div class='cell width-90 padding-left-5'>Bank BCA / Mandaluyong</div>
-				</div>
-			</div>
-			<div class='cell width-10'></div>
-		</div>
-
-		<div class="container">
-			<div class='cell'>
-				<div class='container'>
-					<div class='cell width-90 padding-left-5'>110.220.330.440</div>
-				</div>
-			</div>
-			<div class='cell width-10'></div>
-		</div>
-
-		<div class="container">
-			<div class='cell'>
-				<div class='container'>
-					<div class='cell width-90 padding-left-5'>2016-04-17  14:22</div>
+					<div class='cell width-90 padding-left-5'>{{item.transfer_date}}</div>
 				</div>
 			</div>
 			<div class='cell width-10'></div>
@@ -81,129 +82,11 @@
 			</div>
 			<div class='cell'>
 				<div class='container'>
-					<div class='cell width-30 align-right'>557653UN2</div>
-				</div>
-			</div>
-			<div class='cell width-10'></div>
-		</div>
-
-	</div>
-
-	<div class="item-container">
-		<div class="container">
-			<div class='cell'>
-				<div class='container'>
-					<div class='cell width-60 padding-left-5'>RemitCs1359</div>
-				</div>
-			</div>
-			<div class='cell'>
-				<div class='container'>
-					<div class='cell width-30 align-right green'>Confirmed</div>
-				</div>
-			</div>
-			<div class='cell width-10'></div>
-		</div>
-
-		<div class="container">
-			<div class='cell'>
-				<div class='container'>
-					<div class='cell width-60 padding-left-5'>Cash</div>
-				</div>
-			</div>
-			<div class='cell'>
-				<div class='container'>
-					<div class='cell width-30 align-right'>P 2,000</div>
-				</div>
-			</div>
-			<div class='cell width-10'></div>
-		</div>
-
-		<div class="container">
-			<div class='cell'>
-				<div class='container'>
-					<div class='cell width-90 padding-left-5'>2016-04-17  14:22</div>
-				</div>
-			</div>
-			<div class='cell width-10'></div>
-		</div>
-
-		<div class="container">
-			<div class='cell'>
-				<div class='container'>
-					<div class='cell width-60 padding-left-5'>Acknowledge by </div>
-				</div>
-			</div>
-			<div class='cell'>
-				<div class='container'>
-					<div class='cell width-30 align-right'>557653UN2</div>
+					<div class='cell width-30 align-right'>{{item.acknowledge_by=='' ? '-' : item.acknowledge_by}} </div>
 				</div>
 			</div>
 			<div class='cell width-10'></div>
 		</div>
 	</div>
-
-	<div class="item-container">
-		<div class="container">
-			<div class='cell'>
-				<div class='container'>
-					<div class='cell width-60 padding-left-5'>Remittm1344</div>
-				</div>
-			</div>
-			<div class='cell'>
-				<div class='container'>
-					<div class='cell width-30 align-right vivid-pink'>Unconfirmed</div>
-				</div>
-			</div>
-			<div class='cell width-10'></div>
-		</div>
-
-		<div class="container">
-			<div class='cell'>
-				<div class='container'>
-					<div class='cell width-60 padding-left-5'>Trade Money</div>
-				</div>
-			</div>
-			<div class='cell'>
-				<div class='container'>
-					<div class='cell width-30 align-right'>P 3,000</div>
-				</div>
-			</div>
-			<div class='cell width-10'></div>
-		</div>
-
-		<div class="container">
-			<div class='cell'>
-				<div class='container'>
-					<div class='cell width-90 padding-left-5'>RRN123456</div>
-				</div>
-			</div>
-			<div class='cell width-10'></div>
-		</div>
-
-		<div class="container">
-			<div class='cell'>
-				<div class='container'>
-					<div class='cell width-90 padding-left-5'>2016-04-17  14:22</div>
-				</div>
-			</div>
-			<div class='cell width-10'></div>
-		</div>
-
-		<div class="container">
-			<div class='cell'>
-				<div class='container'>
-					<div class='cell width-60 padding-left-5'>Acknowledge by </div>
-				</div>
-			</div>
-			<div class='cell'>
-				<div class='container'>
-					<div class='cell width-30 align-right'>-</div>
-				</div>
-			</div>
-			<div class='cell width-10'></div>
-		</div>
-
-	</div>
-	
-
+	<!-- End of Remittance List -->
 </div>

@@ -7,6 +7,7 @@ import {Headers, XHRBackend} from 'angular2/http';
 import {ROUTER_PROVIDERS, Router, APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 import {MyHttp} from './shared/services/my-http.service';
 import {Modal} from './shared/services/modal.service';
+import {PasscodeService} from './shared/services/passcode.service';
 import {LayoutService} from './shared/services/layout.service';
 import 'rxjs/Rx';
 
@@ -38,6 +39,7 @@ enableProdMode();
 bootstrap(IDSPComponent, [
     ROUTER_PROVIDERS,
     Modal.ModalService,
+    PasscodeService,
     provide(LocationStrategy, { useClass: HashLocationStrategy }),
     provide(APP_BASE_HREF, { useValue: getPath() }),
     HTTP_PROVIDERS,

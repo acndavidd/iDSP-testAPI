@@ -422,7 +422,7 @@ export class RetailerController implements RetailerInterface {
 
 	// 	}	
 	// 	catch(pErr)
-	// 	{
+	// 	{ss
 	// 		console.log("Failed to Query Payment History" + pErr);
 
 	// 		var vError = {

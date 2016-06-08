@@ -28,7 +28,7 @@ export class AccountController implements AccountControllerInterface{
 		try{
 			let vAccount = new Account.Account(pRequest.body.Username, pRequest.body.Password);
 			if(vAccount.validate()) {
-				let vLoginServiceURL: string = '/opisnet/services/idsp/userValidation';
+				let vLoginServiceURL: string = '/OPISNET/services/idsp/userValidation';
 				let vPayLoad = await AccountController._httpService.post(APIService.APIType.OPISNET, vLoginServiceURL, null, vAccount);
 				if(vPayLoad.status === 200) {
 					let vTokenObject = new TokenObject(vAccount.Username, '', true, false);
@@ -54,7 +54,7 @@ export class AccountController implements AccountControllerInterface{
 	async submitMPIN(pRequest:any, pResponse:any): Promise<void> {
 		try{
 			let vHttpSvc = new APIService.HTTPService();
-			let vPath:string = '/opisnet/services/idsp/userAuthorization';
+			let vPath:string = '/OPISNET/services/idsp/userAuthorization';
 			let vMPIN = new Account.MPIN(pRequest.params.id, pRequest.body.MPIN);
 			if(vMPIN.validate()) {
 				let vPayLoad = await vHttpSvc.post(APIService.APIType.OPISNET, vPath, null, vMPIN);

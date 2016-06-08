@@ -13,6 +13,8 @@ export interface DataAccessInterface {
 	getDropSize(pSPName,pParams);
 	getRetailerSummary(pSPName, pParams);
 	getSalesRoute(pSPName, pParams);
+	getAdditionalRetailer(pSPName,pParams);
+
 }
 
 export class DataAccessService implements DataAccessInterface {
@@ -63,6 +65,10 @@ export class DataAccessService implements DataAccessInterface {
 
 	getSalesRoute(pSPName,pParams) {
 		console.log('Start Store Procedure getSalesRoute');
+	}
+
+	getAdditionalRetailer(pSPName,pParams) {
+		console.log('Start Store Procedure get_additional_retailer');
 		return this.executeSP(pSPName,pParams);
 	}
 
