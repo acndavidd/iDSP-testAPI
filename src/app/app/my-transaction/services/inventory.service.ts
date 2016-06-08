@@ -15,6 +15,23 @@ export class InventoryService {
         private _router: Router) {
         }
 
+    getDSPLoadInventoryList(pUsername: string, pCorporateID: string, pBranchID: string, pTransKey: string, 
+        pReqRefNo: string, pReqTimestamp: string, pTerminalID: string, pAddress: string, pZipCode: string) {
+        
+        let url = '/inventory/load?username=' +pUsername+ '&corporateid=' +pCorporateID+ '&branchid=' +pBranchID+
+            '&transactionkey=' +pTransKey+ '&requestrefno=' +pReqRefNo+ '&requesttimestamp=' +pReqTimestamp+ 
+            '&terminalid=' +pTerminalID+ '&address=' +pAddress+ '&zipcode=' +pZipCode;
+
+        return this._http.get(url);
+    }
+
+    getDSPPhysicalInventoryList(pUsername: string, pRecordStart: string, pRecordEnd: string) {
+        
+        let url = '/inventory/physical?username=' +pUsername+ '&recordstart=' +pRecordStart+ '&recordend=' +pRecordEnd;
+
+        return this._http.get(url);
+    }
+
     getDSPInventoryList(pUsername: string, pRecordStart: string, pRecordEnd: string, pCorporateID: string, pBranchID: string, 
         pTransKey: string, pReqRefNo: string, pReqTimestamp: string, pTerminalID: string, pAddress: string, pZipCode: string) {
 
