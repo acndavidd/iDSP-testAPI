@@ -1,1 +1,1 @@
-web: npm install && npm install -g typings@0.8.1 && typings install && tsc && node main.js
+web: npm install && npm install -g typings@0.8.1 && typings install && /bin/tsc && node main.js
