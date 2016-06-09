@@ -9,8 +9,10 @@ export interface DataAccessInterface {
 	getTargetsActuals(pSPName,pParams,pIsJSONFormat);
 	getPhysicalInventory(pSPName,pParams,pIsJSONFormat);
 	getCollection(pSPName,pParams,pIsJSONFormat);
-	getAccReceivable(pParams);
+	getInventoryLoadDsp(pSPName,pParams,pIsJSONFormat);
 	getDropSize(pSPName,pParams);
+	getRetailerSummary(pSPName, pParams);
+	getSalesRoute(pSPName, pParams);
 	getAdditionalRetailer(pSPName,pParams);
 }
 
@@ -51,9 +53,27 @@ export class DataAccessService implements DataAccessInterface {
 		return this.executeSP(pSPName,pParams);
 	}
 
+	getRetailerSummary(pSPName,pParams) {
+		console.log('Start Store Procedure getRetailerSummary');
+		return this.executeSP(pSPName,pParams);
+	}
+
+	getAccountReceivable(pParams) {
+		return this.executeSP(pParams.spName, pParams.spData, pParams.isJson);
+	}
+
+	getSalesRoute(pSPName,pParams) {
+		console.log('Start Store Procedure getSalesRoute');
+	}
+
 	getAdditionalRetailer(pSPName,pParams) {
 		console.log('Start Store Procedure get_additional_retailer');
 		return this.executeSP(pSPName,pParams);
+	}
+
+	getInventoryLoadDsp(pSPName, pParams, pIsJSONFormat) {
+		console.log('Start Store Procedure get_inventory_load_dsp');
+		return this.executeSP(pSPName, pParams, pIsJSONFormat);
 	}
 
 	executeSP(pSPName:string, pParams: any, pIsJSONFormat?: boolean): Promise<string> {
@@ -88,6 +108,7 @@ export class DataAccessService implements DataAccessInterface {
 						// stored procedure will return 0 if there is no errors
 						let vResult = pResult[0][pSPName.toLowerCase()];
 						if(vResult.status === 0) {
+							console.log('REsult'+vResult.result);
 							pResolve(vResult.result);
 						// functional error occured while execute the stored procedure
 						}else {
@@ -95,16 +116,14 @@ export class DataAccessService implements DataAccessInterface {
 						}
 					}).catch(function(pErr){
 						// throwing error from the sequelize
+						console.log('MASUK CATCH : ' +pErr);
 						DataAccessService._errorHandling.throwPromiseError(pReject, 101, pErr.toString());
 					});
 				}catch(pErr) {
+					console.log('MASUK CATCH 2 : ' +pErr);
 					DataAccessService._errorHandling.throwPromiseError(pReject, 102, pErr.toString());
 				}
 			}
 		);
-	}
-
-	getAccountReceivable(pParams) {
-		return this.executeSP(pParams.spName, pParams.spData, pParams.isJson);
 	}
 }

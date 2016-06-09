@@ -61,10 +61,12 @@ export class RetailerSalesOrderComponent {
         ) {
 
         // initialize data profile
+        this.vParamList = this._pageNavigationService.getLatestPreviousData();
+        // this.vRetailerProfile = this.vParamList[0].retailer_profile;
+        // this.vDspProfile = this.vParamList[1].account_profile;
         // this.vParamList = this._pageNavigationService.getLatestPreviousData();
         // this.vRetailerProfile = this.vParamList[0].retailer_profile;
         // this.vDspProfile = this.vParamList[1].account_profile;
-        // console.log('aaaaaaaaa : ' + JSON.stringify(this.vParamList));
 
         // initialize data from add-edit-load-transfer page
         // this.vAllLoadDataList = this._pageNavigationService.getCurrentParams();
@@ -80,7 +82,6 @@ export class RetailerSalesOrderComponent {
         // this._layoutService.setCurrentPage('RetailerSalesOrder');
         // this._headerService.setTitle('Retailer Sales Order');
         // this.vPriceBeforeDisc = (this.vTotalLoadTransferAmount + this.vPhysicalOrder);
-        console.log('tokek');
     }
 
     goToSalesOrderPayment() {

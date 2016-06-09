@@ -2,8 +2,8 @@
 	"status" : 200,
 	"statusMessage" : "BERHASIL BERHASIL HORE",
 	"productList" : [{
-		"productID" : "10001",
-		"productName" : "SKU1",
+		"productID" : "MC00157PD",
+		"productName" : "MODEM,ZTE,MF180,STARTER KIT,3.6MBPS,PRE",
 		"beginningBalance" : "1500",
 		"newDelivery" : "0",
 		"sold" : "100",
@@ -11,8 +11,8 @@
 		"endingBalance" : "1300",
 		"dateModified" : "20160429003012"
 	},{
-		"productID" : "10002",
-		"productName" : "SKU2",
+		"productID" : "P00088TKTPD",
+		"productName" : "CARD,GSM,TNTMEGA,64K,P1 & 25TXT,RTL,PRE",
 		"beginningBalance" : "100",
 		"newDelivery" : "0",
 		"sold" : "40",
@@ -20,8 +20,8 @@
 		"endingBalance" : "0",
 		"dateModified" : "20160429003012"
 	},{
-		"productID" : "10003",
-		"productName" : "SKU3",
+		"productID" : "16209PD",
+		"productName" : "3G,LG,KU250,QUAD,PRE",
 		"beginningBalance" : "80",
 		"newDelivery" : "10",
 		"sold" : "0",
@@ -29,8 +29,8 @@
 		"endingBalance" : "90",
 		"dateModified" : "20160429003012"
 	},{
-		"productID" : "10004",
-		"productName" : "SKU4",
+		"productID" : "14175NOCM",
+		"productName" : "CARD,SMARTLINK PHIL,PRE,NON-PER,SIM ONLY",
 		"beginningBalance" : "1200",
 		"newDelivery" : "34",
 		"sold" : "0",

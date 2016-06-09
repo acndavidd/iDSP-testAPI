@@ -47,7 +47,7 @@ import {DetailSalesOrderComponent} from '../../close-day/components/detail-sales
 import {DetailCollectionComponent} from '../../close-day/components/detail-collection.component';
 import {DetailRemittanceComponent} from '../../close-day/components/detail-remittance.component';
 import {TargetsActualsService} from '../../my-transaction/services/targets-actuals.service';
-
+import {RemittanceService} from '../../remittance/services/remittance.service';
 
 
 @Component({
@@ -57,7 +57,8 @@ import {TargetsActualsService} from '../../my-transaction/services/targets-actua
         ROUTER_DIRECTIVES
     ],
     providers : [
-        TargetsActualsService
+        TargetsActualsService,
+        RemittanceService
     ]
 })
 

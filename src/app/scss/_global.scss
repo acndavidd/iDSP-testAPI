@@ -642,6 +642,7 @@ GRID - TABLE CELL
 
             .red { color: $red };
             .apple { color: $apple };
+            .hidden { display : none };
             
             &.small { font-size: 3vw; }
             &.large { font-size: 4.5vw; }

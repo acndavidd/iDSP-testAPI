@@ -5,7 +5,7 @@ export const PASSCODESTEP = {
     SET : 0, // set the passcode
     CONFIRM : 1, // confirm the passcode
     INPUT : 2 // input passcode to decrypt
-}
+};
 
 export const PASSCODETITLE = ['Set Passcode Lock', 'Confirm Passcode Lock', 'Enter Passcode Lock'];
 export const DISPLAY_MESSAGE = ['Please enter a passcode', 'Please re-enter passcode', 'Please enter your passcode'];

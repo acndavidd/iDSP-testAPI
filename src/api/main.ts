@@ -7,6 +7,7 @@ import {TargetsActualsController} from './controllers/targets-actuals/targets-ac
 import {RetailerController} from './controllers/retailer/retailer.controller';
 import {AccountReceivableController} from './controllers/retailer/account-receivable/account-receivable.controller';
 import {TaskController} from './controllers/task/task.controller';
+import {RemittanceController} from './controllers/remittance.controller';
 
 var vPath = require("path");
 var vEnv = process.env.NODE_ENV || "DEVELOPMENT";
@@ -80,6 +81,8 @@ let vInventoryController =  new InventoryController();
 vRouter.get('/inventory/physical',vInventoryController.physical);
 vRouter.get('/inventory/load',vInventoryController.load);
 
+let vRemittanceController = new RemittanceController();
+vRouter.get('/remittance/:dspid', vRemittanceController.getRemittancesDetail);
 
 let vRetailerController = new RetailerController();
 vRouter.get('/retailer/threshold', vRetailerController.getRetailerThreshold);

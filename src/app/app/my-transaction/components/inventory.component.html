@@ -21,7 +21,7 @@
 
 		<div class='filter-input input'>
             <div class='icon'></div>
-            <input type='text' #filterInput (keyup)="onKey(filterInput.value)" placeholder='Enter Brand, Category, Sub Category, or Item Code' />
+            <input type='text' #filterInput (keyup)="onKey(filterInput.value)" placeholder='Input Item Code Description'/>
         </div>  
 
 
@@ -82,12 +82,12 @@
 
 
 	<div *ngIf="vLoadShow">
-		<div *ngFor="#vLoadProduct of getLoadProductList(); #i = index">
+		<div *ngFor="#vLoadProduct of vProductLoadList; #i = index">
 			<div class="item-container" (click)="subLoadMenuShow(i)">
 				<div class="container">
 					<div class='cell width-10 inventory-load'></div>
 					<div class='cell'>
-				        <div class='container'><div class='cell width-80 padding-left-5 bold' [ngClass]="{title: vSubLoadMenuShow[i]}">{{vLoadProduct.productName}}</div></div>
+				        <div class='container'><div class='cell width-80 padding-left-5 bold' [ngClass]="{title: vSubLoadMenuShow[i]}">{{vLoadProduct.productID}}</div></div>
 				        <div class='container' *ngIf="!vSubLoadMenuShow[i]">
 				        	<div class='cell'>
 				        		<div class="container">
@@ -110,26 +110,26 @@
 					<div class='cell'>
 				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Total Inventory</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-10'>Beginning Balance</div></div>
-				        <div class='container'><div class='cell width-45 padding-left-10 small'>As of {{vLoadProduct.lastModified}}</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-10 small'>As of {{vLoadProduct.lastModifiedBB}}</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-10'>Delivery</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Sales</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-10'>Sold</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Ending Balance</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Current Balance</div></div>
-				        <div class='container'><div class='cell width-45 padding-left-10 small'>As of 2016-04-22  13:00</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-10 small'>As of {{vLoadProduct.lastModifiedCB}}</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-5 bold'>For Validation</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-10'>Dispute Amount</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-10'>Others</div></div>
 				    </div>
 					<div class='cell'>
-				        <div class='container'><div class='cell width-45 align-right bold'>{{(toNumber(vLoadProduct.beginningBalance)+toNumber(vLoadProduct.newDelivery)) | number}}</div></div>
-				        <div class='container'><div class='cell width-45 align-right'>{{toNumber(vLoadProduct.beginningBalance) | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right bold'>{{vLoadProduct.totalInventory | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>{{vLoadProduct.beginningBalance | number}}</div></div>
 				        <div class='container'><div class='cell width-45 align-right'></div></div>
-				        <div class='container'><div class='cell width-45 align-right'>{{toNumber(vLoadProduct.newDelivery) | number}}</div></div>
-				        <div class='container'><div class='cell width-45 align-right bold'>100</div></div>
-				        <div class='container'><div class='cell width-45 align-right'>100</div></div>
-				        <div class='container'><div class='cell width-45 align-right bold'>700</div></div>
-				        <div class='container'><div class='cell width-45 align-right bold'>300</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>{{vLoadProduct.newDelivery | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right bold'>{{vLoadProduct.sales | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>{{vLoadProduct.sold | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right bold'>{{vLoadProduct.endingBalance | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right bold'>{{vLoadProduct.currentBalance | number}}</div></div>
 				        <div class='container'><div class='cell width-45 align-right'></div></div>
 				        <div class='container'><div class='cell width-45 align-right'>-200</div></div>
 				        <div class='container'><div class='cell width-45 align-right'>1000</div></div>
@@ -142,7 +142,7 @@
 	</div>
 
 	<div *ngIf="vPhysicalShow">
-		<div *ngFor="#vPhysicalProduct of getPhysicalProductList(); #i = index">
+		<div *ngFor="#vPhysicalProduct of vSearchedProductPhysicalList; #i = index">
 			<div class="item-container" (click)="subPhysicalMenuShow(i)">
 				<div class="container">
 					<div class='cell width-10 inventory-physical'></div>
@@ -155,7 +155,7 @@
 								        <div class='container'><div class='cell width-40 padding-left-5'>Ending Balance</div></div>
 								    </div>
 									<div class='cell'>
-								        <div class='container'><div class='cell width-40 align-right bold'>{{toNumber(vPhysicalProduct.endingBalance) | number}}</div></div>
+								        <div class='container'><div class='cell width-40 align-right bold'>{{vPhysicalProduct.endingBalance | number}}</div></div>
 								    </div>
 								</div>
 							</div>
@@ -171,19 +171,19 @@
 				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Total Inventory</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-10'>Beginning Balance</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-10'>Delivery</div></div>
-				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Sales</div></div>
+				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Sales &amp; Transfer Back</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-10'>Sold</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-10'>Transfer Back</div></div>
 				        <div class='container'><div class='cell width-45 padding-left-5 bold'>Ending Balance</div></div>
 				    </div>
 					<div class='cell'>
-				        <div class='container'><div class='cell width-45 align-right bold'>{{(toNumber(vPhysicalProduct.beginningBalance)+toNumber(vPhysicalProduct.newDelivery)) | number}}</div></div>
-				        <div class='container'><div class='cell width-45 align-right'>{{toNumber(vPhysicalProduct.beginningBalance) | number}}</div></div>
-				        <div class='container'><div class='cell width-45 align-right'>{{toNumber(vPhysicalProduct.newDelivery) | number}}</div></div>
-				        <div class='container'><div class='cell width-45 align-right bold'>{{(toNumber(vPhysicalProduct.sold)+toNumber(vPhysicalProduct.transferBack)) | number}}</div></div>
-				        <div class='container'><div class='cell width-45 align-right'>{{toNumber(vPhysicalProduct.sold) | number}}</div></div>
-				        <div class='container'><div class='cell width-45 align-right'>{{toNumber(vPhysicalProduct.transferBack) | number}}</div></div>
-				        <div class='container'><div class='cell width-45 align-right bold'>{{toNumber(vPhysicalProduct.endingBalance) | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right bold'>{{vPhysicalProduct.totalInventory | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>{{vPhysicalProduct.beginningBalance | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>{{vPhysicalProduct.newDelivery | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right bold'>{{vPhysicalProduct.soldTransfer | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>{{vPhysicalProduct.sold | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>{{vPhysicalProduct.transferBack | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right bold'>{{vPhysicalProduct.endingBalance | number}}</div></div>
 				    </div>
 				    <div class='cell width-10'></div>
 				</div>
