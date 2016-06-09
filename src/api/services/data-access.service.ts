@@ -9,7 +9,6 @@ export interface DataAccessInterface {
 	getTargetsActuals(pSPName,pParams,pIsJSONFormat);
 	getPhysicalInventory(pSPName,pParams,pIsJSONFormat);
 	getCollection(pSPName,pParams,pIsJSONFormat);
-	getAccReceivable(pParams);
 	getDropSize(pSPName,pParams);
 	getRetailerSummary(pSPName, pParams);
 	getSalesRoute(pSPName, pParams);

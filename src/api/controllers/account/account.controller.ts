@@ -54,7 +54,7 @@ export class AccountController implements AccountControllerInterface{
 	async submitMPIN(pRequest:any, pResponse:any): Promise<void> {
 		try{
 			let vHttpSvc = new APIService.HTTPService();
-			let vPath:string = '/OPISNET/services/idsp/userAuthorization';
+			let vPath:string = '/opisnet/services/idsp/userAuthorization';
 			let vMPIN = new Account.MPIN(pRequest.params.id, pRequest.body.MPIN);
 			if(vMPIN.validate()) {
 				let vPayLoad = await vHttpSvc.post(APIService.APIType.OPISNET, vPath, null, vMPIN);

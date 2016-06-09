@@ -16,12 +16,12 @@ import {PhysicalInventoryModel} from '../../models/input/inventory/physical-inve
 
 export interface RetailerInterface{
 	getRetailerThreshold(pRequest, pResponse): Promise<void>;
-	getProduct(pRequest, pResponse):Promise<void>;
+	// getProduct(pRequest, pResponse):Promise<void>;
 	getRetailerSummary(pRequest, pResponse):Promise<void>;
 	getSalesRoute(pRequest, pResponse):Promise<void>;
 	loadWallet(pRequest, pResponse):Promise<void>;
-	getSuggestedOrder(pRequest, pResponse):Promise<void>;
-	getCurrentBalance(pRequest, pResponse):Promise<void>;
+	// getSuggestedOrder(pRequest, pResponse):Promise<void>;
+	// getCurrentBalance(pRequest, pResponse):Promise<void>;
 }
 
 
@@ -37,47 +37,47 @@ export class RetailerController implements RetailerInterface{
 		RetailerController._httpService = new APIService.HTTPService();
 	}
 	
-	getProduct(pRequest,pResponse) {
-		let vOrmSvc = new ORMService();
-		let vProdCatModel = vOrmSvc.getModel('mst_prod_cat');
-		vProdCatModel.findAll({
-			attributes : ['category_name' , 'brand'],
-			include : [{
-				model : vOrmSvc.getModel('mst_prod_sub_cat'),
-				as : 'ProductSubCategory',
-				required : true,
-				attributes : ['sub_category_name'],
-				include : [{
-					model : vOrmSvc.getModel('mst_product'),
-					attributes : ['product_id'],
-					as : 'Product',
-					required : true,
-					include : [{
-						model : vOrmSvc.getModel('mst_target'),
-						as : 'Target',
-						attributes : ['target_qty'],
-						required : true,
-					}]
-				}]
-			}]
-		}).then(function(pProdCats){
-			pProdCats = JSON.parse(JSON.stringify(pProdCats));
-			pProdCats.map(function(pProdCat){
-				pProdCat.ProductSubCategory.map(function(pProdSubCat){
-					let vSumTarget = 0;
-					pProdSubCat.Product.map(function(pProd){
-						vSumTarget += pProd.Target.reduce(function(pPrevVal,pCurrVal){
-							return  pPrevVal.target_qty + pCurrVal.target_qty;
-						}).target_qty;
-						delete pProd.Target;
-					});
-					pProdSubCat.target_sum = vSumTarget;
-					delete pProdSubCat.Product;
-				});
-			});
-			pResponse.json(pProdCats);
-		});
-	}
+	// getProduct(pRequest,pResponse) {
+	// 	let vOrmSvc = new ORMService();
+	// 	let vProdCatModel = vOrmSvc.getModel('mst_prod_cat');
+	// 	vProdCatModel.findAll({
+	// 		attributes : ['category_name' , 'brand'],
+	// 		include : [{
+	// 			model : vOrmSvc.getModel('mst_prod_sub_cat'),
+	// 			as : 'ProductSubCategory',
+	// 			required : true,
+	// 			attributes : ['sub_category_name'],
+	// 			include : [{
+	// 				model : vOrmSvc.getModel('mst_product'),
+	// 				attributes : ['product_id'],
+	// 				as : 'Product',
+	// 				required : true,
+	// 				include : [{
+	// 					model : vOrmSvc.getModel('mst_target'),
+	// 					as : 'Target',
+	// 					attributes : ['target_qty'],
+	// 					required : true,
+	// 				}]
+	// 			}]
+	// 		}]
+	// 	}).then(function(pProdCats){
+	// 		pProdCats = JSON.parse(JSON.stringify(pProdCats));
+	// 		pProdCats.map(function(pProdCat){
+	// 			pProdCat.ProductSubCategory.map(function(pProdSubCat){
+	// 				let vSumTarget = 0;
+	// 				pProdSubCat.Product.map(function(pProd){
+	// 					vSumTarget += pProd.Target.reduce(function(pPrevVal,pCurrVal){
+	// 						return  pPrevVal.target_qty + pCurrVal.target_qty;
+	// 					}).target_qty;
+	// 					delete pProd.Target;
+	// 				});
+	// 				pProdSubCat.target_sum = vSumTarget;
+	// 				delete pProdSubCat.Product;
+	// 			});
+	// 		});
+	// 		pResponse.json(pProdCats);
+	// 	});
+	// }
 
 	async getRetailerSummary(pRequest, pResponse){
 		try{
@@ -288,35 +288,35 @@ export class RetailerController implements RetailerInterface{
 		}
 	}
 
-	async getSuggestedOrder(pRequest, pResponse) {
-		try {
-			console.log('In getSuggestedOrder controller');
-			var vMonth = new Date().getMonth();
-			if (pRequest.query.subcat_type === 'L') {
-				let vData = new DropsizeModel(pRequest.query.brand, vMonth, pRequest.params.id, pRequest.query.subcat_type);
+	// async getSuggestedOrder(pRequest, pResponse) {
+	// 	try {
+	// 		console.log('In getSuggestedOrder controller');
+	// 		var vMonth = new Date().getMonth();
+	// 		if (pRequest.query.subcat_type === 'L') {
+	// 			let vData = new DropsizeModel(pRequest.query.brand, vMonth, pRequest.params.id, pRequest.query.subcat_type);
 
-				var vSuggestedOrder:any = await RetailerController._dataAccess.getDropSize('get_bcp_dropsize', vData);
-				console.log('Result : ' + vSuggestedOrder);
-				pResponse.status(200).json(vSuggestedOrder);
-			} else {
-				console.log('P');
-			}
-		}catch(pErr) {
-			JSON.stringify(pErr);
-			RetailerController._errorHandling.throwError(400,'Failed to get suggested order',pErr);
-		}
-	}
+	// 			var vSuggestedOrder:any = await RetailerController._dataAccess.getDropSize('get_bcp_dropsize', vData.paramLoad);
+	// 			console.log('Result : ' + vSuggestedOrder);
+	// 			pResponse.status(200).json(vSuggestedOrder);
+	// 		} else {
+	// 			console.log('P');
+	// 		}
+	// 	}catch(pErr) {
+	// 		JSON.stringify(pErr);
+	// 		RetailerController._errorHandling.throwError(400,'Failed to get suggested order',pErr);
+	// 	}
+	// }
 
-	async getCurrentBalance(pRequest, pResponse) {
-		try {
-			console.log('in getCurrentBalance controller');	
-			let vPath:string = '/elpnet/services/idsp/retailerbalance';
-			let vParams = new BalanceModel(pRequest.body.min, pRequest.body.source);
-			let vResult = await RetailerController._httpService.post(APIService.APIType.ELP, vPath, null, vParams);
-			pResponse.status(200).json(vResult);
-		}catch(pErr) {
-			RetailerController._errorHandling.throwError(400,'Failed to get balance from ELP',pErr);
-		}
-	}
+	// async getCurrentBalance(pRequest, pResponse) {
+	// 	try {
+	// 		console.log('in getCurrentBalance controller');	
+	// 		let vPath:string = '/elpnet/services/idsp/retailerbalance';
+	// 		let vParams = new BalanceModel(pRequest.body.min, pRequest.body.source);
+	// 		let vResult = await RetailerController._httpService.post(APIService.APIType.ELP, vPath, null, vParams);
+	// 		pResponse.status(200).json(vResult);
+	// 	}catch(pErr) {
+	// 		RetailerController._errorHandling.throwError(400,'Failed to get balance from ELP',pErr);
+	// 	}
+	// }
 
 }

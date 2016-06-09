@@ -569,6 +569,10 @@ GRID - TABLE CELL
             &.border {
                 border-bottom: 1px solid $border-line;
             }
+
+            .hid {
+                display : none;
+            }
         }
         .cell {
             display:table-cell;
