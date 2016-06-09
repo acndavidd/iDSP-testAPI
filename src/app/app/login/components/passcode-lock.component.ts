@@ -5,20 +5,15 @@ import { Router } from 'angular2/router';
 import {NgModel} from 'angular2/common';
 import {Modal} from '../../shared/services/modal.service';
 import {EncryptionService} from '../../shared/services/encryption.service';
+import {PageNavigationService} from '../../shared/services/page-navigaton.service';
 import {PasscodeService, PASSCODESTEP} from '../../shared/services/passcode.service';
 
 @Component({
     selector: 'passcode',
-    templateUrl: './app/login/components/passcode-lock.component.html',
-    directives: [
-        NgModel
-    ],
+    templateUrl: './app/login/components/passcode-lock.component.html'
 })
 
-
-
 export class PasscodeLockComponent {
-
     private vPasscodeLock:string;
     private vConfirm:string;
     private vInputtedNumber:string;
@@ -29,7 +24,9 @@ export class PasscodeLockComponent {
     private vState;
 
     constructor (
-        private _passcodeService: PasscodeService
+        private _passcodeService: PasscodeService,
+        private _pageNavigationService: PageNavigationService,
+        private _encryptionService: EncryptionService
         ) {
         this.vPasscodeLock = '';
         this.vConfirm = '';
@@ -39,7 +36,7 @@ export class PasscodeLockComponent {
         return this.vState;
     }
     
-    getPassCodeState() {
+    getPasscodeState() {
         return this._passcodeService.getPasscodeState();
     }
 
@@ -70,15 +67,19 @@ export class PasscodeLockComponent {
         this.vLength = this.vPasscodeLock.length;
         // this.passcodeLogic(this.vInputtedNumber);
         if(this.vLength === 4) {
-            switch(this.getState()) {
+            console.log();
+            switch(this.getStep()) {
                 case PASSCODESTEP.SET :
                     this.vConfirm = this.vPasscodeLock;
+                    this.vPasscodeLock = '';
+                    this.vLength = this.vPasscodeLock.length;
                     this.setStep(PASSCODESTEP.CONFIRM);
                     break;
                 case PASSCODESTEP.CONFIRM :
                     if(this.vConfirm === this.vPasscodeLock) { 
                         // if confirmation is the same
-                        // decrypt the refresh token with passcode
+                        // encrypt the refresh token with passcode
+                        this._pageNavigationService.navigate('Home', null, null);
                     }
                     break;
                 case PASSCODESTEP.INPUT :
