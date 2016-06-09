@@ -5,7 +5,7 @@ import { Router } from 'angular2/router';
 import {NgModel} from 'angular2/common';
 import {Modal} from '../../shared/services/modal.service';
 import {EncryptionService} from '../../shared/services/encryption.service';
-import {PageNavigationService} from '../../shared/services/page-navigaton.service';
+import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {PasscodeService, PASSCODESTEP} from '../../shared/services/passcode.service';
 
 @Component({
