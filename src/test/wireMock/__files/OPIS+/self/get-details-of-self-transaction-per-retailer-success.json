@@ -1,0 +1,14 @@
+{
+	"status" : 200,
+	"statusMessage" : "OK",
+	"totalRecord" : 1,
+	"totalAmount" : 1000,
+	"selfTransactionList": [
+		{
+			"retailerMIN" : "9993464365",
+			"transactionId" : "850006000514",
+			"transactionDate" : "20160411130123",
+			"amount" : "243234123"
+		}
+	]
+}

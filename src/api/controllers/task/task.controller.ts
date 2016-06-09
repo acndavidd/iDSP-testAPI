@@ -111,14 +111,14 @@ export class TaskController implements TaskInterface {
 	async collection(pRequest,pResponse) {
 		console.log("Start getting collection");
 
-					var vSalesPerson = pRequest.body.salesPerson;
-					var vRetailerId = pRequest.body.retailerId;
+					var vSalesPerson = 'DSP00001';
+					var vRetailerId = pRequest.params.id;
 			try{
 				let vParam = new PhysicalInventoryModel(vSalesPerson, vRetailerId);
 				console.log('Param Physical Inventory : ' + JSON.stringify(vParam));
 					if(vParam.validate()) {
 						let vResult = await TaskController._dataAccess.getCollection('get_collection', vParam);
-						// console.log('All Result Physical Inventory : ' + JSON.stringify(vResult));
+						console.log('Collection : ' + JSON.stringify(vResult));
 						pResponse.json(vResult);
 					}else {
 						TaskController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 100, 'INPUT_ERRORS', vParam.Errors);

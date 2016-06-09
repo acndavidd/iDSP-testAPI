@@ -49,6 +49,7 @@ export module APIService {
 				}
 				fullUrl = fullUrl.substring(0,fullUrl.lastIndexOf('&'));
 			}
+			console.log(fullUrl);
 			return this.request(RequestMethod.GET, pAPIType, fullUrl, pHeaders);
 		}
 

@@ -82,10 +82,14 @@ vRouter.get('/inventory/load',vInventoryController.load);
 
 
 let vRetailerController = new RetailerController();
+vRouter.get('/retailer/:id/lastamounttransferred',vRetailerController.lastAmountTransferred);
 vRouter.get('/retailer/threshold', vRetailerController.getRetailerThreshold);
 vRouter.get('/retailer/summary',vRetailerController.retailerProfile);
 vRouter.get('/retailer/:id/physical',vRetailerController.physicalInventory);
 vRouter.get('/retailer/:id/load',vRetailerController.loadWallet);
+vRouter.get('/retailer/:id/outstandingBalance',vRetailerController.outstandingBalance)
+
+
 // vRouter.get('/retailer/:id/additional',vRetailerController.additionalRetailer);
 // vRouter.get('/retailer/:id/suggestedorder', vRetailerController.getSuggestedOrder);
 // vRouter.post('/retailer/balance', vRetailerController.getCurrentBalance);
@@ -98,7 +102,7 @@ vRouter.get('/retailer/accountreceivable', vAccountReceivableController.getAccou
 let vTaskCOntroller = new TaskController();
 vRouter.get('/task',vTaskCOntroller.task);
 vRouter.post('/additionalRetailerRoute',vTaskCOntroller.additionalRetailerRoute);
-vRouter.post('/retailer/collection',vTaskCOntroller.collection);
+vRouter.get('/retailer/:id/collection',vTaskCOntroller.collection);
 // define instance of your controller and route here
 
 let vTargetsActualsController =  new TargetsActualsController();

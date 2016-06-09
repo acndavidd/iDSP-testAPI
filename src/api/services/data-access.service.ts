@@ -12,6 +12,7 @@ export interface DataAccessInterface {
 	getAccReceivable(pParams);
 	getDropSize(pSPName,pParams);
 	getAdditionalRetailer(pSPName,pParams);
+	getOutstandingBalanceBCP(pSPName,pParams);
 }
 
 export class DataAccessService implements DataAccessInterface {
@@ -56,6 +57,11 @@ export class DataAccessService implements DataAccessInterface {
 		return this.executeSP(pSPName,pParams);
 	}
 
+	getOutstandingBalanceBCP(pSPName,pParams) {
+		console.log('Start Store Procedure getOutstandingBalanceBCP');
+		return this.executeSP(pSPName,pParams);
+	}
+ 
 	executeSP(pSPName:string, pParams: any, pIsJSONFormat?: boolean): Promise<string> {
 		return new Promise<string>(
 			function(pResolve, pReject) {

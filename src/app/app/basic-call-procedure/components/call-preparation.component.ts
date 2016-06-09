@@ -8,8 +8,8 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {NgModel} from 'angular2/common';
 
 @Component({
-       // templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
-      templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
+       templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
+      // templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
@@ -17,19 +17,26 @@ import {NgModel} from 'angular2/common';
 
 export class CallPreparationComponent {
 
-    vProfileMenuShow = false;
-    vCollectionMenuShow = false;
-    vLoadMenuShow = false;
-    vPhysicalMenuShow = false;
-    vSelectedRetailId;
-    vSelectedRetailSeq;
-    vSelectedRetail;
-    vSelectedRetailFirstChar;
-    vStartEnabled = false;
-    vLoadWallet;
-    vPhysicalInventory;
-    vSelectedRetailCallId;
-    vCollection;
+    private vProfileMenuShow = false;
+    private vCollectionMenuShow = false;
+    private vLoadMenuShow = false;
+    private vPhysicalMenuShow = false;
+    private vSelectedRetailId;
+    private vSelectedRetailSeq;
+    private vSelectedRetail;
+    private vSelectedRetailFirstChar;
+    private vStartEnabled = false;
+    private vLoadWallet;
+    private vPhysicalInventory;
+    private vSelectedRetailCallId;
+    private vCollection;
+    private vLastAmountTransferred;
+    private vFirstCharacter;
+    private vSmartLoadLT;
+    private vXpressLoadLT;
+    private vSmartLoadWallet;
+    private vXpressLoadLWallet;
+    private vOutstandingBalance;
 
     constructor (
         private _layoutService: LayoutService,
@@ -49,13 +56,12 @@ export class CallPreparationComponent {
             console.log('Retailer ID not found');
         }
 
-        console.log('======in detail retailer for retailer id ' +  this.vSelectedRetailId);
+        console.log('CALL PREPARATION FOR RETAILER : ' +  this.vSelectedRetailId);
 
         this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
         response => {
-                this.vSelectedRetail = response.json();
-                console.log( 'result : ' + this.vSelectedRetail);
-           
+                this.vSelectedRetail = response.json();  
+                console.log('RETAILER PROFILE' + JSON.stringify(this.vSelectedRetail)); 
         },
         error => {
             console.log(error);
@@ -64,12 +70,13 @@ export class CallPreparationComponent {
         this._retailerService.getLoadWallet(this.vSelectedRetailId).subscribe(
         response => {
                 this.vLoadWallet = response.json();
-                console.log('HSILLLLLL'+this.vLoadWallet);
+                console.log('LOAD WALLET' + JSON.stringify(this.vLoadWallet[0]));
         });
 
         this._retailerService.getPhysicalInventory(this.vSelectedRetailId).subscribe(
         response => {               
                 this.vPhysicalInventory = response.json();
+                console.log('PHYSICAL INVENTORY :' + JSON.stringify(this.vPhysicalInventory));
         },
         error => {
             console.log(error);
@@ -78,6 +85,25 @@ export class CallPreparationComponent {
         this._retailerService.getCollection(this.vSelectedRetailId).subscribe(
         response => {               
                 this.vCollection = response.json();
+                console.log('COLLECTION :' + JSON.stringify(this.vCollection));
+        },
+        error => {
+            console.log(error);
+        });
+
+         this._retailerService.getLastAmountTransferred(this.vSelectedRetailId).subscribe(
+        response => {               
+                this.vLastAmountTransferred = response.json();
+                  console.log('LAST AMOUNT TRANSFER : ' + JSON.stringify(this.vLastAmountTransferred));
+        },
+        error => {
+            console.log(error);
+        });
+
+        this._retailerService.getOutstandingBalance(this.vSelectedRetailId).subscribe(
+        response => {               
+                this.vOutstandingBalance = response.json();
+                  console.log('OUTSTANDING BALANCE : ' + JSON.stringify(this.vOutstandingBalance));
         },
         error => {
             console.log(error);
@@ -112,7 +138,7 @@ export class CallPreparationComponent {
         this._pageNavigationService.navigate('BCPActivityStep', vParams, vParamsOld);
 
      }
-     
+
     // gotoBCPActivityStep() {
     //     this._pageNavigationService.navigate('BCPActivityStep', null, null);
     // }
@@ -137,8 +163,20 @@ export class CallPreparationComponent {
         this.vPhysicalMenuShow = !this.vPhysicalMenuShow;
     }
 
-    getLoadWallet() {
-       return this.vLoadWallet;
+    getSmartLoadWallet() {
+         this.vSmartLoadWallet =  this.vLoadWallet.filter(retailer => {
+         return retailer.brand === 'Smart';
+        });
+
+       return this.vSmartLoadWallet;
+    }
+
+    getXpressLoadWallet() {
+         this.vXpressLoadLWallet =  this.vLoadWallet.filter(retailer => {
+         return retailer.brand === 'Sun';
+        });
+
+       return this.vXpressLoadLWallet;
     }
 
     getPhysicalInventory() {
@@ -147,6 +185,26 @@ export class CallPreparationComponent {
 
     getCollection() {
         return this.vCollection;
+    }
+
+    getSmartLoadLAT() {
+       this.vSmartLoadLT =  this.vLastAmountTransferred.filter(retailer => {
+         return retailer.productId === 'SMARTLOAD';
+        });
+       console.log('SMARTLOAD :'+JSON.stringify(this.vSmartLoadLT));
+       return this.vSmartLoadLT;
+    }
+
+    getXpressLoadLAT() {
+      this.vXpressLoadLT =  this.vLastAmountTransferred.filter(retailer => {
+         return retailer.productId === 'XPRESSLOAD';
+        });
+      console.log('XPRESSLOAD :'+JSON.stringify(this.vXpressLoadLT));
+      return this.vXpressLoadLT;
+    }
+
+    getOutstandingBalanceTotal() {
+        return this.vOutstandingBalance;
     }
 
 }

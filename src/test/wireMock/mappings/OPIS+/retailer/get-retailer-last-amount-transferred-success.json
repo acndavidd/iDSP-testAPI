@@ -1,0 +1,9 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPattern": "/opisnet/services/idsp/rtloadinventory\\?username=[a-zA-Z0-9]+\\&?retailerid=[a-zA-Z0-9]+"
+    },
+    "response": {
+        "bodyFileName": "OPIS+/retailer/get-retailer-last-amount-transferred-success.json"
+    }
+}

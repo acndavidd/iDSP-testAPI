@@ -76,8 +76,19 @@ export class RetailerService {
             retailerId : pRetailerID
         };
 
-        return this._http.post('/retailer/collection', JSON.stringify(vData));
+        return this._http.get('/retailer/'+vData.retailerId+'/collection');
 
+    }
+
+    getOutstandingBalance(pRetailerID) {
+         console.log('Starts getOutstandingBalance' + pRetailerID);
+
+          let vData = {
+            salesPerson : 'DSP00001',
+            retailerId : pRetailerID
+        };
+
+        return this._http.get('/retailer/'+vData.retailerId+'/outstandingBalance');
     }
 
 
@@ -110,7 +121,7 @@ export class RetailerService {
     }
 
     queryTask() {
-        console.log('Start hit login service to Query Retailer Route for BCP');
+        console.log('Start getting route of the day');
             let vData = {
                 salesPerson: 'DSP00001'
             };
@@ -119,14 +130,22 @@ export class RetailerService {
     }
 
     queryAdditionalRetailerRoute() {
-        console.log('Start hit login service to Query Retailer Route for BCP');
-        this.vToday = new Date();
+        console.log('Start getting additional retailer');
         let vData = {
-            salesPerson: 'DSP00001',
-            pDay : 1
+            salesPerson: 'DSP00001'
         };
 
         return this._http.get('/retailer/' + vData.salesPerson + '/additional');
+    }
+
+    getLastAmountTransferred(pSelectedRetailer) {
+        console.log('Start get last amount transferred');
+        console.log('retailer=' + pSelectedRetailer);
+        let vData = {
+            retailerId: pSelectedRetailer
+        };
+
+        return this._http.get('/retailer/' + vData.retailerId + '/lastamounttransferred');
     }
 
     getRetailerAll() {

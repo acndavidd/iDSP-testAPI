@@ -1,0 +1,19 @@
+{
+	"status" : 200,
+	"statusMessage" : "OK",
+	"recordCount" : 2,
+	"productList": [
+		{
+			"productId" : "SMARTLOAD",
+			"productName" : "SmartLoad",
+			"lastAmountTransferredbyDsp" : "20000",
+			"transactionDate" : "2016-06-01"
+		},
+		{
+			"productId" : "XPRESSLOAD",
+			"productName" : "XpressLoad",
+			"lastAmountTransferredbyDsp" : "20000",
+			"transactionDate" : "2016-06-01"
+		}
+	]
+}

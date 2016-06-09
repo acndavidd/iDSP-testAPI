@@ -1,0 +1,12 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPattern": "/opisnet/services/idsp/selftransactions\\?username=[a-zA-Z0-9]+\\&retailerid=[a-zA-Z0-9]+\\&recordstart=[0-9]+\\&recordend=[0-9]+"
+
+        	// \\&recordstart=[0-9]+\\&recordend=[0-9]+"
+
+    },
+    "response": {
+        "bodyFileName": "OPIS+/self/get-details-of-self-transaction-per-retailer-success.json"
+    }
+}
