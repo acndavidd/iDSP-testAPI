@@ -5,6 +5,7 @@ import {LayoutService} from '../../shared/services/layout.service';
 import {Modal} from '../../shared/services/modal.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
+import {RemittanceService} from '../../remittance/services/remittance.service';
 
 @Component({
     selector: 'collection',
@@ -18,16 +19,21 @@ export class CollectionComponent {
 
     vCollectionShow = false;
 
-    constructor (
-    private _router: Router,
-    private _layoutService: LayoutService,
-    private _matchMediaService: MatchMediaService,
-    private _modalService: Modal.ModalService,
-    private _headerService: HeaderService,
-    private _pageNavigationService: PageNavigationService
+    constructor(
+        private _router: Router,
+        private _layoutService: LayoutService,
+        private _matchMediaService: MatchMediaService,
+        private _modalService: Modal.ModalService,
+        private _headerService: HeaderService,
+        private _pageNavigationService: PageNavigationService,
+        private _remittanceService: RemittanceService
     ) {
         this._layoutService.setCurrentPage('Collection');
         this._headerService.setTitle('Collection & Remittance');
+
+        /* getter from backend */
+        this._remittanceService.setDSPID('DSP00001'); // for testing purpose
+        this._remittanceService.queryGetRemittance();
     }
 
     getResize() {
@@ -47,4 +53,9 @@ export class CollectionComponent {
     gotoDetailRemittance() {
         this._pageNavigationService.navigate('DetailRemittance', null, null);
     }
+
+    getTotalRemittance() {
+        return this._remittanceService.getTotalRemittance();
+    }
+
 }

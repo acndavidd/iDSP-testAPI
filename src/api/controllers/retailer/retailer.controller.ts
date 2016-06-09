@@ -9,7 +9,8 @@ import {DataAccessService} from '../../services/data-access.service';
 import {TokenObject} from '../../models/token.model';
 import {RetailerProfileModel} from '../../models/input/retailer-profile.model';
 import {SelfTransactionRetailerModel} from '../../models/input/self/selftransaction-per-retailer.model';
-
+import {BalanceModel} from '../../models/input/retailer/balance.model';
+import {DropsizeModel} from '../../models/input/retailer/dropsize.model';
 import {PhysicalInventoryModel} from '../../models/input/inventory/physical-inventory.model';
 
 //import {ErrHandlerService} from '../services/err.handler.service';
@@ -22,9 +23,11 @@ export interface RetailerInterface{
 	loadWallet(pRequest, pResponse):Promise<void>;
 	additionalRetailer(pRequest, pResponse):Promise<void>;
 	lastAmountTransferred(pRequest, pResponse):Promise<void>;
+	getSuggestedOrder(pRequest, pResponse):Promise<void>;
+	getCurrentBalance(pRequest, pResponse):Promise<void>;
 }
 
-export class RetailerController implements RetailerInterface {
+export class RetailerController implements RetailerInterface{
 	private static _errorHandling: ErrorHandlingService;
 	private static _httpService: APIService.HTTPService;
 	private static _dataAccess: DataAccessService;
@@ -78,73 +81,73 @@ export class RetailerController implements RetailerInterface {
 		});
 	}
 
-	// async getRetailerSummary(pRequest, pResponse){
-	// 	try{
-	// 		console.log("Start getting Retailer Summary");
-	// 		var vSelectedRetailId = pRequest.params.retailerId;
-	// 		var vOrmSvc = new ORMService();
+	async getRetailerSummary(pRequest, pResponse){
+		try{
+			console.log("Start getting Retailer Summary");
+			var vSelectedRetailId = pRequest.params.retailerId;
+			var vOrmSvc = new ORMService();
 
-	// 		let vParams = {
-	// 			selected_ret_id : vSelectedRetailId
-	// 		};
+			let vParams = {
+				selected_ret_id : vSelectedRetailId
+			};
 
-	// 		var vResult = JSON.parse(await vOrmSvc.sp('get_retailer_summary', vParams ));     
-	// 		console.log("Query Done with result : "+ JSON.stringify(vResult));
+			var vResult = JSON.parse(await RetailerController._dataAccess.getRetailerSummary('get_retailer_summary', vParams ));     
+			console.log("Query Done with result : "+ JSON.stringify(vResult));
 
-	// 		if (vResult.status == "Error")
-	// 		{
-	// 			vResult = {
-	// 					"status" : vResult.status,
-	// 					"errorType": vResult.errorType,
-	// 					//"errorCode": this.errService.getErrorMessage(vResult.errorCode),
-	// 					"result" : null
-	// 			};
-	// 		}
+			if (vResult.status == "Error")
+			{
+				vResult = {
+						"status" : vResult.status,
+						"errorType": vResult.errorType,
+						//"errorCode": this.errService.getErrorMessage(vResult.errorCode),
+						"result" : null
+				};
+			}
 
-	// 		pResponse.json(vResult);			
-	// 	}
-	// 	catch(pErr){
-	// 		console.log("Failed to Query Retailer Summary with error message" + pErr);
+			pResponse.json(vResult);			
+		}
+		catch(pErr){
+			console.log("Failed to Query Retailer Summary with error message" + pErr);
 
-	// 		var vError = {
-	// 					"status" : "Error",
-	// 					"errorType": "Internal Exception",
-	// 					//"errorCode": this.errService.getErrorMessage("ERR_INTERNAL_SYSTEM"),
-	// 					"result" : null
-	// 				};
-	// 		pResponse.json(vError);
-	// 	}
-	// }
+			var vError = {
+						"status" : "Error",
+						"errorType": "Internal Exception",
+						//"errorCode": this.errService.getErrorMessage("ERR_INTERNAL_SYSTEM"),
+						"result" : null
+					};
+			pResponse.json(vError);
+		}
+	}
 	
-	// async getSalesRoute(pRequest, pResponse){
-	// 	try{
-	// 		console.log("Start getting sales route");
-	// 		var vSalesPerson = pRequest.params.salesPerson;
-	// 		var vSelectedDay = pRequest.params.day;			
-	// 		let vOrmSvc = new ORMService();
+	async getSalesRoute(pRequest, pResponse){
+		try{
+			console.log("Start getting sales route");
+			var vSalesPerson = pRequest.params.salesPerson;
+			var vSelectedDay = pRequest.params.day;			
+			let vOrmSvc = new ORMService();
 			
-	// 		let vParams = {
-	// 			selected_day : vSelectedDay,
-	// 			sales_person : vSalesPerson
-	// 		};
+			let vParams = {
+				selected_day : vSelectedDay,
+				sales_person : vSalesPerson
+			};
 
-	// 		var vResult = await vOrmSvc.sp('get_retailer_route', vParams );
-	// 		console.log("Query Done with result : "+ JSON.stringify(vResult));
+			var vResult = await RetailerController._dataAccess.getSalesRoute('get_retailer_route', vParams );
+			console.log("Query Done with result : "+ JSON.stringify(vResult));
 
-	// 		pResponse.json(vResult);			
-	// 	}
-	// 	catch(pErr){
-	// 		console.log("Failed to Query Sales Route with error message" + pErr);
-	// 		var vError = {
-	// 					"status" : "Error",
-	// 					"errorType": "Internal Exception",
-	// 					"errorCode": "ERR_INTERNAL_SYSTEM",
-	// 					"result" : ""
-	// 				};
+			pResponse.json(vResult);			
+		}
+		catch(pErr){
+			console.log("Failed to Query Sales Route with error message" + pErr);
+			var vError = {
+						"status" : "Error",
+						"errorType": "Internal Exception",
+						"errorCode": "ERR_INTERNAL_SYSTEM",
+						"result" : ""
+					};
 
-	// 		pResponse.json(vError);
-	// 	}
-	// }
+			pResponse.json(vError);
+		}
+	}
 
 	async getAllRetailerAlert(pRequest,pResponse){
 		console.log("Start getAllRetailerAlert");
@@ -290,8 +293,9 @@ export class RetailerController implements RetailerInterface {
 	}
 
 	async loadWallet(pRequest,pResponse) {
-		
+		try{
 			console.log("Start getting Load Wallet");
+
 			var vSalesPerson = 'DSP00001';
 			var vRetailerId = pRequest.params.id;
 			var vAllDropSize= [];
@@ -308,11 +312,11 @@ export class RetailerController implements RetailerInterface {
 			}
 			catch(pErr) {
 				if(pErr.InventoryController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 111, 'INVALID_CREDENTIALS')) {
-
 				}
-			}	
+			}
+		}
 	}
-
+			// console.log(vSelectedRetailId+'retailer id');
 
 	async outstandingBalance(pRequest,pResponse) {
 			console.log("Start getting last amount transferred");
@@ -391,6 +395,76 @@ export class RetailerController implements RetailerInterface {
 
 	// 			}
 	// 		}
+// =======
+// 			var vOrmSvc = new ORMService();
+
+// 			let vParams = {
+// 				sales_person : vSalesPerson,
+// 				selected_ret_id : vRetailerId
+				
+// 			};
+
+// 			var vResult = [{
+// 				"brand":"SmartLoad",
+// 				"drop_size":"350",
+// 				"last_amount_transferred":"1200",
+// 				"transaction_date":"04/01/2016",
+// 				"latest_balance":"1000",
+// 				"retailer_id":"RTL00001"
+// 			}]
+
+// 			// console.log("Query Done with result : "+ JSON.stringify(vResponse));
+// 			var vResponse = {
+// 						"status" : "Success",
+// 						"errorMessage" : "",
+// 						"result" : vResult
+// 					};
+			
+// 			pResponse.json(vResponse);
+// 		}
+// 		catch(pErr)
+// 		{
+// 			console.log("Failed to Query Load Wallet with error message" + pErr);
+
+// 			var vError = {
+// 						"status" : "Error",
+// 						"errorMessage" : pErr,
+// 						"result" : null
+// 					};
+// 			pResponse.json(vError);
+// 		}
+// 	}
+
+	async getSuggestedOrder(pRequest, pResponse) {
+		try {
+			console.log('In getSuggestedOrder controller');
+			var vMonth = new Date().getMonth();
+			if (pRequest.query.subcat_type === 'L') {
+				let vData = new DropsizeModel(pRequest.query.brand, vMonth, pRequest.params.id, pRequest.query.subcat_type);
+
+				var vSuggestedOrder:any = await RetailerController._dataAccess.getDropSize('get_bcp_dropsize', vData);
+				console.log('Result : ' + vSuggestedOrder);
+				pResponse.status(200).json(vSuggestedOrder);
+			} else {
+				console.log('P');
+			}
+		}catch(pErr) {
+			JSON.stringify(pErr);
+			RetailerController._errorHandling.throwError(400,'Failed to get suggested order',pErr);
+		}
+	}
+
+	async getCurrentBalance(pRequest, pResponse) {
+		try {
+			console.log('in getCurrentBalance controller');	
+			let vPath:string = '/elpnet/services/idsp/retailerbalance';
+			let vParams = new BalanceModel(pRequest.body.min, pRequest.body.source);
+			let vResult = await RetailerController._httpService.post(APIService.APIType.ELP, vPath, null, vParams);
+			pResponse.status(200).json(vResult);
+		}catch(pErr) {
+			RetailerController._errorHandling.throwError(400,'Failed to get balance from ELP',pErr);
+		}
+	}
 
 	//}
 }

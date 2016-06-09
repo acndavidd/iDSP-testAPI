@@ -62,6 +62,7 @@ export class BasicCallProcedureComponent {
     //     this._pageNavigationService.navigate('AddEditLoadTransfer', vParams, null);
     // }
 
+
     gotoAnotherPage(pSelectedRetailer) {
         console.log('Go to Call Preparation' + pSelectedRetailer );
         let vParamsOld = {};
@@ -72,7 +73,11 @@ export class BasicCallProcedureComponent {
             status: pSelectedRetailer.call_status
         };
          this._pageNavigationService.navigate('CallPreparation', vParams, vParamsOld);
-    }
+     }
+
+    // gotoAnotherPageHC() {
+    //      this._pageNavigationService.navigate('CallPreparation', null, null);
+    // }
 
     getFilter() {
         return this._layoutService.getFilter();

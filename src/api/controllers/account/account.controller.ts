@@ -61,7 +61,7 @@ export class AccountController implements AccountControllerInterface{
 				// if success encrypt dsp id as token object
 				if(vPayLoad.status === 200) {
 					let vTokenService = new TokenService();
-					let vTokenObj: TokenObject = new TokenObject();
+					let vTokenObj: TokenObject = new TokenObject(pRequest.params.id, '', true, true);
 					vTokenObj.setDSPId(pRequest.params.id);
 					vTokenObj.setOPISToken(vPayLoad.AccessToken);
 					let vTokenStr = vTokenService.encryptToken(vTokenObj);

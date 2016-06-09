@@ -55,9 +55,9 @@ export class LoginComponent {
             console.log(error);
         });
         */
-        // this._router.navigate(['Mpin']);
-        // pEvent.preventDefault();
         this._router.navigate(['Mpin']);
+        // pEvent.preventDefault();
+        // this._router.navigate(['Mpin']);
         // pEvent.preventDefault();
         // this._authenticationService.login(this.vUsername, this.vPassword);
     }

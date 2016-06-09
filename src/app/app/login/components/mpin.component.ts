@@ -32,7 +32,7 @@ export class MpinComponent {
         ) {
 
         this._layoutService.setCurrentPage('Mpin');
-        setTimeout( () => {this.cancel, this.submit, this.onchange, this.vMPIN1, this.vMPIN2, this.vMPIN3, this.vMPIN4, this.vMPIN5;}, 1);
+        // setTimeout( () => {this.cancel, this.submit, this.onchange, this.vMPIN1, this.vMPIN2, this.vMPIN3, this.vMPIN4, this.vMPIN5;}, 1);
     }
 
     cancel(pEvent) {
@@ -41,9 +41,10 @@ export class MpinComponent {
     }
 
     submit(pEvent) {
-        pEvent.preventDefault();
-        this._router.navigate(['MainPage', 'MyTransaction']);
-        // this._authenticationService.submitMPIN(this.vMPIN1 + this.vMPIN2 + this.vMPIN3 + this.vMPIN4 + this.vMPIN5);
+        // pEvent.preventDefault();
+        // this._authenticationService.submitMPIN(this.vMPIN1 + this.vMPIN2 + this.vMPIN3 + this.vMPIN4 + this.vMPIN5);  
+        // For By Pass Directly without API
+        this._pageNavigationService.navigate('Home', null, null);
     }
 
     ResendMpinModalComponent() {

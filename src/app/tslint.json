@@ -6,7 +6,7 @@
             "check-space"
         ],
         "indent": [
-            true,
+            false,
             "spaces"
         ],
         "no-conditional-assignment": true,

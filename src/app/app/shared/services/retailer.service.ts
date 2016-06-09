@@ -69,15 +69,13 @@ export class RetailerService {
     }
 
     getCollection(pRetailerID) {
-        console.log('Starts get payment history of' + pRetailerID);
-
+        console.log('Starts get payment history of ' + pRetailerID);
           let vData = {
             salesPerson : 'DSP00001',
             retailerId : pRetailerID
         };
 
         return this._http.get('/retailer/'+vData.retailerId+'/collection');
-
     }
 
     getOutstandingBalance(pRetailerID) {

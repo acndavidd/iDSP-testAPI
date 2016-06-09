@@ -8,7 +8,10 @@ import {NgModel} from 'angular2/common';
 
 @Component({
     selector: 'dsp-alerts',
-    templateUrl: './app/my-transaction/components/dsp-alerts.component.html',
+    // to be uncommented for actual api    
+    // templateUrl: './app/my-transaction/components/dsp-alerts.component.html',
+    // to be uncommented for hardcoded values
+    templateUrl: './app/my-transaction/components/hc-dsp-alerts.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
@@ -29,7 +32,7 @@ export class DSPAlertsComponent {
         private _headerService: HeaderService
         ) {
         this._layoutService.setCurrentPage('DSPAlerts');
-        this._headerService.setTitle('Alert & Threshold');
+        this._headerService.setTitle('Threshold & Alerts');
         this.vValueSegmentFilter = '';
         this.loadAlert();
     }

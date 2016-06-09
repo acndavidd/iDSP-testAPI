@@ -30,7 +30,6 @@ import {UnservedOrderComponent} from '../../basic-call-procedure/components/unse
 import {OffersComponent} from '../../basic-call-procedure/components/bcp-offers.component';
 import {MpinComponent} from '../../login/components/mpin.component';
 import {LoginComponent} from '../../login/components/login.component';
-import {PasscodeLockComponent} from '../../login/components/passcode-lock.component';
 import {AddEditLoadTransferComponent} from '../../basic-call-procedure/components/add-edit-load-transfer.component';
 import {AddEditPhysicalOrderComponent} from '../../basic-call-procedure/components/add-edit-physical-order.component';
 import {AddSalesOrderPhysicalComponent} from '../../basic-call-procedure/components/add-sales-order-physical.component';
@@ -48,7 +47,7 @@ import {DetailSalesOrderComponent} from '../../close-day/components/detail-sales
 import {DetailCollectionComponent} from '../../close-day/components/detail-collection.component';
 import {DetailRemittanceComponent} from '../../close-day/components/detail-remittance.component';
 import {TargetsActualsService} from '../../my-transaction/services/targets-actuals.service';
-
+import {RemittanceService} from '../../remittance/services/remittance.service';
 
 
 @Component({
@@ -58,7 +57,8 @@ import {TargetsActualsService} from '../../my-transaction/services/targets-actua
         ROUTER_DIRECTIVES
     ],
     providers : [
-        TargetsActualsService
+        TargetsActualsService,
+        RemittanceService
     ]
 })
 

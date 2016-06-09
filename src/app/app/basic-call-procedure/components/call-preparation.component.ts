@@ -8,8 +8,11 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 import {NgModel} from 'angular2/common';
 
 @Component({
-       templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
+      
       // templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
+        templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
+        // templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
+
     directives: [
         ROUTER_DIRECTIVES
     ]
@@ -81,9 +84,9 @@ export class CallPreparationComponent {
         error => {
             console.log(error);
         });
-
-        this._retailerService.getCollection(this.vSelectedRetailId).subscribe(
-        response => {               
+        
+        this._retailerService.getCollection('RTL00001').subscribe( // for testing purpose
+            response => {
                 this.vCollection = response.json();
                 console.log('COLLECTION :' + JSON.stringify(this.vCollection));
         },
@@ -188,19 +191,28 @@ export class CallPreparationComponent {
     }
 
     getSmartLoadLAT() {
-       this.vSmartLoadLT =  this.vLastAmountTransferred.filter(retailer => {
-         return retailer.productId === 'SMARTLOAD';
-        });
-       console.log('SMARTLOAD :'+JSON.stringify(this.vSmartLoadLT));
-       return this.vSmartLoadLT;
+        if(this.vLastAmountTransferred) {
+           this.vSmartLoadLT =  this.vLastAmountTransferred.filter(retailer => {
+             return retailer.productId === 'SMARTLOAD';
+            });
+           console.log('SMARTLOAD :'+JSON.stringify(this.vSmartLoadLT));
+           return this.vSmartLoadLT;
+       }
+       else {
+          return this.vLastAmountTransferred; 
+       }
     }
 
     getXpressLoadLAT() {
-      this.vXpressLoadLT =  this.vLastAmountTransferred.filter(retailer => {
-         return retailer.productId === 'XPRESSLOAD';
-        });
-      console.log('XPRESSLOAD :'+JSON.stringify(this.vXpressLoadLT));
-      return this.vXpressLoadLT;
+        if(this.vLastAmountTransferred) {
+          this.vXpressLoadLT =  this.vLastAmountTransferred.filter(retailer => {
+             return retailer.productId === 'XPRESSLOAD';
+            });
+          console.log('XPRESSLOAD :'+JSON.stringify(this.vXpressLoadLT));
+          return this.vXpressLoadLT;
+      } else {
+          return this.vLastAmountTransferred; 
+       }
     }
 
     getOutstandingBalanceTotal() {

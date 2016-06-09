@@ -24,21 +24,54 @@
 }
 
 
-.container-mpin {
+.container-passcode {
 	background: url("../img/login_bg.png") no-repeat center center;
-	z-index: 50;
+	z-index: 60;
 	position: fixed;
     left: 0;
     right: 0;
 	height: 100%;
+    width: 100%;
 	text-align :center;
 
 	.anti-spy {
-                width: 100%;
-                position: absolute;
-                background-color: rgba(0, 0, 0, 0.4);
-                height : 100%;
-            }
+        width: 100%;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.4);
+        height : 100%;
+
+        .outer-box{
+			max-width : 80%;
+			margin: 20vw auto -3vw;
+			.header {
+				color: #FFF;
+				font-size: 10vw;
+				line-height: 5vw;
+				margin-bottom: 10vw;
+				text-align: center;
+				font-weight: lighter;
+			}
+
+			.mpin-title{
+				color: #FFF;
+				font-size: 5vw;
+				line-height: 12vw;
+				text-align: center;
+				//font-weight: lighter;
+			}
+
+			.mpin-message{
+				color: #FFF;
+				clear: both;
+		        margin-right: 4vw;
+		        margin-left: 4vw;
+		        font-size: 3.5vw;
+		        font-style: italic;
+		        text-align: center;
+			}
+		}
+        
+    }
 
 	.passcode-item-container{
 	    width: 100%;
@@ -49,11 +82,9 @@
 	    color: $white;
 	    font-size:7vw;
 
-
 	    .keyboard-line{
 	    	width: 100%;
 	    	padding: 5%;
-
 
 		    .cell-keyboard-30{
 		    	width: 30%;
@@ -64,7 +95,6 @@
 	    		padding-bottom: 2%;
 		    }
 
-
 		    .cell-keyboard-30:active{
 		    	background-color:$dark-grey;
 		    }
@@ -73,7 +103,6 @@
 		.passcode-line{
 			width: 70%;
 	    	padding: 0 19%;
-
 
 		    .cell-icon-25{
 		    	width: 25%;
