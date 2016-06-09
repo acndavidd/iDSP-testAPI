@@ -28,7 +28,7 @@ export class AccountController implements AccountControllerInterface{
 		try{
 			let vAccount = new Account.Account(pRequest.body.Username, pRequest.body.Password);
 			if(vAccount.validate()) {
-				let vLoginServiceURL: string = '/OPISNET/services/idsp/userValidation';
+				let vLoginServiceURL: string = '/opisnet/services/idsp/userValidation';
 				let vPayLoad = await AccountController._httpService.post(APIService.APIType.OPISNET, vLoginServiceURL, null, vAccount);
 				if(vPayLoad.status === 200) {
 					let vTokenObject = new TokenObject(vAccount.Username, '', true, false);
@@ -61,7 +61,7 @@ export class AccountController implements AccountControllerInterface{
 				// if success encrypt dsp id as token object
 				if(vPayLoad.status === 200) {
 					let vTokenService = new TokenService();
-					let vTokenObj: TokenObject = new TokenObject();
+					let vTokenObj: TokenObject = new TokenObject(pRequest.params.id, '', true, true);
 					vTokenObj.setDSPId(pRequest.params.id);
 					vTokenObj.setOPISToken(vPayLoad.AccessToken);
 					let vTokenStr = vTokenService.encryptToken(vTokenObj);

@@ -43,13 +43,14 @@ export class MpinComponent {
     submit(pEvent) {
         pEvent.preventDefault();
         // this._authenticationService.submitMPIN(this.vMPIN1 + this.vMPIN2 + this.vMPIN3 + this.vMPIN4 + this.vMPIN5);  
-        // this._authenticationService.submitMPIN();
         // For By Pass Directly without API
         this._pageNavigationService.navigate('Home', null, null);
         // console.log('masuk ke passcode');        
         // this._router.navigate(['PasscodeLock']);
         // this._authenticationService.submitMPIN();
         // this._router.navigate(['MainPage', 'MyTransaction']);
+        // this._pageNavigationService.navigate('Home', null, null);
+
     }
 
     ResendMpinModalComponent() {

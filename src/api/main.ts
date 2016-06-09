@@ -10,6 +10,7 @@ import {TaskController} from './controllers/task/task.controller';
 import {RemittanceController} from './controllers/remittance.controller';
 import {LoadTransferController} from './controllers/retailer/salesorder/load-transfer.controller';
 import {RetailerSalesOrderController} from './controllers/retailer/salesorder/retailer-sales-order.controller';
+import {CollectionController} from './controllers/retailer/collection/collection.controller';
 
 var vPath = require("path");
 var vEnv = process.env.NODE_ENV || "DEVELOPMENT";
@@ -85,7 +86,7 @@ vRouter.get('/inventory/physical',vInventoryController.physical);
 vRouter.get('/inventory/load',vInventoryController.load);
 
 let vRemittanceController = new RemittanceController();
-vRouter.get('/remittance/:dspid', vRemittanceController.getRemittancesDetail);
+vRouter.get('/remittance', vRemittanceController.getRemittancesDetail);
 
 let vRetailerController = new RetailerController();
 vRouter.get('/retailer/threshold', vRetailerController.getRetailerThreshold);
@@ -105,10 +106,12 @@ let vAccountReceivableController = new AccountReceivableController();
 vRouter.get('/retailer/accountreceivable', vAccountReceivableController.getAccountReceivable);
 vRouter.get('/retailer/:id/mins', vAccountReceivableController.getRetailerMins);
 
+let vCollectionController = new CollectionController();
+vRouter.get('/retailer/:retailid/collection',vCollectionController.getCollection);
+
 let vTaskCOntroller = new TaskController();
 vRouter.get('/task',vTaskCOntroller.task);
 vRouter.post('/additionalRetailerRoute',vTaskCOntroller.additionalRetailerRoute);
-vRouter.post('/retailer/collection',vTaskCOntroller.collection);
 // define instance of your controller and route here
 
 let vTargetsActualsController =  new TargetsActualsController();

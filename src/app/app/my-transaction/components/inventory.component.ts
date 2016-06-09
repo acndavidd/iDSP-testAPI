@@ -9,8 +9,8 @@ import {PageNavigationService} from '../../shared/services/page-navigation.servi
 
 @Component({
     selector: 'inventory',
-    // templateUrl: './app/my-transaction/components/inventory.component.html',
-    templateUrl: './app/my-transaction/components/hc-inventory.component.html',
+    templateUrl: './app/my-transaction/components/inventory.component.html',
+    // templateUrl: './app/my-transaction/components/hc-inventory.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
@@ -43,9 +43,50 @@ export class InventoryComponent {
         this._headerService.setTitle('Inventory');
         this.toggleFilterInventory();
 
-        this._inventoryService.getDSPInventoryList('anjay1', '1', '2', 'corph', 'branch', 
-            'b6a9c7b70f957d17802ec4ea4726302e5f3627e3c03d5075db820ce25685eaca', '123456789012', 
-            '1377683895', 'term001', 'Makati', '1226');
+        var vUsername = 'anjay1';
+        var vRecordStart = '1';
+        var vRecordEnd = '6';
+        var vCorporateID = 'corph';
+        var vBranchID = 'branch';
+        var vTransKey = 'b6a9c7b70f957d17802ec4ea4726302e5f3627e3c03d5075db820ce25685eaca';
+        var vRequestRefNo = '123456789012';
+        var vRequestTimestamp = '1377683895';
+        var vTerminalID = 'term001';
+        var vAddress = 'Makati';
+        var vZipCode = '1226';
+
+        // GET LOAD
+        this._inventoryService.getDSPLoadInventoryList(vUsername, vCorporateID, vBranchID, vTransKey, vRequestRefNo, vRequestTimestamp, vTerminalID, vAddress, vZipCode).subscribe(
+            response => {
+                let vResponse = response.json();
+                console.log('2: ' + JSON.stringify(vResponse));
+
+                if (vResponse.status === 200) {
+                   this.vProductLoadList = vResponse.productList;
+                } else {
+                }
+            },
+            error => {
+
+            }
+        );
+
+        // GET PHYSICAL
+        this._inventoryService.getDSPPhysicalInventoryList(vUsername, vRecordStart, vRecordEnd).subscribe(
+            response => {
+                let vResponse = response.json();
+                console.log('2: ' + JSON.stringify(vResponse));
+
+                if (vResponse.status === 200) {
+                   this.vProductPhysicalList = vResponse.productList;
+                   this.vSearchedProductPhysicalList = vResponse.productList;
+                } else {
+                }
+            },
+            error => {
+
+            }
+        );
     }
   
   getResize() {
@@ -92,16 +133,23 @@ export class InventoryComponent {
         this._layoutService.toggleFilterInventory(this.vLoadShow, this.vPhysicalShow);
     }
 
-    toNumber(pStr) {
-        if(pStr === '0') {
-            return this.x;
-        } else {
-            return parseInt(pStr);
-        }
-    }
+    // toNumber(pStr) {
+    //     if(pStr === '0') {
+    //         return this.x;
+    //     } else {
+    //         return parseInt(pStr);
+    //     }
+    // }
 
     onKey(pInputText: any) {
         console.log('1111 : ' +pInputText);
+
+        if (pInputText.length === 0) {
+            this.vSearchedProductPhysicalList = this.vProductPhysicalList;
+        } else {
+            this.vSearchedProductPhysicalList = this.vProductPhysicalList.filter(pFilter => {
+                return pFilter.productName.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1;});
+        }
     }
 
 
