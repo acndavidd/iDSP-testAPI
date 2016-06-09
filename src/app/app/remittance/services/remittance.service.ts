@@ -21,7 +21,7 @@ export class RemittanceService {
 
     /* Method */
     queryGetRemittance() {
-        let url = '/remittance/' + this.vDSPID;
+        let url = '/remittance';
         this._http.get(url).subscribe(
             response => {
                 this.vRemittance = response.json();
@@ -35,7 +35,7 @@ export class RemittanceService {
 
     SumTotalRemittance() {
         this.vTotalRemittance = 0;
-        if (this.vRemittance !== undefined) {
+        if (this.vRemittance !== undefined && this.vRemittance !== null) {
             this.vRemittance.forEach(element => {
                 this.vTotalRemittance = this.vTotalRemittance + element.remit_amount;
             });

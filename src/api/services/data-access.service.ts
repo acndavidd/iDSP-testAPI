@@ -43,9 +43,9 @@ export class DataAccessService implements DataAccessInterface {
 		return this.executeSP(pSPName,pParams);
 	}
 	
-	getCollection(pSPName,pParams) {
+	getCollection(pSPName, pParams) {
 		console.log('Start Store Procedure getCollection');
-		return this.executeSP(pSPName,pParams);
+		return this.executeSP(pSPName, pParams, false);
 	}
 
 	getDropSize(pSPName,pParams) {
