@@ -1,0 +1,10 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/elpnet/services/idsp/loadtransfer"
+    },
+    "response": {
+        "status" : "200",
+        "bodyFileName": "ELP/load-transfer/load-transfer-success.json"
+    }
+}

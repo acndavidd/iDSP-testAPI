@@ -39,7 +39,7 @@ export class BasicCallProcedureComponent {
         this._layoutService.setCurrentPage('BasicCallProcedure');
         this._headerService.setTitle('Basic Call Procedure');
 
-        this.refreshRetailerRouteBCP();
+        // this.refreshRetailerRouteBCP();
     }
 
     getResize() {
@@ -94,16 +94,16 @@ export class BasicCallProcedureComponent {
         });
     }
 
-    refreshRetailerRouteBCP() {
-        console.log('Get  retailer route for Day');
-        this._retailerService.queryTask().subscribe(
-                response => {
-                        this.vListRoute = response.json();
-                        this.vFilteredListRoute = this.vListRoute;
-                },
-                error => {
-                    console.log(error);
-                }
-        );
-    }
+    // refreshRetailerRouteBCP() {
+    //     console.log('Get  retailer route for Day');
+    //     this._retailerService.queryTask().subscribe(
+    //             response => {
+    //                     this.vListRoute = response.json();
+    //                     this.vFilteredListRoute = this.vListRoute;
+    //             },
+    //             error => {
+    //                 console.log('error');
+    //             }
+    //     );
+    // }
 }

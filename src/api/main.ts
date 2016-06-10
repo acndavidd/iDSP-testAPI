@@ -3,11 +3,15 @@
 import {SequelizeService} from './services/sequelize.service';
 import {AccountController} from './controllers/account/account.controller';
 import {InventoryController} from './controllers/inventory.controller';
+import {GlobalController} from './controllers/global.controller';
 import {TargetsActualsController} from './controllers/targets-actuals/targets-actuals.controller';
 import {RetailerController} from './controllers/retailer/retailer.controller';
 import {AccountReceivableController} from './controllers/retailer/account-receivable/account-receivable.controller';
 import {TaskController} from './controllers/task/task.controller';
 import {RemittanceController} from './controllers/remittance.controller';
+import {LoadTransferController} from './controllers/retailer/salesorder/load-transfer.controller';
+import {RetailerSalesOrderController} from './controllers/retailer/salesorder/retailer-sales-order.controller';
+import {CollectionController} from './controllers/retailer/collection/collection.controller';
 
 var vPath = require("path");
 var vEnv = process.env.NODE_ENV || "DEVELOPMENT";
@@ -54,6 +58,7 @@ vApp.use(function(pRequest, pResponse, pNext) {
                 // var jwt = vTokenSvc.verifyToken(vToken);
                 // pResponse.locals.jwt = jwt;
             }catch(pErr){
+                console.log('asdadasdasd 7');
                 pResponse.sendStatus(403);
             }
         }
@@ -82,7 +87,7 @@ vRouter.get('/inventory/physical',vInventoryController.physical);
 vRouter.get('/inventory/load',vInventoryController.load);
 
 let vRemittanceController = new RemittanceController();
-vRouter.get('/remittance/:dspid', vRemittanceController.getRemittancesDetail);
+vRouter.get('/remittance', vRemittanceController.getRemittancesDetail);
 
 let vRetailerController = new RetailerController();
 vRouter.get('/retailer/threshold', vRetailerController.getRetailerThreshold);
@@ -90,23 +95,33 @@ vRouter.get('/retailer/summary',vRetailerController.retailerProfile);
 vRouter.get('/retailer/:id/physical',vRetailerController.physicalInventory);
 vRouter.get('/retailer/:id/load',vRetailerController.loadWallet);
 // vRouter.get('/retailer/:id/additional',vRetailerController.additionalRetailer);
-// vRouter.get('/retailer/:id/suggestedorder', vRetailerController.getSuggestedOrder);
-// vRouter.post('/retailer/balance', vRetailerController.getCurrentBalance);
-// vRouter.get('/retailer/accountreceivable', vRetailerController.getAccountReceivable);
+
+let vLoadTransferController = new LoadTransferController();
+vRouter.get('/retailer/:id/suggestedorder', vLoadTransferController.getSuggestedOrder);
+vRouter.post('/retailer/balance', vLoadTransferController.getCurrentBalance);
+
+let vRetailerSalesOrderController = new RetailerSalesOrderController();
+vRouter.post('/retailer/:id/salesorder', vRetailerSalesOrderController.newSalesOrder);
 
 let vAccountReceivableController = new AccountReceivableController();
 vRouter.get('/retailer/accountreceivable', vAccountReceivableController.getAccountReceivable);
-// vRouter.get('/retailer/:id/mins', vAccountReceivableController.additionalRetailer);
+vRouter.get('/retailer/:id/mins', vAccountReceivableController.getRetailerMins);
+
+let vCollectionController = new CollectionController();
+vRouter.get('/retailer/:retailid/collection',vCollectionController.getCollection);
 
 let vTaskCOntroller = new TaskController();
 vRouter.get('/task',vTaskCOntroller.task);
 vRouter.post('/additionalRetailerRoute',vTaskCOntroller.additionalRetailerRoute);
-vRouter.post('/retailer/collection',vTaskCOntroller.collection);
 // define instance of your controller and route here
 
 let vTargetsActualsController =  new TargetsActualsController();
-vRouter.get('/brand',vTargetsActualsController.brand);
 vRouter.post('/performance',vTargetsActualsController.performance);
+
+
+let vGlobalController =  new GlobalController();
+vRouter.get('/brand',vGlobalController.brand);
+vRouter.get('/productID',vGlobalController.productID);
 // let aa = new aa();
 // vRouter.method('/aa', aa.bb);
 

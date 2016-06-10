@@ -74,13 +74,14 @@ export class CallPreparationComponent {
         error => {
             console.log(error);
         });
-
-        this._retailerService.getCollection(this.vSelectedRetailId).subscribe(
-        response => {               
+        
+        this._retailerService.getCollection('RTL00001').subscribe( // for testing purpose
+            response => {
                 this.vCollection = response.json();
-        },
-        error => {
-            console.log(error);
+                console.log('Collection: ' + JSON.stringify(this.vCollection));
+            },
+            error => {
+                console.log(error);
         });
 
         this._layoutService.setCurrentPage('CallPreparation');

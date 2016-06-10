@@ -5,7 +5,6 @@ import {ORMService} from '../services/orm.service';
 import {APIService} from '../services/api.service';
 import {ErrorHandlingService} from '../services/error-handling.service';
 import {DataAccessService} from '../services/data-access.service';
-import {DspInventoryModel} from '../models/input/dsp-inventory.model';
 import {Inventory} from '../models/input/inventory/inventory.model';
 
 
@@ -19,7 +18,6 @@ export class InventoryController implements InventoryInterface {
 	private static _errorHandling: ErrorHandlingService;
 	private static _httpService: APIService.HTTPService;
 	private static _dataAccess: DataAccessService;
-	private vUsername: string;
 
 	constructor() {
 		InventoryController._dataAccess = new DataAccessService();
@@ -75,6 +73,7 @@ export class InventoryController implements InventoryInterface {
 			}
 		}
 	}
+
 
 	async load(pRequest,pResponse) {
 
@@ -150,9 +149,8 @@ export class InventoryController implements InventoryInterface {
 				let request = {
 					username : pRequest.query.username
 				};
-				vLoadDb = await InventoryController._dataAccess.getInventoryLoadDsp('get_inventory_load_dsp',request,false);
+				vLoadDb = await InventoryController._dataAccess.getInventoryLoadDsp('get_inventory_load_dsp', request, false);
 				console.log('All INVENTORY LOAD : ' + JSON.stringify(vLoadDb));
-				
 			}catch(pErr) {
 				if(pErr.errorCode === 111) {
 					InventoryController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 111, 'INVALID_CREDENTIALS');
@@ -162,18 +160,37 @@ export class InventoryController implements InventoryInterface {
 				}
 			}
 
-			console.log('DBBBBBB ' + vLoadDb.length);
-			
-
+			// CONCATENATE
 			if(vLoadOpis.status === 200 && vLoadElpSmart.BalanceInquiryResponse.respCode === '0000' && vLoadElpSun.BalanceInquiryResponse.respCode === '0000') {
 				vResultAll.status = 200;
 				vResultAll.statusMessage = 'BERHASIL';
 
-				console.log('fffff : ' +vLoadOpis.productList.length);
 
 				for (var i = 0 ; i < vLoadOpis.productList.length ; i++) {
+					var dateString = vLoadOpis.productList[i].lastModified;
 
-					var sold;
+					var year: string;
+					var month: string;
+					var date: string;
+					var hour: string;
+					var minute: string;
+					var second: string;
+					var dateTimeString;
+
+					if (dateString.length === 14) {
+						year = dateString.substr(0,4);
+						month = dateString.substr(4,2);
+						date = dateString.substr(6,2);
+						hour = dateString.substr(8,2);
+						minute = dateString.substr(10,2);
+						second = dateString.substr(12,2);
+
+						dateTimeString = year + '-' + month + '-' + date + ' ' + hour + ':' + minute + ':' + second;
+					}
+
+
+					var sold = 0;
+					var dispute = 0;
 					var loadWallet;
 					var lastModified;
 
@@ -182,8 +199,13 @@ export class InventoryController implements InventoryInterface {
 						lastModified = vLoadElpSmart.BalanceInquiryResponse.transactionTimestamp;
 
 						for (var a = 0 ; a < vLoadDb.length ; a++) {
-							if (vLoadDb[a].product_id === 'SMARTLOAD') {
-								sold = vLoadDb[a].total_sold_today;
+							if (vLoadDb[a].product_id === vLoadOpis.productList[i].productID && vLoadDb[a].status === 'sold') {
+								sold = vLoadDb[a].amount;
+								console.log('SMARTLOAD sold : ' +sold);
+							}
+							if (vLoadDb[a].product_id === vLoadOpis.productList[i].productID && vLoadDb[a].status === 'dispute') {
+								dispute = vLoadDb[a].amount;
+								console.log('SMARTLOAD dispute : ' +dispute);
 							}
 						}
 
@@ -192,28 +214,45 @@ export class InventoryController implements InventoryInterface {
 						lastModified = vLoadElpSun.BalanceInquiryResponse.transactionTimestamp;
 
 						for (var a = 0 ; a < vLoadDb.length ; a++) {
-							if (vLoadDb[a].product_id === 'XPRESSLOAD') {
-								sold = vLoadDb[a].total_sold_today;
+							if (vLoadDb[a].product_id === vLoadOpis.productList[i].productID && vLoadDb[a].status === 'sold') {
+								sold = vLoadDb[a].amount;
+								console.log('XPRESSLOAD sold : ' +sold);
+							}
+							if (vLoadDb[a].product_id === vLoadOpis.productList[i].productID && vLoadDb[a].status === 'dispute') {
+								dispute = vLoadDb[a].amount;
+								console.log('XPRESSLOAD dispute : ' +dispute);
 							}
 						}
 					}
-					console.log('123 : ' +sold);
 
+					var productID = vLoadOpis.productList[i].productID;
+					var productName = vLoadOpis.productList[i].productName;
 					var totalInventory = parseInt(vLoadOpis.productList[i].beginningBalance) + parseInt(vLoadOpis.productList[i].newDelivery);
+					var beginningBalance = parseInt(vLoadOpis.productList[i].beginningBalance);
+					var newDelivery = parseInt(vLoadOpis.productList[i].newDelivery);
+					var lastModifiedBB = dateTimeString;
+					var sales = sold;
 					var endingBalance = totalInventory - sold;
+					var currentBalance = parseInt(loadWallet);
+					var lastModifiedCB = lastModified;
+					var forValidation = currentBalance - endingBalance;
+					var others = forValidation - dispute;
 
 					let product = {
-						'productID' : vLoadOpis.productList[i].productID,
-						'productName' : vLoadOpis.productList[i].productName,
+						'productID' : productID,
+						'productName' : productName,
 						'totalInventory' : totalInventory,
-						'beginningBalance' : parseInt(vLoadOpis.productList[i].beginningBalance),
-						'newDelivery' : parseInt(vLoadOpis.productList[i].newDelivery),
-						'lastModifiedBB' : vLoadOpis.productList[i].lastModified,
+						'beginningBalance' : beginningBalance,
+						'newDelivery' : newDelivery,
+						'lastModifiedBB' : lastModifiedBB,
+						'sales' : sales,
 						'sold' : sold,
-						'sales' : sold,
 						'endingBalance' : endingBalance,
 						'currentBalance' : parseInt(loadWallet),
-						'lastModifiedCB' : lastModified,
+						'lastModifiedCB' : lastModifiedCB,
+						'forValidation' : forValidation,
+						'dispute' : dispute,
+						'others' : others,
 					}
 					vResultAll.productList.push(product);
 				}

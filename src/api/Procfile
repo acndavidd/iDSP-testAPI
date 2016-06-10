@@ -1,1 +1,1 @@
-web: node main.js
+web: npm install && npm install -g typings@0.8.1 typescript && typings install && /app/.heroku/node/lib/node_modules/typings/node_modules/.bin/tsc && node main.js
