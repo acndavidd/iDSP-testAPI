@@ -3,6 +3,7 @@
 import {SequelizeService} from './services/sequelize.service';
 import {AccountController} from './controllers/account/account.controller';
 import {InventoryController} from './controllers/inventory.controller';
+import {GlobalController} from './controllers/global.controller';
 import {TargetsActualsController} from './controllers/targets-actuals/targets-actuals.controller';
 import {RetailerController} from './controllers/retailer/retailer.controller';
 import {AccountReceivableController} from './controllers/retailer/account-receivable/account-receivable.controller';
@@ -115,8 +116,12 @@ vRouter.post('/additionalRetailerRoute',vTaskCOntroller.additionalRetailerRoute)
 // define instance of your controller and route here
 
 let vTargetsActualsController =  new TargetsActualsController();
-vRouter.get('/brand',vTargetsActualsController.brand);
 vRouter.post('/performance',vTargetsActualsController.performance);
+
+
+let vGlobalController =  new GlobalController();
+vRouter.get('/brand',vGlobalController.brand);
+vRouter.get('/productID',vGlobalController.productID);
 // let aa = new aa();
 // vRouter.method('/aa', aa.bb);
 

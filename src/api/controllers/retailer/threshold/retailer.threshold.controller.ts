@@ -16,6 +16,7 @@ export class RetailerThreshold {
 	constructor() {
 		RetailerThreshold._errorHandling = new ErrorHandlingService();
 		RetailerThreshold._httpService = new APIService.HTTPService();
+
 	}
 
 	async getRetailerThreshold(pRequest, pResponse) {

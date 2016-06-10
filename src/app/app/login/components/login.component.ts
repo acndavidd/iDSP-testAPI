@@ -35,7 +35,7 @@ export class LoginComponent {
 
     login(pEvent) {
         // For Hit API
-        this._authenticationService.login(this.vUsername,this.vPassword);
+        // this._authenticationService.login(this.vUsername,this.vPassword);
 
         // For By Pass Directly without API
         // this._router.navigate(['Mpin']);
@@ -57,7 +57,7 @@ export class LoginComponent {
         */
         // this._router.navigate(['Mpin']);
         // pEvent.preventDefault();
-        // this._router.navigate(['Mpin']);
+        this._router.navigate(['Mpin']);
         // pEvent.preventDefault();
         // this._authenticationService.login(this.vUsername, this.vPassword);
     }
@@ -67,7 +67,7 @@ export class LoginComponent {
     }
 
     toggleForgotPassword() {
-        this._modalService.setModalMessage('Please Contact your Distributor<br/>Admin for Password Reset<br/>(+63-9228888899).');
+        this._modalService.setModalMessage('Please Contact your Distributor<br/>Admin for Password Reset');
         this._modalService.setModalType(Modal.ModalType.INFO);
         this._modalService.showModal();
     }

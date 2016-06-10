@@ -60,4 +60,8 @@ export class HeaderComponent implements OnInit {
     toggleAdd() {
         this._layoutService.toggleAdd();
     }
+
+    setFilterFalse() {
+        this.vFilterShow = false;
+    }
 }
