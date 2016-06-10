@@ -82,6 +82,11 @@ export class DataAccessService implements DataAccessInterface {
 		return this.executeSP(pSPName, pParams, pIsJSONFormat);
 	}
 
+	getCallInfo(pSPName, pParams) {
+		console.log('Start Store Procedure get_call_info');
+		return this.executeSP(pSPName, pParams);
+	}
+
 	executeSP(pSPName:string, pParams: any, pIsJSONFormat?: boolean): Promise<string> {
 		return new Promise<string>(
 			function(pResolve, pReject) {
@@ -114,7 +119,7 @@ export class DataAccessService implements DataAccessInterface {
 						// stored procedure will return 0 if there is no errors
 						let vResult = pResult[0][pSPName.toLowerCase()];
 						if(vResult.status === 0) {
-							console.log('REsult'+vResult.result);
+							// console.log('Result'+ JSON.stringify(vResult.result));
 							pResolve(vResult.result);
 						// functional error occured while execute the stored procedure
 						}else {

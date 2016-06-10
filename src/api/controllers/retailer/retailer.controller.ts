@@ -8,6 +8,7 @@ import {DataAccessService} from '../../services/data-access.service';
 // import your model here
 import {TokenObject} from '../../models/token.model';
 import {RetailerProfileModel} from '../../models/input/retailer-profile.model';
+import {CallInfoModel} from '../../models/input/retailer/call-info.model';
 import {SelfTransactionRetailerModel} from '../../models/input/self/selftransaction-per-retailer.model';
 import {BalanceModel} from '../../models/input/retailer/balance.model';
 import {DropsizeModel} from '../../models/input/retailer/dropsize.model';
@@ -196,18 +197,68 @@ export class RetailerController implements RetailerInterface{
 
 				var vSalesPerson = pRequest.query.username;
 				var vRetailerId = pRequest.query.retailerid;
+				var vDay = 5;
 
 			try{
 				let vPath:string = '/OPISNET/services/idsp/rtprofile';
 				let vRetailerData = new RetailerProfileModel(vSalesPerson,vRetailerId);
+				let vCallInfo = new RetailerProfileModel(vSalesPerson,vRetailerId);
 				// console.log('parammmm' + JSON.stringify(vRetailerData));
 
 				if(vRetailerData.validate()) {
 					// Catch result from API
 					let vResult = await RetailerController._httpService.get(APIService.APIType.OPISNET, vPath, null, vRetailerData);
-					// console.log('For Call procedure'+JSON.stringify(vResult));
+						let vResultCallInfo = await RetailerController._dataAccess.getCallInfo('get_call_info', vCallInfo);
+							let vResultBCP = await RetailerController._dataAccess.getOutstandingBalanceBCP('get_outstanding_balance', vRetailerData);
+												
+						if(vResult && vResultCallInfo) {
+							let vResultAll = {
+								'status' : 200,
+								'statusMessage' : '',
+								'retailerProfileList' : []
+							};
 
-					pResponse.status(200).json(vResult.retailerProfileList);
+							vResultAll.status = 200;
+							vResultAll.statusMessage = 'OK';
+
+							console.log('total profile : '+ vResult.retailerProfileList.length);
+
+								for (var i = 0 ; i < vResult.retailerProfileList.length ; i++) {
+									let self = {
+										'retailerMIN' : vResult.retailerProfileList[i].retailerMIN,
+										'retailerID' : vResult.retailerProfileList[i].retailerID,
+										'storeName' : vResult.retailerProfileList[i].storeName,
+										'outletType' : vResult.retailerProfileList[i].outletType,
+										'subOutletType' : vResult.retailerProfileList[i].subOutletType,
+										'ownerFirstName' : vResult.retailerProfileList[i].ownerFirstName,
+										'ownerMiddleName' : vResult.retailerProfileList[i].ownerMiddleName,
+										'ownerLastName' : vResult.retailerProfileList[i].ownerLastName,
+										'personalMin' : vResult.retailerProfileList[i].personalMin,
+										'storeAddress' : vResult.retailerProfileList[i].storeAddress,
+										'civilStatus' : vResult.retailerProfileList[i].civilStatus,
+										'email' : vResult.retailerProfileList[i].email,
+										'gender' : vResult.retailerProfileList[i].gender,
+										'birthday' : vResult.retailerProfileList[i].birthday,
+										'totalAmountofSelfTransaction' : vResult.retailerProfileList[i].totalAmountofSelfTransaction,
+										'valueSegment' : vResult.retailerProfileList[i].valueSegment,
+										'threshold' : vResult.retailerProfileList[i].threshold,
+										'dspId' : vResult.retailerProfileList[i].dspId,
+										'dspName' : vResult.retailerProfileList[i].dspName,
+										'firstRetailerMIN' : vResult.retailerProfileList[i].firstRetailerMIN,
+										'amountReceivables' : parseInt(vResultBCP[i].amount),
+										'status' : vResultCallInfo[i].call_status,
+										'lastVisit' : vResultCallInfo[i].call_date
+
+									}
+									vResultAll.retailerProfileList.push(self);
+								}
+							pResponse.status(200).json(vResultAll.retailerProfileList);
+
+					} else {
+						console.log('NO DATA')
+					}
+
+					// pResponse.status(200).json(vResult.retailerProfileList);
 				}else {
 					RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 101, "INPUT_ERROR", vRetailerData.Errors);
 				}
@@ -264,7 +315,7 @@ export class RetailerController implements RetailerInterface{
 				vResultAll.status = 200;
 				vResultAll.statusMessage = 'OK';
 
-				console.log('last amount total : '+ vResult.productList.length);
+				console.log('lastAmountTransferred : '+ vResult.productList.length);
 
 				if(vResult.productList.length  > 0 ) {
 					for (var i = 0 ; i < vResult.productList.length ; i++) {
@@ -304,7 +355,12 @@ export class RetailerController implements RetailerInterface{
 				let vParam = new PhysicalInventoryModel(vSalesPerson, vRetailerId);
 					if(vParam.validate()) {						
 						let vResult = await RetailerController._dataAccess.getDropSize('get_load_drop_size', vParam);
-						pResponse.json(vResult);
+						if(vResult) {
+							pResponse.json(vResult);
+						}
+						else {
+							console.log('NO DATA');
+						}
 
 					}else {
 						RetailerController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 100, 'INPUT_ERRORS', vParam.Errors);
@@ -335,34 +391,49 @@ export class RetailerController implements RetailerInterface{
 				let vResultSelf = await RetailerController._httpService.get(APIService.APIType.OPISNET, vPath, null, vRetailerData);
 				let vParam = new PhysicalInventoryModel(vSalesPerson, vRetailerId);
 				let vResultBCP = await RetailerController._dataAccess.getOutstandingBalanceBCP('get_outstanding_balance', vParam);
+				
 
-				let vResultAll = {
-					'status' : 0,
-					'statusMessage' : '',
-					'totalRecord' : vResultSelf.totalRecord,
-					'totalAmount' : parseInt(vResultSelf.totalAmount)+parseInt(vResultBCP[0].amount) ,
-					'selfTransactionList' : []
-				};
+				if(vResultBCP && vResultSelf) {
+					console.log('MASUK IF:');
+					let vResultAll = {
+						'status' : 0,
+						'statusMessage' : '',
+						'totalRecord' : vResultSelf.totalRecord,
+						'totalAmount' : parseInt(vResultSelf.totalAmount)+parseInt(vResultBCP[0].amount) ,
+						'selfTransactionList' : []
+					};
 
-				vResultAll.status = 200;
-				vResultAll.statusMessage = 'OK';
+					vResultAll.status = 200;
+					vResultAll.statusMessage = 'OK';
 
-				console.log('last amount total : '+ vResultSelf.selfTransactionList.length);
+					console.log('outstandingBalance : '+ vResultSelf.selfTransactionList.length);
 
-				if(vResultSelf.selfTransactionList.length  > 0 ) {
-					for (var i = 0 ; i < vResultSelf.selfTransactionList.length ; i++) {
-						let self = {
-							'retailerMIN' : vResultSelf.selfTransactionList[i].retailerMIN,
-							'transactionId' : vResultSelf.selfTransactionList[i].transactionId,
-							'transactionDate' : vResultSelf.selfTransactionList[i].transactionDate,
-							'amount' : parseInt(vResultSelf.selfTransactionList[i].amount)
+						for (var i = 0 ; i < vResultSelf.selfTransactionList.length ; i++) {
+							let self = {
+								'retailerMIN' : vResultSelf.selfTransactionList[i].retailerMIN,
+								'transactionId' : vResultSelf.selfTransactionList[i].transactionId,
+								'transactionDate' : vResultSelf.selfTransactionList[i].transactionDate,
+								'amount' : parseInt(vResultSelf.selfTransactionList[i].amount)
+							}
+							vResultAll.selfTransactionList.push(self);
 						}
-						vResultAll.selfTransactionList.push(self);
-					}
-					console.log('Outstanding balance : '+JSON.stringify(vResultAll));
-					pResponse.status(200).json(vResultAll);
+						pResponse.status(200).json(vResultAll);
 				}
 				else {
+					console.log('masuk else');
+					let vResultAll = {
+					'status' : 200,
+					'statusMessage' : 'OK',
+					'totalRecord' : 0,
+					'totalAmount' : 0,
+					'selfTransactionList' : [{
+						'retailerMIN' : 0,
+							'transactionId' : 0,
+							'transactionDate' : 0,
+							'amount' : 0
+					}]
+				};
+					console.log('Outstanding balance : '+JSON.stringify(vResultAll));
 					pResponse.status(200).json(vResultAll);
 				}
 			}else {

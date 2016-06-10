@@ -7,7 +7,7 @@
 	        			<div class='cell width-90 padding-left-5 x-large bold green'>{{each.storeName}}</div>
 	        		</div>
 			    </div>
-			    <div class='cell width-10 padding-right-5'><div class="sequence green">R</div></div>
+			    <div class='cell width-10 padding-right-5'><div class="sequence green">{{vFirstCharacter}}</div></div>
 			</div>
 	    </div>
 		
@@ -109,7 +109,7 @@
 			<div class="container border">
 				<div class='cell'>
 			        <div class='container'><div class='cell width-100 padding-left-10 grey'>Amount Receivables</div></div>
-			        <div class='container'><div class='cell width-100 padding-left-10'>vvv ₱</div></div>
+			        <div class='container'><div class='cell width-100 padding-left-10'>{{each.amountReceivables | number}} ₱</div></div>
 			    </div>
 			    <div class='cell width-10'></div>
 			</div>
@@ -130,14 +130,14 @@
 			<div class="container border">
 				<div class='cell'>
 			        <div class='container'><div class='cell width-100 padding-left-10 grey'>Status</div></div>
-			        <div class='container'><div class='cell width-100 padding-left-10'>In Progress</div></div>
+			        <div class='container'><div class='cell width-100 padding-left-10'>{{each.status}}</div></div>
 			    </div>
 			    <div class='cell width-10'></div>
 			</div>
 			<div class="container">
 				<div class='cell'>
 			        <div class='container'><div class='cell width-100 padding-left-10 grey'>Last Visit</div></div>
-			        <div class='container'><div class='cell width-100 padding-left-10'>{{each.storeAddress}}</div></div>
+			        <div class='container'><div class='cell width-100 padding-left-10'>{{each.lastVisit}}</div></div>
 			    </div>
 			    <div class='cell width-10'></div>
 			</div>
@@ -158,7 +158,7 @@
 				        <div class='container'><div class='cell width-50 padding-left-10'>Outstanding Balance</div></div>
 				    </div>
 					<div class='cell'>
-				        <div class='container'><div class='cell width-40 align-right'>{{getOutstandingBalanceTotal().totalAmount | number}} ₱</div></div>
+				        <div class='container'><div class='cell width-40 align-right'>{{vOutstandingBalance.totalAmount | number}} ₱</div></div>
 				    </div>
 				    <div class='cell width-10'></div>
 				</div>
@@ -214,99 +214,106 @@
 		<div *ngIf="vLoadMenuShow">
 			<!-- <div *ngFor="#each of getLoadWallet()[0]"> -->
 				<!-- START LOAD WALLET FOR SMARTLOAD -->
-					<div class="item-container sub">
-						<div class="container">
-							<div class='cell'>
-						        <div class='container'><div class='cell width-100 padding-left-10'>{{getSmartLoadWallet()[0].sub_cat[0].sub_category_name}}</div></div>
-						        <div class='container'>
-						        	<div class='cell width-100 padding-left-10'>
-										<div class="container">
-											<div class='cell'>
-										        <div class='container'><div class='cell width-50'>Drop Size</div></div>
-										    </div>
-											<div class='cell'>
-										        <div class='container'><div class='cell width-50 align-right'>{{getSmartLoadWallet()[0].sub_cat[0].dropsize | number}}</div></div>
-										    </div>
-										</div>
-						        	</div>
-						        </div>
-						    </div>
-						    <div class='cell width-10'></div>
+					<div *ngIf="vSmartLoadWallet">
+						<div class="item-container sub">
+							<div class="container">
+								<div class='cell'>
+							        <div class='container'><div class='cell width-100 padding-left-10'>{{vSmartLoadWallet[0].sub_cat[0].sub_category_name}}</div></div>
+							        <div class='container'>
+							        	<div class='cell width-100 padding-left-10'>
+											<div class="container">
+												<div class='cell'>
+											        <div class='container'><div class='cell width-50'>Drop Size</div></div>
+											    </div>
+												<div class='cell'>
+											        <div class='container'><div class='cell width-50 align-right'>{{vSmartLoadWallet[0].sub_cat[0].dropsize | number}}</div></div>
+											    </div>
+											</div>
+							        	</div>
+							        </div>
+							    </div>
+							    <div class='cell width-10'></div>
+							</div>
 						</div>
 					</div>
-
-					<div class="item-container">
-						<div class="container">
-							<div class='cell'>
-						        <div class='container'><div class='cell width-100 padding-left-10'>{{getSmartLoadLAT()[0].productName}} Wallet Balance</div></div>
-						        <div class='container'>
-						        	<div class='cell width-100 padding-left-10'>
-										<div class="container">
-											<div class='cell'>
-										        <div class='container'><div class='cell width-50 grey'>Last Amount Transferred</div></div>
-										        <div class='container'><div class='cell width-50 grey'>Transaction Date</div></div>
-										        <div class='container'><div class='cell width-50 grey'>Latest Balance</div></div>
-										    </div>
-											<div class='cell'>
-										        <div class='container'><div class='cell width-50 align-right'>{{getSmartLoadLAT()[0].lastAmountTransferredbyDsp | number}} ₱</div></div>
-										        <div class='container'><div class='cell width-50 align-right'>{{getSmartLoadLAT()[0].transactionDate}} </div></div>
-										        <div class='container'><div class='cell width-50 align-right'>?? ₱</div></div>
-										    </div>
-										</div>
-						        	</div>
-						        </div>
-						    </div>
-						    <div class='cell width-10'></div>
+						<div *ngIf="vSmartLoadLAT">
+							<div class="item-container">
+								<div class="container">
+									<div class='cell'>
+								        <div class='container'><div class='cell width-100 padding-left-10'>{{vSmartLoadLAT[0].productName}} Wallet Balance</div></div>
+								        <div class='container'>
+								        	<div class='cell width-100 padding-left-10'>
+												<div class="container">
+													<div class='cell'>
+												        <div class='container'><div class='cell width-50 grey'>Last Amount Transferred</div></div>
+												        <div class='container'><div class='cell width-50 grey'>Transaction Date</div></div>
+												        <div class='container'><div class='cell width-50 grey'>Latest Balance</div></div>
+												    </div>
+													<div class='cell'>
+												        <div class='container'><div class='cell width-50 align-right'>{{vSmartLoadLAT[0].lastAmountTransferredbyDsp | number}} ₱</div></div>
+												        <div class='container'><div class='cell width-50 align-right'>{{vSmartLoadLAT[0].transactionDate}} </div></div>
+												        <div class='container'><div class='cell width-50 align-right'>?? ₱</div></div>
+												    </div>
+												</div>
+								        	</div>
+								        </div>
+								    </div>
+								    <div class='cell width-10'></div>
+								</div>
+							</div>
 						</div>
-					</div>
+					
 					<!-- END LOAD WALLET FOR SMARTLOAD -->
 					<!-- START LOAD WALLET FOR XPRESS -->
-					<div class="item-container sub">
-						<div class="container">
-							<div class='cell'>
-						        <div class='container'><div class='cell width-100 padding-left-10'>{{getXpressLoadWallet()[0].sub_cat[0].sub_category_name}}</div></div>
-						        <div class='container'>
-						        	<div class='cell width-100 padding-left-10'>
-										<div class="container">
-											<div class='cell'>
-										        <div class='container'><div class='cell width-50'>Drop Size</div></div>
-										    </div>
-											<div class='cell'>
-										        <div class='container'><div class='cell width-50 align-right'>{{getXpressLoadWallet()[0].sub_cat[0].dropsize | number}}</div></div>
-										    </div>
-										</div>
-						        	</div>
-						        </div>
-						    </div>
-						    <div class='cell width-10'></div>
+					<div *ngIf="vXpressLoadLWallet">
+						<div class="item-container sub">
+							<div class="container">
+								<div class='cell'>
+							        <div class='container'><div class='cell width-100 padding-left-10'>{{vXpressLoadLWallet[0].sub_cat[0].sub_category_name}}</div></div>
+							        <div class='container'>
+							        	<div class='cell width-100 padding-left-10'>
+											<div class="container">
+												<div class='cell'>
+											        <div class='container'><div class='cell width-50'>Drop Size</div></div>
+											    </div>
+												<div class='cell'>
+											        <div class='container'><div class='cell width-50 align-right'>{{vXpressLoadLWallet[0].sub_cat[0].dropsize | number}}</div></div>
+											    </div>
+											</div>
+							        	</div>
+							        </div>
+							    </div>
+							    <div class='cell width-10'></div>
+							</div>
 						</div>
 					</div>
-
-					<div class="item-container">
-						<div class="container">
-							<div class='cell'>
-						        <div class='container'><div class='cell width-100 padding-left-10'>{{getXpressLoadLAT()[0].productName}} Balance</div></div>
-						        <div class='container'>
-						        	<div class='cell width-100 padding-left-10'>
-										<div class="container">
-											<div class='cell'>
-										        <div class='container'><div class='cell width-50 grey'>Last Amount Transferred</div></div>
-										        <div class='container'><div class='cell width-50 grey'>Transaction Date</div></div>
-										        <div class='container'><div class='cell width-50 grey'>Latest Balance</div></div>
-										    </div>
-											<div class='cell'>
-										        <div class='container'><div class='cell width-50 align-right'>{{getXpressLoadLAT()[0].lastAmountTransferredbyDsp | number}} ₱</div></div>
-										        <div class='container'><div class='cell width-50 align-right'>{{getXpressLoadLAT()[0].transactionDate}}</div></div>
-										        <div class='container'><div class='cell width-50 align-right'>??? ₱</div></div>
-										    </div>
-										</div>
-						        	</div>
-						        </div>
-						    </div>
-						    <div class='cell width-10'></div>
+					<div *ngIf="vXpressLoadLAT">
+						<div class="item-container">
+							<div class="container">
+								<div class='cell'>
+							        <div class='container'><div class='cell width-100 padding-left-10'>{{vXpressLoadLAT[0].productName}} Balance</div></div>
+							        <div class='container'>
+							        	<div class='cell width-100 padding-left-10'>
+											<div class="container">
+												<div class='cell'>
+											        <div class='container'><div class='cell width-50 grey'>Last Amount Transferred</div></div>
+											        <div class='container'><div class='cell width-50 grey'>Transaction Date</div></div>
+											        <div class='container'><div class='cell width-50 grey'>Latest Balance</div></div>
+											    </div>
+												<div class='cell'>
+											        <div class='container'><div class='cell width-50 align-right'>{{vXpressLoadLAT[0].lastAmountTransferredbyDsp | number}} ₱</div></div>
+											        <div class='container'><div class='cell width-50 align-right'>{{vXpressLoadLAT[0].transactionDate}}</div></div>
+											        <div class='container'><div class='cell width-50 align-right'>??? ₱</div></div>
+											    </div>
+											</div>
+							        	</div>
+							        </div>
+							    </div>
+							    <div class='cell width-10'></div>
+							</div>
 						</div>
 					</div>
-				<!-- END LOAD WALLET FOR XPRESS -->
+			<!-- END LOAD WALLET FOR XPRESS -->
 			<!-- </div> -->
 		</div>
 

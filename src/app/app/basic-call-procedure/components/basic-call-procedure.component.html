@@ -8,28 +8,49 @@
 
 <div class="container-body">
     <!-- <div class="item-container" (click)="gotoCallPreparationHC({status: 'In Progress'})"> -->
-    <div class="item-container" *ngFor="#each of getFilteredDate()" (click)="gotoAnotherPage(each.getroute)">
-        <div class="container">
-            <div class='cell width-10 padding-left-5'><div class="sequence green">{{each.getroute.sequence_no}}</div></div>
-            <div class='cell'>
-                <div class='container'><div class='cell width-40 padding-left-5'>{{each.getroute.store_name}}</div></div>
-                <div class='container'><div class='cell width-40 padding-left-5 italic'>{{each.getroute.retailer_min}}</div></div>
-                <div class='container'><div class='cell width-40 padding-left-5'>Account receivables ({{each.getroute.number_of_aging_self_transaction}}/{{each.getroute.number_of_aging_self_transaction}})</div></div>
+   <div  *ngIf="getFilteredDate()">
+        <div class="item-container" *ngFor="#each of getFilteredDate()" (click)="gotoAnotherPage(each.getroute)">
+            <div class="container">
+                <div class='cell width-10 padding-left-5'><div class="sequence green">{{each.getroute.sequence_no}}</div></div>
+                <div class='cell'>
+                    <div class='container'><div class='cell width-40 padding-left-5'>{{each.getroute.store_name}}</div></div>
+                    <div class='container'><div class='cell width-40 padding-left-5 italic'>{{each.getroute.retailer_min}}</div></div>
+                    <div class='container'><div class='cell width-40 padding-left-5'>Account receivables ({{each.getroute.number_of_aging_self_transaction}}/{{each.getroute.number_of_aging_self_transaction}})</div></div>
+                </div>
+                <div class='cell'>
+                     <div *ngIf="each.getroute.call_status === 'Not Visited'">
+                        <div class='container'><div class='cell width-40 align-right bold vivid-pink'>{{each.getroute.call_status}}</div></div>
+                    </div>
+                    <div *ngIf="each.getroute.call_status === 'In Progress'">
+                        <div class='container'><div class='cell width-40 align-right bold dark-sea-green'>{{each.getroute.call_status}}</div></div>
+                    </div>
+                    <div *ngIf="each.getroute.call_status === 'Visited'">
+                        <div class='container'><div class='cell width-40 align-right bold green'>{{each.getroute.call_status}}</div></div>
+                    </div>
+                    <div class='container'><div class='cell width-40 align-right'></div></div>
+                    <div class='container'><div class='cell width-40 align-right'>{{each.getroute.total_amount_self_transaction}} ₱</div></div>
+                </div>
+                <div class='cell width-10 arrow-right'></div>
             </div>
-            <div class='cell'>
-                 <div *ngIf="each.getroute.call_status === 'Not Visited'">
-                    <div class='container'><div class='cell width-40 align-right bold vivid-pink'>{{each.getroute.call_status}}</div></div>
-                </div>
-                <div *ngIf="each.getroute.call_status === 'In Progress'">
-                    <div class='container'><div class='cell width-40 align-right bold dark-sea-green'>{{each.getroute.call_status}}</div></div>
-                </div>
-                <div *ngIf="each.getroute.call_status === 'Visited'">
-                    <div class='container'><div class='cell width-40 align-right bold green'>{{each.getroute.call_status}}</div></div>
-                </div>
-                <div class='container'><div class='cell width-40 align-right'></div></div>
-                <div class='container'><div class='cell width-40 align-right'>{{each.getroute.total_amount_self_transaction}} ₱</div></div>
-            </div>
-            <div class='cell width-10 arrow-right'></div>
         </div>
     </div>
+    <div  *ngIf="!getFilteredDate()">
+        <div class="item-container sub">
+        <div class="container">
+            <div class='cell width-10 padding-left-5'></div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-40 padding-left-5'>No route for today</div></div>
+                <div class='container'><div class='cell width-40 padding-left-5 italic'></div></div>
+                <div class='container'><div class='cell width-40 padding-left-5 vivid-pink'></div></div>
+            </div>
+            <div class='cell'>
+                <div class='container'><div class='cell width-40 align-right vivid-pink'></div></div>
+                <div class='container'><div class='cell width-40 align-right'></div></div>
+                <div class='container'><div class='cell width-40 align-right'></div></div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
 </div>

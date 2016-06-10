@@ -14,6 +14,7 @@ import {NgModel} from 'angular2/common';
         // templateUrl: './app/basic-call-procedure/components/hc-call-preparation.component.html',
 
     directives: [
+      NgModel,
         ROUTER_DIRECTIVES
     ]
 })
@@ -40,6 +41,8 @@ export class CallPreparationComponent {
     private vSmartLoadWallet;
     private vXpressLoadLWallet;
     private vOutstandingBalance;
+    private vXpressLoadLAT: any = [];
+    private vSmartLoadLAT;
 
     constructor (
         private _layoutService: LayoutService,
@@ -63,8 +66,9 @@ export class CallPreparationComponent {
 
         this._retailerService.queryRetailerCallPrep(this.vSelectedRetailId).subscribe(
         response => {
-                this.vSelectedRetail = response.json();  
-                console.log('RETAILER PROFILE' + JSON.stringify(this.vSelectedRetail)); 
+                this.vSelectedRetail = response.json(); 
+                this.vFirstCharacter = JSON.stringify(this.vSelectedRetail[0].storeName).substring(2,1); 
+                console.log('RETAILER PROFILE' +this.vFirstCharacter); 
         },
         error => {
             console.log(error);
@@ -73,7 +77,15 @@ export class CallPreparationComponent {
         this._retailerService.getLoadWallet(this.vSelectedRetailId).subscribe(
         response => {
                 this.vLoadWallet = response.json();
-                console.log('LOAD WALLET' + JSON.stringify(this.vLoadWallet[0]));
+                  console.log('LOAD WALLET' + JSON.stringify(this.vLoadWallet));
+                this.vSmartLoadWallet =  this.vLoadWallet.filter(retailer => {
+                   return retailer.brand === 'Smart';
+                });
+                console.log('this.vSmartLoadWallet : ' + JSON.stringify(this.vSmartLoadWallet));
+                this.vXpressLoadLWallet =  this.vLoadWallet.filter(retailer => {
+                  return retailer.brand === 'Sun';
+                });
+                console.log('this.vXpressLoadLWallet : ' + JSON.stringify(this.vXpressLoadLWallet));
         });
 
         this._retailerService.getPhysicalInventory(this.vSelectedRetailId).subscribe(
@@ -98,6 +110,14 @@ export class CallPreparationComponent {
         response => {               
                 this.vLastAmountTransferred = response.json();
                   console.log('LAST AMOUNT TRANSFER : ' + JSON.stringify(this.vLastAmountTransferred));
+                this.vXpressLoadLAT = this.vLastAmountTransferred.filter(retailer => {
+                 return retailer.productId === 'XPRESSLOAD';
+                });
+                console.log('this.vXpressLoadLAT : ' + JSON.stringify(this.vXpressLoadLAT));
+                 this.vSmartLoadLAT = this.vLastAmountTransferred.filter(retailer => {
+                 return retailer.productId === 'SMARTLOAD';
+                });
+                console.log('this.vSmartLoadLAT : ' + JSON.stringify(this.vSmartLoadLAT));
         },
         error => {
             console.log(error);
@@ -106,7 +126,7 @@ export class CallPreparationComponent {
         this._retailerService.getOutstandingBalance(this.vSelectedRetailId).subscribe(
         response => {               
                 this.vOutstandingBalance = response.json();
-                  console.log('OUTSTANDING BALANCE : ' + JSON.stringify(this.vOutstandingBalance));
+                console.log('OUTSTANDING BALANCE : ' + JSON.stringify(this.vOutstandingBalance));
         },
         error => {
             console.log(error);
@@ -166,22 +186,6 @@ export class CallPreparationComponent {
         this.vPhysicalMenuShow = !this.vPhysicalMenuShow;
     }
 
-    getSmartLoadWallet() {
-         this.vSmartLoadWallet =  this.vLoadWallet.filter(retailer => {
-         return retailer.brand === 'Smart';
-        });
-
-       return this.vSmartLoadWallet;
-    }
-
-    getXpressLoadWallet() {
-         this.vXpressLoadLWallet =  this.vLoadWallet.filter(retailer => {
-         return retailer.brand === 'Sun';
-        });
-
-       return this.vXpressLoadLWallet;
-    }
-
     getPhysicalInventory() {
        return this.vPhysicalInventory;
     }
@@ -190,33 +194,8 @@ export class CallPreparationComponent {
         return this.vCollection;
     }
 
-    getSmartLoadLAT() {
-        if(this.vLastAmountTransferred) {
-           this.vSmartLoadLT =  this.vLastAmountTransferred.filter(retailer => {
-             return retailer.productId === 'SMARTLOAD';
-            });
-           console.log('SMARTLOAD :'+JSON.stringify(this.vSmartLoadLT));
-           return this.vSmartLoadLT;
-       }
-       else {
-          return this.vLastAmountTransferred; 
-       }
-    }
-
-    getXpressLoadLAT() {
-        if(this.vLastAmountTransferred) {
-          this.vXpressLoadLT =  this.vLastAmountTransferred.filter(retailer => {
-             return retailer.productId === 'XPRESSLOAD';
-            });
-          console.log('XPRESSLOAD :'+JSON.stringify(this.vXpressLoadLT));
-          return this.vXpressLoadLT;
-      } else {
-          return this.vLastAmountTransferred; 
-       }
-    }
-
-    getOutstandingBalanceTotal() {
-        return this.vOutstandingBalance;
-    }
+    // getOutstandingBalanceTotal() {
+    //     return this.vOutstandingBalance;
+    // }
 
 }
