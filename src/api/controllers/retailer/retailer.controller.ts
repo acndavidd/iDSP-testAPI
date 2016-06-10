@@ -164,7 +164,7 @@ export class RetailerController implements RetailerInterface{
 		try{
 			let serviceURL: string = '/opisnet/services/idsp/dspalert';
 			let vTokenService = new TokenService();
-			let vTokebObject = new TokenObject();
+			let vTokebObject = new TokenObject(null, null, null, null);
 			let vToken = pResponse.locals.token;
 			console.log(vToken);
 			vTokebObject = vTokenService.decryptToken(vToken);

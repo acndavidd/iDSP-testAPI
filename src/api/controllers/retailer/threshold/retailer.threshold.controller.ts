@@ -22,7 +22,7 @@ export class RetailerThreshold {
 		try{
 			let serviceURL: string = '/opisnet/services/idsp/dspalert';
 			let vTokenService = new TokenService();
-			let vTokenObject = new TokenObject();
+			let vTokenObject = new TokenObject(null, null, null, null);
 			let vToken = pResponse.locals.accessToken;
 			vTokenObject = vTokenService.decryptToken(vToken);
 			console.log(vTokenObject);

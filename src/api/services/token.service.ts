@@ -38,7 +38,7 @@ export class TokenService implements TokenInterface {
 			// load sign in key from config files
 			let vSigningkey = vConfig.token.key;
 			let vVerifiedJwt = vNJwt.verify(pToken,vSigningkey).body;
-			let vTokenObject = new TokenObject();
+			let vTokenObject = new TokenObject(null, null, null, null);
 			vTokenObject.setDSPId(vVerifiedJwt.DSPId);
 			vTokenObject.setOPISToken(vVerifiedJwt.OPISToken);
 			return vTokenObject;
