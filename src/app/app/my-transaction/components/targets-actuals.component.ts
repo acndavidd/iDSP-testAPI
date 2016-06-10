@@ -47,7 +47,7 @@ export class TargetsActualsComponent {
         this.vSelectedTab = 'Day';
         this._layoutService.setCurrentPage('TargetsActuals');
         this._headerService.setTitle('Targets & Actuals');
-        this.getTargetsActuals();
+        // this.getTargetsActuals();
 
     }
 

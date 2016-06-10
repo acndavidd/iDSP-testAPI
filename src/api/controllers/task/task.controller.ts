@@ -39,6 +39,7 @@ export class TaskController implements TaskInterface {
 	async task(pRequest, pResponse) {
 			console.log("Start getting retailer route for BCP");
 			var vSalesPerson = pRequest.query.username;
+			var vResultData: any = [];
 			try{
 				
 				let vPath:string = '/OPISNET/services/idsp/AllRT';
@@ -65,7 +66,7 @@ export class TaskController implements TaskInterface {
 
 						try {	
 
-							let vResultData = await TaskController._dataAccess.getRouteDay('get_route_day', vAllRetailers ,true);
+							vResultData = await TaskController._dataAccess.getRouteDay('get_route_day', vAllRetailers ,true);
 							// console.log('All result ' + JSON.stringify(vResultData));
 							pResponse.json(vResultData.sort(function(a, b) {
 									if (a.getroute.sequence_no === null && b.getroute.sequence_no === null) {

@@ -34,16 +34,22 @@ export class RetailerSalesOrderComponent {
     vParamList: any = [];
     vDspProfile: any = [];
     vRetailerProfile: any = [];
+    vBalanceAfter:any = 0;
     
     vTotalDiscAmount: number = 0;
     vSmartLoadTransferList: any = [];
 
     // variable of add-edit-load-transfer page
     vAllLoadDataList: any = [];
-    vTotalLoadAmount;
-    vTotalLoadDiscAmount;
-    vTotalLoadTransferAmount;
+    vTotalLoadAmount: number;
+    vTotalLoadDiscAmount: number;
+    vTotalLoadTransferAmount: number;
     vLoadPromoCode;
+    vLoadBrand;
+    vLoadMIN;
+    vLoadBalance: number;
+    vLoadRRN;
+    vLoadRemarks;
 
     // variable of add-edit-physical-order page
     vAllPhysicalDataList: any = [];
@@ -61,26 +67,31 @@ export class RetailerSalesOrderComponent {
         ) {
 
         // initialize data profile
-        this.vParamList = this._pageNavigationService.getLatestPreviousData();
-        // this.vRetailerProfile = this.vParamList[0].retailer_profile;
-        // this.vDspProfile = this.vParamList[1].account_profile;
         // this.vParamList = this._pageNavigationService.getLatestPreviousData();
         // this.vRetailerProfile = this.vParamList[0].retailer_profile;
         // this.vDspProfile = this.vParamList[1].account_profile;
 
         // initialize data from add-edit-load-transfer page
         // this.vAllLoadDataList = this._pageNavigationService.getCurrentParams();
-        // this.vRetailerId = this.vAllLoadDataList.retailer_id;
         // this.vRetailerName = this.vAllLoadDataList.retailer_name;
+        // this.vRetailerId = this.vAllLoadDataList.retailer_id;
         // this.vRetailerMIN = this.vAllLoadDataList.retailer_min;
+        // this.vTotalLoadAmount = parseInt(this.vAllLoadDataList.total_load_amount);
+        // this.vTotalLoadDiscAmount = parseInt(this.vAllLoadDataList.total_load_disc_amount);
+        // this.vTotalLoadTransferAmount = parseInt(this.vAllLoadDataList.load_transfer_amount);
         // this.vLoadPromoCode = this.vAllLoadDataList.promo_code;
-        // this.vTotalLoadAmount = this.vAllLoadDataList.total_load_amount;
-        // this.vTotalLoadTransferAmount = this.vAllLoadDataList.load_transfer_amount;
-        // this.vTotalLoadDiscAmount = this.vAllLoadDataList.total_load_disc_amount;
+        // this.vLoadBrand = this.vAllLoadDataList.brand;
+        // this.vLoadMIN = this.vAllLoadDataList.selected_min;
+        // this.vLoadBalance = parseInt(this.vAllLoadDataList.balance);
+        // this.vLoadRRN = this.vAllLoadDataList.rrn;
+        // this.vLoadRemarks = this.vAllLoadDataList.remarks;
+
+        // this.vBalanceAfter = (this.vLoadBalance - this.vTotalLoadTransferAmount);
 
         // initialize param page
-        // this._layoutService.setCurrentPage('RetailerSalesOrder');
-        // this._headerService.setTitle('Retailer Sales Order');
+        this._layoutService.setCurrentPage('RetailerSalesOrder');
+        this._headerService.setTitle('Retailer Sales Order');
+
         // this.vPriceBeforeDisc = (this.vTotalLoadTransferAmount + this.vPhysicalOrder);
     }
 

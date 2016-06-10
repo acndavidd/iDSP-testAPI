@@ -17,22 +17,22 @@ $container-login-height: 100%;
             }
 
     ::-webkit-input-placeholder {
-		color:    #FFF;
+		color:    $white;
 	}
 	:-moz-placeholder {
-		color:    #FFF;
+		color:    $white;
 	}
 	::-moz-placeholder {
-		color:    #FFF;
+		color:    $white;
 	}
 	:-ms-input-placeholder {
-		color:    #FFF;
+		color:    $white;
 	}
 	.outer-box {
 		max-width : 80%;
 		margin: 20vw auto -3vw;
 		.header {
-			color: #FFF;
+			color: $white;
 			font-size: 10vw;
 			line-height: 5vw;
 			margin-bottom: 20vw;
@@ -47,7 +47,7 @@ $container-login-height: 100%;
 				margin: 60px auto 18px;
 				cursor: pointer;
 				background-color: transparent;
-				border: 1px solid #FFF;
+				border: 1px solid $white;
 				padding-right: 0;
 				padding-left: 0;
                 .spinner{
@@ -56,17 +56,17 @@ $container-login-height: 100%;
                     margin-left: auto;
                     margin-right: auto;
                     .item{
-                        background-color: #FFF;
+                        background-color: $white;
                         width: 10px;
                         height: 10px;
                     }
                 }
 			}
 			.message{
-				color: #FFF;
+				color: $white;
 			}
             .error-alert{
-                color:#FFF;
+                color:$white;
                 font-size:3vw;
             }
 			input {
@@ -80,13 +80,14 @@ $container-login-height: 100%;
 				margin-bottom: 1.5vw;
 				background-color: rgba(199, 195, 184, 0.5);
 				outline: 0;
-				color : #FFF;
+				color : $white;
 				text-align: center;
 				font-style: italic;
+        		border-radius: 5px;
 			}
 			p {
 				a {
-					color: #FFF;
+					color: $white;
 					text-decoration: underline;
 					cursor: pointer;
 					font-size: 4vw;
@@ -95,13 +96,13 @@ $container-login-height: 100%;
 		}
 		.login-button
 		{
-			height: 7vw;
 			background-color: $apple;
 			text-align: center;
 			vertical-align: center;
 			font-size: 5vw;
-    		padding: 2vw;
-    		color : #FFF;
+    		padding: 3vw;
+    		color : $white;
+        	border-radius: 5px;
 		}
 		.login-separator
 		{

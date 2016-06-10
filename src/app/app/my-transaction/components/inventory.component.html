@@ -44,9 +44,10 @@
 				<div class='cell'>
 					<div class="container">
 						<div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
-							<select name="cars">
-								<option value="volvo">Smart</option>
-								<option value="saab">Sun</option>
+							<select name="brand" [(ngModel)]="vSelectedBrand"  (ngModelChange)="onChangeSelectBrand($event)">
+								<option *ngFor="#each of getBrand()" [value]="each.brand" >
+									{{each.brand}}
+								</option>
 							</select>
 						</div>
 					</div>
@@ -64,11 +65,10 @@
 
 					<div class="container">
 						<div class="cell filter-dropdown width-30 padding-top-1 padding-bottom-1">
-							<select name="cars">
-								<option value="volvo">MC00087PD</option>
-								<option value="saab">MC00087PD</option>
-								<option value="fiat">DC0002</option>
-								<option value="audi">19411</option>
+							<select name="product" [(ngModel)]="vSelectedProductID"  (ngModelChange)="onChangeSelectBrand($event)">
+								<option *ngFor="#each of getProductID()" [value]="each.product_id" >
+									{{each.product_id}}
+								</option>
 							</select>
 						</div>
 					</div>
@@ -131,9 +131,9 @@
 				        <div class='container'><div class='cell width-45 align-right bold'>{{vLoadProduct.endingBalance | number}}</div></div>
 				        <div class='container'><div class='cell width-45 align-right bold'>{{vLoadProduct.currentBalance | number}}</div></div>
 				        <div class='container'><div class='cell width-45 align-right'></div></div>
-				        <div class='container'><div class='cell width-45 align-right'>-200</div></div>
-				        <div class='container'><div class='cell width-45 align-right'>1000</div></div>
-				        <div class='container'><div class='cell width-45 align-right'>-1200</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>{{vLoadProduct.forValidation | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>{{vLoadProduct.dispute | number}}</div></div>
+				        <div class='container'><div class='cell width-45 align-right'>{{vLoadProduct.others | number}}</div></div>
 				    </div>
 				    <div class='cell width-10'></div>
 				</div>

@@ -17,12 +17,12 @@
 		display: table-cell;
 		vertical-align: middle;
         .modal-container {
-            background-color: #F2F2F2;
+            background-color: $white-smoke;
             margin-left: auto;
             margin-right: auto;
             width: 300px;
             padding: 5px;
-            border: 1px solid #FFF;
+            border: 1px solid $white;
             box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.4);
             border-radius: 15px;
             .modal-body {
@@ -30,20 +30,20 @@
                 width: calc(100% - 20px);
                 padding: 0px 0px 0px 10px;
                 .item-header {
-                    font-size: 24px;
+                    font-size: 5vw;
                     margin-bottom: 30px;
                     text-align: center;
-                    color: #000;
+                    color: $black;
                 }
                 .item-title {
-                    font-size: small;
+                    font-size: 4vw;
                     font-weight: bold;
                     margin: 0px 0px 20px 0px;
                     text-align:center;
                 }
                 .item-subtitle {
-                    font-size: 20px;
-                    color: #000;
+                    font-size: 4vw;
+                    color: $black;
                     margin: 0px 0px 20px 0px;
                     text-align:center;
                 }
@@ -70,7 +70,7 @@
                     }
                     .item-text {
                         float: left;
-                        font-size: 14px;
+                        font-size: 4vw;
                         color: black;
                         width: calc(100% - 30px);
                         display: inline-block;
@@ -78,7 +78,7 @@
                             width: 100%;
                             text-align: right;
                             font-size: 20px;
-                            color: #000;
+                            color: $black;
                             margin: 10px 0 10px 0px;
                         }
                         &:after {
@@ -118,19 +118,21 @@
                         line-height: 5vh;
                         margin-top: 5px;
                         display: inline-block;
-                        color: #FFF;
+                        color: $white;
                         cursor: pointer;
                         text-align: center;
+                        border-radius: 5px;
+                        font-size: 4vw;
                     }
                     .button:last-child{
                         margin-right: 0%;
                     }
                 }
                 .green {
-                    background-color: #62BB47;
+                    background-color: $apple;
                 }
                 .red {
-                    background-color: #F21727;
+                    background-color: $red;
                 }
             }
             .foot-note {
