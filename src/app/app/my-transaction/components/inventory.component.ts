@@ -5,7 +5,7 @@ import {LayoutService} from '../../shared/services/layout.service';
 import {HeaderService} from '../../shared/services/header.service';
 import {NgModel} from 'angular2/common';
 import {InventoryService} from '../services/inventory.service';
-import {PageNavigationService} from '../../shared/services/page-navigation.service';
+import {GlobalService} from '../../shared/services/global.service';
 
 @Component({
     selector: 'inventory',
@@ -36,9 +36,9 @@ export class InventoryComponent {
         private _layoutService: LayoutService,
         private _matchMediaService: MatchMediaService,
         private _headerService: HeaderService,
-        private _inventoryService: InventoryService
+        private _inventoryService: InventoryService,
+        private _globalService: GlobalService
         ) {
-        // this.vSelectedDate = '20160429003012';
         this._layoutService.setCurrentPage('Inventory');
         this._headerService.setTitle('Inventory');
         this.toggleFilterInventory();
@@ -89,7 +89,7 @@ export class InventoryComponent {
         );
     }
   
-  getResize() {
+    getResize() {
         return this._matchMediaService.getMm();
     }
 
@@ -152,6 +152,11 @@ export class InventoryComponent {
         }
     }
 
+    getBrand() {
+        return this._globalService.getBrand();
+    }
 
-
+    getProductID() {
+        return this._globalService.getProductID();
+    }
 }

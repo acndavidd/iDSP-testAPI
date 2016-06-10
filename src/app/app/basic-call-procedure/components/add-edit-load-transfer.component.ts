@@ -10,8 +10,8 @@ import {RetailerSalesOrderService} from '../services/retailer-sales-order-servic
 
 @Component({
     selector: 'add-edit-load-transfer',
-    templateUrl: './app/basic-call-procedure/components/hc-add-edit-load-transfer.component.html',
-    // templateUrl: './app/basic-call-procedure/components/add-edit-load-transfer.component.html',
+    // templateUrl: './app/basic-call-procedure/components/hc-add-edit-load-transfer.component.html',
+    templateUrl: './app/basic-call-procedure/components/add-edit-load-transfer.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES

@@ -67,7 +67,7 @@ export class LoginComponent {
     }
 
     toggleForgotPassword() {
-        this._modalService.setModalMessage('Please Contact your Distributor<br/>Admin for Password Reset<br/>(+63-9228888899).');
+        this._modalService.setModalMessage('Please Contact your Distributor<br/>Admin for Password Reset');
         this._modalService.setModalType(Modal.ModalType.INFO);
         this._modalService.showModal();
     }

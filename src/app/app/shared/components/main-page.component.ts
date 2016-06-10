@@ -50,6 +50,7 @@ import {DetailRemittanceComponent} from '../../close-day/components/detail-remit
 import {TargetsActualsService} from '../../my-transaction/services/targets-actuals.service';
 import {RemittanceService} from '../../remittance/services/remittance.service';
 
+import {GlobalService} from '../../shared/services/global.service';
 
 @Component({
     selector : 'main-page',
@@ -59,7 +60,8 @@ import {RemittanceService} from '../../remittance/services/remittance.service';
     ],
     providers : [
         TargetsActualsService,
-        RemittanceService
+        RemittanceService,
+        GlobalService
     ]
 })
 
@@ -303,6 +305,7 @@ export class MainPageComponent {
     constructor (
         private _layoutService: LayoutService,
         private _targetsActualsService: TargetsActualsService,
+        private _globalService: GlobalService,
         private _matchMediaService: MatchMediaService) {}
 
     getResize() {

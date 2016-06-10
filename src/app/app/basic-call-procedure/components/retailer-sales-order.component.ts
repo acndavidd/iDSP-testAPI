@@ -61,7 +61,7 @@ export class RetailerSalesOrderComponent {
         ) {
 
         // initialize data profile
-        this.vParamList = this._pageNavigationService.getLatestPreviousData();
+        // this.vParamList = this._pageNavigationService.getLatestPreviousData();
         // this.vRetailerProfile = this.vParamList[0].retailer_profile;
         // this.vDspProfile = this.vParamList[1].account_profile;
         // this.vParamList = this._pageNavigationService.getLatestPreviousData();
@@ -79,8 +79,8 @@ export class RetailerSalesOrderComponent {
         // this.vTotalLoadDiscAmount = this.vAllLoadDataList.total_load_disc_amount;
 
         // initialize param page
-        // this._layoutService.setCurrentPage('RetailerSalesOrder');
-        // this._headerService.setTitle('Retailer Sales Order');
+        this._layoutService.setCurrentPage('RetailerSalesOrder');
+        this._headerService.setTitle('Retailer Sales Order');
         // this.vPriceBeforeDisc = (this.vTotalLoadTransferAmount + this.vPhysicalOrder);
     }
 

@@ -38,6 +38,11 @@ export class DataAccessService implements DataAccessInterface {
 		return this.executeSP(pSPName,pParams);
 	}
 
+	getProductID(pSPName,pParams) {
+		console.log('Start Store Procedure get_product_id');
+		return this.executeSP(pSPName,pParams);
+	}
+
 	getTargetsActuals(pSPName,pParams) {
 		console.log('Start Store Procedure get_targets_actuals');
 		return this.executeSP(pSPName,pParams);
