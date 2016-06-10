@@ -30,6 +30,7 @@ export class PasscodeLockComponent {
         ) {
         this.vPasscodeLock = '';
         this.vConfirm = '';
+        console.log('1234567');
     }
 
     getState() {
@@ -68,24 +69,24 @@ export class PasscodeLockComponent {
         // this.passcodeLogic(this.vInputtedNumber);
         if(this.vLength === 4) {
             console.log();
-            switch(this.getStep()) {
-                case PASSCODESTEP.SET :
-                    this.vConfirm = this.vPasscodeLock;
-                    this.vPasscodeLock = '';
-                    this.vLength = this.vPasscodeLock.length;
-                    this.setStep(PASSCODESTEP.CONFIRM);
-                    break;
-                case PASSCODESTEP.CONFIRM :
-                    if(this.vConfirm === this.vPasscodeLock) { 
-                        // if confirmation is the same
-                        // encrypt the refresh token with passcode
+            // switch(this.getStep()) {
+            //     case PASSCODESTEP.SET :
+            //         this.vConfirm = this.vPasscodeLock;
+            //         this.vPasscodeLock = '';
+            //         this.vLength = this.vPasscodeLock.length;
+            //         this.setStep(PASSCODESTEP.CONFIRM);
+            //         break;
+            //     case PASSCODESTEP.CONFIRM :
+            //         if(this.vConfirm === this.vPasscodeLock) { 
+            //             // if confirmation is the same
+            //             // encrypt the refresh token with passcode
                         this._pageNavigationService.navigate('Home', null, null);
-                    }
-                    break;
-                case PASSCODESTEP.INPUT :
-                    // decrypt the refresh token
-                    break;
-            }
+            //         }
+            //         break;
+            //     case PASSCODESTEP.INPUT :
+            //         // decrypt the refresh token
+            //         break;
+            // }
         }
     }
 

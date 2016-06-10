@@ -9,8 +9,8 @@ import {GlobalService} from '../../shared/services/global.service';
 
 @Component({
     selector: 'inventory',
-    templateUrl: './app/my-transaction/components/inventory.component.html',
-    // templateUrl: './app/my-transaction/components/hc-inventory.component.html',
+    // templateUrl: './app/my-transaction/components/inventory.component.html',
+    templateUrl: './app/my-transaction/components/hc-inventory.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
@@ -43,7 +43,7 @@ export class InventoryComponent {
         this._headerService.setTitle('Inventory');
         this.toggleFilterInventory();
 
-        var vUsername = 'anjay1';
+        var vUsername = 'DSP00001';
         var vRecordStart = '1';
         var vRecordEnd = '6';
         var vCorporateID = 'corph';

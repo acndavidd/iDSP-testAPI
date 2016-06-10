@@ -10,8 +10,8 @@ import {RetailerSalesOrderService} from '../services/retailer-sales-order-servic
 
 @Component({
     selector: 'add-edit-load-transfer',
-    // templateUrl: './app/basic-call-procedure/components/hc-add-edit-load-transfer.component.html',
-    templateUrl: './app/basic-call-procedure/components/add-edit-load-transfer.component.html',
+    templateUrl: './app/basic-call-procedure/components/hc-add-edit-load-transfer.component.html',
+    // templateUrl: './app/basic-call-procedure/components/add-edit-load-transfer.component.html',
     directives: [
         NgModel,
         ROUTER_DIRECTIVES
@@ -56,42 +56,42 @@ export class AddEditLoadTransferComponent {
 
         // initialize data
         console.log('Start initializing data');
-        this.vSelectedBrand = 'smart';
-        this.vParamList = this._pageNavigationService.getCurrentParams();
-        this.vRetailerProfile = this.vParamList[0].retailer_profile;
-        this.vDspProfile = this.vParamList[1].account_profile;
-        this.vRetailerName = this.vRetailerProfile.retailer_name;
-        this.vRetailerMIN = this.vRetailerProfile.retailer_min;
-        this.vRetailerID = this.vRetailerProfile.retailer_id;
+        // this.vSelectedBrand = 'smart';
+        // this.vParamList = this._pageNavigationService.getCurrentParams();
+        // this.vRetailerProfile = this.vParamList[0].retailer_profile;
+        // this.vDspProfile = this.vParamList[1].account_profile;
+        // this.vRetailerName = this.vRetailerProfile.retailer_name;
+        // this.vRetailerMIN = this.vRetailerProfile.retailer_min;
+        // this.vRetailerID = this.vRetailerProfile.retailer_id;
 
-        console.log('isi dsp profile: ' + JSON.stringify(this.vDspProfile));
+        // console.log('isi dsp profile: ' + JSON.stringify(this.vDspProfile));
 
-        // get list of mins from OPIS+
-        try {
-            this._retailerSalesOrderService.getRetailerMins(this.vRetailerID).subscribe(
-                response => {
-                    this.vRetailerMinList = response.json();
-                },
-                error => {
-                    console.log(JSON.stringify(error.json()));
-                    throw ('Error in get retailer MINs service');
-                });
-        } catch (pErr) {
-            this._modalService.toggleModal(pErr, Modal.ModalType.ERROR);
-        }
+        // // get list of mins from OPIS+
+        // try {
+        //     this._retailerSalesOrderService.getRetailerMins(this.vRetailerID).subscribe(
+        //         response => {
+        //             this.vRetailerMinList = response.json();
+        //         },
+        //         error => {
+        //             console.log(JSON.stringify(error.json()));
+        //             throw ('Error in get retailer MINs service');
+        //         });
+        // } catch (pErr) {
+        //     this._modalService.toggleModal(pErr, Modal.ModalType.ERROR);
+        // }
    
-        // get list of mins from OPIS+
-        try {
-            this._retailerSalesOrderService.getRetailerMins(this.vRetailerID).subscribe(
-                response => {
-                    this.vRetailerMinList = response.json();
-                },
-                error => {
-                    throw ('Error in Service');
-                });
-        } catch (pErr) {
-            this._modalService.toggleModal(pErr, Modal.ModalType.ERROR);
-        } 
+        // // get list of mins from OPIS+
+        // try {
+        //     this._retailerSalesOrderService.getRetailerMins(this.vRetailerID).subscribe(
+        //         response => {
+        //             this.vRetailerMinList = response.json();
+        //         },
+        //         error => {
+        //             throw ('Error in Service');
+        //         });
+        // } catch (pErr) {
+        //     this._modalService.toggleModal(pErr, Modal.ModalType.ERROR);
+        // } 
     }
 
     addLoadTransfer() {
@@ -103,9 +103,10 @@ export class AddEditLoadTransferComponent {
 
     addLoadTransferHC() {
         console.log('Go to Retailer Sales Order');
-        this._modalService.showConfirmationModal('Confirm Load Transfer to <br/><label class="vivid-pink">'+ this.vSelectedMIN +'</label> with <br/> Total Amount <label class="vivid-pink">P ' + this.vTotalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</label> and <br/>Total Discount <label class="vivid-pink">P ' + this.vInputDiscountAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</label>',
-            this.gotoRetailerSalesOrderHC.bind(this),
-            null, Modal.ButtonType.OK_CANCEL);
+        // this._modalService.showConfirmationModal('Confirm Load Transfer to <br/><label class="vivid-pink">'+ this.vSelectedMIN +'</label> with <br/> Total Amount <label class="vivid-pink">P ' + this.vTotalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</label> and <br/>Total Discount <label class="vivid-pink">P ' + this.vInputDiscountAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '</label>',
+        //     this.gotoRetailerSalesOrderHC.bind(this),
+        //     null, Modal.ButtonType.OK_CANCEL);
+        this.gotoRetailerSalesOrderHC();
     }
 
     gotoRetailerSalesOrder() {
@@ -156,6 +157,7 @@ export class AddEditLoadTransferComponent {
     }
 
     gotoRetailerSalesOrderHC() {
+        console.log('BURUAN LAH KE HC, MALES');
         this._pageNavigationService.navigate('RetailerSalesOrder', null, null);
     }
     detailPromo() {
