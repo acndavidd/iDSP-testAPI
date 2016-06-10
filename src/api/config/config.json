@@ -43,8 +43,8 @@
       }
     },
     "services" : {
-      "OPIS+" : "http://localhost:5678",
-      "ELP" : "http://localhost:5678",
+      "OPIS+" : "http://10.209.1.24:7777",
+      "ELP" : "http://10.209.1.24:7777",
       "timeout" : 15000
     },
     "token" : {
