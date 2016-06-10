@@ -3,8 +3,10 @@ const error_handling_service_1 = require('./error-handling.service');
 var APIService;
 (function (APIService) {
     var vEnv = process.env.NODE_ENV || "DEVELOPMENT";
+    console.log(vEnv);
     var vRequest = require('request');
     var vConfig = require('../config/config.json')[vEnv];
+    console.log(vConfig);
     APIService.APIType = {
         OPISNET: vConfig.services["OPIS+"],
         ELP: vConfig.services["ELP"]
