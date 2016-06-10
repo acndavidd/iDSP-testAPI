@@ -9,7 +9,7 @@ import {RouteDayOutputModel} from '../models/output/route-day.model';
 
 export interface RetailerInterface{
 	getProduct(pRequest, pResponse):void;
-	getRetailerSummary(pRequest, pResponse):Promise<void>;
+	// getRetailerSummary(pRequest, pResponse):Promise<void>;
 	getSalesRoute(pRequest, pResponse):Promise<void>;
 	// task(pRequest, pResponse):Promise<void>;
 	retailerCallPreparation(pRequest, pResponse):Promise<void>;
@@ -71,43 +71,43 @@ export class RetailerController implements RetailerInterface {
 		});
 	}
 
-	async getRetailerSummary(pRequest, pResponse){
-		try{
-			console.log("Start getting Retailer Summary");
-			var vSelectedRetailId = pRequest.params.retailerId;
-			var vOrmSvc = new ORMService();
+	// async getRetailerSummary(pRequest, pResponse){
+	// 	try{
+	// 		console.log("Start getting Retailer Summary");
+	// 		var vSelectedRetailId = pRequest.params.retailerId;
+	// 		var vOrmSvc = new ORMService();
 
-			let vParams = {
-				selected_ret_id : vSelectedRetailId
-			};
+	// 		let vParams = {
+	// 			selected_ret_id : vSelectedRetailId
+	// 		};
 
-			var vResult = JSON.parse(await vOrmSvc.sp('get_retailer_summary', vParams ));     
-			console.log("Query Done with result : "+ JSON.stringify(vResult));
+	// 		var vResult = JSON.parse(await vOrmSvc.sp('get_retailer_summary', vParams ));     
+	// 		console.log("Query Done with result : "+ JSON.stringify(vResult));
 
-			if (vResult.status == "Error")
-			{
-				vResult = {
-						"status" : vResult.status,
-						"errorType": vResult.errorType,
-						//"errorCode": this.errService.getErrorMessage(vResult.errorCode),
-						"result" : null
-				};
-			}
+	// 		if (vResult.status == "Error")
+	// 		{
+	// 			vResult = {
+	// 					"status" : vResult.status,
+	// 					"errorType": vResult.errorType,
+	// 					//"errorCode": this.errService.getErrorMessage(vResult.errorCode),
+	// 					"result" : null
+	// 			};
+	// 		}
 
-			pResponse.json(vResult);			
-		}
-		catch(pErr){
-			console.log("Failed to Query Retailer Summary with error message" + pErr);
+	// 		pResponse.json(vResult);			
+	// 	}
+	// 	catch(pErr){
+	// 		console.log("Failed to Query Retailer Summary with error message" + pErr);
 
-			var vError = {
-						"status" : "Error",
-						"errorType": "Internal Exception",
-						//"errorCode": this.errService.getErrorMessage("ERR_INTERNAL_SYSTEM"),
-						"result" : null
-					};
-			pResponse.json(vError);
-		}
-	}
+	// 		var vError = {
+	// 					"status" : "Error",
+	// 					"errorType": "Internal Exception",
+	// 					//"errorCode": this.errService.getErrorMessage("ERR_INTERNAL_SYSTEM"),
+	// 					"result" : null
+	// 				};
+	// 		pResponse.json(vError);
+	// 	}
+	// }
 	
 	async getSalesRoute(pRequest, pResponse){
 		try{
