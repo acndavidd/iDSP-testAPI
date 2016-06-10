@@ -33,7 +33,6 @@ export class TargetsActualsComponent {
     private vListBrands:any = [];
     public vSelectedBrand;
     private vListProduct;
-    // private vShowProduct;
     private vSelectedTab;
 
     constructor (
@@ -47,7 +46,7 @@ export class TargetsActualsComponent {
         this.vSelectedTab = 'Day';
         this._layoutService.setCurrentPage('TargetsActuals');
         this._headerService.setTitle('Targets & Actuals');
-        // this.getTargetsActuals();
+        this.getTargetsActuals();
 
     }
 
@@ -64,11 +63,10 @@ export class TargetsActualsComponent {
     }
 
     getTargetsActuals() {
-         console.log('Refresh PRoduct ' + this.vSelectedTab);
+         console.log('Refresh Product ' + this.vSelectedTab);
          this._targetsActualsService.queryPerformance(this.vSelectedTab, this.vSelectedBrand).subscribe(
              response => {
                     this.vListProduct = response.json();
-                    // this.vShowProduct = this.vListProduct;
             },
             error => {}
         );

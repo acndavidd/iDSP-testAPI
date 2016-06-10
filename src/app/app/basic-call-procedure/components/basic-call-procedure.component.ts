@@ -39,7 +39,7 @@ export class BasicCallProcedureComponent {
         this._layoutService.setCurrentPage('BasicCallProcedure');
         this._headerService.setTitle('Basic Call Procedure');
 
-        // this.refreshRetailerRouteBCP();
+        this.refreshRetailerRouteBCP();
     }
 
     getResize() {
@@ -90,21 +90,22 @@ export class BasicCallProcedureComponent {
     onKey(pInputText: any) {
         console.log(pInputText);
         this.vFilteredListRoute = this.vListRoute.filter(retailer => {
-             return retailer.getroute.store_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
-             retailer.getroute.retailer_min.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1;
+             return retailer.store_name.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1 ||
+             retailer.retailer_min.toLowerCase().indexOf(pInputText.toLowerCase()) !== -1;
         });
     }
 
-    // refreshRetailerRouteBCP() {
-    //     console.log('Get  retailer route for Day');
-    //     this._retailerService.queryTask().subscribe(
-    //             response => {
-    //                     this.vListRoute = response.json();
-    //                     this.vFilteredListRoute = this.vListRoute;
-    //             },
-    //             error => {
-    //                 console.log('error');
-    //             }
-    //     );
-    // }
+    refreshRetailerRouteBCP() {
+        console.log('Get  retailer route for Day');
+        this._retailerService.queryTask().subscribe(
+                response => {
+                        this.vListRoute = response.json();                         
+                        this.vFilteredListRoute = this.vListRoute;
+                        console.log('FILTER : ' + JSON.stringify(this.vFilteredListRoute));
+                },
+                error => {
+                    console.log('error');
+                }
+        );
+    }
 }

@@ -63,25 +63,57 @@ export class TaskController implements TaskInterface {
 
 								vAllRetailers = vAllRetailers.concat(vRetailerAsJSON);
 							}
+							console.log('param bcp'+JSON.stringify(vAllRetailers));
 
 						try {	
 
 							vResultData = await TaskController._dataAccess.getRouteDay('get_route_day', vAllRetailers ,true);
-							// console.log('All result ' + JSON.stringify(vResultData));
-							pResponse.json(vResultData.sort(function(a, b) {
-									if (a.getroute.sequence_no === null && b.getroute.sequence_no === null) {
+
+							console.log('HASILLL : '+JSON.stringify(vResultData[0].getroute.route_id));
+							let vResultAll = {
+								'status' : 200,
+								'statusMessage' : '',
+								'taskList' : []
+							};
+
+							vResultAll.status = 200;
+							vResultAll.statusMessage = 'OK';
+
+							for (var i = 0 ; i < vResultData.length ; i++) {
+									let self = {
+										'route_id' : vResultData[i].getroute.route_id,
+										'call_status' : vResultData[i].getroute.call_status,
+										'dsp_id' : vResultData[i].getroute.dsp_id,
+										'freq_map_id' : vResultData[i].getroute.freq_map_id,
+										'sequence_no' : vResultData[i].getroute.sequence_no,
+										'retailer_id' : vResultData[i].getroute.retailer_id,
+										'store_name' : vResultData[i].getroute.store_name,
+										'outlet_type' : vResultData[i].getroute.outlet_type,
+										'retailer_min' : vResultData[i].getroute.retailer_min,
+										'retailer_address' : vResultData[i].getroute.retailer_address,
+										'number_of_self_transaction' : vResultData[i].getroute.number_of_self_transaction,
+										'number_of_aging_self_transaction' : vResultData[i].getroute.number_of_aging_self_transaction,
+										'total_amount_self_transaction' : parseInt(vResultData[i].getroute.total_amount_self_transaction),
+										'dsp_name' : vResultData[i].getroute.dsp_name
+
+									}
+									vResultAll.taskList.push(self);
+								}
+							console.log('All result ' + JSON.stringify(vResultAll));
+							pResponse.json(vResultAll.taskList.sort(function(a, b) {
+									if (a.sequence_no === null && b.sequence_no === null) {
 										return 0;
 									}
-									if (a.getroute.sequence_no === null) {
+									if (a.sequence_no === null) {
 										return 1;
 									}
-									if (b.getroute.sequence_no === null) {
+									if (b.sequence_no === null) {
 										return -1;
 									}
-									if (parseInt(a.getroute.sequence_no) > parseInt(b.getroute.sequence_no)) {
+									if (parseInt(a.sequence_no) > parseInt(b.sequence_no)) {
 										return 1;
 									}
-									if (parseInt(a.getroute.sequence_no) < parseInt(b.getroute.sequence_no)) {
+									if (parseInt(a.sequence_no) < parseInt(b.sequence_no)) {
 										return -1;
 									} else {
 										return 0;

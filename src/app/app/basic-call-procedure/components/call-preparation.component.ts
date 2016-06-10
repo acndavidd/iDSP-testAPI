@@ -194,8 +194,4 @@ export class CallPreparationComponent {
         return this.vCollection;
     }
 
-    // getOutstandingBalanceTotal() {
-    //     return this.vOutstandingBalance;
-    // }
-
 }

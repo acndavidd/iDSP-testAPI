@@ -22,12 +22,18 @@ export interface RetailerInterface{
 	getRetailerSummary(pRequest, pResponse):Promise<void>;
 	getSalesRoute(pRequest, pResponse):Promise<void>;
 	loadWallet(pRequest, pResponse):Promise<void>;
-	additionalRetailer(pRequest, pResponse):Promise<void>;
+	// additionalRetailer(pRequest, pResponse):Promise<void>;
 	lastAmountTransferred(pRequest, pResponse):Promise<void>;
 	getSuggestedOrder(pRequest, pResponse):Promise<void>;
 	getCurrentBalance(pRequest, pResponse):Promise<void>;
-	// getSuggestedOrder(pRequest, pResponse):Promise<void>;
-	// getCurrentBalance(pRequest, pResponse):Promise<void>;
+	getAllRetailerAlert(pRequest, pResponse):Promise<void>;
+	getRetailerThreshold(pRequest, pResponse):Promise<void>;
+	retailerProfile(pRequest, pResponse):Promise<void>;
+	physicalInventory(pRequest, pResponse):Promise<void>;
+	lastAmountTransferred(pRequest, pResponse):Promise<void>;
+	outstandingBalance(pRequest, pResponse):Promise<void>;
+	getSuggestedOrder(pRequest, pResponse):Promise<void>;
+	getCurrentBalance(pRequest, pResponse):Promise<void>;
 }
 
 export class RetailerController implements RetailerInterface{
@@ -192,7 +198,6 @@ export class RetailerController implements RetailerInterface{
 		}
 	}
 
-
 	async retailerProfile(pRequest,pResponse) {
 
 		console.log("Start getting Call Preparation");
@@ -210,9 +215,21 @@ export class RetailerController implements RetailerInterface{
 				if(vRetailerData.validate()) {
 					// Catch result from API
 					let vResult = await RetailerController._httpService.get(APIService.APIType.OPISNET, vPath, null, vRetailerData);
-						let vResultCallInfo = await RetailerController._dataAccess.getCallInfo('get_call_info', vCallInfo);
-							let vResultBCP = await RetailerController._dataAccess.getOutstandingBalanceBCP('get_outstanding_balance', vRetailerData);
-												
+					let vResultCallInfo = await RetailerController._dataAccess.getCallInfo('get_call_info', vCallInfo);
+					let vResultBCP = await RetailerController._dataAccess.getOutstandingBalanceBCP('get_outstanding_balance', vRetailerData);
+							
+							let vResultCallInfoTemp = {
+								'status' : 200,
+								'statusMessage' : '',
+								'callInfo' : vResultCallInfo
+							};
+
+							let vResultBCPTemp = {
+								'status' : 200,
+								'statusMessage' : '',
+								'resultBCP' : vResultBCP
+							};
+
 						if(vResult && vResultCallInfo) {
 							let vResultAll = {
 								'status' : 200,
@@ -247,9 +264,9 @@ export class RetailerController implements RetailerInterface{
 										'dspId' : vResult.retailerProfileList[i].dspId,
 										'dspName' : vResult.retailerProfileList[i].dspName,
 										'firstRetailerMIN' : vResult.retailerProfileList[i].firstRetailerMIN,
-										'amountReceivables' : parseInt(vResultBCP[i].amount),
-										'status' : vResultCallInfo[i].call_status,
-										'lastVisit' : vResultCallInfo[i].call_date
+										'amountReceivables' : vResultBCPTemp.resultBCP[i].amount,
+										'status' : vResultCallInfoTemp.callInfo[i].call_status,
+										'lastVisit' : vResultCallInfoTemp.callInfo[i].call_date
 
 									}
 									vResultAll.retailerProfileList.push(self);
@@ -372,6 +389,10 @@ export class RetailerController implements RetailerInterface{
 				if(pErr.InventoryController._errorHandling.throwHTTPErrorResponse(pResponse, 400, 111, 'INVALID_CREDENTIALS')) {
 				}
 			}
+		}
+		catch(pErr)
+		{
+			throw pErr;
 		}
 	}
 			// console.log(vSelectedRetailId+'retailer id');
