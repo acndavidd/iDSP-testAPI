@@ -29,6 +29,7 @@ import {DetailRetailerComponent} from './basic-call-procedure/components/detail-
 import {SalesOrderPaymentComponent} from './basic-call-procedure/components/sales-order-payment.component';
 import {LeftMenuComponent} from './shared/components/left-menu.component';
 import {IdleService} from './shared/services/idle.service';
+import {EncryptionService} from './shared/services/encryption.service';
 import {Observable} from 'rxjs/Observable';
 
 declare var FastClick: FastClickStatic;
@@ -67,7 +68,8 @@ declare var configChannel: any;
         AuthenticationService,
         HeaderService,
         RetailerService,
-        IdleService
+        IdleService,
+        EncryptionService
     ]
 })
 

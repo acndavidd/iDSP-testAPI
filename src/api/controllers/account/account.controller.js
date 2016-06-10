@@ -25,7 +25,7 @@ class AccountController {
             try {
                 let vAccount = new account_model_1.Account.Account(pRequest.body.Username, pRequest.body.Password);
                 if (vAccount.validate()) {
-                    let vLoginServiceURL = '/OPISNET/services/idsp/userValidation';
+                    let vLoginServiceURL = '/opisnet/services/idsp/userValidation';
                     let vPayLoad = yield AccountController._httpService.post(api_service_1.APIService.APIType.OPISNET, vLoginServiceURL, null, vAccount);
                     if (vPayLoad.status === 200) {
                         let vTokenObject = new token_model_1.TokenObject(vAccount.Username, '', true, false);
@@ -56,14 +56,14 @@ class AccountController {
         return __awaiter(this, void 0, Promise, function* () {
             try {
                 let vHttpSvc = new api_service_1.APIService.HTTPService();
-                let vPath = '/OPISNET/services/idsp/userAuthorization';
+                let vPath = '/opisnet/services/idsp/userAuthorization';
                 let vMPIN = new account_model_1.Account.MPIN(pRequest.params.id, pRequest.body.MPIN);
                 if (vMPIN.validate()) {
                     let vPayLoad = yield vHttpSvc.post(api_service_1.APIService.APIType.OPISNET, vPath, null, vMPIN);
                     // if success encrypt dsp id as token object
                     if (vPayLoad.status === 200) {
                         let vTokenService = new token_service_1.TokenService();
-                        let vTokenObj = new token_model_1.TokenObject();
+                        let vTokenObj = new token_model_1.TokenObject(pRequest.params.id, '', true, true);
                         vTokenObj.setDSPId(pRequest.params.id);
                         vTokenObj.setOPISToken(vPayLoad.AccessToken);
                         let vTokenStr = vTokenService.encryptToken(vTokenObj);

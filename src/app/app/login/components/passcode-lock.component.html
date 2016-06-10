@@ -1,9 +1,8 @@
-<div class="container-mpin" *ngIf="getPassCodeState()">
+<div class="container-passcode" *ngIf="getPasscodeState()">
   <div class="anti-spy">
     <div class="outer-box">
       <div class="header">iDSP</div>
-      <div class="mpin-title">Set Passcode Lock 
-      </div>      
+      <div class="mpin-title">{{getPasscodeTitle()}}</div>      
       <div class="passcode-item-container">
         <div *ngIf="vLength < 1" class="passcode-line">
           <div class="cell-icon-25 empty"></div>
@@ -36,7 +35,7 @@
           <div class="cell-icon-25 fill"></div>
         </div>
       </div>
-      <div class="mpin-message">getDisplayMessage()</div>
+      <div class="mpin-message">{{getDisplayMessage()}}</div>
     </div>
     <div class="passcode-item-container">
       <div class="keyboard-line">

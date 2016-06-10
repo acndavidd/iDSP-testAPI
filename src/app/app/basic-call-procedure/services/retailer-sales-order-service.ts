@@ -46,4 +46,9 @@ export class RetailerSalesOrderService {
         console.log('in get retailer service : ' + JSON.stringify(pParams));
         return this._http.post('/retailer/balance', JSON.stringify(pParams));
     }
+
+    newSalesOrder(pId, pParams) {
+        console.log('trying create new salesorder : ' + JSON.stringify(pParams));
+        return this._http.post('/retailer/' + pId + '/salesorder', JSON.stringify(pParams));
+    }
 }

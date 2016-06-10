@@ -38,6 +38,8 @@ export class AddEditLoadTransferComponent {
     vRetailerProfile: any = [];
     vDspProfile: any = [];
     vCurrentBalance: any = 0;
+    vRRN: any;
+    vRemarks: any;
 
     constructor (
         private _layoutService: LayoutService,
@@ -62,12 +64,13 @@ export class AddEditLoadTransferComponent {
         this.vRetailerMIN = this.vRetailerProfile.retailer_min;
         this.vRetailerID = this.vRetailerProfile.retailer_id;
 
+        console.log('isi dsp profile: ' + JSON.stringify(this.vDspProfile));
+
         // get list of mins from OPIS+
         try {
             this._retailerSalesOrderService.getRetailerMins(this.vRetailerID).subscribe(
                 response => {
                     this.vRetailerMinList = response.json();
-                    // this.vSelectedMIN = this.vRetailerMinList[0].retailerMIN;
                 },
                 error => {
                     console.log(JSON.stringify(error.json()));
@@ -76,31 +79,12 @@ export class AddEditLoadTransferComponent {
         } catch (pErr) {
             this._modalService.toggleModal(pErr, Modal.ModalType.ERROR);
         }
-
-        this.vParamList = this._pageNavigationService.getCurrentParams();
-        this.vRetailerProfile = this.vParamList[0].retailer_profile;
-        this.vDspProfile = this.vParamList[1].account_profile;
-        this.vRetailerName = this.vRetailerProfile.retailer_name;
-        this.vRetailerMIN = this.vRetailerProfile.retailer_min;
-        this.vRetailerID = this.vRetailerProfile.retailer_id;
-        
-        // get suggested order from DB 
-        try {
-            this._retailerSalesOrderService.getSuggestedOrder(this.vRetailerID).subscribe(
-                response => {
-                    // console.log('get suggested order ' + JSON.stringify(response.json()));
-                    this.vSuggestedOrder = response.json().result.suggested_order.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                });
-        } catch (pErr) {
-            this.vSuggestedOrder = 'N/A';
-        }
-
+   
         // get list of mins from OPIS+
         try {
             this._retailerSalesOrderService.getRetailerMins(this.vRetailerID).subscribe(
                 response => {
                     this.vRetailerMinList = response.json();
-                    this.vSelectedMIN = this.vRetailerMinList[0].retailerMIN;
                 },
                 error => {
                     throw ('Error in Service');
@@ -125,20 +109,50 @@ export class AddEditLoadTransferComponent {
     }
 
     gotoRetailerSalesOrder() {
-        let vParams = {
-            retailer_name : this.vRetailerName,
-            retailer_id : this.vRetailerID,
-            retailer_min : this.vRetailerMIN,
-            total_load_amount : this.vTotalAmount,
-            total_load_disc_amount : this.vInputDiscountAmount,
+        let vParamsELP = {
+            dsp_min : this.vDspProfile.dsp_min_smart,
+            retailer_min : this.vSelectedMIN,
             load_transfer_amount : this.vInputLoadAmount,
-            load_promo_code : this.vInputPromoCode,
-            brand : this.vSelectedBrand,
-            selected_min : this.vSelectedMIN,
-            current_balance : this.vCurrentBalance
+            source : 'iDSP'
         };
 
-        this._pageNavigationService.navigate('RetailerSalesOrder', vParams, this.vParamList);
+        this._retailerSalesOrderService.newSalesOrder(this.vRetailerID, vParamsELP).subscribe(
+            response => {
+                console.log('Get RRN Response : ' +response.json());
+                this.vRRN = response.json();
+                this.vRemarks = 'Success';
+                this.go();
+            },
+            error => {
+                console.log('error asdas : ' + JSON.stringify(error));
+                if (error.status === 408) 
+                    this.vRemarks = 'Load Transfer Timeout';
+                else
+                    this.vRemarks = 'Failed Load Transfer';
+                this.vRRN = '';
+                this.go();
+        });
+    }
+
+    go() {
+        if (this.vRemarks) {
+            let vParams = {
+                retailer_name : this.vRetailerName,
+                retailer_id : this.vRetailerID,
+                retailer_min : this.vRetailerMIN,
+                total_load_amount : this.vTotalAmount,
+                total_load_disc_amount : this.vInputDiscountAmount,
+                load_transfer_amount : this.vInputLoadAmount,
+                load_promo_code : this.vInputPromoCode,
+                brand : this.vSelectedBrand,
+                selected_min : this.vSelectedMIN,
+                balance : this.vCurrentBalance,
+                rrn : this.vRRN,
+                remarks : this.vRemarks
+            };
+
+            this._pageNavigationService.navigate('RetailerSalesOrder', vParams, this.vParamList);
+        }
     }
 
     gotoRetailerSalesOrderHC() {
@@ -147,18 +161,14 @@ export class AddEditLoadTransferComponent {
     detailPromo() {
         this.vDetailPromo = !this.vDetailPromo;
         this.vArrowMap = !this.vArrowMap;
-        console.log('vTotalAmount : ' + this.vTotalAmount);
     }
 
     setInputLoadAmount(pStr: number) {
-        if(!this.vInputLoadAmount)
-            this.vInputLoadAmount = 0;
         this.vInputLoadAmount = pStr;
     }
 
     setSelectedMIN(pStr) {
         this.vSelectedMIN = pStr;
-
         // get retailer balance from ELP
         try {
             let vParams = {
@@ -171,7 +181,7 @@ export class AddEditLoadTransferComponent {
                     console.log('Get current balance ELP : ' + this.vCurrentBalance);
                 },
                 error => {
-                    console.log('Error respons from ELP : ' + JSON.stringify(error));
+                    console.log('Error respons from ELP : ' + error);
                 });
         } catch(pErr) {
             this.vCurrentBalance = 'N/A';
@@ -180,19 +190,24 @@ export class AddEditLoadTransferComponent {
 
         // get suggested order from DB 
         try {
-            let vParamLoad = {
-                id : this.vRetailerID,
-                brand : this.vSelectedBrand,
-                subcat_type : 'L'
-            };
-            this._retailerSalesOrderService.getSuggestedOrder(vParamLoad).subscribe(
-                response => {
-                    this.vSuggestedOrder = response.json();
-                },
-                error => {
-                    this.vSuggestedOrder = 'N/A';
-                    console.log('Cannot get suggested order : ' + error);
-                });
+            if (this.vSelectedBrand) {
+                let vParamLoad = {
+                    id : this.vRetailerID,
+                    brand : this.vSelectedBrand,
+                    subcat_type : 'L'
+                };
+                this._retailerSalesOrderService.getSuggestedOrder(vParamLoad).subscribe(
+                    response => {
+                        if (!response.json())
+                            this.vSuggestedOrder = 0;
+                        else
+                            this.vSuggestedOrder = response.json();
+                    },
+                    error => {
+                        this.vSuggestedOrder = 'N/A';
+                        console.log('Cannot get suggested order : ' + error);
+                    });
+            }
         } catch (pErr) {
             this.vSuggestedOrder = 'N/A';
             console.log('Error when calling suggested order service');
@@ -210,6 +225,5 @@ export class AddEditLoadTransferComponent {
             this.vTotalAmount = (this.vInputLoadAmount-this.vInputDiscountAmount);
             return this.vTotalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         }
-        // return this.vTotalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 }

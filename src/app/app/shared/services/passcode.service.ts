@@ -18,7 +18,6 @@ export class PasscodeService {
 
     constructor(_router: Router) {
     	this.resetState();
-    	console.log('instantiating passcode service');
     }
 
     resetState() {

@@ -26,10 +26,9 @@ export class RemittanceController implements RemittanceInterface {
     async getRemittancesDetail(pRequest, pResponse) {
         console.log("Start getting remittances detail");
         try {
-            var vDSPID = pRequest.params.dspid;
-
+            
             let vParams = {
-                dsp_id: vDSPID
+                dsp_id: 'DSP00001'
             };
 
             var vResult = await RemittanceController._dataAccess.executeSP('get_remittances_detail', vParams, false);

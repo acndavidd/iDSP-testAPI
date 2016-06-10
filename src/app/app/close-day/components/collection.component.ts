@@ -32,7 +32,7 @@ export class CollectionComponent {
         this._headerService.setTitle('Collection & Remittance');
 
         /* getter from backend */
-        this._remittanceService.setDSPID('DSP00001');
+        this._remittanceService.setDSPID('DSP00001'); // for testing purpose
         this._remittanceService.queryGetRemittance();
     }
 
