@@ -1,0 +1,28 @@
+{
+  "DEVELOPMENT": {
+    "port" : 8080,
+    "db" : {
+      "dialect"  : "postgres",
+      "host"     : "localhost",
+      "schema"   : "public",
+      "username" : "postgres",
+      "password" : "admin",
+      "name"     : "idsp",
+      "port"     : 5432,
+      "timezone" : "+08:00",
+      "pool"     : {
+          "min"  : 0,
+          "max"  : 5,
+          "idle" : 10000
+      }
+    },
+    "services" : {
+      "OPIS+" : "http://localhost:5678",
+      "ELP" : "http://localhost:5678",
+      "timeout" : 15000
+    },
+    "token" : {
+      "key" : "J@karta"
+    }
+  }
+}
