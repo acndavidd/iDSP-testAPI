@@ -1,0 +1,1 @@
+{"version":3,"file":"physical-inventory.model.js","sourceRoot":"","sources":["physical-inventory.model.ts"],"names":[],"mappings":";AAAA,6BAAwB,kBAAkB,CAAC,CAAA;AAG3C,qCAA4C,sBAAS;IAMpD,YAAY,YAAoB,EAAE,WAAkB;QACnD,OAAO,CAAC;QACR,IAAI,CAAC,WAAW,GAAG,YAAY,CAAC;QAChC,IAAI,CAAC,UAAU,GAAG,WAAW,CAAC;IAC/B,CAAC;AACF,CAAC;AAXY,8BAAsB,yBAWlC,CAAA"}
