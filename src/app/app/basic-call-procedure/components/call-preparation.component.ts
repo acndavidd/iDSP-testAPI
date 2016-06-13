@@ -6,6 +6,7 @@ import {HeaderService} from '../../shared/services/header.service';
 import {RetailerService} from '../../shared/services/retailer.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {NgModel} from 'angular2/common';
+import {CollectionService} from '../services/collection.service';
 
 @Component({
         // templateUrl: './app/basic-call-procedure/components/call-preparation.component.html',
@@ -35,6 +36,7 @@ export class CallPreparationComponent {
         private _layoutService: LayoutService,
         private _retailerService: RetailerService,
         private _matchMediaService: MatchMediaService,
+        private _collectionService: CollectionService,
         private _headerService: HeaderService,
         private _pageNavigationService: PageNavigationService,
         private _router: Router
@@ -78,6 +80,7 @@ export class CallPreparationComponent {
         this._retailerService.getCollection('RTL00001').subscribe( // for testing purpose
             response => {
                 this.vCollection = response.json();
+                this._collectionService.setCollectionHistory(this.vCollection); // save to collection service
                 console.log('Collection: ' + JSON.stringify(this.vCollection));
             },
             error => {
