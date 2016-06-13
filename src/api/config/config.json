@@ -24,5 +24,31 @@
     "token" : {
       "key" : "J@karta"
     }
+  },
+  "production": {
+    "port" : 8080,
+    "db" : {
+      "dialect"  : "postgres",
+      "host"     : "localhost",
+      "schema"   : "public",
+      "username" : "postgres",
+      "password" : "admin",
+      "name"     : "idsp",
+      "port"     : 5432,
+      "timezone" : "+08:00",
+      "pool"     : {
+          "min"  : 0,
+          "max"  : 5,
+          "idle" : 10000
+      }
+    },
+    "services" : {
+      "OPIS+" : "http://10.209.1.24:7777",
+      "ELP" : "http://10.209.1.24:7777",
+      "timeout" : 15000
+    },
+    "token" : {
+      "key" : "J@karta"
+    }
   }
 }
