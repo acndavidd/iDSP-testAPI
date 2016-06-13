@@ -1,1 +1,1 @@
-web: npm install && npm install -g typings@0.8.1 typescript && node_modules\.bin\sequelize.cmd db:migrate --env heroku --config config\migrate.json node main.js
+web: npm install && npm install -g typings@0.8.1 typescript && node_modules\.bin\sequelize db:migrate --env heroku --config config\migrate.json node main.js
