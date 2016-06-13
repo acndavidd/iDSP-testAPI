@@ -5,5 +5,16 @@
     "database": "idsp",
     "host": "127.0.0.1",
     "dialect": "postgres"
+  }, 
+  "heroku": {
+    "username": "cyuoqvnjangzls",
+    "password": "OQXO3loJV7Tjc2X5QhnaWHsziO",
+    "database": "d2vbu5s8ovnn4m",
+    "host": "ec2-54-83-44-117.compute-1.amazonaws.com",
+    "dialect": "postgres",
+    "dialectOptions" : {
+    	"ssl" : true
+    }
   }
+
 }
