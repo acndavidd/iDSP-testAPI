@@ -48,8 +48,9 @@ import {DetailCollectionComponent} from '../../close-day/components/detail-colle
 import {DetailRemittanceComponent} from '../../close-day/components/detail-remittance.component';
 import {TargetsActualsService} from '../../my-transaction/services/targets-actuals.service';
 import {RemittanceService} from '../../remittance/services/remittance.service';
-
+import {CollectionService} from '../../basic-call-procedure/services/collection.service';
 import {GlobalService} from '../../shared/services/global.service';
+
 
 @Component({
     selector : 'main-page',
@@ -60,6 +61,7 @@ import {GlobalService} from '../../shared/services/global.service';
     providers : [
         TargetsActualsService,
         RemittanceService,
+        CollectionService,
         GlobalService
     ]
 })

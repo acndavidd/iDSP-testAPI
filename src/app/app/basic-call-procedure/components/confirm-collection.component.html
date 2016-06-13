@@ -1,18 +1,22 @@
 <div class="container-body">
 
 	<div class="item-container sub">
-        <div class='container'>
-            <div class='cell'>
-                <div class='container'><div class='cell width-100 padding-left-5 large green'>Rose Cell</div></div>
-            </div>
-            <div class='cell'>
-                <div class='container'><div class='cell width-50 italic green'>(99999900003)</div></div>
-            </div>
-        </div>
+		<div class='container'>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-100 padding-left-5 large green'>Rose Cell</div>
+				</div>
+			</div>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-50 italic green'>(99999900003)</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<div class="item-container sub">
-        <div class="container">
+		<div class="container">
 			<div class='cell'>
 				<div class='container'>
 					<div class='cell width-60 padding-left-10 grey'>Amount Receivables</div>
@@ -20,7 +24,7 @@
 			</div>
 			<div class='cell'>
 				<div class='container'>
-					<div class='cell width-30 align-right green '>P 3000</div>
+					<div class='cell width-30 align-right green '>P {{getNewTransList().totalAmount | number}}</div>
 				</div>
 			</div>
 			<div class='cell width-10'></div>
@@ -33,7 +37,7 @@
 			</div>
 			<div class='cell'>
 				<div class='container'>
-					<div class='cell width-30 align-right green '>P 1000</div>
+					<div class='cell width-30 align-right green '>P {{getPaymentTotal() | number}}</div>
 				</div>
 			</div>
 			<div class='cell width-10'></div>
@@ -46,308 +50,126 @@
 			</div>
 			<div class='cell'>
 				<div class='container'>
-					<div class='cell width-30 align-right green '>P 2000</div>
+					<div class='cell width-30 align-right green '>P {{(getNewTransList().totalAmount - getPaymentTotal()) | number}}</div>
 				</div>
 			</div>
 			<div class='cell width-10'></div>
 		</div>
     </div>
 
-    <div class="item-container no-padding-item-container">
-	    <div class="container">
-	    	<div class='cell vertical sulu'>
-            	<div class='vertical-text'>BCP</div>
-            </div>
-	        <div class='cell'>
-                <div class='container'>
-                	<div class='cell width-100'>
-					    <div class="container">
-					        <div class='cell'>
-				                <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Order #</div></div>
-					        </div>
-					        <div class='cell'>
-				                <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>12345</div></div>
-					        </div>
-					    </div>
-                	</div>
-                </div>
-                <div class='container'>
-                	<div class='cell width-100'>
-					    <div class="container">
-					        <div class='cell'>
-				                <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Date</div></div>
-					        </div>
-					        <div class='cell'>
-				                <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right vivid-pink'>2016-01-16  08:17</div></div>
-					        </div>
-					    </div>
-                	</div>
-                </div>
-                <div class='container'>
-                	<div class='cell width-100'>
-					    <div class="container">
-					        <div class='cell'>
-				                <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Balance Amount</div></div>
-					        </div>
-					        <div class='cell'>
-				                <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>P 1,500</div></div>
-					        </div>
-					    </div>
-                	</div>
-                </div>
+	<div *ngFor="#each of getNewTransList().TransactionList; #i = index" class="item-container no-padding-item-container">
+		<div class="container">
+			<div class='cell vertical' [ngClass]="{'sulu': (each.trans_type==='SELF'), 'blue-vertical' : (each.trans_type==='BCP')}">
+				<div class='vertical-text'>{{each.trans_type}}</div>
+			</div>
+			<div class='cell'>
+				<div class='container'>
+					<div class='cell width-100'>
+						<div class="container">
+							<div class='cell'>
+								<div class='container' id="accRetMin">
+									<div class='cell width-50 padding-left-5'>Order #</div>
+								</div>
+							</div>
+							<div class='cell'>
+								<div class='container' id="accAmount">
+									<div class='cell width-50 padding-right-5 align-right'>{{each.order_id}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class='container'>
+					<div class='cell width-100'>
+						<div class="container">
+							<div class='cell'>
+								<div class='container' id="accRetMin">
+									<div class='cell width-50 padding-left-5'>Date</div>
+								</div>
+							</div>
+							<div class='cell'>
+								<div class='container' id="accAmount">
+									<div class='cell width-50 padding-right-5 align-right' [ngClass]="{'vivid-pink': isOverdue(each.trans_type,4)}">{{each.trans_date}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class='container'>
+					<div class='cell width-100'>
+						<div class="container">
+							<div class='cell'>
+								<div class='container' id="accRetMin">
+									<div class='cell width-50 padding-left-5'>Balance Amount</div>
+								</div>
+							</div>
+							<div class='cell'>
+								<div class='container' id="accAmount">
+									<div class='cell width-50 padding-right-5 align-right'>P {{ each.amount | number}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-		 		<div class="container">
-				  	<div class="cell width-100">				    	    
-					    <ul class="button-group round toggle" data-toggle="buttons-radio">
-					      <li>
-					        <input type="radio" id="r2-1" name="r-group-2" data-toggle="collection-2" checked>
-					        <label class="radio-button" for="r2-1">Full</label>
-					      </li>
-					      <li>
-					        <input type="radio" id="r2-2" name="r-group-2" data-toggle="collection-2">
-					        <label class="radio-button" for="r2-2">Partial</label>
-					      </li>
-					    </ul>
-				    </div>
-			  	</div> 
+				<!-- radio -->
+				<div class="container">
+					<div class="cell width-100">
+						<ul class="button-group round toggle" data-toggle="buttons-radio">
+							<li>
+								<input *ngIf="each.payment_type!=='full'" (click)="setToFull(i)" type="radio" id="r{{i}}-1" name="r-group-{{i}}" data-toggle="">
+								<input *ngIf="each.payment_type==='full'" (click)="setToFull(i)" type="radio" id="r{{i}}-1" name="r-group-{{i}}" data-toggle="" checked>
+								<label class="radio-button" [attr.for]="'r'+i+'-1'">Full</label>
+							</li>
+							<li>
+								<input *ngIf="each.payment_type!=='partial'" type="radio" id="r{{i}}-2" name="r-group-{{i}}" data-toggle="">
+								<input *ngIf="each.payment_type==='partial'" type="radio" id="r{{i}}-1" name="r-group-{{i}}" data-toggle="" checked>
+								<label class="radio-button" [attr.for]="'r'+i+'-2'">Partial</label>
+							</li>
+						</ul>
+					</div>
+				</div>
 
-			  	
-
-                <div class="padding-top-2 padding-bottom-2">
-			        <div class='container'>
-			            <div class='cell'>			              
-			                <div class='container'>
-			                	<div class='cell width-100'>
-					                <div class='container'>
-					                    <div class='cell'>
-					                        <div class="container">
-					                            <div class='cell'>
-					                                <div class='container'><div class='cell width-30 padding-left-5'>Collection</div></div>
-					                            </div>
-					                            <div class='cell'>					                                
-					                                <div class='container'><div class='cell width-50 padding-right-5 align-right'><input class="width-70 input-peso" id="amount" type="number" pattern="[0-9]+([,\.][0-9]+)?" value="500"/></div></div>
-					                            </div>
-					                        </div>
-					                    </div>
-					                </div>
-					            </div>
-					        </div>
-			            </div>
-			        </div>
-			    </div>
-
-
-
-	        </div>
-	    </div>
+				<div class="item-container">
+					<div class='container'>
+						<div class='cell'>
+							<div class='container'>
+								<div class='cell width-100'>
+									<div class='container'>
+										<div class='cell'>
+											<div class="container">
+												<div class='cell'>
+													<div class='container'>
+														<div class='cell width-50 padding-left-5'>Collection</div>
+													</div>
+												</div>
+												<div class='cell'>
+													<div class='container'>
+														<div class='cell width-50 padding-right-5 align-right'>
+															<input [(ngModel)]="each.payment_amount" class="width-50 input-peso" id="amount" type="number" pattern="[0-9]+([,\.][0-9]+)?"
+																value="500" />
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-
-
-	<div class="item-container no-padding-item-container">
-	    <div class="container">
-	    	<div class='cell vertical blue-vertical'>
-            	<div class='vertical-text'>SELF</div>
-            </div>
-	        <div class='cell'>               
-                <div class='container'>
-                	<div class='cell width-100'>
-					    <div class="container">
-					        <div class='cell'>
-				                <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Order #</div></div>
-					        </div>
-					        <div class='cell'>
-				                <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>57621</div></div>
-					        </div>
-					    </div>
-                	</div>
-                </div>
-                <div class='container'>
-                	<div class='cell width-100'>
-					    <div class="container">
-					        <div class='cell'>
-				                <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Date</div></div>
-					        </div>
-					        <div class='cell'>
-				                <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>2016-05-22  13:02</div></div>
-					        </div>
-					    </div>
-                	</div>
-                </div>
-                <div class='container'>
-                	<div class='cell width-100'>
-					    <div class="container">
-					        <div class='cell'>
-				                <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Balance Amount</div></div>
-					        </div>
-					        <div class='cell'>
-				                <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>P 500</div></div>
-					        </div>
-					    </div>
-                	</div>
-                </div>
-
-		 		<div class="container">
-				  	<div class="cell width-100">				    	    
-					    <ul class="button-group round toggle" data-toggle="buttons-radio">
-					      <li>
-					        <input type="radio" id="r1-1" name="r-group-1" data-toggle="collection-1" checked>
-					        <label class="radio-button" for="r1-1">Full</label>
-					      </li>
-					      <li>
-					        <input type="radio" id="r1-2" name="r-group-1" data-toggle="collection-1">
-					        <label class="radio-button" for="r1-2">Partial</label>
-					      </li>
-					    </ul>
-				    </div>
-			  	</div> 
-
-			  	
-
-                <div class="padding-top-2 padding-bottom-2">
-			        <div class='container'>
-			            <div class='cell'>			              
-			                <div class='container'>
-			                	<div class='cell width-100'>
-					                <div class='container'>
-					                    <div class='cell'>
-					                        <div class="container">
-					                            <div class='cell'>
-					                                <div class='container'><div class='cell width-30 padding-left-5'>Collection</div></div>
-					                            </div>
-					                            <div class='cell'>					                                
-					                                <div class='container'><div class='cell width-50 padding-right-5 align-right'><input class="width-70 input-peso" id="amount" type="number" pattern="[0-9]+([,\.][0-9]+)?" value="500"/></div></div>
-					                            </div>
-					                        </div>
-					                    </div>
-					                </div>
-					            </div>
-					        </div>
-			            </div>
-			        </div>
-			    </div>
-
-
-
-	        </div>
-	    </div>
-	</div>
-
-	  <div class="item-container no-padding-item-container">
-	    <div class="container">
-	    	<div class='cell vertical sulu'>
-            	<div class='vertical-text'>BCP</div>
-            </div>
-	        <div class='cell'>
-                <div class='container'>
-                	<div class='cell width-100'>
-					    <div class="container">
-					        <div class='cell'>
-				                <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Order #</div></div>
-					        </div>
-					        <div class='cell'>
-				                <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>68321</div></div>
-					        </div>
-					    </div>
-                	</div>
-                </div>
-                <div class='container'>
-                	<div class='cell width-100'>
-					    <div class="container">
-					        <div class='cell'>
-				                <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Date</div></div>
-					        </div>
-					        <div class='cell'>
-				                <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>2016-05-23  13:18</div></div>
-					        </div>
-					    </div>
-                	</div>
-                </div>
-                <div class='container'>
-                	<div class='cell width-100'>
-					    <div class="container">
-					        <div class='cell'>
-				                <div class='container' id ="accRetMin"><div class='cell width-50 padding-left-5'>Balance Amount</div></div>
-					        </div>
-					        <div class='cell'>
-				                <div class='container' id ="accAmount"><div class='cell width-50 padding-right-5 align-right'>P 1,000</div></div>
-					        </div>
-					    </div>
-                	</div>
-                </div>
-
-		 		<div class="container">
-				  	<div class="cell width-100">				    	    
-					    <ul class="button-group round toggle" data-toggle="buttons-radio">
-					      <li>
-					        <input type="radio" id="r3-1" name="r-group-3" data-toggle="collection-3" checked>
-					        <label class="radio-button" for="r3-1">Full</label>
-					      </li>
-					      <li>
-					        <input type="radio" id="r3-2" name="r-group-3" data-toggle="collection-3">
-					        <label class="radio-button" for="r3-2">Partial</label>
-					      </li>
-					    </ul>
-				    </div>
-			  	</div> 
-
-			  	
-
-                <div class="padding-top-2 padding-bottom-2">
-			        <div class='container'>
-			            <div class='cell'>			              
-			                <div class='container'>
-			                	<div class='cell width-100'>
-					                <div class='container'>
-					                    <div class='cell'>
-					                        <div class="container">
-					                            <div class='cell'>
-					                                <div class='container'><div class='cell width-30 padding-left-5'>Collection</div></div>
-					                            </div>
-					                            <div class='cell'>					                                
-					                                <div class='container'><div class='cell width-50 padding-right-5 align-right'><input class="width-70 input-peso" id="amount" type="number" pattern="[0-9]+([,\.][0-9]+)?" value="0"/></div></div>
-					                            </div>
-					                        </div>
-					                    </div>
-					                </div>
-					            </div>
-					        </div>
-			            </div>
-			        </div>
-			    </div>
-
-
-
-	        </div>
-	    </div>
-	</div>
-
-	<!--div class="item-container">
-	  <div class="container">
-	  	<div class="cell width-100">
-	    	    
-		    <ul class="button-group round toggle" data-toggle="buttons-radio">
-		      <li>
-		        <input type="radio" id="r1" name="r-group" data-toggle="radio-button" checked>
-		        <label class="radio-button" for="r1">Full</label>
-		      </li>
-		      <li>
-		        <input type="radio" id="r2" name="r-group" data-toggle="radio-button">
-		        <label class="radio-button" for="r2">Partial</label>
-		      </li>
-		    </ul>
-
-	    </div>
-	  </div>
-	</div-->
-
 
 	<div class="double-divider">
-		<div class= "button" (click)="skipCollection()">
+		<div class="button" (click)="skipCollection()">
 			<div class="button-identifier" id="skip-confirm-collection">SKIP</div>
 		</div>
 	</div>
 	<div class="double-divider">
-		<div class= "button" (click)="gotoOffers()">
+		<div class="button" (click)="validateCollection()">
 			<div class="button-identifier" id="confirm-confirm-collection">CONFIRM</div>
 		</div>
 	</div>

@@ -3,9 +3,11 @@ import {ErrorHandlingService} from './error-handling.service';
 export module APIService {
 
 	var vEnv = process.env.NODE_ENV || "DEVELOPMENT";
+	console.log(vEnv);
 	var vRequest = require('request'); 
 	var vConfig = require('../config/config.json')[vEnv];
-	
+	console.log(vConfig);
+
 	export var APIType = {
 		OPISNET : vConfig.services["OPIS+"],
 		ELP : vConfig.services["ELP"]	

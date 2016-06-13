@@ -7,10 +7,11 @@ import {RetailerService} from '../../shared/services/retailer.service';
 import {PageNavigationService} from '../../shared/services/page-navigation.service';
 import {Modal} from '../../shared/services/modal.service';
 import {NgModel} from 'angular2/common';
+import {CollectionService} from '../services/collection.service';
 
 @Component({
-    // templateUrl: './app/basic-call-procedure/components/bcp-collection.component.html',
-    templateUrl: './app/basic-call-procedure/components/hc-bcp-collection.component.html',
+    templateUrl: './app/basic-call-procedure/components/bcp-collection.component.html',
+    // templateUrl: './app/basic-call-procedure/components/hc-bcp-collection.component.html',
     directives: [
         ROUTER_DIRECTIVES
     ]
@@ -19,23 +20,26 @@ import {NgModel} from 'angular2/common';
 export class BCPCollectionComponent {
 
     vOutstandingShow = false;
-    vArrowMap        = false;
-    vPaymentShow     = false;
+    vArrowMap = false;
+    vPaymentShow = false;
     vSelectedRetailId;
     vSelectedRetailCallId;
     vSelectedRetail;
     vPaymentHistory;
     vSelectedRetailSeq;
+    vPaymentAmount: number;
+    vPaymentRemarks: string;
 
-    constructor (
+    constructor(
         private _layoutService: LayoutService,
         private _matchMediaService: MatchMediaService,
         private _headerService: HeaderService,
         private _retailerService: RetailerService,
         private _pageNavigationService: PageNavigationService,
         private _router: Router,
+        private _collectionService: CollectionService,
         private _modalService: Modal.ModalService
-        ) {
+    ) {
 
 
         // console.log(this._pageNavigationService.getCurrentParams());
@@ -83,6 +87,8 @@ export class BCPCollectionComponent {
         // });
 
         this._retailerService.getRetailer(100);
+        this._collectionService.setTransList();
+        this._collectionService.setNewTransList();
         this._layoutService.setCurrentPage('BCPCollection');
         this._headerService.setTitle('Collection');
     }
@@ -126,16 +132,15 @@ export class BCPCollectionComponent {
     }
 
     getAmountReceivables() {
-        
+
     }
 
     getPaymentHistory() {
-        console.log('masuk get payment history');
         return this.vPaymentHistory;
     }
 
     // gotoSkipCollection() {
-        // nanti pegi ke SKIPP COLLECTION UI
+    // nanti pegi ke SKIPP COLLECTION UI
     // }
 
     // skipCollection() {
@@ -156,7 +161,7 @@ export class BCPCollectionComponent {
     // }
 
 
-     skipCollection() {
+    skipCollection() {
         console.log('Skip Collection');
         this._modalService.showConfirmationModal('Are you sure  <br/> you want to skip collection ?',
             this.skipCollectionback.bind(this),
@@ -166,10 +171,30 @@ export class BCPCollectionComponent {
 
     skipCollectionback() {
         this._pageNavigationService.navigate('SkipCollection', null, null);
-    } 
+    }
 
 
     gotoConfirmCollection() {
+        this._collectionService.setPaymentAmount(this.vPaymentAmount);
+        this._collectionService.setPaymentTotal(this.vPaymentAmount);
+        this._collectionService.setPaymentRemarks('' + this.vPaymentRemarks);
+        this._collectionService.setNewTransList();
         this._pageNavigationService.navigate('ConfirmCollection', null, null);
     }
+
+    getNewTransList() {
+        return this._collectionService.getNewTransList();
+    }
+
+    getCollectionHistory() {
+        return this._collectionService.getCollectionHistory();
+    }
+
+    isOverdue(pTransDate: string, days: number) {
+        let vNow = new Date();
+        let vOverDueDate = new Date(pTransDate);
+        vOverDueDate.setDate(vOverDueDate.getDate() + days);
+        return (vOverDueDate >= vNow);
+    }
+
 }
