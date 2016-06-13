@@ -16,13 +16,14 @@ export class RetailerThreshold {
 	constructor() {
 		RetailerThreshold._errorHandling = new ErrorHandlingService();
 		RetailerThreshold._httpService = new APIService.HTTPService();
+
 	}
 
 	async getRetailerThreshold(pRequest, pResponse) {
 		try{
 			let serviceURL: string = '/opisnet/services/idsp/dspalert';
 			let vTokenService = new TokenService();
-			let vTokenObject = new TokenObject();
+			let vTokenObject = new TokenObject(null, null, null, null);
 			let vToken = pResponse.locals.accessToken;
 			vTokenObject = vTokenService.decryptToken(vToken);
 			console.log(vTokenObject);
