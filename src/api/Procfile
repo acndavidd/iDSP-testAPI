@@ -1,1 +1,1 @@
-web: npm install && npm install sequelize-cli && node node_modules\.bin\sequelize.sh db:migrate --env heroku --config config\migrate.json node main.js
+web: npm install && npm install sequelize-cli && node_modules\.bin\sequelize.sh db:migrate --env heroku --config config\migrate.json node main.js
